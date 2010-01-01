@@ -3,10 +3,9 @@
  */
 package com.elixirian.common.validation;
 
+import static com.elixirian.common.test.CommonTestHelper.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-
-import java.lang.reflect.Constructor;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -58,20 +57,7 @@ public class AssertItTest
 	@Test(expected = IllegalStateException.class)
 	public final void testAssertIt() throws Exception
 	{
-		Constructor<AssertIt> constructor = AssertIt.class.getDeclaredConstructor(new Class<?>[] {});
-		assertThat("The no arg constuctor does not exist in " + AssertIt.class.getName(), constructor, notNullValue());
-		assertFalse(constructor.isAccessible());
-		constructor.setAccessible(true);
-		try
-		{
-			constructor.newInstance(new Object[] {});
-		}
-		catch (Exception e)
-		{
-			e = (Exception) e.getCause();
-			e.printStackTrace();
-			throw e;
-		}
+		testNotAccessibleConstructor(AssertIt.class, EMPTY_CLASS_ARRAY, EMPTY_OBJECT_ARRAY);
 	}
 
 	/**
