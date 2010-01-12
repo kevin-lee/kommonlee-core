@@ -13,18 +13,6 @@
 		<groupId>com.elixirian</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<repositories>
-		<repository>
-			<id>snapshots</id>
-			<name>Kevin's Snapshots</name>
-			<url>http://nexus.lckymn.com/content/repositories/snapshots</url>
-		</repository>
-		<repository>
-			<id>releases</id>
-			<name>Kevin's Releases</name>
-			<url>http://nexus.lckymn.com/content/repositories/releases</url>
-		</repository>
-	</repositories>
 	<build>
 		<plugins>
 			<plugin>
