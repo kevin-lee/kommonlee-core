@@ -173,7 +173,7 @@ public class AssertItTest
 	{
 		try
 		{
-			AssertIt.isTrue(new Integer(2).equals(new Integer(2)), "It is not true");
+			AssertIt.isTrue(new Integer(2).equals(new Integer(2)), "It is not true.");
 		}
 		catch (Exception e)
 		{
@@ -181,6 +181,25 @@ public class AssertItTest
 			fail(NO_EXCEPTION_SHOULD_BE_THROWN_HERE + e.getMessage());
 		}
 
-		AssertIt.isTrue(new Integer(3).equals(new Integer(1)), "It is not true");
+		AssertIt.isTrue(new Integer(3).equals(new Integer(1)), "It is not true.");
+	}
+
+	/**
+	 * Test method for {@link com.elixirian.common.validation.AssertIt#isTrue(boolean, java.lang.String)}.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public final void testIsFalse()
+	{
+		try
+		{
+			AssertIt.isFalse(new Integer(2).equals(new Integer(3)), "It is not false.");
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+			fail(NO_EXCEPTION_SHOULD_BE_THROWN_HERE + e.getMessage());
+		}
+
+		AssertIt.isFalse(new Integer(5).equals(new Integer(5)), "It is not false.");
 	}
 }

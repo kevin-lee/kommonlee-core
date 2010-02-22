@@ -53,4 +53,12 @@ public final class AssertIt
 			throw new IllegalArgumentException(message);
 		}
 	}
+
+	public static void isFalse(final boolean expresion, final String message)
+	{
+		if (expresion)
+		{
+			throw new IllegalArgumentException(message);
+		}
+	}
 }
