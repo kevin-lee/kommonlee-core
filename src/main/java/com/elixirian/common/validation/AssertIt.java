@@ -3,6 +3,8 @@
  */
 package com.elixirian.common.validation;
 
+import static com.elixirian.common.string.MessageFormatter.*;
+
 /**
  * @author Lee, SeongHyun (Kevin)
  * @version 0.01 (2009-11-28)
@@ -14,51 +16,55 @@ public final class AssertIt
 		throw new IllegalStateException("AssertIt class cannot be instantiated.");
 	}
 
-	public static void isNotNull(final Object object, final String message)
+	public static <T> T isNotNull(final T object, final String message, final Object... args)
 	{
 		if (null == object)
 		{
-			throw new IllegalArgumentException(message);
+			throw new IllegalArgumentException(formatMessage(message, args));
 		}
+		return object;
 	}
 
-	public static void isNull(final Object object, final String message)
+	public static <T> T isNull(final T object, final String message, final Object... args)
 	{
 		if (null != object)
 		{
-			throw new IllegalArgumentException(message);
+			throw new IllegalArgumentException(formatMessage(message, args));
 		}
+		return object;
 	}
 
-	public static void isNotEmpty(final String value, final String message)
+	public static String isNotEmpty(final String value, final String message, final Object... args)
 	{
 		if (null == value || 0 == value.length())
 		{
-			throw new IllegalArgumentException(message);
+			throw new IllegalArgumentException(formatMessage(message, args));
 		}
+		return value;
 	}
 
-	public static void isEmpty(final String value, final String message)
+	public static String isEmpty(final String value, final String message, final Object... args)
 	{
 		if (null != value && 0 != value.length())
 		{
-			throw new IllegalArgumentException(message);
+			throw new IllegalArgumentException(formatMessage(message, args));
 		}
+		return value;
 	}
 
-	public static void isTrue(final boolean expresion, final String message)
+	public static void isTrue(final boolean expresion, final String message, final Object... args)
 	{
 		if (!expresion)
 		{
-			throw new IllegalArgumentException(message);
+			throw new IllegalArgumentException(formatMessage(message, args));
 		}
 	}
 
-	public static void isFalse(final boolean expresion, final String message)
+	public static void isFalse(final boolean expresion, final String message, final Object... args)
 	{
 		if (expresion)
 		{
-			throw new IllegalArgumentException(message);
+			throw new IllegalArgumentException(formatMessage(message, args));
 		}
 	}
 }
