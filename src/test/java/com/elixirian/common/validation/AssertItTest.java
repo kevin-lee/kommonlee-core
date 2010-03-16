@@ -61,7 +61,7 @@ public class AssertItTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isNotNull(java.lang.Object, java.lang.String)}.
+	 * Test method for {@link com.elixirian.common.validation.AssertIt#isNotNull(java.lang.Object, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testIsNotNull()
@@ -79,7 +79,7 @@ public class AssertItTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isNull(java.lang.Object, java.lang.String)}.
+	 * Test method for {@link com.elixirian.common.validation.AssertIt#isNull(java.lang.Object, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testIsNull()
@@ -97,7 +97,7 @@ public class AssertItTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isNotEmpty(java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.elixirian.common.validation.AssertIt#isNotEmpty(java.lang.String, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testIsNotEmpty()
@@ -133,7 +133,7 @@ public class AssertItTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isEmpty(java.lang.String, java.lang.String)}.
+	 * Test method for {@link com.elixirian.common.validation.AssertIt#isEmpty(java.lang.String, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testIsEmpty()
@@ -166,7 +166,7 @@ public class AssertItTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isTrue(boolean, java.lang.String)}.
+	 * Test method for {@link com.elixirian.common.validation.AssertIt#isTrue(boolean, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testIsTrue()
@@ -185,7 +185,7 @@ public class AssertItTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isTrue(boolean, java.lang.String)}.
+	 * Test method for {@link com.elixirian.common.validation.AssertIt#isTrue(boolean, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testIsFalse()

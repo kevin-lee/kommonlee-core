@@ -40,20 +40,49 @@ public final class MessageFormatter
 			}
 			if (0 < position && message.charAt(position - 1) == ESCAPE_CHAR)
 			{
+				/* "%%s" is found so escape. */
 				formattedMessage.append(message.substring(fromIndex, position))
 						.append(message.charAt(position + 1));
-				fromIndex = position += JUMP_SIZE;
-				continue;
 			}
-
-			formattedMessage.append(message.substring(fromIndex, position))
-					.append(args[i++]);
-			fromIndex = position += JUMP_SIZE;
+			else
+			{
+				/* "%s" is found so replace it with one of the arguments. */
+				formattedMessage.append(message.substring(fromIndex, position))
+						.append(args[i++]);
+			}
+			fromIndex = position + JUMP_SIZE;
 		}
+
+		int position = message.indexOf(STRING_ARGUMANT_SYMBOL, fromIndex);
+		while (0 <= position)
+		{
+			/* remove all the extra "%s"s and escape the rest of the "%%s"s */
+			if (0 < position)
+			{
+				// /* "%s" is found in the index number 0 so just jump */
+				// fromIndex = position += JUMP_SIZE;
+				// }
+				if (message.charAt(position - 1) == ESCAPE_CHAR)
+				{
+					/* "%%s" is found so escape then jump to the next position. */
+					formattedMessage.append(message.substring(fromIndex, position))
+							.append(message.charAt(position + 1));
+				}
+				else
+				{
+					/* "%s" is found so take all the Strings before it then jump to the next postion. */
+					formattedMessage.append(message.substring(fromIndex, position));
+				}
+			}
+			fromIndex = position + JUMP_SIZE;
+			position = message.indexOf(STRING_ARGUMANT_SYMBOL, fromIndex);
+		}
+
 		formattedMessage.append(message.substring(fromIndex));
 
 		if (args.length > i)
 		{
+			/* put all the extra arguments to the end of the message. */
 			formattedMessage.append(0 < formattedMessage.length() ? " [" : "[")
 					.append(args[i++]);
 			while (args.length > i)
