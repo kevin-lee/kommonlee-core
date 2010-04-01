@@ -15,7 +15,7 @@ import org.junit.Test;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.01 (2009 12 29)
+ * @version 0.0.1 (2009 12 29)
  */
 public class ValidateItTest
 {

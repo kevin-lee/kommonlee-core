@@ -15,11 +15,10 @@ import org.junit.Test;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.01 (2009-12-29)
+ * @version 0.0.1 (2009-12-29)
  */
 public class AssertItTest
 {
-
 	private static final String NO_EXCEPTION_SHOULD_BE_THROWN_HERE = "No exception should be thrown here!\n";
 
 	/**
@@ -68,14 +67,14 @@ public class AssertItTest
 	{
 		try
 		{
-			AssertIt.isNotNull(new Object(), "It it null!!!");
+			AssertIt.isNotNull(new Object(), "It is null!!!");
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 			fail(NO_EXCEPTION_SHOULD_BE_THROWN_HERE + e.getMessage());
 		}
-		AssertIt.isNotNull(null, "It it null!!!");
+		AssertIt.isNotNull(null, "It is null!!!");
 	}
 
 	/**

@@ -7,13 +7,13 @@ import static com.elixirian.common.string.MessageFormatter.*;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.01 (2009-11-28)
+ * @version 0.0.1 (2009-11-28)
  */
 public final class AssertIt
 {
 	private AssertIt()
 	{
-		throw new IllegalStateException("AssertIt class cannot be instantiated.");
+		throw new IllegalStateException(getClass().getName() + " cannot be instantiated.");
 	}
 
 	public static <T> T isNotNull(final T object, final String message, final Object... args)

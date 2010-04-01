@@ -5,7 +5,7 @@ package com.elixirian.common.validation;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.01 (2009-11-28)
+ * @version 0.0.1 (2009-11-28)
  */
 public final class ValidateIt
 {
