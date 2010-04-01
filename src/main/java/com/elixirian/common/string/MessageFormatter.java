@@ -6,6 +6,11 @@ package com.elixirian.common.string;
 /**
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-02-23)
+ * @version 0.0.2 (2010-03-16) bug fixed: It does not remove the extra "%s"s nor does it escape the rest of the "%%s"s after all the
+ *          arguments replace the "%s"s but there are still "%s"s or "%%s"s left =fixed=> It removes all the extra "%s"s and escapes the
+ *          rest of the "%%s"s.
+ * @version 0.0.3 (2010-04-01) null check and empty array check are removed for better performance (removing optimisation has led to even
+ *          more optimised code).
  */
 public final class MessageFormatter
 {
@@ -20,13 +25,86 @@ public final class MessageFormatter
 		throw new IllegalStateException(getClass().getName() + " cannot be instantiated.");
 	}
 
+	/**
+	 * Format the message with the given argument objects. The place holder is
+	 * <code>%s<code>. all the "%s"s are replaced by the given argument objects.
+	 * <ul>
+	 * <li>If there are more argument objects passed, the rest are added the end of the message in the square brackets.</li> 
+	 * <li>If there are fewer "%s"s entered, the rest are removed from the message.</li>
+	 * <li>To include <code>%s</code> in the message, put <code>%</code> just before <code>%s</code> (e.g. %%s / the first % is escape
+	 * character).</li> </ul> <div> e.g.) </div>
+	 * 
+	 * <pre>
+	 * Message:   "Hello, %s. How are you %s?"
+	 * Arguments: "world", "today"
+	 * Result:    "Hello, world. How are you today?"
+	 * </pre>
+	 * 
+	 * <pre>
+	 * Message:   "Hello, %s. How are you %s?"
+	 * Arguments: "world", "today", "Kevin", "Lee"
+	 * Result:    "Hello, world. How are you today? [Kevin, Lee]"
+	 * </pre>
+	 * 
+	 * <pre>
+	 * Message:   "Hello, %s. How are you %s? So you have more %s. Oh! another %s?"
+	 * Arguments: "world", "today"
+	 * Result:    "Hello, world. How are you today? So you have more . Oh! another ?"
+	 * </pre>
+	 * 
+	 * <pre>
+	 * Message:   "Hello, %s. How are you %s? %%s is escaped, but this %s is not."
+	 * Arguments: "world", "today", "place holder"
+	 * Result:    "Hello, world. How are you today? %s is escaped, but this place holder is not."
+	 * </pre>
+	 * 
+	 * This is correct.
+	 * 
+	 * <pre>
+	 * formatMessage(&quot;some message&quot;, (Object) null);
+	 * </pre>
+	 * 
+	 * but the following code is not. This results in {@link NullPointerException}.
+	 * 
+	 * <pre>
+	 * formatMessage(&quot;some message&quot;, null);
+	 * </pre>
+	 * 
+	 * If there is no argument object then just do not pass anything.
+	 * 
+	 * <pre>
+	 * formatMessage(&quot;some message&quot;);
+	 * </pre>
+	 * 
+	 * To sum up,
+	 * 
+	 * <pre>
+	 * formatMessage(&quot;some message&quot;, null); // WRONG!
+	 * </pre>
+	 * 
+	 * <pre>
+	 * formatMessage(&quot;some message&quot;); // FINE
+	 * </pre>
+	 * 
+	 * <pre>
+	 * formatMessage(&quot;some message&quot;, (Object) null); // FINE 
+	 * // but no point to do this unless the given object variable contains null reference like the following code.
+	 * 
+	 * // somehow object contains null.
+	 * formatMessage(&quot;some %s message&quot;, object);
+	 * 
+	 * // result is
+	 * &quot;some null message&quot;
+	 * </pre>
+	 * 
+	 * @param message
+	 *            the given message.
+	 * @param args
+	 *            the given argument objects.
+	 * @return formatted message.
+	 */
 	public static String formatMessage(final String message, final Object... args)
 	{
-		if (null == args || 0 == args.length)
-		{
-			return message;
-		}
-
 		int i = 0;
 		int fromIndex = 0;
 		final StringBuilder formattedMessage = new StringBuilder();
@@ -59,9 +137,6 @@ public final class MessageFormatter
 			/* remove all the extra "%s"s and escape the rest of the "%%s"s */
 			if (0 < position)
 			{
-				// /* "%s" is found in the index number 0 so just jump */
-				// fromIndex = position += JUMP_SIZE;
-				// }
 				if (message.charAt(position - 1) == ESCAPE_CHAR)
 				{
 					/* "%%s" is found so escape then jump to the next position. */
@@ -92,7 +167,6 @@ public final class MessageFormatter
 			}
 			formattedMessage.append("]");
 		}
-
 		return formattedMessage.toString();
 	}
 }

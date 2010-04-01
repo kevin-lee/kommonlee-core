@@ -12,6 +12,7 @@ import org.junit.Test;
 /**
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-02-23)
+ * @version 0.0.2 (2010-04-01)
  */
 public class MessageFormatterTest
 {
@@ -114,14 +115,28 @@ public class MessageFormatterTest
 		assertThat(result, equalTo("Hello, World"));
 		System.out.println("===================================================");
 
+		result = MessageFormatter.formatMessage("Hello, [%s]. I am [%s].");
+		System.out.println("Message:  \"Hello, %s. I am %s\"" + "\nArgument: " + "\nResult:   " + result);
+		assertThat(result, equalTo("Hello, []. I am []."));
+		System.out.println("===================================================");
+
 		result = MessageFormatter.formatMessage("Hello, World", (Object) null);
 		System.out.println("Message:  \"Hello, World\"" + "\nArgument: (Object) null" + "\nResult:   " + result);
 		assertThat(result, equalTo("Hello, World [null]"));
 		System.out.println("===================================================");
 
-		result = MessageFormatter.formatMessage("Hello, World", null);
-		System.out.println("Message:  \"Hello, World\"" + "\nArgument: null" + "\nResult:   " + result);
-		assertThat(result, equalTo("Hello, World"));
+		result = MessageFormatter.formatMessage("Hello, %s", (Object) null);
+		System.out.println("Message:  \"Hello, %s\"" + "\nArgument: (Object) null" + "\nResult:   " + result);
+		assertThat(result, equalTo("Hello, null"));
 		System.out.println("===================================================");
+	}
+
+	/**
+	 * Test method for {@link com.elixirian.common.string.MessageFormatter#formatMessage(java.lang.String, java.lang.Object[])}.
+	 */
+	@Test(expected = NullPointerException.class)
+	public final void testFormatMessageWithInvalidArgument()
+	{
+		MessageFormatter.formatMessage("Hello, World", null);
 	}
 }
