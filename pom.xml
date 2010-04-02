@@ -5,13 +5,13 @@
 	<groupId>com.elixirian</groupId>
 	<artifactId>elixirian-common-exception</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>elixirian-common-exception</name>
 	<url>http://elixirian.com</url>
 	<parent>
 		<artifactId>elixirian-common</artifactId>
 		<groupId>com.elixirian</groupId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<build>
 		<plugins>
