@@ -11,7 +11,7 @@ public final class ValidateIt
 {
 	private ValidateIt()
 	{
-		throw new IllegalStateException("ValidateIt class cannot be instantiated.");
+		throw new IllegalStateException(getClass().getName() + " cannot be instantiated.");
 	}
 
 	public static boolean isEmpty(String value)

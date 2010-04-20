@@ -13,6 +13,7 @@ import org.junit.Test;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-02-23)
  * @version 0.0.2 (2010-04-01)
+ * @version 0.0.3 (2010-04-20) more test cases are added.
  */
 public class MessageFormatterTest
 {
@@ -116,8 +117,43 @@ public class MessageFormatterTest
 		System.out.println("===================================================");
 
 		result = MessageFormatter.formatMessage("Hello, [%s]. I am [%s].");
-		System.out.println("Message:  \"Hello, %s. I am %s\"" + "\nArgument: " + "\nResult:   " + result);
+		System.out.println("Message:  \"Hello, [%s]. I am [%s].\"" + "\nArgument: " + "\nResult:   " + result);
 		assertThat(result, equalTo("Hello, []. I am []."));
+		System.out.println("===================================================");
+
+		result = MessageFormatter.formatMessage("%s", "test");
+		System.out.println("Message:  \"%s\"" + "\nArgument: \"test\"" + "\nResult:   " + result);
+		assertThat(result, equalTo("test"));
+		System.out.println("===================================================");
+
+		result = MessageFormatter.formatMessage("%s", "test", "another");
+		System.out.println("Message:  \"%s\"" + "\nArgument: \"test\", \"another\"" + "\nResult:   " + result);
+		assertThat(result, equalTo("test [another]"));
+		System.out.println("===================================================");
+
+		result = MessageFormatter.formatMessage("%s %s.", "test");
+		System.out.println("Message:  \"%s %s.\"" + "\nArgument: \"test\"" + "\nResult:   " + result);
+		assertThat(result, equalTo("test ."));
+		System.out.println("===================================================");
+
+		result = MessageFormatter.formatMessage("%s");
+		System.out.println("Message:  \"%s\"" + "\nArgument: " + "\nResult:   " + result);
+		assertThat(result, equalTo(""));
+		System.out.println("===================================================");
+
+		result = MessageFormatter.formatMessage("%s%s%s");
+		System.out.println("Message:  \"%s%s%s\"" + "\nArgument: " + "\nResult:   " + result);
+		assertThat(result, equalTo(""));
+		System.out.println("===================================================");
+
+		result = MessageFormatter.formatMessage("%s%%s%s%%s");
+		System.out.println("Message:  \"%s%%s%s%%s\"" + "\nArgument: " + "\nResult:   " + result);
+		assertThat(result, equalTo("%s%s"));
+		System.out.println("===================================================");
+
+		result = MessageFormatter.formatMessage("%s", (Object) null);
+		System.out.println("Message:  \"%s\"" + "\nArgument: (Object) null" + "\nResult:   " + result);
+		assertThat(result, equalTo("null"));
 		System.out.println("===================================================");
 
 		result = MessageFormatter.formatMessage("Hello, World", (Object) null);
@@ -129,6 +165,7 @@ public class MessageFormatterTest
 		System.out.println("Message:  \"Hello, %s\"" + "\nArgument: (Object) null" + "\nResult:   " + result);
 		assertThat(result, equalTo("Hello, null"));
 		System.out.println("===================================================");
+
 	}
 
 	/**

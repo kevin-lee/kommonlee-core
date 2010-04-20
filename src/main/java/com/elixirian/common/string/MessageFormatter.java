@@ -11,6 +11,7 @@ package com.elixirian.common.string;
  *          rest of the "%%s"s.
  * @version 0.0.3 (2010-04-01) null check and empty array check are removed for better performance (removing optimisation has led to even
  *          more optimised code).
+ * @version 0.0.4 (2010-04-20) refactoring: more optimisation.
  */
 public final class MessageFormatter
 {
@@ -132,27 +133,29 @@ public final class MessageFormatter
 		}
 
 		int position = message.indexOf(STRING_ARGUMANT_SYMBOL, fromIndex);
-		while (0 <= position)
+		if (0 == position)
+		{
+			/* 0 == position means it can never be "%%s" so treat it separately then testing the position against 0 is not required anymore. */
+			fromIndex = position + JUMP_SIZE;
+			position = message.indexOf(STRING_ARGUMANT_SYMBOL, fromIndex);
+		}
+		while (0 < position)
 		{
 			/* remove all the extra "%s"s and escape the rest of the "%%s"s */
-			if (0 < position)
+			if (message.charAt(position - 1) == ESCAPE_CHAR)
 			{
-				if (message.charAt(position - 1) == ESCAPE_CHAR)
-				{
-					/* "%%s" is found so escape then jump to the next position. */
-					formattedMessage.append(message.substring(fromIndex, position))
-							.append(message.charAt(position + 1));
-				}
-				else
-				{
-					/* "%s" is found so take all the Strings before it then jump to the next postion. */
-					formattedMessage.append(message.substring(fromIndex, position));
-				}
+				/* "%%s" is found so escape then jump to the next position. */
+				formattedMessage.append(message.substring(fromIndex, position))
+						.append(message.charAt(position + 1));
+			}
+			else
+			{
+				/* "%s" is found so take all the Strings before it then jump to the next postion. */
+				formattedMessage.append(message.substring(fromIndex, position));
 			}
 			fromIndex = position + JUMP_SIZE;
 			position = message.indexOf(STRING_ARGUMANT_SYMBOL, fromIndex);
 		}
-
 		formattedMessage.append(message.substring(fromIndex));
 
 		if (args.length > i)
