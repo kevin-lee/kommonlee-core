@@ -3,7 +3,7 @@
  */
 package com.elixirian.common.validation;
 
-import static com.elixirian.common.string.MessageFormatter.*;
+import static com.elixirian.common.util.Strings.*;
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -20,7 +20,7 @@ public final class AssertIt
 	{
 		if (null == object)
 		{
-			throw new IllegalArgumentException(formatMessage(message, args));
+			throw new IllegalArgumentException(format(message, args));
 		}
 		return object;
 	}
@@ -29,7 +29,7 @@ public final class AssertIt
 	{
 		if (null != object)
 		{
-			throw new IllegalArgumentException(formatMessage(message, args));
+			throw new IllegalArgumentException(format(message, args));
 		}
 		return object;
 	}
@@ -38,7 +38,7 @@ public final class AssertIt
 	{
 		if (null == value || 0 == value.length())
 		{
-			throw new IllegalArgumentException(formatMessage(message, args));
+			throw new IllegalArgumentException(format(message, args));
 		}
 		return value;
 	}
@@ -47,7 +47,7 @@ public final class AssertIt
 	{
 		if (null != value && 0 != value.length())
 		{
-			throw new IllegalArgumentException(formatMessage(message, args));
+			throw new IllegalArgumentException(format(message, args));
 		}
 		return value;
 	}
@@ -56,7 +56,7 @@ public final class AssertIt
 	{
 		if (!expresion)
 		{
-			throw new IllegalArgumentException(formatMessage(message, args));
+			throw new IllegalArgumentException(format(message, args));
 		}
 	}
 
@@ -64,7 +64,7 @@ public final class AssertIt
 	{
 		if (expresion)
 		{
-			throw new IllegalArgumentException(formatMessage(message, args));
+			throw new IllegalArgumentException(format(message, args));
 		}
 	}
 }
