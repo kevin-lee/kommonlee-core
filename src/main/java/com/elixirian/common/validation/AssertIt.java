@@ -3,7 +3,9 @@
  */
 package com.elixirian.common.validation;
 
-import static com.elixirian.common.util.Strings.*;
+import static com.elixirian.common.util.MessageFormatter.*;
+
+import com.elixirian.common.util.CommonConstants;
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -13,7 +15,7 @@ public final class AssertIt
 {
 	private AssertIt()
 	{
-		throw new IllegalStateException(getClass().getName() + " cannot be instantiated.");
+		throw new IllegalStateException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
 	}
 
 	public static <T> T isNotNull(final T object, final String message, final Object... args)
