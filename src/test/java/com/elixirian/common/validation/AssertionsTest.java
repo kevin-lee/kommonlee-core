@@ -17,7 +17,7 @@ import org.junit.Test;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2009-12-29)
  */
-public class AssertItTest
+public class AssertionsTest
 {
 	private static final String NO_EXCEPTION_SHOULD_BE_THROWN_HERE = "No exception should be thrown here!\n";
 
@@ -54,52 +54,55 @@ public class AssertItTest
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public final void testAssertIt() throws Exception
+	public final void testAssertions() throws Exception
 	{
-		testNotAccessibleConstructor(AssertIt.class, EMPTY_CLASS_ARRAY, EMPTY_OBJECT_ARRAY);
+		testNotAccessibleConstructor(Assertions.class, EMPTY_CLASS_ARRAY, EMPTY_OBJECT_ARRAY);
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isNotNull(java.lang.Object, java.lang.String, java.lang.Object[])}.
+	 * Test method for
+	 * {@link com.elixirian.common.validation.Assertions#assertNotNull(java.lang.Object, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public final void testIsNotNull()
+	public final void testAssertNotNull()
 	{
 		try
 		{
-			AssertIt.isNotNull(new Object(), "It is null!!!");
+			Assertions.assertNotNull(new Object(), "It is null!!!");
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 			fail(NO_EXCEPTION_SHOULD_BE_THROWN_HERE + e.getMessage());
 		}
-		AssertIt.isNotNull(null, "It is null!!!");
+		Assertions.assertNotNull(null, "It is null!!!");
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isNull(java.lang.Object, java.lang.String, java.lang.Object[])}.
+	 * Test method for {@link com.elixirian.common.validation.Assertions#assertNull(java.lang.Object, java.lang.String, java.lang.Object[])}
+	 * .
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public final void testIsNull()
+	public final void testAssertNull()
 	{
 		try
 		{
-			AssertIt.isNull(null, "It is not null!");
+			Assertions.assertNull(null, "It is not null!");
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 			fail(NO_EXCEPTION_SHOULD_BE_THROWN_HERE + e.getMessage());
 		}
-		AssertIt.isNull(new Object(), "It is not null!");
+		Assertions.assertNull(new Object(), "It is not null!");
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isNotEmpty(java.lang.String, java.lang.String, java.lang.Object[])}.
+	 * Test method for
+	 * {@link com.elixirian.common.validation.Assertions#assertNotEmpty(java.lang.String, java.lang.String, java.lang.Object[])} .
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public final void testIsNotEmpty()
+	public final void testAssertNotEmpty()
 	{
 		final String notEmpty = "something";
 		final String nullReference = null;
@@ -107,7 +110,7 @@ public class AssertItTest
 
 		try
 		{
-			AssertIt.isNotEmpty(notEmpty, "It is empty!");
+			Assertions.assertNotEmpty(notEmpty, "It is empty!");
 		}
 		catch (Exception e)
 		{
@@ -119,7 +122,7 @@ public class AssertItTest
 
 		try
 		{
-			AssertIt.isNotEmpty(nullReference, "It is empty!");
+			Assertions.assertNotEmpty(nullReference, "It is empty!");
 		}
 		catch (IllegalArgumentException e)
 		{
@@ -128,14 +131,15 @@ public class AssertItTest
 
 		assertThat(Boolean.valueOf(isIllegalArgumentExceptionThrown), equalTo(Boolean.TRUE));
 
-		AssertIt.isNotEmpty(emptyString, "It is empty!");
+		Assertions.assertNotEmpty(emptyString, "It is empty!");
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isEmpty(java.lang.String, java.lang.String, java.lang.Object[])}.
+	 * Test method for
+	 * {@link com.elixirian.common.validation.Assertions#assertEmpty(java.lang.String, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public final void testIsEmpty()
+	public final void testAssertEmpty()
 	{
 		final String nullReference = null;
 		final String emptyString = "";
@@ -143,7 +147,7 @@ public class AssertItTest
 
 		try
 		{
-			AssertIt.isEmpty(nullReference, "It is not empty!");
+			assertThat(Assertions.assertEmpty(nullReference, "It is not empty!"), is(""));
 		}
 		catch (Exception e)
 		{
@@ -153,7 +157,7 @@ public class AssertItTest
 
 		try
 		{
-			AssertIt.isEmpty(emptyString, "It is not empty!");
+			assertThat(Assertions.assertEmpty(emptyString, "It is not empty!"), is(""));
 		}
 		catch (Exception e)
 		{
@@ -161,18 +165,18 @@ public class AssertItTest
 			fail(NO_EXCEPTION_SHOULD_BE_THROWN_HERE + e.getMessage());
 		}
 
-		AssertIt.isEmpty(notEmpty, "It is not empty!");
+		Assertions.assertEmpty(notEmpty, "It is not empty!");
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isTrue(boolean, java.lang.String, java.lang.Object[])}.
+	 * Test method for {@link com.elixirian.common.validation.Assertions#assertTrue(boolean, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public final void testIsTrue()
+	public final void testAssertTrue()
 	{
 		try
 		{
-			AssertIt.isTrue(new Integer(2).equals(new Integer(2)), "It is not true.");
+			Assertions.assertTrue(new Integer(2).equals(new Integer(2)), "It is not true.");
 		}
 		catch (Exception e)
 		{
@@ -180,18 +184,18 @@ public class AssertItTest
 			fail(NO_EXCEPTION_SHOULD_BE_THROWN_HERE + e.getMessage());
 		}
 
-		AssertIt.isTrue(new Integer(3).equals(new Integer(1)), "It is not true.");
+		Assertions.assertTrue(new Integer(3).equals(new Integer(1)), "It is not true.");
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.AssertIt#isTrue(boolean, java.lang.String, java.lang.Object[])}.
+	 * Test method for {@link com.elixirian.common.validation.Assertions#assertTrue(boolean, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
-	public final void testIsFalse()
+	public final void testAssertFalse()
 	{
 		try
 		{
-			AssertIt.isFalse(new Integer(2).equals(new Integer(3)), "It is not false.");
+			Assertions.assertFalse(new Integer(2).equals(new Integer(3)), "It is not false.");
 		}
 		catch (Exception e)
 		{
@@ -199,6 +203,6 @@ public class AssertItTest
 			fail(NO_EXCEPTION_SHOULD_BE_THROWN_HERE + e.getMessage());
 		}
 
-		AssertIt.isFalse(new Integer(5).equals(new Integer(5)), "It is not false.");
+		Assertions.assertFalse(new Integer(5).equals(new Integer(5)), "It is not false.");
 	}
 }

@@ -4,13 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.elixirian</groupId>
 	<artifactId>elixirian-common-validation</artifactId>
-	<version>0.0.9-SNAPSHOT</version>
+	<version>0.0.10-SNAPSHOT</version>
 	<name>elixirian-common-validation</name>
 	<url>http://elixirian.com</url>
 	<parent>
 		<artifactId>elixirian-common</artifactId>
 		<groupId>com.elixirian</groupId>
-		<version>0.0.2-SNAPSHOT</version>
+		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 	<build>
 		<plugins>
@@ -58,14 +58,14 @@
 		<dependency>
 			<groupId>com.elixirian</groupId>
 			<artifactId>elixirian-common-test</artifactId>
-			<version>0.0.4-SNAPSHOT</version>
+			<version>0.0.5-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.elixirian</groupId>
 			<artifactId>elixirian-common-util</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
+			<version>0.0.4-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
