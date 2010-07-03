@@ -69,4 +69,85 @@ public class StringsTest
 		assertThat(Boolean.valueOf(Strings.isNotEmpty(emptyString)), equalTo(Boolean.FALSE));
 	}
 
+	@Test
+	public void testRepeat()
+	{
+
+		for (int i = 0; i < 5; i++)
+		{
+			assertThat(Strings.repeat("", i), equalTo(""));
+		}
+
+		final String value = "Kevin Lee ";
+
+		final String[] expected = {
+		/* 0 */
+		"",
+		/* 1 */
+		value,
+		/* 2 */
+		value + value,
+		/* 3 */
+		value + value + value,
+		/* 4 */
+		value + value + value + value,
+		/* 5 */
+		value + value + value + value + value };
+
+		for (int i = 0, size = expected.length; i < size; i++)
+		{
+			assertThat(Strings.repeat(value, i), equalTo(expected[i]));
+		}
+
+		final String value2 = "sdfjslfj20, 93%u4#fv@mdv397gtbw";
+		final String[] expected2 = new String[100];
+		for (int i = 0; i < 100; i++)
+		{
+			final StringBuilder stringBuilder = new StringBuilder(value2.length() * i);
+			for (int j = 0; j < i; j++)
+			{
+				stringBuilder.append(value2);
+			}
+			expected2[i] = stringBuilder.toString();
+		}
+
+		for (int i = 0; i < 100; i++)
+		{
+			assertThat(Strings.repeat(value2, i), equalTo(expected2[i]));
+		}
+	}
+
+	@Test
+	public void testRepeatWithNegativeTimesValue()
+	{
+		final int howManyExpected = 5;
+		int exceptionCount = 0;
+		for (int i = -howManyExpected; i < 0; i++)
+		{
+			try
+			{
+				Strings.repeat("", i);
+			}
+			catch (IllegalArgumentException e)
+			{
+				exceptionCount++;
+			}
+		}
+		assertEquals(howManyExpected, exceptionCount);
+
+		final String value = "Kevin Lee ";
+		exceptionCount = 0;
+		for (int i = -howManyExpected; i < 0; i++)
+		{
+			try
+			{
+				Strings.repeat(value, i);
+			}
+			catch (IllegalArgumentException e)
+			{
+				exceptionCount++;
+			}
+		}
+		assertEquals(howManyExpected, exceptionCount);
+	}
 }
