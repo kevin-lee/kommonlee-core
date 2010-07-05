@@ -3,6 +3,7 @@
  */
 package com.elixirian.common.util;
 
+import static com.elixirian.common.test.CommonTestHelper.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -14,6 +15,12 @@ import org.junit.Test;
  */
 public class MessageFormatterTest
 {
+	@Test(expected = IllegalStateException.class)
+	public void testMessageFormatter() throws Exception
+	{
+		testNotAccessibleConstructor(MessageFormatter.class, classArrayOf(), objectArrayOf());
+	}
+
 	private static class Person
 	{
 		private final String surname;

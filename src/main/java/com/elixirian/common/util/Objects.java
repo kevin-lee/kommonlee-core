@@ -1,5 +1,6 @@
 package com.elixirian.common.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.List;
  * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-04-06)
+ * @version 0.0.2 (2010-07-05) {@link com.elixirian.common.util.Objects.ToStringBuilder}, {@link #toStringBuilder(Object)} and
+ *          {@link #toStringBuilder(Object, String, String)} are added.
  */
 public final class Objects
 {
@@ -220,5 +223,131 @@ public final class Objects
 			throw new NullPointerException(message);
 		}
 		return obj;
+	}
+
+	/**
+	 * Builder to build the description of the given object. In other words, it is to build the result of the
+	 * {@link java.lang.Object#toString()} method.
+	 * 
+	 * @author Lee, SeongHyun (Kevin)
+	 * @version 0.0.1 (2010-07-05)
+	 */
+	public static final class ToStringBuilder
+	{
+		/**
+		 * ", "
+		 */
+		public static final String DEFAULT_FIELD_SEPARATOR = ", ";
+
+		/**
+		 * "="
+		 */
+		public static final String DEFAULT_NAME_VALUE_SEPARATOR = "=";
+
+		public static final IterableToAppendableGlue DEFAULT_ITERABLE_TO_APPENDABLE_GLUE =
+			IterableToAppendableGlue.newAppenderGlue(DEFAULT_FIELD_SEPARATOR);
+
+		private final Object object;
+
+		private final String nameValueSeparator;
+
+		private IterableToAppendableGlue iterableToAppendableGlue;
+
+		private final List<String> fieldNameValueList;
+
+		private ToStringBuilder(Object object)
+		{
+			this(object, DEFAULT_FIELD_SEPARATOR, DEFAULT_NAME_VALUE_SEPARATOR);
+		}
+
+		private ToStringBuilder(Object object, String fieldSeparator, String nameValueSeparator)
+		{
+			this.object = nonNull(object);
+			nonNull(fieldSeparator);
+			this.iterableToAppendableGlue =
+				DEFAULT_FIELD_SEPARATOR.equals(fieldSeparator) ? DEFAULT_ITERABLE_TO_APPENDABLE_GLUE
+						: IterableToAppendableGlue.newAppenderGlue(fieldSeparator);
+			this.nameValueSeparator = nonNull(nameValueSeparator);
+			this.fieldNameValueList = new ArrayList<String>();
+		}
+
+		private String checkName(String name)
+		{
+			if (Strings.isEmpty(name))
+			{
+				throw new IllegalArgumentException("The name cannot be null or empty.");
+			}
+			return name;
+		}
+
+		public ToStringBuilder add(String name, boolean value) throws IllegalArgumentException
+		{
+			return addValue0(checkName(name) + nameValueSeparator + String.valueOf(value));
+		}
+
+		public ToStringBuilder add(String name, int value) throws IllegalArgumentException
+		{
+			return addValue0(checkName(name) + nameValueSeparator + String.valueOf(value));
+		}
+
+		public ToStringBuilder add(String name, byte value) throws IllegalArgumentException
+		{
+			return addValue0(checkName(name) + nameValueSeparator + String.valueOf(value));
+		}
+
+		public ToStringBuilder add(String name, short value) throws IllegalArgumentException
+		{
+			return addValue0(checkName(name) + nameValueSeparator + String.valueOf(value));
+		}
+
+		public ToStringBuilder add(String name, long value) throws IllegalArgumentException
+		{
+			return addValue0(checkName(name) + nameValueSeparator + String.valueOf(value));
+		}
+
+		public ToStringBuilder add(String name, float value) throws IllegalArgumentException
+		{
+			return addValue0(checkName(name) + nameValueSeparator + String.valueOf(value));
+		}
+
+		public ToStringBuilder add(String name, double value) throws IllegalArgumentException
+		{
+			return addValue0(checkName(name) + nameValueSeparator + String.valueOf(value));
+		}
+
+		public ToStringBuilder add(String name, Object value) throws IllegalArgumentException
+		{
+			return addValue0(checkName(name) + nameValueSeparator + String.valueOf(value));
+		}
+
+		public ToStringBuilder addValue0(String value)
+		{
+			fieldNameValueList.add(value);
+			return this;
+		}
+
+		public ToStringBuilder addValue(String value)
+		{
+			return addValue0(value);
+		}
+
+		@Override
+		public String toString()
+		{
+			return iterableToAppendableGlue.glue(new StringBuilder(object.getClass()
+					.getSimpleName()).append("{"), fieldNameValueList)
+					.append("}")
+					.toString();
+		}
+	}
+
+	public static ToStringBuilder toStringBuilder(Object object)
+	{
+		return new ToStringBuilder(object);
+	}
+
+	public static ToStringBuilder toStringBuilder(Object object, String fieldSeparator, String keyValueSeparator)
+	{
+		return new ToStringBuilder(object, fieldSeparator, keyValueSeparator);
 	}
 }
