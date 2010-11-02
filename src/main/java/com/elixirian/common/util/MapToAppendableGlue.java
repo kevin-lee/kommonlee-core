@@ -21,8 +21,8 @@ public final class MapToAppendableGlue implements ToAppendableGlue<Map<?, ?>>
 
 	private MapToAppendableGlue(String keyValueSeparator, String entrySeparator)
 	{
-		this.keyValueGlue = AbstractAppendingAction.newGlue(nonNull(keyValueSeparator));
-		this.entryGlue = AbstractAppendingAction.newGlue(nonNull(entrySeparator));
+		this.keyValueGlue = SimpleAppendingAction.with(nonNull(keyValueSeparator));
+		this.entryGlue = SimpleAppendingAction.with(nonNull(entrySeparator));
 	}
 
 	AppendingAction getKeyValueGlue()
@@ -42,7 +42,8 @@ public final class MapToAppendableGlue implements ToAppendableGlue<Map<?, ?>>
 		if (entryIterator.hasNext())
 		{
 			Entry<K, V> entry = entryIterator.next();
-			AbstractAppendingAction.APPENDING_ACTION_WITHOUT_SEPARATOR.append(appendable, String.valueOf(entry.getKey()));
+			SimpleAppendingAction.APPENDING_ACTION_WITHOUT_SEPARATOR.append(appendable,
+					String.valueOf(entry.getKey()));
 			keyValueGlue.append(appendable, (String.valueOf(entry.getValue())));
 			while (entryIterator.hasNext())
 			{

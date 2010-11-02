@@ -56,12 +56,13 @@ public class MessageFormatterTest
 		System.out.println("===================================================");
 
 		result =
-			MessageFormatter.format("Hello, %s. My name is %s. This %s is to check if %s works well.", "World", new Person("Lee", "Kevin"),
-					"test", MessageFormatter.class);
+			MessageFormatter.format("Hello, %s. My name is %s. This %s is to check if %s works well.", "World",
+					new Person("Lee", "Kevin"), "test", MessageFormatter.class);
 		System.out.println("Message:  \"Hello, %s. My name is %s. This %s is to check if %s works well.\""
-				+ "\nArgument: \"World\", new Person(\"Lee\", \"Kevin\"), \"test\", Strings.class" + "\nResult:   " + result);
-		assertThat(result, equalTo("Hello, World. My name is Kevin Lee. This test is to check if " + MessageFormatter.class.toString()
-				+ " works well."));
+				+ "\nArgument: \"World\", new Person(\"Lee\", \"Kevin\"), \"test\", Strings.class" + "\nResult:   "
+				+ result);
+		assertThat(result, equalTo("Hello, World. My name is Kevin Lee. This test is to check if "
+				+ MessageFormatter.class.toString() + " works well."));
 		System.out.println("===================================================");
 
 		result = MessageFormatter.format("Hello, %%s%s", "World");
@@ -70,7 +71,8 @@ public class MessageFormatterTest
 		System.out.println("===================================================");
 
 		result = MessageFormatter.format("Hello, %s. How are you %s?", "World", "today");
-		System.out.println("Message:  \"Hello, %s. How are you %s?\"" + "\nArgument: \"World\", \"today\"" + "\nResult:   " + result);
+		System.out.println("Message:  \"Hello, %s. How are you %s?\"" + "\nArgument: \"World\", \"today\""
+				+ "\nResult:   " + result);
 		assertThat(result, equalTo("Hello, World. How are you today?"));
 		System.out.println("===================================================");
 
@@ -94,9 +96,12 @@ public class MessageFormatterTest
 		assertThat(result, equalTo("Hello, %%s%sWorld."));
 		System.out.println("===================================================");
 
-		result = MessageFormatter.format("Hello, %s. How are you %s?", "World", "today", "sender", "is", new Person("Lee", "Kevin"));
+		result =
+			MessageFormatter.format("Hello, %s. How are you %s?", "World", "today", "sender", "is", new Person("Lee",
+					"Kevin"));
 		System.out.println("Message:  \"Hello, %s. How are you %s?\""
-				+ "\nArgument: \"World\", \"today\", \"sender\", \"is\", new Person(\"Lee\", \"Kevin\")" + "\nResult:   " + result);
+				+ "\nArgument: \"World\", \"today\", \"sender\", \"is\", new Person(\"Lee\", \"Kevin\")"
+				+ "\nResult:   " + result);
 		assertThat(result, equalTo("Hello, World. How are you today? [sender, is, Kevin Lee]"));
 		System.out.println("===================================================");
 
@@ -151,7 +156,8 @@ public class MessageFormatterTest
 		System.out.println("===================================================");
 
 		result = MessageFormatter.format("%s, %s", (Object) null, (Object) null);
-		System.out.println("Message:  \"%s, %s\"" + "\nArgument: (Object) null, (Object) null" + "\nResult:   " + result);
+		System.out.println("Message:  \"%s, %s\"" + "\nArgument: (Object) null, (Object) null" + "\nResult:   "
+				+ result);
 		assertThat(result, equalTo("null, null"));
 		System.out.println("===================================================");
 
@@ -161,7 +167,8 @@ public class MessageFormatterTest
 		System.out.println("===================================================");
 
 		result = MessageFormatter.format("Hello, World", (Object) null, (Object) null);
-		System.out.println("Message:  \"Hello, World\"" + "\nArgument: (Object) null, (Object) null" + "\nResult:   " + result);
+		System.out.println("Message:  \"Hello, World\"" + "\nArgument: (Object) null, (Object) null" + "\nResult:   "
+				+ result);
 		assertThat(result, equalTo("Hello, World [null, null]"));
 		System.out.println("===================================================");
 
@@ -171,7 +178,8 @@ public class MessageFormatterTest
 		System.out.println("===================================================");
 
 		result = MessageFormatter.format("Hello, %s", (Object) null, (Object) null);
-		System.out.println("Message:  \"Hello, %s\"" + "\nArgument: (Object) null, (Object) null" + "\nResult:   " + result);
+		System.out.println("Message:  \"Hello, %s\"" + "\nArgument: (Object) null, (Object) null" + "\nResult:   "
+				+ result);
 		assertThat(result, equalTo("Hello, null [null]"));
 		System.out.println("===================================================");
 
@@ -198,7 +206,7 @@ public class MessageFormatterTest
 	@Test(expected = NullPointerException.class)
 	public final void testFormatWithInvalidArgument()
 	{
-		MessageFormatter.format("Hello, World", null);
+		MessageFormatter.format("Hello, World", (Object[]) null);
 	}
 
 }

@@ -27,6 +27,7 @@ public class IterableToAppendableGlueTest
 	private static final String address = "Address: ABC Street";
 	private static final String separator = ", ";
 	private static final String expected = id + separator + name + separator + address;
+	private static final String expectedWithoutSeparator = id + name + address;
 	private static final List<String> stringList = new ArrayList<String>();
 
 	/**
@@ -64,64 +65,98 @@ public class IterableToAppendableGlueTest
 	{
 	}
 
-	/**
-	 * Test method for {@link com.elixirian.common.util.IterableToAppendableGlue#newAppenderGlue(java.lang.String)}.
-	 */
 	@Test
-	public final void testNewAppenderGlue()
+	public final void testWithSeparator()
 	{
-		IterableToAppendableGlue iterableToAppendableGlue = IterableToAppendableGlue.newAppenderGlue(null);
+		IterableToAppendableGlue iterableToAppendableGlue = IterableToAppendableGlue.withSeparator(", ");
 		assertThat(iterableToAppendableGlue, is(not(nullValue())));
-		assertThat(iterableToAppendableGlue.getGlue(), is(instanceOf(AbstractAppendingAction.AppendingActionWithoutSeparator.class)));
+		assertThat(iterableToAppendableGlue.getGlue(),
+				is(instanceOf(SimpleAppendingAction.AppendingActionWithSeparator.class)));
 
-		iterableToAppendableGlue = IterableToAppendableGlue.newAppenderGlue("");
+		iterableToAppendableGlue = IterableToAppendableGlue.withSeparator(null);
 		assertThat(iterableToAppendableGlue, is(not(nullValue())));
-		assertThat(iterableToAppendableGlue.getGlue(), is(instanceOf(AbstractAppendingAction.AppendingActionWithoutSeparator.class)));
+		assertThat(iterableToAppendableGlue.getGlue(),
+				is(instanceOf(SimpleAppendingAction.AppendingActionWithoutSeparator.class)));
+
+		iterableToAppendableGlue = IterableToAppendableGlue.withSeparator("");
+		assertThat(iterableToAppendableGlue, is(not(nullValue())));
+		assertThat(iterableToAppendableGlue.getGlue(),
+				is(instanceOf(SimpleAppendingAction.AppendingActionWithoutSeparator.class)));
+	}
+
+	@Test
+	public final void testWithoutSeparator()
+	{
+		IterableToAppendableGlue iterableToAppendableGlue = IterableToAppendableGlue.withoutSeparator();
+		assertThat(iterableToAppendableGlue, is(not(nullValue())));
+		assertThat(iterableToAppendableGlue.getGlue(),
+				is(instanceOf(SimpleAppendingAction.AppendingActionWithoutSeparator.class)));
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
+	 * Test method for
+	 * {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
 	 */
 	@Test
 	public final void testGlue()
 	{
 		final StringBuilder stringBuilder = new StringBuilder();
-		final StringBuilder returnedStringBuilder = IterableToAppendableGlue.newAppenderGlue(separator)
+		final StringBuilder returnedStringBuilder = IterableToAppendableGlue.withSeparator(separator)
 				.glue(stringBuilder, stringList);
 		assertThat(returnedStringBuilder, is(stringBuilder));
 		assertThat(returnedStringBuilder, equalTo(stringBuilder));
 		assertThat(returnedStringBuilder.toString(), equalTo(expected));
 	}
 
+	@Test
+	public final void testGlueWithoutSeparator()
+	{
+		final StringBuilder stringBuilder = new StringBuilder();
+		final StringBuilder returnedStringBuilder = IterableToAppendableGlue.withoutSeparator()
+				.glue(stringBuilder, stringList);
+		assertThat(returnedStringBuilder, is(stringBuilder));
+		assertThat(returnedStringBuilder, equalTo(stringBuilder));
+		assertThat(returnedStringBuilder.toString(), equalTo(expectedWithoutSeparator));
+
+		final StringBuilder stringBuilder2 = new StringBuilder();
+		final StringBuilder returnedStringBuilder2 = IterableToAppendableGlue.withSeparator("")
+				.glue(stringBuilder2, stringList);
+		assertThat(returnedStringBuilder2, is(stringBuilder2));
+		assertThat(returnedStringBuilder2, equalTo(stringBuilder2));
+		assertThat(returnedStringBuilder2.toString(), equalTo(expectedWithoutSeparator));
+	}
+
 	/**
-	 * Test method for {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
+	 * Test method for
+	 * {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testGlueWithNullAppendable()
 	{
-		IterableToAppendableGlue.newAppenderGlue(separator)
+		IterableToAppendableGlue.withSeparator(separator)
 				.glue(null, stringList);
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
+	 * Test method for
+	 * {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testGlueWithNullIterable()
 	{
-		IterableToAppendableGlue.newAppenderGlue(separator)
+		IterableToAppendableGlue.withSeparator(separator)
 				.glue(new StringBuilder(), null);
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
+	 * Test method for
+	 * {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
 	 */
 	@Test(expected = AssertionError.class)
 	public final void testGlueThrowingIllegalArgumentException()
 	{
 		final String message = "IOException for testing!";
-		final Appendable appendable = new Appendable()
-		{
+		final Appendable appendable = new Appendable() {
 
 			@SuppressWarnings("unused")
 			@Override
@@ -146,7 +181,7 @@ public class IterableToAppendableGlueTest
 
 		try
 		{
-			IterableToAppendableGlue.newAppenderGlue(separator)
+			IterableToAppendableGlue.withSeparator(separator)
 					.glue(appendable, stringList);
 		}
 		catch (AssertionError e)

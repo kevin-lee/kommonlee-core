@@ -13,9 +13,9 @@ public final class IterableToAppendableGlue implements ToAppendableGlue<Iterable
 {
 	private final AppendingAction appendingAction;
 
-	private IterableToAppendableGlue(final String separator)
+	private IterableToAppendableGlue(final AppendingAction appendingAction)
 	{
-		this.appendingAction = AbstractAppendingAction.newGlue(separator);
+		this.appendingAction = appendingAction;
 	}
 
 	AppendingAction getGlue()
@@ -23,9 +23,14 @@ public final class IterableToAppendableGlue implements ToAppendableGlue<Iterable
 		return appendingAction;
 	}
 
-	public static IterableToAppendableGlue newAppenderGlue(final String separator)
+	public static IterableToAppendableGlue withSeparator(final String separator)
 	{
-		return new IterableToAppendableGlue(separator);
+		return new IterableToAppendableGlue(SimpleAppendingAction.with(separator));
+	}
+
+	public static IterableToAppendableGlue withoutSeparator()
+	{
+		return new IterableToAppendableGlue(SimpleAppendingAction.withoutSeparator());
 	}
 
 	private <A extends Appendable, E> A glue0(final A appendable, final Iterable<E> iterable) throws IOException
@@ -33,7 +38,7 @@ public final class IterableToAppendableGlue implements ToAppendableGlue<Iterable
 		final Iterator<E> iterator = iterable.iterator();
 		if (iterator.hasNext())
 		{
-			AbstractAppendingAction.APPENDING_ACTION_WITHOUT_SEPARATOR.append(appendable, iterator.next());
+			SimpleAppendingAction.APPENDING_ACTION_WITHOUT_SEPARATOR.append(appendable, iterator.next());
 			while (iterator.hasNext())
 			{
 				appendingAction.append(appendable, iterator.next());
@@ -47,9 +52,10 @@ public final class IterableToAppendableGlue implements ToAppendableGlue<Iterable
 	{
 		try
 		{
+			/* @formatter:off */
 			return glue0(nonNull(appendable),
-			/* the comment is added to separate the line to see which one is null. */
-			nonNull(iterable));
+						  nonNull(iterable));
+			/* @formatter:on */
 		}
 		catch (IOException e)
 		{

@@ -16,8 +16,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.elixirian.common.util.AbstractAppendingAction.AppendingActionWithSeparator;
-import com.elixirian.common.util.AbstractAppendingAction.AppendingActionWithoutSeparator;
+import com.elixirian.common.util.SimpleAppendingAction.AppendingActionWithSeparator;
+import com.elixirian.common.util.SimpleAppendingAction.AppendingActionWithoutSeparator;
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -36,8 +36,9 @@ public class MapToAppendableGlueTest
 	private static final String addressValue = "123 ABC Street";
 	private static final String keyValueSeparator = ":";
 	private static final String entrySeparator = ", ";
-	private static final String expected = id + keyValueSeparator + idValue + entrySeparator + name + keyValueSeparator + nameValue
-			+ entrySeparator + number + keyValueSeparator + numberValue + entrySeparator + address + keyValueSeparator + addressValue;
+	private static final String expected = id + keyValueSeparator + idValue + entrySeparator + name + keyValueSeparator
+			+ nameValue + entrySeparator + number + keyValueSeparator + numberValue + entrySeparator + address
+			+ keyValueSeparator + addressValue;
 
 	/**
 	 * @throws java.lang.Exception
@@ -82,7 +83,8 @@ public class MapToAppendableGlueTest
 	public final void testGlue()
 	{
 		final StringBuilder stringBuilder = new StringBuilder();
-		final MapToAppendableGlue mapToAppendableGlue = MapToAppendableGlue.newMapToAppendableGlue(keyValueSeparator, entrySeparator);
+		final MapToAppendableGlue mapToAppendableGlue =
+			MapToAppendableGlue.newMapToAppendableGlue(keyValueSeparator, entrySeparator);
 		final StringBuilder returnedStringBuilder = mapToAppendableGlue.glue(stringBuilder, map);
 		assertThat(returnedStringBuilder, is(stringBuilder));
 		assertThat(returnedStringBuilder.toString(), equalTo(expected));
@@ -159,7 +161,8 @@ public class MapToAppendableGlueTest
 	@Test
 	public final void testNewMapToAppendableGlue()
 	{
-		MapToAppendableGlue mapToAppendableGlue = MapToAppendableGlue.newMapToAppendableGlue(keyValueSeparator, entrySeparator);
+		MapToAppendableGlue mapToAppendableGlue =
+			MapToAppendableGlue.newMapToAppendableGlue(keyValueSeparator, entrySeparator);
 		assertThat(mapToAppendableGlue.getKeyValueGlue(), is(instanceOf(AppendingActionWithSeparator.class)));
 		assertThat(mapToAppendableGlue.getEntryGlue(), is(instanceOf(AppendingActionWithSeparator.class)));
 

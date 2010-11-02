@@ -306,8 +306,8 @@ public class ObjectsTest
 		private final float floatValue;
 		private final double doubleValue;
 
-		public SomePojo(Long id, String name, boolean registered, byte byteValue, short shortValue, int intValue, long longValue,
-				float floatValue, double doubleValue)
+		public SomePojo(Long id, String name, boolean registered, byte byteValue, short shortValue, int intValue,
+				long longValue, float floatValue, double doubleValue)
 		{
 			this.id = id;
 			this.name = name;
@@ -338,12 +338,13 @@ public class ObjectsTest
 	}
 
 	@Test
-	public void testToStringBuilder()
+	public final void testToStringBuilder()
 	{
 		final String expected =
 			"SomePojo{id=100, name=Kevin, registered=true, byteValue=10, shortValue=20, intValue=100, longValue=1000000, floatValue=12.34, doubleValue=56.78}";
-		final SomePojo somePojo = new SomePojo(Long.valueOf(100L), "Kevin", true, (byte) 10, (short) 20, 100, 1000000L, 12.34F, 56.78D);
-		assertThat(somePojo.toString(), equalTo(expected));
+		final SomePojo somePojo =
+			new SomePojo(Long.valueOf(100L), "Kevin", true, (byte) 10, (short) 20, 100, 1000000L, 12.34F, 56.78D);
+		assertThat(somePojo.toString(), is(equalTo(expected)));
 
 		final String expected2 =
 			"ObjectsTest{id=999, name=Kevin Lee, registered=false, byteValue=11, shortValue=123, intValue=123456, longValue=11111111111, floatValue=10.1, doubleValue=12345.12345}";
@@ -366,11 +367,23 @@ public class ObjectsTest
 				.add("longValue", longValue)
 				.add("floatValue", floatValue)
 				.add("doubleValue", doubleValue)
-				.toString(), equalTo(expected2));
+				.toString(), is(equalTo(expected2)));
+
+		assertThat(Objects.toStringBuilder(this)
+				.value("")
+				.toString(), is(equalTo(getClass().getSimpleName() + "{}")));
+
+		assertThat(Objects.toStringBuilder(this)
+				.toString(), is(equalTo(getClass().getSimpleName() + "{}")));
+
+		assertThat(Objects.toStringBuilder(this)
+				.getFieldSeparator(), is(equalTo(Objects.ToStringBuilder.DEFAULT_FIELD_SEPARATOR)));
+		assertThat(Objects.toStringBuilder(this)
+				.getNameValueSeparator(), is(equalTo(Objects.ToStringBuilder.DEFAULT_NAME_VALUE_SEPARATOR)));
 	}
 
 	@Test
-	public void testToStringBuilderWithExtraValue()
+	public final void testToStringBuilderWithExtraValue()
 	{
 		final String expected2 =
 			"ObjectsTest{Some extra information. blah blah blah, id=999, name=Kevin Lee, registered=false, byteValue=11, shortValue=123, intValue=123456, longValue=11111111111, floatValue=10.1, doubleValue=12345.12345}";
@@ -384,7 +397,7 @@ public class ObjectsTest
 		final float floatValue = 10.10F;
 		final double doubleValue = 12345.12345;
 		assertThat(Objects.toStringBuilder(this)
-				.addValue("Some extra information. blah blah blah")
+				.value("Some extra information. blah blah blah")
 				.add("id", id)
 				.add("name", name)
 				.add("registered", registered)
@@ -394,17 +407,77 @@ public class ObjectsTest
 				.add("longValue", longValue)
 				.add("floatValue", floatValue)
 				.add("doubleValue", doubleValue)
-				.toString(), equalTo(expected2));
+				.toString(), is(equalTo(expected2)));
+	}
+
+	@Test
+	public final void testToStringBuilderWithExtraValueAndNewLines()
+	{
+		final String expected2 =
+			"Object{Some extra information. blah blah blah, \nid=999, name=Kevin Lee, registered=false, \nbyteValue=11, shortValue=123, intValue=123456, longValue=11111111111, floatValue=10.1, doubleValue=12345.12345}";
+		final Long id = Long.valueOf(999L);
+		final String name = "Kevin Lee";
+		final boolean registered = false;
+		final byte byteValue = 11;
+		final short shortValue = 123;
+		final int intValue = 123456;
+		final long longValue = 11111111111L;
+		final float floatValue = 10.10F;
+		final double doubleValue = 12345.12345;
+		assertThat(Objects.toStringBuilder(new Object())
+				.value("Some extra information. blah blah blah")
+				.newLine()
+				.add("id", id)
+				.add("name", name)
+				.add("registered", registered)
+				.newLine()
+				.add("byteValue", byteValue)
+				.add("shortValue", shortValue)
+				.add("intValue", intValue)
+				.add("longValue", longValue)
+				.add("floatValue", floatValue)
+				.add("doubleValue", doubleValue)
+				.toString(), is(equalTo(expected2)));
+	}
+
+	@Test
+	public final void testToStringBuilderWithExtraValuesWithoutSeparatorAndNewLines()
+	{
+		final String expected2 =
+			"ObjectsTest{Some extra information. blah blah blah\nid=999, name=Kevin Lee, registered=false, \nbyteValue=11, shortValue=123, intValue=123456, longValue=11111111111, floatValue=10.1, doubleValue=12345.12345}";
+		final Long id = Long.valueOf(999L);
+		final String name = "Kevin Lee";
+		final boolean registered = false;
+		final byte byteValue = 11;
+		final short shortValue = 123;
+		final int intValue = 123456;
+		final long longValue = 11111111111L;
+		final float floatValue = 10.10F;
+		final double doubleValue = 12345.12345;
+		assertThat(Objects.toStringBuilder(this)
+				.valueWithNoSeparator("Some extra information. blah blah blah")
+				.newLine()
+				.add("id", id)
+				.add("name", name)
+				.add("registered", registered)
+				.newLine()
+				.add("byteValue", byteValue)
+				.add("shortValue", shortValue)
+				.add("intValue", intValue)
+				.add("longValue", longValue)
+				.add("floatValue", floatValue)
+				.add("doubleValue", doubleValue)
+				.toString(), is(equalTo(expected2)));
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testToStringBuilderWithNullObject()
+	public final void testToStringBuilderWithNullObject()
 	{
 		Objects.toStringBuilder(null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testToStringBuilderWithNullName()
+	public final void testToStringBuilderWithNullName()
 	{
 		Objects.toStringBuilder(this)
 				.add(null, "Kevin")
@@ -412,7 +485,7 @@ public class ObjectsTest
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testToStringBuilderWithEmptyName()
+	public final void testToStringBuilderWithEmptyName()
 	{
 		Objects.toStringBuilder(this)
 				.add("", "Kevin")
@@ -420,7 +493,7 @@ public class ObjectsTest
 	}
 
 	@Test
-	public void testToStringBuilderObjectStringString()
+	public final void testToStringBuilderObjectStringString()
 	{
 		final String expected =
 			"ObjectsTest{id: 999 | name: Kevin Lee | registered: false | byteValue: 11 | shortValue: 123 | intValue: 123456 | longValue: 11111111111 | floatValue: 10.1 | doubleValue: 12345.12345}";
@@ -443,36 +516,36 @@ public class ObjectsTest
 				.add("longValue", longValue)
 				.add("floatValue", floatValue)
 				.add("doubleValue", doubleValue)
-				.toString(), equalTo(expected));
+				.toString(), is(equalTo(expected)));
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testToStringBuilderObjectStringStringWithNullObject()
+	public final void testToStringBuilderObjectStringStringWithNullObject()
 	{
 		Objects.toStringBuilder(null, " | ", ": ");
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testToStringBuilderObjectStringStringWithNullFieldSeparator()
+	public final void testToStringBuilderObjectStringStringWithNullFieldSeparator()
 	{
 		Objects.toStringBuilder(this, null, ": ");
 	}
 
 	@Test(expected = NullPointerException.class)
-	public void testToStringBuilderObjectStringStringWithNullNameValueSeparator()
+	public final void testToStringBuilderObjectStringStringWithNullNameValueSeparator()
 	{
 		Objects.toStringBuilder(this, " | ", null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testToStringBuilderObjectStringStringWithNullName()
+	public final void testToStringBuilderObjectStringStringWithNullName()
 	{
 		Objects.toStringBuilder(this, " | ", ": ")
 				.add(null, "Kevin");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testToStringBuilderObjectStringStringWithEmptyName()
+	public final void testToStringBuilderObjectStringStringWithEmptyName()
 	{
 		Objects.toStringBuilder(this, " | ", ": ")
 				.add("", "Kevin");

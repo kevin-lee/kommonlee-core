@@ -5,7 +5,7 @@
 	<groupId>com.elixirian</groupId>
 	<artifactId>elixirian-common-util</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.5-SNAPSHOT</version>
+	<version>0.0.6-SNAPSHOT</version>
 	<name>elixirian-common-util</name>
 	<url>http://elixirian.com</url>
 	<parent>
@@ -53,13 +53,13 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<version>4.8.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.elixirian</groupId>
 			<artifactId>elixirian-common-test</artifactId>
-			<version>0.0.5-SNAPSHOT</version>
+			<version>0.0.7-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>

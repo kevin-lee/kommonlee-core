@@ -9,7 +9,7 @@ import java.io.IOException;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-07-06)
  */
-public abstract class AbstractAppendingAction implements AppendingAction
+public abstract class SimpleAppendingAction implements AppendingAction
 {
 	static final AppendingAction APPENDING_ACTION_WITHOUT_SEPARATOR = new AppendingActionWithoutSeparator();
 
@@ -20,7 +20,7 @@ public abstract class AbstractAppendingAction implements AppendingAction
 	@Override
 	public abstract <A extends Appendable, T> A append(A appendable, T t) throws IOException;
 
-	public static final class AppendingActionWithoutSeparator extends AbstractAppendingAction
+	public static final class AppendingActionWithoutSeparator extends SimpleAppendingAction
 	{
 		private AppendingActionWithoutSeparator()
 		{
@@ -34,7 +34,7 @@ public abstract class AbstractAppendingAction implements AppendingAction
 		}
 	}
 
-	public static final class AppendingActionWithSeparator extends AbstractAppendingAction
+	public static final class AppendingActionWithSeparator extends SimpleAppendingAction
 	{
 		private final String separator;
 
@@ -52,8 +52,14 @@ public abstract class AbstractAppendingAction implements AppendingAction
 		}
 	}
 
-	public static AppendingAction newGlue(final String separator)
+	public static AppendingAction withoutSeparator()
 	{
-		return Strings.isEmpty(separator) ? APPENDING_ACTION_WITHOUT_SEPARATOR : new AppendingActionWithSeparator(separator);
+		return APPENDING_ACTION_WITHOUT_SEPARATOR;
+	}
+
+	public static AppendingAction with(final String separator)
+	{
+		return Strings.isEmpty(separator) ? APPENDING_ACTION_WITHOUT_SEPARATOR : new AppendingActionWithSeparator(
+				separator);
 	}
 }
