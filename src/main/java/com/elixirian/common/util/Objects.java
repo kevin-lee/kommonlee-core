@@ -71,18 +71,18 @@ public final class Objects
 	 * {@link Arrays#deepEquals(Object[], Object[]) Arrays.deepEquals} is used to determine equality. Otherwise,
 	 * equality is determined by using the {@link Object#equals(Object) equals} method of the first argument.
 	 * 
-	 * @param a
+	 * @param left
 	 *            an object
-	 * @param b
+	 * @param right
 	 *            an object to be compared with a for deep equality
 	 * @return {@code true} if the arguments are deeply equal to each other and {@code false} otherwise
 	 * @see {@link Arrays#deepEquals(Object[], Object[])}, {@link #equal(Object, Object)}
 	 */
-	public static boolean deepEquals(final Object a, final Object b)
+	public static boolean deepEqual(final Object left, final Object right)
 	{
-		return (a == b) || ((null != a && null != b) && ((a.getClass()
-				.isArray() && b.getClass()
-				.isArray()) ? Arrays.deepEquals((Object[]) a, (Object[]) b) : a.equals(b)));
+		return (left == right) || ((null != left && null != right) && ((left.getClass()
+				.isArray() && right.getClass()
+				.isArray()) ? Arrays.deepEquals((Object[]) left, (Object[]) right) : left.equals(right)));
 	}
 
 	/**

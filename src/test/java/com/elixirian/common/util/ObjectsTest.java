@@ -92,39 +92,39 @@ public class ObjectsTest
 		}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.Objects#deepEquals(java.lang.Object, java.lang.Object)}.
-	 */
-	@Test
-	public final void testDeepEquals()
-	{
-		assertThat(Boolean.valueOf(Objects.deepEquals(null, null)), equalTo(Boolean.TRUE));
-		assertThat(Boolean.valueOf(Objects.deepEquals("", "")), equalTo(Boolean.TRUE));
-		assertThat(Boolean.valueOf(Objects.deepEquals("test", "test")), equalTo(Boolean.TRUE));
-		assertThat(Boolean.valueOf(Objects.deepEquals(new String("1234"), new String("1234"))), equalTo(Boolean.TRUE));
-		assertThat(Boolean.valueOf(Objects.deepEquals(new SomeObject("Kevin"), new SomeObject("Kevin"))),
-				equalTo(Boolean.TRUE));
-		assertThat(
-				Boolean.valueOf(Objects.deepEquals(new String[] { "Hello", "Kevin", "Lee" }, new String[] { "Hello",
-						"Kevin", "Lee" })), equalTo(Boolean.TRUE));
-		assertThat(
-				Boolean.valueOf(Objects.deepEquals(new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
-						new SomeObject("SeongHyun") }, new SomeObject[] { new SomeObject("Kevin"),
-						new SomeObject("Lee"), new SomeObject("SeongHyun") })), equalTo(Boolean.TRUE));
-
-		assertThat(Boolean.valueOf(Objects.deepEquals(null, new Object())), equalTo(Boolean.FALSE));
-		assertThat(Boolean.valueOf(Objects.deepEquals("", "1")), equalTo(Boolean.FALSE));
-		assertThat(Boolean.valueOf(Objects.deepEquals("test1", "test2")), equalTo(Boolean.FALSE));
-		assertThat(Boolean.valueOf(Objects.deepEquals(new String("1234"), new String("4321"))), equalTo(Boolean.FALSE));
-		assertThat(Boolean.valueOf(Objects.deepEquals(new SomeObject("Kevin"), new SomeObject("Tom"))),
-				equalTo(Boolean.FALSE));
-		assertThat(
-				Boolean.valueOf(Objects.deepEquals(new String[] { "Hello", "Lee", "Kevin" }, new String[] { "Hello",
-						"Kevin", "Lee" })), equalTo(Boolean.FALSE));
-		assertThat(
-				Boolean.valueOf(Objects.deepEquals(new SomeObject[] { new SomeObject("SeongHyun"),
-						new SomeObject("Lee"), new SomeObject("Kevin") }, new SomeObject[] { new SomeObject("Kevin"),
-						new SomeObject("Lee"), new SomeObject("SeongHyun") })), equalTo(Boolean.FALSE));
-	}
+		 * Test method for {@link com.elixirian.common.util.Objects#deepEqual(java.lang.Object, java.lang.Object)}.
+		 */
+		@Test
+		public final void testDeepEqual()
+		{
+			assertThat(Boolean.valueOf(Objects.deepEqual(null, null)), equalTo(Boolean.TRUE));
+			assertThat(Boolean.valueOf(Objects.deepEqual("", "")), equalTo(Boolean.TRUE));
+			assertThat(Boolean.valueOf(Objects.deepEqual("test", "test")), equalTo(Boolean.TRUE));
+			assertThat(Boolean.valueOf(Objects.deepEqual(new String("1234"), new String("1234"))), equalTo(Boolean.TRUE));
+			assertThat(Boolean.valueOf(Objects.deepEqual(new SomeObject("Kevin"), new SomeObject("Kevin"))),
+					equalTo(Boolean.TRUE));
+			assertThat(
+					Boolean.valueOf(Objects.deepEqual(new String[] { "Hello", "Kevin", "Lee" }, new String[] { "Hello",
+							"Kevin", "Lee" })), equalTo(Boolean.TRUE));
+			assertThat(
+					Boolean.valueOf(Objects.deepEqual(new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
+							new SomeObject("SeongHyun") }, new SomeObject[] { new SomeObject("Kevin"),
+							new SomeObject("Lee"), new SomeObject("SeongHyun") })), equalTo(Boolean.TRUE));
+	
+			assertThat(Boolean.valueOf(Objects.deepEqual(null, new Object())), equalTo(Boolean.FALSE));
+			assertThat(Boolean.valueOf(Objects.deepEqual("", "1")), equalTo(Boolean.FALSE));
+			assertThat(Boolean.valueOf(Objects.deepEqual("test1", "test2")), equalTo(Boolean.FALSE));
+			assertThat(Boolean.valueOf(Objects.deepEqual(new String("1234"), new String("4321"))), equalTo(Boolean.FALSE));
+			assertThat(Boolean.valueOf(Objects.deepEqual(new SomeObject("Kevin"), new SomeObject("Tom"))),
+					equalTo(Boolean.FALSE));
+			assertThat(
+					Boolean.valueOf(Objects.deepEqual(new String[] { "Hello", "Lee", "Kevin" }, new String[] { "Hello",
+							"Kevin", "Lee" })), equalTo(Boolean.FALSE));
+			assertThat(
+					Boolean.valueOf(Objects.deepEqual(new SomeObject[] { new SomeObject("SeongHyun"),
+							new SomeObject("Lee"), new SomeObject("Kevin") }, new SomeObject[] { new SomeObject("Kevin"),
+							new SomeObject("Lee"), new SomeObject("SeongHyun") })), equalTo(Boolean.FALSE));
+		}
 
 	/**
 	 * Test method for {@link com.elixirian.common.util.Objects#hashCode(java.lang.Object)}.
