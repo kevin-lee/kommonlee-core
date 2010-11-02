@@ -39,6 +39,26 @@ public class StringsTest
 		assertThat(Strings.nullSafeTrim("    te st   "), equalTo("    te st   ".trim()));
 	}
 
+	@Test
+	public final void testNullThenEmpty()
+	{
+		assertThat(Strings.nullThenEmpty(null), equalTo(""));
+		assertThat(Strings.nullThenEmpty(""), equalTo(""));
+		assertThat(Strings.nullThenEmpty(" "), equalTo(" "));
+		assertThat(Strings.nullThenEmpty("test"), equalTo("test"));
+		assertThat(Strings.nullThenEmpty(new String("something else")), equalTo(new String("something else")));
+	}
+	
+	@Test
+	public final void testEmptyThenNull()
+	{
+		assertThat(Strings.emptyThenNull(null), equalTo(null));
+		assertThat(Strings.emptyThenNull(""), equalTo(null));
+		assertThat(Strings.emptyThenNull(" "), equalTo(" "));
+		assertThat(Strings.emptyThenNull("test"), equalTo("test"));
+		assertThat(Strings.emptyThenNull(new String("something else")), equalTo(new String("something else")));
+	}
+
 	/**
 	 * Test method for {@link com.elixirian.common.util.Strings#isEmpty(java.lang.String)}.
 	 */
@@ -70,7 +90,7 @@ public class StringsTest
 	}
 
 	@Test
-	public void testRepeat()
+	public final void testRepeat()
 	{
 
 		for (int i = 0; i < 5; i++)
@@ -118,7 +138,7 @@ public class StringsTest
 	}
 
 	@Test
-	public void testRepeatWithNegativeTimesValue()
+	public final void testRepeatWithNegativeTimesValue()
 	{
 		final int howManyExpected = 5;
 		int exceptionCount = 0;
