@@ -103,6 +103,122 @@ public final class Objects
 	 * @return true if the arguments are equal to each other and false otherwise
 	 * @see {@link Object#equals(Object)}
 	 */
+	public static boolean equal(final byte left, final byte right)
+	{
+		return left == right;
+	}
+
+	/**
+	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
+	 * 
+	 * @param left
+	 *            a byte value
+	 * @param right
+	 *            a byte value to be compared with a for equality
+	 * @return true if the arguments are equal to each other and false otherwise
+	 */
+	public static boolean equal(final char left, final char right)
+	{
+		return left == right;
+	}
+
+	/**
+	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
+	 * 
+	 * @param left
+	 *            a short value
+	 * @param right
+	 *            a short value to be compared with a for equality
+	 * @return true if the arguments are equal to each other and false otherwise
+	 */
+	public static boolean equal(final short left, final short right)
+	{
+		return left == right;
+	}
+
+	/**
+	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
+	 * 
+	 * @param left
+	 *            a int value
+	 * @param right
+	 *            a int value to be compared with a for equality
+	 * @return true if the arguments are equal to each other and false otherwise
+	 */
+	public static boolean equal(final int left, final int right)
+	{
+		return left == right;
+	}
+
+	/**
+	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
+	 * 
+	 * @param left
+	 *            a long value
+	 * @param right
+	 *            a long value be compared with a for equality
+	 * @return true if the arguments are equal to each other and false otherwise
+	 */
+	public static boolean equal(final long left, final long right)
+	{
+		return left == right;
+	}
+
+	/**
+	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
+	 * 
+	 * @param left
+	 *            a float value
+	 * @param right
+	 *            a float value to be compared with a for equality
+	 * @return true if the arguments are equal to each other and false otherwise
+	 */
+	public static boolean equal(final float left, final float right)
+	{
+		return left == right;
+	}
+
+	/**
+	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
+	 * 
+	 * @param left
+	 *            a double value
+	 * @param right
+	 *            a double value to be compared with a for equality
+	 * @return true if the arguments are equal to each other and false otherwise
+	 */
+	public static boolean equal(final double left, final double right)
+	{
+		return left == right;
+	}
+
+	/**
+	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
+	 * 
+	 * @param left
+	 *            a boolean value
+	 * @param right
+	 *            a boolean value to be compared with a for equality
+	 * @return true if the arguments are equal to each other and false otherwise
+	 */
+	public static boolean equal(final boolean left, final boolean right)
+	{
+		return left == right;
+	}
+
+	/**
+	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise. Consequently, if both
+	 * arguments are {@code null}, {@code true} is returned and if exactly one argument is {@code null}, {@code false}
+	 * is returned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals} method of the
+	 * first argument.
+	 * 
+	 * @param left
+	 *            an object
+	 * @param right
+	 *            an object to be compared with a for equality
+	 * @return true if the arguments are equal to each other and false otherwise
+	 * @see {@link Object#equals(Object)}
+	 */
 	public static boolean equal(final Object left, final Object right)
 	{
 		return (left == right) || (null != left && left.equals(right));
@@ -1196,6 +1312,63 @@ public final class Objects
 	public static <T> T nullThenUse(final T object, T defaultValue)
 	{
 		return null == object ? defaultValue : object;
+	}
+
+	/**
+	 * Checks if the given object is null (the Object variable contains null reference).
+	 * 
+	 * @param object
+	 *            the given object to check its nullity.
+	 * @return true if the given object is null (the variable contains null reference). false otherwise.
+	 */
+	public static boolean isNull(Object object)
+	{
+		return null == object;
+	}
+
+	/**
+	 * Checks if the given object is not null (the Object variable contains some object reference).
+	 * 
+	 * @param object
+	 *            the given object to check its nullity.
+	 * @return true if the given object is not null (the variable contains some object reference). false if the object
+	 *         is null (the variable contains null reference).
+	 */
+	public static boolean isNotNull(Object object)
+	{
+		return null != object;
+	}
+
+	/**
+	 * Checks if two objects are identical (object1 == object2)
+	 * 
+	 * @param object1
+	 *            an obejct
+	 * @param object2
+	 *            the other object to check if it is identical to the object1.
+	 * @return true if both objects are identical (object1 == object2). false otherwise.
+	 */
+	public static boolean areIdentical(Object object1, Object object2)
+	{
+		return object1 == object2;
+	}
+
+	/**
+	 * casts the given object to the given type object then returns the casted object if the object is an instance of
+	 * the given {@link Class} type . Otherwise, it returns null.
+	 * 
+	 * @param <T>
+	 *            the type
+	 * @param type
+	 *            the {@link Class} of the type for casting.
+	 * @param object
+	 *            the given object to be casted to the type if it is an instance of the type.
+	 * @return T type object casted from the object if it is an instance of the type. null if it is not instance of the
+	 *         type.
+	 */
+	public static <T> T castIfInstanceOf(Class<T> type, Object object)
+	{
+		return type.isInstance(object) ? type.cast(object) : null;
 	}
 
 	/**

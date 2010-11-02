@@ -33,7 +33,7 @@ public class ConditionsTest
 	int int8B = 10000000;
 
 	/**
-	 * Test method for {@link com.lckymn.kevin.common.util.Conditions#and(boolean, boolean)}.
+	 * Test method for {@link com.elixirian.common.util.Conditions#and(boolean, boolean)}.
 	 */
 	@Test
 	public final void testAndBooleanBoolean()
@@ -60,7 +60,7 @@ public class ConditionsTest
 	}
 
 	/**
-	 * Test method for {@link com.lckymn.kevin.common.util.Conditions#and(boolean, boolean, boolean)}.
+	 * Test method for {@link com.elixirian.common.util.Conditions#and(boolean, boolean, boolean)}.
 	 */
 	@Test
 	public final void testAndBooleanBooleanBoolean()
