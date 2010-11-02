@@ -6,16 +6,57 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * This class is created based on <a
+ * This class is a utility class to help use {@link Object} in the Java programming language. It was inspired by <a
  * href="http://download.java.net/jdk7/docs/api/java/util/Objects.html">http://download
  * .java.net/jdk7/docs/api/java/util/Objects.html</a> and <a
  * href="http://blogs.sun.com/darcy/entry/java_util_objects_and_friends"
- * >http://blogs.sun.com/darcy/entry/java_util_objects_and_friends</a> It is supposed to be replaced by {@code Objects}
- * class in JDK 7 when it is released.
+ * >http://blogs.sun.com/darcy/entry/java_util_objects_and_friends</a> yet now has become a different class from the
+ * java.util.Objects class.
  * <p>
- * This class consists of {@code static} utility methods for operating on objects. These utilities include {@code null}
- * -safe or <span> {@code null}-tolerant</span> methods for computing the hash code of an object, returning a string for
- * an object, and comparing two objects.
+ * This class is more convenient and useful than java.util.Objects because unlike the current java.util.Objects, it does
+ * not have any methods with the names already used in {@link java.lang.Object} so does not need to worry about <a
+ * href="http://java.sun.com/docs/books/jls/third_edition/html/names.html#34133">Shadowing Declarations</a> when using
+ * the methods in this {@link Objects} class by static import.
+ * </p>
+ * <p>
+ * It also provides convenient ways to compute a hashCode of primitive and object reference types. More over, it has
+ * {@link ToStringBuilder} which can be used to create toString value for the {@link Object#toString()} method so that
+ * do the users not only need to use {@link StringBuilder} for this purpose but also have easier way to do it
+ * <p>
+ * e.g.) instead of doing
+ * 
+ * <pre>
+ * <code>
+ * return new StringBuilder.append(getClass().getSimpleName())
+ *             .append("{")
+ *             .append("fieldName1=")
+ *             .append(value1)
+ *             .append(", ")
+ *             .append("fieldName2=")
+ *             .append(value2)
+ *             .append("}")
+ *             .toString();
+ * </code>
+ * </pre>
+ * 
+ * it can be
+ * 
+ * <pre>
+ * <code>
+ * return toStringBuilder(this)
+ *         .add("fieldName1", value1)
+ *         .add("fieldName2", value2)
+ *         .toString();
+ * </code>
+ * </pre>
+ * 
+ * Both ways generate the same result, but using the {@link ToStringBuilder} is much simpler.
+ * 
+ * <pre>
+ * SimpleClassName{fieldName1=actualValue1, fieldName2=actualValue2}
+ * </pre>
+ * 
+ * </p>
  * </p>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -26,6 +67,8 @@ import java.util.List;
  *          <ul>
  *          <li>hash methods for primitive types and reference types are created.</li>
  *          <li>hashCodeOf methods for primitive types and reference types are created.</li>
+ *          <li>equals(Object, Object) method is changed to {@link #equal(Object, Object)}.</li>
+ *          <li>deepEquals(Object, Object) method is changed to {@link #deepEqual(Object, Object)}.</li>
  *          <li>toString(Object) method is changed to {@link #toStringOf(Object)}</li>
  *          <li>toString(Object, String) method is changed to {@link #toStringOf(Object, String)}</li>
  *          </ul>
