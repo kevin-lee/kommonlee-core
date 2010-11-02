@@ -22,9 +22,26 @@ import java.util.List;
  * @version 0.0.1 (2010-04-06)
  * @version 0.0.2 (2010-07-05) {@link com.elixirian.common.util.Objects.ToStringBuilder},
  *          {@link #toStringBuilder(Object)} and {@link #toStringBuilder(Object, String, String)} are added.
+ * @version 0.0.3 (2010-10-31)
+ *          <ul>
+ *          <li>hash methods for primitive types and reference types are created.</li>
+ *          <li>hashCodeOf methods for primitive types and reference types are created.</li>
+ *          <li>toString(Object) method is changed to {@link #toStringOf(Object)}</li>
+ *          <li>toString(Object, String) method is changed to {@link #toStringOf(Object, String)}</li>
+ *          </ul>
  */
 public final class Objects
 {
+	/**
+	 * 1
+	 */
+	public static final int HASH_SEED = 1;
+
+	/**
+	 * 31
+	 */
+	public static final int HASH_PRIME = 31;
+
 	private Objects()
 	{
 		throw new IllegalStateException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
@@ -69,80 +86,973 @@ public final class Objects
 	}
 
 	/**
+	 * Returns the hash code of the given input value.
+	 * 
+	 * @param value
+	 *            the given input value.
+	 * @return the hash code of the given input value.
+	 * @see {@link Byte#hashCode()}
+	 */
+	public static int hashCodeOf(final byte value)
+	{
+		return value;
+	}
+
+	/**
+	 * Returns the hash code of the given input value.
+	 * 
+	 * @param value
+	 *            the given input value.
+	 * @return the hash code of the given input value.
+	 * @see {@link Character#hashCode()}
+	 */
+	public static int hashCodeOf(final char value)
+	{
+		return value;
+	}
+
+	/**
+	 * Returns the hash code of the given input value.
+	 * 
+	 * @param value
+	 *            the given input value.
+	 * @return the hash code of the given input value.
+	 * @see {@link Short#hashCode()}
+	 */
+	public static int hashCodeOf(final short value)
+	{
+		return value;
+	}
+
+	/**
+	 * Returns the hash code of the given input value.
+	 * 
+	 * @param value
+	 *            the given input value.
+	 * @return the hash code of the given input value.
+	 * @see {@link Integer#hashCode()}
+	 */
+	public static int hashCodeOf(final int value)
+	{
+		return value;
+	}
+
+	/**
+	 * Returns the hash code of the given input value.
+	 * 
+	 * @param value
+	 *            the given input value.
+	 * @return the hash code of the given input value.
+	 * @see {@link Long#hashCode()}
+	 */
+	public static int hashCodeOf(final long value)
+	{
+		return (int) (value ^ (value >>> 32));
+	}
+
+	/**
+	 * Returns the hash code of the given input value.
+	 * 
+	 * @param value
+	 *            the given input value.
+	 * @return the hash code of the given input value.
+	 * @see {@link Float#hashCode()}
+	 */
+	public static int hashCodeOf(final float value)
+	{
+		return Float.floatToIntBits(value);
+	}
+
+	/**
+	 * Returns the hash code of the given input value.
+	 * 
+	 * @param value
+	 *            the given input value.
+	 * @return the hash code of the given input value.
+	 * @see {@link Double#hashCode()}
+	 */
+	public static int hashCodeOf(final double value)
+	{
+		long bits = Double.doubleToLongBits(value);
+		return (int) (bits ^ (bits >>> 32));
+	}
+
+	/**
+	 * Returns the hash code of the given input value.
+	 * 
+	 * @param value
+	 *            the given input value.
+	 * @return the hash code of the given input value.
+	 * @see {@link Boolean#hashCode()}
+	 */
+	public static int hashCodeOf(final boolean value)
+	{
+		return value ? 1231 : 1237;
+	}
+
+	/**
 	 * Returns the hash code of a non-{@code null} argument and 0 for a {@code null} argument.
 	 * 
-	 * @param o
+	 * @param object
 	 *            an object
 	 * @return the hash code of a non-{@code null} argument and 0 for a {@code null} argument
 	 * @see {@link Object#hashCode()}
 	 */
-	public static int hashCode(final Object o)
+	public static int hashCodeOf(final Object object)
 	{
-		return (null == o ? 0 : o.hashCode());
+		return (null == object ? 0 : object.hashCode());
 	}
 
 	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
 	 * <p>
-	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
-	 * placed into an array, and that array were hashed by calling {@link Arrays#hashCode(Object[])}.
-	 * </p>
-	 * <p>
-	 * This method is useful for implementing {@link Object#hashCode()} on objects containing multiple fields. For
-	 * example, if an object that has three fields, {@code x}, {@code y}, and {@code z}, one could write:
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
 	 * </p>
 	 * 
-	 * <pre>
-	 * &#064;Override
-	 * public int hashCode()
-	 * {
-	 * 	return Objects.hash(x, y, z);
-	 * }
-	 * </pre>
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	private static int hash0(final int seed, final byte value)
+	{
+		return HASH_PRIME * seed + value;
+	}
+
+	/**
+	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
+	 * 
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final byte value)
+	{
+		return hash0(HASH_SEED, value);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
 	 * <p>
-	 * <strong>Warning: When a single object reference is supplied, the returned value does not equal the hash code of
-	 * that object reference.</strong> This value can be computed by calling {@link #hashCode(Object)}.
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
 	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final int seed, final byte value)
+	{
+		return hash0(seed, value);
+	}
+
+	/**
+	 * Generates a hash code for the values in an input array using the given seed.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param values
+	 *            the values to be hashed.
+	 * @return a hash value of the input values.
+	 */
+	public static int hash(final int seed, final byte[] values)
+	{
+		if (null == values)
+			return 0;
+
+		int result = seed;
+		for (final byte value : values)
+			result = hash0(result, value);
+
+		return result;
+	}
+
+	/**
+	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
+	 * placed into an array.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the first value to be hashed.
+	 * @param values
+	 *            the rest values to be hashed.
+	 * @return a hash value of the sequence of input values.
+	 */
+	public static int hashBytes(final int seed, final byte value, final byte... values)
+	{
+		return hash(hash0(seed, value), values);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	private static int hash0(final int seed, char value)
+	{
+		return HASH_PRIME * seed + value;
+	}
+
+	/**
+	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
+	 * 
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final char value)
+	{
+		return hash0(HASH_SEED, value);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final int seed, final char value)
+	{
+		return hash0(seed, value);
+	}
+
+	/**
+	 * Generates a hash code for the values in an input array using the given seed.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param values
+	 *            the values to be hashed.
+	 * @return a hash value of the input values.
+	 */
+	public static int hash(final int seed, final char[] values)
+	{
+		if (null == values)
+			return 0;
+
+		int result = seed;
+		for (final char value : values)
+			result = hash0(result, value);
+
+		return result;
+	}
+
+	/**
+	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
+	 * placed into an array.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the first value to be hashed.
+	 * @param values
+	 *            the rest values to be hashed.
+	 * @return a hash value of the sequence of input values.
+	 */
+	public static int hashChars(final int seed, final char value, final char... values)
+	{
+		return hash(hash0(seed, value), values);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	private static int hash0(final int seed, final short value)
+	{
+		return HASH_PRIME * seed + value;
+	}
+
+	/**
+	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
+	 * 
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final short value)
+	{
+		return hash0(HASH_SEED, value);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final int seed, final short value)
+	{
+		return hash0(seed, value);
+	}
+
+	/**
+	 * Generates a hash code for the values in an input array using the given seed.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param values
+	 *            the values to be hashed.
+	 * @return a hash value of the input values.
+	 */
+	public static int hash(final int seed, final short[] values)
+	{
+		if (null == values)
+			return 0;
+
+		int result = seed;
+		for (final short value : values)
+			result = hash0(result, value);
+
+		return result;
+	}
+
+	/**
+	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
+	 * placed into an array.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the first value to be hashed.
+	 * @param values
+	 *            the rest values to be hashed.
+	 * @return a hash value of the sequence of input values.
+	 */
+	public static int hashShorts(final int seed, final short value, final short... values)
+	{
+		return hash(hash0(seed, value), values);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	private static int hash0(final int seed, final int value)
+	{
+		return HASH_PRIME * seed + value;
+	}
+
+	/**
+	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
+	 * 
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final int value)
+	{
+		return hash0(HASH_SEED, value);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final int seed, final int value)
+	{
+		return hash0(seed, value);
+	}
+
+	/**
+	 * Generates a hash code for the values in an input array using the given seed.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param values
+	 *            the values to be hashed.
+	 * @return a hash value of the input values.
+	 */
+	public static int hash(final int seed, final int[] values)
+	{
+		if (null == values)
+			return 0;
+
+		int result = seed;
+		for (final int value : values)
+			result = hash0(result, value);
+
+		return result;
+	}
+
+	/**
+	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
+	 * placed into an array.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the first value to be hashed.
+	 * @param values
+	 *            the rest values to be hashed.
+	 * @return a hash value of the sequence of input values.
+	 */
+	public static int hashInts(final int seed, final int value, final int... values)
+	{
+		return hash(hash0(seed, value), values);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	private static int hash0(final int seed, final long value)
+	{
+		return HASH_PRIME * seed + (int) (value ^ (value >>> 32));
+	}
+
+	/**
+	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
+	 * 
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final long value)
+	{
+		return hash0(HASH_SEED, value);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final int seed, final long value)
+	{
+		return hash0(seed, value);
+	}
+
+	/**
+	 * Generates a hash code for the values in an input array using the given seed.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param values
+	 *            the values to be hashed.
+	 * @return a hash value of the input values.
+	 */
+	public static int hash(final int seed, final long[] values)
+	{
+		if (null == values)
+			return 0;
+
+		int result = seed;
+		for (final long value : values)
+			result = hash0(result, value);
+
+		return result;
+	}
+
+	/**
+	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
+	 * placed into an array.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the first value to be hashed.
+	 * @param values
+	 *            the rest values to be hashed.
+	 * @return a hash value of the sequence of input values.
+	 */
+	public static int hashLongs(final int seed, final long value, final long... values)
+	{
+		return hash(hash0(seed, value), values);
+
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	private static int hash0(final int seed, final float value)
+	{
+		return HASH_PRIME * seed + Float.floatToIntBits(value);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
+	 * 
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final float value)
+	{
+		return hash0(HASH_SEED, value);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final int seed, final float value)
+	{
+		return hash0(seed, value);
+	}
+
+	/**
+	 * Generates a hash code for the values in an input array using the given seed.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param values
+	 *            the values to be hashed.
+	 * @return a hash value of the input values.
+	 */
+	public static int hash(final int seed, final float[] values)
+	{
+		if (null == values)
+			return 0;
+
+		int result = seed;
+		for (final float value : values)
+			result = hash0(result, value);
+
+		return result;
+	}
+
+	/**
+	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
+	 * placed into an array.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the first value to be hashed.
+	 * @param values
+	 *            the rest values to be hashed.
+	 * @return a hash value of the sequence of input values.
+	 */
+	public static int hashFloats(final int seed, final float value, final float... values)
+	{
+		return hash(hash0(seed, value), values);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	private static int hash0(final int seed, final double value)
+	{
+		return hash0(seed, Double.doubleToLongBits(value));
+	}
+
+	/**
+	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
+	 * 
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final double value)
+	{
+		return hash0(HASH_SEED, value);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final int seed, final double value)
+	{
+		return hash0(seed, value);
+	}
+
+	/**
+	 * Generates a hash code for the values in an input array using the given seed.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param values
+	 *            the values to be hashed.
+	 * @return a hash value of the input values.
+	 */
+	public static int hash(final int seed, final double[] values)
+	{
+		if (null == values)
+			return 0;
+
+		int result = seed;
+		for (final double value : values)
+			result = hash0(result, value);
+
+		return result;
+	}
+
+	/**
+	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
+	 * placed into an array.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the first value to be hashed.
+	 * @param values
+	 *            the rest values to be hashed.
+	 * @return a hash value of the sequence of input values.
+	 */
+	public static int hashDoubles(final int seed, final double value, final double... values)
+	{
+		return hash(hash0(seed, value), values);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	private static int hash0(final int seed, final boolean value)
+	{
+		return HASH_PRIME * seed + (value ? 1231 : 1237);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
+	 * 
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final boolean value)
+	{
+		return hash0(HASH_SEED, value);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final int seed, final boolean value)
+	{
+		return hash0(seed, value);
+	}
+
+	/**
+	 * Generates a hash code for the values in an input array using the given seed.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param values
+	 *            the values to be hashed.
+	 * @return a hash value of the input values.
+	 */
+	public static int hash(final int seed, final boolean[] values)
+	{
+		if (null == values)
+			return 0;
+
+		int result = seed;
+		for (final boolean value : values)
+			result = hash0(result, value);
+
+		return result;
+	}
+
+	/**
+	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
+	 * placed into an array.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the first value to be hashed.
+	 * @param values
+	 *            the rest values to be hashed.
+	 * @return a hash value of the sequence of input values.
+	 */
+	public static int hashBooleans(final int seed, final boolean value, final boolean... values)
+	{
+		return hash(hash0(seed, value), values);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	private static int hash0(final int seed, final Object value)
+	{
+		return HASH_PRIME * seed + hashCodeOf(value);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
+	 * <p>
+	 * <code>
+	 * return HASH_PRIME * seed + value;
+	 * </code>
+	 * </p>
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final int seed, final Object value)
+	{
+		return hash0(seed, value);
+	}
+
+	/**
+	 * Generates a hash code for the values in an input array using the given seed.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param values
+	 *            the values to be hashed.
+	 * @return a hash value of the input values.
+	 */
+	public static int hash(final int seed, final Object[] values)
+	{
+		if (null == values)
+			return 0;
+
+		int result = seed;
+		for (final Object value : values)
+			result = hash0(result, value);
+
+		return result;
+	}
+
+	/**
+	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
+	 * placed into an array.
+	 * 
+	 * @param seed
+	 *            the seed to be used.
+	 * @param value
+	 *            the first value to be hashed.
+	 * @param values
+	 *            the rest values to be hashed.
+	 * @return a hash value of the sequence of input values.
+	 */
+	public static int hashObjects(final int seed, final Object value, final Object... values)
+	{
+		return hash(hash0(seed, value), values);
+	}
+
+	/**
+	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
+	 * 
+	 * @param value
+	 *            the value to be hashed.
+	 * @return a hash value of the input value
+	 */
+	public static int hash(final Object value)
+	{
+		return hash0(HASH_SEED, value);
+	}
+
+	/**
+	 * Generates a hash code for the values in an input array using the {@link #HASH_SEED}.
 	 * 
 	 * @param values
-	 *            the values to be hashed
-	 * @return a hash value of the sequence of input values
-	 * @see {@link Arrays#hashCode(Object[])}, {@link List#hashCode()}
+	 *            the values to be hashed.
+	 * @return a hash value of the input values.
 	 */
-	public static int hash(final Object... values)
+	public static int hash(final Object[] values)
 	{
-		return Arrays.hashCode(values);
+		return hash(HASH_SEED, values);
+	}
+
+	/**
+	 * Generates a hash code for a sequence of input values using the {@link #HASH_SEED}. The hash code is generated as
+	 * if all the input values were placed into an array.
+	 * 
+	 * @param value
+	 *            the first value to be hashed.
+	 * @param values
+	 *            the rest values to be hashed.
+	 * @return a hash value of the sequence of input values.
+	 */
+	public static int hash(final Object value, final Object... values)
+	{
+		return hash(hash(value), values);
 	}
 
 	/**
 	 * Returns the result of calling {@code toString} for a non-{@code null} argument and "{@code null}" for a
 	 * {@code null} argument.
 	 * 
-	 * @param o
+	 * @param object
 	 *            an object
 	 * @return the result of calling {@code toString} for a non-{@code null} argument and "{@code null}" for a
 	 *         {@code null} argument
 	 * @see {@link Object#toString()}, {@link String#valueOf(Object)}
 	 */
-	public static String toString(final Object o)
+	public static String toStringOf(final Object object)
 	{
-		return (null == o ? "null" : o.toString());
+		return (null == object ? "null" : object.toString());
 	}
 
 	/**
 	 * Returns the result of calling {@code toString} on the first argument if the first argument is not {@code null}
 	 * and returns the second argument otherwise.
 	 * 
-	 * @param o
+	 * @param object
 	 *            an object
 	 * @param nullDefault
 	 *            string to return if the first argument is {@code null}
 	 * @return the result of calling {@code toString} on the first argument if it is not {@code null} and the second
 	 *         argument otherwise.
-	 * @see {@link #toString(Object)}
+	 * @see {@link #toStringOf(Object)}
 	 */
-	public static String toString(final Object o, final String nullDefault)
+	public static String toStringOf(final Object object, final String nullDefault)
 	{
-		return (null == o ? nullDefault : o.toString());
+		return (null == object ? nullDefault : object.toString());
 	}
 
 	/**
@@ -157,18 +1067,18 @@ public final class Objects
 	 * 
 	 * @param <T>
 	 *            the type of the objects being compared
-	 * @param a
+	 * @param left
 	 *            an object
-	 * @param b
+	 * @param right
 	 *            an object to be compared with a
 	 * @param c
 	 *            the {@code Comparator} to compare the first two arguments
 	 * @return 0 if the arguments are identical and {@code c.compare(a, b)} otherwise.
 	 * @see {@link Comparable}, {@link Comparator}
 	 */
-	public static <T> int compare(final T a, final T b, final Comparator<? super T> c)
+	public static <T> int compare(final T left, final T right, final Comparator<? super T> c)
 	{
-		return (a == b ? 0 : c.compare(a, b));
+		return (left == right ? 0 : c.compare(left, right));
 	}
 
 	/**

@@ -7,8 +7,10 @@ import static com.elixirian.common.test.CommonTestHelper.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -63,7 +65,7 @@ public class ObjectsTest
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void testObjects() throws Exception
+	public final void testObjects() throws Exception
 	{
 		testNotAccessibleConstructor(Objects.class, classArrayOf(), objectArrayOf());
 	}
@@ -78,13 +80,15 @@ public class ObjectsTest
 		assertThat(Boolean.valueOf(Objects.equals("", "")), equalTo(Boolean.TRUE));
 		assertThat(Boolean.valueOf(Objects.equals("test", "test")), equalTo(Boolean.TRUE));
 		assertThat(Boolean.valueOf(Objects.equals(new String("1234"), new String("1234"))), equalTo(Boolean.TRUE));
-		assertThat(Boolean.valueOf(Objects.equals(new SomeObject("Kevin"), new SomeObject("Kevin"))), equalTo(Boolean.TRUE));
+		assertThat(Boolean.valueOf(Objects.equals(new SomeObject("Kevin"), new SomeObject("Kevin"))),
+				equalTo(Boolean.TRUE));
 
 		assertThat(Boolean.valueOf(Objects.equals(null, new Object())), equalTo(Boolean.FALSE));
 		assertThat(Boolean.valueOf(Objects.equals("", "1")), equalTo(Boolean.FALSE));
 		assertThat(Boolean.valueOf(Objects.equals("test1", "test2")), equalTo(Boolean.FALSE));
 		assertThat(Boolean.valueOf(Objects.equals(new String("1234"), new String("4321"))), equalTo(Boolean.FALSE));
-		assertThat(Boolean.valueOf(Objects.equals(new SomeObject("Kevin"), new SomeObject("Lee"))), equalTo(Boolean.FALSE));
+		assertThat(Boolean.valueOf(Objects.equals(new SomeObject("Kevin"), new SomeObject("Lee"))),
+				equalTo(Boolean.FALSE));
 	}
 
 	/**
@@ -97,37 +101,60 @@ public class ObjectsTest
 		assertThat(Boolean.valueOf(Objects.deepEquals("", "")), equalTo(Boolean.TRUE));
 		assertThat(Boolean.valueOf(Objects.deepEquals("test", "test")), equalTo(Boolean.TRUE));
 		assertThat(Boolean.valueOf(Objects.deepEquals(new String("1234"), new String("1234"))), equalTo(Boolean.TRUE));
-		assertThat(Boolean.valueOf(Objects.deepEquals(new SomeObject("Kevin"), new SomeObject("Kevin"))), equalTo(Boolean.TRUE));
-		assertThat(Boolean.valueOf(Objects.deepEquals(new String[] { "Hello", "Kevin", "Lee" }, new String[] { "Hello", "Kevin", "Lee" })),
+		assertThat(Boolean.valueOf(Objects.deepEquals(new SomeObject("Kevin"), new SomeObject("Kevin"))),
 				equalTo(Boolean.TRUE));
 		assertThat(
+				Boolean.valueOf(Objects.deepEquals(new String[] { "Hello", "Kevin", "Lee" }, new String[] { "Hello",
+						"Kevin", "Lee" })), equalTo(Boolean.TRUE));
+		assertThat(
 				Boolean.valueOf(Objects.deepEquals(new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
-						new SomeObject("SeongHyun") }, new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
-						new SomeObject("SeongHyun") })), equalTo(Boolean.TRUE));
+						new SomeObject("SeongHyun") }, new SomeObject[] { new SomeObject("Kevin"),
+						new SomeObject("Lee"), new SomeObject("SeongHyun") })), equalTo(Boolean.TRUE));
 
 		assertThat(Boolean.valueOf(Objects.deepEquals(null, new Object())), equalTo(Boolean.FALSE));
 		assertThat(Boolean.valueOf(Objects.deepEquals("", "1")), equalTo(Boolean.FALSE));
 		assertThat(Boolean.valueOf(Objects.deepEquals("test1", "test2")), equalTo(Boolean.FALSE));
 		assertThat(Boolean.valueOf(Objects.deepEquals(new String("1234"), new String("4321"))), equalTo(Boolean.FALSE));
-		assertThat(Boolean.valueOf(Objects.deepEquals(new SomeObject("Kevin"), new SomeObject("Tom"))), equalTo(Boolean.FALSE));
-		assertThat(Boolean.valueOf(Objects.deepEquals(new String[] { "Hello", "Lee", "Kevin" }, new String[] { "Hello", "Kevin", "Lee" })),
+		assertThat(Boolean.valueOf(Objects.deepEquals(new SomeObject("Kevin"), new SomeObject("Tom"))),
 				equalTo(Boolean.FALSE));
 		assertThat(
-				Boolean.valueOf(Objects.deepEquals(new SomeObject[] { new SomeObject("SeongHyun"), new SomeObject("Lee"),
-						new SomeObject("Kevin") }, new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
-						new SomeObject("SeongHyun") })), equalTo(Boolean.FALSE));
+				Boolean.valueOf(Objects.deepEquals(new String[] { "Hello", "Lee", "Kevin" }, new String[] { "Hello",
+						"Kevin", "Lee" })), equalTo(Boolean.FALSE));
+		assertThat(
+				Boolean.valueOf(Objects.deepEquals(new SomeObject[] { new SomeObject("SeongHyun"),
+						new SomeObject("Lee"), new SomeObject("Kevin") }, new SomeObject[] { new SomeObject("Kevin"),
+						new SomeObject("Lee"), new SomeObject("SeongHyun") })), equalTo(Boolean.FALSE));
 	}
 
 	/**
 	 * Test method for {@link com.elixirian.common.util.Objects#hashCode(java.lang.Object)}.
 	 */
 	@Test
-	public final void testHashCodeObject()
+	public final void testHashCodeOfObject()
 	{
-		assertThat(Integer.valueOf(Objects.hashCode(null)), equalTo(Integer.valueOf(0)));
-		assertThat(Integer.valueOf(Objects.hashCode("test")), equalTo(Integer.valueOf("test".hashCode())));
-		assertThat(Integer.valueOf(Objects.hashCode(new String("test"))), equalTo(Integer.valueOf(new String("test").hashCode())));
-		assertThat(Integer.valueOf(Objects.hashCode(new SomeObject("Kevin"))), equalTo(Integer.valueOf(new SomeObject("Kevin").hashCode())));
+		assertThat(Integer.valueOf(Objects.hashCodeOf((byte) 64)), is(equalTo(Integer.valueOf(64))));
+		assertThat(Integer.valueOf(Objects.hashCodeOf((short) (Byte.MAX_VALUE + 10))),
+				is(equalTo(Integer.valueOf(Byte.MAX_VALUE + 10))));
+		assertThat(Integer.valueOf(Objects.hashCodeOf((char) (Character.MAX_VALUE - 100))),
+				is(equalTo(Integer.valueOf(Character.MAX_VALUE - 100))));
+		assertThat(Integer.valueOf(Objects.hashCodeOf(Short.MAX_VALUE + 1000)),
+				is(equalTo(Integer.valueOf(Short.MAX_VALUE + 1000))));
+		assertThat(
+				Integer.valueOf(Objects.hashCodeOf(Integer.MAX_VALUE + 1000L)),
+				is(equalTo(Integer.valueOf((int) ((Integer.MAX_VALUE + 1000L) ^ ((Integer.MAX_VALUE + 1000L) >>> 32))))));
+		assertThat(Integer.valueOf(Objects.hashCodeOf(10.10F)),
+				is(equalTo(Integer.valueOf(Float.floatToIntBits(10.10F)))));
+		final long longBits = Double.doubleToLongBits(Float.MAX_VALUE + 100.1234D);
+		assertThat(Integer.valueOf(Objects.hashCodeOf(Float.MAX_VALUE + 100.1234D)),
+				is(equalTo(Integer.valueOf((int) (longBits ^ (longBits >>> 32))))));
+		assertThat(Integer.valueOf(Objects.hashCodeOf(true)), is(equalTo(Integer.valueOf(Boolean.TRUE.hashCode()))));
+		assertThat(Integer.valueOf(Objects.hashCodeOf(false)), is(equalTo(Integer.valueOf(Boolean.FALSE.hashCode()))));
+		assertThat(Integer.valueOf(Objects.hashCodeOf(null)), is(equalTo(Integer.valueOf(0))));
+		assertThat(Integer.valueOf(Objects.hashCodeOf("test")), is(equalTo(Integer.valueOf("test".hashCode()))));
+		assertThat(Integer.valueOf(Objects.hashCodeOf(new String("test"))),
+				is(equalTo(Integer.valueOf(new String("test").hashCode()))));
+		assertThat(Integer.valueOf(Objects.hashCodeOf(new SomeObject("Kevin"))),
+				is(equalTo(Integer.valueOf(new SomeObject("Kevin").hashCode()))));
 	}
 
 	/**
@@ -136,58 +163,350 @@ public class ObjectsTest
 	@Test
 	public final void testHash()
 	{
-		assertThat(Integer.valueOf(Objects.hash(null)), equalTo(Integer.valueOf(Arrays.hashCode((Object[]) null))));
-		assertThat(Integer.valueOf(Objects.hash((Object) null)), equalTo(Integer.valueOf(Arrays.hashCode(new Object[] { null }))));
-		assertThat(Integer.valueOf(Objects.hash("test")), equalTo(Integer.valueOf(Arrays.hashCode(new String[] { "test" }))));
+		assertThat(Integer.valueOf(Objects.hash((Object[]) null)),
+				equalTo(Integer.valueOf(Arrays.hashCode((Object[]) null))));
+		assertThat(Integer.valueOf(Objects.hash((Object) null)),
+				equalTo(Integer.valueOf(Arrays.hashCode(new Object[] { null }))));
+		assertThat(Integer.valueOf(Objects.hash("test")),
+				equalTo(Integer.valueOf(Arrays.hashCode(new String[] { "test" }))));
 		assertThat(Integer.valueOf(Objects.hash(new String("test"))),
 				equalTo(Integer.valueOf(Arrays.hashCode(new String[] { new String("test") }))));
 		assertThat(Integer.valueOf(Objects.hash(new SomeObject("Kevin"))),
 				equalTo(Integer.valueOf(Arrays.hashCode(new SomeObject[] { new SomeObject("Kevin") }))));
-		assertThat(Integer.valueOf(Objects.hash("test", new String("something else"), new SomeObject("Kevin"))),
-				equalTo(Integer.valueOf(Arrays.hashCode(new Object[] { "test", new String("something else"), new SomeObject("Kevin") }))));
+		assertThat(
+				Integer.valueOf(Objects.hash("test", new String("something else"), new SomeObject("Kevin"))),
+				equalTo(Integer.valueOf(Arrays.hashCode(new Object[] { "test", new String("something else"),
+						new SomeObject("Kevin") }))));
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.Objects#toString(java.lang.Object)}.
+	 * Test method for {@link com.lckymn.kevin.common.util.Objects#hash(java.lang.Object[])}.
 	 */
 	@Test
-	public final void testToStringObject()
+	public final void testHashes()
 	{
-		assertThat(Objects.toString(null), equalTo("null"));
-		assertThat(Objects.toString("test"), equalTo("test"));
-		assertThat(Objects.toString(new String("something else")), equalTo("something else"));
-		Object object = new Object();
-		assertThat(Objects.toString(object), equalTo(object.toString()));
-		assertThat(Objects.toString(new SomeObject("Kevin")), equalTo(new SomeObject("Kevin").toString()));
-		SomeObject someObject = new SomeObject("Lee");
-		assertThat(Objects.toString(someObject), equalTo(someObject.toString()));
+		int result = Objects.HASH_PRIME * Objects.HASH_SEED + 1;
+		result = Objects.HASH_PRIME * result + 120;
+		result = Objects.HASH_PRIME * result + 12345;
+		result = Objects.HASH_PRIME * result + (int) (9999L ^ (9999L >>> 32));
+		result = Objects.HASH_PRIME * result + Float.floatToIntBits(12.10F);
+		long bits = Double.doubleToLongBits(100.12345D);
+		result = Objects.HASH_PRIME * result + (int) (bits ^ (bits >>> 32));
+		result = Objects.HASH_PRIME * result + 1231;
+		result = Objects.HASH_PRIME * result + "Kevin Lee".hashCode();
+
+		/* @formatter:off */
+					assertThat(Integer.valueOf(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							Objects.HASH_SEED, 
+							(byte) 1), 
+							(short) 120), 
+							12345), 
+							9999L), 
+							12.10F), 
+							100.12345D), 
+							true), 
+							"Kevin Lee")), equalTo(Integer.valueOf(result)));
+					assertThat(Integer.valueOf(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							Objects.hash(
+							(byte) 1), 
+							(short) 120), 
+							12345), 
+							9999L), 
+							12.10F), 
+							100.12345D), 
+							true), 
+							"Kevin Lee")), equalTo(Integer.valueOf(result)));
+					/* @formatter:on */
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.Objects#toString(java.lang.Object, java.lang.String)}.
+	 * Test method for {@link com.lckymn.kevin.common.hashObjects#hash(java.lang.Object[])}.
 	 */
 	@Test
-	public final void testToStringObjectString()
+	public final void testHashByte()
+	{
+		final int seed = 3;
+		final byte value = 5;
+		assertThat(Integer.valueOf(Objects.hash(value)),
+				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * Objects.HASH_SEED + value))));
+		assertThat(Integer.valueOf(Objects.hash(3, value)), equalTo(Integer.valueOf(Objects.HASH_PRIME * seed + value)));
+
+		final byte[] values = { value, 6, 8, 10, 123 };
+		int result = Objects.HASH_PRIME * seed + values[0];
+		result = Objects.HASH_PRIME * result + values[1];
+		result = Objects.HASH_PRIME * result + values[2];
+		result = Objects.HASH_PRIME * result + values[3];
+		result = Objects.HASH_PRIME * result + values[4];
+		assertThat(Integer.valueOf(Objects.hashBytes(3, values[0], values[1], values[2], values[3], values[4])),
+				equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, values)), equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, (byte[]) null)), equalTo(Integer.valueOf(0)));
+	}
+
+	/**
+	 * Test method for {@link com.lckymn.kevin.common.util.Objects#hash(java.lang.Object[])}.
+	 */
+	@Test
+	public final void testHashChar()
+	{
+		final int seed = 3;
+		final char value = Character.MAX_VALUE - 100;
+		assertThat(Integer.valueOf(Objects.hash(value)),
+				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * Objects.HASH_SEED + value))));
+		assertThat(Integer.valueOf(Objects.hash(3, value)), equalTo(Integer.valueOf(Objects.HASH_PRIME * seed + value)));
+
+		final char[] values = { value, 6, 8, 10, 123 };
+		int result = Objects.HASH_PRIME * seed + values[0];
+		result = Objects.HASH_PRIME * result + values[1];
+		result = Objects.HASH_PRIME * result + values[2];
+		result = Objects.HASH_PRIME * result + values[3];
+		result = Objects.HASH_PRIME * result + values[4];
+		assertThat(Integer.valueOf(Objects.hashChars(seed, values[0], values[1], values[2], values[3], values[4])),
+				equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(seed, values)), equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(seed, (char[]) null)), equalTo(Integer.valueOf(0)));
+	}
+
+	/**
+	 * Test method for {@link com.lckymn.kevin.common.util.Objects#hash(java.lang.Object[])}.
+	 */
+	@Test
+	public final void testHashShort()
+	{
+		final int seed = 3;
+		final short value = Byte.MAX_VALUE + 100;
+		assertThat(Integer.valueOf(Objects.hash(value)),
+				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * Objects.HASH_SEED + value))));
+		assertThat(Integer.valueOf(Objects.hash(3, value)), equalTo(Integer.valueOf(Objects.HASH_PRIME * seed + value)));
+
+		final short[] values = { value, 6, 8, 10, 123 };
+		int result = Objects.HASH_PRIME * seed + values[0];
+		result = Objects.HASH_PRIME * result + values[1];
+		result = Objects.HASH_PRIME * result + values[2];
+		result = Objects.HASH_PRIME * result + values[3];
+		result = Objects.HASH_PRIME * result + values[4];
+		assertThat(Integer.valueOf(Objects.hashShorts(seed, values[0], values[1], values[2], values[3], values[4])),
+				equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(seed, values)), equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(seed, (short[]) null)), equalTo(Integer.valueOf(0)));
+	}
+
+	/**
+	 * Test method for {@link com.lckymn.kevin.common.util.Objects#hash(java.lang.Object[])}.
+	 */
+	@Test
+	public final void testHashInt()
+	{
+		final int seed = 3;
+		final int value = Short.MAX_VALUE + 100;
+		assertThat(Integer.valueOf(Objects.hash(value)),
+				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * Objects.HASH_SEED + value))));
+		assertThat(Integer.valueOf(Objects.hash(3, value)),
+				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * seed + value))));
+
+		final int[] values = { value, 6, 8, 10, 123 };
+		int result = Objects.HASH_PRIME * seed + values[0];
+		result = Objects.HASH_PRIME * result + values[1];
+		result = Objects.HASH_PRIME * result + values[2];
+		result = Objects.HASH_PRIME * result + values[3];
+		result = Objects.HASH_PRIME * result + values[4];
+		assertThat(Integer.valueOf(Objects.hashInts(3, values[0], values[1], values[2], values[3], values[4])),
+				equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, values)), equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, (int[]) null)), equalTo(Integer.valueOf(0)));
+	}
+
+	/**
+	 * Test method for {@link com.lckymn.kevin.common.util.Objects#hash(java.lang.Object[])}.
+	 */
+	@Test
+	public final void testHashLong()
+	{
+		final int seed = 3;
+		final long value = Integer.MAX_VALUE + 100L;
+		assertThat(Integer.valueOf(Objects.hash(value)),
+				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * Objects.HASH_SEED + (int) (value ^ (value >>> 32))))));
+		assertThat(Integer.valueOf(Objects.hash(3, value)),
+				equalTo(Integer.valueOf(Objects.HASH_PRIME * seed + (int) (value ^ (value >>> 32)))));
+
+		final long[] values = { 5, 6, 8, 10, 123 };
+		int result = Objects.HASH_PRIME * seed + (int) (values[0] ^ (values[0] >>> 32));
+		result = Objects.HASH_PRIME * result + (int) (values[1] ^ (values[1] >>> 32));
+		result = Objects.HASH_PRIME * result + (int) (values[2] ^ (values[2] >>> 32));
+		result = Objects.HASH_PRIME * result + (int) (values[3] ^ (values[3] >>> 32));
+		result = Objects.HASH_PRIME * result + (int) (values[4] ^ (values[4] >>> 32));
+		assertThat(Integer.valueOf(Objects.hashLongs(3, values[0], values[1], values[2], values[3], values[4])),
+				equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, values)), equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, (long[]) null)), equalTo(Integer.valueOf(0)));
+	}
+
+	/**
+	 * Test method for {@link com.lckymn.kevin.common.util.Objects#hash(java.lang.Object[])}.
+	 */
+	@Test
+	public final void testHashFloat()
+	{
+		final int seed = 3;
+		final float value = 5.0F;
+		assertThat(Integer.valueOf(Objects.hash(value)),
+				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * Objects.HASH_SEED + Float.floatToIntBits(value)))));
+		assertThat(Integer.valueOf(Objects.hash(3, value)),
+				equalTo(Integer.valueOf(Objects.HASH_PRIME * seed + Float.floatToIntBits(value))));
+
+		final float[] values = { 5, 6, 8, 10, 123 };
+		int result = Objects.HASH_PRIME * seed + Float.floatToIntBits(values[0]);
+		result = Objects.HASH_PRIME * result + Float.floatToIntBits(values[1]);
+		result = Objects.HASH_PRIME * result + Float.floatToIntBits(values[2]);
+		result = Objects.HASH_PRIME * result + Float.floatToIntBits(values[3]);
+		result = Objects.HASH_PRIME * result + Float.floatToIntBits(values[4]);
+		assertThat(Integer.valueOf(Objects.hashFloats(3, values[0], values[1], values[2], values[3], values[4])),
+				equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, values)), equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, (float[]) null)), equalTo(Integer.valueOf(0)));
+	}
+
+	/**
+	 * Test method for {@link com.lckymn.kevin.common.util.Objects#hash(java.lang.Object[])}.
+	 */
+	@Test
+	public final void testHashDouble()
+	{
+		final double value = Float.MAX_VALUE + 100D;
+		long doubleToLongBits = Double.doubleToLongBits(value);
+		final int seed = 3;
+		assertThat(
+				Integer.valueOf(Objects.hash(value)),
+				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * Objects.HASH_SEED
+						+ (int) (doubleToLongBits ^ (doubleToLongBits >>> 32))))));
+		assertThat(
+				Integer.valueOf(Objects.hash(3, value)),
+				equalTo(Integer.valueOf(Objects.HASH_PRIME * seed
+						+ (int) (doubleToLongBits ^ (doubleToLongBits >>> 32)))));
+
+		final double[] values = { value, 6, 8, 10, 123 };
+		doubleToLongBits = Double.doubleToLongBits(values[0]);
+		int result = Objects.HASH_PRIME * seed + (int) (doubleToLongBits ^ (doubleToLongBits >>> 32));
+		doubleToLongBits = Double.doubleToLongBits(values[1]);
+		result = Objects.HASH_PRIME * result + (int) (doubleToLongBits ^ (doubleToLongBits >>> 32));
+		doubleToLongBits = Double.doubleToLongBits(values[2]);
+		result = Objects.HASH_PRIME * result + (int) (doubleToLongBits ^ (doubleToLongBits >>> 32));
+		doubleToLongBits = Double.doubleToLongBits(values[3]);
+		result = Objects.HASH_PRIME * result + (int) (doubleToLongBits ^ (doubleToLongBits >>> 32));
+		doubleToLongBits = Double.doubleToLongBits(values[4]);
+		result = Objects.HASH_PRIME * result + (int) (doubleToLongBits ^ (doubleToLongBits >>> 32));
+		assertThat(Integer.valueOf(Objects.hashDoubles(seed, values[0], values[1], values[2], values[3], values[4])),
+				equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(seed, values)), equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(seed, (double[]) null)), equalTo(Integer.valueOf(0)));
+	}
+
+	/**
+	 * Test method for {@link com.lckymn.kevin.common.util.Objects#hash(java.lang.Object[])}.
+	 */
+	@Test
+	public final void testHashBoolean()
+	{
+		final int seed = 3;
+		assertThat(Integer.valueOf(Objects.hash(true)),
+				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * Objects.HASH_SEED + Boolean.TRUE.hashCode()))));
+		assertThat(Integer.valueOf(Objects.hash(3, true)),
+				equalTo(Integer.valueOf(Objects.HASH_PRIME * seed + Boolean.TRUE.hashCode())));
+
+		final boolean[] values = { false, true, true, false, true };
+		int result = Objects.HASH_PRIME * seed + (values[0] ? 1231 : 1237);
+		result = Objects.HASH_PRIME * result + (values[1] ? 1231 : 1237);
+		result = Objects.HASH_PRIME * result + (values[2] ? 1231 : 1237);
+		result = Objects.HASH_PRIME * result + (values[3] ? 1231 : 1237);
+		result = Objects.HASH_PRIME * result + (values[4] ? 1231 : 1237);
+		assertThat(Integer.valueOf(Objects.hashBooleans(3, values[0], values[1], values[2], values[3], values[4])),
+				equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, values)), equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, (boolean[]) null)), equalTo(Integer.valueOf(0)));
+	}
+
+	/**
+	 * Test method for {@link com.lckymn.kevin.common.util.Objects#hash(java.lang.Object[])}.
+	 */
+	@Test
+	public final void testHashObject()
+	{
+		final int seed = 3;
+		final String value = "Kevin";
+		assertThat(Integer.valueOf(Objects.hash(value)),
+				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * Objects.HASH_SEED + value.hashCode()))));
+		assertThat(Integer.valueOf(Objects.hash(3, value)),
+				equalTo(Integer.valueOf(Objects.HASH_PRIME * seed + value.hashCode())));
+
+		final Object[] values = { value, "Lee", new Object(), new Date(), new ArrayList<String>() };
+		int result = Objects.HASH_PRIME * seed + values[0].hashCode();
+		result = Objects.HASH_PRIME * result + values[1].hashCode();
+		result = Objects.HASH_PRIME * result + values[2].hashCode();
+		result = Objects.HASH_PRIME * result + values[3].hashCode();
+		result = Objects.HASH_PRIME * result + values[4].hashCode();
+		assertThat(Integer.valueOf(Objects.hashObjects(3, values[0], values[1], values[2], values[3], values[4])),
+				equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, values)), equalTo(Integer.valueOf(result)));
+		assertThat(Integer.valueOf(Objects.hash(3, (Object[]) null)), equalTo(Integer.valueOf(0)));
+	}
+
+	/**
+	 * Test method for {@link com.elixirian.common.util.Objects#toStringOf(java.lang.Object)}.
+	 */
+	@Test
+	public final void testToStringOfObject()
+	{
+		assertThat(Objects.toStringOf(null), equalTo("null"));
+		assertThat(Objects.toStringOf("test"), equalTo("test"));
+		assertThat(Objects.toStringOf(new String("something else")), equalTo("something else"));
+		Object object = new Object();
+		assertThat(Objects.toStringOf(object), equalTo(object.toString()));
+		assertThat(Objects.toStringOf(new SomeObject("Kevin")), equalTo(new SomeObject("Kevin").toString()));
+		SomeObject someObject = new SomeObject("Lee");
+		assertThat(Objects.toStringOf(someObject), equalTo(someObject.toString()));
+	}
+
+	/**
+	 * Test method for {@link com.elixirian.common.util.Objects#toStringOf(java.lang.Object, java.lang.String)}.
+	 */
+	@Test
+	public final void testToStringOfObjectString()
 	{
 		final String nullDefault = "It is null!!!";
-		assertThat(Objects.toString(null, nullDefault), equalTo(nullDefault));
-		assertThat(Objects.toString("test", nullDefault), equalTo("test"));
-		assertThat(Objects.toString(new String("something else"), nullDefault), equalTo("something else"));
+		assertThat(Objects.toStringOf(null, nullDefault), equalTo(nullDefault));
+		assertThat(Objects.toStringOf("test", nullDefault), equalTo("test"));
+		assertThat(Objects.toStringOf(new String("something else"), nullDefault), equalTo("something else"));
 		Object object = new Object();
-		assertThat(Objects.toString(object, nullDefault), equalTo(object.toString()));
-		assertThat(Objects.toString(new SomeObject("Kevin"), nullDefault), equalTo(new SomeObject("Kevin").toString()));
+		assertThat(Objects.toStringOf(object, nullDefault), equalTo(object.toString()));
+		assertThat(Objects.toStringOf(new SomeObject("Kevin"), nullDefault),
+				equalTo(new SomeObject("Kevin").toString()));
 		SomeObject someObject = new SomeObject("Lee");
-		assertThat(Objects.toString(someObject, nullDefault), equalTo(someObject.toString()));
+		assertThat(Objects.toStringOf(someObject, nullDefault), equalTo(someObject.toString()));
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.Objects#compare(java.lang.Object, java.lang.Object, java.util.Comparator)}.
+	 * Test method for
+	 * {@link com.elixirian.common.util.Objects#compare(java.lang.Object, java.lang.Object, java.util.Comparator)}.
 	 */
 	@Test
 	public final void testCompare()
 	{
-		final Comparator<SomeObject> comparator = new Comparator<SomeObject>()
-		{
+		final Comparator<SomeObject> comparator = new Comparator<SomeObject>() {
 			@Override
 			public int compare(SomeObject o1, SomeObject o2)
 			{
@@ -258,8 +577,8 @@ public class ObjectsTest
 	public final void testNonNullT()
 	{
 		assertThat(Objects.nonNull("test"), equalTo("test"));
-		assertThat(Objects.nonNull(new String("something else")), equalTo(new String("something else")));
-		assertThat(Objects.nonNull(new SomeObject("Kevin")), equalTo(new SomeObject("Kevin")));
+		assertThat(Objects.nonNull(new String("something else")), is(equalTo(new String("something else"))));
+		assertThat(Objects.nonNull(new SomeObject("Kevin")), is(equalTo(new SomeObject("Kevin"))));
 		boolean exceptionThrown = false;
 		try
 		{
@@ -279,9 +598,9 @@ public class ObjectsTest
 	public final void testNonNullTString()
 	{
 		final String message = "It is null!!!!!";
-		assertThat(Objects.nonNull("test", message), equalTo("test"));
-		assertThat(Objects.nonNull(new String("something else"), message), equalTo(new String("something else")));
-		assertThat(Objects.nonNull(new SomeObject("Kevin"), message), equalTo(new SomeObject("Kevin")));
+		assertThat(Objects.nonNull("test", message), is(equalTo("test")));
+		assertThat(Objects.nonNull(new String("something else"), message), is(equalTo(new String("something else"))));
+		assertThat(Objects.nonNull(new SomeObject("Kevin"), message), is(equalTo(new SomeObject("Kevin"))));
 		boolean exceptionThrown = false;
 		try
 		{
