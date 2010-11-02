@@ -5,7 +5,7 @@
 	<groupId>com.elixirian</groupId>
 	<artifactId>elixirian-common-exception</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.4-SNAPSHOT</version>
 	<name>elixirian-common-exception</name>
 	<url>http://elixirian.com</url>
 	<parent>
@@ -31,7 +31,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<version>4.8.1</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
