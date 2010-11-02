@@ -613,6 +613,39 @@ public class ObjectsTest
 		assertTrue(exceptionThrown);
 	}
 
+	@Test
+	public final void testNullThenUse()
+	{
+		final Object nullReference = null;
+		final Object object1 = new Object();
+		final Object object2 = new Object();
+		final Object value1 = Objects.nullThenUse(nullReference, object1);
+		final Object value2 = Objects.nullThenUse(object1, object2);
+		assertThat(value1, is(equalTo(object1)));
+		assertThat(value2, is(equalTo(object1)));
+
+		final String string1 = new String("Kevin");
+		final String string2 = new String("Lee");
+		final String stringValue1 = Objects.nullThenUse((String) null, string1);
+		final String stringValue2 = Objects.nullThenUse(string1, string2);
+		assertThat(stringValue1, is(equalTo(string1)));
+		assertThat(stringValue2, is(equalTo(string1)));
+
+		final Date date1 = new Date();
+		final Date date2 = new Date();
+		final Date dateValue1 = Objects.nullThenUse((Date) null, date1);
+		final Date dateValue2 = Objects.nullThenUse(date1, date2);
+		assertThat(dateValue1, is(equalTo(date1)));
+		assertThat(dateValue2, is(equalTo(date1)));
+
+		final Integer integer1 = new Integer(100);
+		final Integer integer2 = new Integer(999);
+		final Integer integerValue1 = Objects.nullThenUse((Integer) null, integer1);
+		final Integer integerValue2 = Objects.nullThenUse(integer1, integer2);
+		assertThat(integerValue1, is(equalTo(integer1)));
+		assertThat(integerValue2, is(equalTo(integer1)));
+	}
+
 	private static class SomePojo
 	{
 		private final Long id;

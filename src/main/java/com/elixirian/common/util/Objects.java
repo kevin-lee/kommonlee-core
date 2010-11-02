@@ -1094,19 +1094,19 @@ public final class Objects
 	 * 
 	 * @param <T>
 	 *            the type of the reference
-	 * @param obj
+	 * @param object
 	 *            the object reference to check for nullity
-	 * @return obj if not {@code null}
+	 * @return object if not {@code null}
 	 * @throws NullPointerException
 	 *             if {@code obj} is {@code null}
 	 */
-	public static <T> T nonNull(final T obj)
+	public static <T> T nonNull(final T object)
 	{
-		if (null == obj)
+		if (null == object)
 		{
 			throw new NullPointerException();
 		}
-		return obj;
+		return object;
 	}
 
 	/**
@@ -1124,21 +1124,35 @@ public final class Objects
 	 * 
 	 * @param <T>
 	 *            the type of the reference
-	 * @param obj
+	 * @param object
 	 *            the object reference to check for nullity
 	 * @param message
 	 *            detail message to be used in the event that a {@code NullPointerException} is thrown
-	 * @return {@code obj} if not {@code null}
+	 * @return {@code object} if not {@code null}
 	 * @throws NullPointerException
-	 *             if obj is null
+	 *             if object is null
 	 */
-	public static <T> T nonNull(final T obj, final String message)
+	public static <T> T nonNull(final T object, final String message)
 	{
-		if (null == obj)
+		if (null == object)
 		{
 			throw new NullPointerException(message);
 		}
-		return obj;
+		return object;
+	}
+
+	/**
+	 * @param <T>
+	 *            the type of the reference
+	 * @param object
+	 *            the object reference to check for nullity
+	 * @param defaultValue
+	 *            the default object to be used if the given object variable contains <code>null</code> reference.
+	 * @return object if not {@code null}. Otherwise it's the given defaultValue.
+	 */
+	public static <T> T nullThenUse(final T object, T defaultValue)
+	{
+		return null == object ? defaultValue : object;
 	}
 
 	/**
