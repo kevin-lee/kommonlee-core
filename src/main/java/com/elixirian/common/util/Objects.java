@@ -53,16 +53,16 @@ public final class Objects
 	 * is returned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals} method of the
 	 * first argument.
 	 * 
-	 * @param a
+	 * @param left
 	 *            an object
-	 * @param b
+	 * @param right
 	 *            an object to be compared with a for equality
 	 * @return true if the arguments are equal to each other and false otherwise
 	 * @see {@link Object#equals(Object)}
 	 */
-	public static boolean equals(final Object a, final Object b)
+	public static boolean equal(final Object left, final Object right)
 	{
-		return (a == b) || (null != a && a.equals(b));
+		return (left == right) || (null != left && left.equals(right));
 	}
 
 	/**
@@ -76,7 +76,7 @@ public final class Objects
 	 * @param b
 	 *            an object to be compared with a for deep equality
 	 * @return {@code true} if the arguments are deeply equal to each other and {@code false} otherwise
-	 * @see {@link Arrays#deepEquals(Object[], Object[])}, {@link #equals(Object, Object)}
+	 * @see {@link Arrays#deepEquals(Object[], Object[])}, {@link #equal(Object, Object)}
 	 */
 	public static boolean deepEquals(final Object a, final Object b)
 	{

@@ -71,25 +71,25 @@ public class ObjectsTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.Objects#equals(java.lang.Object, java.lang.Object)}.
-	 */
-	@Test
-	public final void testEqualsObjectObject()
-	{
-		assertThat(Boolean.valueOf(Objects.equals(null, null)), equalTo(Boolean.TRUE));
-		assertThat(Boolean.valueOf(Objects.equals("", "")), equalTo(Boolean.TRUE));
-		assertThat(Boolean.valueOf(Objects.equals("test", "test")), equalTo(Boolean.TRUE));
-		assertThat(Boolean.valueOf(Objects.equals(new String("1234"), new String("1234"))), equalTo(Boolean.TRUE));
-		assertThat(Boolean.valueOf(Objects.equals(new SomeObject("Kevin"), new SomeObject("Kevin"))),
-				equalTo(Boolean.TRUE));
-
-		assertThat(Boolean.valueOf(Objects.equals(null, new Object())), equalTo(Boolean.FALSE));
-		assertThat(Boolean.valueOf(Objects.equals("", "1")), equalTo(Boolean.FALSE));
-		assertThat(Boolean.valueOf(Objects.equals("test1", "test2")), equalTo(Boolean.FALSE));
-		assertThat(Boolean.valueOf(Objects.equals(new String("1234"), new String("4321"))), equalTo(Boolean.FALSE));
-		assertThat(Boolean.valueOf(Objects.equals(new SomeObject("Kevin"), new SomeObject("Lee"))),
-				equalTo(Boolean.FALSE));
-	}
+		 * Test method for {@link com.elixirian.common.util.Objects#equal(java.lang.Object, java.lang.Object)}.
+		 */
+		@Test
+		public final void testEqualObjectObject()
+		{
+			assertThat(Boolean.valueOf(Objects.equal(null, null)), equalTo(Boolean.TRUE));
+			assertThat(Boolean.valueOf(Objects.equal("", "")), equalTo(Boolean.TRUE));
+			assertThat(Boolean.valueOf(Objects.equal("test", "test")), equalTo(Boolean.TRUE));
+			assertThat(Boolean.valueOf(Objects.equal(new String("1234"), new String("1234"))), equalTo(Boolean.TRUE));
+			assertThat(Boolean.valueOf(Objects.equal(new SomeObject("Kevin"), new SomeObject("Kevin"))),
+					equalTo(Boolean.TRUE));
+	
+			assertThat(Boolean.valueOf(Objects.equal(null, new Object())), equalTo(Boolean.FALSE));
+			assertThat(Boolean.valueOf(Objects.equal("", "1")), equalTo(Boolean.FALSE));
+			assertThat(Boolean.valueOf(Objects.equal("test1", "test2")), equalTo(Boolean.FALSE));
+			assertThat(Boolean.valueOf(Objects.equal(new String("1234"), new String("4321"))), equalTo(Boolean.FALSE));
+			assertThat(Boolean.valueOf(Objects.equal(new SomeObject("Kevin"), new SomeObject("Lee"))),
+					equalTo(Boolean.FALSE));
+		}
 
 	/**
 	 * Test method for {@link com.elixirian.common.util.Objects#deepEquals(java.lang.Object, java.lang.Object)}.
