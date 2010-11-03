@@ -24,6 +24,7 @@ import com.elixirian.common.validation.Assertions;
 /**
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-04-02)
+ * @version 0.0.2 (2010-11-03) moved from the elixirian-common-filemanager package.
  */
 public final class FileUtil
 {

@@ -10,6 +10,7 @@ import com.elixirian.common.util.CommonConstants;
 /**
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-07-16)
+ * @version 0.0.2 (2010-11-03) moved from the elixirian-common-filemanager package.
  */
 public final class IoCommonConstants
 {
