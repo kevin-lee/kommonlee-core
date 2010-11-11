@@ -3,17 +3,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.elixirian</groupId>
+	<groupId>org.elixirian</groupId>
 	<artifactId>elixirian-common-io</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>elixirian-common-io</name>
 	<url>http://elixirian.com</url>
 	<parent>
 		<artifactId>elixirian-common</artifactId>
-		<groupId>com.elixirian</groupId>
-		<version>0.0.3-SNAPSHOT</version>
+		<groupId>org.elixirian</groupId>
+		<version>0.0.4-SNAPSHOT</version>
 	</parent>
 	<build>
 		<plugins>
@@ -66,30 +66,30 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.elixirian</groupId>
+			<groupId>org.elixirian</groupId>
 			<artifactId>elixirian-common-test</artifactId>
-			<version>0.0.7-SNAPSHOT</version>
+			<version>0.0.8-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.elixirian</groupId>
+			<groupId>org.elixirian</groupId>
 			<artifactId>elixirian-common-exception</artifactId>
-			<version>0.0.4-SNAPSHOT</version>
+			<version>0.0.5-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.elixirian</groupId>
+			<groupId>org.elixirian</groupId>
 			<artifactId>elixirian-common-util</artifactId>
-			<version>0.0.7-SNAPSHOT</version>
+			<version>0.0.8-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.elixirian</groupId>
+			<groupId>org.elixirian</groupId>
 			<artifactId>elixirian-common-validation</artifactId>
-			<version>0.0.12-SNAPSHOT</version>
+			<version>0.0.13-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
