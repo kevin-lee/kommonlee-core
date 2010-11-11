@@ -1,11 +1,12 @@
 /**
  * 
  */
-package com.elixirian.common.validation;
+package org.elixirian.common.validation;
 
-import static com.elixirian.common.util.MessageFormatter.*;
+import static org.elixirian.common.util.MessageFormatter.*;
 
-import com.elixirian.common.util.CommonConstants;
+import org.elixirian.common.util.CommonConstants;
+
 
 /**
  * @author Lee, SeongHyun (Kevin)

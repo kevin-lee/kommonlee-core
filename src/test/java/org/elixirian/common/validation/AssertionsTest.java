@@ -1,12 +1,13 @@
 /**
  * 
  */
-package com.elixirian.common.validation;
+package org.elixirian.common.validation;
 
-import static com.elixirian.common.test.CommonTestHelper.*;
+import static org.elixirian.common.test.CommonTestHelper.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import org.elixirian.common.validation.Assertions;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -61,7 +62,7 @@ public class AssertionsTest
 
 	/**
 	 * Test method for
-	 * {@link com.elixirian.common.validation.Assertions#assertNotNull(java.lang.Object, java.lang.String, java.lang.Object[])}.
+	 * {@link org.elixirian.common.validation.Assertions#assertNotNull(java.lang.Object, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testAssertNotNull()
@@ -79,7 +80,7 @@ public class AssertionsTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.Assertions#assertNull(java.lang.Object, java.lang.String, java.lang.Object[])}
+	 * Test method for {@link org.elixirian.common.validation.Assertions#assertNull(java.lang.Object, java.lang.String, java.lang.Object[])}
 	 * .
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -99,7 +100,7 @@ public class AssertionsTest
 
 	/**
 	 * Test method for
-	 * {@link com.elixirian.common.validation.Assertions#assertNotEmpty(java.lang.String, java.lang.String, java.lang.Object[])} .
+	 * {@link org.elixirian.common.validation.Assertions#assertNotEmpty(java.lang.String, java.lang.String, java.lang.Object[])} .
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testAssertNotEmpty()
@@ -136,7 +137,7 @@ public class AssertionsTest
 
 	/**
 	 * Test method for
-	 * {@link com.elixirian.common.validation.Assertions#assertEmpty(java.lang.String, java.lang.String, java.lang.Object[])}.
+	 * {@link org.elixirian.common.validation.Assertions#assertEmpty(java.lang.String, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testAssertEmpty()
@@ -169,7 +170,7 @@ public class AssertionsTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.Assertions#assertTrue(boolean, java.lang.String, java.lang.Object[])}.
+	 * Test method for {@link org.elixirian.common.validation.Assertions#assertTrue(boolean, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testAssertTrue()
@@ -188,7 +189,7 @@ public class AssertionsTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.validation.Assertions#assertTrue(boolean, java.lang.String, java.lang.Object[])}.
+	 * Test method for {@link org.elixirian.common.validation.Assertions#assertTrue(boolean, java.lang.String, java.lang.Object[])}.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testAssertFalse()
