@@ -1,10 +1,11 @@
 /**
  * 
  */
-package com.elixirian.common.util;
+package org.elixirian.common.util;
 
-import static com.elixirian.common.test.CommonTestHelper.*;
+import static org.elixirian.common.test.CommonTestHelper.*;
 
+import org.elixirian.common.util.CommonConstants;
 import org.junit.Test;
 
 /**

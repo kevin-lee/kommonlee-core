@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.elixirian.common.util;
+package org.elixirian.common.util;
 
-import static com.elixirian.common.test.CommonTestHelper.*;
+import static org.elixirian.common.test.CommonTestHelper.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 
+import org.elixirian.common.util.Objects;
 import org.junit.Test;
 
 /**

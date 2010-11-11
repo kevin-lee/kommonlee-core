@@ -1,4 +1,4 @@
-package com.elixirian.common.util;
+package org.elixirian.common.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,7 +61,7 @@ import java.util.List;
  * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-04-06)
- * @version 0.0.2 (2010-07-05) {@link com.elixirian.common.util.Objects.ToStringBuilder},
+ * @version 0.0.2 (2010-07-05) {@link org.elixirian.common.util.Objects.ToStringBuilder},
  *          {@link #toStringBuilder(Object)} and {@link #toStringBuilder(Object, String, String)} are added.
  * @version 0.0.3 (2010-10-31)
  *          <ul>

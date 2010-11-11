@@ -1,10 +1,10 @@
 /**
  * 
  */
-package com.elixirian.common.util;
+package org.elixirian.common.util;
 
-import static com.elixirian.common.util.Conditions.*;
-import static com.elixirian.common.util.Objects.*;
+import static org.elixirian.common.util.Conditions.*;
+import static org.elixirian.common.util.Objects.*;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -33,7 +33,7 @@ public class ConditionsTest
 	int int8B = 10000000;
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.Conditions#and(boolean, boolean)}.
+	 * Test method for {@link org.elixirian.common.util.Conditions#and(boolean, boolean)}.
 	 */
 	@Test
 	public final void testAndBooleanBoolean()
@@ -60,7 +60,7 @@ public class ConditionsTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.Conditions#and(boolean, boolean, boolean)}.
+	 * Test method for {@link org.elixirian.common.util.Conditions#and(boolean, boolean, boolean)}.
 	 */
 	@Test
 	public final void testAndBooleanBooleanBoolean()

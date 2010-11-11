@@ -2,16 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.elixirian</groupId>
+	<groupId>org.elixirian</groupId>
 	<artifactId>elixirian-common-util</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.7-SNAPSHOT</version>
+	<version>0.0.8-SNAPSHOT</version>
 	<name>elixirian-common-util</name>
 	<url>http://elixirian.com</url>
 	<parent>
 		<artifactId>elixirian-common</artifactId>
-		<groupId>com.elixirian</groupId>
-		<version>0.0.3-SNAPSHOT</version>
+		<groupId>org.elixirian</groupId>
+		<version>0.0.4-SNAPSHOT</version>
 	</parent>
 	<build>
 		<plugins>
@@ -57,9 +57,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.elixirian</groupId>
+			<groupId>org.elixirian</groupId>
 			<artifactId>elixirian-common-test</artifactId>
-			<version>0.0.7-SNAPSHOT</version>
+			<version>0.0.8-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>test</scope>
 		</dependency>

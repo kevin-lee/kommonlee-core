@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.elixirian.common.util;
+package org.elixirian.common.util;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.elixirian.common.util.IterableToAppendableGlue;
+import org.elixirian.common.util.SimpleAppendingAction;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -95,7 +97,7 @@ public class IterableToAppendableGlueTest
 
 	/**
 	 * Test method for
-	 * {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
+	 * {@link org.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
 	 */
 	@Test
 	public final void testGlue()
@@ -128,7 +130,7 @@ public class IterableToAppendableGlueTest
 
 	/**
 	 * Test method for
-	 * {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
+	 * {@link org.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testGlueWithNullAppendable()
@@ -139,7 +141,7 @@ public class IterableToAppendableGlueTest
 
 	/**
 	 * Test method for
-	 * {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
+	 * {@link org.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testGlueWithNullIterable()
@@ -150,7 +152,7 @@ public class IterableToAppendableGlueTest
 
 	/**
 	 * Test method for
-	 * {@link com.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
+	 * {@link org.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
 	 */
 	@Test(expected = AssertionError.class)
 	public final void testGlueThrowingIllegalArgumentException()

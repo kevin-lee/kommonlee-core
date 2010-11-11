@@ -1,4 +1,4 @@
-package com.elixirian.common.util;
+package org.elixirian.common.util;
 
 /**
  * @author Lee, SeongHyun (Kevin)

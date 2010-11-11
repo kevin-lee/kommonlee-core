@@ -1,12 +1,13 @@
 /**
  * 
  */
-package com.elixirian.common.util;
+package org.elixirian.common.util;
 
-import static com.elixirian.common.test.CommonTestHelper.*;
+import static org.elixirian.common.test.CommonTestHelper.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import org.elixirian.common.util.MessageFormatter;
 import org.junit.Test;
 
 /**
@@ -40,7 +41,7 @@ public class MessageFormatterTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.MessageFormatter#format(String, Object...)}.
+	 * Test method for {@link org.elixirian.common.util.MessageFormatter#format(String, Object...)}.
 	 */
 	@Test
 	public final void testFormat()
@@ -201,7 +202,7 @@ public class MessageFormatterTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.MessageFormatter#format(String, Object...)}.
+	 * Test method for {@link org.elixirian.common.util.MessageFormatter#format(String, Object...)}.
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testFormatWithInvalidArgument()

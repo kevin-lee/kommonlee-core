@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.elixirian.common.util;
+package org.elixirian.common.util;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -10,14 +10,15 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.elixirian.common.util.MapToAppendableGlue;
+import org.elixirian.common.util.SimpleAppendingAction.AppendingActionWithSeparator;
+import org.elixirian.common.util.SimpleAppendingAction.AppendingActionWithoutSeparator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.elixirian.common.util.SimpleAppendingAction.AppendingActionWithSeparator;
-import com.elixirian.common.util.SimpleAppendingAction.AppendingActionWithoutSeparator;
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -77,7 +78,7 @@ public class MapToAppendableGlueTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
+	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
 	 */
 	@Test
 	public final void testGlue()
@@ -91,7 +92,7 @@ public class MapToAppendableGlueTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
+	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testGlueNullAppendable()
@@ -101,7 +102,7 @@ public class MapToAppendableGlueTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
+	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testGlueNullMap()
@@ -111,7 +112,7 @@ public class MapToAppendableGlueTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
+	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
 	 */
 	@Test(expected = AssertionError.class)
 	public final void testGlueThrowingIllegalArgumentException()
@@ -156,7 +157,7 @@ public class MapToAppendableGlueTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.MapToAppendableGlue#newMapToAppendableGlue(java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#newMapToAppendableGlue(java.lang.String, java.lang.String)}.
 	 */
 	@Test
 	public final void testNewMapToAppendableGlue()
@@ -180,7 +181,7 @@ public class MapToAppendableGlueTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.MapToAppendableGlue#newMapToAppendableGlue(java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#newMapToAppendableGlue(java.lang.String, java.lang.String)}.
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testNewMapToAppendableGlueWithNullKeyValueSeparator()
@@ -189,7 +190,7 @@ public class MapToAppendableGlueTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.MapToAppendableGlue#newMapToAppendableGlue(java.lang.String, java.lang.String)}.
+	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#newMapToAppendableGlue(java.lang.String, java.lang.String)}.
 	 */
 	@Test(expected = NullPointerException.class)
 	public final void testNewMapToAppendableGlueWithNullEntrySeparator()

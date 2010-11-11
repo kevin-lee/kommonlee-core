@@ -1,12 +1,13 @@
 /**
  * 
  */
-package com.elixirian.common.util;
+package org.elixirian.common.util;
 
-import static com.elixirian.common.test.CommonTestHelper.*;
+import static org.elixirian.common.test.CommonTestHelper.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import org.elixirian.common.util.Strings;
 import org.junit.Test;
 
 /**
@@ -22,7 +23,7 @@ public class StringsTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.Strings#nullSafeTrim(java.lang.String)}.
+	 * Test method for {@link org.elixirian.common.util.Strings#nullSafeTrim(java.lang.String)}.
 	 */
 	@Test
 	public final void testNullSafeTrim()
@@ -60,7 +61,7 @@ public class StringsTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.Strings#isEmpty(java.lang.String)}.
+	 * Test method for {@link org.elixirian.common.util.Strings#isEmpty(java.lang.String)}.
 	 */
 	@Test
 	public final void testIsEmpty()
@@ -75,7 +76,7 @@ public class StringsTest
 	}
 
 	/**
-	 * Test method for {@link com.elixirian.common.util.Strings#isNotEmpty(java.lang.String)}.
+	 * Test method for {@link org.elixirian.common.util.Strings#isNotEmpty(java.lang.String)}.
 	 */
 	@Test
 	public final void testIsNotEmpty()

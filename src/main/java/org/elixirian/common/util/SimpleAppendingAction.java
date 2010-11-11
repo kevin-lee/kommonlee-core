@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.elixirian.common.util;
+package org.elixirian.common.util;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public abstract class SimpleAppendingAction implements AppendingAction
 
 	/*
 	 * (non-Javadoc)
-	 * @see com.elixirian.common.util.AppendingAction#glue(java.lang.Appendable, java.lang.Object)
+	 * @see org.elixirian.common.util.AppendingAction#glue(java.lang.Appendable, java.lang.Object)
 	 */
 	@Override
 	public abstract <A extends Appendable, T> A append(A appendable, T t) throws IOException;

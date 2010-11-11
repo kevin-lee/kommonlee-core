@@ -1,9 +1,9 @@
 /**
  * 
  */
-package com.elixirian.common.util;
+package org.elixirian.common.util;
 
-import static com.elixirian.common.util.Objects.*;
+import static org.elixirian.common.util.Objects.*;
 
 import java.io.IOException;
 import java.util.Iterator;
