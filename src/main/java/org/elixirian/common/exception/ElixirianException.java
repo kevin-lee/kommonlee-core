@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.elixirian.common.exception;
+package org.elixirian.common.exception;
 
 /**
  * @author Lee, SeongHyun (Kevin)
