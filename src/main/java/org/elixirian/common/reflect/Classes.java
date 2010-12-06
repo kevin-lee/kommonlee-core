@@ -6,6 +6,7 @@ package org.elixirian.common.reflect;
 import static org.elixirian.common.validation.Assertions.*;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -309,5 +310,34 @@ public final class Classes
 		extractClssesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classList,
 				annotation, remainingAnnotations);
 		return classList;
+	}
+
+	/**
+	 * @param <T>
+	 * @param targetClass
+	 * @param parameterTypes
+	 * @return
+	 */
+	public static <T> Constructor<T> findConstructor(final Class<T> targetClass, final Class<?>... parameterTypes)
+	{
+		try
+		{
+			return targetClass.getDeclaredConstructor(parameterTypes);
+		}
+		catch (SecurityException e)
+		{
+			/* Only for debugging */
+			// final StringBuildWriter stringBuildWriter = new StringBuildWriter();
+			// e.printStackTrace(new PrintWriter(stringBuildWriter));
+			// System.out.println(stringBuildWriter.toString());
+		}
+		catch (NoSuchMethodException e)
+		{
+			/* Only for debugging */
+			// final StringBuildWriter stringBuildWriter = new StringBuildWriter();
+			// e.printStackTrace(new PrintWriter(stringBuildWriter));
+			// System.out.println(stringBuildWriter.toString());
+		}
+		return null;
 	}
 }
