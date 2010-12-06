@@ -14,7 +14,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.List;
@@ -245,11 +247,6 @@ public class ClassesTest
 	{
 	}
 
-	/**
-	 * Test method for
-	 * {@link com.lckymn.kevin.common.reflect.Classes#extractSuperClassesInSubToSuperOrder(java.lang.Class, java.lang.Class, boolean, java.util.Collection)}
-	 * .
-	 */
 	@Test
 	public final void testExtractSuperClassesInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperT()
 	{
@@ -270,11 +267,6 @@ public class ClassesTest
 		}
 	}
 
-	/**
-	 * Test method for
-	 * {@link com.lckymn.kevin.common.reflect.Classes#extractSuperClassesInSubToSuperOrder(java.lang.Class, java.lang.Class, boolean)}
-	 * .
-	 */
 	@Test
 	public final void testExtractSuperClassesInSubToSuperOrderClassOfTClassOfSBoolean()
 	{
@@ -287,11 +279,6 @@ public class ClassesTest
 		}
 	}
 
-	/**
-	 * Test method for
-	 * {@link com.lckymn.kevin.common.reflect.Classes#extractSuperClassesInSuperToSubOrder(java.lang.Class, java.lang.Class, boolean, java.util.Collection)}
-	 * .
-	 */
 	@Test
 	public final void testExtractSuperClassesInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperT()
 	{
@@ -312,11 +299,6 @@ public class ClassesTest
 		}
 	}
 
-	/**
-	 * Test method for
-	 * {@link com.lckymn.kevin.common.reflect.Classes#extractSuperClassesInSuperToSubOrder(java.lang.Class, java.lang.Class, boolean)}
-	 * .
-	 */
 	@Test
 	public final void testExtractSuperClassesInSuperToSubOrderClassOfTClassOfSBoolean()
 	{
@@ -329,11 +311,6 @@ public class ClassesTest
 		}
 	}
 
-	/**
-	 * Test method for {@link
-	 * com.lckymn.kevin.common.reflect.Classes#extractClssesWithAnnotationsInSubToSubOrder(java.lang.Class,
-	 * java.lang.Class, boolean, java.util.Collection, java.lang.Class<? extends A>[])}.
-	 */
 	@Test
 	public final void testExtractClssesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray0()
 	{
@@ -496,11 +473,6 @@ public class ClassesTest
 		}
 	}
 
-	/**
-	 * Test method for {@link
-	 * com.lckymn.kevin.common.reflect.Classes#extractClssesWithAnnotationsInSubToSuperOrder(java.lang.Class,
-	 * java.lang.Class, boolean, java.lang.Class<? extends A>[])}.
-	 */
 	@Test
 	public final void testExtractClssesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray0()
 	{
@@ -660,11 +632,6 @@ public class ClassesTest
 				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)));
 	}
 
-	/**
-	 * Test method for {@link
-	 * com.lckymn.kevin.common.reflect.Classes#extractClssesWithAnnotationsInSuperToSubOrder(java.lang.Class,
-	 * java.lang.Class, boolean, java.util.Collection, java.lang.Class<? extends A>[])}.
-	 */
 	@Test
 	public final void testExtractClssesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray0()
 	{
@@ -827,11 +794,6 @@ public class ClassesTest
 		}
 	}
 
-	/**
-	 * Test method for {@link
-	 * com.lckymn.kevin.common.reflect.Classes#extractClssesWithAnnotationsInSuperToSubOrder(java.lang.Class,
-	 * java.lang.Class, boolean, java.lang.Class<? extends A>[])}.
-	 */
 	@Test
 	public final void testExtractClssesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray0()
 	{
@@ -1090,15 +1052,6 @@ public class ClassesTest
 		}
 	}
 
-	/**
-	 * Test method for {@link com.lckymn.kevin.common.reflect.Classes#findConstructor(java.lang.Class,
-	 * java.lang.Class<?>[])}.
-	 * 
-	 * @throws InvocationTargetException
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
-	 * @throws IllegalArgumentException
-	 */
 	@SuppressWarnings("boxing")
 	@Test
 	public final void testFindConstructor() throws IllegalArgumentException, InstantiationException,
@@ -1235,15 +1188,6 @@ public class ClassesTest
 		}
 	}
 
-	/**
-	 * Test method for {@link com.lckymn.kevin.common.reflect.Classes#findConstructorWithAnnotation(java.lang.Class,
-	 * java.lang.Class<A>[])}.
-	 * 
-	 * @throws InvocationTargetException
-	 * @throws IllegalAccessException
-	 * @throws InstantiationException
-	 * @throws IllegalArgumentException
-	 */
 	@Test
 	public final void testFindConstructorWithAnnotation0() throws IllegalArgumentException, InstantiationException,
 			IllegalAccessException, InvocationTargetException
@@ -2101,4 +2045,62 @@ public class ClassesTest
 		}
 		return paramList.toArray();
 	}
+
+	@Test
+	public void testClassArrayOf()
+	{
+		final Class<?>[] classes1 = Classes.classArrayOf();
+		final Class<?>[] classes2 = Classes.classArrayOf();
+		final Class<?>[] classes3 = Classes.classArrayOf();
+		final Class<?>[] classes4 = Classes.classArrayOf();
+		final Class<?>[] classes5 = Classes.classArrayOf();
+
+		assertThat(classes1, is(equalTo(classes2)));
+		assertThat(classes1, is(equalTo(classes3)));
+		assertThat(classes1, is(equalTo(classes4)));
+		assertThat(classes1, is(equalTo(classes5)));
+
+		assertTrue(classes1 == classes2);
+		assertTrue(classes1 == classes3);
+		assertTrue(classes1 == classes4);
+		assertTrue(classes1 == classes5);
+	}
+
+	@Test
+	public void testClassArrayOfClasses()
+	{
+		final Class<?>[] expectedClasses = { String.class, Integer.class, Object.class, Date.class };
+		final Class<?>[] result = Classes.classArrayOf(String.class, Integer.class, Object.class, Date.class);
+		assertTrue(Arrays.deepEquals(expectedClasses, result));
+	}
+
+	@Test
+	public void testObjectArrayOf()
+	{
+		final Object[] objects1 = Classes.objectArrayOf();
+		final Object[] objects2 = Classes.objectArrayOf();
+		final Object[] objects3 = Classes.objectArrayOf();
+		final Object[] objects4 = Classes.objectArrayOf();
+		final Object[] objects5 = Classes.objectArrayOf();
+
+		assertThat(objects1, is(equalTo(objects2)));
+		assertThat(objects1, is(equalTo(objects3)));
+		assertThat(objects1, is(equalTo(objects4)));
+		assertThat(objects1, is(equalTo(objects5)));
+
+		assertTrue(objects1 == objects2);
+		assertTrue(objects1 == objects3);
+		assertTrue(objects1 == objects4);
+		assertTrue(objects1 == objects5);
+	}
+
+	@Test
+	public void testObjectArrayOfObjects()
+	{
+		final Date date = new Date();
+		final Object[] expectedObjects = { "Kevin Lee", Integer.valueOf(12345), date };
+		final Object[] result = Classes.objectArrayOf("Kevin Lee", Integer.valueOf(12345), date);
+		assertTrue(Arrays.deepEquals(expectedObjects, result));
+	}
+
 }

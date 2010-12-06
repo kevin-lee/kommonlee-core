@@ -19,6 +19,9 @@ import java.util.Set;
  */
 public final class Classes
 {
+	public static final Class<?>[] EMPTY_CLASS_ARRAY = new Class<?>[0];
+	public static final Object[] EMPTY_OBJECT_ARRAY = new Object[0];
+
 	private Classes()
 	{
 	}
@@ -452,5 +455,25 @@ public final class Classes
 			final Class<? extends A>... remainingAnnotations)
 	{
 		return findAllConstructorsWithAnnotation0(targetClass, annotation, remainingAnnotations);
+	}
+
+	public static Class<?>[] classArrayOf()
+	{
+		return EMPTY_CLASS_ARRAY;
+	}
+
+	public static Class<?>[] classArrayOf(final Class<?>... classes)
+	{
+		return classes;
+	}
+
+	public static Object[] objectArrayOf()
+	{
+		return EMPTY_OBJECT_ARRAY;
+	}
+
+	public static Object[] objectArrayOf(final Object... objects)
+	{
+		return objects;
 	}
 }
