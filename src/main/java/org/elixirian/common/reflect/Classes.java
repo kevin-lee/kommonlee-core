@@ -9,7 +9,9 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -339,5 +341,116 @@ public final class Classes
 			// System.out.println(stringBuildWriter.toString());
 		}
 		return null;
+	}
+
+	private static <T, A extends Annotation> Constructor<T> findConstructorWithAnnotation0(final Class<T> targetClass,
+			final Class<A> annotation)
+	{
+		assertNotNull(annotation, "The annotation must not be null.");
+		for (final Constructor<?> constructor : targetClass.getDeclaredConstructors())
+		{
+			if (constructor.isAnnotationPresent(annotation))
+			{
+				@SuppressWarnings("unchecked")
+				final Constructor<T> constructorOfT = (Constructor<T>) constructor;
+				return constructorOfT;
+			}
+		}
+		return null;
+	}
+
+	public static <T, A extends Annotation> Constructor<T> findConstructorWithAnnotation(final Class<T> targetClass,
+			final Class<A> annotation)
+	{
+		return findConstructorWithAnnotation0(targetClass, annotation);
+	}
+
+	private static <T, A extends Annotation> Constructor<T> findConstructorWithAnnotation0(final Class<T> targetClass,
+			final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
+	{
+		for (final Constructor<?> constructor : targetClass.getDeclaredConstructors())
+		{
+			if (constructor.isAnnotationPresent(annotation))
+			{
+				@SuppressWarnings("unchecked")
+				final Constructor<T> constructorOfT = (Constructor<T>) constructor;
+				return constructorOfT;
+			}
+			for (final Class<? extends A> eachAnnotation : remainingAnnotations)
+			{
+				if (constructor.isAnnotationPresent(eachAnnotation))
+				{
+					@SuppressWarnings("unchecked")
+					final Constructor<T> constructorOfT = (Constructor<T>) constructor;
+					return constructorOfT;
+				}
+			}
+		}
+		return null;
+	}
+
+	public static <T, A extends Annotation> Constructor<T> findConstructorWithAnnotation(final Class<T> targetClass,
+			final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
+	{
+		return findConstructorWithAnnotation0(targetClass, annotation, remainingAnnotations);
+	}
+
+	private static <T, A extends Annotation> Set<Constructor<T>> findAllConstructorsWithAnnotation0(
+			final Class<T> targetClass, final Class<A> annotation)
+	{
+		assertNotNull(annotation, "The annotation must not be null.");
+		final Set<Constructor<T>> constructorSet = new HashSet<Constructor<T>>();
+
+		for (final Constructor<?> constructor : targetClass.getDeclaredConstructors())
+		{
+			if (constructor.isAnnotationPresent(annotation))
+			{
+				@SuppressWarnings("unchecked")
+				final Constructor<T> constructorOfT = (Constructor<T>) constructor;
+				constructorSet.add(constructorOfT);
+			}
+		}
+		return constructorSet;
+	}
+
+	public static <T, A extends Annotation> Set<Constructor<T>> findAllConstructorsWithAnnotation(
+			final Class<T> targetClass, final Class<A> annotation)
+	{
+		return findAllConstructorsWithAnnotation0(targetClass, annotation);
+	}
+
+	private static <T, A extends Annotation> Set<Constructor<T>> findAllConstructorsWithAnnotation0(
+			Class<T> targetClass, final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
+	{
+		final Set<Constructor<T>> constructorSet = new HashSet<Constructor<T>>();
+
+		for (final Constructor<?> constructor : targetClass.getDeclaredConstructors())
+		{
+			if (constructor.isAnnotationPresent(annotation))
+			{
+				@SuppressWarnings("unchecked")
+				final Constructor<T> constructorOfT = (Constructor<T>) constructor;
+				constructorSet.add(constructorOfT);
+				continue;
+			}
+			for (final Class<? extends A> eachAnnotation : remainingAnnotations)
+			{
+				if (constructor.isAnnotationPresent(eachAnnotation))
+				{
+					@SuppressWarnings("unchecked")
+					final Constructor<T> constructorOfT = (Constructor<T>) constructor;
+					constructorSet.add(constructorOfT);
+					break;
+				}
+			}
+		}
+		return constructorSet;
+	}
+
+	public static <T, A extends Annotation> Set<Constructor<T>> findAllConstructorsWithAnnotation(
+			final Class<T> targetClass, final Class<? extends A> annotation,
+			final Class<? extends A>... remainingAnnotations)
+	{
+		return findAllConstructorsWithAnnotation0(targetClass, annotation, remainingAnnotations);
 	}
 }
