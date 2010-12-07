@@ -15,7 +15,5 @@ public final class CommonConstants
 
 	private CommonConstants()
 	{
-		throw new IllegalStateException(getClass().getName() + CANNOT_BE_INSTANTIATED);
 	}
-
 }

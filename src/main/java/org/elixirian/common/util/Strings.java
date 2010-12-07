@@ -20,7 +20,6 @@ public final class Strings
 {
 	private Strings()
 	{
-		throw new IllegalStateException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
 	}
 
 	/**

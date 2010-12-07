@@ -7,7 +7,7 @@ import static org.elixirian.common.test.CommonTestHelper.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import org.elixirian.common.util.Strings;
+import org.elixirian.common.test.CommonTestHelper.Accessibility;
 import org.junit.Test;
 
 /**
@@ -16,10 +16,10 @@ import org.junit.Test;
  */
 public class StringsTest
 {
-	@Test(expected = IllegalStateException.class)
+	@Test(expected = IllegalAccessException.class)
 	public void testStrings() throws Exception
 	{
-		testNotAccessibleConstructor(Strings.class, classArrayOf(), objectArrayOf());
+		testNotAccessibleConstructor(Strings.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class StringsTest
 		assertThat(Strings.nullThenEmpty("test"), equalTo("test"));
 		assertThat(Strings.nullThenEmpty(new String("something else")), equalTo(new String("something else")));
 	}
-	
+
 	@Test
 	public final void testEmptyThenNull()
 	{

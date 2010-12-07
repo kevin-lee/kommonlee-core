@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 
-import org.elixirian.common.util.Objects;
+import org.elixirian.common.test.CommonTestHelper.Accessibility;
 import org.junit.Test;
 
 /**
@@ -65,10 +65,10 @@ public class ObjectsTest
 		}
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test(expected = IllegalAccessException.class)
 	public final void testObjects() throws Exception
 	{
-		testNotAccessibleConstructor(Objects.class, classArrayOf(), objectArrayOf());
+		testNotAccessibleConstructor(Objects.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
 	}
 
 	@Test

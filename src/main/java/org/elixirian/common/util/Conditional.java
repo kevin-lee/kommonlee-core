@@ -6,12 +6,14 @@ package org.elixirian.common.util;
 /**
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-10-31)
+ * @version 0.0.2 (2010-11-15) {@link IllegalStateException} is removed from the constructor.
+ * @version 0.0.3 (2010-11-22) Its name is changed from Conditions to LogicalOperations.
+ * @version 0.0.4 (2010-12-04) Its name is changed from LogicalOperations to {@link Conditional}.
  */
-public final class Conditions
+public final class Conditional
 {
-	private Conditions()
+	private Conditional()
 	{
-		throw new IllegalStateException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
 	}
 
 	public static boolean and(final boolean condition1, final boolean condition2)
@@ -87,76 +89,43 @@ public final class Conditions
 		return false;
 	}
 
-	/* NOR */
-	public static boolean nor(final boolean condition1, final boolean condition2)
+	public static char ternary(final boolean condition, final char trueThen, final char otherwise)
 	{
-		return !or(condition1, condition2);
+		return condition ? trueThen : otherwise;
 	}
 
-	public static boolean nor(final boolean condition1, final boolean condition2, final boolean condition3)
+	public static byte ternary(final boolean condition, final byte trueThen, final byte otherwise)
 	{
-		return !or(condition1, condition2, condition3);
+		return condition ? trueThen : otherwise;
 	}
 
-	public static boolean nor(final boolean condition1, final boolean condition2, final boolean condition3,
-			final boolean condition4)
+	public static short ternary(final boolean condition, final short trueThen, final short otherwise)
 	{
-		return !or(condition1, condition2, condition3, condition4);
+		return condition ? trueThen : otherwise;
 	}
 
-	public static boolean nor(final boolean condition1, final boolean condition2, final boolean condition3,
-			final boolean condition4, final boolean condition5)
+	public static int ternary(final boolean condition, final int trueThen, final int otherwise)
 	{
-		return !or(condition1, condition2, condition3, condition4, condition5);
+		return condition ? trueThen : otherwise;
 	}
 
-	public static boolean nor(final boolean condition1, final boolean condition2, final boolean condition3,
-			final boolean condition4, final boolean condition5, final boolean... conditions)
+	public static long ternary(final boolean condition, final long trueThen, final long otherwise)
 	{
-		return !or(condition1, condition2, condition3, condition4, condition5, conditions);
+		return condition ? trueThen : otherwise;
 	}
 
-	/* XOR */
-	public static boolean xor(final boolean condition1, final boolean condition2)
+	public static float ternary(final boolean condition, final float trueThen, final float otherwise)
 	{
-		return condition1 ^ condition2;
+		return condition ? trueThen : otherwise;
 	}
 
-	public static boolean xor(final boolean condition1, final boolean condition2, final boolean condition3)
+	public static double ternary(final boolean condition, final double trueThen, final double otherwise)
 	{
-		return condition1 ^ condition2 ^ condition3;
+		return condition ? trueThen : otherwise;
 	}
 
-	public static boolean xor(final boolean condition1, final boolean condition2, final boolean condition3,
-			final boolean condition4)
+	public static <T> T ternary(final boolean condition, final T trueThen, final T otherwise)
 	{
-		return condition1 ^ condition2 ^ condition3 ^ condition4;
+		return condition ? trueThen : otherwise;
 	}
-
-	public static boolean xor(final boolean condition1, final boolean condition2, final boolean condition3,
-			final boolean condition4, final boolean condition5)
-	{
-		return condition1 ^ condition2 ^ condition3 ^ condition4 ^ condition5;
-	}
-
-	public static boolean xor(final boolean condition1, final boolean condition2, final boolean condition3,
-			final boolean condition4, final boolean condition5, final boolean... conditions)
-	{
-		final boolean result = xor(condition1, condition2, condition3, condition4, condition5);
-
-		int count = 0;
-		for (final boolean condition : conditions)
-		{
-			if (condition)
-				count++;
-		}
-		/* @formatter:off */
-		return 0 == count ? 
-					result : 
-					(count & 1) != 0 ? 
-						!result : 
-						result;
-		/* @formatter:on */
-	}
-
 }

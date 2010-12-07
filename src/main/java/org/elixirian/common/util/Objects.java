@@ -87,7 +87,6 @@ public final class Objects
 
 	private Objects()
 	{
-		throw new IllegalStateException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
 	}
 
 	/**

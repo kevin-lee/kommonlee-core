@@ -1,19 +1,20 @@
-/**
- * 
- */
 package org.elixirian.common.util;
 
-import static org.elixirian.common.util.Conditions.*;
+import static org.elixirian.common.util.Logical.*;
 import static org.elixirian.common.util.Objects.*;
 import static org.junit.Assert.*;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-10-31)
+ * @version 0.0.1 (2010-12-04)
  */
-public class ConditionsTest
+public class LogicalTest
 {
 	int int1A = 1;
 	int int1B = 1;
@@ -32,9 +33,26 @@ public class ConditionsTest
 	int int8A = 10000000;
 	int int8B = 10000000;
 
-	/**
-	 * Test method for {@link org.elixirian.common.util.Conditions#and(boolean, boolean)}.
-	 */
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception
+	{
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception
+	{
+	}
+
+	@Before
+	public void setUp() throws Exception
+	{
+	}
+
+	@After
+	public void tearDown() throws Exception
+	{
+	}
+
 	@Test
 	public final void testAndBooleanBoolean()
 	{
@@ -59,9 +77,6 @@ public class ConditionsTest
 		/* @formatter:on */
 	}
 
-	/**
-	 * Test method for {@link org.elixirian.common.util.Conditions#and(boolean, boolean, boolean)}.
-	 */
 	@Test
 	public final void testAndBooleanBooleanBoolean()
 	{
@@ -675,402 +690,6 @@ public class ConditionsTest
 	}
 
 	@Test
-	public final void testNorBooleanBoolean()
-	{
-		final boolean b1 = true;
-		final boolean b2 = false;
-		final boolean b3 = true;
-
-		assertTrue(or(b1, b2) == nor(nor(b1, b2), nor(b1, b2)));
-		assertTrue(and(b1, b2) == nor(nor(b1, b1), nor(b2, b2)));
-		assertTrue(!b1 == nor(b1, b1));
-
-		assertTrue(or(b2, b3) == nor(nor(b2, b3), nor(b2, b3)));
-		assertTrue(and(b2, b3) == nor(nor(b2, b2), nor(b3, b3)));
-		assertTrue(!b2 == nor(b2, b2));
-
-		assertTrue(or(b1, b3) == nor(nor(b1, b3), nor(b1, b3)));
-		assertTrue(and(b1, b3) == nor(nor(b1, b1), nor(b3, b3)));
-		assertTrue(!b3 == nor(b3, b3));
-
-		/* @formatter:off */
-		/* false */
-		assertFalse(nor(true, 
-						true));
-
-		assertFalse(nor(int1A == int1B, 
-						int2A == int2B));
-
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("Lee", "Lee")));
-
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B)));
-
-		for (int i = 1, size = 4; i < size; i++)
-		{
-			assertFalse(nor(((i >>> 1) & 1) == 1, 
-							(i & 1) == 1));
-		}
-
-		assertFalse(nor(int1A == int2A, 
-						int2A == int2B));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun")));
-		
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "")));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("Lee", "Lee")));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal(int1A, int1B)));
-
-		/* true */
-		assertTrue(nor(false,
-					   false));
-
-		assertTrue(nor(equal("Kevin", "Lee"), 
-					   equal(int1A, int7A)));
-		/* @formatter:on */
-	}
-
-	@Test
-	public final void testNorBooleanBooleanBoolean()
-	{
-		/* @formatter:off */
-		/* false */
-		assertFalse(nor(true, 
-						true, 
-						true));
-
-		assertFalse(nor(int1A == int1B, 
-						int2A == int2B, 
-						int3A == int3B));
-
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee")));
-
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
-						equal(int2A, int2B)));
-
-		for (int i = 1, size = 8; i < size; i++)
-		{
-			assertFalse(nor(((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
-							(i & 1) == 1));
-		}
-
-		assertFalse(nor(int1A == int2A, 
-						int2A == int2B, 
-						int3A == int3B));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee")));
-		
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", ""), 
-						equal("Lee", "Kevin Lee")));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee")));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal(int1A, int1B)));
-
-		/* true */
-		assertTrue(nor(false,
-					   false, 
-					   false));
-
-		assertTrue(nor(equal("Kevin", "Lee"), 
-					   equal(int1A, int7A), 
-					   equal(Boolean.FALSE, Boolean.TRUE)));
-		/* @formatter:on */
-	}
-
-	@Test
-	public final void testNorBooleanBooleanBooleanBoolean()
-	{
-		/* @formatter:off */
-		/* false */
-		assertFalse(nor(true, 
-						true, 
-						true, 
-						true));
-
-		assertFalse(nor(int1A == int1B, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B));
-
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee")));
-
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
-						equal(int2A, int2B), 
-						equal(int3A, int3B)));
-
-		for (int i = 1, size = 16; i < size; i++)
-		{
-			assertFalse(nor(((i >>> 3) & 1) == 1,
-							((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
-							(i & 1) == 1));
-		}
-
-		assertFalse(nor(int1A == int2A, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee")));
-		
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", ""), 
-						equal("Lee", "Kevin Lee"),
-						equal("Kevin SeongHyun Lee", "Kevin Lee")));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee")));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal(int1A, int1B)));
-
-		/* true */
-		assertTrue(nor(false,
-					   false, 
-					   false, 
-					   false));
-
-		assertTrue(nor(equal("Kevin", "Lee"), 
-					   equal(int1A, int7A), 
-					   equal(false, true), 
-					   equal(Boolean.FALSE, Boolean.TRUE)));
-		/* @formatter:on */
-	}
-
-	@Test
-	public final void testNorBooleanBooleanBooleanBooleanBoolean()
-	{
-		/* @formatter:off */
-		/* false */
-		assertFalse(nor(true, 
-						true, 
-						true, 
-						true, 
-						true));
-
-		assertFalse(nor(int1A == int1B, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B, 
-						int5A == int5B));
-
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
-
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
-						equal(int2A, int2B), 
-						equal(int3A, int3B),
-						equal(int4A, int4B)));
-
-		for (int i = 1, size = 32; i < size; i++)
-		{
-			assertFalse(nor(((i >>> 4) & 1) == 1, 
-							((i >>> 3) & 1) == 1,
-							((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
-							(i & 1) == 1));
-		}
-
-		assertFalse(nor(int1A == int2A, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B, 
-						int5A == int5B));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
-		
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", ""), 
-						equal("Lee", "Kevin Lee"),
-						equal("Kevin SeongHyun Lee", "Kevin Lee"), 
-						equal("Kevin", "Kevin SeongHyun Lee")));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
-
-		/* true */
-		assertTrue(nor(false,
-					   false, 
-					   false, 
-					   false, 
-					   false));
-
-		assertTrue(nor(equal("Kevin", "Lee"), 
-					   equal("SeongHyun", "Kevin"), 
-					   equal(int1A, int7A), 
-					   equal(false, true), 
-					   equal(Boolean.FALSE, Boolean.TRUE)));
-		/* @formatter:on */
-	}
-
-	@Test
-	public final void testNorBooleanBooleanBooleanBooleanBooleanBooleanArray()
-	{
-		/* @formatter:off */
-		/* false */
-		assertFalse(nor(true, 
-						true, 
-						true, 
-						true, 
-						true, 
-						true, 
-						true, 
-						true));
-
-		assertFalse(nor(int1A == int1B, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B, 
-						int5A == int5B, 
-						int6A == int6B, 
-						int7A == int7B, 
-						int8A == int8B));
-
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, false), 
-						equal(Boolean.TRUE, Boolean.TRUE)));
-
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
-						equal(int2A, int2B), 
-						equal(int3A, int3B),
-						equal(int4A, int4B),
-						equal(int5A, int5B),
-						equal(int6A, int6B),
-						equal(int7A, int7B),
-						equal(int8A, int8B)));
-
-		for (int i = 1, size = 256; i < size; i++)
-		{
-			assertFalse(nor(((i >>> 7) & 1) == 1,
-							((i >>> 6) & 1) == 1, 
-							((i >>> 5) & 1) == 1, 
-							((i >>> 4) & 1) == 1, 
-							((i >>> 3) & 1) == 1,
-							((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
-							(i & 1) == 1));
-		}
-
-		assertFalse(nor(int1A == int2A, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B, 
-						int5A == int5B, 
-						int6A == int6B, 
-						int7A == int7B, 
-						int8A == int8B));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, false), 
-						equal(Boolean.TRUE, Boolean.TRUE)));
-		
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", ""), 
-						equal("Lee", "Kevin Lee"),
-						equal("Kevin SeongHyun Lee", "Kevin Lee"), 
-						equal("Kevin", "Kevin SeongHyun Lee"), 
-						equal(int5B, int1B), 
-						equal(false, true), 
-						equal(Boolean.TRUE, Boolean.TRUE)));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, true), 
-						equal(Boolean.TRUE, Boolean.TRUE)));
-
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
-						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, false), 
-						equal(Boolean.TRUE, Boolean.FALSE)));
-
-		/* true */
-		assertTrue(nor(false,
-					   false, 
-					   false, 
-					   false, 
-					   false,
-					   false, 
-					   false, 
-					   false));
-
-		assertTrue(nor(equal("Kevin", "Lee"), 
-					   equal("SeongHyun", "Kevin"), 
-					   equal("Lee", "Kevin SeongHyun Lee"),
-					   equal("Kevin Lee", ""), 
-					   equal("Kevin Lee", "Kevin SeongHyun Lee"), 
-					   equal(int1A, int7A), 
-					   equal(false, true), 
-					   equal(Boolean.FALSE, Boolean.TRUE)));
-		/* @formatter:on */
-	}
-
-	@Test
 	public final void testXorBooleanBoolean()
 	{
 		/* @formatter:off */
@@ -1593,6 +1212,402 @@ public class ConditionsTest
 						equal(int1A, int7A), 
 						equal(false, true), 
 						equal(Boolean.FALSE, Boolean.TRUE)));
+		/* @formatter:on */
+	}
+
+	@Test
+	public final void testNorBooleanBoolean()
+	{
+		final boolean b1 = true;
+		final boolean b2 = false;
+		final boolean b3 = true;
+
+		assertTrue(or(b1, b2) == nor(nor(b1, b2), nor(b1, b2)));
+		assertTrue(and(b1, b2) == nor(nor(b1, b1), nor(b2, b2)));
+		assertTrue(!b1 == nor(b1, b1));
+
+		assertTrue(or(b2, b3) == nor(nor(b2, b3), nor(b2, b3)));
+		assertTrue(and(b2, b3) == nor(nor(b2, b2), nor(b3, b3)));
+		assertTrue(!b2 == nor(b2, b2));
+
+		assertTrue(or(b1, b3) == nor(nor(b1, b3), nor(b1, b3)));
+		assertTrue(and(b1, b3) == nor(nor(b1, b1), nor(b3, b3)));
+		assertTrue(!b3 == nor(b3, b3));
+
+		/* @formatter:off */
+		/* false */
+		assertFalse(nor(true, 
+						true));
+
+		assertFalse(nor(int1A == int1B, 
+						int2A == int2B));
+
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal("Lee", "Lee")));
+
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal(int1A, int1B)));
+
+		for (int i = 1, size = 4; i < size; i++)
+		{
+			assertFalse(nor(((i >>> 1) & 1) == 1, 
+							(i & 1) == 1));
+		}
+
+		assertFalse(nor(int1A == int2A, 
+						int2A == int2B));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun")));
+		
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal("SeongHyun", "")));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("Lee", "Lee")));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal(int1A, int1B)));
+
+		/* true */
+		assertTrue(nor(false,
+					   false));
+
+		assertTrue(nor(equal("Kevin", "Lee"), 
+					   equal(int1A, int7A)));
+		/* @formatter:on */
+	}
+
+	@Test
+	public final void testNorBooleanBooleanBoolean()
+	{
+		/* @formatter:off */
+		/* false */
+		assertFalse(nor(true, 
+						true, 
+						true));
+
+		assertFalse(nor(int1A == int1B, 
+						int2A == int2B, 
+						int3A == int3B));
+
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee")));
+
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal(int1A, int1B), 
+						equal(int2A, int2B)));
+
+		for (int i = 1, size = 8; i < size; i++)
+		{
+			assertFalse(nor(((i >>> 2) & 1) == 1, 
+							((i >>> 1) & 1) == 1, 
+							(i & 1) == 1));
+		}
+
+		assertFalse(nor(int1A == int2A, 
+						int2A == int2B, 
+						int3A == int3B));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee")));
+		
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal("SeongHyun", ""), 
+						equal("Lee", "Kevin Lee")));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee")));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal(int1A, int1B)));
+
+		/* true */
+		assertTrue(nor(false,
+					   false, 
+					   false));
+
+		assertTrue(nor(equal("Kevin", "Lee"), 
+					   equal(int1A, int7A), 
+					   equal(Boolean.FALSE, Boolean.TRUE)));
+		/* @formatter:on */
+	}
+
+	@Test
+	public final void testNorBooleanBooleanBooleanBoolean()
+	{
+		/* @formatter:off */
+		/* false */
+		assertFalse(nor(true, 
+						true, 
+						true, 
+						true));
+
+		assertFalse(nor(int1A == int1B, 
+						int2A == int2B, 
+						int3A == int3B, 
+						int4A == int4B));
+
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal("Kevin Lee", "Kevin Lee")));
+
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal(int1A, int1B), 
+						equal(int2A, int2B), 
+						equal(int3A, int3B)));
+
+		for (int i = 1, size = 16; i < size; i++)
+		{
+			assertFalse(nor(((i >>> 3) & 1) == 1,
+							((i >>> 2) & 1) == 1, 
+							((i >>> 1) & 1) == 1, 
+							(i & 1) == 1));
+		}
+
+		assertFalse(nor(int1A == int2A, 
+						int2A == int2B, 
+						int3A == int3B, 
+						int4A == int4B));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal("Kevin Lee", "Kevin Lee")));
+		
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal("SeongHyun", ""), 
+						equal("Lee", "Kevin Lee"),
+						equal("Kevin SeongHyun Lee", "Kevin Lee")));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal("Kevin Lee", "Kevin Lee")));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal(int1A, int1B)));
+
+		/* true */
+		assertTrue(nor(false,
+					   false, 
+					   false, 
+					   false));
+
+		assertTrue(nor(equal("Kevin", "Lee"), 
+					   equal(int1A, int7A), 
+					   equal(false, true), 
+					   equal(Boolean.FALSE, Boolean.TRUE)));
+		/* @formatter:on */
+	}
+
+	@Test
+	public final void testNorBooleanBooleanBooleanBooleanBoolean()
+	{
+		/* @formatter:off */
+		/* false */
+		assertFalse(nor(true, 
+						true, 
+						true, 
+						true, 
+						true));
+
+		assertFalse(nor(int1A == int1B, 
+						int2A == int2B, 
+						int3A == int3B, 
+						int4A == int4B, 
+						int5A == int5B));
+
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
+
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal(int1A, int1B), 
+						equal(int2A, int2B), 
+						equal(int3A, int3B),
+						equal(int4A, int4B)));
+
+		for (int i = 1, size = 32; i < size; i++)
+		{
+			assertFalse(nor(((i >>> 4) & 1) == 1, 
+							((i >>> 3) & 1) == 1,
+							((i >>> 2) & 1) == 1, 
+							((i >>> 1) & 1) == 1, 
+							(i & 1) == 1));
+		}
+
+		assertFalse(nor(int1A == int2A, 
+						int2A == int2B, 
+						int3A == int3B, 
+						int4A == int4B, 
+						int5A == int5B));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
+		
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal("SeongHyun", ""), 
+						equal("Lee", "Kevin Lee"),
+						equal("Kevin SeongHyun Lee", "Kevin Lee"), 
+						equal("Kevin", "Kevin SeongHyun Lee")));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
+
+		/* true */
+		assertTrue(nor(false,
+					   false, 
+					   false, 
+					   false, 
+					   false));
+
+		assertTrue(nor(equal("Kevin", "Lee"), 
+					   equal("SeongHyun", "Kevin"), 
+					   equal(int1A, int7A), 
+					   equal(false, true), 
+					   equal(Boolean.FALSE, Boolean.TRUE)));
+		/* @formatter:on */
+	}
+
+	@Test
+	public final void testNorBooleanBooleanBooleanBooleanBooleanBooleanArray()
+	{
+		/* @formatter:off */
+		/* false */
+		assertFalse(nor(true, 
+						true, 
+						true, 
+						true, 
+						true, 
+						true, 
+						true, 
+						true));
+
+		assertFalse(nor(int1A == int1B, 
+						int2A == int2B, 
+						int3A == int3B, 
+						int4A == int4B, 
+						int5A == int5B, 
+						int6A == int6B, 
+						int7A == int7B, 
+						int8A == int8B));
+
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
+						equal(int1A, int1B), 
+						equal(false, false), 
+						equal(Boolean.TRUE, Boolean.TRUE)));
+
+		assertFalse(nor(equal("Kevin", "Kevin"), 
+						equal(int1A, int1B), 
+						equal(int2A, int2B), 
+						equal(int3A, int3B),
+						equal(int4A, int4B),
+						equal(int5A, int5B),
+						equal(int6A, int6B),
+						equal(int7A, int7B),
+						equal(int8A, int8B)));
+
+		for (int i = 1, size = 256; i < size; i++)
+		{
+			assertFalse(nor(((i >>> 7) & 1) == 1,
+							((i >>> 6) & 1) == 1, 
+							((i >>> 5) & 1) == 1, 
+							((i >>> 4) & 1) == 1, 
+							((i >>> 3) & 1) == 1,
+							((i >>> 2) & 1) == 1, 
+							((i >>> 1) & 1) == 1, 
+							(i & 1) == 1));
+		}
+
+		assertFalse(nor(int1A == int2A, 
+						int2A == int2B, 
+						int3A == int3B, 
+						int4A == int4B, 
+						int5A == int5B, 
+						int6A == int6B, 
+						int7A == int7B, 
+						int8A == int8B));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
+						equal(int1A, int1B), 
+						equal(false, false), 
+						equal(Boolean.TRUE, Boolean.TRUE)));
+		
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", ""), 
+						equal("Lee", "Kevin Lee"),
+						equal("Kevin SeongHyun Lee", "Kevin Lee"), 
+						equal("Kevin", "Kevin SeongHyun Lee"), 
+						equal(int5B, int1B), 
+						equal(false, true), 
+						equal(Boolean.TRUE, Boolean.TRUE)));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
+						equal(int1A, int1B), 
+						equal(false, true), 
+						equal(Boolean.TRUE, Boolean.TRUE)));
+
+		assertFalse(nor(equal("Kevin", "Lee"), 
+						equal("SeongHyun", "SeongHyun"), 
+						equal("Lee", "Lee"),
+						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
+						equal(int1A, int1B), 
+						equal(false, false), 
+						equal(Boolean.TRUE, Boolean.FALSE)));
+
+		/* true */
+		assertTrue(nor(false,
+					   false, 
+					   false, 
+					   false, 
+					   false,
+					   false, 
+					   false, 
+					   false));
+
+		assertTrue(nor(equal("Kevin", "Lee"), 
+					   equal("SeongHyun", "Kevin"), 
+					   equal("Lee", "Kevin SeongHyun Lee"),
+					   equal("Kevin Lee", ""), 
+					   equal("Kevin Lee", "Kevin SeongHyun Lee"), 
+					   equal(int1A, int7A), 
+					   equal(false, true), 
+					   equal(Boolean.FALSE, Boolean.TRUE)));
 		/* @formatter:on */
 	}
 

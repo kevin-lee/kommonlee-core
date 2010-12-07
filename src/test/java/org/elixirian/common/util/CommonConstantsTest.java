@@ -15,9 +15,10 @@ import org.junit.Test;
 public class CommonConstantsTest
 {
 
-	@Test(expected = IllegalStateException.class)
+	@Test(expected = IllegalAccessException.class)
 	public void testCommonConstants() throws Exception
 	{
-		testNotAccessibleConstructor(CommonConstants.class, classArrayOf(), objectArrayOf());
+		testNotAccessibleConstructor(CommonConstants.class, this, Accessibility.PRIVATE, classArrayOf(),
+				objectArrayOf());
 	}
 }
