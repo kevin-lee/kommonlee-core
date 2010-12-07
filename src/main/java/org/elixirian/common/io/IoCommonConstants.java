@@ -62,6 +62,5 @@ public final class IoCommonConstants
 
 	private IoCommonConstants()
 	{
-		throw new IllegalStateException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
 	}
 }

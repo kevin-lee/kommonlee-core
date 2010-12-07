@@ -5,7 +5,7 @@ package org.elixirian.common.io;
 
 import static org.elixirian.common.test.CommonTestHelper.*;
 
-import org.elixirian.common.io.IoCommonConstants;
+import org.elixirian.common.test.CommonTestHelper.Accessibility;
 import org.junit.Test;
 
 /**
@@ -19,10 +19,11 @@ public class IoCommonConstantsTest
 	 * 
 	 * @throws Exception
 	 */
-	@Test(expected = IllegalStateException.class)
+	@Test(expected = IllegalAccessException.class)
 	public final void testIoCommonConstants() throws Exception
 	{
-		testNotAccessibleConstructor(IoCommonConstants.class, classArrayOf(), objectArrayOf());
+		testNotAccessibleConstructor(IoCommonConstants.class, this, Accessibility.PRIVATE, classArrayOf(),
+				objectArrayOf());
 	}
 
 }

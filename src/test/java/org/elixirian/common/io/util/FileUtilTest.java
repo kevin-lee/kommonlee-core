@@ -19,7 +19,7 @@ import java.util.List;
 
 import org.elixirian.common.io.ByteArrayConsumer;
 import org.elixirian.common.io.ByteArrayProducer;
-import org.elixirian.common.io.exception.ElixirianIoException;
+import org.elixirian.common.io.exception.RuntimeIoException;
 import org.elixirian.common.io.util.FileUtil;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -31,7 +31,6 @@ import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -130,10 +129,10 @@ public class FileUtilTest
 	{
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test(expected = IllegalAccessException.class)
 	public void testFileUtil() throws Exception
 	{
-		testNotAccessibleConstructor(FileUtil.class, classArrayOf(), objectArrayOf());
+		testNotAccessibleConstructor(FileUtil.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
 	}
 
 	@Test
@@ -403,7 +402,7 @@ public class FileUtilTest
 	 * 
 	 * @throws IOException
 	 */
-	@Test(expected = ElixirianIoException.class)
+	@Test(expected = RuntimeIoException.class)
 	public void testCopyFileWithNotExistingFile() throws IOException
 	{
 		FileUtil.copyFile(new File(temporaryFolder.newFolder("testFolder"), "someFileWhichDoesNotExist"), null, 1024);

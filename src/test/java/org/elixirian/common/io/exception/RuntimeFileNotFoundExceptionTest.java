@@ -7,8 +7,8 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import org.elixirian.common.exception.ElixirianRuntimeException;
-import org.elixirian.common.io.exception.ElixirianFileNotFoundException;
-import org.elixirian.common.io.exception.ElixirianIoException;
+import org.elixirian.common.io.exception.RuntimeFileNotFoundException;
+import org.elixirian.common.io.exception.RuntimeIoException;
 import org.junit.Test;
 
 
@@ -16,24 +16,24 @@ import org.junit.Test;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-02-24)
  */
-public class ElixirianFileNotFoundExceptionTest
+public class RuntimeFileNotFoundExceptionTest
 {
 	/**
-	 * Test method for {@link org.elixirian.common.io.exception.ElixirianFileNotFoundException#ElixirianFileNotFoundException()}.
+	 * Test method for {@link org.elixirian.common.io.exception.RuntimeFileNotFoundException#ElixirianFileNotFoundException()}.
 	 */
 	@Test
 	public final void testElixirianFileNotFoundException()
 	{
-		final Exception e = new ElixirianFileNotFoundException();
+		final Exception e = new RuntimeFileNotFoundException();
 		assertThat(e, is(instanceOf(ElixirianRuntimeException.class)));
-		assertThat(e, is(instanceOf(ElixirianIoException.class)));
-		assertThat(e, is(instanceOf(ElixirianFileNotFoundException.class)));
+		assertThat(e, is(instanceOf(RuntimeIoException.class)));
+		assertThat(e, is(instanceOf(RuntimeFileNotFoundException.class)));
 		assertThat(e.getMessage(), is(nullValue()));
 	}
 
 	/**
 	 * Test method for
-	 * {@link org.elixirian.common.io.exception.ElixirianFileNotFoundException#ElixirianFileNotFoundException(java.lang.String, java.lang.Throwable)}
+	 * {@link org.elixirian.common.io.exception.RuntimeFileNotFoundException#ElixirianFileNotFoundException(java.lang.String, java.lang.Throwable)}
 	 * .
 	 */
 	@Test
@@ -41,10 +41,10 @@ public class ElixirianFileNotFoundExceptionTest
 	{
 		final String message = "Test Exception";
 		final Throwable throwable = new Throwable("Test Throwable");
-		final Exception e = new ElixirianFileNotFoundException(message, throwable);
+		final Exception e = new RuntimeFileNotFoundException(message, throwable);
 		assertThat(e, is(instanceOf(ElixirianRuntimeException.class)));
-		assertThat(e, is(instanceOf(ElixirianIoException.class)));
-		assertThat(e, is(instanceOf(ElixirianFileNotFoundException.class)));
+		assertThat(e, is(instanceOf(RuntimeIoException.class)));
+		assertThat(e, is(instanceOf(RuntimeFileNotFoundException.class)));
 		assertThat(e.getMessage(), is(equalTo(message)));
 		assertThat(e.getMessage(), is(sameInstance(message)));
 		assertThat(e.getCause(), is(equalTo(throwable)));
@@ -53,33 +53,33 @@ public class ElixirianFileNotFoundExceptionTest
 
 	/**
 	 * Test method for
-	 * {@link org.elixirian.common.io.exception.ElixirianFileNotFoundException#ElixirianFileNotFoundException(java.lang.String)}.
+	 * {@link org.elixirian.common.io.exception.RuntimeFileNotFoundException#ElixirianFileNotFoundException(java.lang.String)}.
 	 */
 	@Test
 	public final void testElixirianFileNotFoundExceptionString()
 	{
 		final String message = "Test Exception";
-		final Exception e = new ElixirianFileNotFoundException(message);
+		final Exception e = new RuntimeFileNotFoundException(message);
 		assertThat(e, is(instanceOf(ElixirianRuntimeException.class)));
-		assertThat(e, is(instanceOf(ElixirianIoException.class)));
-		assertThat(e, is(instanceOf(ElixirianFileNotFoundException.class)));
+		assertThat(e, is(instanceOf(RuntimeIoException.class)));
+		assertThat(e, is(instanceOf(RuntimeFileNotFoundException.class)));
 		assertThat(e.getMessage(), is(equalTo(message)));
 		assertThat(e.getMessage(), is(sameInstance(message)));
 	}
 
 	/**
 	 * Test method for
-	 * {@link org.elixirian.common.io.exception.ElixirianFileNotFoundException#ElixirianFileNotFoundException(java.lang.Throwable)}
+	 * {@link org.elixirian.common.io.exception.RuntimeFileNotFoundException#ElixirianFileNotFoundException(java.lang.Throwable)}
 	 * .
 	 */
 	@Test
 	public final void testElixirianFileNotFoundExceptionThrowable()
 	{
 		final Throwable throwable = new Throwable("Test Throwable");
-		final Exception e = new ElixirianFileNotFoundException(throwable);
+		final Exception e = new RuntimeFileNotFoundException(throwable);
 		assertThat(e, is(instanceOf(ElixirianRuntimeException.class)));
-		assertThat(e, is(instanceOf(ElixirianIoException.class)));
-		assertThat(e, is(instanceOf(ElixirianFileNotFoundException.class)));
+		assertThat(e, is(instanceOf(RuntimeIoException.class)));
+		assertThat(e, is(instanceOf(RuntimeFileNotFoundException.class)));
 		assertThat(e.getMessage(), is(equalTo("java.lang.Throwable: Test Throwable")));
 		assertThat(e.getCause(), is(equalTo(throwable)));
 		assertThat(e.getCause(), is(sameInstance(throwable)));

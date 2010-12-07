@@ -17,11 +17,9 @@ import java.nio.channels.FileChannel;
 
 import org.elixirian.common.io.ByteArrayConsumer;
 import org.elixirian.common.io.ByteArrayProducer;
-import org.elixirian.common.io.exception.ElixirianFileNotFoundException;
-import org.elixirian.common.io.exception.ElixirianIoException;
-import org.elixirian.common.util.CommonConstants;
+import org.elixirian.common.io.exception.RuntimeFileNotFoundException;
+import org.elixirian.common.io.exception.RuntimeIoException;
 import org.elixirian.common.validation.Assertions;
-
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -37,7 +35,6 @@ public final class NioFileUtil
 
 	private NioFileUtil()
 	{
-		throw new IllegalStateException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
 	}
 
 	/**
@@ -87,11 +84,11 @@ public final class NioFileUtil
 		}
 		catch (FileNotFoundException e)
 		{
-			throw new ElixirianFileNotFoundException(e);
+			throw new RuntimeFileNotFoundException(e);
 		}
 		catch (IOException e)
 		{
-			throw new ElixirianIoException(e);
+			throw new RuntimeIoException(e);
 		}
 		finally
 		{
@@ -103,7 +100,7 @@ public final class NioFileUtil
 	private static void readFile0(final FileChannel fileChannel, final int bufferSize,
 			final ByteArrayConsumer byteArrayConsumer) throws IOException
 	{
-		byte[] buffer = new byte[bufferSize];
+		final byte[] buffer = new byte[bufferSize];
 		final ByteBuffer byteBuffer = ByteBuffer.wrap(buffer);
 		int bytesRead = fileChannel.read(byteBuffer);
 		while (-1 != bytesRead)
@@ -130,11 +127,11 @@ public final class NioFileUtil
 		}
 		catch (FileNotFoundException e)
 		{
-			throw new ElixirianFileNotFoundException(e);
+			throw new RuntimeFileNotFoundException(e);
 		}
 		catch (IOException e)
 		{
-			throw new ElixirianIoException(e);
+			throw new RuntimeIoException(e);
 		}
 		finally
 		{
@@ -184,11 +181,11 @@ public final class NioFileUtil
 		}
 		catch (FileNotFoundException e)
 		{
-			throw new ElixirianFileNotFoundException(e);
+			throw new RuntimeFileNotFoundException(e);
 		}
 		catch (IOException e)
 		{
-			throw new ElixirianIoException(e);
+			throw new RuntimeIoException(e);
 		}
 		finally
 		{

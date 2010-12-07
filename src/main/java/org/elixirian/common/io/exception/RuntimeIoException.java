@@ -9,14 +9,14 @@ import org.elixirian.common.exception.ElixirianRuntimeException;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-01-09)
  */
-public class ElixirianIoException extends ElixirianRuntimeException
+public class RuntimeIoException extends ElixirianRuntimeException
 {
 	private static final long serialVersionUID = 4804330258609079383L;
 
 	/**
 	 * 
 	 */
-	public ElixirianIoException()
+	public RuntimeIoException()
 	{
 		super();
 	}
@@ -25,7 +25,7 @@ public class ElixirianIoException extends ElixirianRuntimeException
 	 * @param message
 	 * @param cause
 	 */
-	public ElixirianIoException(String message, Throwable cause)
+	public RuntimeIoException(String message, Throwable cause)
 	{
 		super(message, cause);
 	}
@@ -33,7 +33,7 @@ public class ElixirianIoException extends ElixirianRuntimeException
 	/**
 	 * @param message
 	 */
-	public ElixirianIoException(String message)
+	public RuntimeIoException(String message)
 	{
 		super(message);
 	}
@@ -41,7 +41,7 @@ public class ElixirianIoException extends ElixirianRuntimeException
 	/**
 	 * @param cause
 	 */
-	public ElixirianIoException(Throwable cause)
+	public RuntimeIoException(Throwable cause)
 	{
 		super(cause);
 	}

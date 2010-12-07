@@ -16,11 +16,9 @@ import java.io.OutputStream;
 
 import org.elixirian.common.io.ByteArrayConsumer;
 import org.elixirian.common.io.ByteArrayProducer;
-import org.elixirian.common.io.exception.ElixirianFileNotFoundException;
-import org.elixirian.common.io.exception.ElixirianIoException;
-import org.elixirian.common.util.CommonConstants;
+import org.elixirian.common.io.exception.RuntimeFileNotFoundException;
+import org.elixirian.common.io.exception.RuntimeIoException;
 import org.elixirian.common.validation.Assertions;
-
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -31,7 +29,6 @@ public final class FileUtil
 {
 	private FileUtil()
 	{
-		throw new IllegalStateException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
 	}
 
 	/**
@@ -73,7 +70,7 @@ public final class FileUtil
 		{
 			inputStream = new FileInputStream(file);
 
-			byte[] buffer = new byte[bufferSize];
+			final byte[] buffer = new byte[bufferSize];
 			int bytesRead = inputStream.read(buffer);
 
 			while (-1 < bytesRead)
@@ -84,18 +81,18 @@ public final class FileUtil
 		}
 		catch (FileNotFoundException e)
 		{
-			throw new ElixirianFileNotFoundException(e);
+			throw new RuntimeFileNotFoundException(e);
 		}
 		catch (IOException e)
 		{
-			throw new ElixirianIoException(e);
+			throw new RuntimeIoException(e);
 		}
 		finally
 		{
 			closeQuietly(inputStream);
 		}
 	}
-	
+
 	public static void writeFile(final File file, final int bufferSize, final ByteArrayProducer byteArrayProducer)
 	{
 		assertBufferSize(bufferSize);
@@ -107,7 +104,7 @@ public final class FileUtil
 		{
 			outputStream = new FileOutputStream(file);
 
-			byte[] buffer = new byte[bufferSize];
+			final byte[] buffer = new byte[bufferSize];
 			int bytesRead = byteArrayProducer.produce(buffer);
 
 			while (-1 < bytesRead)
@@ -118,11 +115,11 @@ public final class FileUtil
 		}
 		catch (FileNotFoundException e)
 		{
-			throw new ElixirianFileNotFoundException(e);
+			throw new RuntimeFileNotFoundException(e);
 		}
 		catch (IOException e)
 		{
-			throw new ElixirianIoException(e);
+			throw new RuntimeIoException(e);
 		}
 		finally
 		{
@@ -132,7 +129,7 @@ public final class FileUtil
 	}
 
 	public static void copyFile(final File sourceFile, final File targetFile, final int bufferSize)
-			throws ElixirianIoException
+			throws RuntimeIoException
 	{
 		assertBufferSize(bufferSize);
 
@@ -144,7 +141,7 @@ public final class FileUtil
 			inputStream = new FileInputStream(sourceFile);
 			outputStream = new FileOutputStream(targetFile);
 
-			byte[] buffer = new byte[bufferSize];
+			final byte[] buffer = new byte[bufferSize];
 			int bytesRead = inputStream.read(buffer);
 
 			while (-1 != bytesRead)
@@ -155,11 +152,11 @@ public final class FileUtil
 		}
 		catch (FileNotFoundException e)
 		{
-			throw new ElixirianFileNotFoundException(e);
+			throw new RuntimeFileNotFoundException(e);
 		}
 		catch (IOException e)
 		{
-			throw new ElixirianIoException(e);
+			throw new RuntimeIoException(e);
 		}
 		finally
 		{

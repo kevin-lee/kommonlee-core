@@ -18,7 +18,7 @@ import java.util.List;
 
 import org.elixirian.common.io.ByteArrayConsumer;
 import org.elixirian.common.io.ByteArrayProducer;
-import org.elixirian.common.nio.util.NioFileUtil;
+import org.elixirian.common.test.CommonTestHelper.Accessibility;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,7 +29,6 @@ import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -128,10 +127,10 @@ public class NioFileUtilTest
 	{
 	}
 
-	@Test(expected = IllegalStateException.class)
+	@Test(expected = IllegalAccessException.class)
 	public final void testNioFileUtil() throws Exception
 	{
-		testNotAccessibleConstructor(NioFileUtil.class, classArrayOf(), objectArrayOf());
+		testNotAccessibleConstructor(NioFileUtil.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
 	}
 
 	/**
