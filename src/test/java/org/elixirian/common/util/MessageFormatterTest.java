@@ -61,8 +61,8 @@ public class MessageFormatterTest
 			MessageFormatter.format("Hello, %s. My name is %s. This %s is to check if %s works well.", "World",
 					new Person("Lee", "Kevin"), "test", MessageFormatter.class);
 		System.out.println("Message:  \"Hello, %s. My name is %s. This %s is to check if %s works well.\""
-				+ "\nArgument: \"World\", new Person(\"Lee\", \"Kevin\"), \"test\", Strings.class" + "\nResult:   "
-				+ result);
+				+ "\nArgument: \"World\", new Person(\"Lee\", \"Kevin\"), \"test\", MessageFormatter.class"
+				+ "\nResult:   " + result);
 		assertThat(result, equalTo("Hello, World. My name is Kevin Lee. This test is to check if "
 				+ MessageFormatter.class.toString() + " works well."));
 		System.out.println("===================================================");

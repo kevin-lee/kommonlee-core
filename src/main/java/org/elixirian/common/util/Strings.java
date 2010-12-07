@@ -13,8 +13,9 @@ package org.elixirian.common.util;
  * @version 0.0.6 (2010-04-29) formatMessage ({@link #format(String, Object...)}) is taken from
  *          {@code com.elixirian.common.string.MessageFormatter}.
  * @version 0.0.7 (2010-05-04) the format() method is moved to the {@link MessageFormatter} class.
- * @version 0.0.8 (2010-06-03) {@link #repeat(String, int)} is added. * @version 0.0.9 (2010-10-31)
- *          {@link #nullThenEmpty(String)} and {@link #emptyThenNull(String)} are added.
+ * @version 0.0.8 (2010-06-03) {@link #repeat(String, int)} is added.
+ * @version 0.0.9 (2010-10-31) {@link #nullThenEmpty(String)} and {@link #emptyThenNull(String)} are added.
+ * @version 0.0.10 (2010-11-15) {@link IllegalStateException} is removed from the constructor.
  */
 public final class Strings
 {
@@ -63,11 +64,31 @@ public final class Strings
 		return isEmpty(value) ? null : value;
 	}
 
+	/**
+	 * Checks if the given String value is empty. It means the given String parameter contains the null reference or no
+	 * String value which means its length is 0.
+	 * 
+	 * @param value
+	 *            the given String value.
+	 * @return true if the given String parameter contains the null reference or it has no String value (null == value
+	 *         || 0 == value.length()). false if the given String parameter contains a reference pointing to any String
+	 *         value having the length of which is greater than 0.
+	 */
 	public static boolean isEmpty(String value)
 	{
 		return (null == value || 0 == value.length());
 	}
 
+	/**
+	 * Checks if the given String value is not empty. It means the given String parameter contains neither the null
+	 * reference nor any String with 0 length.
+	 * 
+	 * @param value
+	 *            the given String value.
+	 * @return true if the given String parameter contains a reference pointing to any String object the length of which
+	 *         is greater than 0 (null != value && 0 < value.length()). false if it contains null or a String value with
+	 *         0 length.
+	 */
 	public static boolean isNotEmpty(String value)
 	{
 		return !isEmpty(value);

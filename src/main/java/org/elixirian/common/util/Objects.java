@@ -13,17 +13,16 @@ import java.util.List;
  * >http://blogs.sun.com/darcy/entry/java_util_objects_and_friends</a> yet now has become a different class from the
  * java.util.Objects class.
  * <p>
- * This class is more convenient and useful than java.util.Objects because unlike the current java.util.Objects, it does
- * not have any methods with the names already used in {@link java.lang.Object} so does not need to worry about <a
- * href="http://java.sun.com/docs/books/jls/third_edition/html/names.html#34133">Shadowing Declarations</a> when using
- * the methods in this {@link Objects} class by static import.
+ * This class is more convenient and useful than java.util.Objects because unlike the current java.util.Objects
+ * (2010-10-31), it does not have any methods with the names already used in {@link java.lang.Object} so does not need
+ * to worry about <a href="http://java.sun.com/docs/books/jls/third_edition/html/names.html#34133">Shadowing
+ * Declarations</a> when using the methods in this {@link Objects} class by static import.
  * </p>
  * <p>
  * It also provides convenient ways to compute a hashCode of primitive and object reference types. More over, it has
  * {@link ToStringBuilder} which can be used to create toString value for the {@link Object#toString()} method so that
- * do the users not only need to use {@link StringBuilder} for this purpose but also have easier way to do it
- * <p>
- * e.g.) instead of doing
+ * do the users not only need to use {@link StringBuilder} for this purpose but also have easier way to do it e.g.)
+ * instead of doing
  * 
  * <pre>
  * <code>
@@ -37,26 +36,80 @@ import java.util.List;
  *             .append("}")
  *             .toString();
  * </code>
- * </pre>
- * 
- * it can be
- * 
- * <pre>
+ * &#47;&#47; it can be
  * <code>
  * return toStringBuilder(this)
  *         .add("fieldName1", value1)
  *         .add("fieldName2", value2)
  *         .toString();
  * </code>
- * </pre>
- * 
- * Both ways generate the same result, but using the {@link ToStringBuilder} is much simpler.
- * 
- * <pre>
+ * &#47;&#47; Both ways generate the same result, but using the {@link ToStringBuilder} is much simpler.
+ * &#47;&#47; Result: 
  * SimpleClassName{fieldName1=actualValue1, fieldName2=actualValue2}
  * </pre>
  * 
  * </p>
+ * <p>
+ * <h2>Easy way to write equals method body</h2>
+ * 
+ * <pre>
+ * <code>
+ * &#64;Override
+ * public boolean equals(final Object obj)
+ * {
+ *     if (this == obj)
+ *     {
+ *         return true;
+ *     }
+ *     if (!(obj instanceof SomePojo))
+ *     {
+ *         return false;
+ *     }
+ *     final SomePojo that = (SomePojo) obj;
+ *     return (this.surname == that.getSurname() || 
+ *                 (null != this.surname && 
+ *                  this.surname.equals(that.getSurname()))) &&
+ *            (this.givenName == that.getGivenName() || 
+ *                 (null != this.givenName && 
+ *                  this.givenName.equals(that.getGivenName()))) && 
+ *            this.number == that.getNumber() &&
+ *            (this.email == that.getEmail() || 
+ *                 (null != this.email && 
+ *                  this.email.equals(that.getEmail())));
+ * }
+ * </code>
+ * &#47;&#47; The above code snippet can be simplified as the following one.
+ * <code>
+ * &#64;Override
+ * public boolean equals(final Object obj)
+ * {
+ *     if (areIdentical(this, obj))
+ *     {
+ *         return true;
+ *     }
+ *     final SomePojo that = castIfInstanceOf(SomePojo.class, obj);
+ *     return isNotNull(that) &&
+ *            and(equal(this.surname, that.getSurname()), 
+ *                equal(this.givenName, that.getGivenName()), 
+ *                equal(this.number, that.getNumber()),
+ *                equal(this.email, that.getEmail()));
+ * }
+ * </code>
+ * &#47;&#47; Or
+ * <code>
+ * &#64;Override
+ * public boolean equals(final Object obj)
+ * {
+ *     final SomePojo that = castIfInstanceOf(SomePojo.class, obj);
+ *     return isNotNull(that) &&
+ *            and(equal(this.surname, that.getSurname()), 
+ *                equal(this.givenName, that.getGivenName()), 
+ *                equal(this.number, that.getNumber()),
+ *                equal(this.email, that.getEmail()));
+ * }
+ * </code>
+ * </pre>
+ * 
  * </p>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -72,6 +125,7 @@ import java.util.List;
  *          <li>toString(Object) method is changed to {@link #toStringOf(Object)}</li>
  *          <li>toString(Object, String) method is changed to {@link #toStringOf(Object, String)}</li>
  *          </ul>
+ * @version 0.0.5 (2010-11-15) {@link IllegalStateException} is removed from the constructor.
  */
 public final class Objects
 {
@@ -1229,14 +1283,14 @@ public final class Objects
 	 *            an object
 	 * @param right
 	 *            an object to be compared with a
-	 * @param c
+	 * @param comparator
 	 *            the {@code Comparator} to compare the first two arguments
 	 * @return 0 if the arguments are identical and {@code c.compare(a, b)} otherwise.
 	 * @see {@link Comparable}, {@link Comparator}
 	 */
-	public static <T> int compare(final T left, final T right, final Comparator<? super T> c)
+	public static <T> int compare(final T left, final T right, final Comparator<? super T> comparator)
 	{
-		return (left == right ? 0 : c.compare(left, right));
+		return (left == right ? 0 : comparator.compare(left, right));
 	}
 
 	/**
@@ -1258,7 +1312,7 @@ public final class Objects
 	 * @throws NullPointerException
 	 *             if {@code obj} is {@code null}
 	 */
-	public static <T> T nonNull(final T object)
+	public static <T> T notNull(final T object)
 	{
 		if (null == object)
 		{
@@ -1290,7 +1344,7 @@ public final class Objects
 	 * @throws NullPointerException
 	 *             if object is null
 	 */
-	public static <T> T nonNull(final T object, final String message)
+	public static <T> T notNull(final T object, final String message)
 	{
 		if (null == object)
 		{
@@ -1409,9 +1463,9 @@ public final class Objects
 		private ToStringBuilder(Object object, String fieldSeparator, String nameValueSeparator)
 		{
 			/* @formatter:off */
-			this.object 					= nonNull(object);
-			this.fieldSeparator 			= nonNull(fieldSeparator);
-			this.nameValueSeparator			= nonNull(nameValueSeparator);
+			this.object 					= notNull(object);
+			this.fieldSeparator 			= notNull(fieldSeparator);
+			this.nameValueSeparator			= notNull(nameValueSeparator);
 			this.stringList 				= new ArrayList<String>();
 			this.iterableToAppendableGlue	= IterableToAppendableGlue.withoutSeparator();
 			/* @formatter:on */

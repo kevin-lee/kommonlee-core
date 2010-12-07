@@ -33,9 +33,6 @@ public class ConditionalTest
 	int int8A = 10000000;
 	int int8B = 10000000;
 
-	/**
-	 * Test method for {@link com.lckymn.kevin.common.util.Conditional#and(boolean, boolean)}.
-	 */
 	@Test
 	public final void testAndBooleanBoolean()
 	{
@@ -60,9 +57,6 @@ public class ConditionalTest
 		/* @formatter:on */
 	}
 
-	/**
-	 * Test method for {@link com.lckymn.kevin.common.util.Conditional#and(boolean, boolean, boolean)}.
-	 */
 	@Test
 	public final void testAndBooleanBooleanBoolean()
 	{

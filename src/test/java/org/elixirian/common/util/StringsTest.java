@@ -12,12 +12,12 @@ import org.junit.Test;
 
 /**
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-05-03)
+ * @version 0.0.1 (2010-04-29)
  */
 public class StringsTest
 {
 	@Test(expected = IllegalAccessException.class)
-	public void testStrings() throws Exception
+	public final void testStrings() throws Exception
 	{
 		testNotAccessibleConstructor(Strings.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
 	}

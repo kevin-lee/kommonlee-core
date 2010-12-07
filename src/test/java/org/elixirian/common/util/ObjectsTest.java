@@ -622,15 +622,15 @@ public class ObjectsTest
 	}
 
 	@Test
-	public final void testNonNullT()
+	public final void testNotNullT()
 	{
-		assertThat(Objects.nonNull("test"), equalTo("test"));
-		assertThat(Objects.nonNull(new String("something else")), is(equalTo(new String("something else"))));
-		assertThat(Objects.nonNull(new SomeObject("Kevin")), is(equalTo(new SomeObject("Kevin"))));
+		assertThat(Objects.notNull("test"), equalTo("test"));
+		assertThat(Objects.notNull(new String("something else")), is(equalTo(new String("something else"))));
+		assertThat(Objects.notNull(new SomeObject("Kevin")), is(equalTo(new SomeObject("Kevin"))));
 		boolean exceptionThrown = false;
 		try
 		{
-			Objects.nonNull(null);
+			Objects.notNull(null);
 		}
 		catch (NullPointerException e)
 		{
@@ -640,16 +640,16 @@ public class ObjectsTest
 	}
 
 	@Test
-	public final void testNonNullTString()
+	public final void testNotNullTString()
 	{
 		final String message = "It is null!!!!!";
-		assertThat(Objects.nonNull("test", message), is(equalTo("test")));
-		assertThat(Objects.nonNull(new String("something else"), message), is(equalTo(new String("something else"))));
-		assertThat(Objects.nonNull(new SomeObject("Kevin"), message), is(equalTo(new SomeObject("Kevin"))));
+		assertThat(Objects.notNull("test", message), is(equalTo("test")));
+		assertThat(Objects.notNull(new String("something else"), message), is(equalTo(new String("something else"))));
+		assertThat(Objects.notNull(new SomeObject("Kevin"), message), is(equalTo(new SomeObject("Kevin"))));
 		boolean exceptionThrown = false;
 		try
 		{
-			Objects.nonNull(null, message);
+			Objects.notNull(null, message);
 		}
 		catch (NullPointerException e)
 		{

@@ -21,8 +21,8 @@ public final class MapToAppendableGlue implements ToAppendableGlue<Map<?, ?>>
 
 	private MapToAppendableGlue(String keyValueSeparator, String entrySeparator)
 	{
-		this.keyValueGlue = SimpleAppendingAction.with(nonNull(keyValueSeparator));
-		this.entryGlue = SimpleAppendingAction.with(nonNull(entrySeparator));
+		this.keyValueGlue = SimpleAppendingAction.with(notNull(keyValueSeparator));
+		this.entryGlue = SimpleAppendingAction.with(notNull(entrySeparator));
 	}
 
 	AppendingAction getKeyValueGlue()
@@ -60,9 +60,9 @@ public final class MapToAppendableGlue implements ToAppendableGlue<Map<?, ?>>
 	{
 		try
 		{
-			return glue0(nonNull(appendable),
+			return glue0(notNull(appendable),
 			/* the comment is added to separate the line to see which one is null. */
-			nonNull(map));
+			notNull(map));
 		}
 		catch (IOException e)
 		{
