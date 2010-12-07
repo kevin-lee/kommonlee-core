@@ -11,7 +11,7 @@
 
 	<groupId>org.elixirian</groupId>
 	<artifactId>elixirian-common-reflect</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>elixirian-common-reflect</name>
@@ -67,14 +67,22 @@
 		</dependency>
 		<dependency>
 			<groupId>org.elixirian</groupId>
+			<artifactId>elixirian-common-test</artifactId>
+			<version>0.0.9-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.elixirian</groupId>
 			<artifactId>elixirian-common-validation</artifactId>
-			<version>0.0.13-SNAPSHOT</version>
+			<version>0.0.14-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.elixirian</groupId>
 			<artifactId>elixirian-common-util</artifactId>
-			<version>0.0.8-SNAPSHOT</version>
+			<version>0.0.9-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>

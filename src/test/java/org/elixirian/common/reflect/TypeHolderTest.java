@@ -3,7 +3,7 @@
  */
 package org.elixirian.common.reflect;
 
-import static org.elixirian.common.util.Conditions.*;
+import static org.elixirian.common.util.Conditional.*;
 import static org.elixirian.common.util.Objects.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;

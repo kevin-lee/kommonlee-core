@@ -3,9 +3,11 @@
  */
 package org.elixirian.common.reflect;
 
+import static org.elixirian.common.test.CommonTestHelper.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import org.elixirian.common.test.CommonTestHelper.Accessibility;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -37,6 +39,12 @@ public class PrimitivesTest
 	@After
 	public void tearDown() throws Exception
 	{
+	}
+
+	@Test(expected = IllegalAccessException.class)
+	public final void testPrimitives() throws Exception
+	{
+		testNotAccessibleConstructor(Primitives.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
 	}
 
 	@Test

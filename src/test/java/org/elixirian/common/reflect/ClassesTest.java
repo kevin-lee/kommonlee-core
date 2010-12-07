@@ -3,6 +3,7 @@
  */
 package org.elixirian.common.reflect;
 
+import static org.elixirian.common.test.CommonTestHelper.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.elixirian.common.test.CommonTestHelper.Accessibility;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -245,6 +247,12 @@ public class ClassesTest
 	@After
 	public void tearDown() throws Exception
 	{
+	}
+
+	@Test(expected = IllegalAccessException.class)
+	public final void testClasses() throws Exception
+	{
+		testNotAccessibleConstructor(Classes.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
 	}
 
 	@Test
