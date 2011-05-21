@@ -11,7 +11,7 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * This test is to demonstrate how to use the {@link Function}.
+ * This test is to demonstrate how to use the {@link Function1}.
  * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-14)
@@ -149,7 +149,7 @@ public class FunctionTest
 		}
 	}
 
-	private static class NewOrderedItemCreaterFunction implements Function<OrderedItem, NewOrderedItem>
+	private static class NewOrderedItemCreaterFunction implements Function1<OrderedItem, NewOrderedItem>
 	{
 		@Override
 		public NewOrderedItem perform(OrderedItem input)
@@ -161,7 +161,7 @@ public class FunctionTest
 	private static class OrderedItemToNewOrderedItemConverter
 	{
 		public List<NewOrderedItem> convert(final List<OrderedItem> orderedItems,
-				Function<OrderedItem, NewOrderedItem> function)
+				Function1<OrderedItem, NewOrderedItem> function)
 		{
 			final List<NewOrderedItem> resultList = new ArrayList<NewOrderedItem>();
 			for (final OrderedItem item : orderedItems)
@@ -216,7 +216,7 @@ public class FunctionTest
 		System.out.println("## result: ");
 		System.out.println("newOrderedItems: " + 
 		new OrderedItemToNewOrderedItemConverter().convert(orderedItems,
-			new Function<OrderedItem, NewOrderedItem>() {
+			new Function1<OrderedItem, NewOrderedItem>() {
 				@Override
 				public NewOrderedItem perform(final OrderedItem input)
 				{

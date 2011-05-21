@@ -20,26 +20,10 @@ package org.elixirian.common.type;
  * /____/\____\/_______/    \__//______/___/\_____/
  * </pre>
  * 
- * This interface is to create a Pair object which stores two objects in order to pass as a parameter or to return as a
- * result or to store in the data structure or just to have two different or the same types in one object for any
- * purposes.
- * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-09-14)
+ * @version 0.0.1 (2010-11-13)
  */
-public interface Pair<L, R>
+public interface Condition7<T1, T2, T3, T4, T5, T6, T7>
 {
-	/**
-	 * Returns the first object (L) in this {@link Pair}.
-	 * 
-	 * @return the first object (L) in this {@link Pair}.
-	 */
-	L getLeft();
-
-	/**
-	 * Returns the second object (R) in this {@link Pair}.
-	 * 
-	 * @return the second object (R) in this {@link Pair}.
-	 */
-	R getRight();
+	boolean isApplicable(T1 input1, T2 input2, T3 input3, T4 input4, T5 input5, T6 input6, T7 input7);
 }

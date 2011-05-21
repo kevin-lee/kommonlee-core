@@ -11,14 +11,14 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * This test is to demonstrate how to use the {@link Condition}.
+ * This test is to demonstrate how to use the {@link Condition1}.
  * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-14)
  */
 public class ConditionTest
 {
-	private static class IsOdd implements Condition<Integer>
+	private static class IsOdd implements Condition1<Integer>
 	{
 		@Override
 		public boolean isApplicable(final Integer input)
@@ -27,7 +27,7 @@ public class ConditionTest
 		}
 	}
 
-	private static class IsEven implements Condition<Integer>
+	private static class IsEven implements Condition1<Integer>
 	{
 		@Override
 		public boolean isApplicable(final Integer input)
@@ -38,7 +38,7 @@ public class ConditionTest
 
 	private static class IntegerCollector
 	{
-		public List<Integer> collect(final List<Integer> integerList, final Condition<Integer> condition)
+		public List<Integer> collect(final List<Integer> integerList, final Condition1<Integer> condition)
 		{
 			final List<Integer> resultList = new ArrayList<Integer>();
 			for (final Integer integer : integerList)
@@ -54,7 +54,7 @@ public class ConditionTest
 
 	private static class IntegerRemover
 	{
-		public List<Integer> remove(List<Integer> integerList, Condition<Integer> condition)
+		public List<Integer> remove(List<Integer> integerList, Condition1<Integer> condition)
 		{
 			final List<Integer> resultList = new ArrayList<Integer>(integerList);
 			for (final Integer integer : integerList)
@@ -96,17 +96,17 @@ public class ConditionTest
 
 		System.out.println("## result: ");
 		/* @formatter:off */
-		System.out.println("oddNumbers: " + integerCollector.collect(integerList, new Condition<Integer>() {
+		System.out.println("oddNumbers: " + integerCollector.collect(integerList, new Condition1<Integer>() {
 			@Override
 			public boolean isApplicable(Integer input) { return 0 != (input.intValue() & 1); }
 		}));
-		System.out.println("evenNumbers: " + integerCollector.collect(integerList, new Condition<Integer>() {
+		System.out.println("evenNumbers: " + integerCollector.collect(integerList, new Condition1<Integer>() {
 			@Override
 			public boolean isApplicable(Integer input) { return 0 == (input.intValue() & 1); }
 		}));
 		/* @formatter:on */
 
-		assertThat(integerCollector.collect(integerList, new Condition<Integer>() {
+		assertThat(integerCollector.collect(integerList, new Condition1<Integer>() {
 			@Override
 			public boolean isApplicable(Integer input)
 			{
@@ -114,7 +114,7 @@ public class ConditionTest
 			}
 		}), is(equalTo(oddNumbers)));
 
-		assertThat(integerCollector.collect(integerList, new Condition<Integer>() {
+		assertThat(integerCollector.collect(integerList, new Condition1<Integer>() {
 			@Override
 			public boolean isApplicable(Integer input)
 			{
