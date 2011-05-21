@@ -11,7 +11,7 @@
 
 	<groupId>org.elixirian</groupId>
 	<artifactId>elixirian-common-util</artifactId>
-	<version>0.0.9-SNAPSHOT</version>
+	<version>0.0.10-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>elixirian-common-util</name>
 	<url>http://elixirian.org</url>
@@ -63,11 +63,25 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.elixirian</groupId>
-			<artifactId>elixirian-common-test</artifactId>
-			<version>0.0.9-SNAPSHOT</version>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.8.5</version>
 			<type>jar</type>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.elixirian</groupId>
+			<artifactId>elixirian-common-test</artifactId>
+			<version>0.0.10-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.elixirian</groupId>
+			<artifactId>elixirian-common-type</artifactId>
+			<version>0.0.5-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>
