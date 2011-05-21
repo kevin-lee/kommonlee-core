@@ -48,4 +48,6 @@ public interface VarargsFilter<T, C, R> extends Filter1<T, C, R>, Filter2<T, C, 
 	R filter(C condition, T first, T second, T third, T fourth, T fifth);
 
 	R filter(C condition, T first, T second, T third, T fourth, T fifth, T... rest);
+
+	R filter(C condition, T[] values);
 }
