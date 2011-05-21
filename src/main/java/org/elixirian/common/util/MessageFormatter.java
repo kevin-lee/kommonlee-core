@@ -1,11 +1,27 @@
 package org.elixirian.common.util;
 
 /**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _____________    ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /   \  /   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /     \/   /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ ___    ____
+ *    /   \/    / /      \   \/   /_    _//   \  /   /
+ *   /        /  /    ___/\      / /   / /     \/   /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-03-02)
  * @version 0.0.2 (2010-05-04) the {@link #format(String, Object...)} method is recreated (moved from {@link Strings}.
- * @version 0.0.3 (2010-05-05) it does not throw the {@link NullPointerException} when the given message String has null reference. It uses
- *          the String {@code "null"} instead.
+ * @version 0.0.3 (2010-05-05) it does not throw the {@link NullPointerException} when the given message String has null
+ *          reference. It uses the String {@code "null"} instead.
  */
 public final class MessageFormatter
 {
@@ -35,8 +51,8 @@ public final class MessageFormatter
 	 * <ul>
 	 * <li>If there are more argument objects passed, the rest are added the end of the message in the square brackets.</li> 
 	 * <li>If there are fewer "%s"s entered, the rest are removed from the message.</li>
-	 * <li>To include <code>%s</code> in the message, put <code>%</code> just before <code>%s</code> (e.g. %%s / the first % is escape
-	 * character).</li> </ul> <div> e.g.) </div>
+	 * <li>To include <code>%s</code> in the message, put <code>%</code> just before <code>%s</code> (e.g. %%s / the
+	 * first % is escape character).</li> </ul> <div> e.g.) </div>
 	 * 
 	 * <pre>
 	 * Message:   "Hello, %s. How are you %s?"
@@ -140,7 +156,10 @@ public final class MessageFormatter
 		int position = localMessage.indexOf(PLACE_HOLDER_SYMBOL, fromIndex);
 		if (0 == position)
 		{
-			/* 0 == position means it can never be "%%s" so treat it separately then testing the position against 0 is not required anymore. */
+			/*
+			 * 0 == position means it can never be "%%s" so treat it separately then testing the position against 0 is
+			 * not required anymore.
+			 */
 			fromIndex = position + JUMP_SIZE;
 			position = localMessage.indexOf(PLACE_HOLDER_SYMBOL, fromIndex);
 		}

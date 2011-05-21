@@ -6,6 +6,22 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _____________    ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /   \  /   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /     \/   /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ ___    ____
+ *    /   \/    / /      \   \/   /_    _//   \  /   /
+ *   /        /  /    ___/\      / /   / /     \/   /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
  * This class is a utility class to help use {@link Object} in the Java programming language. It was inspired by <a
  * href="http://download.java.net/jdk7/docs/api/java/util/Objects.html">http://download
  * .java.net/jdk7/docs/api/java/util/Objects.html</a> and <a
@@ -1362,7 +1378,7 @@ public final class Objects
 	 *            the default object to be used if the given object variable contains <code>null</code> reference.
 	 * @return object if not {@code null}. Otherwise it's the given defaultValue.
 	 */
-	public static <T> T nullThenUse(final T object, T defaultValue)
+	public static <T> T nullThenUse(final T object, final T defaultValue)
 	{
 		return null == object ? defaultValue : object;
 	}
@@ -1374,7 +1390,7 @@ public final class Objects
 	 *            the given object to check its nullity.
 	 * @return true if the given object is null (the variable contains null reference). false otherwise.
 	 */
-	public static boolean isNull(Object object)
+	public static boolean isNull(final Object object)
 	{
 		return null == object;
 	}
@@ -1387,7 +1403,7 @@ public final class Objects
 	 * @return true if the given object is not null (the variable contains some object reference). false if the object
 	 *         is null (the variable contains null reference).
 	 */
-	public static boolean isNotNull(Object object)
+	public static boolean isNotNull(final Object object)
 	{
 		return null != object;
 	}
@@ -1401,7 +1417,7 @@ public final class Objects
 	 *            the other object to check if it is identical to the object1.
 	 * @return true if both objects are identical (object1 == object2). false otherwise.
 	 */
-	public static boolean areIdentical(Object object1, Object object2)
+	public static boolean identical(final Object object1, final Object object2)
 	{
 		return object1 == object2;
 	}
@@ -1419,7 +1435,7 @@ public final class Objects
 	 * @return T type object casted from the object if it is an instance of the type. null if it is not instance of the
 	 *         type.
 	 */
-	public static <T> T castIfInstanceOf(Class<T> type, Object object)
+	public static <T> T castIfInstanceOf(final Class<T> type, final Object object)
 	{
 		return type.isInstance(object) ? type.cast(object) : null;
 	}
@@ -1460,7 +1476,7 @@ public final class Objects
 			this(object, DEFAULT_FIELD_SEPARATOR, DEFAULT_NAME_VALUE_SEPARATOR);
 		}
 
-		private ToStringBuilder(Object object, String fieldSeparator, String nameValueSeparator)
+		private ToStringBuilder(final Object object, final String fieldSeparator, final String nameValueSeparator)
 		{
 			/* @formatter:off */
 			this.object 					= notNull(object);
@@ -1471,7 +1487,7 @@ public final class Objects
 			/* @formatter:on */
 		}
 
-		private String checkName(String name)
+		private String checkName(final String name)
 		{
 			if (Strings.isEmpty(name))
 			{
@@ -1500,7 +1516,7 @@ public final class Objects
 			return value0(fieldSeparator);
 		}
 
-		public ToStringBuilder add(String name, boolean value) throws IllegalArgumentException
+		public ToStringBuilder add(final String name, final boolean value) throws IllegalArgumentException
 		{
 			/* @formatter:off */
 			return value0(checkName(name))
@@ -1510,7 +1526,7 @@ public final class Objects
 			/* @formatter:on */
 		}
 
-		public ToStringBuilder add(String name, int value) throws IllegalArgumentException
+		public ToStringBuilder add(final String name, final int value) throws IllegalArgumentException
 		{
 			/* @formatter:off */
 			return value0(checkName(name))
@@ -1520,7 +1536,7 @@ public final class Objects
 			/* @formatter:on */
 		}
 
-		public ToStringBuilder add(String name, byte value) throws IllegalArgumentException
+		public ToStringBuilder add(final String name, final byte value) throws IllegalArgumentException
 		{
 			/* @formatter:off */
 			return value0(checkName(name))
@@ -1530,7 +1546,7 @@ public final class Objects
 			/* @formatter:on */
 		}
 
-		public ToStringBuilder add(String name, short value) throws IllegalArgumentException
+		public ToStringBuilder add(final String name, final short value) throws IllegalArgumentException
 		{
 			/* @formatter:off */
 			return value0(checkName(name))
@@ -1540,7 +1556,7 @@ public final class Objects
 			/* @formatter:on */
 		}
 
-		public ToStringBuilder add(String name, long value) throws IllegalArgumentException
+		public ToStringBuilder add(final String name, final long value) throws IllegalArgumentException
 		{
 			/* @formatter:off */
 			return value0(checkName(name))
@@ -1550,7 +1566,7 @@ public final class Objects
 			/* @formatter:on */
 		}
 
-		public ToStringBuilder add(String name, float value) throws IllegalArgumentException
+		public ToStringBuilder add(final String name, final float value) throws IllegalArgumentException
 		{
 			/* @formatter:off */
 			return value0(checkName(name))
@@ -1560,7 +1576,7 @@ public final class Objects
 			/* @formatter:on */
 		}
 
-		public ToStringBuilder add(String name, double value) throws IllegalArgumentException
+		public ToStringBuilder add(final String name, final double value) throws IllegalArgumentException
 		{
 			/* @formatter:off */
 			return value0(checkName(name))
@@ -1570,7 +1586,7 @@ public final class Objects
 			/* @formatter:on */
 		}
 
-		public ToStringBuilder add(String name, Object value) throws IllegalArgumentException
+		public ToStringBuilder add(final String name, final Object value) throws IllegalArgumentException
 		{
 			/* @formatter:off */
 			return value0(checkName(name))
@@ -1580,7 +1596,7 @@ public final class Objects
 			/* @formatter:on */
 		}
 
-		private ToStringBuilder value0(String value)
+		private ToStringBuilder value0(final String value)
 		{
 			stringList.add(value);
 			return this;
@@ -1594,7 +1610,7 @@ public final class Objects
 		 *            the value to be added.
 		 * @return this {@link ToStringBuilder} object.
 		 */
-		public ToStringBuilder value(String value)
+		public ToStringBuilder value(final String value)
 		{
 			return value0(value).separator();
 		}
@@ -1607,7 +1623,7 @@ public final class Objects
 		 *            the value to be added.
 		 * @return this {@link ToStringBuilder} object
 		 */
-		public ToStringBuilder valueWithNoSeparator(String value)
+		public ToStringBuilder valueWithNoSeparator(final String value)
 		{
 			return value0(value);
 		}
@@ -1642,12 +1658,13 @@ public final class Objects
 		}
 	}
 
-	public static ToStringBuilder toStringBuilder(Object object)
+	public static ToStringBuilder toStringBuilder(final Object object)
 	{
 		return new ToStringBuilder(object);
 	}
 
-	public static ToStringBuilder toStringBuilder(Object object, String fieldSeparator, String keyValueSeparator)
+	public static ToStringBuilder toStringBuilder(final Object object, final String fieldSeparator,
+			final String keyValueSeparator)
 	{
 		return new ToStringBuilder(object, fieldSeparator, keyValueSeparator);
 	}

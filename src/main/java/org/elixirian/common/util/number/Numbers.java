@@ -15,6 +15,22 @@ import org.elixirian.common.type.filter.Filter1;
 import org.elixirian.common.type.filter.VarargsFilter;
 
 /**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _____________    ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /   \  /   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /     \/   /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ ___    ____
+ *    /   \/    / /      \   \/   /_    _//   \  /   /
+ *   /        /  /    ___/\      / /   / /     \/   /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-14)
  */
@@ -24,7 +40,7 @@ public final class Numbers
 	{
 	}
 
-	private static final Condition1<Integer> ODD_NUMBER = new Condition1<Integer>() {
+	private static final Condition1<Integer> ODD_INTEGER = new Condition1<Integer>() {
 		@Override
 		public boolean isApplicable(final Integer input)
 		{
@@ -32,12 +48,12 @@ public final class Numbers
 		}
 	};
 
-	public static Condition1<Integer> oddNumber()
+	public static Condition1<Integer> oddInteger()
 	{
-		return ODD_NUMBER;
+		return ODD_INTEGER;
 	}
 
-	private static final Condition1<Integer> EVEN_NUMBER = new Condition1<Integer>() {
+	private static final Condition1<Integer> EVEN_INTEGER = new Condition1<Integer>() {
 		@Override
 		public boolean isApplicable(final Integer input)
 		{
@@ -45,9 +61,35 @@ public final class Numbers
 		}
 	};
 
-	public static Condition1<Integer> evenNumber()
+	public static Condition1<Integer> evenInteger()
 	{
-		return EVEN_NUMBER;
+		return EVEN_INTEGER;
+	}
+
+	private static final Condition1<Long> ODD_LONG = new Condition1<Long>() {
+		@Override
+		public boolean isApplicable(final Long input)
+		{
+			return 0 != (input.longValue() & 1);
+		}
+	};
+
+	public static Condition1<Long> oddLong()
+	{
+		return ODD_LONG;
+	}
+
+	private static final Condition1<Long> EVEN_LONG = new Condition1<Long>() {
+		@Override
+		public boolean isApplicable(final Long input)
+		{
+			return 0 == (input.longValue() & 1);
+		}
+	};
+
+	public static Condition1<Long> evenLong()
+	{
+		return EVEN_LONG;
 	}
 
 	public static abstract class NumberIterableFilter<T extends Number, C extends Collection<T>> implements

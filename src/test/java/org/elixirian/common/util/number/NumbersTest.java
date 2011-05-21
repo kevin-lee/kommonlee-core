@@ -121,7 +121,7 @@ public class NumbersTest
 	}
 
 	@Test
-	public final void testOddNumber()
+	public final void testOddInteger()
 	{
 		@SuppressWarnings("boxing")
 		final List<Integer> oddNumbers =
@@ -150,15 +150,15 @@ public class NumbersTest
 				}
 			};
 
-		final List<Integer> oddNumberResult = numberFunction.filter(Numbers.oddNumber(), integerList);
+		final List<Integer> oddNumberResult = numberFunction.filter(Numbers.oddInteger(), integerList);
 		assertThat(oddNumberResult, is(equalTo(oddNumbers)));
 
 		assertThat(Numbers.integerIterableToArrayListFilter()
-				.filter(Numbers.oddNumber(), integerList), is(equalTo(oddNumbers)));
+				.filter(Numbers.oddInteger(), integerList), is(equalTo(oddNumbers)));
 	}
 
 	@Test
-	public final void testEvenNumber()
+	public final void testEvenInteger()
 	{
 		@SuppressWarnings("boxing")
 		final List<Integer> evenNumbers =
@@ -187,11 +187,87 @@ public class NumbersTest
 				}
 			};
 
-		final List<Integer> evenNumberResult = numberFunction.filter(Numbers.evenNumber(), integerList);
+		final List<Integer> evenNumberResult = numberFunction.filter(Numbers.evenInteger(), integerList);
 		assertThat(evenNumberResult, is(equalTo(evenNumbers)));
 
 		assertThat(Numbers.integerIterableToArrayListFilter()
-				.filter(Numbers.evenNumber(), integerList), is(equalTo(evenNumbers)));
+				.filter(Numbers.evenInteger(), integerList), is(equalTo(evenNumbers)));
+	}
+
+	@Test
+	public final void testOddLong()
+	{
+		@SuppressWarnings("boxing")
+		final List<Long> oddNumbers =
+			Collections.unmodifiableList(Arrays.asList(-1001L, -101L, -11L, -9L, -7L, -5L, -3L, -1L, 1L, 3L, 5L, 7L,
+					9L, 11L, 101L, 1001L));
+
+		@SuppressWarnings("boxing")
+		final List<Long> numberList =
+			Arrays.asList(-1002L, -1001L, -1000L, -102L, -101L, -100L, -12L, -11L, -10L, -9L, -8L, -7L, -6L, -5L, -4L,
+					-3L, -2L, -1L, 0L, 1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 100L, 101L, 102L, 1000L,
+					1001L, 1002L);
+
+		final Filter1<List<Long>, Condition1<Long>, List<Long>> numberFunction =
+			new Filter1<List<Long>, Condition1<Long>, List<Long>>() {
+				@Override
+				public List<Long> filter(Condition1<Long> condition, List<Long> source)
+				{
+					final List<Long> result = new ArrayList<Long>();
+					for (final Long number : source)
+					{
+						if (condition.isApplicable(number))
+						{
+							result.add(number);
+						}
+					}
+					return result;
+				}
+			};
+
+		final List<Long> oddNumberResult = numberFunction.filter(Numbers.oddLong(), numberList);
+		assertThat(oddNumberResult, is(equalTo(oddNumbers)));
+
+		assertThat(Numbers.longIterableToArrayListFilter()
+				.filter(Numbers.oddLong(), numberList), is(equalTo(oddNumbers)));
+	}
+
+	@Test
+	public final void testEvenLong()
+	{
+		@SuppressWarnings("boxing")
+		final List<Long> evenNumbers =
+			Collections.unmodifiableList(Arrays.asList(-1002L, -1000L, -102L, -100L, -12L, -10L, -8L, -6L, -4L, -2L,
+					0L, 2L, 4L, 6L, 8L, 10L, 12L, 100L, 102L, 1000L, 1002L));
+
+		@SuppressWarnings("boxing")
+		final List<Long> numberList =
+			Arrays.asList(-1002L, -1001L, -1000L, -102L, -101L, -100L, -12L, -11L, -10L, -9L, -8L, -7L, -6L, -5L, -4L,
+					-3L, -2L, -1L, 0L, 1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L, 10L, 11L, 12L, 100L, 101L, 102L, 1000L,
+					1001L, 1002L);
+
+		final Filter1<List<Long>, Condition1<Long>, List<Long>> numberFunction =
+			new Filter1<List<Long>, Condition1<Long>, List<Long>>() {
+				@Override
+				public List<Long> filter(Condition1<Long> condition, List<Long> source)
+				{
+					final List<Long> result = new ArrayList<Long>();
+					for (final Long number : source)
+					{
+						if (condition.isApplicable(number))
+						{
+							result.add(number);
+						}
+					}
+					return result;
+				}
+			};
+
+		final List<Long> evenNumberResult = numberFunction.filter(Numbers.evenLong(), numberList);
+		assertThat(evenNumberResult, is(equalTo(evenNumbers)));
+
+		assertThat(Numbers.longIterableToArrayListFilter()
+				.filter(Numbers.evenLong(), numberList), is(equalTo(evenNumbers)));
 	}
 
 	@Test

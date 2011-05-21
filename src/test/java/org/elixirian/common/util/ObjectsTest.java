@@ -716,16 +716,16 @@ public class ObjectsTest
 	}
 
 	@Test
-	public final void testAreIdentical()
+	public final void testIdentical()
 	{
 		final Object object1 = new Object();
 		final Object object2 = object1;
 		final Object object3 = new Object();
-		assertTrue(Objects.areIdentical(object1, object2));
-		assertFalse(Objects.areIdentical(object1, object3));
+		assertTrue(Objects.identical(object1, object2));
+		assertFalse(Objects.identical(object1, object3));
 
-		assertTrue(Objects.areIdentical("Kevin", "Kevin"));
-		assertFalse(Objects.areIdentical("Kevin", new String("Kevin")));
+		assertTrue(Objects.identical("Kevin", "Kevin"));
+		assertFalse(Objects.identical("Kevin", new String("Kevin")));
 	}
 
 	@Test
