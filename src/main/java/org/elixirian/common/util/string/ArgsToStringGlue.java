@@ -1,6 +1,7 @@
-package org.elixirian.common.util;
-
-import java.io.IOException;
+/**
+ * 
+ */
+package org.elixirian.common.util.string;
 
 /**
  * <pre>
@@ -20,9 +21,20 @@ import java.io.IOException;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-07-06)
+ * @version 0.0.1 (2010-11-14)
  */
-public interface AppendingAction
+public interface ArgsToStringGlue<E> extends ToStringGlue<E[]>
 {
-	<A extends Appendable, T> A append(A appendable, T t) throws IOException;
+	@Override
+	String glue(E[] values);
+
+	<T extends E> String glue(T value1, T value2);
+
+	<T extends E> String glue(T value1, T value2, T value3);
+
+	<T extends E> String glue(T value1, T value2, T value3, T value4);
+
+	<T extends E> String glue(T value1, T value2, T value3, T value4, T value5);
+
+	<T extends E> String glue(T value1, T value2, T value3, T value4, T value5, T... rest);
 }

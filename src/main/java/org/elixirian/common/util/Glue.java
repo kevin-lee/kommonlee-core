@@ -1,6 +1,7 @@
+/**
+ * 
+ */
 package org.elixirian.common.util;
-
-import java.io.IOException;
 
 /**
  * <pre>
@@ -20,9 +21,9 @@ import java.io.IOException;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-07-06)
+ * @version 0.0.1 (2010-11-14)
  */
-public interface AppendingAction
+public interface Glue<T, R>
 {
-	<A extends Appendable, T> A append(A appendable, T t) throws IOException;
+	R glue(T source);
 }

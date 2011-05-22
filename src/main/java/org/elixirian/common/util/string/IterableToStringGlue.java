@@ -1,6 +1,7 @@
-package org.elixirian.common.util;
-
-import java.io.IOException;
+/**
+ * 
+ */
+package org.elixirian.common.util.string;
 
 /**
  * <pre>
@@ -20,9 +21,10 @@ import java.io.IOException;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-07-06)
+ * @version 0.0.1 (2010-11-14)
  */
-public interface AppendingAction
+public interface IterableToStringGlue<T> extends ToStringGlue<Iterable<? extends T>>
 {
-	<A extends Appendable, T> A append(A appendable, T t) throws IOException;
+	@Override
+	String glue(Iterable<? extends T> source);
 }
