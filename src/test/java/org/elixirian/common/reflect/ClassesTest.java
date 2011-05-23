@@ -278,8 +278,7 @@ public class ClassesTest
 	@Test
 	public final void testExtractSuperClassesInSubToSuperOrderClassOfTClassOfSBoolean()
 	{
-		final List<Class<?>> classList =
-			Classes.extractSuperClassesInSubToSuperOrder(SubClass.class, Object.class, true);
+		final List<Class<?>> classList = Classes.extractSuperClassesInSubToSuperOrder(SubClass.class, Object.class, true);
 		assertEquals(CLASS_LIST_IN_SUB_TO_SUPER_ORDER.size(), classList.size());
 		for (int i = 0, size = CLASS_LIST_IN_SUB_TO_SUPER_ORDER.size(); i < size; i++)
 		{
@@ -290,8 +289,7 @@ public class ClassesTest
 	@Test
 	public final void testExtractSuperClassesInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperT()
 	{
-		final List<Class<?>> classList =
-			Classes.extractSuperClassesInSuperToSubOrder(SubClass.class, Object.class, true);
+		final List<Class<?>> classList = Classes.extractSuperClassesInSuperToSubOrder(SubClass.class, Object.class, true);
 		assertEquals(CLASS_LIST_IN_SUPER_TO_SUB_ORDER.size(), classList.size());
 		for (int i = 0, size = CLASS_LIST_IN_SUPER_TO_SUB_ORDER.size(); i < size; i++)
 		{
@@ -310,8 +308,7 @@ public class ClassesTest
 	@Test
 	public final void testExtractSuperClassesInSuperToSubOrderClassOfTClassOfSBoolean()
 	{
-		final List<Class<?>> classList =
-			Classes.extractSuperClassesInSuperToSubOrder(SubClass.class, Object.class, true);
+		final List<Class<?>> classList = Classes.extractSuperClassesInSuperToSubOrder(SubClass.class, Object.class, true);
 		assertEquals(CLASS_LIST_IN_SUPER_TO_SUB_ORDER.size(), classList.size());
 		for (int i = 0, size = CLASS_LIST_IN_SUPER_TO_SUB_ORDER.size(); i < size; i++)
 		{
@@ -323,8 +320,8 @@ public class ClassesTest
 	public final void testExtractClssesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray0()
 	{
 		final List<Class<?>> classList1_1 = new ArrayList<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classList1_1, FirstTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classList1_1, FirstTestAnnotation.class);
 		final int size1_1 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size1_1, classList1_1.size());
@@ -336,8 +333,8 @@ public class ClassesTest
 		}
 
 		final Deque<Class<?>> classDeque1_1 = new ArrayDeque<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classDeque1_1, FirstTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classDeque1_1, FirstTestAnnotation.class);
 		assertEquals(size1_1, classDeque1_1.size());
 		for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
 		{
@@ -350,8 +347,8 @@ public class ClassesTest
 	{
 		/* */
 		final List<Class<?>> classList1_2 = new ArrayList<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classList1_2, SecondTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classList1_2, SecondTestAnnotation.class);
 		final int size1_2 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size1_2, classList1_2.size());
@@ -363,8 +360,8 @@ public class ClassesTest
 		}
 
 		final Deque<Class<?>> classDeque1_2 = new ArrayDeque<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classDeque1_2, SecondTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classDeque1_2, SecondTestAnnotation.class);
 		assertEquals(size1_2, classDeque1_2.size());
 		for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
 		{
@@ -431,8 +428,8 @@ public class ClassesTest
 	{
 		/* */
 		final List<Class<?>> classList3_1 = new ArrayList<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classList3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classList3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
 		final int size3_1 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size3_1, classList3_1.size());
@@ -444,8 +441,8 @@ public class ClassesTest
 		}
 
 		final Deque<Class<?>> classDeque3_1 = new ArrayDeque<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classDeque3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classDeque3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
 		assertEquals(size3_1, classDeque3_1.size());
 		for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
 		{
@@ -485,8 +482,8 @@ public class ClassesTest
 	public final void testExtractClssesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray0()
 	{
 		final List<Class<?>> classList1_1 =
-			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, FirstTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					FirstTestAnnotation.class);
 		final int size1_1 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size1_1, classList1_1.size());
@@ -498,13 +495,16 @@ public class ClassesTest
 		}
 
 		final Collection<Class<?>> classCollection1_1 =
-			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, FirstTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					FirstTestAnnotation.class);
 
 		assertEquals(size1_1, classCollection1_1.size());
-		assertThat(
-				classCollection1_1,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)));
+
+		@SuppressWarnings({ "cast", "rawtypes", "unchecked" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+		assertThat(classCollection1_1, is(equalTo(expected)));
 	}
 
 	@Test
@@ -512,8 +512,8 @@ public class ClassesTest
 	{
 		/* */
 		final List<Class<?>> classList1_2 =
-			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, SecondTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					SecondTestAnnotation.class);
 		final int size1_2 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size1_2, classList1_2.size());
@@ -525,12 +525,15 @@ public class ClassesTest
 		}
 
 		final Collection<Class<?>> classCollection1_2 =
-			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, SecondTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					SecondTestAnnotation.class);
 		assertEquals(size1_2, classCollection1_2.size());
-		assertThat(
-				classCollection1_2,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)));
+
+		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+		assertThat(classCollection1_2, is(equalTo(expected)));
 	}
 
 	@Test
@@ -554,9 +557,12 @@ public class ClassesTest
 			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
 					Object.class, true, FirstTestAnnotation.class);
 		assertEquals(size2_1, classCollection2_1.size());
-		assertThat(
-				classCollection2_1,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)));
+
+		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+		assertThat(classCollection2_1, is(equalTo(expected)));
 	}
 
 	@Test
@@ -579,9 +585,12 @@ public class ClassesTest
 			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
 					Object.class, true, SecondTestAnnotation.class);
 		assertEquals(size2_2, classCollection2_2.size());
-		assertThat(
-				classCollection2_2,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)));
+
+		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+		assertThat(classCollection2_2, is(equalTo(expected)));
 	}
 
 	@Test
@@ -590,8 +599,8 @@ public class ClassesTest
 		/* */
 		@SuppressWarnings("unchecked")
 		final List<Class<?>> classList3_1 =
-			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, FirstTestAnnotation.class, SecondTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					FirstTestAnnotation.class, SecondTestAnnotation.class);
 		final int size3_1 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size3_1, classList3_1.size());
@@ -604,12 +613,15 @@ public class ClassesTest
 
 		@SuppressWarnings("unchecked")
 		final Collection<Class<?>> classCollection3_1 =
-			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, FirstTestAnnotation.class, SecondTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					FirstTestAnnotation.class, SecondTestAnnotation.class);
 		assertEquals(size3_1, classCollection3_1.size());
-		assertThat(
-				classCollection3_1,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)));
+
+		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+		assertThat(classCollection3_1, is(equalTo(expected)));
 	}
 
 	@Test
@@ -635,17 +647,20 @@ public class ClassesTest
 			Classes.extractClssesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
 					Object.class, true, FirstTestAnnotation.class, SecondTestAnnotation.class);
 		assertEquals(size3_2, classCollection3_2.size());
-		assertThat(
-				classCollection3_2,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)));
+
+		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+		assertThat(classCollection3_2, is(equalTo(expected)));
 	}
 
 	@Test
 	public final void testExtractClssesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray0()
 	{
 		final List<Class<?>> classList1_1 = new ArrayList<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classList1_1, FirstTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classList1_1, FirstTestAnnotation.class);
 		final int size1_1 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size1_1, classList1_1.size());
@@ -657,8 +672,8 @@ public class ClassesTest
 		}
 
 		final Deque<Class<?>> classDeque1_1 = new ArrayDeque<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classDeque1_1, FirstTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classDeque1_1, FirstTestAnnotation.class);
 		assertEquals(size1_1, classDeque1_1.size());
 		for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
 		{
@@ -671,8 +686,8 @@ public class ClassesTest
 	{
 		/* */
 		final List<Class<?>> classList1_2 = new ArrayList<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classList1_2, SecondTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classList1_2, SecondTestAnnotation.class);
 		final int size1_2 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size1_2, classList1_2.size());
@@ -684,8 +699,8 @@ public class ClassesTest
 		}
 
 		final Deque<Class<?>> classDeque1_2 = new ArrayDeque<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classDeque1_2, SecondTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classDeque1_2, SecondTestAnnotation.class);
 		assertEquals(size1_2, classDeque1_2.size());
 		for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
 		{
@@ -752,8 +767,8 @@ public class ClassesTest
 	{
 		/* */
 		final List<Class<?>> classList3_1 = new ArrayList<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classList3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classList3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
 		final int size3_1 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size3_1, classList3_1.size());
@@ -765,8 +780,8 @@ public class ClassesTest
 		}
 
 		final Deque<Class<?>> classDeque3_1 = new ArrayDeque<Class<?>>();
-		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-				true, classDeque3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
+		Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+				classDeque3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
 		assertEquals(size3_1, classDeque3_1.size());
 		for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
 		{
@@ -806,8 +821,8 @@ public class ClassesTest
 	public final void testExtractClssesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray0()
 	{
 		final List<Class<?>> classList1_1 =
-			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, FirstTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					FirstTestAnnotation.class);
 		final int size1_1 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size1_1, classList1_1.size());
@@ -819,13 +834,16 @@ public class ClassesTest
 		}
 
 		final Collection<Class<?>> classCollection1_1 =
-			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, FirstTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					FirstTestAnnotation.class);
 
 		assertEquals(size1_1, classCollection1_1.size());
-		assertThat(
-				classCollection1_1,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)));
+
+		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+		assertThat(classCollection1_1, is(equalTo(expected)));
 	}
 
 	@Test
@@ -833,8 +851,8 @@ public class ClassesTest
 	{
 		/* */
 		final List<Class<?>> classList1_2 =
-			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, SecondTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					SecondTestAnnotation.class);
 		final int size1_2 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size1_2, classList1_2.size());
@@ -846,12 +864,15 @@ public class ClassesTest
 		}
 
 		final Collection<Class<?>> classCollection1_2 =
-			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, SecondTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					SecondTestAnnotation.class);
 		assertEquals(size1_2, classCollection1_2.size());
-		assertThat(
-				classCollection1_2,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)));
+
+		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+		assertThat(classCollection1_2, is(equalTo(expected)));
 	}
 
 	@Test
@@ -875,9 +896,12 @@ public class ClassesTest
 			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
 					Object.class, true, FirstTestAnnotation.class);
 		assertEquals(size2_1, classCollection2_1.size());
-		assertThat(
-				classCollection2_1,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)));
+
+		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+		assertThat(classCollection2_1, is(equalTo(expected)));
 	}
 
 	@Test
@@ -900,9 +924,12 @@ public class ClassesTest
 			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
 					Object.class, true, SecondTestAnnotation.class);
 		assertEquals(size2_2, classCollection2_2.size());
-		assertThat(
-				classCollection2_2,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)));
+
+		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+		assertThat(classCollection2_2, is(equalTo(expected)));
 	}
 
 	@Test
@@ -911,8 +938,8 @@ public class ClassesTest
 		/* */
 		@SuppressWarnings("unchecked")
 		final List<Class<?>> classList3_1 =
-			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, FirstTestAnnotation.class, SecondTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					FirstTestAnnotation.class, SecondTestAnnotation.class);
 		final int size3_1 =
 			CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
 		assertEquals(size3_1, classList3_1.size());
@@ -925,12 +952,15 @@ public class ClassesTest
 
 		@SuppressWarnings("unchecked")
 		final Collection<Class<?>> classCollection3_1 =
-			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class,
-					true, FirstTestAnnotation.class, SecondTestAnnotation.class);
+			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+					FirstTestAnnotation.class, SecondTestAnnotation.class);
 		assertEquals(size3_1, classCollection3_1.size());
-		assertThat(
-				classCollection3_1,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)));
+
+		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+		assertThat(classCollection3_1, is(equalTo(expected)));
 	}
 
 	@Test
@@ -956,9 +986,12 @@ public class ClassesTest
 			Classes.extractClssesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
 					Object.class, true, FirstTestAnnotation.class, SecondTestAnnotation.class);
 		assertEquals(size3_2, classCollection3_2.size());
-		assertThat(
-				classCollection3_2,
-				is(equalTo((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)));
+
+		@SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+		final Collection<Class<?>> expected =
+			(Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+		assertThat(classCollection3_2, is(equalTo(expected)));
 	}
 
 	private static final int DEFAULT_NUMBER = 100;
@@ -1092,8 +1125,7 @@ public class ClassesTest
 			Classes.findConstructor(ClassWithManyConstructors.class, Double.class);
 		final ClassWithManyConstructors classWithManyConstructors4_1 =
 			new ClassWithManyConstructors(Double.valueOf(1234.5678));
-		final ClassWithManyConstructors classWithManyConstructors4_2 =
-			constructor4.newInstance(Double.valueOf(1234.5678));
+		final ClassWithManyConstructors classWithManyConstructors4_2 = constructor4.newInstance(Double.valueOf(1234.5678));
 		assertThat(classWithManyConstructors4_1.hashCode(), is(equalTo(classWithManyConstructors4_2.hashCode())));
 		assertThat(classWithManyConstructors4_1, is(equalTo(classWithManyConstructors4_2)));
 
@@ -1203,8 +1235,7 @@ public class ClassesTest
 		assertThat(Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation1.class,
 				TestConstructorAnnotation2.class), is(nullValue()));
 		final Constructor<ClassWithTestConstructorAnnotation1> constructor1 =
-			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation1.class,
-					TestConstructorAnnotation1.class);
+			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation1.class, TestConstructorAnnotation1.class);
 		final ClassWithTestConstructorAnnotation1 classWithTestConstructorAnnotation1_1 =
 			new ClassWithTestConstructorAnnotation1();
 		final ClassWithTestConstructorAnnotation1 classWithTestConstructorAnnotation1_2 = constructor1.newInstance();
@@ -1264,8 +1295,7 @@ public class ClassesTest
 		assertThat(Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation2.class,
 				TestConstructorAnnotation2.class), is(nullValue()));
 		final Constructor<ClassWithTestConstructorAnnotation2> constructor2 =
-			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation2.class,
-					TestConstructorAnnotation1.class);
+			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation2.class, TestConstructorAnnotation1.class);
 		final ClassWithTestConstructorAnnotation2 classWithTestConstructorAnnotation2_1 =
 			new ClassWithTestConstructorAnnotation2(555);
 		final ClassWithTestConstructorAnnotation2 classWithTestConstructorAnnotation2_2 =
@@ -1326,8 +1356,7 @@ public class ClassesTest
 		assertThat(Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation3.class,
 				TestConstructorAnnotation1.class), is(nullValue()));
 		final Constructor<ClassWithTestConstructorAnnotation3> constructor3 =
-			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation3.class,
-					TestConstructorAnnotation2.class);
+			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation3.class, TestConstructorAnnotation2.class);
 		final ClassWithTestConstructorAnnotation3 classWithTestConstructorAnnotation3_1 =
 			new ClassWithTestConstructorAnnotation3("Kevin Lee");
 		final ClassWithTestConstructorAnnotation3 classWithTestConstructorAnnotation3_2 =
@@ -1388,8 +1417,7 @@ public class ClassesTest
 		assertThat(Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation4.class,
 				TestConstructorAnnotation2.class), is(nullValue()));
 		final Constructor<ClassWithTestConstructorAnnotation4> constructor4 =
-			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation4.class,
-					TestConstructorAnnotation1.class);
+			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation4.class, TestConstructorAnnotation1.class);
 		final ClassWithTestConstructorAnnotation4 classWithTestConstructorAnnotation4_1 =
 			new ClassWithTestConstructorAnnotation4(Double.valueOf(11223344.556677));
 		final ClassWithTestConstructorAnnotation4 classWithTestConstructorAnnotation4_2 =
@@ -1450,8 +1478,7 @@ public class ClassesTest
 		assertThat(Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation5.class,
 				TestConstructorAnnotation1.class), is(nullValue()));
 		final Constructor<ClassWithTestConstructorAnnotation5> constructor5 =
-			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation5.class,
-					TestConstructorAnnotation2.class);
+			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation5.class, TestConstructorAnnotation2.class);
 		final ClassWithTestConstructorAnnotation5 classWithTestConstructorAnnotation5_1 =
 			new ClassWithTestConstructorAnnotation5(99999, "Lee");
 		final ClassWithTestConstructorAnnotation5 classWithTestConstructorAnnotation5_2 =
@@ -1512,8 +1539,7 @@ public class ClassesTest
 		assertThat(Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation6.class,
 				TestConstructorAnnotation1.class), is(nullValue()));
 		final Constructor<ClassWithTestConstructorAnnotation6> constructor6 =
-			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation6.class,
-					TestConstructorAnnotation2.class);
+			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation6.class, TestConstructorAnnotation2.class);
 		final ClassWithTestConstructorAnnotation6 classWithTestConstructorAnnotation6_1 =
 			new ClassWithTestConstructorAnnotation6("Kevin Lee", Double.valueOf(9876.5432));
 		final ClassWithTestConstructorAnnotation6 classWithTestConstructorAnnotation6_2 =
@@ -1574,8 +1600,7 @@ public class ClassesTest
 		assertThat(Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation7.class,
 				TestConstructorAnnotation2.class), is(nullValue()));
 		final Constructor<ClassWithTestConstructorAnnotation7> constructor7 =
-			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation7.class,
-					TestConstructorAnnotation1.class);
+			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation7.class, TestConstructorAnnotation1.class);
 		final ClassWithTestConstructorAnnotation7 classWithTestConstructorAnnotation7_1 =
 			new ClassWithTestConstructorAnnotation7(5678, Double.valueOf(9876.5432));
 		final ClassWithTestConstructorAnnotation7 classWithTestConstructorAnnotation7_2 =
@@ -1636,8 +1661,7 @@ public class ClassesTest
 		assertThat(Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation8.class,
 				TestConstructorAnnotation1.class), is(nullValue()));
 		final Constructor<ClassWithTestConstructorAnnotation8> constructor8 =
-			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation8.class,
-					TestConstructorAnnotation2.class);
+			Classes.findConstructorWithAnnotation(ClassWithTestConstructorAnnotation8.class, TestConstructorAnnotation2.class);
 		final ClassWithTestConstructorAnnotation8 classWithTestConstructorAnnotation8_1 =
 			new ClassWithTestConstructorAnnotation8(5678, "Kevin Lee", Double.valueOf(9876.5432));
 		final ClassWithTestConstructorAnnotation8 classWithTestConstructorAnnotation8_2 =
@@ -1905,15 +1929,14 @@ public class ClassesTest
 
 		i++;
 		classMap = new HashMap<String, ClassesTest.ClassHavingConstructorsWithTestConstructorAnnotation>();
-		classMap.put(paramTypesToString(int.class, String.class),
-				new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i], stringValues[i]));
+		classMap.put(paramTypesToString(int.class, String.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
+				intValues[i], stringValues[i]));
 		CLASS_HAVING_CONSTRUCTORS_WITH_TEST_CONSTRUCTOR_ANNOTATION1_MAP.add(classMap);
 		size += classMap.size();
 
 		i++;
 		classMap = new HashMap<String, ClassesTest.ClassHavingConstructorsWithTestConstructorAnnotation>();
-		classMap.put(
-				paramTypesToString(int.class, String.class, Double.class),
+		classMap.put(paramTypesToString(int.class, String.class, Double.class),
 				new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i], stringValues[i], doubleValues[i]));
 		CLASS_HAVING_CONSTRUCTORS_WITH_TEST_CONSTRUCTOR_ANNOTATION1_MAP.add(classMap);
 		size += classMap.size();
@@ -1926,8 +1949,7 @@ public class ClassesTest
 
 		i++;
 		classMap = new HashMap<String, ClassesTest.ClassHavingConstructorsWithTestConstructorAnnotation>();
-		classMap.put(paramTypesToString(int.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
-				intValues[i]));
+		classMap.put(paramTypesToString(int.class), new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i]));
 		classMap.put(paramTypesToString(Double.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
 				doubleValues[i]));
 		CLASS_HAVING_CONSTRUCTORS_WITH_TEST_CONSTRUCTOR_ANNOTATION2_MAP.add(classMap);
@@ -1935,15 +1957,14 @@ public class ClassesTest
 
 		i++;
 		classMap = new HashMap<String, ClassesTest.ClassHavingConstructorsWithTestConstructorAnnotation>();
-		classMap.put(paramTypesToString(int.class, Double.class),
-				new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i], doubleValues[i]));
+		classMap.put(paramTypesToString(int.class, Double.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
+				intValues[i], doubleValues[i]));
 		CLASS_HAVING_CONSTRUCTORS_WITH_TEST_CONSTRUCTOR_ANNOTATION2_MAP.add(classMap);
 		size += classMap.size();
 
 		i++;
 		classMap = new HashMap<String, ClassesTest.ClassHavingConstructorsWithTestConstructorAnnotation>();
-		classMap.put(
-				paramTypesToString(int.class, String.class, Double.class),
+		classMap.put(paramTypesToString(int.class, String.class, Double.class),
 				new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i], stringValues[i], doubleValues[i]));
 		CLASS_HAVING_CONSTRUCTORS_WITH_TEST_CONSTRUCTOR_ANNOTATION2_MAP.add(classMap);
 		size += classMap.size();
@@ -1958,8 +1979,7 @@ public class ClassesTest
 
 		i++;
 		classMap = new HashMap<String, ClassesTest.ClassHavingConstructorsWithTestConstructorAnnotation>();
-		classMap.put(paramTypesToString(int.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
-				intValues[i]));
+		classMap.put(paramTypesToString(int.class), new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i]));
 		classMap.put(paramTypesToString(String.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
 				stringValues[i]));
 		classMap.put(paramTypesToString(Double.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
@@ -1969,19 +1989,18 @@ public class ClassesTest
 
 		i++;
 		classMap = new HashMap<String, ClassesTest.ClassHavingConstructorsWithTestConstructorAnnotation>();
-		classMap.put(paramTypesToString(int.class, String.class),
-				new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i], stringValues[i]));
+		classMap.put(paramTypesToString(int.class, String.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
+				intValues[i], stringValues[i]));
 		classMap.put(paramTypesToString(String.class, Double.class),
 				new ClassHavingConstructorsWithTestConstructorAnnotation(stringValues[i], doubleValues[i]));
-		classMap.put(paramTypesToString(int.class, Double.class),
-				new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i], doubleValues[i]));
+		classMap.put(paramTypesToString(int.class, Double.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
+				intValues[i], doubleValues[i]));
 		CLASS_HAVING_CONSTRUCTORS_WITH_TEST_CONSTRUCTOR_ANNOTATION3_MAP.add(classMap);
 		size += classMap.size();
 
 		i++;
 		classMap = new HashMap<String, ClassesTest.ClassHavingConstructorsWithTestConstructorAnnotation>();
-		classMap.put(
-				paramTypesToString(int.class, String.class, Double.class),
+		classMap.put(paramTypesToString(int.class, String.class, Double.class),
 				new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i], stringValues[i], doubleValues[i]));
 		CLASS_HAVING_CONSTRUCTORS_WITH_TEST_CONSTRUCTOR_ANNOTATION3_MAP.add(classMap);
 		size += classMap.size();
@@ -2000,8 +2019,7 @@ public class ClassesTest
 		i++;
 		classMap = new HashMap<String, ClassesTest.ClassHavingConstructorsWithTestConstructorAnnotation>();
 
-		classMap.put(paramTypesToString(int.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
-				intValues[i]));
+		classMap.put(paramTypesToString(int.class), new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i]));
 		classMap.put(paramTypesToString(Double.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
 				doubleValues[i]));
 		CLASS_HAVING_CONSTRUCTORS_WITH_TEST_CONSTRUCTOR_ANNOTATION1_2_MAP.add(classMap);
@@ -2010,18 +2028,17 @@ public class ClassesTest
 		/* 2 */
 		i++;
 		classMap = new HashMap<String, ClassesTest.ClassHavingConstructorsWithTestConstructorAnnotation>();
-		classMap.put(paramTypesToString(int.class, String.class),
-				new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i], stringValues[i]));
-		classMap.put(paramTypesToString(int.class, Double.class),
-				new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i], doubleValues[i]));
+		classMap.put(paramTypesToString(int.class, String.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
+				intValues[i], stringValues[i]));
+		classMap.put(paramTypesToString(int.class, Double.class), new ClassHavingConstructorsWithTestConstructorAnnotation(
+				intValues[i], doubleValues[i]));
 		CLASS_HAVING_CONSTRUCTORS_WITH_TEST_CONSTRUCTOR_ANNOTATION1_2_MAP.add(classMap);
 		size += classMap.size();
 
 		/* 3 */
 		i++;
 		classMap = new HashMap<String, ClassesTest.ClassHavingConstructorsWithTestConstructorAnnotation>();
-		classMap.put(
-				paramTypesToString(int.class, String.class, Double.class),
+		classMap.put(paramTypesToString(int.class, String.class, Double.class),
 				new ClassHavingConstructorsWithTestConstructorAnnotation(intValues[i], stringValues[i], doubleValues[i]));
 		CLASS_HAVING_CONSTRUCTORS_WITH_TEST_CONSTRUCTOR_ANNOTATION1_2_MAP.add(classMap);
 		size += classMap.size();

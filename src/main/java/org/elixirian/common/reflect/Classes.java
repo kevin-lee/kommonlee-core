@@ -14,6 +14,22 @@ import java.util.List;
 import java.util.Set;
 
 /**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _______________  ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ _____  ____
+ *    /   \/    / /      \   \/   /_    _//     \/   /
+ *   /        /  /    ___/\      / /   / /          /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-09-17)
  */
@@ -70,8 +86,7 @@ public final class Classes
 	}
 
 	public static <T> void extractSuperClassesInSuperToSubOrder(final Class<T> targetClass,
-			final Class<? super T> beforeClass, final boolean includeTargetClass,
-			final Collection<Class<?>> classCollection)
+			final Class<? super T> beforeClass, final boolean includeTargetClass, final Collection<Class<?>> classCollection)
 	{
 		if (includeTargetClass)
 		{
@@ -136,8 +151,7 @@ public final class Classes
 			final Class<A> annotation)
 	{
 		final List<Class<?>> classList = new ArrayList<Class<?>>();
-		extractClssesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classList,
-				annotation);
+		extractClssesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classList, annotation);
 		return classList;
 	}
 
@@ -199,8 +213,8 @@ public final class Classes
 			final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
 	{
 		final List<Class<?>> classList = new ArrayList<Class<?>>();
-		extractClssesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classList,
-				annotation, remainingAnnotations);
+		extractClssesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classList, annotation,
+				remainingAnnotations);
 		return classList;
 	}
 
@@ -249,8 +263,7 @@ public final class Classes
 			final Class<A> annotation)
 	{
 		final List<Class<?>> classList = new ArrayList<Class<?>>();
-		extractClssesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classList,
-				annotation);
+		extractClssesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classList, annotation);
 		return classList;
 	}
 
@@ -312,8 +325,8 @@ public final class Classes
 			final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
 	{
 		final List<Class<?>> classList = new ArrayList<Class<?>>();
-		extractClssesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classList,
-				annotation, remainingAnnotations);
+		extractClssesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classList, annotation,
+				remainingAnnotations);
 		return classList;
 	}
 
@@ -422,8 +435,8 @@ public final class Classes
 		return findAllConstructorsWithAnnotation0(targetClass, annotation);
 	}
 
-	private static <T, A extends Annotation> Set<Constructor<T>> findAllConstructorsWithAnnotation0(
-			Class<T> targetClass, final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
+	private static <T, A extends Annotation> Set<Constructor<T>> findAllConstructorsWithAnnotation0(Class<T> targetClass,
+			final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
 	{
 		final Set<Constructor<T>> constructorSet = new HashSet<Constructor<T>>();
 
@@ -451,8 +464,7 @@ public final class Classes
 	}
 
 	public static <T, A extends Annotation> Set<Constructor<T>> findAllConstructorsWithAnnotation(
-			final Class<T> targetClass, final Class<? extends A> annotation,
-			final Class<? extends A>... remainingAnnotations)
+			final Class<T> targetClass, final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
 	{
 		return findAllConstructorsWithAnnotation0(targetClass, annotation, remainingAnnotations);
 	}

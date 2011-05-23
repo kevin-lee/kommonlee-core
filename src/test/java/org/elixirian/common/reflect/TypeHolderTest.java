@@ -67,7 +67,7 @@ public class TypeHolderTest
 		@Override
 		public boolean equals(Object obj)
 		{
-			if (areIdentical(this, obj))
+			if (identical(this, obj))
 				return true;
 
 			final ParameterizedType that = castIfInstanceOf(ParameterizedType.class, obj);
