@@ -5,24 +5,50 @@
 	<groupId>org.elixirian</groupId>
 	<artifactId>elixirian-common-exception</artifactId>
 	<packaging>jar</packaging>
-	<version>0.0.6-SNAPSHOT</version>
+	<version>0.0.7-SNAPSHOT</version>
 	<name>elixirian-common-exception</name>
-	<url>http://elixirian.com</url>
+	<url>http://elixirian.org</url>
 	<parent>
 		<artifactId>elixirian-common</artifactId>
 		<groupId>org.elixirian</groupId>
 		<version>0.0.4-SNAPSHOT</version>
 	</parent>
+	<organization>
+		<name>Elixirian Pty Ltd</name>
+		<url>http://elixirian.com</url>
+	</organization>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.0.2</version>
+				<version>2.3.2</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-idea-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
 				</configuration>
 			</plugin>
 		</plugins>
