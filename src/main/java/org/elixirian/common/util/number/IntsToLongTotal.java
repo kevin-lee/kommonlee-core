@@ -44,8 +44,7 @@ public final class IntsToLongTotal
 		return (long) number1 + number2 + number3 + number4;
 	}
 
-	public static long total(final int number1, final int number2, final int number3, final int number4,
-			final int number5)
+	public static long total(final int number1, final int number2, final int number3, final int number4, final int number5)
 	{
 		return (long) number1 + number2 + number3 + number4 + number5;
 	}
@@ -81,14 +80,14 @@ public final class IntsToLongTotal
 		return number1.longValue() + number2.intValue() + number3.intValue() + number4.intValue();
 	}
 
-	public static long total(final Integer number1, final Integer number2, final Integer number3,
-			final Integer number4, final Integer number5)
+	public static long total(final Integer number1, final Integer number2, final Integer number3, final Integer number4,
+			final Integer number5)
 	{
 		return number1.longValue() + number2.intValue() + number3.intValue() + number4.intValue() + number5.intValue();
 	}
 
-	public static long total(final Integer number1, final Integer number2, final Integer number3,
-			final Integer number4, final Integer number5, final Integer... rest)
+	public static long total(final Integer number1, final Integer number2, final Integer number3, final Integer number4,
+			final Integer number5, final Integer... rest)
 	{
 		return total(number1, number2, number3, number4, number5) + total(rest);
 	}

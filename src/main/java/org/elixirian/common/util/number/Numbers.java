@@ -451,8 +451,7 @@ public final class Numbers
 		}
 	}
 
-	private static final class NumbersToLinkedHashSetFilter<T extends Number> extends
-			NumbersFilter<T, LinkedHashSet<T>>
+	private static final class NumbersToLinkedHashSetFilter<T extends Number> extends NumbersFilter<T, LinkedHashSet<T>>
 	{
 		@Override
 		protected LinkedHashSet<T> newCollection()
@@ -467,13 +466,11 @@ public final class Numbers
 	}
 
 	private static final NumbersFilter<Byte, ArrayList<Byte>> BYTES_TO_ARRAY_LIST_FILTER = numbersToArrayListFilter();
-	private static final NumbersFilter<Short, ArrayList<Short>> SHORTS_TO_ARRAY_LIST_FILTER =
-		numbersToArrayListFilter();
+	private static final NumbersFilter<Short, ArrayList<Short>> SHORTS_TO_ARRAY_LIST_FILTER = numbersToArrayListFilter();
 	private static final NumbersFilter<Integer, ArrayList<Integer>> INTEGERS_TO_ARRAY_LIST_FILTER =
 		numbersToArrayListFilter();
 	private static final NumbersFilter<Long, ArrayList<Long>> LONGS_TO_ARRAY_LIST_FILTER = numbersToArrayListFilter();
-	private static final NumbersFilter<Float, ArrayList<Float>> FLOATS_TO_ARRAY_LIST_FILTER =
-		numbersToArrayListFilter();
+	private static final NumbersFilter<Float, ArrayList<Float>> FLOATS_TO_ARRAY_LIST_FILTER = numbersToArrayListFilter();
 	private static final NumbersFilter<Double, ArrayList<Double>> DOUBLES_TO_ARRAY_LIST_FILTER =
 		numbersToArrayListFilter();
 	private static final NumbersFilter<BigInteger, ArrayList<BigInteger>> BIG_INTEGERS_TO_ARRAY_LIST_FILTER =
@@ -528,8 +525,7 @@ public final class Numbers
 
 	private static final NumbersFilter<Byte, HashSet<Byte>> BYTES_TO_HASH_SET_FILTER = numbersToHashSetFilter();
 	private static final NumbersFilter<Short, HashSet<Short>> SHORTS_TO_HASH_SET_FILTER = numbersToHashSetFilter();
-	private static final NumbersFilter<Integer, HashSet<Integer>> INTEGERS_TO_HASH_SET_FILTER =
-		numbersToHashSetFilter();
+	private static final NumbersFilter<Integer, HashSet<Integer>> INTEGERS_TO_HASH_SET_FILTER = numbersToHashSetFilter();
 	private static final NumbersFilter<Long, HashSet<Long>> LONGS_TO_HASH_SET_FILTER = numbersToHashSetFilter();
 	private static final NumbersFilter<Float, HashSet<Float>> FLOATS_TO_HASH_SET_FILTER = numbersToHashSetFilter();
 	private static final NumbersFilter<Double, HashSet<Double>> DOUBLES_TO_HASH_SET_FILTER = numbersToHashSetFilter();

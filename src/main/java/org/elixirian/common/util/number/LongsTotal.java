@@ -84,8 +84,7 @@ public final class LongsTotal
 	public static long total(final Long number1, final Long number2, final Long number3, final Long number4,
 			final Long number5)
 	{
-		return number1.longValue() + number2.longValue() + number3.longValue() + number4.longValue()
-				+ number5.longValue();
+		return number1.longValue() + number2.longValue() + number3.longValue() + number4.longValue() + number5.longValue();
 	}
 
 	public static long total(final Long number1, final Long number2, final Long number3, final Long number4,

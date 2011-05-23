@@ -85,14 +85,12 @@ public final class BytesTotal
 	public static int total(final Byte number1, final Byte number2, final Byte number3, final Byte number4,
 			final Byte number5)
 	{
-		return number1.byteValue() + number2.byteValue() + number3.byteValue() + number4.byteValue()
-				+ number5.byteValue();
+		return number1.byteValue() + number2.byteValue() + number3.byteValue() + number4.byteValue() + number5.byteValue();
 	}
 
 	public static int total(final Byte number1, final Byte number2, final Byte number3, final Byte number4,
 			final Byte number5, final Byte... rest)
 	{
-
 		return total(number1, number2, number3, number4, number5) + total(rest);
 	}
 

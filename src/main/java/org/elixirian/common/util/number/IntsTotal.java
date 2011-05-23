@@ -44,8 +44,7 @@ public final class IntsTotal
 		return number1 + number2 + number3 + number4;
 	}
 
-	public static int total(final int number1, final int number2, final int number3, final int number4,
-			final int number5)
+	public static int total(final int number1, final int number2, final int number3, final int number4, final int number5)
 	{
 		return number1 + number2 + number3 + number4 + number5;
 	}

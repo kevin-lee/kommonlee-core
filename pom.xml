@@ -79,7 +79,7 @@
 		<dependency>
 			<groupId>org.elixirian</groupId>
 			<artifactId>elixirian-common-type</artifactId>
-			<version>0.0.5-SNAPSHOT</version>
+			<version>0.0.6-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>

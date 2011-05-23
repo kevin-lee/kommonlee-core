@@ -70,7 +70,8 @@ public final class DoublesTotal
 			final Double number5, final Double... rest)
 	{
 		return total(number1.doubleValue(), number2.doubleValue(), number3.doubleValue(), number4.doubleValue(),
-				number5.doubleValue()) + total(rest);
+				number5.doubleValue())
+				+ total(rest);
 	}
 
 	public static double total(final Double[] numbers)
