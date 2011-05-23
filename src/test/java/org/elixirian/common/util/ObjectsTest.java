@@ -4,6 +4,7 @@
 package org.elixirian.common.util;
 
 import static org.elixirian.common.test.CommonTestHelper.*;
+import static org.elixirian.common.util.MessageFormatter.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -12,7 +13,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 
+import org.elixirian.common.test.CauseCheckableExpectedException;
 import org.elixirian.common.test.CommonTestHelper.Accessibility;
+import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -64,6 +67,9 @@ public class ObjectsTest
 			return "I am " + name + ".";
 		}
 	}
+
+	@Rule
+	public CauseCheckableExpectedException expectedException = CauseCheckableExpectedException.none();
 
 	@Test(expected = IllegalAccessException.class)
 	public final void testObjects() throws Exception
@@ -195,32 +201,30 @@ public class ObjectsTest
 		assertThat(Boolean.valueOf(Objects.deepEqual(null, null)), is(equalTo(Boolean.TRUE)));
 		assertThat(Boolean.valueOf(Objects.deepEqual("", "")), is(equalTo(Boolean.TRUE)));
 		assertThat(Boolean.valueOf(Objects.deepEqual("test", "test")), is(equalTo(Boolean.TRUE)));
-		assertThat(Boolean.valueOf(Objects.deepEqual(new String("1234"), new String("1234"))),
-				is(equalTo(Boolean.TRUE)));
+		assertThat(Boolean.valueOf(Objects.deepEqual(new String("1234"), new String("1234"))), is(equalTo(Boolean.TRUE)));
 		assertThat(Boolean.valueOf(Objects.deepEqual(new SomeObject("Kevin"), new SomeObject("Kevin"))),
 				is(equalTo(Boolean.TRUE)));
 		assertThat(
-				Boolean.valueOf(Objects.deepEqual(new String[] { "Hello", "Kevin", "Lee" }, new String[] { "Hello",
-						"Kevin", "Lee" })), is(equalTo(Boolean.TRUE)));
+				Boolean.valueOf(Objects.deepEqual(new String[] { "Hello", "Kevin", "Lee" }, new String[] { "Hello", "Kevin",
+						"Lee" })), is(equalTo(Boolean.TRUE)));
 		assertThat(
 				Boolean.valueOf(Objects.deepEqual(new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
-						new SomeObject("SeongHyun") }, new SomeObject[] { new SomeObject("Kevin"),
-						new SomeObject("Lee"), new SomeObject("SeongHyun") })), is(equalTo(Boolean.TRUE)));
+						new SomeObject("SeongHyun") }, new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
+						new SomeObject("SeongHyun") })), is(equalTo(Boolean.TRUE)));
 
 		assertThat(Boolean.valueOf(Objects.deepEqual(null, new Object())), is(equalTo(Boolean.FALSE)));
 		assertThat(Boolean.valueOf(Objects.deepEqual("", "1")), is(equalTo(Boolean.FALSE)));
 		assertThat(Boolean.valueOf(Objects.deepEqual("test1", "test2")), is(equalTo(Boolean.FALSE)));
-		assertThat(Boolean.valueOf(Objects.deepEqual(new String("1234"), new String("4321"))),
-				is(equalTo(Boolean.FALSE)));
+		assertThat(Boolean.valueOf(Objects.deepEqual(new String("1234"), new String("4321"))), is(equalTo(Boolean.FALSE)));
 		assertThat(Boolean.valueOf(Objects.deepEqual(new SomeObject("Kevin"), new SomeObject("Tom"))),
 				is(equalTo(Boolean.FALSE)));
 		assertThat(
-				Boolean.valueOf(Objects.deepEqual(new String[] { "Hello", "Lee", "Kevin" }, new String[] { "Hello",
-						"Kevin", "Lee" })), is(equalTo(Boolean.FALSE)));
+				Boolean.valueOf(Objects.deepEqual(new String[] { "Hello", "Lee", "Kevin" }, new String[] { "Hello", "Kevin",
+						"Lee" })), is(equalTo(Boolean.FALSE)));
 		assertThat(
-				Boolean.valueOf(Objects.deepEqual(new SomeObject[] { new SomeObject("SeongHyun"),
-						new SomeObject("Lee"), new SomeObject("Kevin") }, new SomeObject[] { new SomeObject("Kevin"),
-						new SomeObject("Lee"), new SomeObject("SeongHyun") })), is(equalTo(Boolean.FALSE)));
+				Boolean.valueOf(Objects.deepEqual(new SomeObject[] { new SomeObject("SeongHyun"), new SomeObject("Lee"),
+						new SomeObject("Kevin") }, new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
+						new SomeObject("SeongHyun") })), is(equalTo(Boolean.FALSE)));
 	}
 
 	@Test
@@ -233,11 +237,9 @@ public class ObjectsTest
 				is(equalTo(Integer.valueOf(Character.MAX_VALUE - 100))));
 		assertThat(Integer.valueOf(Objects.hashCodeOf(Short.MAX_VALUE + 1000)),
 				is(equalTo(Integer.valueOf(Short.MAX_VALUE + 1000))));
-		assertThat(
-				Integer.valueOf(Objects.hashCodeOf(Integer.MAX_VALUE + 1000L)),
+		assertThat(Integer.valueOf(Objects.hashCodeOf(Integer.MAX_VALUE + 1000L)),
 				is(equalTo(Integer.valueOf((int) ((Integer.MAX_VALUE + 1000L) ^ ((Integer.MAX_VALUE + 1000L) >>> 32))))));
-		assertThat(Integer.valueOf(Objects.hashCodeOf(10.10F)),
-				is(equalTo(Integer.valueOf(Float.floatToIntBits(10.10F)))));
+		assertThat(Integer.valueOf(Objects.hashCodeOf(10.10F)), is(equalTo(Integer.valueOf(Float.floatToIntBits(10.10F)))));
 		final long longBits = Double.doubleToLongBits(Float.MAX_VALUE + 100.1234D);
 		assertThat(Integer.valueOf(Objects.hashCodeOf(Float.MAX_VALUE + 100.1234D)),
 				is(equalTo(Integer.valueOf((int) (longBits ^ (longBits >>> 32))))));
@@ -392,8 +394,7 @@ public class ObjectsTest
 		final int value = Short.MAX_VALUE + 100;
 		assertThat(Integer.valueOf(Objects.hash(value)),
 				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * Objects.HASH_SEED + value))));
-		assertThat(Integer.valueOf(Objects.hash(3, value)),
-				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * seed + value))));
+		assertThat(Integer.valueOf(Objects.hash(3, value)), is(equalTo(Integer.valueOf(Objects.HASH_PRIME * seed + value))));
 
 		final int[] values = { value, 6, 8, 10, 123 };
 		int result = Objects.HASH_PRIME * seed + values[0];
@@ -461,10 +462,8 @@ public class ObjectsTest
 				Integer.valueOf(Objects.hash(value)),
 				is(equalTo(Integer.valueOf(Objects.HASH_PRIME * Objects.HASH_SEED
 						+ (int) (doubleToLongBits ^ (doubleToLongBits >>> 32))))));
-		assertThat(
-				Integer.valueOf(Objects.hash(3, value)),
-				equalTo(Integer.valueOf(Objects.HASH_PRIME * seed
-						+ (int) (doubleToLongBits ^ (doubleToLongBits >>> 32)))));
+		assertThat(Integer.valueOf(Objects.hash(3, value)),
+				equalTo(Integer.valueOf(Objects.HASH_PRIME * seed + (int) (doubleToLongBits ^ (doubleToLongBits >>> 32)))));
 
 		final double[] values = { value, 6, 8, 10, 123 };
 		doubleToLongBits = Double.doubleToLongBits(values[0]);
@@ -548,8 +547,7 @@ public class ObjectsTest
 		assertThat(Objects.toStringOf(new String("something else"), nullDefault), equalTo("something else"));
 		Object object = new Object();
 		assertThat(Objects.toStringOf(object, nullDefault), equalTo(object.toString()));
-		assertThat(Objects.toStringOf(new SomeObject("Kevin"), nullDefault),
-				equalTo(new SomeObject("Kevin").toString()));
+		assertThat(Objects.toStringOf(new SomeObject("Kevin"), nullDefault), equalTo(new SomeObject("Kevin").toString()));
 		SomeObject someObject = new SomeObject("Lee");
 		assertThat(Objects.toStringOf(someObject, nullDefault), equalTo(someObject.toString()));
 	}
@@ -624,19 +622,19 @@ public class ObjectsTest
 	@Test
 	public final void testNotNullT()
 	{
-		assertThat(Objects.notNull("test"), equalTo("test"));
+		/* when / then */
+		assertThat(Objects.notNull("test"), is(equalTo("test")));
 		assertThat(Objects.notNull(new String("something else")), is(equalTo(new String("something else"))));
 		assertThat(Objects.notNull(new SomeObject("Kevin")), is(equalTo(new SomeObject("Kevin"))));
-		boolean exceptionThrown = false;
-		try
-		{
-			Objects.notNull(null);
-		}
-		catch (NullPointerException e)
-		{
-			exceptionThrown = true;
-		}
-		assertTrue(exceptionThrown);
+
+		/* expect */
+		expectedException.expect(NullPointerException.class);
+
+		/* when / then the expected exception should be thrown. */
+		Objects.notNull(null);
+
+		/* otherwise */
+		fail(format("The expected exception [%s] is not thrown.", NullPointerException.class));
 	}
 
 	@Test
@@ -646,16 +644,16 @@ public class ObjectsTest
 		assertThat(Objects.notNull("test", message), is(equalTo("test")));
 		assertThat(Objects.notNull(new String("something else"), message), is(equalTo(new String("something else"))));
 		assertThat(Objects.notNull(new SomeObject("Kevin"), message), is(equalTo(new SomeObject("Kevin"))));
-		boolean exceptionThrown = false;
-		try
-		{
-			Objects.notNull(null, message);
-		}
-		catch (NullPointerException e)
-		{
-			exceptionThrown = message.equals(e.getMessage());
-		}
-		assertTrue(exceptionThrown);
+
+		/* expect */
+		expectedException.expect(NullPointerException.class)
+				.expectMessage(is(equalTo(message)));
+
+		/* when / then the expected exception should be thrown. */
+		Objects.notNull(null, message);
+
+		/* otherwise */
+		fail(format("The expected exception [%s] is not thrown.", NullPointerException.class));
 	}
 
 	@Test
@@ -726,6 +724,19 @@ public class ObjectsTest
 
 		assertTrue(Objects.identical("Kevin", "Kevin"));
 		assertFalse(Objects.identical("Kevin", new String("Kevin")));
+	}
+
+	@Test
+	public final void testNotIdentical()
+	{
+		final Object object1 = new Object();
+		final Object object2 = object1;
+		final Object object3 = new Object();
+		assertFalse(Objects.notIdentical(object1, object2));
+		assertTrue(Objects.notIdentical(object1, object3));
+
+		assertFalse(Objects.notIdentical("Kevin", "Kevin"));
+		assertTrue(Objects.notIdentical("Kevin", new String("Kevin")));
 	}
 
 	@Test
@@ -810,14 +821,34 @@ public class ObjectsTest
 	@Test
 	public final void testToStringBuilder()
 	{
-		final String expected =
-			"SomePojo{id=100, name=Kevin, registered=true, byteValue=10, shortValue=20, intValue=100, longValue=1000000, floatValue=12.34, doubleValue=56.78}";
+		/* @formatter:off */
+		final String expected = "SomePojo{id=100, " +
+														 "name=Kevin, " +
+														 "registered=true, " +
+														 "byteValue=10, " +
+														 "shortValue=20, " +
+														 "intValue=100, " +
+														 "longValue=1000000, " +
+														 "floatValue=12.34, " +
+														 "doubleValue=56.78}";
+		/* @formatter:on */
+
 		final SomePojo somePojo =
 			new SomePojo(Long.valueOf(100L), "Kevin", true, (byte) 10, (short) 20, 100, 1000000L, 12.34F, 56.78D);
 		assertThat(somePojo.toString(), is(equalTo(expected)));
 
-		final String expected2 =
-			"ObjectsTest{id=999, name=Kevin Lee, registered=false, byteValue=11, shortValue=123, intValue=123456, longValue=11111111111, floatValue=10.1, doubleValue=12345.12345}";
+		/* @formatter:off */
+		final String expected2 = "ObjectsTest{id=999, " +
+															"name=Kevin Lee, " +
+															"registered=false, " +
+															"byteValue=11, " +
+															"shortValue=123, " +
+															"intValue=123456, " +
+															"longValue=11111111111, " +
+															"floatValue=10.1, " +
+															"doubleValue=12345.12345}";
+		/* @formatter:on */
+
 		final Long id = Long.valueOf(999L);
 		final String name = "Kevin Lee";
 		final boolean registered = false;
@@ -855,8 +886,19 @@ public class ObjectsTest
 	@Test
 	public final void testToStringBuilderWithExtraValue()
 	{
-		final String expected2 =
-			"ObjectsTest{Some extra information. blah blah blah, id=999, name=Kevin Lee, registered=false, byteValue=11, shortValue=123, intValue=123456, longValue=11111111111, floatValue=10.1, doubleValue=12345.12345}";
+		/* @formatter:off */
+		final String expected2 = "ObjectsTest{Some extra information. blah blah blah, " +
+															"id=999, " +
+															"name=Kevin Lee, " +
+															"registered=false, " +
+															"byteValue=11, " +
+															"shortValue=123, " +
+															"intValue=123456, " +
+															"longValue=11111111111, " +
+															"floatValue=10.1, " +
+															"doubleValue=12345.12345}";
+		/* @formatter:on */
+
 		final Long id = Long.valueOf(999L);
 		final String name = "Kevin Lee";
 		final boolean registered = false;
@@ -883,8 +925,19 @@ public class ObjectsTest
 	@Test
 	public final void testToStringBuilderWithExtraValueAndNewLines()
 	{
-		final String expected2 =
-			"Object{Some extra information. blah blah blah, \nid=999, name=Kevin Lee, registered=false, \nbyteValue=11, shortValue=123, intValue=123456, longValue=11111111111, floatValue=10.1, doubleValue=12345.12345}";
+		/* @formatter:off */
+		final String expected2 = "Object{Some extra information. blah blah blah, \n" +
+															"id=999, " +
+															"name=Kevin Lee, " +
+															"registered=false, \n" +
+															"byteValue=11, " +
+															"shortValue=123, " +
+															"intValue=123456, " +
+															"longValue=11111111111, " +
+															"floatValue=10.1, " +
+															"doubleValue=12345.12345}";
+		/* @formatter:on */
+
 		final Long id = Long.valueOf(999L);
 		final String name = "Kevin Lee";
 		final boolean registered = false;
@@ -913,8 +966,19 @@ public class ObjectsTest
 	@Test
 	public final void testToStringBuilderWithExtraValuesWithoutSeparatorAndNewLines()
 	{
-		final String expected2 =
-			"ObjectsTest{Some extra information. blah blah blah\nid=999, name=Kevin Lee, registered=false, \nbyteValue=11, shortValue=123, intValue=123456, longValue=11111111111, floatValue=10.1, doubleValue=12345.12345}";
+		/* @formatter:off */
+		final String expected2 = "ObjectsTest{Some extra information. blah blah blah\n" +
+															"id=999, " +
+															"name=Kevin Lee, " +
+															"registered=false, \n" +
+															"byteValue=11, " +
+															"shortValue=123, " +
+															"intValue=123456, " +
+															"longValue=11111111111, " +
+															"floatValue=10.1, " +
+															"doubleValue=12345.12345}";
+		/* @formatter:on */
+
 		final Long id = Long.valueOf(999L);
 		final String name = "Kevin Lee";
 		final boolean registered = false;
@@ -965,8 +1029,18 @@ public class ObjectsTest
 	@Test
 	public final void testToStringBuilderObjectStringString()
 	{
-		final String expected =
-			"ObjectsTest{id: 999 | name: Kevin Lee | registered: false | byteValue: 11 | shortValue: 123 | intValue: 123456 | longValue: 11111111111 | floatValue: 10.1 | doubleValue: 12345.12345}";
+		/* @formatter:off */
+		final String expected = "ObjectsTest{id: 999 | " +
+														 "name: Kevin Lee | " +
+														 "registered: false | " +
+														 "byteValue: 11 | " +
+														 "shortValue: 123 | " +
+														 "intValue: 123456 | " +
+														 "longValue: 11111111111 | " +
+														 "floatValue: 10.1 | " +
+														 "doubleValue: 12345.12345}";
+		/* @formatter:on */
+
 		final Long id = Long.valueOf(999L);
 		final String name = "Kevin Lee";
 		final boolean registered = false;

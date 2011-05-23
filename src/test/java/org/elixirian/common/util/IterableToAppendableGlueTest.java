@@ -10,12 +10,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.elixirian.common.util.IterableToAppendableGlue;
-import org.elixirian.common.util.SimpleAppendingAction;
+import org.elixirian.common.test.CauseCheckableExpectedException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
 
 /**
@@ -95,10 +95,6 @@ public class IterableToAppendableGlueTest
 				is(instanceOf(SimpleAppendingAction.AppendingActionWithoutSeparator.class)));
 	}
 
-	/**
-	 * Test method for
-	 * {@link org.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
-	 */
 	@Test
 	public final void testGlue()
 	{
@@ -128,10 +124,6 @@ public class IterableToAppendableGlueTest
 		assertThat(returnedStringBuilder2.toString(), equalTo(expectedWithoutSeparator));
 	}
 
-	/**
-	 * Test method for
-	 * {@link org.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
-	 */
 	@Test(expected = NullPointerException.class)
 	public final void testGlueWithNullAppendable()
 	{
@@ -139,10 +131,6 @@ public class IterableToAppendableGlueTest
 				.glue(null, stringList);
 	}
 
-	/**
-	 * Test method for
-	 * {@link org.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
-	 */
 	@Test(expected = NullPointerException.class)
 	public final void testGlueWithNullIterable()
 	{
@@ -150,13 +138,13 @@ public class IterableToAppendableGlueTest
 				.glue(new StringBuilder(), null);
 	}
 
-	/**
-	 * Test method for
-	 * {@link org.elixirian.common.util.IterableToAppendableGlue#glue(java.lang.Appendable, java.lang.Iterable)}.
-	 */
-	@Test(expected = AssertionError.class)
+	@Rule
+	public CauseCheckableExpectedException causeCheckableExpectedException = CauseCheckableExpectedException.none();
+
+	@Test
 	public final void testGlueThrowingIllegalArgumentException()
 	{
+		/* given */
 		final String message = "IOException for testing!";
 		final Appendable appendable = new Appendable() {
 
@@ -181,18 +169,17 @@ public class IterableToAppendableGlueTest
 			}
 		};
 
-		try
-		{
-			IterableToAppendableGlue.withSeparator(separator)
-					.glue(appendable, stringList);
-		}
-		catch (AssertionError e)
-		{
-			assertThat(e.getCause(), is(instanceOf(IOException.class)));
-			assertThat(e.getCause()
-					.getMessage(), equalTo(message));
-			throw e;
-		}
+		/* expect */
+		causeCheckableExpectedException.expect(IllegalArgumentException.class)
+				.expectCause(IOException.class)
+				.expectCauseMessage(is(equalTo(message)));
+
+		/* when / then the expected exception should be thrown */
+		IterableToAppendableGlue.withSeparator(separator)
+				.glue(appendable, stringList);
+
+		/* otherwise */
+		fail();
 	}
 
 }

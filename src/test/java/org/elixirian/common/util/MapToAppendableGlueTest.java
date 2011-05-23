@@ -7,18 +7,19 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.elixirian.common.util.MapToAppendableGlue;
+import org.elixirian.common.test.CauseCheckableExpectedException;
 import org.elixirian.common.util.SimpleAppendingAction.AppendingActionWithSeparator;
 import org.elixirian.common.util.SimpleAppendingAction.AppendingActionWithoutSeparator;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
 import org.junit.Test;
-
 
 /**
  * @author Lee, SeongHyun (Kevin)
@@ -26,7 +27,6 @@ import org.junit.Test;
  */
 public class MapToAppendableGlueTest
 {
-	private static final Map<String, Object> map = new LinkedHashMap<String, Object>();
 	private static final String id = "id";
 	private static final String name = "name";
 	private static final String number = "number";
@@ -40,6 +40,20 @@ public class MapToAppendableGlueTest
 	private static final String expected = id + keyValueSeparator + idValue + entrySeparator + name + keyValueSeparator
 			+ nameValue + entrySeparator + number + keyValueSeparator + numberValue + entrySeparator + address
 			+ keyValueSeparator + addressValue;
+	private static final Map<String, Object> map = initMap();
+
+	@Rule
+	public CauseCheckableExpectedException expectedException = CauseCheckableExpectedException.none();
+
+	private static Map<String, Object> initMap()
+	{
+		final Map<String, Object> map = new LinkedHashMap<String, Object>();
+		map.put(id, idValue);
+		map.put(name, nameValue);
+		map.put(number, numberValue);
+		map.put(address, addressValue);
+		return Collections.unmodifiableMap(map);
+	}
 
 	/**
 	 * @throws java.lang.Exception
@@ -47,10 +61,6 @@ public class MapToAppendableGlueTest
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception
 	{
-		map.put(id, idValue);
-		map.put(name, nameValue);
-		map.put(number, numberValue);
-		map.put(address, addressValue);
 	}
 
 	/**
@@ -77,9 +87,6 @@ public class MapToAppendableGlueTest
 	{
 	}
 
-	/**
-	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
-	 */
 	@Test
 	public final void testGlue()
 	{
@@ -87,13 +94,10 @@ public class MapToAppendableGlueTest
 		final MapToAppendableGlue mapToAppendableGlue =
 			MapToAppendableGlue.newMapToAppendableGlue(keyValueSeparator, entrySeparator);
 		final StringBuilder returnedStringBuilder = mapToAppendableGlue.glue(stringBuilder, map);
-		assertThat(returnedStringBuilder, is(stringBuilder));
-		assertThat(returnedStringBuilder.toString(), equalTo(expected));
+		assertThat(returnedStringBuilder, is(equalTo(stringBuilder)));
+		assertThat(returnedStringBuilder.toString(), is(equalTo(expected)));
 	}
 
-	/**
-	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
-	 */
 	@Test(expected = NullPointerException.class)
 	public final void testGlueNullAppendable()
 	{
@@ -101,9 +105,6 @@ public class MapToAppendableGlueTest
 				.glue(null, map);
 	}
 
-	/**
-	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
-	 */
 	@Test(expected = NullPointerException.class)
 	public final void testGlueNullMap()
 	{
@@ -111,15 +112,12 @@ public class MapToAppendableGlueTest
 				.glue(new StringBuilder(), null);
 	}
 
-	/**
-	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#glue(java.lang.Appendable, java.util.Map)}.
-	 */
-	@Test(expected = AssertionError.class)
+	@Test
 	public final void testGlueThrowingIllegalArgumentException()
 	{
+		/* given */
 		final String message = "IOException for testing!";
-		final Appendable appendable = new Appendable()
-		{
+		final Appendable appendable = new Appendable() {
 
 			@SuppressWarnings("unused")
 			@Override
@@ -142,23 +140,19 @@ public class MapToAppendableGlueTest
 			}
 		};
 
-		try
-		{
-			MapToAppendableGlue.newMapToAppendableGlue(":", ", ")
-					.glue(appendable, map);
-		}
-		catch (AssertionError e)
-		{
-			assertThat(e.getCause(), is(instanceOf(IOException.class)));
-			assertThat(e.getCause()
-					.getMessage(), equalTo(message));
-			throw e;
-		}
+		/* expect */
+		expectedException.expect(IllegalArgumentException.class)
+				.expectCause(IOException.class)
+				.expectCauseMessage(is(equalTo(message)));
+
+		/* when / then the expected exception should be thrown */
+		MapToAppendableGlue.newMapToAppendableGlue(":", ", ")
+				.glue(appendable, map);
+
+		/* otherwise */
+		fail();
 	}
 
-	/**
-	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#newMapToAppendableGlue(java.lang.String, java.lang.String)}.
-	 */
 	@Test
 	public final void testNewMapToAppendableGlue()
 	{
@@ -180,18 +174,12 @@ public class MapToAppendableGlueTest
 		assertThat(mapToAppendableGlue.getEntryGlue(), is(instanceOf(AppendingActionWithoutSeparator.class)));
 	}
 
-	/**
-	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#newMapToAppendableGlue(java.lang.String, java.lang.String)}.
-	 */
 	@Test(expected = NullPointerException.class)
 	public final void testNewMapToAppendableGlueWithNullKeyValueSeparator()
 	{
 		MapToAppendableGlue.newMapToAppendableGlue(null, "");
 	}
 
-	/**
-	 * Test method for {@link org.elixirian.common.util.MapToAppendableGlue#newMapToAppendableGlue(java.lang.String, java.lang.String)}.
-	 */
 	@Test(expected = NullPointerException.class)
 	public final void testNewMapToAppendableGlueWithNullEntrySeparator()
 	{

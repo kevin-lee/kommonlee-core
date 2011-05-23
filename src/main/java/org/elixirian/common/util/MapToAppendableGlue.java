@@ -81,7 +81,7 @@ public final class MapToAppendableGlue implements ToAppendableGlue<Map<?, ?>>
 		}
 		catch (IOException e)
 		{
-			throw new AssertionError(e);
+			throw new IllegalArgumentException(e);
 		}
 	}
 

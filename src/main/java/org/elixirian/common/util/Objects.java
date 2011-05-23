@@ -161,14 +161,14 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise. Consequently, if both
-	 * arguments are {@code null}, {@code true} is returned and if exactly one argument is {@code null}, {@code false}
-	 * is returned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals} method of the
-	 * first argument.
+	 * arguments are {@code null}, {@code true} is returned and if exactly one argument is {@code null}, {@code false} is
+	 * returned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals} method of the first
+	 * argument.
 	 * 
 	 * @param left
-	 *            an object
+	 *          an object
 	 * @param right
-	 *            an object to be compared with a for equality
+	 *          an object to be compared with a for equality
 	 * @return true if the arguments are equal to each other and false otherwise
 	 * @see {@link Object#equals(Object)}
 	 */
@@ -181,9 +181,9 @@ public final class Objects
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
 	 * 
 	 * @param left
-	 *            a byte value
+	 *          a byte value
 	 * @param right
-	 *            a byte value to be compared with a for equality
+	 *          a byte value to be compared with a for equality
 	 * @return true if the arguments are equal to each other and false otherwise
 	 */
 	public static boolean equal(final char left, final char right)
@@ -195,9 +195,9 @@ public final class Objects
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
 	 * 
 	 * @param left
-	 *            a short value
+	 *          a short value
 	 * @param right
-	 *            a short value to be compared with a for equality
+	 *          a short value to be compared with a for equality
 	 * @return true if the arguments are equal to each other and false otherwise
 	 */
 	public static boolean equal(final short left, final short right)
@@ -209,9 +209,9 @@ public final class Objects
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
 	 * 
 	 * @param left
-	 *            a int value
+	 *          a int value
 	 * @param right
-	 *            a int value to be compared with a for equality
+	 *          a int value to be compared with a for equality
 	 * @return true if the arguments are equal to each other and false otherwise
 	 */
 	public static boolean equal(final int left, final int right)
@@ -223,9 +223,9 @@ public final class Objects
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
 	 * 
 	 * @param left
-	 *            a long value
+	 *          a long value
 	 * @param right
-	 *            a long value be compared with a for equality
+	 *          a long value be compared with a for equality
 	 * @return true if the arguments are equal to each other and false otherwise
 	 */
 	public static boolean equal(final long left, final long right)
@@ -237,9 +237,9 @@ public final class Objects
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
 	 * 
 	 * @param left
-	 *            a float value
+	 *          a float value
 	 * @param right
-	 *            a float value to be compared with a for equality
+	 *          a float value to be compared with a for equality
 	 * @return true if the arguments are equal to each other and false otherwise
 	 */
 	public static boolean equal(final float left, final float right)
@@ -251,9 +251,9 @@ public final class Objects
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
 	 * 
 	 * @param left
-	 *            a double value
+	 *          a double value
 	 * @param right
-	 *            a double value to be compared with a for equality
+	 *          a double value to be compared with a for equality
 	 * @return true if the arguments are equal to each other and false otherwise
 	 */
 	public static boolean equal(final double left, final double right)
@@ -265,9 +265,9 @@ public final class Objects
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
 	 * 
 	 * @param left
-	 *            a boolean value
+	 *          a boolean value
 	 * @param right
-	 *            a boolean value to be compared with a for equality
+	 *          a boolean value to be compared with a for equality
 	 * @return true if the arguments are equal to each other and false otherwise
 	 */
 	public static boolean equal(final boolean left, final boolean right)
@@ -277,14 +277,14 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise. Consequently, if both
-	 * arguments are {@code null}, {@code true} is returned and if exactly one argument is {@code null}, {@code false}
-	 * is returned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals} method of the
-	 * first argument.
+	 * arguments are {@code null}, {@code true} is returned and if exactly one argument is {@code null}, {@code false} is
+	 * returned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals} method of the first
+	 * argument.
 	 * 
 	 * @param left
-	 *            an object
+	 *          an object
 	 * @param right
-	 *            an object to be compared with a for equality
+	 *          an object to be compared with a for equality
 	 * @return true if the arguments are equal to each other and false otherwise
 	 * @see {@link Object#equals(Object)}
 	 */
@@ -294,15 +294,15 @@ public final class Objects
 	}
 
 	/**
-	 * Returns {@code true} if the arguments are deeply equal to each other and {@code false} otherwise. Two
-	 * {@code null} values are deeply equal. If both arguments are arrays, the algorithm in
-	 * {@link Arrays#deepEquals(Object[], Object[]) Arrays.deepEquals} is used to determine equality. Otherwise,
-	 * equality is determined by using the {@link Object#equals(Object) equals} method of the first argument.
+	 * Returns {@code true} if the arguments are deeply equal to each other and {@code false} otherwise. Two {@code null}
+	 * values are deeply equal. If both arguments are arrays, the algorithm in
+	 * {@link Arrays#deepEquals(Object[], Object[]) Arrays.deepEquals} is used to determine equality. Otherwise, equality
+	 * is determined by using the {@link Object#equals(Object) equals} method of the first argument.
 	 * 
 	 * @param left
-	 *            an object
+	 *          an object
 	 * @param right
-	 *            an object to be compared with a for deep equality
+	 *          an object to be compared with a for deep equality
 	 * @return {@code true} if the arguments are deeply equal to each other and {@code false} otherwise
 	 * @see {@link Arrays#deepEquals(Object[], Object[])}, {@link #equal(Object, Object)}
 	 */
@@ -317,7 +317,7 @@ public final class Objects
 	 * Returns the hash code of the given input value.
 	 * 
 	 * @param value
-	 *            the given input value.
+	 *          the given input value.
 	 * @return the hash code of the given input value.
 	 * @see {@link Byte#hashCode()}
 	 */
@@ -330,7 +330,7 @@ public final class Objects
 	 * Returns the hash code of the given input value.
 	 * 
 	 * @param value
-	 *            the given input value.
+	 *          the given input value.
 	 * @return the hash code of the given input value.
 	 * @see {@link Character#hashCode()}
 	 */
@@ -343,7 +343,7 @@ public final class Objects
 	 * Returns the hash code of the given input value.
 	 * 
 	 * @param value
-	 *            the given input value.
+	 *          the given input value.
 	 * @return the hash code of the given input value.
 	 * @see {@link Short#hashCode()}
 	 */
@@ -356,7 +356,7 @@ public final class Objects
 	 * Returns the hash code of the given input value.
 	 * 
 	 * @param value
-	 *            the given input value.
+	 *          the given input value.
 	 * @return the hash code of the given input value.
 	 * @see {@link Integer#hashCode()}
 	 */
@@ -369,7 +369,7 @@ public final class Objects
 	 * Returns the hash code of the given input value.
 	 * 
 	 * @param value
-	 *            the given input value.
+	 *          the given input value.
 	 * @return the hash code of the given input value.
 	 * @see {@link Long#hashCode()}
 	 */
@@ -382,7 +382,7 @@ public final class Objects
 	 * Returns the hash code of the given input value.
 	 * 
 	 * @param value
-	 *            the given input value.
+	 *          the given input value.
 	 * @return the hash code of the given input value.
 	 * @see {@link Float#hashCode()}
 	 */
@@ -395,7 +395,7 @@ public final class Objects
 	 * Returns the hash code of the given input value.
 	 * 
 	 * @param value
-	 *            the given input value.
+	 *          the given input value.
 	 * @return the hash code of the given input value.
 	 * @see {@link Double#hashCode()}
 	 */
@@ -409,7 +409,7 @@ public final class Objects
 	 * Returns the hash code of the given input value.
 	 * 
 	 * @param value
-	 *            the given input value.
+	 *          the given input value.
 	 * @return the hash code of the given input value.
 	 * @see {@link Boolean#hashCode()}
 	 */
@@ -422,7 +422,7 @@ public final class Objects
 	 * Returns the hash code of a non-{@code null} argument and 0 for a {@code null} argument.
 	 * 
 	 * @param object
-	 *            an object
+	 *          an object
 	 * @return the hash code of a non-{@code null} argument and 0 for a {@code null} argument
 	 * @see {@link Object#hashCode()}
 	 */
@@ -440,9 +440,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	private static int hash0(final int seed, final byte value)
@@ -454,7 +454,7 @@ public final class Objects
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
 	 * 
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final byte value)
@@ -471,9 +471,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final int seed, final byte value)
@@ -485,9 +485,9 @@ public final class Objects
 	 * Generates a hash code for the values in an input array using the given seed.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param values
-	 *            the values to be hashed.
+	 *          the values to be hashed.
 	 * @return a hash value of the input values.
 	 */
 	public static int hash(final int seed, final byte[] values)
@@ -507,11 +507,11 @@ public final class Objects
 	 * placed into an array.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the first value to be hashed.
+	 *          the first value to be hashed.
 	 * @param values
-	 *            the rest values to be hashed.
+	 *          the rest values to be hashed.
 	 * @return a hash value of the sequence of input values.
 	 */
 	public static int hashBytes(final int seed, final byte value, final byte... values)
@@ -528,9 +528,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	private static int hash0(final int seed, char value)
@@ -542,7 +542,7 @@ public final class Objects
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
 	 * 
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final char value)
@@ -559,9 +559,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final int seed, final char value)
@@ -573,9 +573,9 @@ public final class Objects
 	 * Generates a hash code for the values in an input array using the given seed.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param values
-	 *            the values to be hashed.
+	 *          the values to be hashed.
 	 * @return a hash value of the input values.
 	 */
 	public static int hash(final int seed, final char[] values)
@@ -595,11 +595,11 @@ public final class Objects
 	 * placed into an array.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the first value to be hashed.
+	 *          the first value to be hashed.
 	 * @param values
-	 *            the rest values to be hashed.
+	 *          the rest values to be hashed.
 	 * @return a hash value of the sequence of input values.
 	 */
 	public static int hashChars(final int seed, final char value, final char... values)
@@ -616,9 +616,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	private static int hash0(final int seed, final short value)
@@ -630,7 +630,7 @@ public final class Objects
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
 	 * 
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final short value)
@@ -647,9 +647,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final int seed, final short value)
@@ -661,9 +661,9 @@ public final class Objects
 	 * Generates a hash code for the values in an input array using the given seed.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param values
-	 *            the values to be hashed.
+	 *          the values to be hashed.
 	 * @return a hash value of the input values.
 	 */
 	public static int hash(final int seed, final short[] values)
@@ -683,11 +683,11 @@ public final class Objects
 	 * placed into an array.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the first value to be hashed.
+	 *          the first value to be hashed.
 	 * @param values
-	 *            the rest values to be hashed.
+	 *          the rest values to be hashed.
 	 * @return a hash value of the sequence of input values.
 	 */
 	public static int hashShorts(final int seed, final short value, final short... values)
@@ -704,9 +704,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	private static int hash0(final int seed, final int value)
@@ -718,7 +718,7 @@ public final class Objects
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
 	 * 
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final int value)
@@ -735,9 +735,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final int seed, final int value)
@@ -749,9 +749,9 @@ public final class Objects
 	 * Generates a hash code for the values in an input array using the given seed.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param values
-	 *            the values to be hashed.
+	 *          the values to be hashed.
 	 * @return a hash value of the input values.
 	 */
 	public static int hash(final int seed, final int[] values)
@@ -771,11 +771,11 @@ public final class Objects
 	 * placed into an array.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the first value to be hashed.
+	 *          the first value to be hashed.
 	 * @param values
-	 *            the rest values to be hashed.
+	 *          the rest values to be hashed.
 	 * @return a hash value of the sequence of input values.
 	 */
 	public static int hashInts(final int seed, final int value, final int... values)
@@ -792,9 +792,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	private static int hash0(final int seed, final long value)
@@ -806,7 +806,7 @@ public final class Objects
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
 	 * 
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final long value)
@@ -823,9 +823,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final int seed, final long value)
@@ -837,9 +837,9 @@ public final class Objects
 	 * Generates a hash code for the values in an input array using the given seed.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param values
-	 *            the values to be hashed.
+	 *          the values to be hashed.
 	 * @return a hash value of the input values.
 	 */
 	public static int hash(final int seed, final long[] values)
@@ -859,11 +859,11 @@ public final class Objects
 	 * placed into an array.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the first value to be hashed.
+	 *          the first value to be hashed.
 	 * @param values
-	 *            the rest values to be hashed.
+	 *          the rest values to be hashed.
 	 * @return a hash value of the sequence of input values.
 	 */
 	public static int hashLongs(final int seed, final long value, final long... values)
@@ -881,9 +881,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	private static int hash0(final int seed, final float value)
@@ -895,7 +895,7 @@ public final class Objects
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
 	 * 
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final float value)
@@ -912,9 +912,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final int seed, final float value)
@@ -926,9 +926,9 @@ public final class Objects
 	 * Generates a hash code for the values in an input array using the given seed.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param values
-	 *            the values to be hashed.
+	 *          the values to be hashed.
 	 * @return a hash value of the input values.
 	 */
 	public static int hash(final int seed, final float[] values)
@@ -948,11 +948,11 @@ public final class Objects
 	 * placed into an array.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the first value to be hashed.
+	 *          the first value to be hashed.
 	 * @param values
-	 *            the rest values to be hashed.
+	 *          the rest values to be hashed.
 	 * @return a hash value of the sequence of input values.
 	 */
 	public static int hashFloats(final int seed, final float value, final float... values)
@@ -969,9 +969,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	private static int hash0(final int seed, final double value)
@@ -983,7 +983,7 @@ public final class Objects
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
 	 * 
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final double value)
@@ -1000,9 +1000,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final int seed, final double value)
@@ -1014,9 +1014,9 @@ public final class Objects
 	 * Generates a hash code for the values in an input array using the given seed.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param values
-	 *            the values to be hashed.
+	 *          the values to be hashed.
 	 * @return a hash value of the input values.
 	 */
 	public static int hash(final int seed, final double[] values)
@@ -1036,11 +1036,11 @@ public final class Objects
 	 * placed into an array.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the first value to be hashed.
+	 *          the first value to be hashed.
 	 * @param values
-	 *            the rest values to be hashed.
+	 *          the rest values to be hashed.
 	 * @return a hash value of the sequence of input values.
 	 */
 	public static int hashDoubles(final int seed, final double value, final double... values)
@@ -1057,9 +1057,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	private static int hash0(final int seed, final boolean value)
@@ -1071,7 +1071,7 @@ public final class Objects
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
 	 * 
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final boolean value)
@@ -1088,9 +1088,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final int seed, final boolean value)
@@ -1102,9 +1102,9 @@ public final class Objects
 	 * Generates a hash code for the values in an input array using the given seed.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param values
-	 *            the values to be hashed.
+	 *          the values to be hashed.
 	 * @return a hash value of the input values.
 	 */
 	public static int hash(final int seed, final boolean[] values)
@@ -1124,11 +1124,11 @@ public final class Objects
 	 * placed into an array.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the first value to be hashed.
+	 *          the first value to be hashed.
 	 * @param values
-	 *            the rest values to be hashed.
+	 *          the rest values to be hashed.
 	 * @return a hash value of the sequence of input values.
 	 */
 	public static int hashBooleans(final int seed, final boolean value, final boolean... values)
@@ -1145,9 +1145,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	private static int hash0(final int seed, final Object value)
@@ -1164,9 +1164,9 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final int seed, final Object value)
@@ -1178,9 +1178,9 @@ public final class Objects
 	 * Generates a hash code for the values in an input array using the given seed.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param values
-	 *            the values to be hashed.
+	 *          the values to be hashed.
 	 * @return a hash value of the input values.
 	 */
 	public static int hash(final int seed, final Object[] values)
@@ -1200,11 +1200,11 @@ public final class Objects
 	 * placed into an array.
 	 * 
 	 * @param seed
-	 *            the seed to be used.
+	 *          the seed to be used.
 	 * @param value
-	 *            the first value to be hashed.
+	 *          the first value to be hashed.
 	 * @param values
-	 *            the rest values to be hashed.
+	 *          the rest values to be hashed.
 	 * @return a hash value of the sequence of input values.
 	 */
 	public static int hashObjects(final int seed, final Object value, final Object... values)
@@ -1216,7 +1216,7 @@ public final class Objects
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
 	 * 
 	 * @param value
-	 *            the value to be hashed.
+	 *          the value to be hashed.
 	 * @return a hash value of the input value
 	 */
 	public static int hash(final Object value)
@@ -1228,7 +1228,7 @@ public final class Objects
 	 * Generates a hash code for the values in an input array using the {@link #HASH_SEED}.
 	 * 
 	 * @param values
-	 *            the values to be hashed.
+	 *          the values to be hashed.
 	 * @return a hash value of the input values.
 	 */
 	public static int hash(final Object[] values)
@@ -1237,13 +1237,13 @@ public final class Objects
 	}
 
 	/**
-	 * Generates a hash code for a sequence of input values using the {@link #HASH_SEED}. The hash code is generated as
-	 * if all the input values were placed into an array.
+	 * Generates a hash code for a sequence of input values using the {@link #HASH_SEED}. The hash code is generated as if
+	 * all the input values were placed into an array.
 	 * 
 	 * @param value
-	 *            the first value to be hashed.
+	 *          the first value to be hashed.
 	 * @param values
-	 *            the rest values to be hashed.
+	 *          the rest values to be hashed.
 	 * @return a hash value of the sequence of input values.
 	 */
 	public static int hash(final Object value, final Object... values)
@@ -1256,7 +1256,7 @@ public final class Objects
 	 * {@code null} argument.
 	 * 
 	 * @param object
-	 *            an object
+	 *          an object
 	 * @return the result of calling {@code toString} for a non-{@code null} argument and "{@code null}" for a
 	 *         {@code null} argument
 	 * @see {@link Object#toString()}, {@link String#valueOf(Object)}
@@ -1267,13 +1267,13 @@ public final class Objects
 	}
 
 	/**
-	 * Returns the result of calling {@code toString} on the first argument if the first argument is not {@code null}
-	 * and returns the second argument otherwise.
+	 * Returns the result of calling {@code toString} on the first argument if the first argument is not {@code null} and
+	 * returns the second argument otherwise.
 	 * 
 	 * @param object
-	 *            an object
+	 *          an object
 	 * @param nullDefault
-	 *            string to return if the first argument is {@code null}
+	 *          string to return if the first argument is {@code null}
 	 * @return the result of calling {@code toString} on the first argument if it is not {@code null} and the second
 	 *         argument otherwise.
 	 * @see {@link #toStringOf(Object)}
@@ -1285,8 +1285,8 @@ public final class Objects
 
 	/**
 	 * <p>
-	 * Returns 0 if the arguments are identical and {@code c.compare(a, b)} otherwise. Consequently, if both arguments
-	 * are {@code null} 0 is returned.
+	 * Returns 0 if the arguments are identical and {@code c.compare(a, b)} otherwise. Consequently, if both arguments are
+	 * {@code null} 0 is returned.
 	 * </p>
 	 * <p>
 	 * Note that if one of the arguments is {@code null}, a {@code NullPointerException} may or may not be thrown
@@ -1294,13 +1294,13 @@ public final class Objects
 	 * </p>
 	 * 
 	 * @param <T>
-	 *            the type of the objects being compared
+	 *          the type of the objects being compared
 	 * @param left
-	 *            an object
+	 *          an object
 	 * @param right
-	 *            an object to be compared with a
+	 *          an object to be compared with a
 	 * @param comparator
-	 *            the {@code Comparator} to compare the first two arguments
+	 *          the {@code Comparator} to compare the first two arguments
 	 * @return 0 if the arguments are identical and {@code c.compare(a, b)} otherwise.
 	 * @see {@link Comparable}, {@link Comparator}
 	 */
@@ -1321,12 +1321,12 @@ public final class Objects
 	 * </pre>
 	 * 
 	 * @param <T>
-	 *            the type of the reference
+	 *          the type of the reference
 	 * @param object
-	 *            the object reference to check for nullity
+	 *          the object reference to check for nullity
 	 * @return object if not {@code null}
 	 * @throws NullPointerException
-	 *             if {@code obj} is {@code null}
+	 *           if {@code obj} is {@code null}
 	 */
 	public static <T> T notNull(final T object)
 	{
@@ -1338,9 +1338,9 @@ public final class Objects
 	}
 
 	/**
-	 * Checks that the specified object reference is not {@code null} and throws a customized
-	 * {@link NullPointerException} if it is. This method is designed primarily for doing parameter validation in
-	 * methods and constructors with multiple parameters, as demonstrated below:
+	 * Checks that the specified object reference is not {@code null} and throws a customized {@link NullPointerException}
+	 * if it is. This method is designed primarily for doing parameter validation in methods and constructors with
+	 * multiple parameters, as demonstrated below:
 	 * 
 	 * <pre>
 	 * public Foo(Bar bar, Baz baz)
@@ -1351,14 +1351,14 @@ public final class Objects
 	 * </pre>
 	 * 
 	 * @param <T>
-	 *            the type of the reference
+	 *          the type of the reference
 	 * @param object
-	 *            the object reference to check for nullity
+	 *          the object reference to check for nullity
 	 * @param message
-	 *            detail message to be used in the event that a {@code NullPointerException} is thrown
+	 *          detail message to be used in the event that a {@code NullPointerException} is thrown
 	 * @return {@code object} if not {@code null}
 	 * @throws NullPointerException
-	 *             if object is null
+	 *           if object is null
 	 */
 	public static <T> T notNull(final T object, final String message)
 	{
@@ -1371,11 +1371,11 @@ public final class Objects
 
 	/**
 	 * @param <T>
-	 *            the type of the reference
+	 *          the type of the reference
 	 * @param object
-	 *            the object reference to check for nullity
+	 *          the object reference to check for nullity
 	 * @param defaultValue
-	 *            the default object to be used if the given object variable contains <code>null</code> reference.
+	 *          the default object to be used if the given object variable contains <code>null</code> reference.
 	 * @return object if not {@code null}. Otherwise it's the given defaultValue.
 	 */
 	public static <T> T nullThenUse(final T object, final T defaultValue)
@@ -1387,7 +1387,7 @@ public final class Objects
 	 * Checks if the given object is null (the Object variable contains null reference).
 	 * 
 	 * @param object
-	 *            the given object to check its nullity.
+	 *          the given object to check its nullity.
 	 * @return true if the given object is null (the variable contains null reference). false otherwise.
 	 */
 	public static boolean isNull(final Object object)
@@ -1399,9 +1399,9 @@ public final class Objects
 	 * Checks if the given object is not null (the Object variable contains some object reference).
 	 * 
 	 * @param object
-	 *            the given object to check its nullity.
-	 * @return true if the given object is not null (the variable contains some object reference). false if the object
-	 *         is null (the variable contains null reference).
+	 *          the given object to check its nullity.
+	 * @return true if the given object is not null (the variable contains some object reference). false if the object is
+	 *         null (the variable contains null reference).
 	 */
 	public static boolean isNotNull(final Object object)
 	{
@@ -1412,9 +1412,9 @@ public final class Objects
 	 * Checks if two objects are identical (object1 == object2)
 	 * 
 	 * @param object1
-	 *            an obejct
+	 *          an obejct
 	 * @param object2
-	 *            the other object to check if it is identical to the object1.
+	 *          the other object to check if it is identical to the object1.
 	 * @return true if both objects are identical (object1 == object2). false otherwise.
 	 */
 	public static boolean identical(final Object object1, final Object object2)
@@ -1423,15 +1423,29 @@ public final class Objects
 	}
 
 	/**
-	 * casts the given object to the given type object then returns the casted object if the object is an instance of
-	 * the given {@link Class} type . Otherwise, it returns null.
+	 * Checks if two objects are NOT identical (object1 != object2)
+	 * 
+	 * @param object1
+	 *          an object
+	 * @param object2
+	 *          the other object to check if it is not identical to the object1.
+	 * @return true if both objects are not identical (object1 != object2). false otherwise.
+	 */
+	public static boolean notIdentical(final Object object1, final Object object2)
+	{
+		return object1 != object2;
+	}
+
+	/**
+	 * casts the given object to the given type object then returns the casted object if the object is an instance of the
+	 * given {@link Class} type . Otherwise, it returns null.
 	 * 
 	 * @param <T>
-	 *            the type
+	 *          the type
 	 * @param type
-	 *            the {@link Class} of the type for casting.
+	 *          the {@link Class} of the type for casting.
 	 * @param object
-	 *            the given object to be casted to the type if it is an instance of the type.
+	 *          the given object to be casted to the type if it is an instance of the type.
 	 * @return T type object casted from the object if it is an instance of the type. null if it is not instance of the
 	 *         type.
 	 */
@@ -1603,11 +1617,10 @@ public final class Objects
 		}
 
 		/**
-		 * Add the given value followed by the value of {@link #getFieldSeparator()} object to this
-		 * {@link ToStringBuilder}.
+		 * Add the given value followed by the value of {@link #getFieldSeparator()} object to this {@link ToStringBuilder}.
 		 * 
 		 * @param value
-		 *            the value to be added.
+		 *          the value to be added.
 		 * @return this {@link ToStringBuilder} object.
 		 */
 		public ToStringBuilder value(final String value)
@@ -1620,7 +1633,7 @@ public final class Objects
 		 * {@link #getFieldSeparator()} at the end of the value.
 		 * 
 		 * @param value
-		 *            the value to be added.
+		 *          the value to be added.
 		 * @return this {@link ToStringBuilder} object
 		 */
 		public ToStringBuilder valueWithNoSeparator(final String value)
@@ -1668,4 +1681,5 @@ public final class Objects
 	{
 		return new ToStringBuilder(object, fieldSeparator, keyValueSeparator);
 	}
+
 }

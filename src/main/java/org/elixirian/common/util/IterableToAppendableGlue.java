@@ -75,7 +75,7 @@ public final class IterableToAppendableGlue implements ToAppendableGlue<Iterable
 		}
 		catch (IOException e)
 		{
-			throw new AssertionError(e);
+			throw new IllegalArgumentException(e);
 		}
 	}
 }
