@@ -22,6 +22,22 @@ import org.elixirian.common.io.exception.RuntimeIoException;
 import org.elixirian.common.validation.Assertions;
 
 /**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _______________  ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ _____  ____
+ *    /   \/    / /      \   \/   /_    _//     \/   /
+ *   /        /  /    ___/\      / /   / /          /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-07-13)
  * @version 0.0.2 (2010-11-03) moved from the elixirian-common-filemanager package.
@@ -41,7 +57,7 @@ public final class NioFileUtil
 	 * Calls close() method on any {@link Closeable} object without throwing {@link IOException}.
 	 * 
 	 * @param closeable
-	 *            the given {@link Closeable} object the close() method of which is to be called by this method.
+	 *          the given {@link Closeable} object the close() method of which is to be called by this method.
 	 */
 	public static void closeQuietly(Closeable closeable)
 	{

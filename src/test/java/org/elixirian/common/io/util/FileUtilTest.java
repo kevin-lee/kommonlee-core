@@ -20,7 +20,8 @@ import java.util.List;
 import org.elixirian.common.io.ByteArrayConsumer;
 import org.elixirian.common.io.ByteArrayProducer;
 import org.elixirian.common.io.exception.RuntimeIoException;
-import org.elixirian.common.io.util.FileUtil;
+import org.elixirian.common.test.CauseCheckableExpectedException;
+import org.elixirian.common.test.CommonTestHelper.Accessibility;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -33,6 +34,22 @@ import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 
 /**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _______________  ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ _____  ____
+ *    /   \/    / /      \   \/   /_    _//     \/   /
+ *   /        /  /    ___/\      / /   / /          /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-04-02)
  */
@@ -40,6 +57,9 @@ public class FileUtilTest
 {
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
+
+	@Rule
+	public CauseCheckableExpectedException causeCheckableExpectedException = CauseCheckableExpectedException.none();
 
 	private List<Byte> byteList;
 	private StringBuilder stringBuilder;
@@ -195,8 +215,7 @@ public class FileUtilTest
 			{
 				exceptionThrown = true;
 			}
-			assertTrue(format("expected exception [%s] is not thrown.", IllegalArgumentException.class),
-					exceptionThrown);
+			assertTrue(format("expected exception [%s] is not thrown.", IllegalArgumentException.class), exceptionThrown);
 		}
 	}
 
@@ -242,33 +261,32 @@ public class FileUtilTest
 		}
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testReadFileWith0SizeBuffer() throws Exception
 	{
+		/* given */
 		ByteArrayConsumer byteArrayConsumer = null;
 
-		try
-		{
-			byteArrayConsumer = mock(ByteArrayConsumer.class);
-			doAnswer(new Answer<Void>() {
-				@Override
-				public Void answer(@SuppressWarnings("unused") InvocationOnMock invocation) throws Throwable
-				{
-					return null;
-				}
-			}).when(byteArrayConsumer)
-					.consume(Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
+		byteArrayConsumer = mock(ByteArrayConsumer.class);
+		doAnswer(new Answer<Void>() {
+			@Override
+			public Void answer(@SuppressWarnings("unused") InvocationOnMock invocation) throws Throwable
+			{
+				return null;
+			}
+		}).when(byteArrayConsumer)
+				.consume(Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
 
-			FileUtil.readFile(getTestFile(), 1, byteArrayConsumer);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			fail("No exception should be thrown here!");
-		}
+		FileUtil.readFile(getTestFile(), 1, byteArrayConsumer);
 
-		/* test */
+		/* expect */
+		causeCheckableExpectedException.expect(IllegalArgumentException.class);
+
+		/* when / then: the expected exception should be thrown. */
 		FileUtil.readFile(getTestFile(), 0, byteArrayConsumer);
+
+		/* otherwise */
+		fail(format("The expected exception [%s] is not thrown.", IllegalArgumentException.class));
 	}
 
 	private static class ByteArrayProducer4Testing implements ByteArrayProducer
@@ -340,31 +358,31 @@ public class FileUtilTest
 		}
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testWriteFileWith0SizeBuffer()
 	{
+		/* given */
 		File file = null;
 		byte[] byteArray = null;
-		try
-		{
-			file = new File(temporaryFolder.getRoot(), "file4testing2.txt");
+		file = new File(temporaryFolder.getRoot(), "file4testing2.txt");
 
-			final String expected = this.stringBuilder.toString();
-			byteArray = new byte[expected.length()];
-			for (int i = 0, size = expected.length(); i < size; i++)
-			{
-				byteArray[i] = (byte) expected.charAt(i);
-			}
-		}
-		catch (Exception e)
+		final String expected = this.stringBuilder.toString();
+		byteArray = new byte[expected.length()];
+		for (int i = 0, size = expected.length(); i < size; i++)
 		{
-			e.printStackTrace();
-			fail("No exception should be thrown here!");
+			byteArray[i] = (byte) expected.charAt(i);
 		}
 
 		final ByteArrayProducer byteArrayProducer = new ByteArrayProducer4Testing(byteArray);
-		/* test */
+
+		/* expect */
+		causeCheckableExpectedException.expect(IllegalArgumentException.class);
+
+		/* when / then: the expected exception should be thrown. */
 		FileUtil.writeFile(file, 0, byteArrayProducer);
+
+		/* otherwise */
+		fail(format("The expected exception [%s] is not thrown.", IllegalArgumentException.class));
 	}
 
 	/**

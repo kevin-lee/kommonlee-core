@@ -8,6 +8,22 @@ import static org.elixirian.common.validation.Assertions.*;
 import java.io.Writer;
 
 /**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _______________  ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ _____  ____
+ *    /   \/    / /      \   \/   /_    _//     \/   /
+ *   /        /  /    ___/\      / /   / /          /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-09-18)
  */
@@ -23,8 +39,7 @@ public final class StringBuildWriter extends Writer
 
 	public StringBuildWriter(final int initialSize)
 	{
-		assertTrue(0 < initialSize, "Negative int [%s] is entered as a builder initial size",
-				Integer.valueOf(initialSize));
+		assertTrue(0 < initialSize, "Negative int [%s] is entered as a builder initial size", Integer.valueOf(initialSize));
 		builder = new StringBuilder(initialSize);
 		lock = builder;
 	}

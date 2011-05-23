@@ -10,8 +10,23 @@ import org.elixirian.common.exception.ElixirianRuntimeException;
 import org.elixirian.common.io.exception.RuntimeIoException;
 import org.junit.Test;
 
-
 /**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _______________  ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ _____  ____
+ *    /   \/    / /      \   \/   /_    _//     \/   /
+ *   /        /  /    ___/\      / /   / /          /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-02-24)
  */
@@ -31,7 +46,8 @@ public class RuntimeIoExceptionTest
 
 	/**
 	 * Test method for
-	 * {@link org.elixirian.common.io.exception.RuntimeIoException#ElixirianIoException(java.lang.String, java.lang.Throwable)}.
+	 * {@link org.elixirian.common.io.exception.RuntimeIoException#ElixirianIoException(java.lang.String, java.lang.Throwable)}
+	 * .
 	 */
 	@Test
 	public final void testElixirianIoExceptionStringThrowable()
@@ -48,7 +64,8 @@ public class RuntimeIoExceptionTest
 	}
 
 	/**
-	 * Test method for {@link org.elixirian.common.io.exception.RuntimeIoException#ElixirianIoException(java.lang.String)}.
+	 * Test method for {@link org.elixirian.common.io.exception.RuntimeIoException#ElixirianIoException(java.lang.String)}
+	 * .
 	 */
 	@Test
 	public final void testElixirianIoExceptionString()
@@ -62,7 +79,8 @@ public class RuntimeIoExceptionTest
 	}
 
 	/**
-	 * Test method for {@link org.elixirian.common.io.exception.RuntimeIoException#ElixirianIoException(java.lang.Throwable)}.
+	 * Test method for
+	 * {@link org.elixirian.common.io.exception.RuntimeIoException#ElixirianIoException(java.lang.Throwable)}.
 	 */
 	@Test
 	public final void testElixirianIoExceptionThrowable()
