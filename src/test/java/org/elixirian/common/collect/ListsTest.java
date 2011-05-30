@@ -309,61 +309,67 @@ public class ListsTest
         tempHowMany = seed * (random.nextInt(100) + 1);
       }
       final int howMany = tempHowMany;
-
-      System.out.println("total: " + totalMemory);
-      System.out.println("howMany: " + howMany);
-      System.out.println();
-
-      /* when */
-      long beforeMemory = runtime.freeMemory();
-      @SuppressWarnings("unused")
-      final List<Object> objectList1 = newArrayListWithInitialCapacity(howMany);
-      long afterMemory = runtime.freeMemory();
-      final long result1 = beforeMemory - afterMemory;
-      System.out.println("before: " + beforeMemory);
-      System.out.println("after: " + afterMemory);
-      System.out.println("result1: " + result1);
-      System.out.println();
-
-      beforeMemory = runtime.freeMemory();
-      @SuppressWarnings("unused")
-      final List<Object> objectList2 = newArrayListWithInitialCapacity(howMany + howMany);
-      afterMemory = runtime.freeMemory();
-      final long result2 = beforeMemory - afterMemory;
-      System.out.println("before: " + beforeMemory);
-      System.out.println("after: " + afterMemory);
-      System.out.println("result2: " + result2);
-
-      /* then */
       final int expected = howMany * size;
-      System.out.println("------------------------------");
-      System.out.println("expected: " + expected);
-      final long difference1 = result2 - result1;
-      System.out.println("result2 - result1: " + difference1);
-      assertEquals(expected, difference1);
-      System.out.println();
+      final int expected2 = expected * 2;
+      final long difference1;
+      final long difference2;
+      final long difference3;
+
+      // System.out.println("total: " + totalMemory);
+      // System.out.println("howMany: " + howMany);
+      // System.out.println();
+      long beforeMemory = 0;
+      long afterMemory = 0;
+      final long result1;
+      final long result2;
+      final long result3;
 
       /* when */
       beforeMemory = runtime.freeMemory();
-      @SuppressWarnings("unused")
-      final List<Object> objectList3 = newArrayListWithInitialCapacity(howMany * 3);
+      newArrayListWithInitialCapacity(howMany);
       afterMemory = runtime.freeMemory();
-      final long result3 = beforeMemory - afterMemory;
-      System.out.println("before: " + beforeMemory);
-      System.out.println("after: " + afterMemory);
-      System.out.println("result3: " + result3);
+      result1 = beforeMemory - afterMemory;
+      // System.out.println("before: " + beforeMemory);
+      // System.out.println("after: " + afterMemory);
+      // System.out.println("result1: " + result1);
+      // System.out.println();
+
+      beforeMemory = runtime.freeMemory();
+      newArrayListWithInitialCapacity(howMany + howMany);
+      afterMemory = runtime.freeMemory();
+      result2 = beforeMemory - afterMemory;
+      // System.out.println("before: " + beforeMemory);
+      // System.out.println("after: " + afterMemory);
+      // System.out.println("result2: " + result2);
 
       /* then */
-      final long difference2 = result3 - result2;
-      final long difference3 = result3 - result1;
-      System.out.println("------------------------------");
-      System.out.println("expected: " + expected);
-      System.out.println("result3 - result2: " + difference2);
-      System.out.println("------------------------------");
-      final int expected2 = expected * 2;
-      System.out.println("expected: " + expected2);
-      System.out.println("result3 - result1: " + difference3);
-      System.out.println();
+      // System.out.println("------------------------------");
+      // System.out.println("expected: " + expected);
+      difference1 = result2 - result1;
+      // System.out.println("result2 - result1: " + difference1);
+      assertEquals(expected, difference1);
+      // System.out.println();
+
+      /* when */
+      beforeMemory = runtime.freeMemory();
+      newArrayListWithInitialCapacity(howMany * 3);
+      afterMemory = runtime.freeMemory();
+      result3 = beforeMemory - afterMemory;
+      // System.out.println("before: " + beforeMemory);
+      // System.out.println("after: " + afterMemory);
+      // System.out.println("result3: " + result3);
+
+      /* then */
+      difference2 = result3 - result2;
+      difference3 = result3 - result1;
+      // System.out.println("------------------------------");
+      // System.out.println("expected: " + expected);
+      // System.out.println("result3 - result2: " + difference2);
+      // System.out.println("------------------------------");
+
+      // System.out.println("expected: " + expected2);
+      // System.out.println("result3 - result1: " + difference3);
+      // System.out.println();
       assertEquals(expected, difference2);
       assertEquals(expected2, difference3);
     }
