@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import org.elixirian.common.test.CauseCheckableExpectedException;
 import org.elixirian.common.test.CommonTestHelper.Accessibility;
@@ -288,43 +289,85 @@ public class ListsTest
     assertEquals(expected3.size(), list3.size());
   }
 
+  private static final Random random = new Random(1234);
+
   @Test
   public final void testNewArrayListWithInitialCapacity()
   {
-    /* given */
-    final int howMany = 300000;
-    final int size = 4;
-    final Runtime runtime = Runtime.getRuntime();
+    System.out.println("\nListsTest.testNewArrayListWithInitialCapacity() starts");
+    synchronized (this)
+    {
+      /* given */
+      final int seed = 10000;
+      final int size = 4;
+      final Runtime runtime = Runtime.getRuntime();
+      final long totalMemory = runtime.totalMemory();
 
-    /* when */
-    long beforeMemory = runtime.freeMemory();
-    @SuppressWarnings("unused")
-    final List<Object> objectList1 = newArrayListWithInitialCapacity(howMany);
-    long afterMemory = runtime.freeMemory();
-    final long result1 = beforeMemory - afterMemory;
+      int tempHowMany = 1000000000;
+      while (totalMemory <= (tempHowMany * 3 + tempHowMany * 2 + tempHowMany + 1000))
+      {
+        tempHowMany = seed * (random.nextInt(100) + 1);
+      }
+      final int howMany = tempHowMany;
 
-    beforeMemory = runtime.freeMemory();
-    @SuppressWarnings("unused")
-    final List<Object> objectList2 = newArrayListWithInitialCapacity(howMany + howMany);
-    afterMemory = runtime.freeMemory();
-    final long result2 = beforeMemory - afterMemory;
+      System.out.println("total: " + totalMemory);
+      System.out.println("howMany: " + howMany);
+      System.out.println();
 
-    /* then */
-    System.out.println("result1: " + result1);
-    System.out.println("result2: " + result2);
-    assertEquals((howMany * size), result2 - result1);
+      /* when */
+      long beforeMemory = runtime.freeMemory();
+      @SuppressWarnings("unused")
+      final List<Object> objectList1 = newArrayListWithInitialCapacity(howMany);
+      long afterMemory = runtime.freeMemory();
+      final long result1 = beforeMemory - afterMemory;
+      System.out.println("before: " + beforeMemory);
+      System.out.println("after: " + afterMemory);
+      System.out.println("result1: " + result1);
+      System.out.println();
 
-    /* when */
-    beforeMemory = runtime.freeMemory();
-    @SuppressWarnings("unused")
-    final List<Object> objectList3 = newArrayListWithInitialCapacity(howMany * 3);
-    afterMemory = runtime.freeMemory();
-    final long result3 = beforeMemory - afterMemory;
-    System.out.println("result3: " + result3);
-    
-    /* then */
-    assertEquals((howMany * size), result3 - result2);
-    assertEquals((howMany * size) * 2, result3 - result1);
+      beforeMemory = runtime.freeMemory();
+      @SuppressWarnings("unused")
+      final List<Object> objectList2 = newArrayListWithInitialCapacity(howMany + howMany);
+      afterMemory = runtime.freeMemory();
+      final long result2 = beforeMemory - afterMemory;
+      System.out.println("before: " + beforeMemory);
+      System.out.println("after: " + afterMemory);
+      System.out.println("result2: " + result2);
+
+      /* then */
+      final int expected = howMany * size;
+      System.out.println("------------------------------");
+      System.out.println("expected: " + expected);
+      final long difference1 = result2 - result1;
+      System.out.println("result2 - result1: " + difference1);
+      assertEquals(expected, difference1);
+      System.out.println();
+
+      /* when */
+      beforeMemory = runtime.freeMemory();
+      @SuppressWarnings("unused")
+      final List<Object> objectList3 = newArrayListWithInitialCapacity(howMany * 3);
+      afterMemory = runtime.freeMemory();
+      final long result3 = beforeMemory - afterMemory;
+      System.out.println("before: " + beforeMemory);
+      System.out.println("after: " + afterMemory);
+      System.out.println("result3: " + result3);
+
+      /* then */
+      final long difference2 = result3 - result2;
+      final long difference3 = result3 - result1;
+      System.out.println("------------------------------");
+      System.out.println("expected: " + expected);
+      System.out.println("result3 - result2: " + difference2);
+      System.out.println("------------------------------");
+      final int expected2 = expected * 2;
+      System.out.println("expected: " + expected2);
+      System.out.println("result3 - result1: " + difference3);
+      System.out.println();
+      assertEquals(expected, difference2);
+      assertEquals(expected2, difference3);
+    }
+    System.out.println("ListsTest.testNewArrayListWithInitialCapacity() ends\n");
   }
 
   @SuppressWarnings("rawtypes")
