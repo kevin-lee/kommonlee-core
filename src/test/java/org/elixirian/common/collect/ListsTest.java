@@ -320,7 +320,8 @@ public class ListsTest
     final List<Object> objectList3 = newArrayListWithInitialCapacity(howMany * 3);
     afterMemory = runtime.freeMemory();
     final long result3 = beforeMemory - afterMemory;
-
+    System.out.println("result3: " + result3);
+    
     /* then */
     assertEquals((howMany * size), result3 - result2);
     assertEquals((howMany * size) * 2, result3 - result1);
