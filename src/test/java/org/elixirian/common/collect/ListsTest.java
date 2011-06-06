@@ -23,14 +23,37 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 
+/**
+ * <pre>
+ *     ____________    ___________  ____   _______ _________ _______ _______________  ____
+ *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
+ *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
+ *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
+ * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ _____  ____
+ *    /   \/    / /      \   \/   /_    _//     \/   /
+ *   /        /  /    ___/\      / /   / /          /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
+ * @author Lee, SeongHyun (Kevin)
+ * @version 0.0.1 (2011-02-17)
+ */
 public class ListsTest
 {
   @SuppressWarnings("boxing")
-  private static final Integer[] INTEGERS = { -955, -34, -120, 0, 23, 50, -3, 20, 110, 999 };
+  private static final Integer[] INTEGERS = { -955, -34, -120, 0, 23, 50, -3, 20, 110, 999, 20, 0, -120, 346, 23267,
+      21, 111, 55, 923, 375, 632, 6099, 41290, 337, 65, 325, 299, 73927, 293, 926, 58219, 86271, 337 };
 
   private static final List<Integer> INTEGER_VALUE_LIST = Collections.unmodifiableList(Arrays.asList(INTEGERS));
 
-  private static final String[] STRINGS = { "Hello, ", "Kevin", "Lee", "." };
+  private static final String[] STRINGS = { "Hello, ", "Kevin", "Lee", "", "blah", "Test String", "blah", "blah",
+      "Hello", "Kevin", null, "blah blah", "Hello", ", ", "World", "blah", ", ", "blah", "", " ", "Kevin", " ", "Lee",
+      " ", "0123456789", "Kevin", null, "Lee", " ", "blah", null, "blah blah", "Kevin", "Testing", "Collection" };
 
   private static final List<String> STRING_VALUE_LIST = Collections.unmodifiableList(Arrays.asList(STRINGS));
 
@@ -222,7 +245,7 @@ public class ListsTest
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_LIST;
-    final Iterator<String> input2 = STRING_VALUE_LIST.iterator();
+    final Iterator<String> input2 = expected2.iterator();
 
     /* when */
     final List<String> list2 = newArrayList(input2);
@@ -234,7 +257,7 @@ public class ListsTest
 
     /* given */
     final Collection<Object> expected3 = OBJECT_LIST;
-    final Iterator<Object> input3 = OBJECT_LIST.iterator();
+    final Iterator<Object> input3 = expected3.iterator();
 
     /* when */
     final List<Object> list3 = newArrayList(input3);
@@ -265,7 +288,7 @@ public class ListsTest
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_LIST;
-    final String[] input2 = STRING_VALUE_LIST.toArray(new String[expected2.size()]);
+    final String[] input2 = expected2.toArray(new String[expected2.size()]);
 
     /* when */
     final List<String> list2 = newArrayList(input2);
@@ -277,7 +300,7 @@ public class ListsTest
 
     /* given */
     final Collection<Object> expected3 = OBJECT_LIST;
-    final Object[] input3 = OBJECT_LIST.toArray(new Object[expected3.size()]);
+    final Object[] input3 = expected3.toArray(new Object[expected3.size()]);
 
     /* when */
     final List<Object> list3 = newArrayList(input3);
@@ -523,7 +546,7 @@ public class ListsTest
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_LIST;
-    final Iterator<String> input2 = STRING_VALUE_LIST.iterator();
+    final Iterator<String> input2 = expected2.iterator();
 
     /* when */
     final List<String> list2 = newLinkedList(input2);
@@ -535,7 +558,7 @@ public class ListsTest
 
     /* given */
     final Collection<Object> expected3 = OBJECT_LIST;
-    final Iterator<Object> input3 = OBJECT_LIST.iterator();
+    final Iterator<Object> input3 = expected3.iterator();
 
     /* when */
     final List<Object> list3 = newLinkedList(input3);
@@ -566,7 +589,7 @@ public class ListsTest
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_LIST;
-    final String[] input2 = STRING_VALUE_LIST.toArray(new String[expected2.size()]);
+    final String[] input2 = expected2.toArray(new String[expected2.size()]);
 
     /* when */
     final List<String> list2 = newLinkedList(input2);
@@ -578,7 +601,7 @@ public class ListsTest
 
     /* given */
     final Collection<Object> expected3 = OBJECT_LIST;
-    final Object[] input3 = OBJECT_LIST.toArray(new Object[expected3.size()]);
+    final Object[] input3 = expected3.toArray(new Object[expected3.size()]);
 
     /* when */
     final List<Object> list3 = newLinkedList(input3);

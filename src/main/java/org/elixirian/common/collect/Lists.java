@@ -76,10 +76,10 @@ public final class Lists
     return list;
   }
 
-  public static <E> ArrayList<E> newArrayList(final E... e)
+  public static <E> ArrayList<E> newArrayList(final E... elements)
   {
     final ArrayList<E> list = newArrayList();
-    Collections.addAll(list, e);
+    Collections.addAll(list, elements);
     return list;
   }
 
@@ -131,10 +131,10 @@ public final class Lists
     return list;
   }
 
-  public static <E> LinkedList<E> newLinkedList(final E... e)
+  public static <E> LinkedList<E> newLinkedList(final E... elements)
   {
     final LinkedList<E> list = newLinkedList();
-    Collections.addAll(list, e);
+    Collections.addAll(list, elements);
     return list;
   }
 }
