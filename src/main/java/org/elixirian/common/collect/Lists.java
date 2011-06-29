@@ -52,6 +52,7 @@ public final class Lists
    * @param <E>
    *          the type of element the ArrayList contains.
    * @param elements
+   *          the elements the given ArrayList contains.
    * @return a new instance of {@link ArrayList} containing the elements of the specified collection, in the order they
    *         are returned by the collection's iterator.
    */
@@ -60,6 +61,15 @@ public final class Lists
     return new ArrayList<E>(elements);
   }
 
+  /**
+   * Returns a new instance of {@link ArrayList} containing the elements in the given {@link Iterable}.
+   * 
+   * @param <E>
+   *          the type of element the Iterable contains.
+   * @param elements
+   *          the elements the given Iterable contains.
+   * @return a new instance of {@link ArrayList} containing the elements in the given {@link Iterable}.
+   */
   public static <E> ArrayList<E> newArrayList(final Iterable<? extends E> elements)
   {
     final ArrayList<E> list = newArrayList();
@@ -68,6 +78,15 @@ public final class Lists
     return list;
   }
 
+  /**
+   * Returns a new instance of {@link ArrayList} containing the elements in the given {@link Iterator}.
+   * 
+   * @param <E>
+   *          the type of element the Iterator contains.
+   * @param elements
+   *          the elements the given Iterator contains.
+   * @return a new instance of {@link ArrayList} containing the elements in the given {@link Iterator}.
+   */
   public static <E> ArrayList<E> newArrayList(final Iterator<? extends E> elements)
   {
     final ArrayList<E> list = newArrayList();

@@ -644,7 +644,6 @@ public class MapsTest
   public final void testNewTreeMapFromSortedMapSortedMapOfKQextendsV()
   {
     /* given */
-    @SuppressWarnings("rawtypes")
     final Class expectedType = EXPECTED_TREE_MAP_TYPE;
 
     final NavigableMap<Object, Object> tempExpected1 = new TreeMap<Object, Object>();
