@@ -1,6 +1,7 @@
 package org.elixirian.common.collect;
 
 import static org.elixirian.common.collect.Sets.*;
+import static org.elixirian.common.collect.UtilForTesting.*;
 import static org.elixirian.common.test.CommonTestHelper.*;
 import static org.elixirian.common.util.MessageFormatter.*;
 import static org.elixirian.common.util.Objects.*;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+import org.elixirian.common.collect.UtilForTesting.ComparableObject;
 import org.elixirian.common.test.CauseCheckableExpectedException;
 import org.elixirian.common.test.CommonTestHelper.Accessibility;
 import org.elixirian.common.type.Condition1;
@@ -143,49 +145,6 @@ public class SetsTest
 
   private static final Set<String> STRING_VALUE_TREE_SET_WITH_COMPARATOR;
 
-  private static class ComparableObject implements Comparable<ComparableObject>
-  {
-    private final int key;
-
-    public ComparableObject(final int key)
-    {
-      this.key = key;
-    }
-
-    public int getKey()
-    {
-      return key;
-    }
-
-    public int compareTo(final ComparableObject that)
-    {
-      return this.key < that.getKey() ? -1 : this.key == that.getKey() ? 0 : 1;
-    }
-
-    @Override
-    public int hashCode()
-    {
-      return key;
-    }
-
-    @Override
-    public boolean equals(final Object comparableObject)
-    {
-      if (identical(this, comparableObject))
-        return true;
-      final ComparableObject that = castIfInstanceOf(ComparableObject.class, comparableObject);
-      return isNotNull(that) && equal(this.key, that.getKey());
-    }
-
-    @Override
-    public String toString()
-    {
-      return toStringBuilder(this).add("key", key)
-          .toString();
-    }
-
-  }
-
   private static final List<ComparableObject> COMPARABLE_OBJECT_LIST = Collections.unmodifiableList(Arrays.asList(
       new ComparableObject(23), new ComparableObject(20), new ComparableObject(110), new ComparableObject(999),
       new ComparableObject(8), new ComparableObject(20), null, new ComparableObject(0), new ComparableObject(-120),
@@ -216,29 +175,6 @@ public class SetsTest
       @SuppressWarnings("boxing")
       final int i2 = o2;
       return i1 < i2 ? -1 : i1 == i2 ? 0 : 1;
-    }
-  };
-
-  private static final Comparator<? super String> STRING_COMPARATOR = new Comparator<String>() {
-    public int compare(final String o1, final String o2)
-    {
-      if (null == o1)
-        return null == o2 ? 0 : 1;
-      if (null == o2)
-        return -1;
-      return o1.compareTo(o2);
-    }
-  };
-
-  private static final Comparator<? super Object> OBJECT_COMPARATOR = new Comparator<Object>() {
-    public int compare(final Object o1, final Object o2)
-    {
-      if (null == o1)
-        return null == o2 ? 0 : 1;
-      if (null == o2)
-        return -1;
-      return o1.toString()
-          .compareTo(o2.toString());
     }
   };
 
@@ -620,7 +556,7 @@ public class SetsTest
     assertThat(set1.getClass(), is(equalTo(expectedType)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_LINKED_HASH_SET;
@@ -634,7 +570,7 @@ public class SetsTest
     assertThat(set2.getClass(), is(equalTo(expectedType)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Collection<Object> expected3 = OBJECT_LINKED_HASH_SET;
@@ -648,7 +584,7 @@ public class SetsTest
     assertThat(set3.getClass(), is(equalTo(expectedType)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
 
   @Test
@@ -669,7 +605,7 @@ public class SetsTest
     assertThat(set1.getClass(), is(equalTo(expectedType)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_LINKED_HASH_SET;
@@ -683,7 +619,7 @@ public class SetsTest
     assertThat(set2.getClass(), is(equalTo(expectedType)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Collection<Object> expected3 = OBJECT_LINKED_HASH_SET;
@@ -697,7 +633,7 @@ public class SetsTest
     assertThat(set3.getClass(), is(equalTo(expectedType)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
 
   @Test
@@ -718,7 +654,7 @@ public class SetsTest
     assertThat(set1.getClass(), is(equalTo(expectedType)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_LINKED_HASH_SET;
@@ -732,7 +668,7 @@ public class SetsTest
     assertThat(set2.getClass(), is(equalTo(expectedType)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Collection<Object> expected3 = OBJECT_LINKED_HASH_SET;
@@ -746,7 +682,7 @@ public class SetsTest
     assertThat(set3.getClass(), is(equalTo(expectedType)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
 
   @Test
@@ -767,7 +703,7 @@ public class SetsTest
     assertThat(set1.getClass(), is(equalTo(expectedType)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_LINKED_HASH_SET;
@@ -781,7 +717,7 @@ public class SetsTest
     assertThat(set2.getClass(), is(equalTo(expectedType)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Collection<Object> expected3 = OBJECT_LINKED_HASH_SET;
@@ -795,7 +731,7 @@ public class SetsTest
     assertThat(set3.getClass(), is(equalTo(expectedType)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
 
   @Test
@@ -884,7 +820,7 @@ public class SetsTest
     assertThat(set1.getClass(), is(equalTo(expectedType)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_TREE_SET;
@@ -898,7 +834,7 @@ public class SetsTest
     assertThat(set2.getClass(), is(equalTo(expectedType)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Collection<ComparableObject> expected3 = COMPARABLE_OBJECT_TREE_SET;
@@ -912,7 +848,7 @@ public class SetsTest
     assertThat(set3.getClass(), is(equalTo(expectedType)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
 
   @Test
@@ -933,7 +869,7 @@ public class SetsTest
     assertThat(set1.getClass(), is(equalTo(expectedType)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_TREE_SET;
@@ -947,7 +883,7 @@ public class SetsTest
     assertThat(set2.getClass(), is(equalTo(expectedType)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Collection<ComparableObject> expected3 = COMPARABLE_OBJECT_TREE_SET;
@@ -961,7 +897,7 @@ public class SetsTest
     assertThat(set3.getClass(), is(equalTo(expectedType)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
 
   @Test
@@ -983,7 +919,7 @@ public class SetsTest
     assertThat(set1.getClass(), is(equalTo(expectedType)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_TREE_SET;
@@ -998,7 +934,7 @@ public class SetsTest
     assertThat(set2.getClass(), is(equalTo(expectedType)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Collection<ComparableObject> expected3 = COMPARABLE_OBJECT_TREE_SET;
@@ -1014,7 +950,7 @@ public class SetsTest
     assertThat(set3.getClass(), is(equalTo(expectedType)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
 
   @Test
@@ -1035,7 +971,7 @@ public class SetsTest
     assertThat(set1.getClass(), is(equalTo(expectedType)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_TREE_SET;
@@ -1050,7 +986,7 @@ public class SetsTest
     assertThat(set2.getClass(), is(equalTo(expectedType)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Collection<ComparableObject> expected3 = COMPARABLE_OBJECT_TREE_SET;
@@ -1066,7 +1002,7 @@ public class SetsTest
     assertThat(set3.getClass(), is(equalTo(expectedType)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
 
   @Test
@@ -1087,7 +1023,7 @@ public class SetsTest
     assertThat(set1.getClass(), is(equalTo(expectedType)));
     assertThat(set1.comparator(), is(equalTo(expectedComparator1)));
     assertEquals(0, set1.size());
-    assertTrue(deepEqual(new Object[] {}, set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(new Object[] {})));
 
     /* given */
     final Comparator<? super String> comparator2 = STRING_COMPARATOR;
@@ -1102,7 +1038,7 @@ public class SetsTest
     assertThat(set2.getClass(), is(equalTo(expectedType)));
     assertThat(set2.comparator(), is(equalTo(expectedComparator2)));
     assertEquals(0, set2.size());
-    assertTrue(deepEqual(new Object[] {}, set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(new Object[] {})));
 
     /* given */
     final Comparator<? super Object> comparator3 = OBJECT_COMPARATOR;
@@ -1117,7 +1053,7 @@ public class SetsTest
     assertThat(set3.getClass(), is(equalTo(expectedType)));
     assertThat(set3.comparator(), is(equalTo(expectedComparator3)));
     assertEquals(0, set3.size());
-    assertTrue(deepEqual(new Object[] {}, set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(new Object[] {})));
   }
 
   @Test
@@ -1143,7 +1079,7 @@ public class SetsTest
     assertThat(set1.comparator(), is(equalTo(expectedComparator1)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Comparator<? super String> comparator2 = STRING_COMPARATOR;
@@ -1162,7 +1098,7 @@ public class SetsTest
     assertThat(set2.comparator(), is(equalTo(expectedComparator2)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Comparator<? super Object> comparator3 = OBJECT_COMPARATOR;
@@ -1181,7 +1117,7 @@ public class SetsTest
     assertThat(set3.comparator(), is(equalTo(expectedComparator3)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
 
   @Test
@@ -1207,7 +1143,7 @@ public class SetsTest
     assertThat(set1.comparator(), is(equalTo(expectedComparator1)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Comparator<? super String> comparator2 = STRING_COMPARATOR;
@@ -1226,7 +1162,7 @@ public class SetsTest
     assertThat(set2.comparator(), is(equalTo(expectedComparator2)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Comparator<? super Object> comparator3 = OBJECT_COMPARATOR;
@@ -1245,7 +1181,7 @@ public class SetsTest
     assertThat(set3.comparator(), is(equalTo(expectedComparator3)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
 
   @Test
@@ -1271,7 +1207,7 @@ public class SetsTest
     assertThat(set1.comparator(), is(equalTo(expectedComparator1)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Comparator<? super String> comparator2 = STRING_COMPARATOR;
@@ -1290,7 +1226,7 @@ public class SetsTest
     assertThat(set2.comparator(), is(equalTo(expectedComparator2)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Comparator<? super Object> comparator3 = OBJECT_COMPARATOR;
@@ -1309,7 +1245,7 @@ public class SetsTest
     assertThat(set3.comparator(), is(equalTo(expectedComparator3)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
 
   @Test
@@ -1335,7 +1271,7 @@ public class SetsTest
     assertThat(set1.comparator(), is(equalTo(expectedComparator1)));
     assertThat(set1, is(equalTo(expected1)));
     assertEquals(expected1.size(), set1.size());
-    assertTrue(deepEqual(expected1.toArray(), set1.toArray()));
+    assertThat(set1.toArray(), is(equalTo(expected1.toArray())));
 
     /* given */
     final Comparator<? super String> comparator2 = STRING_COMPARATOR;
@@ -1354,7 +1290,7 @@ public class SetsTest
     assertThat(set2.comparator(), is(equalTo(expectedComparator2)));
     assertThat(set2, is(equalTo(expected2)));
     assertEquals(expected2.size(), set2.size());
-    assertTrue(deepEqual(expected2.toArray(), set2.toArray()));
+    assertThat(set2.toArray(), is(equalTo(expected2.toArray())));
 
     /* given */
     final Comparator<? super Object> comparator3 = OBJECT_COMPARATOR;
@@ -1373,7 +1309,6 @@ public class SetsTest
     assertThat(set3.comparator(), is(equalTo(expectedComparator3)));
     assertThat(set3, is(equalTo(expected3)));
     assertEquals(expected3.size(), set3.size());
-    assertTrue(deepEqual(expected3.toArray(), set3.toArray()));
+    assertThat(set3.toArray(), is(equalTo(expected3.toArray())));
   }
-
 }
