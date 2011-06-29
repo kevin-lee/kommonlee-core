@@ -639,8 +639,9 @@ public class MapsTest
     }
   };
 
+  @SuppressWarnings("rawtypes")
   @Test
-  public final void testNewTreeMapSortedMapOfKQextendsV()
+  public final void testNewTreeMapFromSortedMapSortedMapOfKQextendsV()
   {
     /* given */
     @SuppressWarnings("rawtypes")
@@ -654,7 +655,7 @@ public class MapsTest
     input1.putAll(expected1);
 
     /* when */
-    final NavigableMap<Object, Object> map1 = newTreeMap(input1);
+    final NavigableMap<Object, Object> map1 = newTreeMapFromSortedMap(input1);
 
     /* then */
     assertThat(map1, is(instanceOf(expectedType)));
@@ -676,13 +677,13 @@ public class MapsTest
     input1_1.putAll(expected1);
 
     /* when */
-    final NavigableMap<Object, Object> map1_1 = newTreeMap(input1_1);
+    final NavigableMap<Object, Object> map1_1 = newTreeMapFromSortedMap(input1_1);
 
     /* then */
     assertThat(map1_1, is(instanceOf(expectedType)));
     assertThat(map1_1.getClass(), is(equalTo(expectedType)));
     assertThat(map1_1, is(equalTo(expected1)));
-    assertThat(map1_1.comparator(), is(nullValue()));
+    assertThat(map1_1.comparator(), is(equalTo((Comparator) comparator1)));
     assertEquals(expected1.size(), map1_1.size());
     assertThat(map1_1.keySet()
         .toArray(), is(equalTo(expected1.keySet()
@@ -700,7 +701,7 @@ public class MapsTest
     input2.putAll(expected2);
 
     /* when */
-    final NavigableMap<Integer, String> map2 = newTreeMap(input2);
+    final TreeMap<Integer, String> map2 = newTreeMapFromSortedMap(input2);
 
     /* then */
     assertThat(map2, is(instanceOf(expectedType)));
@@ -722,13 +723,13 @@ public class MapsTest
     input2_1.putAll(expected2);
 
     /* when */
-    final NavigableMap<Integer, String> map2_1 = newTreeMap(input2_1);
+    final NavigableMap<Integer, String> map2_1 = newTreeMapFromSortedMap(input2_1);
 
     /* then */
     assertThat(map2_1, is(instanceOf(expectedType)));
     assertThat(map2_1.getClass(), is(equalTo(expectedType)));
     assertThat(map2_1, is(equalTo(expected2)));
-    assertThat(map2_1.comparator(), is(nullValue()));
+    assertThat(map2_1.comparator(), is(equalTo((Comparator) comparator2)));
     assertEquals(expected2.size(), map2_1.size());
     assertThat(map2_1.keySet()
         .toArray(), is(equalTo(expected2.keySet()
@@ -746,7 +747,7 @@ public class MapsTest
     input3.putAll(expected3);
 
     /* when */
-    final NavigableMap<String, Integer> map3 = newTreeMap(input3);
+    final NavigableMap<String, Integer> map3 = newTreeMapFromSortedMap(input3);
 
     /* then */
     assertThat(map3, is(instanceOf(expectedType)));
@@ -768,13 +769,13 @@ public class MapsTest
     input3_1.putAll(expected3);
 
     /* when */
-    final NavigableMap<String, Integer> map3_1 = newTreeMap(input3_1);
+    final NavigableMap<String, Integer> map3_1 = newTreeMapFromSortedMap(input3_1);
 
     /* then */
     assertThat(map3_1, is(instanceOf(expectedType)));
     assertThat(map3_1.getClass(), is(equalTo(expectedType)));
     assertThat(map3_1, is(equalTo(expected3)));
-    assertThat(map3_1.comparator(), is(nullValue()));
+    assertThat(map3_1.comparator(), is(equalTo((Comparator) comparator3)));
     assertEquals(expected3.size(), map3_1.size());
     assertThat(map3_1.keySet()
         .toArray(), is(equalTo(expected3.keySet()
@@ -792,7 +793,7 @@ public class MapsTest
     input4.putAll(expected4);
 
     /* when */
-    final NavigableMap<Object, String> map4 = newTreeMap(input4);
+    final NavigableMap<Object, String> map4 = newTreeMapFromSortedMap(input4);
 
     /* then */
     assertThat(map4, is(instanceOf(expectedType)));
@@ -814,13 +815,13 @@ public class MapsTest
     input4_1.putAll(expected4);
 
     /* when */
-    final NavigableMap<Object, String> map4_1 = newTreeMap(input4_1);
+    final NavigableMap<Object, String> map4_1 = newTreeMapFromSortedMap(input4_1);
 
     /* then */
     assertThat(map4_1, is(instanceOf(expectedType)));
     assertThat(map4_1.getClass(), is(equalTo(expectedType)));
     assertThat(map4_1, is(equalTo(expected4)));
-    assertThat(map4_1.comparator(), is(nullValue()));
+    assertThat(map4_1.comparator(), is(equalTo((Comparator) comparator4)));
     assertEquals(expected4.size(), map4_1.size());
     assertThat(map4_1.keySet()
         .toArray(), is(equalTo(expected4.keySet()
@@ -838,7 +839,7 @@ public class MapsTest
     input5.putAll(expected5);
 
     /* when */
-    final NavigableMap<Object, Integer> map5 = newTreeMap(input5);
+    final NavigableMap<Object, Integer> map5 = newTreeMapFromSortedMap(input5);
 
     /* then */
     assertThat(map5, is(instanceOf(expectedType)));
@@ -860,13 +861,13 @@ public class MapsTest
     input5_1.putAll(expected5);
 
     /* when */
-    final NavigableMap<Object, Integer> map5_1 = newTreeMap(input5_1);
+    final NavigableMap<Object, Integer> map5_1 = newTreeMapFromSortedMap(input5_1);
 
     /* then */
     assertThat(map5_1, is(instanceOf(expectedType)));
     assertThat(map5_1.getClass(), is(equalTo(expectedType)));
     assertThat(map5_1, is(equalTo(expected5)));
-    assertThat(map5_1.comparator(), is(nullValue()));
+    assertThat(map5_1.comparator(), is(equalTo((Comparator) comparator5)));
     assertEquals(expected5.size(), map5_1.size());
     assertThat(map5_1.keySet()
         .toArray(), is(equalTo(expected5.keySet()
@@ -877,7 +878,7 @@ public class MapsTest
   }
 
   @Test
-  public final void testNewTreeMapMapOfQextendsKQextendsV()
+  public final void testNewTreeMapFromMapMapOfQextendsKQextendsV()
   {
     /* given */
     @SuppressWarnings("rawtypes")
@@ -891,7 +892,7 @@ public class MapsTest
     input1.putAll(expected1);
 
     /* when */
-    final TreeMap<ComparableObject, Object> map1 = newTreeMap(input1);
+    final TreeMap<ComparableObject, Object> map1 = newTreeMapFromMap(input1);
 
     /* then */
     assertThat(map1, is(instanceOf(expectedType)));
@@ -914,7 +915,7 @@ public class MapsTest
     input1_1.putAll(expected1_1);
 
     /* when */
-    final TreeMap<ComparableObject, Object> map1_1 = newTreeMap(input1_1);
+    final TreeMap<ComparableObject, Object> map1_1 = newTreeMapFromMap(input1_1);
 
     /* then */
     assertThat(map1_1, is(instanceOf(expectedType)));
@@ -938,7 +939,7 @@ public class MapsTest
     input2.putAll(expected2);
 
     /* when */
-    final TreeMap<Integer, String> map2 = newTreeMap(input2);
+    final TreeMap<Integer, String> map2 = newTreeMapFromMap(input2);
 
     /* then */
     assertThat(map2, is(instanceOf(expectedType)));
@@ -962,7 +963,7 @@ public class MapsTest
     input3.putAll(expected3);
 
     /* when */
-    final TreeMap<String, Integer> map3 = newTreeMap(input3);
+    final TreeMap<String, Integer> map3 = newTreeMapFromMap(input3);
 
     /* then */
     assertThat(map3, is(instanceOf(expectedType)));
@@ -986,7 +987,7 @@ public class MapsTest
     input4.putAll(expected4);
 
     /* when */
-    final TreeMap<ComparableObject, String> map4 = newTreeMap(input4);
+    final TreeMap<ComparableObject, String> map4 = newTreeMapFromMap(input4);
 
     /* then */
     assertThat(map4, is(instanceOf(expectedType)));
@@ -1010,7 +1011,7 @@ public class MapsTest
     input5.putAll(expected5);
 
     /* when */
-    final TreeMap<ComparableObject, Integer> map5 = newTreeMap(input5);
+    final TreeMap<ComparableObject, Integer> map5 = newTreeMapFromMap(input5);
 
     /* then */
     assertThat(map5, is(instanceOf(expectedType)));

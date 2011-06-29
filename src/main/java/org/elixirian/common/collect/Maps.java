@@ -73,12 +73,12 @@ public final class Maps
     return new TreeMap<K, V>(comparator);
   }
 
-  public static <K, V, M extends SortedMap<? extends K, ? extends V>> TreeMap<K, V> newTreeMap(final M sortedMap)
+  public static <K, V> TreeMap<K, V> newTreeMapFromSortedMap(final SortedMap<K, ? extends V> sortedMap)
   {
     return new TreeMap<K, V>(sortedMap);
   }
 
-  public static <K extends Comparable<K>, V> TreeMap<K, V> newTreeMap(final Map<? extends K, ? extends V> map)
+  public static <K extends Comparable<K>, V> TreeMap<K, V> newTreeMapFromMap(final Map<? extends K, ? extends V> map)
   {
     return new TreeMap<K, V>(map);
   }
