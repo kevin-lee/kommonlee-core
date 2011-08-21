@@ -5,20 +5,16 @@
 
 	<groupId>org.elixirian</groupId>
 	<artifactId>elixirian-common-type</artifactId>
-	<version>0.0.6-SNAPSHOT</version>
+	<version>0.0.7-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>elixirian-common-type</name>
 	<parent>
 		<artifactId>elixirian-common</artifactId>
 		<groupId>org.elixirian</groupId>
-		<version>0.0.4-SNAPSHOT</version>
+		<version>0.0.5-SNAPSHOT</version>
 	</parent>
 	<url>http://elixirian.org</url>
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 
 	<organization>
 		<name>Elixirian Pty Ltd</name>
