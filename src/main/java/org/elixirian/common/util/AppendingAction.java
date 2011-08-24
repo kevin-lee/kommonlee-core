@@ -2,6 +2,8 @@ package org.elixirian.common.util;
 
 import java.io.IOException;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * <pre>
  *     ____________    ___________  ____   _______ _________ _______ _______________  ____
@@ -24,5 +26,6 @@ import java.io.IOException;
  */
 public interface AppendingAction
 {
-	<A extends Appendable, T> A append(A appendable, T t) throws IOException;
+  @NonNull
+  <A extends Appendable, T> A append(@NonNull A appendable, @NonNull T t) throws IOException;
 }

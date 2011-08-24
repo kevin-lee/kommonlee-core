@@ -6,12 +6,12 @@
 	<parent>
 		<artifactId>elixirian-common</artifactId>
 		<groupId>org.elixirian</groupId>
-		<version>0.0.4-SNAPSHOT</version>
+		<version>0.0.5-SNAPSHOT</version>
 	</parent>
 
 	<groupId>org.elixirian</groupId>
 	<artifactId>elixirian-common-util</artifactId>
-	<version>0.0.10-SNAPSHOT</version>
+	<version>0.0.11-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>elixirian-common-util</name>
 	<url>http://elixirian.org</url>
@@ -80,6 +80,13 @@
 			<groupId>org.elixirian</groupId>
 			<artifactId>elixirian-common-type</artifactId>
 			<version>0.0.6-SNAPSHOT</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.elixirian</groupId>
+			<artifactId>eclipse-jdt-annotation</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>

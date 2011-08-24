@@ -5,6 +5,9 @@ import static org.elixirian.common.util.Objects.*;
 import java.io.IOException;
 import java.util.Iterator;
 
+import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
+
 /**
  * <pre>
  *     ____________    ___________  ____   _______ _________ _______ _______________  ____
@@ -27,55 +30,60 @@ import java.util.Iterator;
  */
 public final class IterableToAppendableGlue implements ToAppendableGlue<Iterable<?>>
 {
-	private final AppendingAction appendingAction;
+  private final AppendingAction appendingAction;
 
-	private IterableToAppendableGlue(final AppendingAction appendingAction)
-	{
-		this.appendingAction = appendingAction;
-	}
+  private IterableToAppendableGlue(@NonNull final AppendingAction appendingAction)
+  {
+    this.appendingAction = appendingAction;
+  }
 
-	AppendingAction getGlue()
-	{
-		return appendingAction;
-	}
+  AppendingAction getAppendingAction()
+  {
+    return appendingAction;
+  }
 
-	public static IterableToAppendableGlue withSeparator(final String separator)
-	{
-		return new IterableToAppendableGlue(SimpleAppendingAction.with(separator));
-	}
+  @NonNull
+  public static IterableToAppendableGlue withSeparator(@Nullable final String separator)
+  {
+    return new IterableToAppendableGlue(SimpleAppendingAction.with(separator));
+  }
 
-	public static IterableToAppendableGlue withoutSeparator()
-	{
-		return new IterableToAppendableGlue(SimpleAppendingAction.withoutSeparator());
-	}
+  @NonNull
+  public static IterableToAppendableGlue withoutSeparator()
+  {
+    return new IterableToAppendableGlue(SimpleAppendingAction.withoutSeparator());
+  }
 
-	private <A extends Appendable, E> A glue0(final A appendable, final Iterable<E> iterable) throws IOException
-	{
-		final Iterator<E> iterator = iterable.iterator();
-		if (iterator.hasNext())
-		{
-			SimpleAppendingAction.APPENDING_ACTION_WITHOUT_SEPARATOR.append(appendable, iterator.next());
-			while (iterator.hasNext())
-			{
-				appendingAction.append(appendable, iterator.next());
-			}
-		}
-		return appendable;
-	}
+  @NonNull
+  private <A extends Appendable, E> A glue0(@NonNull final A appendable, @NonNull final Iterable<E> iterable)
+      throws IOException
+  {
+    final Iterator<E> iterator = iterable.iterator();
+    if (iterator.hasNext())
+    {
+      SimpleAppendingAction.APPENDING_ACTION_WITHOUT_SEPARATOR.append(appendable, iterator.next());
+      while (iterator.hasNext())
+      {
+        appendingAction.append(appendable, iterator.next());
+      }
+    }
+    return appendable;
+  }
 
-	@Override
-	public <A extends Appendable> A glue(A appendable, Iterable<?> iterable)
-	{
-		try
-		{
-			/* @formatter:off */
+  @NonNull
+  @Override
+  public <A extends Appendable> A glue(final A appendable, final Iterable<?> iterable)
+  {
+    try
+    {
+      /* @formatter:off */
 			return glue0(notNull(appendable),
 						  notNull(iterable));
 			/* @formatter:on */
-		}
-		catch (IOException e)
-		{
-			throw new IllegalArgumentException(e);
-		}
-	}
+    }
+    catch (IOException e)
+    {
+      throw new IllegalArgumentException(e);
+    }
+  }
 }

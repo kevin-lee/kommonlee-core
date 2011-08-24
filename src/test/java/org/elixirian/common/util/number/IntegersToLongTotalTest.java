@@ -4,7 +4,7 @@
 package org.elixirian.common.util.number;
 
 import static java.util.Arrays.*;
-import static org.elixirian.common.util.number.LongsTotal.*;
+import static org.elixirian.common.util.number.IntegersToLongTotal.*;
 import static org.elixirian.common.util.number.Numbers.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -21,28 +21,25 @@ import org.junit.Test;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-03-28)
  */
-public class LongsTotalTest
+public class IntegersToLongTotalTest
 {
   private static final int HOW_MANY = 30;
 
   /* @formatter:off */
-	private static final long[] NUMBERS1 = { Integer.MIN_VALUE, -5,   -4,  -3,  -2,  -1,  Integer.MAX_VALUE,
-												 0,  1,  2,  3,  4,  5,  Integer.MAX_VALUE };
-
-	private static final long[] NUMBERS2 = { Integer.MIN_VALUE, -100, -90, -80, -70, -60, Integer.MAX_VALUE,
-												 10, 20, 30, 40, 50, 60, Integer.MAX_VALUE };
+	private static final int[] NUMBERS1 = { Integer.MIN_VALUE, -5,   -4,  -3,  -2,  -1,  0,  1,  2,  3,  4,  5,  Integer.MAX_VALUE };
+	private static final int[] NUMBERS2 = { Integer.MIN_VALUE, -100, -90, -80, -70, -60, 10, 20, 30, 40, 50, 60, Integer.MAX_VALUE };
 	/* @formatter:on */
 
   private static final Random random = new Random();
-  private static final long[] NUMBERS3 = getRandomNumbers(50);
-  private static final long[] NUMBERS4 = getRandomNumbers(50);
+  private static final int[] NUMBERS3 = getRandomNumbers(50);
+  private static final int[] NUMBERS4 = getRandomNumbers(50);
 
-  private static long[] getRandomNumbers(final int length)
+  private static int[] getRandomNumbers(final int length)
   {
-    final long[] numbers = new long[length];
+    final int[] numbers = new int[length];
     for (int i = 0; i < length; i++)
     {
-      numbers[i] = random.nextLong();
+      numbers[i] = random.nextInt();
     }
     return numbers;
   }
@@ -68,30 +65,30 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testSumLongLong()
+  public final void testSumIntInt()
   {
-    final long[] numbers1 = NUMBERS1;
-    final long[] numbers2 = NUMBERS2;
+    final int[] numbers1 = NUMBERS1;
+    final int[] numbers2 = NUMBERS2;
 
-    for (final long n1 : numbers1)
+    for (final int n1 : numbers1)
     {
-      for (final long n2 : numbers2)
+      for (final int n2 : numbers2)
       {
-        final long expected = n1 + n2;
+        final long expected = (long) n1 + n2;
         final long actual = sum(n1, n2);
         // System.out.println("expected: " + expected + "\nactual:   " + actual);
         assertTrue(expected == actual);
       }
     }
 
-    final long[] numbers3 = NUMBERS3;
-    final long[] numbers4 = NUMBERS4;
+    final int[] numbers3 = NUMBERS3;
+    final int[] numbers4 = NUMBERS4;
 
-    for (final long n1 : numbers3)
+    for (final int n1 : numbers3)
     {
-      for (final long n2 : numbers4)
+      for (final int n2 : numbers4)
       {
-        final long expected = n1 + n2;
+        final long expected = (long) n1 + n2;
         final long actual = sum(n1, n2);
         // System.out.println("expected: " + expected + "\nactual:   " + actual);
         assertTrue(expected == actual);
@@ -100,18 +97,18 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testSumLongLongLong()
+  public final void testSumIntIntInt()
   {
-    final long[] numbers1 = NUMBERS1;
-    final long[] numbers2 = NUMBERS2;
+    final int[] numbers1 = NUMBERS1;
+    final int[] numbers2 = NUMBERS2;
 
-    for (final long n1 : numbers1)
+    for (final int n1 : numbers1)
     {
-      for (final long n2 : numbers2)
+      for (final int n2 : numbers2)
       {
-        for (final long n3 : numbers1)
+        for (final int n3 : numbers1)
         {
-          final long expected = n1 + n2 + n3;
+          final long expected = (long) n1 + n2 + n3;
           final long actual = sum(n1, n2, n3);
           // System.out.println("expected: " + expected + "\nactual:   " + actual);
           assertTrue(expected == actual);
@@ -119,16 +116,16 @@ public class LongsTotalTest
       }
     }
 
-    final long[] numbers3 = NUMBERS3;
-    final long[] numbers4 = NUMBERS4;
+    final int[] numbers3 = NUMBERS3;
+    final int[] numbers4 = NUMBERS4;
 
-    for (final long n1 : numbers3)
+    for (final int n1 : numbers3)
     {
-      for (final long n2 : numbers4)
+      for (final int n2 : numbers4)
       {
-        for (final long n3 : numbers3)
+        for (final int n3 : numbers3)
         {
-          final long expected = n1 + n2 + n3;
+          final long expected = (long) n1 + n2 + n3;
           final long actual = sum(n1, n2, n3);
           // System.out.println("expected: " + expected + "\nactual:   " + actual);
           assertTrue(expected == actual);
@@ -138,20 +135,20 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testSumLongLongLongLong()
+  public final void testSumIntIntIntInt()
   {
-    final long[] numbers1 = NUMBERS1;
-    final long[] numbers2 = NUMBERS2;
+    final int[] numbers1 = NUMBERS1;
+    final int[] numbers2 = NUMBERS2;
 
-    for (final long n1 : numbers1)
+    for (final int n1 : numbers1)
     {
-      for (final long n2 : numbers2)
+      for (final int n2 : numbers2)
       {
-        for (final long n3 : numbers1)
+        for (final int n3 : numbers1)
         {
-          for (final long n4 : numbers2)
+          for (final int n4 : numbers2)
           {
-            final long expected = n1 + n2 + n3 + n4;
+            final long expected = (long) n1 + n2 + n3 + n4;
             final long actual = sum(n1, n2, n3, n4);
             // System.out.println("expected: " + expected + "\nactual:   " + actual);
             assertTrue(expected == actual);
@@ -160,18 +157,18 @@ public class LongsTotalTest
       }
     }
 
-    final long[] numbers3 = NUMBERS3;
-    final long[] numbers4 = NUMBERS4;
+    final int[] numbers3 = NUMBERS3;
+    final int[] numbers4 = NUMBERS4;
 
-    for (final long n1 : numbers3)
+    for (final int n1 : numbers3)
     {
-      for (final long n2 : numbers4)
+      for (final int n2 : numbers4)
       {
-        for (final long n3 : numbers3)
+        for (final int n3 : numbers3)
         {
-          for (final long n4 : numbers4)
+          for (final int n4 : numbers4)
           {
-            final long expected = n1 + n2 + n3 + n4;
+            final long expected = (long) n1 + n2 + n3 + n4;
             final long actual = sum(n1, n2, n3, n4);
             // System.out.println("expected: " + expected + "\nactual:   " + actual);
             assertTrue(expected == actual);
@@ -182,22 +179,22 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testSumLongLongLongLongLong()
+  public final void testSumIntIntIntIntInt()
   {
-    final long[] numbers1 = NUMBERS1;
-    final long[] numbers2 = NUMBERS2;
+    final int[] numbers1 = NUMBERS1;
+    final int[] numbers2 = NUMBERS2;
 
-    for (final long n1 : numbers1)
+    for (final int n1 : numbers1)
     {
-      for (final long n2 : numbers2)
+      for (final int n2 : numbers2)
       {
-        for (final long n3 : numbers1)
+        for (final int n3 : numbers1)
         {
-          for (final long n4 : numbers2)
+          for (final int n4 : numbers2)
           {
-            for (final long n5 : numbers1)
+            for (final int n5 : numbers1)
             {
-              final long expected = n1 + n2 + n3 + n4 + n5;
+              final long expected = (long) n1 + n2 + n3 + n4 + n5;
               final long actual = sum(n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected + "\nactual:   " + actual);
               assertTrue(expected == actual);
@@ -207,20 +204,20 @@ public class LongsTotalTest
       }
     }
 
-    final long[] numbers3 = NUMBERS3;
-    final long[] numbers4 = NUMBERS4;
+    final int[] numbers3 = NUMBERS3;
+    final int[] numbers4 = NUMBERS4;
 
-    for (final long n1 : numbers3)
+    for (final int n1 : numbers3)
     {
-      for (final long n2 : numbers4)
+      for (final int n2 : numbers4)
       {
-        for (final long n3 : numbers3)
+        for (final int n3 : numbers3)
         {
-          for (final long n4 : numbers4)
+          for (final int n4 : numbers4)
           {
-            for (final long n5 : numbers3)
+            for (final int n5 : numbers3)
             {
-              final long expected = n1 + n2 + n3 + n4 + n5;
+              final long expected = (long) n1 + n2 + n3 + n4 + n5;
               final long actual = sum(n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected + "\nactual:   " + actual);
               assertTrue(expected == actual);
@@ -232,68 +229,58 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testSumLongLongLongLongLongMoreLongs()
+  public final void testSumIntIntIntIntIntMoreInts()
   {
-    final long[] numbers1 = NUMBERS1;
-    final long[] numbers2 = NUMBERS2;
+    final int[] numbers1 = NUMBERS1;
+    final int[] numbers2 = NUMBERS2;
 
-    for (final long n1 : numbers1)
+    for (final int n1 : numbers1)
     {
-      for (final long n2 : numbers2)
+      for (final int n2 : numbers2)
       {
-        for (final long n3 : numbers1)
+        for (final int n3 : numbers1)
         {
-          for (final long n4 : numbers2)
+          for (final int n4 : numbers2)
           {
-            for (final long n5 : numbers1)
+            for (final int n5 : numbers1)
             {
-              @SuppressWarnings("boxing")
-              final Long expected1 = (n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
-              @SuppressWarnings("boxing")
-              final Long actual1 = sum(n1, n2, n3, n4, n5, n1 + n2 + n3 + n4 + n5);
+              final long expected1 = (long) n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5;
+              final long actual1 = sum(n1, n2, n3, n4, n5, n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected1 + "\nactual:   " + actual1);
-              assertThat(actual1, is(equalTo(expected1)));
-
-              @SuppressWarnings("boxing")
-              final Long expected2 = (n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
-              @SuppressWarnings("boxing")
-              final Long actual2 = sum(n1, n2, n3, n4, n5, n1, n2, n3, n4, n5);
+              assertTrue(expected1 == actual1);
+              final long expected2 = (long) n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5;
+              final long actual2 = sum(n1, n2, n3, n4, n5, n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected2 + "\nactual:   " + actual2);
-              assertThat(actual2, is(equalTo(expected2)));
+              assertTrue(expected2 == actual2);
             }
           }
         }
       }
     }
 
-    final long[] numbers3 = new long[HOW_MANY];
+    final int[] numbers3 = new int[HOW_MANY];
     System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final long[] numbers4 = new long[HOW_MANY];
+    final int[] numbers4 = new int[HOW_MANY];
     System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
 
-    for (final long n1 : numbers3)
+    for (final int n1 : numbers3)
     {
-      for (final long n2 : numbers4)
+      for (final int n2 : numbers4)
       {
-        for (final long n3 : numbers3)
+        for (final int n3 : numbers3)
         {
-          for (final long n4 : numbers4)
+          for (final int n4 : numbers4)
           {
-            for (final long n5 : numbers3)
+            for (final int n5 : numbers3)
             {
-              @SuppressWarnings("boxing")
-              final Long expected3 = (n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
-              @SuppressWarnings("boxing")
-              final Long actual3 = sum(n1, n2, n3, n4, n5, n1, n2, n3, n4, n5);
+              final long expected3 = (long) n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5;
+              final long actual3 = sum(n1, n2, n3, n4, n5, n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected3 + "\nactual:   " + actual3);
-              assertThat(actual3, is(equalTo(expected3)));
-
-              @SuppressWarnings("boxing")
-              final Long expected4 = (n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
-              @SuppressWarnings("boxing")
-              final Long actual4 = sum(n1, n2, n3, n4, n5, n1, n2, n3, n4, n5);
+              assertTrue(expected3 == actual3);
+              final long expected4 = (long) n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5;
+              final long actual4 = sum(n1, n2, n3, n4, n5, n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected4 + "\nactual:   " + actual4);
-              assertThat(actual4, is(equalTo(expected4)));
+              assertTrue(expected4 == actual4);
             }
           }
         }
@@ -302,24 +289,23 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testSumLongLongLongLongLongLongArray()
+  public final void testSumIntIntIntIntIntIntArray()
   {
-    final long[] numbers1 = NUMBERS1;
-    final long[] numbers2 = NUMBERS2;
+    final int[] numbers1 = NUMBERS1;
+    final int[] numbers2 = NUMBERS2;
 
-    for (final long n1 : numbers1)
+    for (final int n1 : numbers1)
     {
-      for (final long n2 : numbers2)
+      for (final int n2 : numbers2)
       {
-        for (final long n3 : numbers1)
+        for (final int n3 : numbers1)
         {
-          for (final long n4 : numbers2)
+          for (final int n4 : numbers2)
           {
-            for (final long n5 : numbers1)
+            for (final int n5 : numbers1)
             {
-
-              long total1 = n1 + n2 + n3 + n4 + n5;
-              for (final long n : numbers1)
+              long total1 = (long) n1 + n2 + n3 + n4 + n5;
+              for (final int n : numbers1)
                 total1 += n;
 
               @SuppressWarnings("boxing")
@@ -329,8 +315,8 @@ public class LongsTotalTest
               // System.out.println("expected: " + expected1 + "\nactual:   " + actual1);
               assertThat(actual1, is(equalTo(expected1)));
 
-              long total2 = n1 + n2 + n3 + n4 + n5;
-              for (final long n : numbers2)
+              long total2 = (long) n1 + n2 + n3 + n4 + n5;
+              for (final int n : numbers2)
                 total2 += n;
 
               @SuppressWarnings("boxing")
@@ -345,23 +331,23 @@ public class LongsTotalTest
       }
     }
 
-    final long[] numbers3 = new long[HOW_MANY];
+    final int[] numbers3 = new int[HOW_MANY];
     System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final long[] numbers4 = new long[HOW_MANY];
+    final int[] numbers4 = new int[HOW_MANY];
     System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
 
-    for (final long n1 : numbers3)
+    for (final int n1 : numbers3)
     {
-      for (final long n2 : numbers4)
+      for (final int n2 : numbers4)
       {
-        for (final long n3 : numbers3)
+        for (final int n3 : numbers3)
         {
-          for (final long n4 : numbers4)
+          for (final int n4 : numbers4)
           {
-            for (final long n5 : numbers3)
+            for (final int n5 : numbers3)
             {
-              long total3 = n1 + n2 + n3 + n4 + n5;
-              for (final long n : numbers3)
+              long total3 = (long) n1 + n2 + n3 + n4 + n5;
+              for (final int n : numbers3)
                 total3 += n;
 
               @SuppressWarnings("boxing")
@@ -371,8 +357,8 @@ public class LongsTotalTest
               // System.out.println("expected: " + expected3 + "\nactual:   " + actual3);
               assertThat(actual3, is(equalTo(expected3)));
 
-              long total4 = n1 + n2 + n3 + n4 + n5;
-              for (final long n : numbers4)
+              long total4 = (long) n1 + n2 + n3 + n4 + n5;
+              for (final int n : numbers4)
                 total4 += n;
 
               @SuppressWarnings("boxing")
@@ -389,17 +375,17 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testSumLongArray()
+  public final void testSumIntArray()
   {
-    final long[] numbers1 = NUMBERS1;
-    final long[] numbers2 = NUMBERS2;
+    final int[] numbers1 = NUMBERS1;
+    final int[] numbers2 = NUMBERS2;
 
     long total1 = 0;
-    for (final long n : numbers1)
+    for (final int n : numbers1)
       total1 += n;
 
     long total2 = 0;
-    for (final long n : numbers2)
+    for (final int n : numbers2)
       total2 += n;
 
     final long expected1 = total1;
@@ -411,22 +397,21 @@ public class LongsTotalTest
     // System.out.println("expected: " + expected2 + "\nactual:   " + actual2);
     assertTrue(expected2 == actual2);
 
-    final long[] numbers3 = NUMBERS3;
-    final long[] numbers4 = NUMBERS4;
+    final int[] numbers3 = NUMBERS3;
+    final int[] numbers4 = NUMBERS4;
 
     long total3 = 0;
-    for (final long n : numbers3)
+    for (final int n : numbers3)
       total3 += n;
 
     long total4 = 0;
-    for (final long n : numbers4)
+    for (final int n : numbers4)
       total4 += n;
 
     final long expected3 = total3;
     final long actual3 = sum(numbers3);
     // System.out.println("expected: " + expected3 + "\nactual:   " + actual3);
     assertTrue(expected3 == actual3);
-
     final long expected4 = total4;
     final long actual4 = sum(numbers4);
     // System.out.println("expected: " + expected4 + "\nactual:   " + actual4);
@@ -434,32 +419,32 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testTotalBoxedLongBoxedLong()
+  public final void testTotalIntegerInteger()
   {
-    final Long[] numbers1 = convertToBoxed(NUMBERS1);
-    final Long[] numbers2 = convertToBoxed(NUMBERS2);
+    final Integer[] numbers1 = convertToBoxed(NUMBERS1);
+    final Integer[] numbers2 = convertToBoxed(NUMBERS2);
 
-    for (final Long n1 : numbers1)
+    for (final Integer n1 : numbers1)
     {
-      for (final Long n2 : numbers2)
+      for (final Integer n2 : numbers2)
       {
         @SuppressWarnings("boxing")
-        final long expected = n1 + n2;
+        final long expected = (long) n1.intValue() + n2;
         final long actual = total(n1, n2);
         // System.out.println("expected: " + expected + "\nactual:   " + actual);
         assertTrue(expected == actual);
       }
     }
 
-    final Long[] numbers3 = convertToBoxed(NUMBERS3);
-    final Long[] numbers4 = convertToBoxed(NUMBERS4);
+    final Integer[] numbers3 = convertToBoxed(NUMBERS3);
+    final Integer[] numbers4 = convertToBoxed(NUMBERS4);
 
-    for (final Long n1 : numbers3)
+    for (final Integer n1 : numbers3)
     {
-      for (final Long n2 : numbers4)
+      for (final Integer n2 : numbers4)
       {
         @SuppressWarnings("boxing")
-        final long expected = n1 + n2;
+        final long expected = (long) n1.intValue() + n2;
         final long actual = total(n1, n2);
         // System.out.println("expected: " + expected + "\nactual:   " + actual);
         assertTrue(expected == actual);
@@ -468,19 +453,19 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testTotalBoxedLongBoxedLongBoxedLong()
+  public final void testTotalIntegerIntegerInteger()
   {
-    final Long[] numbers1 = convertToBoxed(NUMBERS1);
-    final Long[] numbers2 = convertToBoxed(NUMBERS2);
+    final Integer[] numbers1 = convertToBoxed(NUMBERS1);
+    final Integer[] numbers2 = convertToBoxed(NUMBERS2);
 
-    for (final Long n1 : numbers1)
+    for (final Integer n1 : numbers1)
     {
-      for (final Long n2 : numbers2)
+      for (final Integer n2 : numbers2)
       {
-        for (final Long n3 : numbers1)
+        for (final Integer n3 : numbers1)
         {
           @SuppressWarnings("boxing")
-          final long expected = n1 + n2 + n3;
+          final long expected = (long) n1.intValue() + n2 + n3;
           final long actual = total(n1, n2, n3);
           // System.out.println("expected: " + expected + "\nactual:   " + actual);
           assertTrue(expected == actual);
@@ -488,17 +473,17 @@ public class LongsTotalTest
       }
     }
 
-    final Long[] numbers3 = convertToBoxed(NUMBERS3);
-    final Long[] numbers4 = convertToBoxed(NUMBERS4);
+    final Integer[] numbers3 = convertToBoxed(NUMBERS3);
+    final Integer[] numbers4 = convertToBoxed(NUMBERS4);
 
-    for (final Long n1 : numbers3)
+    for (final Integer n1 : numbers3)
     {
-      for (final Long n2 : numbers4)
+      for (final Integer n2 : numbers4)
       {
-        for (final Long n3 : numbers3)
+        for (final Integer n3 : numbers3)
         {
           @SuppressWarnings("boxing")
-          final long expected = n1 + n2 + n3;
+          final long expected = (long) n1.intValue() + n2 + n3;
           final long actual = total(n1, n2, n3);
           // System.out.println("expected: " + expected + "\nactual:   " + actual);
           assertTrue(expected == actual);
@@ -508,21 +493,21 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testTotalBoxedLongBoxedLongBoxedLongBoxedLong()
+  public final void testTotalIntegerIntegerIntegerInteger()
   {
-    final Long[] numbers1 = convertToBoxed(NUMBERS1);
-    final Long[] numbers2 = convertToBoxed(NUMBERS2);
+    final Integer[] numbers1 = convertToBoxed(NUMBERS1);
+    final Integer[] numbers2 = convertToBoxed(NUMBERS2);
 
-    for (final Long n1 : numbers1)
+    for (final Integer n1 : numbers1)
     {
-      for (final Long n2 : numbers2)
+      for (final Integer n2 : numbers2)
       {
-        for (final Long n3 : numbers1)
+        for (final Integer n3 : numbers1)
         {
-          for (final Long n4 : numbers2)
+          for (final Integer n4 : numbers2)
           {
             @SuppressWarnings("boxing")
-            final long expected = n1 + n2 + n3 + n4;
+            final long expected = (long) n1.intValue() + n2 + n3 + n4;
             final long actual = total(n1, n2, n3, n4);
             // System.out.println("expected: " + expected + "\nactual:   " + actual);
             assertTrue(expected == actual);
@@ -531,19 +516,19 @@ public class LongsTotalTest
       }
     }
 
-    final Long[] numbers3 = convertToBoxed(NUMBERS3);
-    final Long[] numbers4 = convertToBoxed(NUMBERS4);
+    final Integer[] numbers3 = convertToBoxed(NUMBERS3);
+    final Integer[] numbers4 = convertToBoxed(NUMBERS4);
 
-    for (final Long n1 : numbers3)
+    for (final Integer n1 : numbers3)
     {
-      for (final Long n2 : numbers4)
+      for (final Integer n2 : numbers4)
       {
-        for (final Long n3 : numbers3)
+        for (final Integer n3 : numbers3)
         {
-          for (final Long n4 : numbers4)
+          for (final Integer n4 : numbers4)
           {
             @SuppressWarnings("boxing")
-            final long expected = n1 + n2 + n3 + n4;
+            final long expected = (long) n1.intValue() + n2 + n3 + n4;
             final long actual = total(n1, n2, n3, n4);
             // System.out.println("expected: " + expected + "\nactual:   " + actual);
             assertTrue(expected == actual);
@@ -554,23 +539,23 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testTotalBoxedLongBoxedLongBoxedLongBoxedLongBoxedLong()
+  public final void testTotalIntegerIntegerIntegerIntegerInteger()
   {
-    final Long[] numbers1 = convertToBoxed(NUMBERS1);
-    final Long[] numbers2 = convertToBoxed(NUMBERS2);
+    final Integer[] numbers1 = convertToBoxed(NUMBERS1);
+    final Integer[] numbers2 = convertToBoxed(NUMBERS2);
 
-    for (final Long n1 : numbers1)
+    for (final Integer n1 : numbers1)
     {
-      for (final Long n2 : numbers2)
+      for (final Integer n2 : numbers2)
       {
-        for (final Long n3 : numbers1)
+        for (final Integer n3 : numbers1)
         {
-          for (final Long n4 : numbers2)
+          for (final Integer n4 : numbers2)
           {
-            for (final Long n5 : numbers1)
+            for (final Integer n5 : numbers1)
             {
               @SuppressWarnings("boxing")
-              final long expected = n1 + n2 + n3 + n4 + n5;
+              final long expected = (long) n1.intValue() + n2 + n3 + n4 + n5;
               final long actual = total(n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected + "\nactual:   " + actual);
               assertTrue(expected == actual);
@@ -580,21 +565,21 @@ public class LongsTotalTest
       }
     }
 
-    final Long[] numbers3 = convertToBoxed(NUMBERS3);
-    final Long[] numbers4 = convertToBoxed(NUMBERS4);
+    final Integer[] numbers3 = convertToBoxed(NUMBERS3);
+    final Integer[] numbers4 = convertToBoxed(NUMBERS4);
 
-    for (final Long n1 : numbers3)
+    for (final Integer n1 : numbers3)
     {
-      for (final Long n2 : numbers4)
+      for (final Integer n2 : numbers4)
       {
-        for (final Long n3 : numbers3)
+        for (final Integer n3 : numbers3)
         {
-          for (final Long n4 : numbers4)
+          for (final Integer n4 : numbers4)
           {
-            for (final Long n5 : numbers3)
+            for (final Integer n5 : numbers3)
             {
               @SuppressWarnings("boxing")
-              final long expected = n1 + n2 + n3 + n4 + n5;
+              final long expected = (long) n1.intValue() + n2 + n3 + n4 + n5;
               final long actual = total(n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected + "\nactual:   " + actual);
               assertTrue(expected == actual);
@@ -606,30 +591,30 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testTotalBoxedLongBoxedLongBoxedLongBoxedLongBoxedLongMoreBoxedLongs()
+  public final void testTotalIntegerIntegerIntegerIntegerIntegerMoreIntegers()
   {
-    final Long[] numbers1 = convertToBoxed(NUMBERS1);
-    final Long[] numbers2 = convertToBoxed(NUMBERS2);
+    final Integer[] numbers1 = convertToBoxed(NUMBERS1);
+    final Integer[] numbers2 = convertToBoxed(NUMBERS2);
 
-    for (final Long n1 : numbers1)
+    for (final Integer n1 : numbers1)
     {
-      for (final Long n2 : numbers2)
+      for (final Integer n2 : numbers2)
       {
-        for (final Long n3 : numbers1)
+        for (final Integer n3 : numbers1)
         {
-          for (final Long n4 : numbers2)
+          for (final Integer n4 : numbers2)
           {
-            for (final Long n5 : numbers1)
+            for (final Integer n5 : numbers1)
             {
               @SuppressWarnings("boxing")
-              final Long expected1 = (n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
+              final Long expected1 = ((long) n1.intValue() + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
               @SuppressWarnings("boxing")
               final Long actual1 = total(n1, n2, n3, n4, n5, n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected1 + "\nactual:   " + actual1);
               assertThat(actual1, is(equalTo(expected1)));
 
               @SuppressWarnings("boxing")
-              final Long expected2 = (n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
+              final Long expected2 = ((long) n1.intValue() + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
               @SuppressWarnings("boxing")
               final Long actual2 = total(n1, n2, n3, n4, n5, n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected2 + "\nactual:   " + actual2);
@@ -640,30 +625,30 @@ public class LongsTotalTest
       }
     }
 
-    final Long[] numbers3 = new Long[HOW_MANY];
+    final Integer[] numbers3 = new Integer[HOW_MANY];
     System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Long[] numbers4 = new Long[HOW_MANY];
+    final Integer[] numbers4 = new Integer[HOW_MANY];
     System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
 
-    for (final Long n1 : numbers3)
+    for (final Integer n1 : numbers3)
     {
-      for (final Long n2 : numbers4)
+      for (final Integer n2 : numbers4)
       {
-        for (final Long n3 : numbers3)
+        for (final Integer n3 : numbers3)
         {
-          for (final Long n4 : numbers4)
+          for (final Integer n4 : numbers4)
           {
-            for (final Long n5 : numbers3)
+            for (final Integer n5 : numbers3)
             {
               @SuppressWarnings("boxing")
-              final Long expected3 = (n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
+              final Long expected3 = ((long) n1.intValue() + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
               @SuppressWarnings("boxing")
               final Long actual3 = total(n1, n2, n3, n4, n5, n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected3 + "\nactual:   " + actual3);
               assertThat(actual3, is(equalTo(expected3)));
 
               @SuppressWarnings("boxing")
-              final Long expected4 = (n1 + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
+              final Long expected4 = ((long) n1.intValue() + n2 + n3 + n4 + n5 + n1 + n2 + n3 + n4 + n5);
               @SuppressWarnings("boxing")
               final Long actual4 = total(n1, n2, n3, n4, n5, n1, n2, n3, n4, n5);
               // System.out.println("expected: " + expected4 + "\nactual:   " + actual4);
@@ -676,25 +661,25 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testTotalBoxedLongBoxedLongBoxedLongBoxedLongBoxedLongBoxedLongArray()
+  public final void testTotalIntegerIntegerIntegerIntegerIntegerIntegerArray()
   {
-    final Long[] numbers1 = convertToBoxed(NUMBERS1);
-    final Long[] numbers2 = convertToBoxed(NUMBERS2);
+    final Integer[] numbers1 = convertToBoxed(NUMBERS1);
+    final Integer[] numbers2 = convertToBoxed(NUMBERS2);
 
-    for (final Long n1 : numbers1)
+    for (final Integer n1 : numbers1)
     {
-      for (final Long n2 : numbers2)
+      for (final Integer n2 : numbers2)
       {
-        for (final Long n3 : numbers1)
+        for (final Integer n3 : numbers1)
         {
-          for (final Long n4 : numbers2)
+          for (final Integer n4 : numbers2)
           {
-            for (final Long n5 : numbers1)
+            for (final Integer n5 : numbers1)
             {
               @SuppressWarnings("boxing")
-              long total1 = n1 + n2 + n3 + n4 + n5;
-              for (final Long n : numbers1)
-                total1 += n.longValue();
+              long total1 = (long) n1.intValue() + n2 + n3 + n4 + n5;
+              for (final Integer n : numbers1)
+                total1 += n.intValue();
 
               @SuppressWarnings("boxing")
               final Long expected1 = total1;
@@ -704,9 +689,9 @@ public class LongsTotalTest
               assertThat(actual1, is(equalTo(expected1)));
 
               @SuppressWarnings("boxing")
-              long total2 = n1 + n2 + n3 + n4 + n5;
-              for (final Long n : numbers2)
-                total2 += n.longValue();
+              long total2 = (long) n1.intValue() + n2 + n3 + n4 + n5;
+              for (final Integer n : numbers2)
+                total2 += n.intValue();
 
               @SuppressWarnings("boxing")
               final Long expected2 = total2;
@@ -720,25 +705,25 @@ public class LongsTotalTest
       }
     }
 
-    final Long[] numbers3 = new Long[HOW_MANY];
+    final Integer[] numbers3 = new Integer[HOW_MANY];
     System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Long[] numbers4 = new Long[HOW_MANY];
+    final Integer[] numbers4 = new Integer[HOW_MANY];
     System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
 
-    for (final Long n1 : numbers3)
+    for (final Integer n1 : numbers3)
     {
-      for (final Long n2 : numbers4)
+      for (final Integer n2 : numbers4)
       {
-        for (final Long n3 : numbers3)
+        for (final Integer n3 : numbers3)
         {
-          for (final Long n4 : numbers4)
+          for (final Integer n4 : numbers4)
           {
-            for (final Long n5 : numbers3)
+            for (final Integer n5 : numbers3)
             {
               @SuppressWarnings("boxing")
-              long total3 = n1 + n2 + n3 + n4 + n5;
-              for (final Long n : numbers3)
-                total3 += n.longValue();
+              long total3 = (long) n1.intValue() + n2 + n3 + n4 + n5;
+              for (final Integer n : numbers3)
+                total3 += n.intValue();
 
               @SuppressWarnings("boxing")
               final Long expected3 = total3;
@@ -748,9 +733,9 @@ public class LongsTotalTest
               assertThat(actual3, is(equalTo(expected3)));
 
               @SuppressWarnings("boxing")
-              long total4 = n1 + n2 + n3 + n4 + n5;
-              for (final Long n : numbers4)
-                total4 += n.longValue();
+              long total4 = (long) n1.intValue() + n2 + n3 + n4 + n5;
+              for (final Integer n : numbers4)
+                total4 += n.intValue();
 
               @SuppressWarnings("boxing")
               final Long expected4 = total4;
@@ -766,18 +751,18 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testTotalBoxedLongArray()
+  public final void testTotalIntegerArray()
   {
-    final Long[] numbers1 = convertToBoxed(NUMBERS1);
-    final Long[] numbers2 = convertToBoxed(NUMBERS2);
+    final Integer[] numbers1 = convertToBoxed(NUMBERS1);
+    final Integer[] numbers2 = convertToBoxed(NUMBERS2);
 
     long total1 = 0;
-    for (final Long n : numbers1)
-      total1 += n.longValue();
+    for (final Integer n : numbers1)
+      total1 += n.intValue();
 
     long total2 = 0;
-    for (final Long n : numbers2)
-      total2 += n.longValue();
+    for (final Integer n : numbers2)
+      total2 += n.intValue();
 
     final long expected1 = total1;
     final long actual1 = total(numbers1);
@@ -788,22 +773,21 @@ public class LongsTotalTest
     // System.out.println("expected: " + expected2 + "\nactual:   " + actual2);
     assertTrue(expected2 == actual2);
 
-    final Long[] numbers3 = convertToBoxed(NUMBERS3);
-    final Long[] numbers4 = convertToBoxed(NUMBERS4);
+    final Integer[] numbers3 = convertToBoxed(NUMBERS3);
+    final Integer[] numbers4 = convertToBoxed(NUMBERS4);
 
     long total3 = 0;
-    for (final Long n : numbers3)
-      total3 += n.longValue();
+    for (final Integer n : numbers3)
+      total3 += n.intValue();
 
     long total4 = 0;
-    for (final Long n : numbers4)
-      total4 += n.longValue();
+    for (final Integer n : numbers4)
+      total4 += n.intValue();
 
     final long expected3 = total3;
     final long actual3 = total(numbers3);
     // System.out.println("expected: " + expected3 + "\nactual:   " + actual3);
     assertTrue(expected3 == actual3);
-
     final long expected4 = total4;
     final long actual4 = total(numbers4);
     // System.out.println("expected: " + expected4 + "\nactual:   " + actual4);
@@ -811,18 +795,18 @@ public class LongsTotalTest
   }
 
   @Test
-  public final void testTotalIterableOfLong()
+  public final void testTotalIterableOfInteger()
   {
-    final Iterable<Long> numbers1 = asList(convertToBoxed(NUMBERS1));
-    final Iterable<Long> numbers2 = asList(convertToBoxed(NUMBERS2));
+    final Iterable<Integer> numbers1 = asList(convertToBoxed(NUMBERS1));
+    final Iterable<Integer> numbers2 = asList(convertToBoxed(NUMBERS2));
 
     long total1 = 0;
-    for (final Long n : numbers1)
-      total1 += n.longValue();
+    for (final Integer n : numbers1)
+      total1 += n.intValue();
 
     long total2 = 0;
-    for (final Long n : numbers2)
-      total2 += n.longValue();
+    for (final Integer n : numbers2)
+      total2 += n.intValue();
 
     final long expected1 = total1;
     final long actual1 = total(numbers1);
@@ -833,22 +817,21 @@ public class LongsTotalTest
     // System.out.println("expected: " + expected2 + "\nactual:   " + actual2);
     assertTrue(expected2 == actual2);
 
-    final Iterable<Long> numbers3 = asList(convertToBoxed(NUMBERS3));
-    final Iterable<Long> numbers4 = asList(convertToBoxed(NUMBERS4));
+    final Iterable<Integer> numbers3 = asList(convertToBoxed(NUMBERS3));
+    final Iterable<Integer> numbers4 = asList(convertToBoxed(NUMBERS4));
 
     long total3 = 0;
-    for (final Long n : numbers3)
-      total3 += n.longValue();
+    for (final Integer n : numbers3)
+      total3 += n.intValue();
 
     long total4 = 0;
-    for (final Long n : numbers4)
-      total4 += n.longValue();
+    for (final Integer n : numbers4)
+      total4 += n.intValue();
 
     final long expected3 = total3;
     final long actual3 = total(numbers3);
     // System.out.println("expected: " + expected3 + "\nactual:   " + actual3);
     assertTrue(expected3 == actual3);
-
     final long expected4 = total4;
     final long actual4 = total(numbers4);
     // System.out.println("expected: " + expected4 + "\nactual:   " + actual4);

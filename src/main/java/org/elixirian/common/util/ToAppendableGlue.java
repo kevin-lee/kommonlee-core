@@ -3,6 +3,8 @@
  */
 package org.elixirian.common.util;
 
+import org.eclipse.jdt.annotation.NonNull;
+
 /**
  * <pre>
  *     ____________    ___________  ____   _______ _________ _______ _______________  ____
@@ -25,5 +27,5 @@ package org.elixirian.common.util;
  */
 public interface ToAppendableGlue<E>
 {
-	<A extends Appendable> A glue(final A appendable, final E e);
+	<A extends Appendable> A glue(@NonNull final A appendable, @NonNull final E e);
 }

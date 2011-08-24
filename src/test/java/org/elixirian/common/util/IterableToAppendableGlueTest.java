@@ -72,17 +72,17 @@ public class IterableToAppendableGlueTest
 	{
 		IterableToAppendableGlue iterableToAppendableGlue = IterableToAppendableGlue.withSeparator(", ");
 		assertThat(iterableToAppendableGlue, is(not(nullValue())));
-		assertThat(iterableToAppendableGlue.getGlue(),
+		assertThat(iterableToAppendableGlue.getAppendingAction(),
 				is(instanceOf(SimpleAppendingAction.AppendingActionWithSeparator.class)));
 
 		iterableToAppendableGlue = IterableToAppendableGlue.withSeparator(null);
 		assertThat(iterableToAppendableGlue, is(not(nullValue())));
-		assertThat(iterableToAppendableGlue.getGlue(),
+		assertThat(iterableToAppendableGlue.getAppendingAction(),
 				is(instanceOf(SimpleAppendingAction.AppendingActionWithoutSeparator.class)));
 
 		iterableToAppendableGlue = IterableToAppendableGlue.withSeparator("");
 		assertThat(iterableToAppendableGlue, is(not(nullValue())));
-		assertThat(iterableToAppendableGlue.getGlue(),
+		assertThat(iterableToAppendableGlue.getAppendingAction(),
 				is(instanceOf(SimpleAppendingAction.AppendingActionWithoutSeparator.class)));
 	}
 
@@ -91,7 +91,7 @@ public class IterableToAppendableGlueTest
 	{
 		IterableToAppendableGlue iterableToAppendableGlue = IterableToAppendableGlue.withoutSeparator();
 		assertThat(iterableToAppendableGlue, is(not(nullValue())));
-		assertThat(iterableToAppendableGlue.getGlue(),
+		assertThat(iterableToAppendableGlue.getAppendingAction(),
 				is(instanceOf(SimpleAppendingAction.AppendingActionWithoutSeparator.class)));
 	}
 

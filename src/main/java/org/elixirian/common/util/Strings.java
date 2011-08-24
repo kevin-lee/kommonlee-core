@@ -1,5 +1,9 @@
 package org.elixirian.common.util;
 
+import static org.elixirian.common.util.Objects.*;
+
+import org.eclipse.jdt.annotation.Nullable;
+
 /**
  * <pre>
  *     ____________    ___________  ____   _______ _________ _______ _______________  ____
@@ -35,130 +39,131 @@ package org.elixirian.common.util;
  */
 public final class Strings
 {
-	private Strings()
-	{
-	}
+  private Strings()
+  {
+  }
 
-	/**
-	 * Returns a copy of the given string, with leading and trailing whitespace omitted. If the given String contains
-	 * <code>null</code> reference it returns an "" (empty String).
-	 * 
-	 * @param value
-	 *            the given String value
-	 * @return the result of value.trim(). If the value is null, return "" (empty String).
-	 */
-	public static String nullSafeTrim(String value)
-	{
-		return (null == value ? "" : value.trim());
-	}
+  /**
+   * Returns a copy of the given string, with leading and trailing whitespace omitted. If the given String contains
+   * <code>null</code> reference it returns an "" (empty String).
+   * 
+   * @param value
+   *          the given String value
+   * @return the result of value.trim(). If the value is null, return "" (empty String).
+   */
+  public static String nullSafeTrim(String value)
+  {
+    return (null == value ? "" : value.trim());
+  }
 
-	/**
-	 * Returns an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
-	 * given value itself.
-	 * 
-	 * @param value
-	 *            the given String value to check for nullity.
-	 * @return an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
-	 *         given value itself
-	 */
-	public static String nullThenEmpty(String value)
-	{
-		return null == value ? "" : value;
-	}
+  /**
+   * Returns an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
+   * given value itself.
+   * 
+   * @param value
+   *          the given String value to check for nullity.
+   * @return an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
+   *         given value itself
+   */
+  public static String nullThenEmpty(String value)
+  {
+    return null == value ? "" : value;
+  }
 
-	/**
-	 * Returns {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
-	 * not empty, returns the given value itself.
-	 * 
-	 * @param value
-	 *            the given String value to check for emptiness.
-	 * @return {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
-	 *         not empty, returns the given value itself.
-	 */
-	public static String emptyThenNull(String value)
-	{
-		return isEmpty(value) ? null : value;
-	}
+  /**
+   * Returns {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
+   * not empty, returns the given value itself.
+   * 
+   * @param value
+   *          the given String value to check for emptiness.
+   * @return {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
+   *         not empty, returns the given value itself.
+   */
+  public static String emptyThenNull(String value)
+  {
+    return isEmpty(value) ? null : value;
+  }
 
-	/**
-	 * Checks if the given String value is empty. It means the given String parameter contains the null reference or no
-	 * String value which means its length is 0.
-	 * 
-	 * @param value
-	 *            the given String value.
-	 * @return true if the given String parameter contains the null reference or it has no String value (null == value
-	 *         || 0 == value.length()). false if the given String parameter contains a reference pointing to any String
-	 *         value having the length of which is greater than 0.
-	 */
-	public static boolean isEmpty(String value)
-	{
-		return (null == value || 0 == value.length());
-	}
+  /**
+   * Checks if the given String value is empty. It means the given String parameter contains the null reference or no
+   * String value which means its length is 0.
+   * 
+   * @param value
+   *          the given String value.
+   * @return true if the given String parameter contains the null reference or it has no String value (null == value ||
+   *         0 == value.length()). false if the given String parameter contains a reference pointing to any String value
+   *         having the length of which is greater than 0.
+   */
+  public static boolean isEmpty(@Nullable String value)
+  {
+    return (null == value || 0 == value.length());
+  }
 
-	/**
-	 * Checks if the given String value is not empty. It means the given String parameter contains neither the null
-	 * reference nor any String with 0 length.
-	 * 
-	 * @param value
-	 *            the given String value.
-	 * @return true if the given String parameter contains a reference pointing to any String object the length of which
-	 *         is greater than 0 (null != value && 0 < value.length()). false if it contains null or a String value with
-	 *         0 length.
-	 */
-	public static boolean isNotEmpty(String value)
-	{
-		return !isEmpty(value);
-	}
+  /**
+   * Checks if the given String value is not empty. It means the given String parameter contains neither the null
+   * reference nor any String with 0 length.
+   * 
+   * @param value
+   *          the given String value.
+   * @return true if the given String parameter contains a reference pointing to any String object the length of which
+   *         is greater than 0 (null != value && 0 < value.length()). false if it contains null or a String value with 0
+   *         length.
+   */
+  public static boolean isNotEmpty(@Nullable String value)
+  {
+    return !isEmpty(value);
+  }
 
-	/**
-	 * Repeats the given String the given number of times.
-	 * 
-	 * <pre>
-	 * Strings.repeat("", -1);
-	 * Result: {@link IllegalArgumentException}
-	 * 
-	 * Strings.repeat("", 0);
-	 * Result: ""
-	 * 
-	 * Strings.repeat("", 10);
-	 * Result: ""
-	 * 
-	 * Strings.repeat("Kevin ", -1);
-	 * Result: {@link IllegalArgumentException}
-	 * 
-	 * Strings.repeat("Kevin ", 0);
-	 * Result: ""
-	 * 
-	 * Strings.repeat("Kevin ", 1);
-	 * Result: "Kevin "
-	 * 
-	 * Strings.repeat("Kevin ", 2);
-	 * Result: "Kevin Kevin "
-	 * 
-	 * Strings.repeat("Kevin ", 5);
-	 * Result: "Kevin Kevin Kevin Kevin Kevin "
-	 * </pre>
-	 * 
-	 * @param value
-	 *            the given String value.
-	 * @param times
-	 *            the given number of times to repeat.
-	 * @return The String repeated the given number of times.
-	 * @exception IllegalArgumentException
-	 *                if the value of the times parameter is a negative value.
-	 */
-	public static String repeat(final String value, final int times) throws IllegalArgumentException
-	{
-		if (0 > times)
-		{
-			throw new IllegalArgumentException(
-					"The value of the times parameter cannot be a negative number. It must be a non-negative number.");
-		}
-		final StringBuilder stringBuilder = new StringBuilder(value.length() * times);
-		for (int i = 0; i < times; i++)
-		{
-			stringBuilder.append(value);
-		}
-		return stringBuilder.toString();
-	}
+  /**
+   * Repeats the given String the given number of times.
+   * 
+   * <pre>
+   * Strings.repeat("", -1);
+   * Result: {@link IllegalArgumentException}
+   * 
+   * Strings.repeat("", 0);
+   * Result: ""
+   * 
+   * Strings.repeat("", 10);
+   * Result: ""
+   * 
+   * Strings.repeat("Kevin ", -1);
+   * Result: {@link IllegalArgumentException}
+   * 
+   * Strings.repeat("Kevin ", 0);
+   * Result: ""
+   * 
+   * Strings.repeat("Kevin ", 1);
+   * Result: "Kevin "
+   * 
+   * Strings.repeat("Kevin ", 2);
+   * Result: "Kevin Kevin "
+   * 
+   * Strings.repeat("Kevin ", 5);
+   * Result: "Kevin Kevin Kevin Kevin Kevin "
+   * </pre>
+   * 
+   * @param value
+   *          the given String value.
+   * @param times
+   *          the given number of times to repeat.
+   * @return The String repeated the given number of times.
+   * @exception IllegalArgumentException
+   *              if the value of the times parameter is a negative value.
+   */
+  public static String repeat(@Nullable final String value, final int times) throws IllegalArgumentException
+  {
+    final String valueToUse = toStringOf(value);
+    if (0 > times)
+    {
+      throw new IllegalArgumentException(
+          "The value of the times parameter cannot be a negative number. It must be a non-negative number.");
+    }
+    final StringBuilder stringBuilder = new StringBuilder(valueToUse.length() * times);
+    for (int i = 0; i < times; i++)
+    {
+      stringBuilder.append(valueToUse);
+    }
+    return stringBuilder.toString();
+  }
 }
