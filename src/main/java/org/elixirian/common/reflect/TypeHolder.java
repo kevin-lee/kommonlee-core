@@ -29,22 +29,28 @@ import java.lang.reflect.Type;
  */
 public abstract class TypeHolder<T>
 {
-	protected final Type type;
+  protected final Type type;
 
-	protected TypeHolder()
-	{
-		this.type = Generics.extractFromParameterizedType(getClass().getGenericSuperclass(), 0);
-	}
+  protected TypeHolder()
+  {
+    /* @formatter:off */
+    this.type = Generics.extractFromParameterizedType(getClass()
+        .getGenericSuperclass(), 0);
+    /* @formatter:on */
+  }
 
-	public Type getType()
-	{
-		return type;
-	}
+  public Type getType()
+  {
+    return type;
+  }
 
-	@Override
-	public String toString()
-	{
-		return toStringBuilder(this).add("type", type)
+  @Override
+  public String toString()
+  {
+    /* @formatter:off */
+		return toStringBuilder(this)
+		    .add("type", type)
 				.toString();
-	}
+		/* @formatter:on */
+  }
 }
