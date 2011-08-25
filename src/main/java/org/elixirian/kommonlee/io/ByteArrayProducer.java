@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.elixirian.common.io.exception;
+package org.elixirian.kommonlee.io;
 
 /**
  * <pre>
@@ -21,43 +21,24 @@ package org.elixirian.common.io.exception;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-01-09)
+ * @version 0.0.1 (2010-10-28)
  */
-public class RuntimeUnsupportedEncodingException extends RuntimeIoException
+public interface ByteArrayProducer
 {
-	private static final long serialVersionUID = -8352857644431063705L;
+  /**
+   * It produces bytes and store into the given byte array. How the bytes are produced is all up to the implementation
+   * of this interface.
+   * 
+   * @param bytes
+   *          the given byte array to store the bytes from this {@link ByteArrayProducer}.
+   * @return the total number of bytes read into the given byte array.
+   */
+  int produce(byte[] bytes);
 
-	/**
-	 * 
-	 */
-	public RuntimeUnsupportedEncodingException()
-	{
-		super();
-	}
-
-	/**
-	 * @param message
-	 * @param cause
-	 */
-	public RuntimeUnsupportedEncodingException(String message, Throwable cause)
-	{
-		super(message, cause);
-	}
-
-	/**
-	 * @param message
-	 */
-	public RuntimeUnsupportedEncodingException(String message)
-	{
-		super(message);
-	}
-
-	/**
-	 * @param cause
-	 */
-	public RuntimeUnsupportedEncodingException(Throwable cause)
-	{
-		super(cause);
-	}
-
+  /**
+   * Returns the total number of bytes this {@link ByteArrayProducer} has.
+   * 
+   * @return the total number of bytes this {@link ByteArrayProducer} has.
+   */
+  int length();
 }

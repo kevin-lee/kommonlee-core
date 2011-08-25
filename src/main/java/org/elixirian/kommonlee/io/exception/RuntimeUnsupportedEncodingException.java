@@ -1,12 +1,7 @@
 /**
  * 
  */
-package org.elixirian.common.io;
-
-import static org.elixirian.common.test.CommonTestHelper.*;
-
-import org.elixirian.common.test.CommonTestHelper.Accessibility;
-import org.junit.Test;
+package org.elixirian.kommonlee.io.exception;
 
 /**
  * <pre>
@@ -26,19 +21,43 @@ import org.junit.Test;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-07-16)
+ * @version 0.0.1 (2010-01-09)
  */
-public class IoCommonConstantsTest
+public class RuntimeUnsupportedEncodingException extends RuntimeIoException
 {
-	/**
-	 * Test method for {@link java.lang.Object#Object()}.
+  private static final long serialVersionUID = -8352857644431063705L;
+
+  /**
 	 * 
-	 * @throws Exception
 	 */
-	@Test(expected = IllegalAccessException.class)
-	public final void testIoCommonConstants() throws Exception
-	{
-		testNotAccessibleConstructor(IoCommonConstants.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
-	}
+  public RuntimeUnsupportedEncodingException()
+  {
+    super();
+  }
+
+  /**
+   * @param message
+   * @param cause
+   */
+  public RuntimeUnsupportedEncodingException(String message, Throwable cause)
+  {
+    super(message, cause);
+  }
+
+  /**
+   * @param message
+   */
+  public RuntimeUnsupportedEncodingException(String message)
+  {
+    super(message);
+  }
+
+  /**
+   * @param cause
+   */
+  public RuntimeUnsupportedEncodingException(Throwable cause)
+  {
+    super(cause);
+  }
 
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.elixirian.common.io;
+package org.elixirian.kommonlee.io.exception;
 
 /**
  * <pre>
@@ -21,24 +21,43 @@ package org.elixirian.common.io;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-10-28)
+ * @version 0.0.1 (2010-01-09)
  */
-public interface ByteArrayProducer
+public class RuntimeFileNotFoundException extends RuntimeIoException
 {
-	/**
-	 * It produces bytes and store into the given byte array. How the bytes are produced is all up to the implementation
-	 * of this interface.
-	 * 
-	 * @param bytes
-	 *          the given byte array to store the bytes from this {@link ByteArrayProducer}.
-	 * @return the total number of bytes read into the given byte array.
-	 */
-	int produce(byte[] bytes);
+  private static final long serialVersionUID = 6404612073848465058L;
 
-	/**
-	 * Returns the total number of bytes this {@link ByteArrayProducer} has.
+  /**
 	 * 
-	 * @return the total number of bytes this {@link ByteArrayProducer} has.
 	 */
-	int length();
+  public RuntimeFileNotFoundException()
+  {
+    super();
+  }
+
+  /**
+   * @param message
+   * @param cause
+   */
+  public RuntimeFileNotFoundException(String message, Throwable cause)
+  {
+    super(message, cause);
+  }
+
+  /**
+   * @param message
+   */
+  public RuntimeFileNotFoundException(String message)
+  {
+    super(message);
+  }
+
+  /**
+   * @param cause
+   */
+  public RuntimeFileNotFoundException(Throwable cause)
+  {
+    super(cause);
+  }
+
 }

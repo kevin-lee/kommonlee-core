@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.elixirian.common.io;
+package org.elixirian.kommonlee.io;
 
 /**
  * <pre>
@@ -25,16 +25,16 @@ package org.elixirian.common.io;
  */
 public interface ByteArrayConsumer
 {
-	/**
-	 * It consumes the bytes in the given byte array. How the bytes are consumed is all up to the implementation of this
-	 * interface.
-	 * 
-	 * @param bytes
-	 *          an array of bytes to be consumed.
-	 * @param offset
-	 *          the index of the first byte to be consumed.
-	 * @param count
-	 *          the number of bytes to be consumed
-	 */
-	void consume(byte[] bytes, int offset, int count);
+  /**
+   * It consumes the bytes in the given byte array. How the bytes are consumed is all up to the implementation of this
+   * interface.
+   * 
+   * @param bytes
+   *          an array of bytes to be consumed.
+   * @param offset
+   *          the index of the first byte to be consumed.
+   * @param count
+   *          the number of bytes to be consumed
+   */
+  void consume(byte[] bytes, int offset, int count);
 }

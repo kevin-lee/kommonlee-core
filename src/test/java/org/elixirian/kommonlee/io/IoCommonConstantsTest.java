@@ -1,7 +1,12 @@
 /**
  * 
  */
-package org.elixirian.common.io.exception;
+package org.elixirian.kommonlee.io;
+
+import static org.elixirian.kommonlee.test.CommonTestHelper.*;
+
+import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
+import org.junit.Test;
 
 /**
  * <pre>
@@ -21,43 +26,19 @@ package org.elixirian.common.io.exception;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-01-09)
+ * @version 0.0.1 (2010-07-16)
  */
-public class RuntimeFileNotFoundException extends RuntimeIoException
+public class IoCommonConstantsTest
 {
-	private static final long serialVersionUID = 6404612073848465058L;
-
-	/**
-	 * 
-	 */
-	public RuntimeFileNotFoundException()
-	{
-		super();
-	}
-
-	/**
-	 * @param message
-	 * @param cause
-	 */
-	public RuntimeFileNotFoundException(String message, Throwable cause)
-	{
-		super(message, cause);
-	}
-
-	/**
-	 * @param message
-	 */
-	public RuntimeFileNotFoundException(String message)
-	{
-		super(message);
-	}
-
-	/**
-	 * @param cause
-	 */
-	public RuntimeFileNotFoundException(Throwable cause)
-	{
-		super(cause);
-	}
+  /**
+   * Test method for {@link java.lang.Object#Object()}.
+   * 
+   * @throws Exception
+   */
+  @Test(expected = IllegalAccessException.class)
+  public final void testIoCommonConstants() throws Exception
+  {
+    testNotAccessibleConstructor(IoCommonConstants.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
+  }
 
 }
