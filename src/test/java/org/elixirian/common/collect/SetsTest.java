@@ -56,6 +56,7 @@ public class SetsTest
 {
 
   private static final Condition1<Object> NOT_NULL_CONDITION = new Condition1<Object>() {
+    @Override
     public boolean isApplicable(final Object input)
     {
       return isNotNull(input);
@@ -64,6 +65,7 @@ public class SetsTest
 
   private static final Filter1<Iterable<Integer>, Condition1<Object>, List<Integer>> INTEGER_FILTER =
     new Filter1<Iterable<Integer>, Condition1<Object>, List<Integer>>() {
+      @Override
       public List<Integer> filter(final Condition1<Object> condition, final Iterable<Integer> source)
       {
         final List<Integer> list = new ArrayList<Integer>();
@@ -76,6 +78,7 @@ public class SetsTest
 
   private static final Filter1<Iterable<String>, Condition1<Object>, List<String>> STRING_FILTER =
     new Filter1<Iterable<String>, Condition1<Object>, List<String>>() {
+      @Override
       public List<String> filter(final Condition1<Object> condition, final Iterable<String> source)
       {
         final List<String> list = new ArrayList<String>();
@@ -88,6 +91,7 @@ public class SetsTest
 
   private static final Filter1<List<Object>, Condition1<Object>, List<Object>> OBJECT_FILTER =
     new Filter1<List<Object>, Condition1<Object>, List<Object>>() {
+      @Override
       public List<Object> filter(final Condition1<Object> condition, final List<Object> source)
       {
         final List<Object> list = new ArrayList<Object>();
@@ -100,6 +104,7 @@ public class SetsTest
 
   private static final Filter1<Iterable<ComparableObject>, Condition1<Object>, List<ComparableObject>> COMPARABLE_OBJECT_FILTER =
     new Filter1<Iterable<ComparableObject>, Condition1<Object>, List<ComparableObject>>() {
+      @Override
       public List<ComparableObject> filter(final Condition1<Object> condition, final Iterable<ComparableObject> source)
       {
         final List<ComparableObject> list = new ArrayList<ComparableObject>();
@@ -163,6 +168,7 @@ public class SetsTest
   private static final Set<ComparableObject> COMPARABLE_OBJECT_TREE_SET;
 
   private static final Comparator<? super Integer> INTEGER_COMPARATOR = new Comparator<Integer>() {
+    @Override
     public int compare(final Integer o1, final Integer o2)
     {
       if (null == o1)

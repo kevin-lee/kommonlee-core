@@ -47,6 +47,7 @@ public final class UtilForTesting
       return key;
     }
 
+    @Override
     public int compareTo(final ComparableObject that)
     {
       return this.key < that.getKey() ? -1 : this.key == that.getKey() ? 0 : 1;
@@ -77,6 +78,7 @@ public final class UtilForTesting
   }
 
   static final Comparator<? super String> STRING_COMPARATOR = new Comparator<String>() {
+    @Override
     public int compare(final String o1, final String o2)
     {
       if (null == o1)
@@ -88,6 +90,7 @@ public final class UtilForTesting
   };
 
   static final Comparator<? super Object> OBJECT_COMPARATOR = new Comparator<Object>() {
+    @Override
     public int compare(final Object o1, final Object o2)
     {
       if (null == o1)

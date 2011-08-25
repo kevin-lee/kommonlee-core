@@ -56,6 +56,7 @@ import org.junit.Test;
 public class MapsTest
 {
   private static final Condition1<Object> NOT_NULL_CONDITION = new Condition1<Object>() {
+    @Override
     public boolean isApplicable(final Object input)
     {
       return isNotNull(input);
@@ -507,6 +508,7 @@ public class MapsTest
   }
 
   private static final Comparator<? super Integer> INTEGER_COMPARATOR = new Comparator<Integer>() {
+    @Override
     public int compare(final Integer o1, final Integer o2)
     {
       if (null == o1)
@@ -523,6 +525,7 @@ public class MapsTest
   };
 
   private static final Comparator<? super String> STRING_COMPARATOR = new Comparator<String>() {
+    @Override
     public int compare(final String o1, final String o2)
     {
       if (null == o1)
@@ -536,6 +539,7 @@ public class MapsTest
 
   private static final Comparator<Object> OBJECT_COMPARATOR = new Comparator<Object>() {
 
+    @Override
     public int compare(final Object o1, final Object o2)
     {
       if (o1 instanceof Comparable && o2 instanceof Comparable)
@@ -624,6 +628,7 @@ public class MapsTest
   }
 
   private static final GenericMapFilter GENERIC_MAP_FILTER = new GenericMapFilter() {
+    @Override
     public <K, V, T extends Map<? extends K, ? extends V>, C extends Condition1<? super K>> Map<K, V> filter(
         C condition, T map)
     {
