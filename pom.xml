@@ -4,17 +4,16 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>elixirian-common</artifactId>
+		<artifactId>kommonlee-parent</artifactId>
 		<groupId>org.elixirian</groupId>
 		<version>0.0.5-SNAPSHOT</version>
 	</parent>
 
-	<groupId>org.elixirian</groupId>
-	<artifactId>elixirian-common-reflect</artifactId>
+	<artifactId>kommonlee-reflect</artifactId>
 	<version>0.0.4-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>elixirian-common-reflect</name>
+	<name>kommonlee-reflect</name>
 	<url>http://elixirian.org</url>
 	<organization>
 		<name>Elixirian Pty Ltd</name>
@@ -65,22 +64,22 @@
 			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.elixirian</groupId>
-			<artifactId>elixirian-common-test</artifactId>
-			<version>0.0.12-SNAPSHOT</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.elixirian</groupId>
-			<artifactId>elixirian-common-util</artifactId>
-			<version>0.0.11-SNAPSHOT</version>
-		</dependency>
 
 		<dependency>
-			<groupId>org.elixirian</groupId>
-			<artifactId>elixirian-common-validation</artifactId>
-			<version>0.0.16-SNAPSHOT</version>
+		  <groupId>org.elixirian</groupId>
+		  <artifactId>kommonlee-test</artifactId>
+		  <version>0.0.12-SNAPSHOT</version>
+		  <scope>test</scope>
+		</dependency>
+		<dependency>
+		  <groupId>org.elixirian</groupId>
+		  <artifactId>kommonlee-util</artifactId>
+		  <version>0.0.11-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+		  <groupId>org.elixirian</groupId>
+		  <artifactId>kommonlee-validation</artifactId>
+		  <version>0.0.16-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

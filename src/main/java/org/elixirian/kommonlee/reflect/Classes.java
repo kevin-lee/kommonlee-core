@@ -1,9 +1,9 @@
 /**
  * 
  */
-package org.elixirian.common.reflect;
+package org.elixirian.kommonlee.reflect;
 
-import static org.elixirian.common.validation.Assertions.*;
+import static org.elixirian.kommonlee.validation.Assertions.*;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;

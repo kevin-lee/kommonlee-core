@@ -1,9 +1,9 @@
 /**
  * 
  */
-package org.elixirian.common.reflect;
+package org.elixirian.kommonlee.reflect;
 
-import static org.elixirian.common.util.Objects.*;
+import static org.elixirian.kommonlee.util.Objects.*;
 
 import java.lang.reflect.Type;
 

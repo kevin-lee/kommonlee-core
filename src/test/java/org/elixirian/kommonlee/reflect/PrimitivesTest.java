@@ -1,13 +1,13 @@
 /**
  * 
  */
-package org.elixirian.common.reflect;
+package org.elixirian.kommonlee.reflect;
 
-import static org.elixirian.common.test.CommonTestHelper.*;
+import static org.elixirian.kommonlee.test.CommonTestHelper.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import org.elixirian.common.test.CommonTestHelper.Accessibility;
+import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
