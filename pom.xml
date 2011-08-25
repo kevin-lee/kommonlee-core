@@ -72,16 +72,13 @@
 		<dependency>
 			<groupId>org.elixirian</groupId>
 			<artifactId>elixirian-common-test</artifactId>
-			<version>0.0.10-SNAPSHOT</version>
-			<type>jar</type>
+			<version>0.0.12-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.elixirian</groupId>
 			<artifactId>elixirian-common-type</artifactId>
-			<version>0.0.6-SNAPSHOT</version>
-			<type>jar</type>
-			<scope>compile</scope>
+			<version>0.0.7-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.elixirian</groupId>
