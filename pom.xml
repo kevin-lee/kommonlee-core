@@ -3,17 +3,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>elixirian-common</artifactId>
+    <artifactId>kommonlee-parent</artifactId>
     <groupId>org.elixirian</groupId>
     <version>0.0.5-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.elixirian</groupId>
-  <artifactId>elixirian-common-collection</artifactId>
+  <artifactId>kommonlee-collection</artifactId>
   <version>0.0.2-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>elixirian-common-collection</name>
+  <name>kommonlee-collection</name>
   <url>http://elixirian.org</url>
 
   <organization>
@@ -73,13 +72,13 @@
     </dependency>
     <dependency>
       <groupId>org.elixirian</groupId>
-      <artifactId>elixirian-common-test</artifactId>
+      <artifactId>kommonlee-test</artifactId>
       <version>0.0.12-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.elixirian</groupId>
-      <artifactId>elixirian-common-util</artifactId>
+      <artifactId>kommonlee-util</artifactId>
       <version>0.0.11-SNAPSHOT</version>
     </dependency>
   </dependencies>

@@ -1,9 +1,9 @@
 /**
  * 
  */
-package org.elixirian.common.collect;
+package org.elixirian.kommonlee.collect;
 
-import static org.elixirian.common.util.Objects.*;
+import static org.elixirian.kommonlee.util.Objects.*;
 
 /**
  * <pre>

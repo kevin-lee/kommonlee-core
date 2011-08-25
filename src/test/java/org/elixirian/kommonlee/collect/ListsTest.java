@@ -1,8 +1,8 @@
-package org.elixirian.common.collect;
+package org.elixirian.kommonlee.collect;
 
-import static org.elixirian.common.collect.Lists.*;
-import static org.elixirian.common.test.CommonTestHelper.*;
-import static org.elixirian.common.util.MessageFormatter.*;
+import static org.elixirian.kommonlee.collect.Lists.*;
+import static org.elixirian.kommonlee.test.CommonTestHelper.*;
+import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -14,8 +14,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.elixirian.common.test.CauseCheckableExpectedException;
-import org.elixirian.common.test.CommonTestHelper.Accessibility;
+import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
+import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

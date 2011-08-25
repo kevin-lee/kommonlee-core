@@ -1,10 +1,10 @@
-package org.elixirian.common.collect;
+package org.elixirian.kommonlee.collect;
 
-import static org.elixirian.common.collect.Sets.*;
-import static org.elixirian.common.collect.UtilForTesting.*;
-import static org.elixirian.common.test.CommonTestHelper.*;
-import static org.elixirian.common.util.MessageFormatter.*;
-import static org.elixirian.common.util.Objects.*;
+import static org.elixirian.kommonlee.collect.Sets.*;
+import static org.elixirian.kommonlee.collect.UtilForTesting.*;
+import static org.elixirian.kommonlee.test.CommonTestHelper.*;
+import static org.elixirian.kommonlee.util.MessageFormatter.*;
+import static org.elixirian.kommonlee.util.Objects.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -20,11 +20,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-import org.elixirian.common.collect.UtilForTesting.ComparableObject;
-import org.elixirian.common.test.CauseCheckableExpectedException;
-import org.elixirian.common.test.CommonTestHelper.Accessibility;
-import org.elixirian.common.type.Condition1;
-import org.elixirian.common.type.filter.Filter1;
+import org.elixirian.kommonlee.collect.UtilForTesting.ComparableObject;
+import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
+import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
+import org.elixirian.kommonlee.type.Condition1;
+import org.elixirian.kommonlee.type.filter.Filter1;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

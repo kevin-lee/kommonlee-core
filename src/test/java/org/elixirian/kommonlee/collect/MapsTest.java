@@ -1,12 +1,12 @@
 /**
  * 
  */
-package org.elixirian.common.collect;
+package org.elixirian.kommonlee.collect;
 
-import static org.elixirian.common.collect.Maps.*;
-import static org.elixirian.common.test.CommonTestHelper.*;
-import static org.elixirian.common.util.MessageFormatter.*;
-import static org.elixirian.common.util.Objects.*;
+import static org.elixirian.kommonlee.collect.Maps.*;
+import static org.elixirian.kommonlee.test.CommonTestHelper.*;
+import static org.elixirian.kommonlee.util.MessageFormatter.*;
+import static org.elixirian.kommonlee.util.Objects.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -22,10 +22,10 @@ import java.util.NavigableMap;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import org.elixirian.common.collect.UtilForTesting.ComparableObject;
-import org.elixirian.common.test.CauseCheckableExpectedException;
-import org.elixirian.common.test.CommonTestHelper.Accessibility;
-import org.elixirian.common.type.Condition1;
+import org.elixirian.kommonlee.collect.UtilForTesting.ComparableObject;
+import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
+import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
+import org.elixirian.kommonlee.type.Condition1;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
