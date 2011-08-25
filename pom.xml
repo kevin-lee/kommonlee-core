@@ -3,14 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.elixirian</groupId>
-	<artifactId>elixirian-common-type</artifactId>
+	<artifactId>kommonlee-type</artifactId>
 	<version>0.0.7-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>elixirian-common-type</name>
+	<name>kommonlee-type</name>
 	<parent>
-		<artifactId>elixirian-common</artifactId>
+		<artifactId>kommonlee-parent</artifactId>
 		<groupId>org.elixirian</groupId>
 		<version>0.0.5-SNAPSHOT</version>
 	</parent>
