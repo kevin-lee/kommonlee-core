@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.elixirian.common.exception;
+package org.elixirian.kommonlee.exception;
 
 /**
  * <pre>
