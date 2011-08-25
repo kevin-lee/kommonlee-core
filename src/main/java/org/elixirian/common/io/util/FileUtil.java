@@ -95,11 +95,11 @@ public final class FileUtil
 				bytesRead = inputStream.read(buffer);
 			}
 		}
-		catch (FileNotFoundException e)
+		catch (final FileNotFoundException e)
 		{
 			throw new RuntimeFileNotFoundException(e);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			throw new RuntimeIoException(e);
 		}
@@ -129,11 +129,11 @@ public final class FileUtil
 				bytesRead = byteArrayProducer.produce(buffer);
 			}
 		}
-		catch (FileNotFoundException e)
+		catch (final FileNotFoundException e)
 		{
 			throw new RuntimeFileNotFoundException(e);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			throw new RuntimeIoException(e);
 		}
@@ -166,11 +166,11 @@ public final class FileUtil
 				bytesRead = inputStream.read(buffer);
 			}
 		}
-		catch (FileNotFoundException e)
+		catch (final FileNotFoundException e)
 		{
 			throw new RuntimeFileNotFoundException(e);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			throw new RuntimeIoException(e);
 		}

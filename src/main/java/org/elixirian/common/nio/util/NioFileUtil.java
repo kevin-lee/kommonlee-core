@@ -66,7 +66,7 @@ public final class NioFileUtil
 			if (null != closeable)
 				closeable.close();
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			/* just ignore this exception. */
 			// System.out.println(format("log from %s (%s.java:%s)\nClosing [%s] has failed.\nCaused at %s",
@@ -98,11 +98,11 @@ public final class NioFileUtil
 			fileChannel = fileInputStream.getChannel();
 			readFile0(fileChannel, bufferSize, byteArrayConsumer);
 		}
-		catch (FileNotFoundException e)
+		catch (final FileNotFoundException e)
 		{
 			throw new RuntimeFileNotFoundException(e);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			throw new RuntimeIoException(e);
 		}
@@ -141,11 +141,11 @@ public final class NioFileUtil
 			fileChannel = fileOutputStream.getChannel();
 			writeFile0(fileChannel, bufferSize, byteArrayProducer);
 		}
-		catch (FileNotFoundException e)
+		catch (final FileNotFoundException e)
 		{
 			throw new RuntimeFileNotFoundException(e);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			throw new RuntimeIoException(e);
 		}
@@ -195,11 +195,11 @@ public final class NioFileUtil
 
 			copyFile0(sourceFileChannel, targetFileChannel);
 		}
-		catch (FileNotFoundException e)
+		catch (final FileNotFoundException e)
 		{
 			throw new RuntimeFileNotFoundException(e);
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			throw new RuntimeIoException(e);
 		}
