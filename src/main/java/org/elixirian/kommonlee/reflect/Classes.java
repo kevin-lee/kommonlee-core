@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.elixirian.kommonlee.reflect;
 
@@ -21,7 +21,7 @@ import java.util.Set;
  *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
  * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____  __________  ___________ _____  ____
  *    /   \/    / /      \   \/   /_    _//     \/   /
@@ -29,7 +29,7 @@ import java.util.Set;
  *  /        \  /    ___/  \    /_/   /_/          /
  * /____/\____\/_______/    \__//______/___/\_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-09-17)
  */
@@ -55,8 +55,8 @@ public final class Classes
     extractAllClassesInSubToSuperOrder(targetClass.getSuperclass(), beforeClass, classCollection);
   }
 
-  public static <T> void extractSuperClassesInSubToSuperOrder(Class<T> targetClass, Class<? super T> beforeClass,
-      boolean includeTargetClass, Collection<Class<?>> classCollection)
+  public static <T> void extractSuperClassesInSubToSuperOrder(final Class<T> targetClass,
+      final Class<? super T> beforeClass, final boolean includeTargetClass, final Collection<Class<?>> classCollection)
   {
     if (includeTargetClass)
     {
@@ -108,7 +108,7 @@ public final class Classes
     return classList;
   }
 
-  private static <T, A extends Annotation> void extractClssesWithAnnotationsInSubToSuperOrder0(
+  private static <T, A extends Annotation> void extractClassesWithAnnotationsInSubToSuperOrder0(
       final Class<?> targetClass, final Class<? super T> beforeClass, final Class<A> annotation,
       final Collection<Class<?>> classCollection)
   {
@@ -120,44 +120,44 @@ public final class Classes
     {
       classCollection.add(targetClass);
     }
-    extractClssesWithAnnotationsInSubToSuperOrder0(targetClass.getSuperclass(), beforeClass, annotation,
+    extractClassesWithAnnotationsInSubToSuperOrder0(targetClass.getSuperclass(), beforeClass, annotation,
         classCollection);
   }
 
-  private static <T, A extends Annotation> void extractClssesWithAnnotationsInSubToSuperOrder0(
+  private static <T, A extends Annotation> void extractClassesWithAnnotationsInSubToSuperOrder0(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Collection<Class<?>> classCollection, final Class<A> annotation)
   {
     assertNotNull(annotation, "The annotation must not be null.");
     if (includeTargetClass)
     {
-      extractClssesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, annotation, classCollection);
+      extractClassesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, annotation, classCollection);
     }
     else
     {
-      extractClssesWithAnnotationsInSubToSuperOrder0(targetClass.getSuperclass(), beforeClass, annotation,
+      extractClassesWithAnnotationsInSubToSuperOrder0(targetClass.getSuperclass(), beforeClass, annotation,
           classCollection);
     }
   }
 
-  public static <T, A extends Annotation> void extractClssesWithAnnotationsInSubToSuperOrder(
+  public static <T, A extends Annotation> void extractClassesWithAnnotationsInSubToSuperOrder(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Collection<Class<?>> classCollection, final Class<A> annotation)
   {
-    extractClssesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classCollection,
+    extractClassesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classCollection,
         annotation);
   }
 
-  public static <T, A extends Annotation> List<Class<?>> extractClssesWithAnnotationsInSubToSuperOrder(
+  public static <T, A extends Annotation> List<Class<?>> extractClassesWithAnnotationsInSubToSuperOrder(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Class<A> annotation)
   {
     final List<Class<?>> classList = new ArrayList<Class<?>>();
-    extractClssesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classList, annotation);
+    extractClassesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classList, annotation);
     return classList;
   }
 
-  private static <T, A extends Annotation> void extractClssesWithAnnotationsInSubToSuperOrder0(
+  private static <T, A extends Annotation> void extractClassesWithAnnotationsInSubToSuperOrder0(
       final Class<?> targetClass, final Class<? super T> beforeClass, final Class<? extends A> annotation,
       final Class<? extends A>[] remainingAnnotations, final Collection<Class<?>> classCollection)
   {
@@ -180,47 +180,47 @@ public final class Classes
         }
       }
     }
-    extractClssesWithAnnotationsInSubToSuperOrder0(targetClass.getSuperclass(), beforeClass, annotation,
+    extractClassesWithAnnotationsInSubToSuperOrder0(targetClass.getSuperclass(), beforeClass, annotation,
         remainingAnnotations, classCollection);
   }
 
-  private static <T, A extends Annotation> void extractClssesWithAnnotationsInSubToSuperOrder0(
+  private static <T, A extends Annotation> void extractClassesWithAnnotationsInSubToSuperOrder0(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Collection<Class<?>> classCollection, final Class<? extends A> annotation,
       final Class<? extends A>... remainingAnnotations)
   {
     if (includeTargetClass)
     {
-      extractClssesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, annotation, remainingAnnotations,
+      extractClassesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, annotation, remainingAnnotations,
           classCollection);
     }
     else
     {
-      extractClssesWithAnnotationsInSubToSuperOrder0(targetClass.getSuperclass(), beforeClass, annotation,
+      extractClassesWithAnnotationsInSubToSuperOrder0(targetClass.getSuperclass(), beforeClass, annotation,
           remainingAnnotations, classCollection);
     }
   }
 
-  public static <T, A extends Annotation> void extractClssesWithAnnotationsInSubToSuperOrder(
+  public static <T, A extends Annotation> void extractClassesWithAnnotationsInSubToSuperOrder(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Collection<Class<?>> classCollection, final Class<? extends A> annotation,
       final Class<? extends A>... remainingAnnotations)
   {
-    extractClssesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classCollection,
+    extractClassesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classCollection,
         annotation, remainingAnnotations);
   }
 
-  public static <T, A extends Annotation> List<Class<?>> extractClssesWithAnnotationsInSubToSuperOrder(
+  public static <T, A extends Annotation> List<Class<?>> extractClassesWithAnnotationsInSubToSuperOrder(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
   {
     final List<Class<?>> classList = new ArrayList<Class<?>>();
-    extractClssesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classList, annotation,
-        remainingAnnotations);
+    extractClassesWithAnnotationsInSubToSuperOrder0(targetClass, beforeClass, includeTargetClass, classList,
+        annotation, remainingAnnotations);
     return classList;
   }
 
-  private static <T, A extends Annotation> void extractClssesWithAnnotationsInSuperToSubOrder0(
+  private static <T, A extends Annotation> void extractClassesWithAnnotationsInSuperToSubOrder0(
       final Class<?> targetClass, final Class<? super T> beforeClass, final Class<A> annotation,
       final Collection<Class<?>> classCollection)
   {
@@ -228,7 +228,7 @@ public final class Classes
     {
       return;
     }
-    extractClssesWithAnnotationsInSuperToSubOrder0(targetClass.getSuperclass(), beforeClass, annotation,
+    extractClassesWithAnnotationsInSuperToSubOrder0(targetClass.getSuperclass(), beforeClass, annotation,
         classCollection);
     if (targetClass.isAnnotationPresent(annotation))
     {
@@ -236,40 +236,40 @@ public final class Classes
     }
   }
 
-  private static <T, A extends Annotation> void extractClssesWithAnnotationsInSuperToSubOrder0(
+  private static <T, A extends Annotation> void extractClassesWithAnnotationsInSuperToSubOrder0(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Collection<Class<?>> classCollection, final Class<A> annotation)
   {
     assertNotNull(annotation, "The annotation must not be null.");
     if (includeTargetClass)
     {
-      extractClssesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, annotation, classCollection);
+      extractClassesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, annotation, classCollection);
     }
     else
     {
-      extractClssesWithAnnotationsInSuperToSubOrder0(targetClass.getSuperclass(), beforeClass, annotation,
+      extractClassesWithAnnotationsInSuperToSubOrder0(targetClass.getSuperclass(), beforeClass, annotation,
           classCollection);
     }
   }
 
-  public static <T, A extends Annotation> void extractClssesWithAnnotationsInSuperToSubOrder(
+  public static <T, A extends Annotation> void extractClassesWithAnnotationsInSuperToSubOrder(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Collection<Class<?>> classCollection, final Class<A> annotation)
   {
-    extractClssesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classCollection,
+    extractClassesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classCollection,
         annotation);
   }
 
-  public static <T, A extends Annotation> List<Class<?>> extractClssesWithAnnotationsInSuperToSubOrder(
+  public static <T, A extends Annotation> List<Class<?>> extractClassesWithAnnotationsInSuperToSubOrder(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Class<A> annotation)
   {
     final List<Class<?>> classList = new ArrayList<Class<?>>();
-    extractClssesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classList, annotation);
+    extractClassesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classList, annotation);
     return classList;
   }
 
-  private static <T, A extends Annotation> void extractClssesWithAnnotationsInSuperToSubOrder0(
+  private static <T, A extends Annotation> void extractClassesWithAnnotationsInSuperToSubOrder0(
       final Class<?> targetClass, final Class<? super T> beforeClass, final Class<? extends A> annotation,
       final Class<? extends A>[] remainingAnnotations, final Collection<Class<?>> classCollection)
   {
@@ -277,7 +277,7 @@ public final class Classes
     {
       return;
     }
-    extractClssesWithAnnotationsInSuperToSubOrder0(targetClass.getSuperclass(), beforeClass, annotation,
+    extractClassesWithAnnotationsInSuperToSubOrder0(targetClass.getSuperclass(), beforeClass, annotation,
         remainingAnnotations, classCollection);
     if (targetClass.isAnnotationPresent(annotation))
     {
@@ -296,39 +296,39 @@ public final class Classes
     }
   }
 
-  private static <T, A extends Annotation> void extractClssesWithAnnotationsInSuperToSubOrder0(
+  private static <T, A extends Annotation> void extractClassesWithAnnotationsInSuperToSubOrder0(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Collection<Class<?>> classCollection, final Class<? extends A> annotation,
       final Class<? extends A>... remainingAnnotations)
   {
     if (includeTargetClass)
     {
-      extractClssesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, annotation, remainingAnnotations,
+      extractClassesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, annotation, remainingAnnotations,
           classCollection);
     }
     else
     {
-      extractClssesWithAnnotationsInSuperToSubOrder0(targetClass.getSuperclass(), beforeClass, annotation,
+      extractClassesWithAnnotationsInSuperToSubOrder0(targetClass.getSuperclass(), beforeClass, annotation,
           remainingAnnotations, classCollection);
     }
   }
 
-  public static <T, A extends Annotation> void extractClssesWithAnnotationsInSuperToSubOrder(
+  public static <T, A extends Annotation> void extractClassesWithAnnotationsInSuperToSubOrder(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Collection<Class<?>> classCollection, final Class<? extends A> annotation,
       final Class<? extends A>... remainingAnnotations)
   {
-    extractClssesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classCollection,
+    extractClassesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classCollection,
         annotation, remainingAnnotations);
   }
 
-  public static <T, A extends Annotation> List<Class<?>> extractClssesWithAnnotationsInSuperToSubOrder(
+  public static <T, A extends Annotation> List<Class<?>> extractClassesWithAnnotationsInSuperToSubOrder(
       final Class<T> targetClass, final Class<? super T> beforeClass, final boolean includeTargetClass,
       final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
   {
     final List<Class<?>> classList = new ArrayList<Class<?>>();
-    extractClssesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classList, annotation,
-        remainingAnnotations);
+    extractClassesWithAnnotationsInSuperToSubOrder0(targetClass, beforeClass, includeTargetClass, classList,
+        annotation, remainingAnnotations);
     return classList;
   }
 
@@ -344,14 +344,14 @@ public final class Classes
     {
       return targetClass.getDeclaredConstructor(parameterTypes);
     }
-    catch (SecurityException e)
+    catch (final SecurityException e)
     {
       /* Only for debugging */
       // final StringBuildWriter stringBuildWriter = new StringBuildWriter();
       // e.printStackTrace(new PrintWriter(stringBuildWriter));
       // System.out.println(stringBuildWriter.toString());
     }
-    catch (NoSuchMethodException e)
+    catch (final NoSuchMethodException e)
     {
       /* Only for debugging */
       // final StringBuildWriter stringBuildWriter = new StringBuildWriter();
@@ -437,8 +437,8 @@ public final class Classes
     return findAllConstructorsWithAnnotation0(targetClass, annotation);
   }
 
-  private static <T, A extends Annotation> Set<Constructor<T>> findAllConstructorsWithAnnotation0(Class<T> targetClass,
-      final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
+  private static <T, A extends Annotation> Set<Constructor<T>> findAllConstructorsWithAnnotation0(
+      final Class<T> targetClass, final Class<? extends A> annotation, final Class<? extends A>... remainingAnnotations)
   {
     final Set<Constructor<T>> constructorSet = new HashSet<Constructor<T>>();
 
