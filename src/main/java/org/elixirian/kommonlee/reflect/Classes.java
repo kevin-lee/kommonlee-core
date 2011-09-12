@@ -69,7 +69,7 @@ public final class Classes
     /* @formatter:on */
   }
 
-  public static <T, A extends Annotation> boolean hasAnySuperClassAnnotatedWith(final Class<?> targetClass,
+  public static <T, A extends Annotation> boolean hasAnySuperClassAnnotatedWith(final Class<T> targetClass,
       final Class<? super T> beforeClass, final boolean includeTargetClass, final Class<? extends A> annotation,
       final Class<? extends A>... remainingAnnotations)
   {
