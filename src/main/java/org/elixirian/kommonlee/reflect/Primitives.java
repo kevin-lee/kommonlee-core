@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.elixirian.kommonlee.reflect;
 
@@ -18,7 +18,7 @@ import java.util.Map;
  *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
  * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____  __________  ___________ _____  ____
  *    /   \/    / /      \   \/   /_    _//     \/   /
@@ -26,7 +26,7 @@ import java.util.Map;
  *  /        \  /    ___/  \    /_/   /_/          /
  * /____/\____\/_______/    \__//______/___/\_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-09)
  */
@@ -44,8 +44,8 @@ public final class Primitives
     map.put(short.class, Short.valueOf((short) 0));
     map.put(int.class, Integer.valueOf(0));
     map.put(long.class, Long.valueOf(0L));
-    map.put(float.class, Float.valueOf(0.0f));
-    map.put(double.class, Double.valueOf(0.0d));
+    map.put(float.class, Float.valueOf(0.0F));
+    map.put(double.class, Double.valueOf(0.0D));
     map.put(char.class, Character.valueOf('\u0000'));
     map.put(boolean.class, Boolean.FALSE);
     PRIMITIVE_DEFAULT_VALUE_OBJECT_MAP = Collections.unmodifiableMap(map);
@@ -101,7 +101,7 @@ public final class Primitives
    * </ul>
    * </li>
    * </ul>
-   * 
+   *
    * @param <T>
    * @param primitiveType
    *          the given primitive type.
@@ -128,10 +128,10 @@ public final class Primitives
   {
     final Class<T> foundType = getBoxedPrimitiveOf0(primitiveType);
     /* @formatter:off */
-		return null == foundType ? 
-					(BOXED_PRIMITIVE_TO_PRIMITIVE_MAP.containsKey(primitiveType) ? 
-						primitiveType : 
-						null) : 
+		return null == foundType ?
+					(BOXED_PRIMITIVE_TO_PRIMITIVE_MAP.containsKey(primitiveType) ?
+						primitiveType :
+						null) :
 				foundType;
 		/* @formatter:on */
   }
@@ -147,10 +147,10 @@ public final class Primitives
   {
     final Class<T> foundType = getPrimitiveOf0(boxedPrimitiveType);
     /* @formatter:off */
-		return null == foundType ? 
-					(PRIMITIVE_TO_BOXED_PRIMITIVE_MAP.containsKey(boxedPrimitiveType) ? 
-						boxedPrimitiveType : 
-						null) : 
+		return null == foundType ?
+					(PRIMITIVE_TO_BOXED_PRIMITIVE_MAP.containsKey(boxedPrimitiveType) ?
+						boxedPrimitiveType :
+						null) :
 					foundType;
 		/* @formatter:on */
   }

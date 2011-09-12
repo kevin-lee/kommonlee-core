@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.elixirian.kommonlee.reflect;
 
@@ -99,23 +99,37 @@ public class ClassesTest
   private static final List<Class<? super SubClass>> CLASS_LIST_IN_SUB_TO_SUPER_ORDER;
   private static final List<Class<? super SubClass>> CLASS_LIST_IN_SUPER_TO_SUB_ORDER;
 
-  private static final List<Class<? super SubClassWithFirstTestAnnotation>> CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
-  private static final List<Class<? super SubClassWithFirstTestAnnotation>> CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
+  /* @formatter:off */
+  private static final List<Class<? super SubClassWithFirstTestAnnotation>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
+  private static final List<Class<? super SubClassWithFirstTestAnnotation>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
 
-  private static final List<Class<? super SubClassWithFirstTestAnnotation>> CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
-  private static final List<Class<? super SubClassWithFirstTestAnnotation>> CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
+  private static final List<Class<? super SubClassWithFirstTestAnnotation>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
+  private static final List<Class<? super SubClassWithFirstTestAnnotation>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
 
-  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>> CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
-  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>> CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
+  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
+  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
 
-  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>> CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
-  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>> CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
+  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
+  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
 
-  private static final List<Class<? super SubClassWithFirstTestAnnotation>> CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
-  private static final List<Class<? super SubClassWithFirstTestAnnotation>> CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
+  private static final List<Class<? super SubClassWithFirstTestAnnotation>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
+  private static final List<Class<? super SubClassWithFirstTestAnnotation>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION;
 
-  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>> CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
-  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>> CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
+  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
+  private static final List<Class<? super SubClassWithFirstAndSecondTestAnnotations>>
+    CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS;
+  /* @formatter:on */
 
   static
   {
@@ -256,6 +270,117 @@ public class ClassesTest
   }
 
   @Test
+  public void testHasAnySuperClassAnnotatedWith()
+  {
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual1_1 =
+      Classes.hasAnySuperClassAnnotatedWith(SubClass.class, Object.class, true, FirstTestAnnotation.class);
+    assertThat(actual1_1, is(equalTo(Boolean.FALSE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual1_2 =
+      Classes.hasAnySuperClassAnnotatedWith(SubClass.class, Object.class, true, FirstTestAnnotation.class,
+          SecondTestAnnotation.class);
+    assertThat(actual1_2, is(equalTo(Boolean.FALSE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual2_1 =
+      Classes.hasAnySuperClassAnnotatedWith(FirstClassWithSecondTestAnnotation.class, Object.class, true,
+          FirstTestAnnotation.class);
+    assertThat(actual2_1, is(equalTo(Boolean.FALSE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual2_2 =
+      Classes.hasAnySuperClassAnnotatedWith(FirstClassWithSecondTestAnnotation.class, Object.class, true,
+          SecondTestAnnotation.class);
+    assertThat(actual2_2, is(equalTo(Boolean.TRUE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual2_3 =
+      Classes.hasAnySuperClassAnnotatedWith(FirstClassWithSecondTestAnnotation.class, Object.class, true,
+          FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertThat(actual2_3, is(equalTo(Boolean.TRUE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual2_4 =
+      Classes.hasAnySuperClassAnnotatedWith(FirstClassWithSecondTestAnnotation.class, Object.class, false,
+          FirstTestAnnotation.class);
+    assertThat(actual2_4, is(equalTo(Boolean.FALSE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual2_5 =
+      Classes.hasAnySuperClassAnnotatedWith(FirstClassWithSecondTestAnnotation.class, Object.class, false,
+          SecondTestAnnotation.class);
+    assertThat(actual2_5, is(equalTo(Boolean.FALSE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual2_6 =
+      Classes.hasAnySuperClassAnnotatedWith(FirstClassWithSecondTestAnnotation.class, Object.class, false,
+          FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertThat(actual2_6, is(equalTo(Boolean.FALSE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual3_1 =
+      Classes.hasAnySuperClassAnnotatedWith(SecondClassWithFirstAndSecondTestAnnotations.class, Object.class, true,
+          FirstTestAnnotation.class);
+    assertThat(actual3_1, is(equalTo(Boolean.TRUE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual3_2 =
+      Classes.hasAnySuperClassAnnotatedWith(SecondClassWithFirstAndSecondTestAnnotations.class, Object.class, true,
+          FirstTestAnnotation.class);
+    assertThat(actual3_2, is(equalTo(Boolean.TRUE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual3_3 =
+      Classes.hasAnySuperClassAnnotatedWith(SecondClassWithFirstAndSecondTestAnnotations.class, Object.class, true,
+          SecondTestAnnotation.class);
+    assertThat(actual3_3, is(equalTo(Boolean.TRUE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual3_4 =
+      Classes.hasAnySuperClassAnnotatedWith(SecondClassWithFirstAndSecondTestAnnotations.class, Object.class, true,
+          FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertThat(actual3_4, is(equalTo(Boolean.TRUE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual4_1 =
+      Classes.hasAnySuperClassAnnotatedWith(ThirdClassWithNoTestAnnotation.class, Object.class, false,
+          FirstTestAnnotation.class);
+    assertThat(actual4_1, is(equalTo(Boolean.TRUE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual4_2 =
+      Classes.hasAnySuperClassAnnotatedWith(ThirdClassWithNoTestAnnotation.class, Object.class, false,
+          SecondTestAnnotation.class);
+    assertThat(actual4_2, is(equalTo(Boolean.TRUE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual4_3 =
+      Classes.hasAnySuperClassAnnotatedWith(ThirdClassWithNoTestAnnotation.class, Object.class, false,
+          FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertThat(actual4_3, is(equalTo(Boolean.TRUE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual4_4 =
+      Classes.hasAnySuperClassAnnotatedWith(ThirdClassWithNoTestAnnotation.class, Object.class, true,
+          FirstTestAnnotation.class);
+    assertThat(actual4_4, is(equalTo(Boolean.TRUE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual4_5 =
+      Classes.hasAnySuperClassAnnotatedWith(ThirdClassWithNoTestAnnotation.class, Object.class, true,
+          SecondTestAnnotation.class);
+    assertThat(actual4_5, is(equalTo(Boolean.TRUE)));
+
+    @SuppressWarnings({ "boxing", "unchecked" })
+    final Boolean actual4_6 =
+      Classes.hasAnySuperClassAnnotatedWith(ThirdClassWithNoTestAnnotation.class, Object.class, true,
+          FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertThat(actual4_6, is(equalTo(Boolean.TRUE)));
+  }
+
+  @Test
   public final void testExtractSuperClassesInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperT()
   {
     final List<Class<?>> classList = new ArrayList<Class<?>>();
@@ -269,7 +394,7 @@ public class ClassesTest
     final Deque<Class<?>> classDeque = new ArrayDeque<Class<?>>();
     Classes.extractSuperClassesInSubToSuperOrder(SubClass.class, Object.class, true, classDeque);
     assertEquals(CLASS_LIST_IN_SUB_TO_SUPER_ORDER.size(), classDeque.size());
-    for (Class<? super SubClass> aClass : CLASS_LIST_IN_SUB_TO_SUPER_ORDER)
+    for (final Class<? super SubClass> aClass : CLASS_LIST_IN_SUB_TO_SUPER_ORDER)
     {
       assertThat(classDeque.pop(), is(equalTo((Object) aClass)));
     }
@@ -317,682 +442,682 @@ public class ClassesTest
   }
 
   @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray0()
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray0()
+  {
+    final List<Class<?>> classList1_1 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classList1_1, FirstTestAnnotation.class);
+    final int size1_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size1_1, classList1_1.size());
+    for (int i = 0; i < size1_1; i++)
     {
-      final List<Class<?>> classList1_1 = new ArrayList<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classList1_1, FirstTestAnnotation.class);
-      final int size1_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size1_1, classList1_1.size());
-      for (int i = 0; i < size1_1; i++)
-      {
-        assertThat(
-            classList1_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque1_1 = new ArrayDeque<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classDeque1_1, FirstTestAnnotation.class);
-      assertEquals(size1_1, classDeque1_1.size());
-      for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
-      {
-        assertThat(classDeque1_1.pop(), is(equalTo((Object) aClass)));
-      }
+      assertThat(
+          classList1_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
     }
 
-  @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray1()
+    final Deque<Class<?>> classDeque1_1 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classDeque1_1, FirstTestAnnotation.class);
+    assertEquals(size1_1, classDeque1_1.size());
+    for (final Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
     {
-      /* */
-      final List<Class<?>> classList1_2 = new ArrayList<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classList1_2, SecondTestAnnotation.class);
-      final int size1_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size1_2, classList1_2.size());
-      for (int i = 0; i < size1_2; i++)
-      {
-        assertThat(
-            classList1_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque1_2 = new ArrayDeque<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classDeque1_2, SecondTestAnnotation.class);
-      assertEquals(size1_2, classDeque1_2.size());
-      for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
-      {
-        assertThat(classDeque1_2.pop(), is(equalTo((Object) aClass)));
-      }
+      assertThat(classDeque1_1.pop(), is(equalTo((Object) aClass)));
     }
+  }
 
   @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray2()
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray1()
+  {
+    /* */
+    final List<Class<?>> classList1_2 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classList1_2, SecondTestAnnotation.class);
+    final int size1_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size1_2, classList1_2.size());
+    for (int i = 0; i < size1_2; i++)
     {
-      /* */
-      final List<Class<?>> classList2_1 = new ArrayList<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classList2_1, FirstTestAnnotation.class);
-      final int size2_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size2_1, classList2_1.size());
-      for (int i = 0; i < size2_1; i++)
-      {
-        assertThat(
-            classList2_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque2_1 = new ArrayDeque<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classDeque2_1, FirstTestAnnotation.class);
-      assertEquals(size2_1, classDeque2_1.size());
-      for (Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
-      {
-        assertThat(classDeque2_1.pop(), is(equalTo((Object) aClass)));
-      }
+      assertThat(
+          classList1_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
     }
 
-  @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray3()
+    final Deque<Class<?>> classDeque1_2 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classDeque1_2, SecondTestAnnotation.class);
+    assertEquals(size1_2, classDeque1_2.size());
+    for (final Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
     {
-      final List<Class<?>> classList2_2 = new ArrayList<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classList2_2, SecondTestAnnotation.class);
-      final int size2_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size2_2, classList2_2.size());
-      for (int i = 0; i < size2_2; i++)
-      {
-        assertThat(
-            classList2_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque2_2 = new ArrayDeque<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classDeque2_2, SecondTestAnnotation.class);
-      assertEquals(size2_2, classDeque2_2.size());
-      for (Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
-      {
-        assertThat(classDeque2_2.pop(), is(equalTo((Object) aClass)));
-      }
+      assertThat(classDeque1_2.pop(), is(equalTo((Object) aClass)));
     }
+  }
+
+  @Test
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray2()
+  {
+    /* */
+    final List<Class<?>> classList2_1 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classList2_1, FirstTestAnnotation.class);
+    final int size2_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size2_1, classList2_1.size());
+    for (int i = 0; i < size2_1; i++)
+    {
+      assertThat(
+          classList2_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
+    }
+
+    final Deque<Class<?>> classDeque2_1 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classDeque2_1, FirstTestAnnotation.class);
+    assertEquals(size2_1, classDeque2_1.size());
+    for (final Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
+    {
+      assertThat(classDeque2_1.pop(), is(equalTo((Object) aClass)));
+    }
+  }
+
+  @Test
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray3()
+  {
+    final List<Class<?>> classList2_2 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classList2_2, SecondTestAnnotation.class);
+    final int size2_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size2_2, classList2_2.size());
+    for (int i = 0; i < size2_2; i++)
+    {
+      assertThat(
+          classList2_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
+    }
+
+    final Deque<Class<?>> classDeque2_2 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classDeque2_2, SecondTestAnnotation.class);
+    assertEquals(size2_2, classDeque2_2.size());
+    for (final Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
+    {
+      assertThat(classDeque2_2.pop(), is(equalTo((Object) aClass)));
+    }
+  }
 
   @SuppressWarnings("unchecked")
-    @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray4()
+  @Test
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray4()
+  {
+    /* */
+    final List<Class<?>> classList3_1 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classList3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    final int size3_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size3_1, classList3_1.size());
+    for (int i = 0; i < size3_1; i++)
     {
-      /* */
-      final List<Class<?>> classList3_1 = new ArrayList<Class<?>>();
+      assertThat(
+          classList3_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
+    }
+
+    final Deque<Class<?>> classDeque3_1 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classDeque3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertEquals(size3_1, classDeque3_1.size());
+    for (final Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
+    {
+      assertThat(classDeque3_1.pop(), is(equalTo((Object) aClass)));
+    }
+  }
+
+  @SuppressWarnings("unchecked")
+  @Test
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray5()
+  {
+    /* */
+    final List<Class<?>> classList3_2 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classList3_2, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    final int size3_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size3_2, classList3_2.size());
+    for (int i = 0; i < size3_2; i++)
+    {
+      assertThat(
+          classList3_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
+    }
+
+    final Deque<Class<?>> classDeque3_2 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classDeque3_2, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertEquals(size3_2, classDeque3_2.size());
+    for (final Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
+    {
+      assertThat(classDeque3_2.pop(), is(equalTo((Object) aClass)));
+    }
+  }
+
+  @Test
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray0()
+  {
+    final List<Class<?>> classList1_1 =
       Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classList3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      final int size3_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size3_1, classList3_1.size());
-      for (int i = 0; i < size3_1; i++)
-      {
-        assertThat(
-            classList3_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque3_1 = new ArrayDeque<Class<?>>();
+          FirstTestAnnotation.class);
+    final int size1_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size1_1, classList1_1.size());
+    for (int i = 0; i < size1_1; i++)
+    {
+      assertThat(
+          classList1_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
+    }
+
+    final Collection<Class<?>> classCollection1_1 =
       Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classDeque3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      assertEquals(size3_1, classDeque3_1.size());
-      for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
-      {
-        assertThat(classDeque3_1.pop(), is(equalTo((Object) aClass)));
-      }
+          FirstTestAnnotation.class);
+
+    assertEquals(size1_1, classCollection1_1.size());
+
+    @SuppressWarnings({ "cast", "rawtypes", "unchecked" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+    assertThat(classCollection1_1, is(equalTo(expected)));
+  }
+
+  @Test
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray1()
+  {
+    /* */
+    final List<Class<?>> classList1_2 =
+      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+          SecondTestAnnotation.class);
+    final int size1_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size1_2, classList1_2.size());
+    for (int i = 0; i < size1_2; i++)
+    {
+      assertThat(
+          classList1_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
     }
 
-  @SuppressWarnings("unchecked")
-    @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray5()
-    {
-      /* */
-      final List<Class<?>> classList3_2 = new ArrayList<Class<?>>();
+    final Collection<Class<?>> classCollection1_2 =
+      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+          SecondTestAnnotation.class);
+    assertEquals(size1_2, classCollection1_2.size());
+
+    @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+    assertThat(classCollection1_2, is(equalTo(expected)));
+  }
+
+  @Test
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray2()
+  {
+    /* */
+    final List<Class<?>> classList2_1 =
       Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classList3_2, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      final int size3_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size3_2, classList3_2.size());
-      for (int i = 0; i < size3_2; i++)
-      {
-        assertThat(
-            classList3_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque3_2 = new ArrayDeque<Class<?>>();
+          Object.class, true, FirstTestAnnotation.class);
+    final int size2_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size2_1, classList2_1.size());
+    for (int i = 0; i < size2_1; i++)
+    {
+      assertThat(
+          classList2_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
+    }
+
+    final Collection<Class<?>> classCollection2_1 =
       Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classDeque3_2, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      assertEquals(size3_2, classDeque3_2.size());
-      for (Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
-      {
-        assertThat(classDeque3_2.pop(), is(equalTo((Object) aClass)));
-      }
-    }
+          Object.class, true, FirstTestAnnotation.class);
+    assertEquals(size2_1, classCollection2_1.size());
+
+    @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+    assertThat(classCollection2_1, is(equalTo(expected)));
+  }
 
   @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray0()
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray3()
+  {
+    final List<Class<?>> classList2_2 =
+      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+          Object.class, true, SecondTestAnnotation.class);
+    final int size2_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size2_2, classList2_2.size());
+    for (int i = 0; i < size2_2; i++)
     {
-      final List<Class<?>> classList1_1 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            FirstTestAnnotation.class);
-      final int size1_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size1_1, classList1_1.size());
-      for (int i = 0; i < size1_1; i++)
-      {
-        assertThat(
-            classList1_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      final Collection<Class<?>> classCollection1_1 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            FirstTestAnnotation.class);
-  
-      assertEquals(size1_1, classCollection1_1.size());
-  
-      @SuppressWarnings({ "cast", "rawtypes", "unchecked" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
-  
-      assertThat(classCollection1_1, is(equalTo(expected)));
+      assertThat(
+          classList2_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
     }
 
-  @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray1()
-    {
-      /* */
-      final List<Class<?>> classList1_2 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            SecondTestAnnotation.class);
-      final int size1_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size1_2, classList1_2.size());
-      for (int i = 0; i < size1_2; i++)
-      {
-        assertThat(
-            classList1_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      final Collection<Class<?>> classCollection1_2 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            SecondTestAnnotation.class);
-      assertEquals(size1_2, classCollection1_2.size());
-  
-      @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
-  
-      assertThat(classCollection1_2, is(equalTo(expected)));
-    }
+    final Collection<Class<?>> classCollection2_2 =
+      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+          Object.class, true, SecondTestAnnotation.class);
+    assertEquals(size2_2, classCollection2_2.size());
+
+    @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+    assertThat(classCollection2_2, is(equalTo(expected)));
+  }
 
   @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray2()
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray4()
+  {
+    /* */
+    @SuppressWarnings("unchecked")
+    final List<Class<?>> classList3_1 =
+      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+          FirstTestAnnotation.class, SecondTestAnnotation.class);
+    final int size3_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size3_1, classList3_1.size());
+    for (int i = 0; i < size3_1; i++)
     {
-      /* */
-      final List<Class<?>> classList2_1 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, FirstTestAnnotation.class);
-      final int size2_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size2_1, classList2_1.size());
-      for (int i = 0; i < size2_1; i++)
-      {
-        assertThat(
-            classList2_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      final Collection<Class<?>> classCollection2_1 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, FirstTestAnnotation.class);
-      assertEquals(size2_1, classCollection2_1.size());
-  
-      @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
-  
-      assertThat(classCollection2_1, is(equalTo(expected)));
+      assertThat(
+          classList3_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
     }
 
-  @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray3()
-    {
-      final List<Class<?>> classList2_2 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, SecondTestAnnotation.class);
-      final int size2_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size2_2, classList2_2.size());
-      for (int i = 0; i < size2_2; i++)
-      {
-        assertThat(
-            classList2_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      final Collection<Class<?>> classCollection2_2 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, SecondTestAnnotation.class);
-      assertEquals(size2_2, classCollection2_2.size());
-  
-      @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
-  
-      assertThat(classCollection2_2, is(equalTo(expected)));
-    }
+    @SuppressWarnings("unchecked")
+    final Collection<Class<?>> classCollection3_1 =
+      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+          FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertEquals(size3_1, classCollection3_1.size());
+
+    @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+    assertThat(classCollection3_1, is(equalTo(expected)));
+  }
 
   @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray4()
+  public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray5()
+  {
+    /* */
+    @SuppressWarnings("unchecked")
+    final List<Class<?>> classList3_2 =
+      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+          Object.class, true, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    final int size3_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size3_2, classList3_2.size());
+    for (int i = 0; i < size3_2; i++)
     {
-      /* */
-      @SuppressWarnings("unchecked")
-      final List<Class<?>> classList3_1 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            FirstTestAnnotation.class, SecondTestAnnotation.class);
-      final int size3_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size3_1, classList3_1.size());
-      for (int i = 0; i < size3_1; i++)
-      {
-        assertThat(
-            classList3_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      @SuppressWarnings("unchecked")
-      final Collection<Class<?>> classCollection3_1 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            FirstTestAnnotation.class, SecondTestAnnotation.class);
-      assertEquals(size3_1, classCollection3_1.size());
-  
-      @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
-  
-      assertThat(classCollection3_1, is(equalTo(expected)));
+      assertThat(
+          classList3_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
     }
 
-  @Test
-    public final void testExtractClassesWithAnnotationsInSubToSuperOrderClassOfTClassOfSBooleanClassOfQextendsAArray5()
-    {
-      /* */
-      @SuppressWarnings("unchecked")
-      final List<Class<?>> classList3_2 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      final int size3_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size3_2, classList3_2.size());
-      for (int i = 0; i < size3_2; i++)
-      {
-        assertThat(
-            classList3_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      @SuppressWarnings("unchecked")
-      final Collection<Class<?>> classCollection3_2 =
-        Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      assertEquals(size3_2, classCollection3_2.size());
-  
-      @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
-  
-      assertThat(classCollection3_2, is(equalTo(expected)));
-    }
+    @SuppressWarnings("unchecked")
+    final Collection<Class<?>> classCollection3_2 =
+      Classes.extractClassesWithAnnotationsInSubToSuperOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+          Object.class, true, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertEquals(size3_2, classCollection3_2.size());
+
+    @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUB_TO_SUPER_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+    assertThat(classCollection3_2, is(equalTo(expected)));
+  }
 
   @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray0()
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray0()
+  {
+    final List<Class<?>> classList1_1 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classList1_1, FirstTestAnnotation.class);
+    final int size1_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size1_1, classList1_1.size());
+    for (int i = 0; i < size1_1; i++)
     {
-      final List<Class<?>> classList1_1 = new ArrayList<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classList1_1, FirstTestAnnotation.class);
-      final int size1_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size1_1, classList1_1.size());
-      for (int i = 0; i < size1_1; i++)
-      {
-        assertThat(
-            classList1_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque1_1 = new ArrayDeque<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classDeque1_1, FirstTestAnnotation.class);
-      assertEquals(size1_1, classDeque1_1.size());
-      for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
-      {
-        assertThat(classDeque1_1.pop(), is(equalTo((Object) aClass)));
-      }
+      assertThat(
+          classList1_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
     }
 
-  @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray1()
+    final Deque<Class<?>> classDeque1_1 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classDeque1_1, FirstTestAnnotation.class);
+    assertEquals(size1_1, classDeque1_1.size());
+    for (final Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
     {
-      /* */
-      final List<Class<?>> classList1_2 = new ArrayList<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classList1_2, SecondTestAnnotation.class);
-      final int size1_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size1_2, classList1_2.size());
-      for (int i = 0; i < size1_2; i++)
-      {
-        assertThat(
-            classList1_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque1_2 = new ArrayDeque<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classDeque1_2, SecondTestAnnotation.class);
-      assertEquals(size1_2, classDeque1_2.size());
-      for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
-      {
-        assertThat(classDeque1_2.pop(), is(equalTo((Object) aClass)));
-      }
+      assertThat(classDeque1_1.pop(), is(equalTo((Object) aClass)));
     }
+  }
 
   @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray2()
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray1()
+  {
+    /* */
+    final List<Class<?>> classList1_2 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classList1_2, SecondTestAnnotation.class);
+    final int size1_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size1_2, classList1_2.size());
+    for (int i = 0; i < size1_2; i++)
     {
-      /* */
-      final List<Class<?>> classList2_1 = new ArrayList<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classList2_1, FirstTestAnnotation.class);
-      final int size2_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size2_1, classList2_1.size());
-      for (int i = 0; i < size2_1; i++)
-      {
-        assertThat(
-            classList2_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque2_1 = new ArrayDeque<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classDeque2_1, FirstTestAnnotation.class);
-      assertEquals(size2_1, classDeque2_1.size());
-      for (Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
-      {
-        assertThat(classDeque2_1.pop(), is(equalTo((Object) aClass)));
-      }
+      assertThat(
+          classList1_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
     }
 
-  @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray3()
+    final Deque<Class<?>> classDeque1_2 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classDeque1_2, SecondTestAnnotation.class);
+    assertEquals(size1_2, classDeque1_2.size());
+    for (final Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
     {
-      final List<Class<?>> classList2_2 = new ArrayList<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classList2_2, SecondTestAnnotation.class);
-      final int size2_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size2_2, classList2_2.size());
-      for (int i = 0; i < size2_2; i++)
-      {
-        assertThat(
-            classList2_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque2_2 = new ArrayDeque<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classDeque2_2, SecondTestAnnotation.class);
-      assertEquals(size2_2, classDeque2_2.size());
-      for (Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
-      {
-        assertThat(classDeque2_2.pop(), is(equalTo((Object) aClass)));
-      }
+      assertThat(classDeque1_2.pop(), is(equalTo((Object) aClass)));
     }
+  }
+
+  @Test
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray2()
+  {
+    /* */
+    final List<Class<?>> classList2_1 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classList2_1, FirstTestAnnotation.class);
+    final int size2_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size2_1, classList2_1.size());
+    for (int i = 0; i < size2_1; i++)
+    {
+      assertThat(
+          classList2_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
+    }
+
+    final Deque<Class<?>> classDeque2_1 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classDeque2_1, FirstTestAnnotation.class);
+    assertEquals(size2_1, classDeque2_1.size());
+    for (final Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
+    {
+      assertThat(classDeque2_1.pop(), is(equalTo((Object) aClass)));
+    }
+  }
+
+  @Test
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray3()
+  {
+    final List<Class<?>> classList2_2 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classList2_2, SecondTestAnnotation.class);
+    final int size2_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size2_2, classList2_2.size());
+    for (int i = 0; i < size2_2; i++)
+    {
+      assertThat(
+          classList2_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
+    }
+
+    final Deque<Class<?>> classDeque2_2 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classDeque2_2, SecondTestAnnotation.class);
+    assertEquals(size2_2, classDeque2_2.size());
+    for (final Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
+    {
+      assertThat(classDeque2_2.pop(), is(equalTo((Object) aClass)));
+    }
+  }
 
   @SuppressWarnings("unchecked")
-    @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray4()
+  @Test
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray4()
+  {
+    /* */
+    final List<Class<?>> classList3_1 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classList3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    final int size3_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size3_1, classList3_1.size());
+    for (int i = 0; i < size3_1; i++)
     {
-      /* */
-      final List<Class<?>> classList3_1 = new ArrayList<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classList3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      final int size3_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size3_1, classList3_1.size());
-      for (int i = 0; i < size3_1; i++)
-      {
-        assertThat(
-            classList3_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque3_1 = new ArrayDeque<Class<?>>();
-      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-          classDeque3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      assertEquals(size3_1, classDeque3_1.size());
-      for (Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
-      {
-        assertThat(classDeque3_1.pop(), is(equalTo((Object) aClass)));
-      }
+      assertThat(
+          classList3_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
     }
+
+    final Deque<Class<?>> classDeque3_1 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+        classDeque3_1, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertEquals(size3_1, classDeque3_1.size());
+    for (final Class<? super SubClassWithFirstTestAnnotation> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION)
+    {
+      assertThat(classDeque3_1.pop(), is(equalTo((Object) aClass)));
+    }
+  }
 
   @SuppressWarnings("unchecked")
-    @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray5()
+  @Test
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanCollectionOfClassOfQsuperTClassOfQextendsAArray5()
+  {
+    /* */
+    final List<Class<?>> classList3_2 = new ArrayList<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classList3_2, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    final int size3_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size3_2, classList3_2.size());
+    for (int i = 0; i < size3_2; i++)
     {
-      /* */
-      final List<Class<?>> classList3_2 = new ArrayList<Class<?>>();
+      assertThat(
+          classList3_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
+    }
+
+    final Deque<Class<?>> classDeque3_2 = new ArrayDeque<Class<?>>();
+    Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+        Object.class, true, classDeque3_2, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertEquals(size3_2, classDeque3_2.size());
+    for (final Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
+    {
+      assertThat(classDeque3_2.pop(), is(equalTo((Object) aClass)));
+    }
+  }
+
+  @Test
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray0()
+  {
+    final List<Class<?>> classList1_1 =
+      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+          FirstTestAnnotation.class);
+    final int size1_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size1_1, classList1_1.size());
+    for (int i = 0; i < size1_1; i++)
+    {
+      assertThat(
+          classList1_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
+    }
+
+    final Collection<Class<?>> classCollection1_1 =
+      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+          FirstTestAnnotation.class);
+
+    assertEquals(size1_1, classCollection1_1.size());
+
+    @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+    assertThat(classCollection1_1, is(equalTo(expected)));
+  }
+
+  @Test
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray1()
+  {
+    /* */
+    final List<Class<?>> classList1_2 =
+      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+          SecondTestAnnotation.class);
+    final int size1_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size1_2, classList1_2.size());
+    for (int i = 0; i < size1_2; i++)
+    {
+      assertThat(
+          classList1_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
+    }
+
+    final Collection<Class<?>> classCollection1_2 =
+      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+          SecondTestAnnotation.class);
+    assertEquals(size1_2, classCollection1_2.size());
+
+    @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+    assertThat(classCollection1_2, is(equalTo(expected)));
+  }
+
+  @Test
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray2()
+  {
+    /* */
+    final List<Class<?>> classList2_1 =
       Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classList3_2, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      final int size3_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size3_2, classList3_2.size());
-      for (int i = 0; i < size3_2; i++)
-      {
-        assertThat(
-            classList3_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      final Deque<Class<?>> classDeque3_2 = new ArrayDeque<Class<?>>();
+          Object.class, true, FirstTestAnnotation.class);
+    final int size2_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size2_1, classList2_1.size());
+    for (int i = 0; i < size2_1; i++)
+    {
+      assertThat(
+          classList2_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
+    }
+
+    final Collection<Class<?>> classCollection2_1 =
       Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-          Object.class, true, classDeque3_2, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      assertEquals(size3_2, classDeque3_2.size());
-      for (Class<? super SubClassWithFirstAndSecondTestAnnotations> aClass : CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS)
-      {
-        assertThat(classDeque3_2.pop(), is(equalTo((Object) aClass)));
-      }
-    }
+          Object.class, true, FirstTestAnnotation.class);
+    assertEquals(size2_1, classCollection2_1.size());
+
+    @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+    assertThat(classCollection2_1, is(equalTo(expected)));
+  }
 
   @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray0()
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray3()
+  {
+    final List<Class<?>> classList2_2 =
+      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+          Object.class, true, SecondTestAnnotation.class);
+    final int size2_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size2_2, classList2_2.size());
+    for (int i = 0; i < size2_2; i++)
     {
-      final List<Class<?>> classList1_1 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            FirstTestAnnotation.class);
-      final int size1_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size1_1, classList1_1.size());
-      for (int i = 0; i < size1_1; i++)
-      {
-        assertThat(
-            classList1_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      final Collection<Class<?>> classCollection1_1 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            FirstTestAnnotation.class);
-  
-      assertEquals(size1_1, classCollection1_1.size());
-  
-      @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
-  
-      assertThat(classCollection1_1, is(equalTo(expected)));
+      assertThat(
+          classList2_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
     }
 
-  @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray1()
-    {
-      /* */
-      final List<Class<?>> classList1_2 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            SecondTestAnnotation.class);
-      final int size1_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size1_2, classList1_2.size());
-      for (int i = 0; i < size1_2; i++)
-      {
-        assertThat(
-            classList1_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      final Collection<Class<?>> classCollection1_2 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            SecondTestAnnotation.class);
-      assertEquals(size1_2, classCollection1_2.size());
-  
-      @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
-  
-      assertThat(classCollection1_2, is(equalTo(expected)));
-    }
+    final Collection<Class<?>> classCollection2_2 =
+      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+          Object.class, true, SecondTestAnnotation.class);
+    assertEquals(size2_2, classCollection2_2.size());
+
+    @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+    assertThat(classCollection2_2, is(equalTo(expected)));
+  }
 
   @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray2()
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray4()
+  {
+    /* */
+    @SuppressWarnings("unchecked")
+    final List<Class<?>> classList3_1 =
+      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+          FirstTestAnnotation.class, SecondTestAnnotation.class);
+    final int size3_1 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
+    assertEquals(size3_1, classList3_1.size());
+    for (int i = 0; i < size3_1; i++)
     {
-      /* */
-      final List<Class<?>> classList2_1 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, FirstTestAnnotation.class);
-      final int size2_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size2_1, classList2_1.size());
-      for (int i = 0; i < size2_1; i++)
-      {
-        assertThat(
-            classList2_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      final Collection<Class<?>> classCollection2_1 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, FirstTestAnnotation.class);
-      assertEquals(size2_1, classCollection2_1.size());
-  
-      @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
-  
-      assertThat(classCollection2_1, is(equalTo(expected)));
+      assertThat(
+          classList3_1.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
     }
 
-  @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray3()
-    {
-      final List<Class<?>> classList2_2 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, SecondTestAnnotation.class);
-      final int size2_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size2_2, classList2_2.size());
-      for (int i = 0; i < size2_2; i++)
-      {
-        assertThat(
-            classList2_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      final Collection<Class<?>> classCollection2_2 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, SecondTestAnnotation.class);
-      assertEquals(size2_2, classCollection2_2.size());
-  
-      @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
-  
-      assertThat(classCollection2_2, is(equalTo(expected)));
-    }
+    @SuppressWarnings("unchecked")
+    final Collection<Class<?>> classCollection3_1 =
+      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
+          FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertEquals(size3_1, classCollection3_1.size());
+
+    @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
+
+    assertThat(classCollection3_1, is(equalTo(expected)));
+  }
 
   @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray4()
+  public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray5()
+  {
+    /* */
+    @SuppressWarnings("unchecked")
+    final List<Class<?>> classList3_2 =
+      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+          Object.class, true, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    final int size3_2 =
+      CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
+    assertEquals(size3_2, classList3_2.size());
+    for (int i = 0; i < size3_2; i++)
     {
-      /* */
-      @SuppressWarnings("unchecked")
-      final List<Class<?>> classList3_1 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            FirstTestAnnotation.class, SecondTestAnnotation.class);
-      final int size3_1 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.size();
-      assertEquals(size3_1, classList3_1.size());
-      for (int i = 0; i < size3_1; i++)
-      {
-        assertThat(
-            classList3_1.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION.get(i))));
-      }
-  
-      @SuppressWarnings("unchecked")
-      final Collection<Class<?>> classCollection3_1 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstTestAnnotation.class, Object.class, true,
-            FirstTestAnnotation.class, SecondTestAnnotation.class);
-      assertEquals(size3_1, classCollection3_1.size());
-  
-      @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_TEST_ANNOTATION);
-  
-      assertThat(classCollection3_1, is(equalTo(expected)));
+      assertThat(
+          classList3_2.get(i),
+          is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
     }
 
-  @Test
-    public final void testExtractClassesWithAnnotationsInSuperToSubOrderClassOfTClassOfSBooleanClassOfQextendsAArray5()
-    {
-      /* */
-      @SuppressWarnings("unchecked")
-      final List<Class<?>> classList3_2 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      final int size3_2 =
-        CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.size();
-      assertEquals(size3_2, classList3_2.size());
-      for (int i = 0; i < size3_2; i++)
-      {
-        assertThat(
-            classList3_2.get(i),
-            is(equalTo((Object) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS.get(i))));
-      }
-  
-      @SuppressWarnings("unchecked")
-      final Collection<Class<?>> classCollection3_2 =
-        Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
-            Object.class, true, FirstTestAnnotation.class, SecondTestAnnotation.class);
-      assertEquals(size3_2, classCollection3_2.size());
-  
-      @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
-      final Collection<Class<?>> expected =
-        (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
-  
-      assertThat(classCollection3_2, is(equalTo(expected)));
-    }
+    @SuppressWarnings("unchecked")
+    final Collection<Class<?>> classCollection3_2 =
+      Classes.extractClassesWithAnnotationsInSuperToSubOrder(SubClassWithFirstAndSecondTestAnnotations.class,
+          Object.class, true, FirstTestAnnotation.class, SecondTestAnnotation.class);
+    assertEquals(size3_2, classCollection3_2.size());
+
+    @SuppressWarnings({ "cast", "unchecked", "rawtypes" })
+    final Collection<Class<?>> expected =
+      (Collection<Class<?>>) ((Collection) CLASS_LIST_OF_SUB_CLASS_WITH_FIRST_OR_SECOND_TEST_ANNOTATION_IN_SUPER_TO_SUB_ORDER_FOR_SUB_CLASS_WITH_FIRST_AND_SECOND_TEST_ANNOTATIONS);
+
+    assertThat(classCollection3_2, is(equalTo(expected)));
+  }
 
   private static final int DEFAULT_NUMBER = 100;
 
@@ -1015,49 +1140,49 @@ public class ClassesTest
       this.doubleNumber = DEFAULT_DOUBLE_NUMBER;
     }
 
-    public ClassWithManyConstructors(int number)
+    public ClassWithManyConstructors(final int number)
     {
       this.number = number;
       this.name = DEFAULT_NAME + number;
       this.doubleNumber = DEFAULT_DOUBLE_NUMBER;
     }
 
-    public ClassWithManyConstructors(String name)
+    public ClassWithManyConstructors(final String name)
     {
       this.number = name.hashCode();
       this.name = name;
       this.doubleNumber = DEFAULT_DOUBLE_NUMBER;
     }
 
-    public ClassWithManyConstructors(Double doubleNumber)
+    public ClassWithManyConstructors(final Double doubleNumber)
     {
       this.number = DEFAULT_NUMBER;
       this.name = DEFAULT_NAME;
       this.doubleNumber = doubleNumber;
     }
 
-    public ClassWithManyConstructors(int number, String name)
+    public ClassWithManyConstructors(final int number, final String name)
     {
       this.number = number;
       this.name = name;
       this.doubleNumber = DEFAULT_DOUBLE_NUMBER;
     }
 
-    public ClassWithManyConstructors(String name, Double doubleNumber)
+    public ClassWithManyConstructors(final String name, final Double doubleNumber)
     {
       this.number = DEFAULT_NUMBER;
       this.name = name;
       this.doubleNumber = doubleNumber;
     }
 
-    public ClassWithManyConstructors(int number, Double doubleNumber)
+    public ClassWithManyConstructors(final int number, final Double doubleNumber)
     {
       this.number = number;
       this.name = DEFAULT_NAME;
       this.doubleNumber = doubleNumber;
     }
 
-    public ClassWithManyConstructors(int number, String name, Double doubleNumber)
+    public ClassWithManyConstructors(final int number, final String name, final Double doubleNumber)
     {
       this.number = number;
       this.name = name;
@@ -1076,7 +1201,7 @@ public class ClassesTest
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
       if (this == obj)
       {
@@ -1211,7 +1336,7 @@ public class ClassesTest
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
       if (this == obj)
       {
@@ -1252,7 +1377,7 @@ public class ClassesTest
     private final Double doubleNumber;
 
     @TestConstructorAnnotation1
-    public ClassWithTestConstructorAnnotation2(int number)
+    public ClassWithTestConstructorAnnotation2(final int number)
     {
       this.number = number;
       this.name = DEFAULT_NAME + number;
@@ -1271,7 +1396,7 @@ public class ClassesTest
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
       if (this == obj)
       {
@@ -1313,7 +1438,7 @@ public class ClassesTest
     private final Double doubleNumber;
 
     @TestConstructorAnnotation2
-    public ClassWithTestConstructorAnnotation3(String name)
+    public ClassWithTestConstructorAnnotation3(final String name)
     {
       this.number = name.hashCode();
       this.name = name;
@@ -1332,7 +1457,7 @@ public class ClassesTest
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
       if (this == obj)
       {
@@ -1374,7 +1499,7 @@ public class ClassesTest
     private final Double doubleNumber;
 
     @TestConstructorAnnotation1
-    public ClassWithTestConstructorAnnotation4(Double doubleNumber)
+    public ClassWithTestConstructorAnnotation4(final Double doubleNumber)
     {
       this.number = DEFAULT_NUMBER;
       this.name = DEFAULT_NAME;
@@ -1393,7 +1518,7 @@ public class ClassesTest
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
       if (this == obj)
       {
@@ -1435,7 +1560,7 @@ public class ClassesTest
     private final Double doubleNumber;
 
     @TestConstructorAnnotation2
-    public ClassWithTestConstructorAnnotation5(int number, String name)
+    public ClassWithTestConstructorAnnotation5(final int number, final String name)
     {
       this.number = number;
       this.name = name;
@@ -1454,7 +1579,7 @@ public class ClassesTest
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
       if (this == obj)
       {
@@ -1496,7 +1621,7 @@ public class ClassesTest
     private final Double doubleNumber;
 
     @TestConstructorAnnotation2
-    public ClassWithTestConstructorAnnotation6(String name, Double doubleNumber)
+    public ClassWithTestConstructorAnnotation6(final String name, final Double doubleNumber)
     {
       this.number = DEFAULT_NUMBER;
       this.name = name;
@@ -1515,7 +1640,7 @@ public class ClassesTest
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
       if (this == obj)
       {
@@ -1557,7 +1682,7 @@ public class ClassesTest
     private final Double doubleNumber;
 
     @TestConstructorAnnotation1
-    public ClassWithTestConstructorAnnotation7(int number, Double doubleNumber)
+    public ClassWithTestConstructorAnnotation7(final int number, final Double doubleNumber)
     {
       this.number = number;
       this.name = DEFAULT_NAME;
@@ -1576,7 +1701,7 @@ public class ClassesTest
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
       if (this == obj)
       {
@@ -1618,7 +1743,7 @@ public class ClassesTest
     private final Double doubleNumber;
 
     @TestConstructorAnnotation2
-    public ClassWithTestConstructorAnnotation8(int number, String name, Double doubleNumber)
+    public ClassWithTestConstructorAnnotation8(final int number, final String name, final Double doubleNumber)
     {
       this.number = number;
       this.name = name;
@@ -1637,7 +1762,7 @@ public class ClassesTest
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
       if (this == obj)
       {
@@ -1689,7 +1814,7 @@ public class ClassesTest
 
     @TestConstructorAnnotation2
     @TestConstructorAnnotation3
-    public ClassHavingConstructorsWithTestConstructorAnnotation(int number)
+    public ClassHavingConstructorsWithTestConstructorAnnotation(final int number)
     {
       this.number = number;
       this.name = DEFAULT_NAME;
@@ -1697,7 +1822,7 @@ public class ClassesTest
     }
 
     @TestConstructorAnnotation3
-    public ClassHavingConstructorsWithTestConstructorAnnotation(String name)
+    public ClassHavingConstructorsWithTestConstructorAnnotation(final String name)
     {
       this.number = DEFAULT_NUMBER;
       this.name = name;
@@ -1707,7 +1832,7 @@ public class ClassesTest
     @TestConstructorAnnotation1
     @TestConstructorAnnotation2
     @TestConstructorAnnotation3
-    public ClassHavingConstructorsWithTestConstructorAnnotation(Double doubleNumber)
+    public ClassHavingConstructorsWithTestConstructorAnnotation(final Double doubleNumber)
     {
       this.number = DEFAULT_NUMBER;
       this.name = DEFAULT_NAME;
@@ -1716,7 +1841,7 @@ public class ClassesTest
 
     @TestConstructorAnnotation1
     @TestConstructorAnnotation3
-    public ClassHavingConstructorsWithTestConstructorAnnotation(int number, String name)
+    public ClassHavingConstructorsWithTestConstructorAnnotation(final int number, final String name)
     {
       this.number = number;
       this.name = name;
@@ -1724,7 +1849,7 @@ public class ClassesTest
     }
 
     @TestConstructorAnnotation3
-    public ClassHavingConstructorsWithTestConstructorAnnotation(String name, Double doubleNumber)
+    public ClassHavingConstructorsWithTestConstructorAnnotation(final String name, final Double doubleNumber)
     {
       this.number = DEFAULT_NUMBER;
       this.name = name;
@@ -1733,7 +1858,7 @@ public class ClassesTest
 
     @TestConstructorAnnotation2
     @TestConstructorAnnotation3
-    public ClassHavingConstructorsWithTestConstructorAnnotation(int number, Double doubleNumber)
+    public ClassHavingConstructorsWithTestConstructorAnnotation(final int number, final Double doubleNumber)
     {
       this.number = number;
       this.name = DEFAULT_NAME;
@@ -1743,7 +1868,8 @@ public class ClassesTest
     @TestConstructorAnnotation1
     @TestConstructorAnnotation2
     @TestConstructorAnnotation3
-    public ClassHavingConstructorsWithTestConstructorAnnotation(int number, String name, Double doubleNumber)
+    public ClassHavingConstructorsWithTestConstructorAnnotation(final int number, final String name,
+        final Double doubleNumber)
     {
       this.number = number;
       this.name = name;
@@ -1762,7 +1888,7 @@ public class ClassesTest
     }
 
     @Override
-    public boolean equals(Object obj)
+    public boolean equals(final Object obj)
     {
       if (this == obj)
       {
@@ -1794,7 +1920,7 @@ public class ClassesTest
       Classes.findAllConstructorsWithAnnotation(ClassHavingConstructorsWithTestConstructorAnnotation.class,
           TestConstructorAnnotation1.class);
     assertThat(constructorSet.size(), is(equalTo(sizeOfHavingAnnotation1)));
-    for (Constructor<ClassHavingConstructorsWithTestConstructorAnnotation> constructor : constructorSet)
+    for (final Constructor<ClassHavingConstructorsWithTestConstructorAnnotation> constructor : constructorSet)
     {
       final Class<?>[] paramTypes = constructor.getParameterTypes();
       final ClassHavingConstructorsWithTestConstructorAnnotation expectedObject =
@@ -1810,7 +1936,7 @@ public class ClassesTest
       Classes.findAllConstructorsWithAnnotation(ClassHavingConstructorsWithTestConstructorAnnotation.class,
           TestConstructorAnnotation2.class);
     assertThat(constructorSet2.size(), is(equalTo(sizeOfHavingAnnotation2)));
-    for (Constructor<ClassHavingConstructorsWithTestConstructorAnnotation> constructor : constructorSet2)
+    for (final Constructor<ClassHavingConstructorsWithTestConstructorAnnotation> constructor : constructorSet2)
     {
       final Class<?>[] paramTypes = constructor.getParameterTypes();
       final ClassHavingConstructorsWithTestConstructorAnnotation expectedObject =
@@ -1826,7 +1952,7 @@ public class ClassesTest
       Classes.findAllConstructorsWithAnnotation(ClassHavingConstructorsWithTestConstructorAnnotation.class,
           TestConstructorAnnotation3.class);
     assertThat(constructorSet3.size(), is(equalTo(sizeOfHavingAnnotation3)));
-    for (Constructor<ClassHavingConstructorsWithTestConstructorAnnotation> constructor : constructorSet3)
+    for (final Constructor<ClassHavingConstructorsWithTestConstructorAnnotation> constructor : constructorSet3)
     {
       final Class<?>[] paramTypes = constructor.getParameterTypes();
       final ClassHavingConstructorsWithTestConstructorAnnotation expectedObject =
@@ -1843,7 +1969,7 @@ public class ClassesTest
       Classes.findAllConstructorsWithAnnotation(ClassHavingConstructorsWithTestConstructorAnnotation.class,
           TestConstructorAnnotation1.class, TestConstructorAnnotation2.class);
     assertThat(constructorSet1_2.size(), is(equalTo(sizeOfHavingAnnotation1And2)));
-    for (Constructor<ClassHavingConstructorsWithTestConstructorAnnotation> constructor : constructorSet1_2)
+    for (final Constructor<ClassHavingConstructorsWithTestConstructorAnnotation> constructor : constructorSet1_2)
     {
       final Class<?>[] paramTypes = constructor.getParameterTypes();
       final ClassHavingConstructorsWithTestConstructorAnnotation expectedObject =
@@ -2045,26 +2171,26 @@ public class ClassesTest
     sizeOfHavingAnnotation1And2 = size;
   }
 
-  private static Object getParamValue(int index, Class<?> aClass)
+  private static Object getParamValue(final int index, final Class<?> aClass)
   {
     return PARAM_MAP_LIST.get(index)
         .get(aClass);
   }
 
-  private static String paramTypesToString(Class<?>... paramTypes)
+  private static String paramTypesToString(final Class<?>... paramTypes)
   {
     final StringBuilder stringBuilder = new StringBuilder();
-    for (Class<?> aClass : paramTypes)
+    for (final Class<?> aClass : paramTypes)
     {
       stringBuilder.append(aClass.getName());
     }
     return stringBuilder.toString();
   }
 
-  private Object[] getParamObjects(Class<?>[] paramTypes)
+  private Object[] getParamObjects(final Class<?>[] paramTypes)
   {
     final List<Object> paramList = new ArrayList<Object>();
-    for (Class<?> aClass : paramTypes)
+    for (final Class<?> aClass : paramTypes)
     {
       paramList.add(getParamValue(paramTypes.length, aClass));
     }

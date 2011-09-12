@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.elixirian.kommonlee.reflect;
 
@@ -14,7 +14,7 @@ import java.lang.reflect.Type;
  *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
  * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____  __________  ___________ _____  ____
  *    /   \/    / /      \   \/   /_    _//     \/   /
@@ -22,7 +22,7 @@ import java.lang.reflect.Type;
  *  /        \  /    ___/  \    /_/   /_/          /
  * /____/\____\/_______/    \__//______/___/\_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-09-30)
  */
@@ -44,43 +44,43 @@ public final class Generics
    * {@link ParameterizedType} .
    * <p>
    * e.g.1)
-   * 
+   *
    * <pre>
    * class SomeClass
    * {
    *   private Map&lt;String, Integer&gt; map;
    * }
-   * 
+   *
    * final Field field = SomeClass.class.getDeclaredField(&quot;map&quot;);
-   * 
+   *
    * final Type actual0 = Generics.extractFromParameterizedType(field.getGenericType(), 0);
    * final Type actual1 = Generics.extractFromParameterizedType(field.getGenericType(), 1);
-   * 
+   *
    * actual0 == String.class
    * actual1 == Integer.class
    * </pre>
-   * 
+   *
    * </p>
    * <p>
    * e.g.2)
-   * 
+   *
    * <pre>
    * abstract class GenerifiedClass&lt;T, E&gt;
    * {
    * }
-   * 
+   *
    * final Type genericSuperClass = new GenerifiedClass&lt;Date, BigDecimal&gt;() {}.getClass()
    *     .getGenericSuperclass();
-   * 
+   *
    * final Type actual0 = Generics.extractFromParameterizedType(genericSuperClass, 0);
    * final Type actual1 = Generics.extractFromParameterizedType(genericSuperClass, 1);
-   * 
+   *
    * actual0 == Date.class
    * actual1 == BigDecimal.class
    * </pre>
-   * 
+   *
    * </p>
-   * 
+   *
    * @param type
    *          the given type from which the actual type argument should be extracted.
    * @param index

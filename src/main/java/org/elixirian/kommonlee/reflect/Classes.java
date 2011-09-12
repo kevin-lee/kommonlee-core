@@ -44,6 +44,47 @@ public final class Classes
   {
   }
 
+  private static <T, A extends Annotation> boolean hasAnySuperClassAnnotatedWith0(final Class<?> targetClass,
+      final Class<? super T> beforeClass, final Class<? extends A> annotation,
+      final Class<? extends A>... remainingAnnotations)
+  {
+    if (null == targetClass || targetClass.equals(beforeClass) || targetClass.equals(Object.class))
+    {
+      return false;
+    }
+    if (targetClass.isAnnotationPresent(annotation))
+    {
+      return true;
+    }
+    for (final Class<? extends A> eachAnnotation : remainingAnnotations)
+    {
+      if (targetClass.isAnnotationPresent(eachAnnotation))
+      {
+        return true;
+      }
+    }
+    /* @formatter:off */
+    return hasAnySuperClassAnnotatedWith0(targetClass
+        .getSuperclass(), beforeClass, annotation, remainingAnnotations);
+    /* @formatter:on */
+  }
+
+  public static <T, A extends Annotation> boolean hasAnySuperClassAnnotatedWith(final Class<?> targetClass,
+      final Class<? super T> beforeClass, final boolean includeTargetClass, final Class<? extends A> annotation,
+      final Class<? extends A>... remainingAnnotations)
+  {
+    /* @formatter:off */
+    return includeTargetClass ?
+        hasAnySuperClassAnnotatedWith0(targetClass,
+                                       beforeClass,
+                                       annotation, remainingAnnotations) :
+        hasAnySuperClassAnnotatedWith0(targetClass
+                                          .getSuperclass(),
+                                       beforeClass,
+                                       annotation, remainingAnnotations);
+    /* @formatter:on */
+  }
+
   private static <T> void extractAllClassesInSubToSuperOrder(final Class<?> targetClass,
       final Class<? super T> beforeClass, final Collection<Class<?>> classCollection)
   {
