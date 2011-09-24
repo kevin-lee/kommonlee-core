@@ -9,11 +9,11 @@ import java.io.Writer;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
@@ -44,26 +44,26 @@ public final class StringBuildWriter extends Writer
     lock = builder;
   }
 
-  private void write0(int c)
+  private void write0(final int c)
   {
     builder.append((char) c);
 
   }
 
   @Override
-  public void write(int c)
+  public void write(final int c)
   {
     write0(c);
   }
 
   @Override
-  public void write(char[] cbuf)
+  public void write(final char[] cbuf)
   {
     builder.append(cbuf);
   }
 
   @Override
-  public void write(char[] cbuf, int off, int len)
+  public void write(final char[] cbuf, final int off, final int len)
   {
     if ((0 > off) || (cbuf.length < off) || (0 > len) || (cbuf.length < (off + len)) || (0 > (off + len)))
     {
@@ -77,26 +77,26 @@ public final class StringBuildWriter extends Writer
 
   }
 
-  private void write0(String str)
+  private void write0(final String str)
   {
     builder.append(str);
 
   }
 
   @Override
-  public void write(String str)
+  public void write(final String str)
   {
     write0(str);
   }
 
   @Override
-  public void write(String str, int off, int len)
+  public void write(final String str, final int off, final int len)
   {
     builder.append(str.substring(off, off + len));
   }
 
   @Override
-  public StringBuildWriter append(CharSequence csq)
+  public StringBuildWriter append(final CharSequence csq)
   {
     write0(String.valueOf(csq));
     return this;
@@ -112,7 +112,7 @@ public final class StringBuildWriter extends Writer
   }
 
   @Override
-  public StringBuildWriter append(char c)
+  public StringBuildWriter append(final char c)
   {
     write0(c);
     return this;

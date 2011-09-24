@@ -12,8 +12,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
+import java.nio.channels.ReadableByteChannel;
 
 import org.elixirian.kommonlee.io.ByteArrayConsumer;
 import org.elixirian.kommonlee.io.ByteArrayProducer;
@@ -23,11 +26,11 @@ import org.elixirian.kommonlee.validation.Assertions;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
@@ -42,14 +45,14 @@ import org.elixirian.kommonlee.validation.Assertions;
  * @version 0.0.1 (2010-07-13)
  * @version 0.0.2 (2010-11-03) moved from the elixirian-common-filemanager package.
  */
-public final class NioFileUtil
+public final class NioUtil
 {
   /**
    * the value of {@link org.elixirian.kommonlee.io.IoCommonConstants#BUFFER_SIZE_128Ki}
    */
   public static final int DEFAULT_BUFFER_SIZE = BUFFER_SIZE_128Ki;
 
-  private NioFileUtil()
+  private NioUtil()
   {
   }
 
@@ -59,7 +62,7 @@ public final class NioFileUtil
    * @param closeable
    *          the given {@link Closeable} object the close() method of which is to be called by this method.
    */
-  public static void closeQuietly(Closeable closeable)
+  public static void closeQuietly(final Closeable closeable)
   {
     try
     {
@@ -70,10 +73,10 @@ public final class NioFileUtil
     {
       /* just ignore this exception. */
       // System.out.println(format("log from %s (%s.java:%s)\nClosing [%s] has failed.\nCaused at %s",
-      // NioFileUtil.class, NioFileUtil.class.getSimpleName(), Integer.valueOf(Thread.currentThread()
+      // NioUtil.class, NioUtil.class.getSimpleName(), Integer.valueOf(Thread.currentThread()
       // .getStackTrace()[1].getLineNumber()), closeable, e.getStackTrace()[0]));
-      System.out.println(format("log from %s (%s.java:%s)\nClosing [%s] has failed.\n", NioFileUtil.class,
-          NioFileUtil.class.getSimpleName(), Integer.valueOf(Thread.currentThread()
+      System.out.println(format("log from %s (%s.java:%s)\nClosing [%s] has failed.\n", NioUtil.class,
+          NioUtil.class.getSimpleName(), Integer.valueOf(Thread.currentThread()
               .getStackTrace()[1].getLineNumber()), closeable));
       e.printStackTrace();
     }
@@ -83,6 +86,35 @@ public final class NioFileUtil
   {
     Assertions.assertTrue(0 < bufferSize, "The buffer size must be greater than 0. [given size: %s]",
         Integer.valueOf(bufferSize));
+  }
+
+  public static void readInputStream(final InputStream inputStream, final int bufferSize,
+      final ByteArrayConsumer byteArrayConsumer)
+  {
+    assertBufferSize(bufferSize);
+    ReadableByteChannel readableByteChannel = null;
+    try
+    {
+      readableByteChannel = Channels.newChannel(inputStream);
+      final byte[] buffer = new byte[bufferSize];
+      final ByteBuffer byteBuffer = ByteBuffer.wrap(buffer);
+      int byteRead = readableByteChannel.read(byteBuffer);
+      while (-1 != byteRead)
+      {
+        byteArrayConsumer.consume(buffer, 0, byteRead);
+        byteBuffer.clear();
+        byteRead = readableByteChannel.read(byteBuffer);
+      }
+    }
+    catch (final IOException e)
+    {
+      throw new RuntimeIoException(e);
+    }
+    finally
+    {
+      closeQuietly(readableByteChannel);
+      closeQuietly(inputStream);
+    }
   }
 
   public static void readFile(final File file, final int bufferSize, final ByteArrayConsumer byteArrayConsumer)
@@ -212,7 +244,8 @@ public final class NioFileUtil
     }
   }
 
-  private static void copyFile0(FileChannel sourceFileChannel, FileChannel targetFileChannel) throws IOException
+  private static void copyFile0(final FileChannel sourceFileChannel, final FileChannel targetFileChannel)
+      throws IOException
   {
     final long size = sourceFileChannel.size();
     long read = 0;

@@ -5,11 +5,11 @@ package org.elixirian.kommonlee.io.exception;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
@@ -39,7 +39,7 @@ public class RuntimeFileNotFoundException extends RuntimeIoException
    * @param message
    * @param cause
    */
-  public RuntimeFileNotFoundException(String message, Throwable cause)
+  public RuntimeFileNotFoundException(final String message, final Throwable cause)
   {
     super(message, cause);
   }
@@ -47,7 +47,7 @@ public class RuntimeFileNotFoundException extends RuntimeIoException
   /**
    * @param message
    */
-  public RuntimeFileNotFoundException(String message)
+  public RuntimeFileNotFoundException(final String message)
   {
     super(message);
   }
@@ -55,7 +55,7 @@ public class RuntimeFileNotFoundException extends RuntimeIoException
   /**
    * @param cause
    */
-  public RuntimeFileNotFoundException(Throwable cause)
+  public RuntimeFileNotFoundException(final Throwable cause)
   {
     super(cause);
   }

@@ -7,11 +7,11 @@ import org.elixirian.kommonlee.exception.ElixirianRuntimeException;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
@@ -41,7 +41,7 @@ public class RuntimeIoException extends ElixirianRuntimeException
    * @param message
    * @param cause
    */
-  public RuntimeIoException(String message, Throwable cause)
+  public RuntimeIoException(final String message, final Throwable cause)
   {
     super(message, cause);
   }
@@ -49,7 +49,7 @@ public class RuntimeIoException extends ElixirianRuntimeException
   /**
    * @param message
    */
-  public RuntimeIoException(String message)
+  public RuntimeIoException(final String message)
   {
     super(message);
   }
@@ -57,7 +57,7 @@ public class RuntimeIoException extends ElixirianRuntimeException
   /**
    * @param cause
    */
-  public RuntimeIoException(Throwable cause)
+  public RuntimeIoException(final Throwable cause)
   {
     super(cause);
   }

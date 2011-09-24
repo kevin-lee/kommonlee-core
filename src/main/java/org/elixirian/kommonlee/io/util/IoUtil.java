@@ -5,6 +5,7 @@ package org.elixirian.kommonlee.io.util;
 
 import static org.elixirian.kommonlee.util.MessageFormatter.*;
 
+import java.io.BufferedInputStream;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,11 +23,11 @@ import org.elixirian.kommonlee.validation.Assertions;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
@@ -41,9 +42,9 @@ import org.elixirian.kommonlee.validation.Assertions;
  * @version 0.0.1 (2010-04-02)
  * @version 0.0.2 (2010-11-03) moved from the elixirian-common-filemanager package.
  */
-public final class FileUtil
+public final class IoUtil
 {
-  private FileUtil()
+  private IoUtil()
   {
   }
 
@@ -53,18 +54,18 @@ public final class FileUtil
    * @param closeable
    *          the given {@link Closeable} object the close() method of which is to be called by this method.
    */
-  public static void closeQuietly(Closeable closeable)
+  public static void closeQuietly(final Closeable closeable)
   {
     try
     {
       if (null != closeable)
         closeable.close();
     }
-    catch (IOException e)
+    catch (final IOException e)
     {
       /* just ignore this exception. */
-      System.out.println(format("log from %s (%s.java:%s)\nClosing [%s] has failed.\n", FileUtil.class,
-          FileUtil.class.getSimpleName(), Integer.valueOf(Thread.currentThread()
+      System.out.println(format("log from %s (%s.java:%s)\nClosing [%s] has failed.\n", IoUtil.class,
+          IoUtil.class.getSimpleName(), Integer.valueOf(Thread.currentThread()
               .getStackTrace()[1].getLineNumber()), closeable));
       e.printStackTrace();
     }
@@ -74,6 +75,39 @@ public final class FileUtil
   {
     Assertions.assertTrue(0 < bufferSize, "The buffer size must be greater than 0. [given size: %s]",
         Integer.valueOf(bufferSize));
+  }
+
+  public static void readInputStream(final InputStream inputStream, final int bufferSize,
+      final ByteArrayConsumer byteArrayConsumer)
+  {
+    assertBufferSize(bufferSize);
+    BufferedInputStream bufferedInputStream = null;
+
+    try
+    {
+      bufferedInputStream = new BufferedInputStream(inputStream);
+      final byte[] buffer = new byte[bufferSize];
+      int bytesRead = bufferedInputStream.read(buffer);
+
+      while (-1 < bytesRead)
+      {
+        byteArrayConsumer.consume(buffer, 0, bytesRead);
+        bytesRead = bufferedInputStream.read(buffer);
+      }
+    }
+    catch (final FileNotFoundException e)
+    {
+      throw new RuntimeFileNotFoundException(e);
+    }
+    catch (final IOException e)
+    {
+      throw new RuntimeIoException(e);
+    }
+    finally
+    {
+      closeQuietly(bufferedInputStream);
+      closeQuietly(inputStream);
+    }
   }
 
   public static void readFile(final File file, final int bufferSize, final ByteArrayConsumer byteArrayConsumer)
@@ -113,7 +147,7 @@ public final class FileUtil
   {
     assertBufferSize(bufferSize);
 
-    InputStream inputStream = null;
+    final InputStream inputStream = null;
     OutputStream outputStream = null;
 
     try

@@ -1,10 +1,9 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.io.util;
+package org.elixirian.kommonlee.nio.util;
 
 import static org.elixirian.kommonlee.test.CommonTestHelper.*;
-import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -19,8 +18,6 @@ import java.util.List;
 
 import org.elixirian.kommonlee.io.ByteArrayConsumer;
 import org.elixirian.kommonlee.io.ByteArrayProducer;
-import org.elixirian.kommonlee.io.exception.RuntimeIoException;
-import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
 import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -35,11 +32,11 @@ import org.mockito.stubbing.Answer;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
@@ -51,15 +48,12 @@ import org.mockito.stubbing.Answer;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-04-02)
+ * @version 0.0.1 (2010-07-13)
  */
-public class FileUtilTest
+public class NioUtilTest
 {
   @Rule
   public TemporaryFolder temporaryFolder = new TemporaryFolder();
-
-  @Rule
-  public CauseCheckableExpectedException causeCheckableExpectedException = CauseCheckableExpectedException.none();
 
   private List<Byte> byteList;
   private StringBuilder stringBuilder;
@@ -92,7 +86,7 @@ public class FileUtilTest
 
   }
 
-  private void readFile(File file, List<Byte> byteList, StringBuilder stringBuilder)
+  private void readFile(final File file, final List<Byte> byteList, final StringBuilder stringBuilder)
   {
     FileInputStream fileInputStream = null;
     try
@@ -110,11 +104,11 @@ public class FileUtilTest
         bytesRead = fileInputStream.read(buffer);
       }
     }
-    catch (FileNotFoundException e)
+    catch (final FileNotFoundException e)
     {
       throw new AssertionError(e);
     }
-    catch (IOException e)
+    catch (final IOException e)
     {
       throw new AssertionError(e);
     }
@@ -126,7 +120,7 @@ public class FileUtilTest
         {
           fileInputStream.close();
         }
-        catch (IOException e)
+        catch (final IOException e)
         {
         }
       }
@@ -150,13 +144,16 @@ public class FileUtilTest
   }
 
   @Test(expected = IllegalAccessException.class)
-  public void testFileUtil() throws Exception
+  public final void testNioFileUtil() throws Exception
   {
-    testNotAccessibleConstructor(FileUtil.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
+    testNotAccessibleConstructor(NioUtil.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
   }
 
+  /**
+   * Test method for {@link org.elixirian.kommonlee.nio.util.NioUtil#closeQuietly(java.io.Closeable)}.
+   */
   @Test
-  public void testCloseQuietly()
+  public final void testCloseQuietly()
   {
     final boolean[] called = { false };
     Closeable closeable = new Closeable() {
@@ -168,7 +165,8 @@ public class FileUtilTest
     };
 
     assertFalse(called[0]);
-    FileUtil.closeQuietly(closeable);
+    /* test */
+    NioUtil.closeQuietly(closeable);
     assertTrue(called[0]);
 
     called[0] = false;
@@ -190,33 +188,9 @@ public class FileUtilTest
     };
 
     assertFalse(called[0]);
-    FileUtil.closeQuietly(closeable);
+    /* test */
+    NioUtil.closeQuietly(closeable);
     assertTrue(called[0]);
-  }
-
-  @Test
-  public void testAssertBufferSize()
-  {
-    for (int i = 1; i < 51; i++)
-      FileUtil.assertBufferSize(i);
-  }
-
-  @Test
-  public void testAssertBufferSizeWithNonPositiveInt()
-  {
-    for (int i = -50; i < 1; i++)
-    {
-      boolean exceptionThrown = false;
-      try
-      {
-        FileUtil.assertBufferSize(i);
-      }
-      catch (IllegalArgumentException e)
-      {
-        exceptionThrown = true;
-      }
-      assertTrue(format("expected exception [%s] is not thrown.", IllegalArgumentException.class), exceptionThrown);
-    }
   }
 
   private static class ByteArrayConsumer4Testing implements ByteArrayConsumer
@@ -243,6 +217,23 @@ public class FileUtilTest
   }
 
   @Test
+  public void testReadInputStream()
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final ByteArrayConsumer4Testing byteArrayConsumer =
+        new ByteArrayConsumer4Testing(new ArrayList<Byte>(), new StringBuilder());
+
+      /* test */
+      NioUtil.readInputStream(this.getClass()
+          .getResourceAsStream("/file4testing.txt"), bufferSize, byteArrayConsumer);
+
+      assertThat(byteArrayConsumer.byteList, is(equalTo(this.byteList)));
+      assertThat(byteArrayConsumer.stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+    }
+  }
+
+  @Test
   public void testReadFile()
   {
     for (int bufferSize = 1; bufferSize < 128; bufferSize++)
@@ -251,7 +242,7 @@ public class FileUtilTest
         new ByteArrayConsumer4Testing(new ArrayList<Byte>(), new StringBuilder());
 
       /* test */
-      FileUtil.readFile(new File(this.getClass()
+      NioUtil.readFile(new File(this.getClass()
           .getResource("/file4testing.txt")
           .getFile()
           .replace("%20", " ")), bufferSize, byteArrayConsumer);
@@ -261,32 +252,33 @@ public class FileUtilTest
     }
   }
 
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testReadFileWith0SizeBuffer() throws Exception
   {
-    /* given */
     ByteArrayConsumer byteArrayConsumer = null;
 
-    byteArrayConsumer = mock(ByteArrayConsumer.class);
-    doAnswer(new Answer<Void>() {
-      @Override
-      public Void answer(@SuppressWarnings("unused") InvocationOnMock invocation) throws Throwable
-      {
-        return null;
-      }
-    }).when(byteArrayConsumer)
-        .consume(Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
+    try
+    {
+      byteArrayConsumer = mock(ByteArrayConsumer.class);
+      doAnswer(new Answer<Void>() {
+        @Override
+        public Void answer(@SuppressWarnings("unused") final InvocationOnMock invocation) throws Throwable
+        {
+          return null;
+        }
+      }).when(byteArrayConsumer)
+          .consume(Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
 
-    FileUtil.readFile(getTestFile(), 1, byteArrayConsumer);
+      NioUtil.readFile(getTestFile(), 1, byteArrayConsumer);
+    }
+    catch (final Exception e)
+    {
+      e.printStackTrace();
+      fail("No exception should be thrown here!");
+    }
 
-    /* expect */
-    causeCheckableExpectedException.expect(IllegalArgumentException.class);
-
-    /* when / then: the expected exception should be thrown. */
-    FileUtil.readFile(getTestFile(), 0, byteArrayConsumer);
-
-    /* otherwise */
-    fail(format("The expected exception [%s] is not thrown.", IllegalArgumentException.class));
+    /* test */
+    NioUtil.readFile(getTestFile(), 0, byteArrayConsumer);
   }
 
   private static class ByteArrayProducer4Testing implements ByteArrayProducer
@@ -295,7 +287,7 @@ public class FileUtilTest
     private int position;
     private int left;
 
-    public ByteArrayProducer4Testing(byte[] byteArray)
+    public ByteArrayProducer4Testing(final byte[] byteArray)
     {
       this.byteArray = byteArray;
       this.left = byteArray.length;
@@ -308,7 +300,7 @@ public class FileUtilTest
     }
 
     @Override
-    public int produce(byte[] bytes)
+    public int produce(final byte[] bytes)
     {
       if (0 < left)
       {
@@ -344,7 +336,7 @@ public class FileUtilTest
     for (int bufferSize = 1; bufferSize < 128; bufferSize++)
     {
       /* test */
-      FileUtil.writeFile(file, bufferSize, byteArrayProducer);
+      NioUtil.writeFile(file, bufferSize, byteArrayProducer);
 
       final List<Byte> byteList = new ArrayList<Byte>();
       final StringBuilder stringBuilder = new StringBuilder();
@@ -358,71 +350,55 @@ public class FileUtilTest
     }
   }
 
-  @Test
+  @Test(expected = IllegalArgumentException.class)
   public void testWriteFileWith0SizeBuffer()
   {
-    /* given */
     File file = null;
     byte[] byteArray = null;
-    file = new File(temporaryFolder.getRoot(), "file4testing2.txt");
-
-    final String expected = this.stringBuilder.toString();
-    byteArray = new byte[expected.length()];
-    for (int i = 0, size = expected.length(); i < size; i++)
+    try
     {
-      byteArray[i] = (byte) expected.charAt(i);
+      file = new File(temporaryFolder.getRoot(), "file4testing2.txt");
+
+      final String expected = this.stringBuilder.toString();
+      byteArray = new byte[expected.length()];
+      for (int i = 0, size = expected.length(); i < size; i++)
+      {
+        byteArray[i] = (byte) expected.charAt(i);
+      }
+    }
+    catch (final Exception e)
+    {
+      e.printStackTrace();
+      fail("No exception should be thrown here!");
     }
 
     final ByteArrayProducer byteArrayProducer = new ByteArrayProducer4Testing(byteArray);
-
-    /* expect */
-    causeCheckableExpectedException.expect(IllegalArgumentException.class);
-
-    /* when / then: the expected exception should be thrown. */
-    FileUtil.writeFile(file, 0, byteArrayProducer);
-
-    /* otherwise */
-    fail(format("The expected exception [%s] is not thrown.", IllegalArgumentException.class));
+    /* test */
+    NioUtil.writeFile(file, 0, byteArrayProducer);
   }
 
   /**
-   * Test method for {@link org.elixirian.kommonlee.io.util.FileUtil#copyFile(java.io.File, java.io.File, int)}.
-   * 
-   * @throws IOException
+   * Test method for {@link org.elixirian.kommonlee.nio.util.NioUtil#copyFile(java.io.File, java.io.File, int)}.
    */
   @Test
-  public void testCopyFile() throws IOException
+  public final void testCopyFileFileFileInt()
   {
-    final int bufferSize = 4096;
-    final File folder = temporaryFolder.newFolder("testFolder");
-
     final File sourceFile = getTestFile();
 
-    final File targetFile = new File(folder, "copyOfTestFile");
+    /* test */
+    NioUtil.copyFile(sourceFile, new File(temporaryFolder.getRoot(), "file4testing2.txt"));
 
-    FileUtil.copyFile(sourceFile, targetFile, bufferSize);
-    assertEquals(sourceFile.length(), targetFile.length());
+    final File file = new File(temporaryFolder.getRoot(), "file4testing2.txt");
 
-    final List<Byte> expectedLineList = new ArrayList<Byte>();
+    final List<Byte> expectedByteList = new ArrayList<Byte>();
     final StringBuilder expectedStringBuilder = new StringBuilder();
-    readFile(sourceFile, expectedLineList, expectedStringBuilder);
+    readFile(sourceFile, expectedByteList, expectedStringBuilder);
 
-    final List<Byte> resultList = new ArrayList<Byte>();
+    final List<Byte> resultByteList = new ArrayList<Byte>();
     final StringBuilder resultStringBuilder = new StringBuilder();
-    readFile(targetFile, resultList, resultStringBuilder);
+    readFile(file, resultByteList, resultStringBuilder);
 
-    assertThat(expectedLineList, is(equalTo(resultList)));
-    assertThat(expectedStringBuilder.toString(), is(equalTo(resultStringBuilder.toString())));
-  }
-
-  /**
-   * Test method for {@link org.elixirian.kommonlee.io.util.FileUtil#copyFile(java.io.File, java.io.File, int)}.
-   * 
-   * @throws IOException
-   */
-  @Test(expected = RuntimeIoException.class)
-  public void testCopyFileWithNotExistingFile() throws IOException
-  {
-    FileUtil.copyFile(new File(temporaryFolder.newFolder("testFolder"), "someFileWhichDoesNotExist"), null, 1024);
+    assertThat(resultByteList, is(equalTo(expectedByteList)));
+    assertThat(resultStringBuilder.toString(), is(equalTo(expectedStringBuilder.toString())));
   }
 }
