@@ -28,13 +28,13 @@ public class ObjectsTest
   {
     private final String name;
 
-    public SomeObject(String name)
+    public SomeObject(final String name)
     {
       this.name = name;
     }
 
     @Override
-    public boolean equals(Object someObject)
+    public boolean equals(final Object someObject)
     {
       if (this == someObject)
       {
@@ -48,7 +48,7 @@ public class ObjectsTest
       {
         return false;
       }
-      SomeObject that = (SomeObject) someObject;
+      final SomeObject that = (SomeObject) someObject;
       return (this.name == that.name || (null != this.name && this.name.equals(that.name)));
     }
 
@@ -280,7 +280,7 @@ public class ObjectsTest
     result = Objects.HASH_PRIME * result + 12345;
     result = Objects.HASH_PRIME * result + (int) (9999L ^ (9999L >>> 32));
     result = Objects.HASH_PRIME * result + Float.floatToIntBits(12.10F);
-    long bits = Double.doubleToLongBits(100.12345D);
+    final long bits = Double.doubleToLongBits(100.12345D);
     result = Objects.HASH_PRIME * result + (int) (bits ^ (bits >>> 32));
     result = Objects.HASH_PRIME * result + 1231;
     result = Objects.HASH_PRIME * result + "Kevin Lee".hashCode();
@@ -531,11 +531,30 @@ public class ObjectsTest
     assertThat(Objects.toStringOf(null), equalTo("null"));
     assertThat(Objects.toStringOf("test"), equalTo("test"));
     assertThat(Objects.toStringOf(new String("something else")), equalTo("something else"));
-    Object object = new Object();
+    final Object object = new Object();
     assertThat(Objects.toStringOf(object), equalTo(object.toString()));
     assertThat(Objects.toStringOf(new SomeObject("Kevin")), equalTo(new SomeObject("Kevin").toString()));
-    SomeObject someObject = new SomeObject("Lee");
+    final SomeObject someObject = new SomeObject("Lee");
     assertThat(Objects.toStringOf(someObject), equalTo(someObject.toString()));
+  }
+
+  @Test
+  public final void testToStringOfArray()
+  {
+    assertThat(Objects.toStringOf(null), is(equalTo("null")));
+    assertThat(Objects.toStringOf(new String[] { "test" }), is(equalTo("[test]")));
+    assertThat(Objects.toStringOf(new String[] { "test", "something else" }), is(equalTo("[test, something else]")));
+    final Object[] objects = new Object[] { new Object(), new Object() };
+    assertThat(Objects.toStringOf(objects),
+        is(equalTo("[" + objects[0].toString() + ", " + objects[1].toString() + "]")));
+    assertThat(Objects.toStringOf(new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee") }), is(equalTo("["
+        + new SomeObject("Kevin").toString() + ", " + new SomeObject("Lee") + "]")));
+    final SomeObject[] someObjects =
+      new SomeObject[] { new SomeObject("Lee"), new SomeObject("Kevin Lee"), new SomeObject("Kevin") };
+    assertThat(
+        Objects.toStringOf(someObjects),
+        is(equalTo("[" + someObjects[0].toString() + ", " + someObjects[1].toString() + ", "
+            + someObjects[2].toString() + "]")));
   }
 
   @Test
@@ -545,10 +564,10 @@ public class ObjectsTest
     assertThat(Objects.toStringOf(null, nullDefault), equalTo(nullDefault));
     assertThat(Objects.toStringOf("test", nullDefault), equalTo("test"));
     assertThat(Objects.toStringOf(new String("something else"), nullDefault), equalTo("something else"));
-    Object object = new Object();
+    final Object object = new Object();
     assertThat(Objects.toStringOf(object, nullDefault), equalTo(object.toString()));
     assertThat(Objects.toStringOf(new SomeObject("Kevin"), nullDefault), equalTo(new SomeObject("Kevin").toString()));
-    SomeObject someObject = new SomeObject("Lee");
+    final SomeObject someObject = new SomeObject("Lee");
     assertThat(Objects.toStringOf(someObject, nullDefault), equalTo(someObject.toString()));
   }
 
@@ -557,12 +576,12 @@ public class ObjectsTest
   {
     final Comparator<SomeObject> comparator = new Comparator<SomeObject>() {
       @Override
-      public int compare(SomeObject o1, SomeObject o2)
+      public int compare(final SomeObject o1, final SomeObject o2)
       {
         return null == o1 ? -1 : null == o2 ? 1 : compareEach(o1.name, o2.name);
       }
 
-      private int compareEach(String name1, String name2)
+      private int compareEach(final String name1, final String name2)
       {
         if (null == name1)
         {
@@ -787,8 +806,9 @@ public class ObjectsTest
     private final float floatValue;
     private final double doubleValue;
 
-    public SomePojo(Long id, String name, boolean registered, byte byteValue, short shortValue, int intValue,
-        long longValue, float floatValue, double doubleValue)
+    public SomePojo(final Long id, final String name, final boolean registered, final byte byteValue,
+        final short shortValue, final int intValue, final long longValue, final float floatValue,
+        final double doubleValue)
     {
       this.id = id;
       this.name = name;

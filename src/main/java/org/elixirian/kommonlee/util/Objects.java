@@ -10,11 +10,11 @@ import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
@@ -404,7 +404,7 @@ public final class Objects
    */
   public static int hashCodeOf(final double value)
   {
-    long bits = Double.doubleToLongBits(value);
+    final long bits = Double.doubleToLongBits(value);
     return (int) (bits ^ (bits >>> 32));
   }
 
@@ -536,7 +536,7 @@ public final class Objects
    *          the value to be hashed.
    * @return a hash value of the input value
    */
-  private static int hash0(final int seed, char value)
+  private static int hash0(final int seed, final char value)
   {
     return HASH_PRIME * seed + value;
   }
@@ -1255,35 +1255,55 @@ public final class Objects
   }
 
   /**
-   * Returns the result of calling {@code toString} for a non-{@code null} argument and "{@code null}" for a
-   * {@code null} argument.
+   * Returns the result of calling {@code toString} for an argument which is neither {@code null} nor array. It returns
+   * " {@code null}" for a {@code null} argument and the result of {@link NeoArrays#toStringOfArray0(Object[])} for the
+   * array type argument. It's the same as calling {@link NeoArrays#toStringOfArray(Object[])} when it's an array.
    * 
    * @param object
    *          an object
-   * @return the result of calling {@code toString} for a non-{@code null} argument and "{@code null}" for a
-   *         {@code null} argument
-   * @see {@link Object#toString()}, {@link String#valueOf(Object)}
+   * @return the result of calling {@code toString} for an argument which is neither {@code null} nor array. It returns
+   *         " {@code null}" for a {@code null} argument and the result of {@link NeoArrays#toStringOfArray0(Object[])}
+   *         for the array type argument.
+   * @see {@link Object#toString()}
+   * @see {@link String#valueOf(Object)}
+   * @see {@link NeoArrays#toStringOfArray(Object[])}
    */
   public static String toStringOf(@Nullable final Object object)
   {
-    return (null == object ? "null" : object.toString());
+    /* @formatter:off */
+    return (null == object ?
+              "null" :
+              NeoArrays.isArray(object) ?
+                NeoArrays.toStringOfArray0((Object[]) object) :
+                object.toString());
+    /* @formatter:on */
   }
 
   /**
-   * Returns the result of calling {@code toString} on the first argument if the first argument is not {@code null} and
-   * returns the second argument otherwise.
+   * Returns the result of calling {@code toString} on the first argument if the first argument is neither {@code null}
+   * nor array and returns the second argument if it's null. If the first argument is of type array, it returns the
+   * result of {@link NeoArrays#toStringOfArray0(Object[])}. It's the same as calling
+   * {@link NeoArrays#toStringOfArray(Object[])} when it's an array.
    * 
    * @param object
    *          an object
    * @param nullDefault
    *          string to return if the first argument is {@code null}
-   * @return the result of calling {@code toString} on the first argument if it is not {@code null} and the second
-   *         argument otherwise.
+   * @return the result of calling {@code toString} on the first argument if the first argument is neither {@code null}
+   *         nor array and returns the second argument if it's null. If the first argument is of type array, it returns
+   *         the result of {@link NeoArrays#toStringOfArray0(Object[])}.
    * @see {@link #toStringOf(Object)}
+   * @see {@link NeoArrays#toStringOfArray(Object[])}
    */
   public static String toStringOf(final Object object, final String nullDefault)
   {
-    return (null == object ? nullDefault : object.toString());
+    /* @formatter:off */
+    return (null == object ?
+              nullDefault :
+              NeoArrays.isArray(object) ?
+                NeoArrays.toStringOfArray0((Object[]) object) : 
+                object.toString());
+    /* @formatter:on */
   }
 
   /**
