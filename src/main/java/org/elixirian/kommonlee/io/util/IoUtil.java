@@ -6,6 +6,7 @@ package org.elixirian.kommonlee.io.util;
 import static org.elixirian.kommonlee.util.MessageFormatter.*;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,12 +14,18 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.Reader;
+import java.nio.charset.Charset;
 
 import org.elixirian.kommonlee.io.ByteArrayConsumer;
 import org.elixirian.kommonlee.io.ByteArrayProducer;
+import org.elixirian.kommonlee.io.CharArrayConsumer;
+import org.elixirian.kommonlee.io.StringConsumer;
 import org.elixirian.kommonlee.io.exception.RuntimeFileNotFoundException;
 import org.elixirian.kommonlee.io.exception.RuntimeIoException;
+import org.elixirian.kommonlee.util.CommonConstants;
 import org.elixirian.kommonlee.validation.Assertions;
 
 /**
@@ -46,6 +53,7 @@ public final class IoUtil
 {
   private IoUtil()
   {
+    throw new AssertionError(IoUtil.class.getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
   /**
@@ -86,22 +94,19 @@ public final class IoUtil
     try
     {
       bufferedInputStream = new BufferedInputStream(inputStream);
-      final byte[] buffer = new byte[bufferSize];
-      int bytesRead = bufferedInputStream.read(buffer);
-
-      while (-1 < bytesRead)
-      {
-        byteArrayConsumer.consume(buffer, 0, bytesRead);
-        bytesRead = bufferedInputStream.read(buffer);
-      }
-    }
-    catch (final FileNotFoundException e)
-    {
-      throw new RuntimeFileNotFoundException(e);
+      readAllBytes(bufferedInputStream, bufferSize, byteArrayConsumer);
     }
     catch (final IOException e)
     {
-      throw new RuntimeIoException(e);
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("InputStream inputStream: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "ByteArrayConsumer byteArrayConsumer: %s",
+                 inputStream,
+                 String.valueOf(bufferSize),
+                 byteArrayConsumer), e);
+      /* @formatter:on */
     }
     finally
     {
@@ -110,32 +115,56 @@ public final class IoUtil
     }
   }
 
+  private static void readAllBytes(final InputStream inputStream, final int bufferSize,
+      final ByteArrayConsumer byteArrayConsumer) throws IOException
+  {
+    final byte[] buffer = new byte[bufferSize];
+    int bytesRead = inputStream.read(buffer);
+
+    while (-1 < bytesRead)
+    {
+      byteArrayConsumer.consume(buffer, 0, bytesRead);
+      bytesRead = inputStream.read(buffer);
+    }
+  }
+
   public static void readFile(final File file, final int bufferSize, final ByteArrayConsumer byteArrayConsumer)
   {
     assertBufferSize(bufferSize);
-
     InputStream inputStream = null;
 
     try
     {
       inputStream = new FileInputStream(file);
-
-      final byte[] buffer = new byte[bufferSize];
-      int bytesRead = inputStream.read(buffer);
-
-      while (-1 < bytesRead)
-      {
-        byteArrayConsumer.consume(buffer, 0, bytesRead);
-        bytesRead = inputStream.read(buffer);
-      }
+      readAllBytes(inputStream, bufferSize, byteArrayConsumer);
     }
     catch (final FileNotFoundException e)
     {
-      throw new RuntimeFileNotFoundException(e);
+      /* @formatter:off */
+      throw new RuntimeFileNotFoundException(
+          format("File file: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "ByteArrayConsumer byteArrayConsumer: %s\n" +
+                 "local InputStream inputStream: %s",
+                 file,
+                 String.valueOf(bufferSize),
+                 byteArrayConsumer,
+                 inputStream), e);
+      /* @formatter:on */
     }
     catch (final IOException e)
     {
-      throw new RuntimeIoException(e);
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("File file: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "ByteArrayConsumer byteArrayConsumer: %s\n" +
+                 "local InputStream inputStream: %s",
+                 file,
+                 String.valueOf(bufferSize),
+                 byteArrayConsumer,
+                 inputStream), e);
+      /* @formatter:on */
     }
     finally
     {
@@ -165,11 +194,35 @@ public final class IoUtil
     }
     catch (final FileNotFoundException e)
     {
-      throw new RuntimeFileNotFoundException(e);
+      /* @formatter:off */
+      throw new RuntimeFileNotFoundException(
+          format("File file: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "ByteArrayProducer byteArrayProducer: %s\n" +
+                 "local InputStream inputStream: %s\n" +
+                 "local OutputStream outputStream: %s",
+                 file,
+                 String.valueOf(bufferSize),
+                 byteArrayProducer,
+                 inputStream,
+                 outputStream), e);
+      /* @formatter:on */
     }
     catch (final IOException e)
     {
-      throw new RuntimeIoException(e);
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("File file: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "ByteArrayProducer byteArrayProducer: %s\n" +
+                 "local InputStream inputStream: %s\n" +
+                 "local OutputStream outputStream: %s",
+                 file,
+                 String.valueOf(bufferSize),
+                 byteArrayProducer,
+                 inputStream,
+                 outputStream), e);
+      /* @formatter:on */
     }
     finally
     {
@@ -202,16 +255,144 @@ public final class IoUtil
     }
     catch (final FileNotFoundException e)
     {
-      throw new RuntimeFileNotFoundException(e);
+      /* @formatter:off */
+      throw new RuntimeFileNotFoundException(
+          format("File sourceFileL %s\n" +
+                 "File targetFile: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "local InputStream inputStream: %s\n" +
+                 "local OutputStream outputStream: %s",
+                 sourceFile,
+                 targetFile,
+                 String.valueOf(bufferSize),
+                 inputStream,
+                 outputStream), e);
+      /* @formatter:on */
     }
     catch (final IOException e)
     {
-      throw new RuntimeIoException(e);
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("File sourceFileL %s\n" +
+          		   "File targetFile: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "local InputStream inputStream: %s\n" +
+                 "local OutputStream outputStream: %s",
+                 sourceFile,
+                 targetFile,
+                 String.valueOf(bufferSize),
+                 inputStream,
+                 outputStream), e);
+      /* @formatter:on */
     }
     finally
     {
       closeQuietly(inputStream);
       closeQuietly(outputStream);
+    }
+  }
+
+  public static void readInputStream(final InputStream inputStream, final int bufferSize, final Charset charset,
+      final CharArrayConsumer charArrayConsumer)
+  {
+    assertBufferSize(bufferSize);
+    checkCharset(charset);
+    InputStreamReader inputStreamReader = null;
+
+    try
+    {
+      inputStreamReader = new InputStreamReader(inputStream, charset);
+      readAllChars(inputStreamReader, bufferSize, charArrayConsumer);
+    }
+    catch (final IOException e)
+    {
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("InputStream inputStream: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "Charset charset: %s\n" +
+                 "CharArrayConsumer charArrayConsumer: %s\n" +
+                 "InputStreamReader inputStreamReader: %s",
+                 inputStream,
+                 String.valueOf(bufferSize),
+                 charset,
+                 charArrayConsumer,
+                 inputStreamReader), e);
+      /* @formatter:on */
+    }
+    finally
+    {
+      closeQuietly(inputStreamReader);
+      closeQuietly(inputStream);
+    }
+  }
+
+  private static void readAllChars(final Reader reader, final int bufferSize, final CharArrayConsumer charArrayConsumer)
+      throws IOException
+  {
+    final char[] buffer = new char[bufferSize];
+    int bytesRead = reader.read(buffer);
+
+    while (-1 < bytesRead)
+    {
+      charArrayConsumer.consume(buffer, 0, bytesRead);
+      bytesRead = reader.read(buffer);
+    }
+  }
+
+  public static void readInputStream(final InputStream inputStream, final int bufferSize, final Charset charset,
+      final StringConsumer stringConsumer)
+  {
+    assertBufferSize(bufferSize);
+    checkCharset(charset);
+
+    InputStreamReader inputStreamReader = null;
+    BufferedReader bufferedReader = null;
+
+    try
+    {
+      inputStreamReader = new InputStreamReader(inputStream, charset);
+      bufferedReader = new BufferedReader(inputStreamReader, bufferSize);
+      readString(bufferedReader, stringConsumer);
+    }
+    catch (final IOException e)
+    {
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("InputStream inputStream: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "Charset charset: %s\n" +
+                 "StringConsumer stringConsumer: %s\n" +
+                 "InputStreamReader inputStreamReader: %s\n" +
+                 "BufferedReader bufferedReader: %s",
+                 inputStream,
+                 String.valueOf(bufferSize),
+                 charset,
+                 stringConsumer,
+                 inputStreamReader,
+                 bufferedReader), e);
+      /* @formatter:on */
+    }
+    finally
+    {
+      closeQuietly(bufferedReader);
+      closeQuietly(inputStream);
+    }
+  }
+
+  private static Charset checkCharset(final Charset charset)
+  {
+    return Assertions.assertNotNull(charset, "charset cannot be null.");
+  }
+
+  private static void readString(final BufferedReader bufferedReader, final StringConsumer stringConsumer)
+      throws IOException
+  {
+    String line = bufferedReader.readLine();
+    while (null != line)
+    {
+      stringConsumer.consume(line);
+      line = bufferedReader.readLine();
     }
   }
 }

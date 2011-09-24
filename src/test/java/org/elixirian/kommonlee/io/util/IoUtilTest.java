@@ -3,6 +3,7 @@
  */
 package org.elixirian.kommonlee.io.util;
 
+import static org.elixirian.kommonlee.collect.Lists.*;
 import static org.elixirian.kommonlee.test.CommonTestHelper.*;
 import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.hamcrest.CoreMatchers.*;
@@ -19,6 +20,9 @@ import java.util.List;
 
 import org.elixirian.kommonlee.io.ByteArrayConsumer;
 import org.elixirian.kommonlee.io.ByteArrayProducer;
+import org.elixirian.kommonlee.io.CharArrayConsumer;
+import org.elixirian.kommonlee.io.IoCommonConstants;
+import org.elixirian.kommonlee.io.StringConsumer;
 import org.elixirian.kommonlee.io.exception.RuntimeIoException;
 import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
 import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
@@ -62,7 +66,10 @@ public class IoUtilTest
   public CauseCheckableExpectedException causeCheckableExpectedException = CauseCheckableExpectedException.none();
 
   private List<Byte> byteList;
+  private List<Character> characterList;
+  private List<String> stringList;
   private StringBuilder stringBuilder;
+  private StringBuilder lineStringBuilder;
 
   /**
    * @throws java.lang.Exception
@@ -86,10 +93,42 @@ public class IoUtilTest
   @Before
   public void setUp() throws Exception
   {
-    byteList = new ArrayList<Byte>();
+    byteList = newArrayList();
+    characterList = newArrayList();
+    stringList = newArrayList();
     stringBuilder = new StringBuilder();
     readFile(getTestFile(), byteList, stringBuilder);
 
+    for (final Byte eachByte : byteList)
+    {
+      @SuppressWarnings("boxing")
+      final char c = (char) ((byte) eachByte);
+      characterList.add(c);
+    }
+
+    lineStringBuilder = new StringBuilder();
+    final StringBuilder tmpStringBuilder = new StringBuilder();
+    for (final Character eachCharacter : characterList)
+    {
+      @SuppressWarnings("boxing")
+      final char c = eachCharacter;
+      if (c == '\n')
+      {
+        stringList.add(tmpStringBuilder.toString());
+        lineStringBuilder.append(tmpStringBuilder.toString());
+        tmpStringBuilder.delete(0, tmpStringBuilder.length());
+      }
+      else
+      {
+        tmpStringBuilder.append(c);
+      }
+    }
+    if (0 < tmpStringBuilder.length())
+    {
+      stringList.add(tmpStringBuilder.toString());
+      lineStringBuilder.append(tmpStringBuilder.toString());
+      tmpStringBuilder.delete(0, tmpStringBuilder.length());
+    }
   }
 
   private void readFile(final File file, final List<Byte> byteList, final StringBuilder stringBuilder)
@@ -239,7 +278,6 @@ public class IoUtilTest
         stringBuilder.append((char) bytes[i]);
       }
     }
-
   }
 
   @Test
@@ -441,5 +479,95 @@ public class IoUtilTest
   public void testCopyFileWithNotExistingFile() throws IOException
   {
     IoUtil.copyFile(new File(temporaryFolder.newFolder("testFolder"), "someFileWhichDoesNotExist"), null, 1024);
+  }
+
+  private static class CharArrayConsumer4Testing implements CharArrayConsumer
+  {
+    private final List<Character> characterList;
+    private final StringBuilder stringBuilder;
+
+    public CharArrayConsumer4Testing(final List<Character> characterList, final StringBuilder stringBuilder)
+    {
+      this.characterList = characterList;
+      this.stringBuilder = stringBuilder;
+    }
+
+    @Override
+    public void consume(final char[] chars, final int offset, final int count) throws IOException
+    {
+      for (int i = offset, size = offset + count; i < size; i++)
+      {
+        characterList.add(Character.valueOf(chars[i]));
+        stringBuilder.append(chars[i]);
+      }
+    }
+  }
+
+  @Test
+  public void testReadInputStreamWithCharArrayConsumer()
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      /* given */
+      final CharArrayConsumer4Testing charArrayConsumer =
+        new CharArrayConsumer4Testing(new ArrayList<Character>(), new StringBuilder());
+
+      /* when */
+      IoUtil.readInputStream(this.getClass()
+          .getResourceAsStream("/file4testing.txt"), bufferSize, IoCommonConstants.UTF_8, charArrayConsumer);
+
+      /* then */
+      // System.out.println();
+      // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.characterList,
+      // charArrayConsumer.characterList));
+      assertThat(charArrayConsumer.characterList, is(equalTo(this.characterList)));
+      // System.out.println();
+      // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.stringBuilder,
+      // charArrayConsumer.stringBuilder));
+      assertThat(charArrayConsumer.stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+    }
+  }
+
+  private static class StringConsumer4Testing implements StringConsumer
+  {
+    private final List<String> stringList;
+    private final StringBuilder stringBuilder;
+
+    public StringConsumer4Testing(final List<String> stringList, final StringBuilder stringBuilder)
+    {
+      this.stringList = stringList;
+      this.stringBuilder = stringBuilder;
+    }
+
+    @Override
+    public void consume(final String value) throws IOException
+    {
+      stringList.add(value);
+      stringBuilder.append(value);
+    }
+  }
+
+  @Test
+  public void testReadInputStreamWithStringConsumer()
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      /* given */
+      final StringConsumer4Testing stringArrayConsumer =
+        new StringConsumer4Testing(new ArrayList<String>(), new StringBuilder());
+
+      /* when */
+      IoUtil.readInputStream(this.getClass()
+          .getResourceAsStream("/file4testing.txt"), bufferSize, IoCommonConstants.UTF_8, stringArrayConsumer);
+
+      /* then */
+      // System.out.println();
+      // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.stringList, stringArrayConsumer.stringList));
+      assertThat(stringArrayConsumer.stringList, is(equalTo(this.stringList)));
+      // System.out.println();
+      // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.lineStringBuilder,
+      // stringArrayConsumer.stringBuilder));
+      assertThat(stringArrayConsumer.stringBuilder.toString(), is(equalTo(this.lineStringBuilder.toString())));
+    }
   }
 }
