@@ -2,9 +2,8 @@
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.elixirian</groupId>
 	<artifactId>kommonlee-validation</artifactId>
-	<version>0.0.16-SNAPSHOT</version>
+	<version>0.0.17-SNAPSHOT</version>
 	<name>kommonlee-validation</name>
 	<url>http://elixirian.com</url>
 	<parent>
@@ -64,7 +63,7 @@
 		<dependency>
 		  <groupId>org.elixirian</groupId>
 		  <artifactId>kommonlee-util</artifactId>
-		  <version>0.0.11-SNAPSHOT</version>
+		  <version>0.0.12-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
