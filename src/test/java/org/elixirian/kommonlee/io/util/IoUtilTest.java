@@ -15,12 +15,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.elixirian.kommonlee.io.ByteArrayConsumer;
 import org.elixirian.kommonlee.io.ByteArrayProducer;
 import org.elixirian.kommonlee.io.CharArrayConsumer;
+import org.elixirian.kommonlee.io.CharArrayProducer;
 import org.elixirian.kommonlee.io.IoCommonConstants;
 import org.elixirian.kommonlee.io.StringConsumer;
 import org.elixirian.kommonlee.io.exception.RuntimeIoException;
@@ -438,6 +440,130 @@ public class IoUtilTest
 
     /* otherwise */
     fail(format("The expected exception [%s] is not thrown.", IllegalArgumentException.class));
+  }
+
+  private static class CharArrayProducer4Testing implements CharArrayProducer
+  {
+    private final char[] charArray;
+    private int position;
+    private int left;
+
+    public CharArrayProducer4Testing(final char[] charArray)
+    {
+      this.charArray = charArray;
+      this.left = charArray.length;
+    }
+
+    public void reset()
+    {
+      this.position = 0;
+      this.left = charArray.length;
+    }
+
+    @Override
+    public int produce(final char[] bytes)
+    {
+      if (0 < left)
+      {
+        final int byteLength = bytes.length;
+        final int count = byteLength < left ? byteLength : left;
+        System.arraycopy(charArray, position, bytes, 0, count);
+        position += count;
+        left -= count;
+        return count;
+      }
+      return -1;
+    }
+
+    @Override
+    public int length()
+    {
+      return charArray.length;
+    }
+  }
+
+  @Test
+  public void testWriteFileCharArrayProducer()
+  {
+    /* given */
+    final File file = new File(temporaryFolder.getRoot(), "file4testing2.txt");
+
+    final String expected = this.stringBuilder.toString();
+    final char[] charArray = new char[expected.length()];
+    final CharArrayProducer4Testing charArrayProducer = new CharArrayProducer4Testing(charArray);
+    for (int i = 0, size = expected.length(); i < size; i++)
+    {
+      charArray[i] = expected.charAt(i);
+    }
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      /* when */
+      IoUtil.writeFile(file, bufferSize, IoCommonConstants.UTF_8, charArrayProducer);
+
+      /* then */
+      final List<Character> charList = new ArrayList<Character>();
+      final StringBuilder stringBuilder = new StringBuilder();
+      readCharsFromFile(file, charList, stringBuilder);
+      assertThat(charList, is(equalTo(this.characterList)));
+      // System.out.println(format("\n\n# expected:\n%s\n\n" + "# actual:\n%s", this.stringBuilder, stringBuilder));
+      assertThat(stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+
+      assertTrue(file.delete());
+      charArrayProducer.reset();
+    }
+  }
+
+  private void readCharsFromFile(final File file, final List<Character> charList, final StringBuilder stringBuilder)
+  {
+    InputStreamReader inputStreamReader = null;
+    FileInputStream fileInputStream = null;
+    try
+    {
+      fileInputStream = new FileInputStream(file);
+      inputStreamReader = new InputStreamReader(fileInputStream);
+      final char[] buffer = new char[8192];
+      int charsRead = inputStreamReader.read(buffer);
+      while (-1 != charsRead)
+      {
+        for (int i = 0; i < charsRead; i++)
+        {
+          charList.add(Character.valueOf(buffer[i]));
+          stringBuilder.append(buffer[i]);
+        }
+        charsRead = inputStreamReader.read(buffer);
+      }
+    }
+    catch (final FileNotFoundException e)
+    {
+      throw new AssertionError(e);
+    }
+    catch (final IOException e)
+    {
+      throw new AssertionError(e);
+    }
+    finally
+    {
+      if (null != inputStreamReader)
+      {
+        try
+        {
+          inputStreamReader.close();
+        }
+        catch (final IOException e)
+        {
+        }
+      }
+      if (null != fileInputStream)
+      {
+        try
+        {
+          fileInputStream.close();
+        }
+        catch (final IOException e)
+        {
+        }
+      }
+    }
   }
 
   /**

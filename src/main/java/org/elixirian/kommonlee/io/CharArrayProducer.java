@@ -33,15 +33,15 @@ public interface CharArrayProducer
    * 
    * @param chars
    *          the given char array to store the chars from this {@link CharArrayProducer}.
-   * @return the total number of chars read into the given char array.
+   * @return the total number of chars written into the given char array.
    * @throws IOException
    */
   int produce(char[] chars) throws IOException;
 
   /**
-   * Returns the total number of bytes this {@link CharArrayProducer} has.
+   * Returns the total number of chars this {@link CharArrayProducer} has.
    * 
-   * @return the total number of bytes this {@link CharArrayProducer} has.
+   * @return the total number of chars this {@link CharArrayProducer} has.
    */
   int length();
 }

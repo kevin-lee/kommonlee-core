@@ -33,7 +33,7 @@ public interface ByteArrayProducer
    * 
    * @param bytes
    *          the given byte array to store the bytes from this {@link ByteArrayProducer}.
-   * @return the total number of bytes read into the given byte array.
+   * @return the total number of bytes written into the given byte array.
    * @throws IOException
    */
   int produce(byte[] bytes) throws IOException;

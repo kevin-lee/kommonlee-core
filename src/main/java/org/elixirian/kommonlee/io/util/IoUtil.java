@@ -16,12 +16,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.nio.charset.Charset;
 
 import org.elixirian.kommonlee.io.ByteArrayConsumer;
 import org.elixirian.kommonlee.io.ByteArrayProducer;
 import org.elixirian.kommonlee.io.CharArrayConsumer;
+import org.elixirian.kommonlee.io.CharArrayProducer;
 import org.elixirian.kommonlee.io.StringConsumer;
 import org.elixirian.kommonlee.io.exception.RuntimeFileNotFoundException;
 import org.elixirian.kommonlee.io.exception.RuntimeIoException;
@@ -228,6 +230,78 @@ public final class IoUtil
     {
       closeQuietly(inputStream);
       closeQuietly(outputStream);
+    }
+  }
+
+  public static void writeFile(final File file, final int bufferSize, final Charset charset,
+      final CharArrayProducer charArrayProducer)
+  {
+    assertBufferSize(bufferSize);
+    checkCharset(charset);
+
+    final InputStream inputStream = null;
+    OutputStream outputStream = null;
+    OutputStreamWriter outputStreamWriter = null;
+
+    try
+    {
+      outputStream = new FileOutputStream(file);
+      outputStreamWriter = new OutputStreamWriter(outputStream, charset);
+
+      final char[] buffer = new char[bufferSize];
+      int bytesRead = charArrayProducer.produce(buffer);
+
+      while (-1 < bytesRead)
+      {
+        outputStreamWriter.write(buffer, 0, bytesRead);
+        bytesRead = charArrayProducer.produce(buffer);
+      }
+    }
+    catch (final FileNotFoundException e)
+    {
+      /* @formatter:off */
+      throw new RuntimeFileNotFoundException(
+          format("File file: %s\n" +
+              "int bufferSize: %s\n" +
+              "Charset charset: %s\n" +
+              "CharArrayProducer charArrayProducer: %s\n" +
+              "local InputStream inputStream: %s\n" +
+              "local OutputStream outputStream: %s\n" +
+              "local OutputStreamWriter outputStreamWriter: %s",
+              file,
+              String.valueOf(bufferSize),
+              charset,
+              charArrayProducer,
+              inputStream,
+              outputStream,
+              outputStreamWriter), e);
+      /* @formatter:on */
+    }
+    catch (final IOException e)
+    {
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("File file: %s\n" +
+              "int bufferSize: %s\n" +
+              "Charset charset: %s\n" +
+              "CharArrayProducer charArrayProducer: %s\n" +
+              "local InputStream inputStream: %s\n" +
+              "local OutputStream outputStream: %s\n" +
+              "local OutputStreamWriter outputStreamWriter: %s",
+              file,
+              String.valueOf(bufferSize),
+              charset,
+              charArrayProducer,
+              inputStream,
+              outputStream,
+              outputStreamWriter), e);
+      /* @formatter:on */
+    }
+    finally
+    {
+      closeQuietly(outputStreamWriter);
+      closeQuietly(outputStream);
+      closeQuietly(inputStream);
     }
   }
 
