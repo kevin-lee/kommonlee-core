@@ -187,11 +187,51 @@ public class ObjectsTest
     assertThat(Boolean.valueOf(Objects.equal(new SomeObject("Kevin"), new SomeObject("Kevin"))),
         is(equalTo(Boolean.TRUE)));
 
+    assertThat(Boolean.valueOf(Objects.equal(Boolean.TRUE, Boolean.TRUE)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Byte((byte) 11), new Byte((byte) 11))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Short((short) 100), new Short((short) 100))),
+        is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Integer(999), new Integer(999))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Long(99999), new Long(99999))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Character('a'), new Character('a'))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Float(1.12F), new Float(1.12F))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Double(123.99123D), new Double(123.99123D))),
+        is(equalTo(Boolean.TRUE)));
+
     assertThat(Boolean.valueOf(Objects.equal(null, new Object())), is(equalTo(Boolean.FALSE)));
     assertThat(Boolean.valueOf(Objects.equal("", "1")), is(equalTo(Boolean.FALSE)));
     assertThat(Boolean.valueOf(Objects.equal("test1", "test2")), is(equalTo(Boolean.FALSE)));
     assertThat(Boolean.valueOf(Objects.equal(new String("1234"), new String("4321"))), is(equalTo(Boolean.FALSE)));
     assertThat(Boolean.valueOf(Objects.equal(new SomeObject("Kevin"), new SomeObject("Lee"))),
+        is(equalTo(Boolean.FALSE)));
+
+    assertThat(Boolean.valueOf(Objects.equal(null, Boolean.TRUE)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(null, new Byte((byte) 11))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(null, new Short((short) 100))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(null, new Integer(999))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(null, new Long(99999))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(null, new Character('a'))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(null, new Float(1.12F))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(null, new Double(123.99123D))), is(equalTo(Boolean.FALSE)));
+
+    assertThat(Boolean.valueOf(Objects.equal(Boolean.TRUE, null)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Byte((byte) 11), null)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Short((short) 100), null)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Integer(999), null)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Long(99999), null)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Character('a'), null)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Float(1.12F), null)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Double(123.99123D), null)), is(equalTo(Boolean.FALSE)));
+
+    assertThat(Boolean.valueOf(Objects.equal(Boolean.TRUE, Boolean.FALSE)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Byte((byte) 11), new Byte((byte) 5))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Short((short) 100), new Short((short) 50))),
+        is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Integer(999), new Integer(333))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Long(99999), new Long(33333))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Character('a'), new Character('z'))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Float(1.12F), new Float(8.88F))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.equal(new Double(123.99123D), new Double(555.1234D))),
         is(equalTo(Boolean.FALSE)));
   }
 
@@ -225,6 +265,197 @@ public class ObjectsTest
         Boolean.valueOf(Objects.deepEqual(new SomeObject[] { new SomeObject("SeongHyun"), new SomeObject("Lee"),
             new SomeObject("Kevin") }, new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
             new SomeObject("SeongHyun") })), is(equalTo(Boolean.FALSE)));
+  }
+
+  @Test
+  public final void testNotEqualByteByte()
+  {
+    for (int i = Byte.MIN_VALUE, size = Byte.MAX_VALUE; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual((byte) i, (byte) i)), is(equalTo(Boolean.FALSE)));
+    }
+    for (int i = Byte.MIN_VALUE, size = Byte.MAX_VALUE - 1; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual((byte) i, (byte) (i + 1))), is(equalTo(Boolean.TRUE)));
+    }
+  }
+
+  @Test
+  public final void testNotEqualCharChar()
+  {
+    for (int i = Character.MIN_VALUE, size = Character.MAX_VALUE; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual((char) i, (char) i)), is(equalTo(Boolean.FALSE)));
+    }
+    for (int i = Character.MIN_VALUE, size = Character.MAX_VALUE - 1; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual((char) i, (char) (i + 1))), is(equalTo(Boolean.TRUE)));
+    }
+  }
+
+  @Test
+  public final void testNotEqualShortShort()
+  {
+    for (int i = Short.MIN_VALUE, size = Short.MAX_VALUE; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual((short) i, (short) i)), is(equalTo(Boolean.FALSE)));
+    }
+    for (int i = Short.MIN_VALUE, size = Short.MAX_VALUE - 1; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual((short) i, (short) (i + 1))), is(equalTo(Boolean.TRUE)));
+    }
+  }
+
+  @Test
+  public final void testNotEqualIntInt()
+  {
+    for (int i = Short.MIN_VALUE, size = Short.MAX_VALUE; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual(i, i)), is(equalTo(Boolean.FALSE)));
+    }
+    for (int i = Short.MIN_VALUE, size = Short.MAX_VALUE - 1; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual(i, i + 1)), is(equalTo(Boolean.TRUE)));
+    }
+  }
+
+  @Test
+  public final void testNotEqualLongLong()
+  {
+    for (long i = Short.MIN_VALUE, size = Short.MAX_VALUE; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual(i, i)), is(equalTo(Boolean.FALSE)));
+    }
+    for (long i = Short.MIN_VALUE, size = Short.MAX_VALUE - 1; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual(i, i + 1)), is(equalTo(Boolean.TRUE)));
+    }
+  }
+
+  @Test
+  public final void testNotEqualFloatFloat()
+  {
+    for (int i = Short.MIN_VALUE, size = Short.MAX_VALUE; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual(i + 0.50F, i + 0.50F)), is(equalTo(Boolean.FALSE)));
+    }
+    for (int i = Short.MIN_VALUE, size = Short.MAX_VALUE - 1; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual(i + 0.50F, i + 0.50F + 1)), is(equalTo(Boolean.TRUE)));
+    }
+  }
+
+  @Test
+  public final void testNotEqualDoubleDouble()
+  {
+    for (int i = Short.MIN_VALUE, size = Short.MAX_VALUE; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual(i + 0.1234D, i + 0.1234D)), is(equalTo(Boolean.FALSE)));
+    }
+    for (int i = Short.MIN_VALUE, size = Short.MAX_VALUE - 1; i < size; i++)
+    {
+      assertThat(Boolean.valueOf(Objects.notEqual(i + 0.1234D, i + 0.1234D + 1)), is(equalTo(Boolean.TRUE)));
+    }
+  }
+
+  @Test
+  public final void testNotEqualBooleanBoolean()
+  {
+    assertThat(Boolean.valueOf(Objects.notEqual(false, false)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(false, true)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(true, false)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(true, true)), is(equalTo(Boolean.FALSE)));
+  }
+
+  @Test
+  public final void testNotEqualObjectObject()
+  {
+    assertThat(Boolean.valueOf(Objects.notEqual(null, null)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual("", "")), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual("test", "test")), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new String("1234"), new String("1234"))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new SomeObject("Kevin"), new SomeObject("Kevin"))),
+        is(equalTo(Boolean.FALSE)));
+
+    assertThat(Boolean.valueOf(Objects.notEqual(Boolean.TRUE, Boolean.TRUE)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Byte((byte) 11), new Byte((byte) 11))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Short((short) 100), new Short((short) 100))),
+        is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Integer(999), new Integer(999))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Long(99999), new Long(99999))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Character('a'), new Character('a'))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Float(1.12F), new Float(1.12F))), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Double(123.99123D), new Double(123.99123D))),
+        is(equalTo(Boolean.FALSE)));
+
+    assertThat(Boolean.valueOf(Objects.notEqual(null, new Object())), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual("", "1")), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual("test1", "test2")), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new String("1234"), new String("4321"))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new SomeObject("Kevin"), new SomeObject("Lee"))),
+        is(equalTo(Boolean.TRUE)));
+
+    assertThat(Boolean.valueOf(Objects.notEqual(null, Boolean.TRUE)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(null, new Byte((byte) 11))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(null, new Short((short) 100))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(null, new Integer(999))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(null, new Long(99999))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(null, new Character('a'))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(null, new Float(1.12F))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(null, new Double(123.99123D))), is(equalTo(Boolean.TRUE)));
+
+    assertThat(Boolean.valueOf(Objects.notEqual(Boolean.TRUE, null)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Byte((byte) 11), null)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Short((short) 100), null)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Integer(999), null)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Long(99999), null)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Character('a'), null)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Float(1.12F), null)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Double(123.99123D), null)), is(equalTo(Boolean.TRUE)));
+
+    assertThat(Boolean.valueOf(Objects.notEqual(Boolean.TRUE, Boolean.FALSE)), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Byte((byte) 11), new Byte((byte) 5))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Short((short) 100), new Short((short) 50))),
+        is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Integer(999), new Integer(333))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Long(99999), new Long(33333))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Character('a'), new Character('z'))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Float(1.12F), new Float(8.88F))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notEqual(new Double(123.99123D), new Double(555.1234D))),
+        is(equalTo(Boolean.TRUE)));
+  }
+
+  @Test
+  public final void testNotDeepEqual()
+  {
+    assertThat(Boolean.valueOf(Objects.notDeepEqual(null, null)), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notDeepEqual("", "")), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notDeepEqual("test", "test")), is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notDeepEqual(new String("1234"), new String("1234"))),
+        is(equalTo(Boolean.FALSE)));
+    assertThat(Boolean.valueOf(Objects.notDeepEqual(new SomeObject("Kevin"), new SomeObject("Kevin"))),
+        is(equalTo(Boolean.FALSE)));
+    assertThat(
+        Boolean.valueOf(Objects.notDeepEqual(new String[] { "Hello", "Kevin", "Lee" }, new String[] { "Hello", "Kevin",
+            "Lee" })), is(equalTo(Boolean.FALSE)));
+    assertThat(
+        Boolean.valueOf(Objects.notDeepEqual(new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
+            new SomeObject("SeongHyun") }, new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
+            new SomeObject("SeongHyun") })), is(equalTo(Boolean.FALSE)));
+
+    assertThat(Boolean.valueOf(Objects.notDeepEqual(null, new Object())), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notDeepEqual("", "1")), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notDeepEqual("test1", "test2")), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notDeepEqual(new String("1234"), new String("4321"))), is(equalTo(Boolean.TRUE)));
+    assertThat(Boolean.valueOf(Objects.notDeepEqual(new SomeObject("Kevin"), new SomeObject("Tom"))),
+        is(equalTo(Boolean.TRUE)));
+    assertThat(
+        Boolean.valueOf(Objects.notDeepEqual(new String[] { "Hello", "Lee", "Kevin" }, new String[] { "Hello", "Kevin",
+            "Lee" })), is(equalTo(Boolean.TRUE)));
+    assertThat(
+        Boolean.valueOf(Objects.notDeepEqual(new SomeObject[] { new SomeObject("SeongHyun"), new SomeObject("Lee"),
+            new SomeObject("Kevin") }, new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
+            new SomeObject("SeongHyun") })), is(equalTo(Boolean.TRUE)));
   }
 
   @Test

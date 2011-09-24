@@ -16,11 +16,11 @@ import org.elixirian.kommonlee.type.filter.VarargsFilter;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
@@ -96,7 +96,7 @@ public final class Numbers
       Filter1<Iterable<T>, Condition1<T>, C>
   {
     @Override
-    public C filter(Condition1<T> condition, Iterable<T> numbers)
+    public C filter(final Condition1<T> condition, final Iterable<T> numbers)
     {
       final C filteredCollection = newCollection();
       for (final T value : numbers)
@@ -425,7 +425,7 @@ public final class Numbers
     }
 
     @Override
-    public C filter(Condition1<T> condition, T[] source)
+    public C filter(final Condition1<T> condition, final T[] source)
     {
       final C filteredCollection = newCollection();
       filter0(filteredCollection, condition, source);

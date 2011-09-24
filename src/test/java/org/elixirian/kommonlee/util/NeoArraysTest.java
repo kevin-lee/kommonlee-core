@@ -32,7 +32,7 @@ import org.junit.Test;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-08-25)
  */
-public class TestNeoArraysTest
+public class NeoArraysTest
 {
   @BeforeClass
   public static void setUpBeforeClass() throws Exception
@@ -58,7 +58,7 @@ public class TestNeoArraysTest
   @Test
   public final void testIsArrayWithNotArray()
   {
-    System.out.println("\n##### TestNeoArraysTest.testIsArrayWithNotArray() starts");
+    System.out.println("\n##### NeoArraysTest.testIsArrayWithNotArray() starts");
     /* given */
     final String input1 = new String();
     final Integer input2 = new Integer(0);
@@ -79,29 +79,32 @@ public class TestNeoArraysTest
     assertThat(actual3, is(Boolean.FALSE));
     assertThat(actual4, is(Boolean.FALSE));
     assertThat(actual5, is(Boolean.FALSE));
-    System.out.println("\n##### TestNeoArraysTest.testIsArrayWithNotArray() ends");
+    System.out.println("\n##### NeoArraysTest.testIsArrayWithNotArray() ends");
   }
 
   @SuppressWarnings("boxing")
   @Test
   public final void testIsArray()
   {
-    System.out.println("\n##### TestNeoArraysTest.testIsArray() starts");
+    System.out.println("\n##### NeoArraysTest.testIsArray() starts");
     /* given */
     final String[] array1 = new String[0];
     final Integer[] array2 = new Integer[0];
     final Object[] array3 = new Object[0];
+    final int[] array4 = new int[0];
 
     /* when */
     final boolean actual1 = NeoArrays.isArray(array1);
     final boolean actual2 = NeoArrays.isArray(array2);
     final boolean actual3 = NeoArrays.isArray(array3);
+    final boolean actual4 = NeoArrays.isArray(array4);
 
     /* then */
     assertThat(actual1, is(Boolean.TRUE));
     assertThat(actual2, is(Boolean.TRUE));
     assertThat(actual3, is(Boolean.TRUE));
-    System.out.println("\n##### TestNeoArraysTest.testIsArray() ends");
+    assertThat(actual4, is(Boolean.TRUE));
+    System.out.println("\n##### NeoArraysTest.testIsArray() ends");
   }
 
   private static <T> String getExpectedToString(final T[] array)
@@ -137,7 +140,7 @@ public class TestNeoArraysTest
   @Test
   public final void testToStringOfArray()
   {
-    System.out.println("\n##### TestNeoArraysTest.testToStringOfArray() starts");
+    System.out.println("\n##### NeoArraysTest.testToStringOfArray() starts");
     /* given */
     final String[] array1 =
       { "Hello", "Kevin", "This is a test array", "1", "2", "3", "a", "b", "c", "d", "e", null, "", "blah blah", "end" };
@@ -179,13 +182,13 @@ public class TestNeoArraysTest
     assertThat(actual2, is(equalTo(expected2)));
     assertThat(actual3, is(equalTo(expected3)));
     assertThat(actual4, is(equalTo(expected4)));
-    System.out.println("\n##### TestNeoArraysTest.testToStringOfArray() ends");
+    System.out.println("\n##### NeoArraysTest.testToStringOfArray() ends");
   }
 
   @Test
   public final void testToStringOfArrayWith2DArray()
   {
-    System.out.println("\n##### TestNeoArraysTest.testToStringOfArrayWith2DArray() starts");
+    System.out.println("\n##### NeoArraysTest.testToStringOfArrayWith2DArray() starts");
     /* given */
     final String[][] array1 =
       { { "Hello", "Kevin" }, { "This is a test array" }, { "1", "2" }, { "3", "a" }, { "b", "c" }, { "d", "e" },
@@ -229,13 +232,13 @@ public class TestNeoArraysTest
     assertThat(actual2, is(equalTo(expected2)));
     assertThat(actual3, is(equalTo(expected3)));
     assertThat(actual4, is(equalTo(expected4)));
-    System.out.println("\n##### TestNeoArraysTest.testToStringOfArrayWith2DArray() ends");
+    System.out.println("\n##### NeoArraysTest.testToStringOfArrayWith2DArray() ends");
   }
 
   @Test
   public final void testToStringOfArrayWith3DArray()
   {
-    System.out.println("\n##### TestNeoArraysTest.testToStringOfArrayWith3DArray() starts");
+    System.out.println("\n##### NeoArraysTest.testToStringOfArrayWith3DArray() starts");
     /* given */
     final String[][][] array1 =
       { { { "Hello", "Kevin" }, { "This is a test array" }, { "1", "2" } },
@@ -280,6 +283,6 @@ public class TestNeoArraysTest
     assertThat(actual2, is(equalTo(expected2)));
     assertThat(actual3, is(equalTo(expected3)));
     assertThat(actual4, is(equalTo(expected4)));
-    System.out.println("\n##### TestNeoArraysTest.testToStringOfArrayWith3DArray() ends");
+    System.out.println("\n##### NeoArraysTest.testToStringOfArrayWith3DArray() ends");
   }
 }

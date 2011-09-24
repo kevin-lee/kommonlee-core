@@ -6,11 +6,11 @@ import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
@@ -51,7 +51,7 @@ public final class Strings
    *          the given String value
    * @return the result of value.trim(). If the value is null, return "" (empty String).
    */
-  public static String nullSafeTrim(String value)
+  public static String nullSafeTrim(final String value)
   {
     return (null == value ? "" : value.trim());
   }
@@ -65,7 +65,7 @@ public final class Strings
    * @return an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
    *         given value itself
    */
-  public static String nullThenEmpty(String value)
+  public static String nullThenEmpty(final String value)
   {
     return null == value ? "" : value;
   }
@@ -79,7 +79,7 @@ public final class Strings
    * @return {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
    *         not empty, returns the given value itself.
    */
-  public static String emptyThenNull(String value)
+  public static String emptyThenNull(final String value)
   {
     return isEmpty(value) ? null : value;
   }
@@ -94,7 +94,7 @@ public final class Strings
    *         0 == value.length()). false if the given String parameter contains a reference pointing to any String value
    *         having the length of which is greater than 0.
    */
-  public static boolean isEmpty(@Nullable String value)
+  public static boolean isEmpty(@Nullable final String value)
   {
     return (null == value || 0 == value.length());
   }
@@ -109,7 +109,7 @@ public final class Strings
    *         is greater than 0 (null != value && 0 < value.length()). false if it contains null or a String value with 0
    *         length.
    */
-  public static boolean isNotEmpty(@Nullable String value)
+  public static boolean isNotEmpty(@Nullable final String value)
   {
     return !isEmpty(value);
   }

@@ -145,6 +145,9 @@ import org.eclipse.jdt.annotation.Nullable;
  *          <li>toString(Object, String) method is changed to {@link #toStringOf(Object, String)}</li>
  *          </ul>
  * @version 0.0.5 (2010-11-15) {@link IllegalStateException} is removed from the constructor.
+ * @version 0.0.6 (2011-09-24) If an array type is passed to {@link #toStringOf(Object)} or
+ *          {@link #toStringOf(Object, String)} (the first parameter), {@link NeoArrays#toStringOfArray0(Object[])} is
+ *          used.
  */
 public final class Objects
 {
@@ -163,17 +166,13 @@ public final class Objects
   }
 
   /**
-   * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise. Consequently, if both
-   * arguments are {@code null}, {@code true} is returned and if exactly one argument is {@code null}, {@code false} is
-   * returned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals} method of the first
-   * argument.
+   * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
    * 
    * @param left
-   *          an object
+   *          a byte value
    * @param right
-   *          an object to be compared with a for equality
+   *          a byte value to be compared with for equality
    * @return true if the arguments are equal to each other and false otherwise
-   * @see {@link Object#equals(Object)}
    */
   public static boolean equal(final byte left, final byte right)
   {
@@ -181,12 +180,26 @@ public final class Objects
   }
 
   /**
-   * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
+   * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
    * 
    * @param left
    *          a byte value
    * @param right
-   *          a byte value to be compared with a for equality
+   *          a byte value to be compared with for being not equal.
+   * @return true if the arguments are not equal to each other and false otherwise
+   */
+  public static boolean notEqual(final byte left, final byte right)
+  {
+    return left != right;
+  }
+
+  /**
+   * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
+   * 
+   * @param left
+   *          a char value
+   * @param right
+   *          a char value to be compared with for equality
    * @return true if the arguments are equal to each other and false otherwise
    */
   public static boolean equal(final char left, final char right)
@@ -195,12 +208,26 @@ public final class Objects
   }
 
   /**
+   * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
+   * 
+   * @param left
+   *          a char value
+   * @param right
+   *          a char value to be compared with for being not equal.
+   * @return true if the arguments are not equal to each other and false otherwise
+   */
+  public static boolean notEqual(final char left, final char right)
+  {
+    return left != right;
+  }
+
+  /**
    * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
    * 
    * @param left
    *          a short value
    * @param right
-   *          a short value to be compared with a for equality
+   *          a short value to be compared with for equality
    * @return true if the arguments are equal to each other and false otherwise
    */
   public static boolean equal(final short left, final short right)
@@ -209,12 +236,26 @@ public final class Objects
   }
 
   /**
+   * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
+   * 
+   * @param left
+   *          a short value
+   * @param right
+   *          a short value to be compared with for being not equal.
+   * @return true if the arguments are not equal to each other and false otherwise
+   */
+  public static boolean notEqual(final short left, final short right)
+  {
+    return left != right;
+  }
+
+  /**
    * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
    * 
    * @param left
    *          a int value
    * @param right
-   *          a int value to be compared with a for equality
+   *          a int value to be compared with for equality
    * @return true if the arguments are equal to each other and false otherwise
    */
   public static boolean equal(final int left, final int right)
@@ -223,12 +264,26 @@ public final class Objects
   }
 
   /**
+   * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
+   * 
+   * @param left
+   *          a int value
+   * @param right
+   *          a int value to be compared with for being not equal.
+   * @return true if the arguments are not equal to each other and false otherwise
+   */
+  public static boolean notEqual(final int left, final int right)
+  {
+    return left != right;
+  }
+
+  /**
    * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
    * 
    * @param left
    *          a long value
    * @param right
-   *          a long value be compared with a for equality
+   *          a long value be compared with for equality
    * @return true if the arguments are equal to each other and false otherwise
    */
   public static boolean equal(final long left, final long right)
@@ -237,12 +292,26 @@ public final class Objects
   }
 
   /**
+   * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
+   * 
+   * @param left
+   *          a long value
+   * @param right
+   *          a long value be compared with for being not equal.
+   * @return true if the arguments are not equal to each other and false otherwise
+   */
+  public static boolean notEqual(final long left, final long right)
+  {
+    return left != right;
+  }
+
+  /**
    * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
    * 
    * @param left
    *          a float value
    * @param right
-   *          a float value to be compared with a for equality
+   *          a float value to be compared with for equality
    * @return true if the arguments are equal to each other and false otherwise
    */
   public static boolean equal(final float left, final float right)
@@ -251,12 +320,26 @@ public final class Objects
   }
 
   /**
+   * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
+   * 
+   * @param left
+   *          a float value
+   * @param right
+   *          a float value to be compared with for being not equal.
+   * @return true if the arguments are not equal to each other and false otherwise
+   */
+  public static boolean notEqual(final float left, final float right)
+  {
+    return left != right;
+  }
+
+  /**
    * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
    * 
    * @param left
    *          a double value
    * @param right
-   *          a double value to be compared with a for equality
+   *          a double value to be compared with for equality
    * @return true if the arguments are equal to each other and false otherwise
    */
   public static boolean equal(final double left, final double right)
@@ -265,17 +348,45 @@ public final class Objects
   }
 
   /**
+   * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
+   * 
+   * @param left
+   *          a double value
+   * @param right
+   *          a double value to be compared with for being not equal.
+   * @return true if the arguments are not equal to each other and false otherwise
+   */
+  public static boolean notEqual(final double left, final double right)
+  {
+    return left != right;
+  }
+
+  /**
    * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
    * 
    * @param left
    *          a boolean value
    * @param right
-   *          a boolean value to be compared with a for equality
+   *          a boolean value to be compared with for equality
    * @return true if the arguments are equal to each other and false otherwise
    */
   public static boolean equal(final boolean left, final boolean right)
   {
     return left == right;
+  }
+
+  /**
+   * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
+   * 
+   * @param left
+   *          a boolean value
+   * @param right
+   *          a boolean value to be compared with for being not equal.
+   * @return true if the arguments are not equal to each other and false otherwise
+   */
+  public static boolean notEqual(final boolean left, final boolean right)
+  {
+    return left != right;
   }
 
   /**
@@ -287,13 +398,31 @@ public final class Objects
    * @param left
    *          an object
    * @param right
-   *          an object to be compared with a for equality
+   *          an object to be compared with for equality
    * @return true if the arguments are equal to each other and false otherwise
    * @see {@link Object#equals(Object)}
    */
   public static boolean equal(final Object left, final Object right)
   {
     return (left == right) || (null != left && left.equals(right));
+  }
+
+  /**
+   * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise. Consequently, if
+   * both arguments are {@code null}, {@code false} is returned and if exactly one argument is {@code null},
+   * {@code true} is returned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals}
+   * method of the first argument and the opposite result of it is returned.
+   * 
+   * @param left
+   *          an object
+   * @param right
+   *          an object to be compared with for being not equal.
+   * @return true if the arguments are not equal to each other and false otherwise
+   * @see {@link Object#equals(Object)}
+   */
+  public static boolean notEqual(final Object left, final Object right)
+  {
+    return !equal(left, right);
   }
 
   /**
@@ -305,15 +434,41 @@ public final class Objects
    * @param left
    *          an object
    * @param right
-   *          an object to be compared with a for deep equality
+   *          an object to be compared with for deep equality
    * @return {@code true} if the arguments are deeply equal to each other and {@code false} otherwise
    * @see {@link Arrays#deepEquals(Object[], Object[])}, {@link #equal(Object, Object)}
    */
   public static boolean deepEqual(final Object left, final Object right)
   {
-    return (left == right) || ((null != left && null != right) && ((left.getClass()
-        .isArray() && right.getClass()
-        .isArray()) ? Arrays.deepEquals((Object[]) left, (Object[]) right) : left.equals(right)));
+    /* @formatter:off */
+    return (left == right) ||
+            ((null != left && null != right) &&
+                ((left.getClass()
+                    .isArray() &&
+                  right.getClass()
+                    .isArray()) ?
+                      Arrays.deepEquals((Object[]) left, (Object[]) right) :
+                      left.equals(right)));
+    /* @formatter:on */
+  }
+
+  /**
+   * Returns {@code true} if the arguments are not deeply equal to each other and {@code false} otherwise. Two
+   * {@code null} values are deeply equal so it returns false. If both arguments are arrays, the algorithm in
+   * {@link Arrays#deepEquals(Object[], Object[]) Arrays.deepEquals} is used to determine equality and the opposite
+   * result is turned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals} method of the
+   * first argument then the opposite result of it is returned.
+   * 
+   * @param left
+   *          an object
+   * @param right
+   *          an object to be compared with for being not deeply equal.
+   * @return {@code true} if the arguments are not deeply equal to each other and {@code false} otherwise
+   * @see {@link Arrays#deepEquals(Object[], Object[])}, {@link #notEqual(Object, Object)}
+   */
+  public static boolean notDeepEqual(final Object left, final Object right)
+  {
+    return !deepEqual(left, right);
   }
 
   /**

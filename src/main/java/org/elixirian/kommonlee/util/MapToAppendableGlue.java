@@ -12,11 +12,11 @@ import java.util.Map.Entry;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
@@ -35,7 +35,7 @@ public final class MapToAppendableGlue implements ToAppendableGlue<Map<?, ?>>
 	private final AppendingAction keyValueGlue;
 	private final AppendingAction entryGlue;
 
-	private MapToAppendableGlue(String keyValueSeparator, String entrySeparator)
+	private MapToAppendableGlue(final String keyValueSeparator, final String entrySeparator)
 	{
 		this.keyValueGlue = SimpleAppendingAction.with(notNull(keyValueSeparator));
 		this.entryGlue = SimpleAppendingAction.with(notNull(entrySeparator));
@@ -51,9 +51,9 @@ public final class MapToAppendableGlue implements ToAppendableGlue<Map<?, ?>>
 		return entryGlue;
 	}
 
-	private <A extends Appendable, K, V> A glue0(A appendable, Map<K, V> map) throws IOException
+	private <A extends Appendable, K, V> A glue0(final A appendable, final Map<K, V> map) throws IOException
 	{
-		Iterator<Entry<K, V>> entryIterator = map.entrySet()
+		final Iterator<Entry<K, V>> entryIterator = map.entrySet()
 				.iterator();
 		if (entryIterator.hasNext())
 		{
@@ -71,7 +71,7 @@ public final class MapToAppendableGlue implements ToAppendableGlue<Map<?, ?>>
 	}
 
 	@Override
-	public <A extends Appendable> A glue(A appendable, Map<?, ?> map)
+	public <A extends Appendable> A glue(final A appendable, final Map<?, ?> map)
 	{
 		try
 		{
@@ -79,13 +79,13 @@ public final class MapToAppendableGlue implements ToAppendableGlue<Map<?, ?>>
 			/* the comment is added to separate the line to see which one is null. */
 			notNull(map));
 		}
-		catch (IOException e)
+		catch (final IOException e)
 		{
 			throw new IllegalArgumentException(e);
 		}
 	}
 
-	public static MapToAppendableGlue newMapToAppendableGlue(String keyValueSeparator, String entrySeparator)
+	public static MapToAppendableGlue newMapToAppendableGlue(final String keyValueSeparator, final String entrySeparator)
 	{
 		return new MapToAppendableGlue(keyValueSeparator, entrySeparator);
 	}

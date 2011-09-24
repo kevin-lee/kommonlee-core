@@ -17,6 +17,22 @@ import org.elixirian.kommonlee.type.Function2;
 import org.elixirian.kommonlee.type.GenericBuilder;
 
 /**
+ * <pre>
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____  __________  ___________ _____  ____
+ *    /   \/    / /      \   \/   /_    _//     \/   /
+ *   /        /  /    ___/\      / /   / /          /
+ *  /        \  /    ___/  \    /_/   /_/          /
+ * /____/\____\/_______/    \__//______/___/\_____/
+ * </pre>
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-14)
  */
@@ -43,12 +59,12 @@ public final class ToStringGlues
       return ignore(null);
     }
 
-    public <N extends E> Builder<E, T> replaceNull(N toReplace)
+    public <N extends E> Builder<E, T> replaceNull(final N toReplace)
     {
       return replace(null, toReplace);
     }
 
-    public Builder<E, T> ignore(E toBeIgnored)
+    public Builder<E, T> ignore(final E toBeIgnored)
     {
       if (replacedElementMap.containsKey(toBeIgnored))
       {
@@ -59,7 +75,7 @@ public final class ToStringGlues
       return this;
     }
 
-    public <N extends E> Builder<E, T> replace(E toBeReplaced, N by)
+    public <N extends E> Builder<E, T> replace(final E toBeReplaced, final N by)
     {
       if (ignoredElementSet.contains(toBeReplaced))
       {
@@ -70,7 +86,7 @@ public final class ToStringGlues
       return this;
     }
 
-    public Builder<E, T> withSeparator(String separator)
+    public Builder<E, T> withSeparator(final String separator)
     {
       this.separator = separator;
       return this;
@@ -110,28 +126,28 @@ public final class ToStringGlues
     }
 
     @Override
-    public <N extends E> ForIterableBuilder<E> replaceNull(N toReplace)
+    public <N extends E> ForIterableBuilder<E> replaceNull(final N toReplace)
     {
       super.replaceNull(toReplace);
       return this;
     }
 
     @Override
-    public ForIterableBuilder<E> ignore(E toBeIgnored)
+    public ForIterableBuilder<E> ignore(final E toBeIgnored)
     {
       super.ignore(toBeIgnored);
       return this;
     }
 
     @Override
-    public <N extends E> ForIterableBuilder<E> replace(E toBeReplaced, N by)
+    public <N extends E> ForIterableBuilder<E> replace(final E toBeReplaced, final N by)
     {
       super.replace(toBeReplaced, by);
       return this;
     }
 
     @Override
-    public ForIterableBuilder<E> withSeparator(String separator)
+    public ForIterableBuilder<E> withSeparator(final String separator)
     {
       super.withSeparator(separator);
       return this;
@@ -160,28 +176,28 @@ public final class ToStringGlues
     }
 
     @Override
-    public <N extends E> ForArgsBuilder<E> replaceNull(N toReplace)
+    public <N extends E> ForArgsBuilder<E> replaceNull(final N toReplace)
     {
       super.replaceNull(toReplace);
       return this;
     }
 
     @Override
-    public ForArgsBuilder<E> ignore(E toBeIgnored)
+    public ForArgsBuilder<E> ignore(final E toBeIgnored)
     {
       super.ignore(toBeIgnored);
       return this;
     }
 
     @Override
-    public <N extends E> ForArgsBuilder<E> replace(E toBeReplaced, N by)
+    public <N extends E> ForArgsBuilder<E> replace(final E toBeReplaced, final N by)
     {
       super.replace(toBeReplaced, by);
       return this;
     }
 
     @Override
-    public ForArgsBuilder<E> withSeparator(String separator)
+    public ForArgsBuilder<E> withSeparator(final String separator)
     {
       super.withSeparator(separator);
       return this;
@@ -238,7 +254,7 @@ public final class ToStringGlues
   {
     private String separator;
 
-    private SimpleGlueFunctionWithSeparator(String separator)
+    private SimpleGlueFunctionWithSeparator(final String separator)
     {
       this.separator = separator;
     }
@@ -278,7 +294,7 @@ public final class ToStringGlues
     protected final Set<Object> ignoredElementSet;
     protected final Map<Object, Object> replacedElementMap;
 
-    protected ReplacingGlueFunction(Set<Object> ignoredElementSet, Map<Object, Object> replacedElementMap)
+    protected ReplacingGlueFunction(final Set<Object> ignoredElementSet, final Map<Object, Object> replacedElementMap)
     {
       this.ignoredElementSet = ignoredElementSet;
       this.replacedElementMap = replacedElementMap;
@@ -293,8 +309,8 @@ public final class ToStringGlues
   {
     private final String separator;
 
-    private ReplacingGlueFunctionWithSeparator(Set<Object> ignoredElementSet, Map<Object, Object> replacedElementMap,
-        String separator)
+    private ReplacingGlueFunctionWithSeparator(final Set<Object> ignoredElementSet, final Map<Object, Object> replacedElementMap,
+        final String separator)
     {
       super(ignoredElementSet, replacedElementMap);
       this.separator = separator;
@@ -327,7 +343,7 @@ public final class ToStringGlues
       GlueFunctionWithoutSeparator<T>
   {
 
-    private ReplacingGlueFunctionWithoutSeparator(Set<Object> ignoredElementSet, Map<Object, Object> replacedElementMap)
+    private ReplacingGlueFunctionWithoutSeparator(final Set<Object> ignoredElementSet, final Map<Object, Object> replacedElementMap)
     {
       super(ignoredElementSet, replacedElementMap);
     }
@@ -348,13 +364,13 @@ public final class ToStringGlues
   {
     private final GlueFunctionWithoutSeparator<T> glueFunctionWithoutSeparator;
 
-    private IterableToStringGlueWithoutSeparator(GlueFunctionWithoutSeparator<T> glueFunction)
+    private IterableToStringGlueWithoutSeparator(final GlueFunctionWithoutSeparator<T> glueFunction)
     {
       this.glueFunctionWithoutSeparator = glueFunction;
     }
 
     @Override
-    public String glue(Iterable<? extends T> source)
+    public String glue(final Iterable<? extends T> source)
     {
       final StringBuilder stringBuilder = new StringBuilder();
       for (final T value : source)
@@ -369,13 +385,13 @@ public final class ToStringGlues
   {
     private final GlueFunctionWithSeparator<T> glueFunctionWithSeparator;
 
-    private IterableToStringGlueWithSeparator(GlueFunctionWithSeparator<T> glueFunctionWithSeparator)
+    private IterableToStringGlueWithSeparator(final GlueFunctionWithSeparator<T> glueFunctionWithSeparator)
     {
       this.glueFunctionWithSeparator = glueFunctionWithSeparator;
     }
 
     @Override
-    public String glue(Iterable<? extends T> source)
+    public String glue(final Iterable<? extends T> source)
     {
       final StringBuilder stringBuilder = new StringBuilder();
       for (final T value : source)
@@ -390,7 +406,7 @@ public final class ToStringGlues
   {
     private final GlueFunctionWithSeparator<E> glueFunctionWithSeparator;
 
-    private ArgsToStringGlueWithSeparator(GlueFunctionWithSeparator<E> glueFunctionWithSeparator)
+    private ArgsToStringGlueWithSeparator(final GlueFunctionWithSeparator<E> glueFunctionWithSeparator)
     {
       this.glueFunctionWithSeparator = glueFunctionWithSeparator;
     }
