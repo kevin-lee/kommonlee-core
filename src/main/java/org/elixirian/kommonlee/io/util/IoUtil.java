@@ -84,7 +84,7 @@ public final class IoUtil
   public static void assertBufferSize(final int bufferSize)
   {
     Assertions.assertTrue(0 < bufferSize, "The buffer size must be greater than 0. [given size: %s]",
-        Integer.valueOf(bufferSize));
+        String.valueOf(bufferSize));
   }
 
   public static void readInputStream(final InputStream inputStream, final int bufferSize,
@@ -178,7 +178,6 @@ public final class IoUtil
   {
     assertBufferSize(bufferSize);
 
-    final InputStream inputStream = null;
     OutputStream outputStream = null;
 
     try
@@ -201,12 +200,10 @@ public final class IoUtil
           format("File file: %s\n" +
                  "int bufferSize: %s\n" +
                  "ByteArrayProducer byteArrayProducer: %s\n" +
-                 "local InputStream inputStream: %s\n" +
                  "local OutputStream outputStream: %s",
                  file,
                  String.valueOf(bufferSize),
                  byteArrayProducer,
-                 inputStream,
                  outputStream), e);
       /* @formatter:on */
     }
@@ -217,18 +214,15 @@ public final class IoUtil
           format("File file: %s\n" +
                  "int bufferSize: %s\n" +
                  "ByteArrayProducer byteArrayProducer: %s\n" +
-                 "local InputStream inputStream: %s\n" +
                  "local OutputStream outputStream: %s",
                  file,
                  String.valueOf(bufferSize),
                  byteArrayProducer,
-                 inputStream,
                  outputStream), e);
       /* @formatter:on */
     }
     finally
     {
-      closeQuietly(inputStream);
       closeQuietly(outputStream);
     }
   }
@@ -237,9 +231,8 @@ public final class IoUtil
       final CharArrayProducer charArrayProducer)
   {
     assertBufferSize(bufferSize);
-    checkCharset(charset);
+    assertCharsetNotNull(charset);
 
-    final InputStream inputStream = null;
     OutputStream outputStream = null;
     OutputStreamWriter outputStreamWriter = null;
 
@@ -265,14 +258,12 @@ public final class IoUtil
               "int bufferSize: %s\n" +
               "Charset charset: %s\n" +
               "CharArrayProducer charArrayProducer: %s\n" +
-              "local InputStream inputStream: %s\n" +
               "local OutputStream outputStream: %s\n" +
               "local OutputStreamWriter outputStreamWriter: %s",
               file,
               String.valueOf(bufferSize),
               charset,
               charArrayProducer,
-              inputStream,
               outputStream,
               outputStreamWriter), e);
       /* @formatter:on */
@@ -285,14 +276,12 @@ public final class IoUtil
               "int bufferSize: %s\n" +
               "Charset charset: %s\n" +
               "CharArrayProducer charArrayProducer: %s\n" +
-              "local InputStream inputStream: %s\n" +
               "local OutputStream outputStream: %s\n" +
               "local OutputStreamWriter outputStreamWriter: %s",
               file,
               String.valueOf(bufferSize),
               charset,
               charArrayProducer,
-              inputStream,
               outputStream,
               outputStreamWriter), e);
       /* @formatter:on */
@@ -301,7 +290,6 @@ public final class IoUtil
     {
       closeQuietly(outputStreamWriter);
       closeQuietly(outputStream);
-      closeQuietly(inputStream);
     }
   }
 
@@ -361,8 +349,8 @@ public final class IoUtil
     }
     finally
     {
-      closeQuietly(inputStream);
       closeQuietly(outputStream);
+      closeQuietly(inputStream);
     }
   }
 
@@ -370,7 +358,7 @@ public final class IoUtil
       final CharArrayConsumer charArrayConsumer)
   {
     assertBufferSize(bufferSize);
-    checkCharset(charset);
+    assertCharsetNotNull(charset);
     InputStreamReader inputStreamReader = null;
 
     try
@@ -418,7 +406,7 @@ public final class IoUtil
       final StringConsumer stringConsumer)
   {
     assertBufferSize(bufferSize);
-    checkCharset(charset);
+    assertCharsetNotNull(charset);
 
     InputStreamReader inputStreamReader = null;
     BufferedReader bufferedReader = null;
@@ -450,13 +438,14 @@ public final class IoUtil
     finally
     {
       closeQuietly(bufferedReader);
+      closeQuietly(inputStreamReader);
       closeQuietly(inputStream);
     }
   }
 
-  private static Charset checkCharset(final Charset charset)
+  private static Charset assertCharsetNotNull(final Charset charset)
   {
-    return Assertions.assertNotNull(charset, "charset cannot be null.");
+    return Assertions.assertNotNull(charset, "Charset cannot be null.");
   }
 
   private static void readString(final BufferedReader bufferedReader, final StringConsumer stringConsumer)

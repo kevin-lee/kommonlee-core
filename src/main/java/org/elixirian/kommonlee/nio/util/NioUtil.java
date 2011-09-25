@@ -22,7 +22,8 @@ import org.elixirian.kommonlee.io.ByteArrayConsumer;
 import org.elixirian.kommonlee.io.ByteArrayProducer;
 import org.elixirian.kommonlee.io.exception.RuntimeFileNotFoundException;
 import org.elixirian.kommonlee.io.exception.RuntimeIoException;
-import org.elixirian.kommonlee.validation.Assertions;
+import org.elixirian.kommonlee.io.util.IoUtil;
+import org.elixirian.kommonlee.util.CommonConstants;
 
 /**
  * <pre>
@@ -54,6 +55,8 @@ public final class NioUtil
 
   private NioUtil()
   {
+    throw new AssertionError(NioUtil.class.getClass()
+        .getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
   /**
@@ -84,8 +87,7 @@ public final class NioUtil
 
   public static void assertBufferSize(final int bufferSize)
   {
-    Assertions.assertTrue(0 < bufferSize, "The buffer size must be greater than 0. [given size: %s]",
-        Integer.valueOf(bufferSize));
+    IoUtil.assertBufferSize(bufferSize);
   }
 
   public static void readInputStream(final InputStream inputStream, final int bufferSize,
