@@ -5,6 +5,8 @@ package org.elixirian.kommonlee.io;
 
 import java.nio.charset.Charset;
 
+import org.elixirian.kommonlee.util.CommonConstants;
+
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -15,11 +17,11 @@ import java.nio.charset.Charset;
  * </pre>
  * 
  * <pre>
- *     ___  _____  __________  ___________ _____  ____
- *    /   \/    / /      \   \/   /_    _//     \/   /
- *   /        /  /    ___/\      / /   / /          /
- *  /        \  /    ___/  \    /_/   /_/          /
- * /____/\____\/_______/    \__//______/___/\_____/
+ *     ___  _____
+ *    /   \/    /_________  ___ ____ __ ______
+ *   /        / /  ___ \  \/  //___// //     /
+ *  /        \ /  _____/\    //   //   __   /
+ * /____/\____\\_____/   \__//___//___/ /__/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -69,11 +71,60 @@ public final class IoCommonConstants
   public static final int BUFFER_SIZE_1Mi = 1048576;
 
   /**
-   * The same as Charset.forName("UTF-8")
+   * <pre>
+   * The same as Charset.forName(&quot;UTF-8&quot;)
+   * </pre>
+   * 
+   * UTF-8 Eight-bit UCS Transformation Format
    */
   public static final Charset UTF_8 = Charset.forName("UTF-8");
+  /**
+   * <pre>
+   * Charset.forName(&quot;US-ASCII&quot;)
+   * </pre>
+   * 
+   * Seven-bit ASCII, a.k.a. ISO646-US, a.k.a. the Basic Latin block of the Unicode character set
+   */
+  public static final Charset US_ASCII = Charset.forName("US-ASCII");
+
+  /**
+   * <pre>
+   * Charset.forName(&quot;ISO-8859-1&quot;)
+   * </pre>
+   * 
+   * ISO Latin Alphabet No. 1, a.k.a. ISO-LATIN-1
+   */
+  public static final Charset ISO_8859_1 = Charset.forName("ISO-8859-1");
+
+  /**
+   * <pre>
+   * Charset.forName(&quot;UTF-16BE&quot;)
+   * </pre>
+   * 
+   * Sixteen-bit UCS Transformation Format, big-endian byte order
+   */
+  public static final Charset UTF_16BE = Charset.forName("UTF-16BE");
+
+  /**
+   * <pre>
+   * Charset.forName(&quot;UTF-16LE&quot;)
+   * </pre>
+   * 
+   * Sixteen-bit UCS Transformation Format, little-endian byte order
+   */
+  public static final Charset UTF_16LE = Charset.forName("UTF-16LE");
+
+  /**
+   * <pre>
+   * Charset.forName(&quot;UTF-16&quot;)
+   * </pre>
+   * 
+   * Sixteen-bit UCS Transformation Format, byte order identified by an optional byte-order mark
+   */
+  public static final Charset UTF_16 = Charset.forName("UTF-16");
 
   private IoCommonConstants()
   {
+    throw new AssertionError(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 }

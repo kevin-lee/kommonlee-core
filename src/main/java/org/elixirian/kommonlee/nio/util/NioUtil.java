@@ -35,11 +35,11 @@ import org.elixirian.kommonlee.util.CommonConstants;
  * </pre>
  * 
  * <pre>
- *     ___  _____  __________  ___________ _____  ____
- *    /   \/    / /      \   \/   /_    _//     \/   /
- *   /        /  /    ___/\      / /   / /          /
- *  /        \  /    ___/  \    /_/   /_/          /
- * /____/\____\/_______/    \__//______/___/\_____/
+ *     ___  _____
+ *    /   \/    /_________  ___ ____ __ ______
+ *   /        / /  ___ \  \/  //___// //     /
+ *  /        \ /  _____/\    //   //   __   /
+ * /____/\____\\_____/   \__//___//___/ /__/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -55,7 +55,7 @@ public final class NioUtil
 
   private NioUtil()
   {
-    throw new AssertionError(NioUtil.class.getClass()
+    throw new AssertionError(getClass().getClass()
         .getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 

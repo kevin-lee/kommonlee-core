@@ -40,11 +40,11 @@ import org.elixirian.kommonlee.validation.Assertions;
  * </pre>
  * 
  * <pre>
- *     ___  _____  __________  ___________ _____  ____
- *    /   \/    / /      \   \/   /_    _//     \/   /
- *   /        /  /    ___/\      / /   / /          /
- *  /        \  /    ___/  \    /_/   /_/          /
- * /____/\____\/_______/    \__//______/___/\_____/
+ *     ___  _____
+ *    /   \/    /_________  ___ ____ __ ______
+ *   /        / /  ___ \  \/  //___// //     /
+ *  /        \ /  _____/\    //   //   __   /
+ * /____/\____\\_____/   \__//___//___/ /__/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -55,7 +55,7 @@ public final class IoUtil
 {
   private IoUtil()
   {
-    throw new AssertionError(IoUtil.class.getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
+    throw new AssertionError(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
   /**
@@ -85,6 +85,11 @@ public final class IoUtil
   {
     Assertions.assertTrue(0 < bufferSize, "The buffer size must be greater than 0. [given size: %s]",
         String.valueOf(bufferSize));
+  }
+
+  private static Charset assertCharsetNotNull(final Charset charset)
+  {
+    return Assertions.assertNotNull(charset, "Charset cannot be null.");
   }
 
   public static void readInputStream(final InputStream inputStream, final int bufferSize,
@@ -130,6 +135,106 @@ public final class IoUtil
     }
   }
 
+  public static void readInputStream(final InputStream inputStream, final int bufferSize, final Charset charset,
+      final CharArrayConsumer charArrayConsumer)
+  {
+    assertBufferSize(bufferSize);
+    assertCharsetNotNull(charset);
+    InputStreamReader inputStreamReader = null;
+
+    try
+    {
+      inputStreamReader = new InputStreamReader(inputStream, charset);
+      readAllChars(inputStreamReader, bufferSize, charArrayConsumer);
+    }
+    catch (final IOException e)
+    {
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("InputStream inputStream: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "Charset charset: %s\n" +
+                 "CharArrayConsumer charArrayConsumer: %s\n" +
+                 "InputStreamReader inputStreamReader: %s",
+                 inputStream,
+                 String.valueOf(bufferSize),
+                 charset,
+                 charArrayConsumer,
+                 inputStreamReader), e);
+      /* @formatter:on */
+    }
+    finally
+    {
+      closeQuietly(inputStreamReader);
+      closeQuietly(inputStream);
+    }
+  }
+
+  private static void readAllChars(final Reader reader, final int bufferSize, final CharArrayConsumer charArrayConsumer)
+      throws IOException
+  {
+    final char[] buffer = new char[bufferSize];
+    int bytesRead = reader.read(buffer);
+
+    while (-1 < bytesRead)
+    {
+      charArrayConsumer.consume(buffer, 0, bytesRead);
+      bytesRead = reader.read(buffer);
+    }
+  }
+
+  public static void readInputStream(final InputStream inputStream, final int bufferSize, final Charset charset,
+      final StringConsumer stringConsumer)
+  {
+    assertBufferSize(bufferSize);
+    assertCharsetNotNull(charset);
+
+    InputStreamReader inputStreamReader = null;
+    BufferedReader bufferedReader = null;
+
+    try
+    {
+      inputStreamReader = new InputStreamReader(inputStream, charset);
+      bufferedReader = new BufferedReader(inputStreamReader, bufferSize);
+      readString(bufferedReader, stringConsumer);
+    }
+    catch (final IOException e)
+    {
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("InputStream inputStream: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "Charset charset: %s\n" +
+                 "StringConsumer stringConsumer: %s\n" +
+                 "InputStreamReader inputStreamReader: %s\n" +
+                 "BufferedReader bufferedReader: %s",
+                 inputStream,
+                 String.valueOf(bufferSize),
+                 charset,
+                 stringConsumer,
+                 inputStreamReader,
+                 bufferedReader), e);
+      /* @formatter:on */
+    }
+    finally
+    {
+      closeQuietly(bufferedReader);
+      closeQuietly(inputStreamReader);
+      closeQuietly(inputStream);
+    }
+  }
+
+  private static void readString(final BufferedReader bufferedReader, final StringConsumer stringConsumer)
+      throws IOException
+  {
+    String line = bufferedReader.readLine();
+    while (null != line)
+    {
+      stringConsumer.consume(line);
+      line = bufferedReader.readLine();
+    }
+  }
+
   public static void readFile(final File file, final int bufferSize, final ByteArrayConsumer byteArrayConsumer)
   {
     assertBufferSize(bufferSize);
@@ -171,6 +276,84 @@ public final class IoUtil
     finally
     {
       closeQuietly(inputStream);
+    }
+  }
+
+  public static void writeOutputStream(final OutputStream outputStream, final int bufferSize,
+      final ByteArrayProducer byteArrayProducer)
+  {
+    assertBufferSize(bufferSize);
+
+    try
+    {
+      final byte[] buffer = new byte[bufferSize];
+      int bytesRead = byteArrayProducer.produce(buffer);
+
+      while (-1 < bytesRead)
+      {
+        outputStream.write(buffer, 0, bytesRead);
+        bytesRead = byteArrayProducer.produce(buffer);
+      }
+    }
+    catch (final IOException e)
+    {
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("OutputStream outputStream: %s\n" +
+                 "int bufferSize: %s\n" +
+                 "ByteArrayProducer byteArrayProducer: %s\n" +
+                 outputStream,
+                 String.valueOf(bufferSize),
+                 byteArrayProducer), e);
+      /* @formatter:on */
+    }
+    finally
+    {
+      closeQuietly(outputStream);
+    }
+  }
+
+  public static void writeOutputStream(final OutputStream outputStream, final int bufferSize, final Charset charset,
+      final CharArrayProducer charArrayProducer)
+  {
+    assertBufferSize(bufferSize);
+    assertCharsetNotNull(charset);
+
+    OutputStreamWriter outputStreamWriter = null;
+
+    try
+    {
+      outputStreamWriter = new OutputStreamWriter(outputStream, charset);
+
+      final char[] buffer = new char[bufferSize];
+      int charsRead = charArrayProducer.produce(buffer);
+
+      while (-1 < charsRead)
+      {
+        outputStreamWriter.write(buffer, 0, charsRead);
+        charsRead = charArrayProducer.produce(buffer);
+      }
+    }
+    catch (final IOException e)
+    {
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("OutputStream outputStream: %s\n" +
+              "int bufferSize: %s\n" +
+              "Charset charset: %s\n" +
+              "CharArrayProducer charArrayProducer: %s\n" +
+              "local OutputStreamWriter outputStreamWriter: %s",
+              outputStream,
+              String.valueOf(bufferSize),
+              charset,
+              charArrayProducer,
+              outputStreamWriter), e);
+      /* @formatter:on */
+    }
+    finally
+    {
+      closeQuietly(outputStreamWriter);
+      closeQuietly(outputStream);
     }
   }
 
@@ -354,108 +537,4 @@ public final class IoUtil
     }
   }
 
-  public static void readInputStream(final InputStream inputStream, final int bufferSize, final Charset charset,
-      final CharArrayConsumer charArrayConsumer)
-  {
-    assertBufferSize(bufferSize);
-    assertCharsetNotNull(charset);
-    InputStreamReader inputStreamReader = null;
-
-    try
-    {
-      inputStreamReader = new InputStreamReader(inputStream, charset);
-      readAllChars(inputStreamReader, bufferSize, charArrayConsumer);
-    }
-    catch (final IOException e)
-    {
-      /* @formatter:off */
-      throw new RuntimeIoException(
-          format("InputStream inputStream: %s\n" +
-                 "int bufferSize: %s\n" +
-                 "Charset charset: %s\n" +
-                 "CharArrayConsumer charArrayConsumer: %s\n" +
-                 "InputStreamReader inputStreamReader: %s",
-                 inputStream,
-                 String.valueOf(bufferSize),
-                 charset,
-                 charArrayConsumer,
-                 inputStreamReader), e);
-      /* @formatter:on */
-    }
-    finally
-    {
-      closeQuietly(inputStreamReader);
-      closeQuietly(inputStream);
-    }
-  }
-
-  private static void readAllChars(final Reader reader, final int bufferSize, final CharArrayConsumer charArrayConsumer)
-      throws IOException
-  {
-    final char[] buffer = new char[bufferSize];
-    int bytesRead = reader.read(buffer);
-
-    while (-1 < bytesRead)
-    {
-      charArrayConsumer.consume(buffer, 0, bytesRead);
-      bytesRead = reader.read(buffer);
-    }
-  }
-
-  public static void readInputStream(final InputStream inputStream, final int bufferSize, final Charset charset,
-      final StringConsumer stringConsumer)
-  {
-    assertBufferSize(bufferSize);
-    assertCharsetNotNull(charset);
-
-    InputStreamReader inputStreamReader = null;
-    BufferedReader bufferedReader = null;
-
-    try
-    {
-      inputStreamReader = new InputStreamReader(inputStream, charset);
-      bufferedReader = new BufferedReader(inputStreamReader, bufferSize);
-      readString(bufferedReader, stringConsumer);
-    }
-    catch (final IOException e)
-    {
-      /* @formatter:off */
-      throw new RuntimeIoException(
-          format("InputStream inputStream: %s\n" +
-                 "int bufferSize: %s\n" +
-                 "Charset charset: %s\n" +
-                 "StringConsumer stringConsumer: %s\n" +
-                 "InputStreamReader inputStreamReader: %s\n" +
-                 "BufferedReader bufferedReader: %s",
-                 inputStream,
-                 String.valueOf(bufferSize),
-                 charset,
-                 stringConsumer,
-                 inputStreamReader,
-                 bufferedReader), e);
-      /* @formatter:on */
-    }
-    finally
-    {
-      closeQuietly(bufferedReader);
-      closeQuietly(inputStreamReader);
-      closeQuietly(inputStream);
-    }
-  }
-
-  private static Charset assertCharsetNotNull(final Charset charset)
-  {
-    return Assertions.assertNotNull(charset, "Charset cannot be null.");
-  }
-
-  private static void readString(final BufferedReader bufferedReader, final StringConsumer stringConsumer)
-      throws IOException
-  {
-    String line = bufferedReader.readLine();
-    while (null != line)
-    {
-      stringConsumer.consume(line);
-      line = bufferedReader.readLine();
-    }
-  }
 }

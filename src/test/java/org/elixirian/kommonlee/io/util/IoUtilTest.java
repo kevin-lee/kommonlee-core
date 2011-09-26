@@ -16,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,11 +50,11 @@ import org.mockito.stubbing.Answer;
  * </pre>
  * 
  * <pre>
- *     ___  _____  __________  ___________ _____  ____
- *    /   \/    / /      \   \/   /_    _//     \/   /
- *   /        /  /    ___/\      / /   / /          /
- *  /        \  /    ___/  \    /_/   /_/          /
- * /____/\____\/_______/    \__//______/___/\_____/
+ *     ___  _____
+ *    /   \/    /_________  ___ ____ __ ______
+ *   /        / /  ___ \  \/  //___// //     /
+ *  /        \ /  _____/\    //   //   __   /
+ * /____/\____\\_____/   \__//___//___/ /__/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -103,9 +104,8 @@ public class IoUtilTest
 
     for (final Byte eachByte : byteList)
     {
-      @SuppressWarnings("boxing")
-      final char c = (char) ((byte) eachByte);
-      characterList.add(c);
+      final char c = (char) (eachByte.byteValue());
+      characterList.add(Character.valueOf(c));
     }
 
     lineStringBuilder = new StringBuilder();
@@ -387,6 +387,64 @@ public class IoUtilTest
   }
 
   @Test
+  public void testWriteOutputStream() throws IOException
+  {
+    System.out.println("\n### IoUtilTest.testWriteOutputStream()");
+    /* given */
+    final String expected = this.stringBuilder.toString();
+    final byte[] byteArray = new byte[expected.length()];
+    final ByteArrayProducer4Testing byteArrayProducer = new ByteArrayProducer4Testing(byteArray);
+    for (int i = 0, size = expected.length(); i < size; i++)
+    {
+      byteArray[i] = (byte) expected.charAt(i);
+    }
+
+    final OutputStream outputStream = mock(OutputStream.class);
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final List<Byte> byteList = new ArrayList<Byte>();
+      final StringBuilder stringBuilder = new StringBuilder();
+
+      doAnswer(new Answer<Void>() {
+        @Override
+        public Void answer(final InvocationOnMock invocation) throws Throwable
+        {
+          final Object[] params = invocation.getArguments();
+          final byte[] bytes = (byte[]) params[0];
+
+          @SuppressWarnings("boxing")
+          final int offset = (Integer) params[1];
+
+          @SuppressWarnings("boxing")
+          final int count = (Integer) params[2];
+          for (int i = offset; i < count; i++)
+          {
+            final byte each = bytes[i];
+            byteList.add(Byte.valueOf(each));
+            stringBuilder.append((char) each);
+          }
+          return null;
+        }
+      }).when(outputStream)
+          .write(Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
+
+      /* when */
+      IoUtil.writeOutputStream(outputStream, bufferSize, byteArrayProducer);
+
+      /* then */
+      // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.byteList, byteList));
+      assertThat(byteList, is(equalTo(this.byteList)));
+      // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.stringBuilder, stringBuilder));
+      assertThat(stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+
+      verify(outputStream, times((int) Math.ceil((double) expected.length() / bufferSize))).write(
+          Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
+      reset(outputStream);
+      byteArrayProducer.reset();
+    }
+  }
+
+  @Test
   public void testWriteFile()
   {
     final File file = new File(temporaryFolder.getRoot(), "file4testing2.txt");
@@ -465,8 +523,8 @@ public class IoUtilTest
     {
       if (0 < left)
       {
-        final int byteLength = bytes.length;
-        final int count = byteLength < left ? byteLength : left;
+        final int charLength = bytes.length;
+        final int count = charLength < left ? charLength : left;
         System.arraycopy(charArray, position, bytes, 0, count);
         position += count;
         left -= count;
@@ -479,6 +537,62 @@ public class IoUtilTest
     public int length()
     {
       return charArray.length;
+    }
+  }
+
+  @Test
+  public void testWriteOutputStreamCharArrayProducer() throws IOException
+  {
+    System.out.println("\n### IoUtilTest.testWriteOutputStreamCharArrayProducer()");
+    /* given */
+    final String expected = this.stringBuilder.toString();
+    final char[] charArray = new char[expected.length()];
+    final CharArrayProducer4Testing charArrayProducer = new CharArrayProducer4Testing(charArray);
+    for (int i = 0, size = expected.length(); i < size; i++)
+    {
+      charArray[i] = expected.charAt(i);
+    }
+    final OutputStream outputStream = mock(OutputStream.class);
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final List<Character> charList = new ArrayList<Character>();
+      final StringBuilder stringBuilder = new StringBuilder();
+
+      doAnswer(new Answer<Void>() {
+        @Override
+        public Void answer(final InvocationOnMock invocation) throws Throwable
+        {
+          final Object[] params = invocation.getArguments();
+          final byte[] bytes = (byte[]) params[0];
+
+          @SuppressWarnings("boxing")
+          final int offset = (Integer) params[1];
+
+          @SuppressWarnings("boxing")
+          final int count = (Integer) params[2];
+          for (int i = offset; i < count; i++)
+          {
+            final byte each = bytes[i];
+            charList.add(Character.valueOf((char) each));
+            stringBuilder.append((char) each);
+          }
+          return null;
+        }
+      }).when(outputStream)
+          .write(Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
+
+      /* when */
+      IoUtil.writeOutputStream(outputStream, bufferSize, IoCommonConstants.UTF_8, charArrayProducer);
+
+      /* then */
+      // System.out.println(format("\n\n# expected:\n%s\n\n" + "# actual:\n%s", this.characterList, charList));
+      assertThat(charList, is(equalTo(this.characterList)));
+      // System.out.println(format("\n\n# expected:\n%s\n\n" + "# actual:\n%s", this.stringBuilder, stringBuilder));
+      assertThat(stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+
+      verify(outputStream, times(1)).write(Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
+      reset(outputStream);
+      charArrayProducer.reset();
     }
   }
 
