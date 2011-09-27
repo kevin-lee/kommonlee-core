@@ -1417,20 +1417,79 @@ public final class Objects
    * @param object
    *          an object
    * @return the result of calling {@code toString} for an argument which is neither {@code null} nor array. It returns
-   *         " {@code null}" for a {@code null} argument and the result of {@link NeoArrays#toStringOfArray0(Object[])}
-   *         for the array type argument.
+   *         " {@code null}" for a {@code null} argument and the result of {@code NeoArrays.toStringOfArray()} for the
+   *         array type argument.
    * @see {@link Object#toString()}
    * @see {@link String#valueOf(Object)}
+   * @see {@link NeoArrays#toStringOfArray(boolean[])}
+   * @see {@link NeoArrays#toStringOfArray(byte[])}
+   * @see {@link NeoArrays#toStringOfArray(short[])}
+   * @see {@link NeoArrays#toStringOfArray(char[])}
+   * @see {@link NeoArrays#toStringOfArray(int[])}
+   * @see {@link NeoArrays#toStringOfArray(long[])}
+   * @see {@link NeoArrays#toStringOfArray(float[])}
+   * @see {@link NeoArrays#toStringOfArray(double[])}
    * @see {@link NeoArrays#toStringOfArray(Object[])}
    */
   public static String toStringOf(@Nullable final Object object)
   {
     /* @formatter:off */
+    return toStringOfMaybeArrayObject(object);
+    /* @formatter:on */
+  }
+
+  static String toStringOfMaybeArrayObject(final Object unknownArray)
+  {
+    return toStringOfMaybeArrayObject(unknownArray, "null");
+  }
+
+  static String toStringOfMaybeArrayObject(final Object unknownArray, final String nullDefault)
+  {
+    if (NeoArrays.isNotArray(unknownArray))
+    {
+      return toStringOf0(unknownArray, nullDefault);
+    }
+    if (unknownArray instanceof boolean[])
+    {
+      return NeoArrays.toStringOfArray0((boolean[]) unknownArray);
+    }
+    if (unknownArray instanceof byte[])
+    {
+      return NeoArrays.toStringOfArray0((byte[]) unknownArray);
+    }
+    if (unknownArray instanceof short[])
+    {
+      return NeoArrays.toStringOfArray0((short[]) unknownArray);
+    }
+    if (unknownArray instanceof char[])
+    {
+      return NeoArrays.toStringOfArray0((char[]) unknownArray);
+    }
+    if (unknownArray instanceof int[])
+    {
+      return NeoArrays.toStringOfArray0((int[]) unknownArray);
+    }
+    if (unknownArray instanceof long[])
+    {
+      return NeoArrays.toStringOfArray0((long[]) unknownArray);
+    }
+    if (unknownArray instanceof float[])
+    {
+      return NeoArrays.toStringOfArray0((float[]) unknownArray);
+    }
+    if (unknownArray instanceof double[])
+    {
+      return NeoArrays.toStringOfArray0((double[]) unknownArray);
+    }
+    return NeoArrays.toStringOfArray0((Object[]) unknownArray);
+  }
+
+  static String toStringOf0(@Nullable final Object object, final String nullDefault)
+  {
+    /* @formatter:off */
     return (null == object ?
-              "null" :
-              NeoArrays.isArray(object) ?
-                NeoArrays.toStringOfArray0((Object[]) object) :
-                object.toString());
+        nullDefault :
+        object.toString());
     /* @formatter:on */
   }
 
@@ -1448,17 +1507,19 @@ public final class Objects
    *         nor array and returns the second argument if it's null. If the first argument is of type array, it returns
    *         the result of {@link NeoArrays#toStringOfArray0(Object[])}.
    * @see {@link #toStringOf(Object)}
+   * @see {@link NeoArrays#toStringOfArray(boolean[])}
+   * @see {@link NeoArrays#toStringOfArray(byte[])}
+   * @see {@link NeoArrays#toStringOfArray(short[])}
+   * @see {@link NeoArrays#toStringOfArray(char[])}
+   * @see {@link NeoArrays#toStringOfArray(int[])}
+   * @see {@link NeoArrays#toStringOfArray(long[])}
+   * @see {@link NeoArrays#toStringOfArray(float[])}
+   * @see {@link NeoArrays#toStringOfArray(double[])}
    * @see {@link NeoArrays#toStringOfArray(Object[])}
    */
   public static String toStringOf(final Object object, final String nullDefault)
   {
-    /* @formatter:off */
-    return (null == object ?
-              nullDefault :
-              NeoArrays.isArray(object) ?
-                NeoArrays.toStringOfArray0((Object[]) object) : 
-                object.toString());
-    /* @formatter:on */
+    return toStringOfMaybeArrayObject(object, nullDefault);
   }
 
   /**

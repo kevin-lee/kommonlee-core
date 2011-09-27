@@ -775,11 +775,17 @@ public class ObjectsTest
     assertThat(Objects.toStringOf(null), is(equalTo("null")));
     assertThat(Objects.toStringOf(new String[] { "test" }), is(equalTo("[test]")));
     assertThat(Objects.toStringOf(new String[] { "test", "something else" }), is(equalTo("[test, something else]")));
+    assertThat(
+        Objects.toStringOf(new int[] { -100, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 100 }),
+        is(equalTo("[-100, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 100]")));
+
     final Object[] objects = new Object[] { new Object(), new Object() };
     assertThat(Objects.toStringOf(objects),
         is(equalTo("[" + objects[0].toString() + ", " + objects[1].toString() + "]")));
+
     assertThat(Objects.toStringOf(new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee") }), is(equalTo("["
         + new SomeObject("Kevin").toString() + ", " + new SomeObject("Lee") + "]")));
+
     final SomeObject[] someObjects =
       new SomeObject[] { new SomeObject("Lee"), new SomeObject("Kevin Lee"), new SomeObject("Kevin") };
     assertThat(

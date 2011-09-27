@@ -27,6 +27,7 @@ public final class NeoArrays
 {
   private NeoArrays()
   {
+    throw new AssertionError(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
   /**
@@ -42,20 +43,216 @@ public final class NeoArrays
         .isArray();
   }
 
-  public static <T> String toStringOfArray(final T[] array)
+  public static boolean isNotArray(final Object object)
+  {
+    return !isArray(object);
+  }
+
+  public static String toStringOfArray(final boolean[] array)
   {
     return null == array ? "null" : toStringOfArray0(array);
   }
 
-  static <T> String toStringOfArray0(final T[] array)
+  static String toStringOfArray0(final boolean[] array)
   {
     final StringBuilder stringBuilder = new StringBuilder("[");
-    for (final T each : array)
+    for (final boolean each : array)
+    {
+      stringBuilder.append(each)
+          .append(", ");
+    }
+    if (1 < stringBuilder.length())
+    {
+      stringBuilder.replace(stringBuilder.length() - 2, stringBuilder.length(), "]");
+    }
+    else
+    {
+      stringBuilder.append("]");
+    }
+    return stringBuilder.toString();
+  }
+
+  public static String toStringOfArray(final byte[] array)
+  {
+    return null == array ? "null" : toStringOfArray0(array);
+  }
+
+  static String toStringOfArray0(final byte[] array)
+  {
+    final StringBuilder stringBuilder = new StringBuilder("[");
+    for (final byte each : array)
+    {
+      stringBuilder.append(each)
+          .append(", ");
+    }
+    if (1 < stringBuilder.length())
+    {
+      stringBuilder.replace(stringBuilder.length() - 2, stringBuilder.length(), "]");
+    }
+    else
+    {
+      stringBuilder.append("]");
+    }
+    return stringBuilder.toString();
+  }
+
+  public static String toStringOfArray(final short[] array)
+  {
+    return null == array ? "null" : toStringOfArray0(array);
+  }
+
+  static String toStringOfArray0(final short[] array)
+  {
+    final StringBuilder stringBuilder = new StringBuilder("[");
+    for (final short each : array)
+    {
+      stringBuilder.append(each)
+          .append(", ");
+    }
+    if (1 < stringBuilder.length())
+    {
+      stringBuilder.replace(stringBuilder.length() - 2, stringBuilder.length(), "]");
+    }
+    else
+    {
+      stringBuilder.append("]");
+    }
+    return stringBuilder.toString();
+  }
+
+  public static String toStringOfArray(final char[] array)
+  {
+    return null == array ? "null" : toStringOfArray0(array);
+  }
+
+  static String toStringOfArray0(final char[] array)
+  {
+    final StringBuilder stringBuilder = new StringBuilder("[");
+    for (final char each : array)
+    {
+      stringBuilder.append(each)
+          .append(", ");
+    }
+    if (1 < stringBuilder.length())
+    {
+      stringBuilder.replace(stringBuilder.length() - 2, stringBuilder.length(), "]");
+    }
+    else
+    {
+      stringBuilder.append("]");
+    }
+    return stringBuilder.toString();
+  }
+
+  public static String toStringOfArray(final int[] array)
+  {
+    return null == array ? "null" : toStringOfArray0(array);
+  }
+
+  static String toStringOfArray0(final int[] array)
+  {
+    final StringBuilder stringBuilder = new StringBuilder("[");
+    for (final int each : array)
+    {
+      stringBuilder.append(each)
+          .append(", ");
+    }
+    if (1 < stringBuilder.length())
+    {
+      stringBuilder.replace(stringBuilder.length() - 2, stringBuilder.length(), "]");
+    }
+    else
+    {
+      stringBuilder.append("]");
+    }
+    return stringBuilder.toString();
+  }
+
+  public static String toStringOfArray(final long[] array)
+  {
+    return null == array ? "null" : toStringOfArray0(array);
+  }
+
+  static String toStringOfArray0(final long[] array)
+  {
+    final StringBuilder stringBuilder = new StringBuilder("[");
+    for (final long each : array)
+    {
+      stringBuilder.append(each)
+          .append(", ");
+    }
+    if (1 < stringBuilder.length())
+    {
+      stringBuilder.replace(stringBuilder.length() - 2, stringBuilder.length(), "]");
+    }
+    else
+    {
+      stringBuilder.append("]");
+    }
+    return stringBuilder.toString();
+  }
+
+  public static String toStringOfArray(final float[] array)
+  {
+    return null == array ? "null" : toStringOfArray0(array);
+  }
+
+  static String toStringOfArray0(final float[] array)
+  {
+    final StringBuilder stringBuilder = new StringBuilder("[");
+    for (final float each : array)
+    {
+      stringBuilder.append(each)
+          .append(", ");
+    }
+    if (1 < stringBuilder.length())
+    {
+      stringBuilder.replace(stringBuilder.length() - 2, stringBuilder.length(), "]");
+    }
+    else
+    {
+      stringBuilder.append("]");
+    }
+    return stringBuilder.toString();
+  }
+
+  public static String toStringOfArray(final double[] array)
+  {
+    return null == array ? "null" : toStringOfArray0(array);
+  }
+
+  static String toStringOfArray0(final double[] array)
+  {
+    final StringBuilder stringBuilder = new StringBuilder("[");
+    for (final double each : array)
+    {
+      stringBuilder.append(each)
+          .append(", ");
+    }
+    if (1 < stringBuilder.length())
+    {
+      stringBuilder.replace(stringBuilder.length() - 2, stringBuilder.length(), "]");
+    }
+    else
+    {
+      stringBuilder.append("]");
+    }
+    return stringBuilder.toString();
+  }
+
+  public static String toStringOfArray(final Object[] array)
+  {
+    return null == array ? "null" : toStringOfArray0(array);
+  }
+
+  static String toStringOfArray0(final Object[] array)
+  {
+    final StringBuilder stringBuilder = new StringBuilder("[");
+    for (final Object each : array)
     {
       /* @formatter:off */
-			stringBuilder.append(isArray(each) ?
-					toStringOfArray((Object[]) each) :
-					each)
+			stringBuilder.append(Objects
+			      .toStringOfMaybeArrayObject(each))
 				.append(", ");
 			/* @formatter:on */
     }
@@ -69,4 +266,5 @@ public final class NeoArrays
     }
     return stringBuilder.toString();
   }
+
 }
