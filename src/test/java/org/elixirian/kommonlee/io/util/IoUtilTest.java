@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ import org.elixirian.kommonlee.io.StringConsumer;
 import org.elixirian.kommonlee.io.exception.RuntimeIoException;
 import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
 import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
+import org.elixirian.kommonlee.type.Function1;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,6 +38,7 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.mockito.InOrder;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -62,6 +65,64 @@ import org.mockito.stubbing.Answer;
  */
 public class IoUtilTest
 {
+  class ByteContainerForTesting
+  {
+    final byte[] bytes;
+    int position = 0;
+    int left;
+
+    public ByteContainerForTesting(final byte[] bytes)
+    {
+      this.bytes = bytes;
+      left = this.bytes.length;
+    }
+
+    int fillBytes(final byte[] byteBuffer, final int offset, final int count)
+    {
+      if (0 < left)
+      {
+        final int actualCount = count < left ? count : left;
+        System.arraycopy(bytes, position, byteBuffer, offset, actualCount);
+        position += actualCount;
+        left -= actualCount;
+        return actualCount;
+      }
+      return -1;
+    }
+
+    public int length()
+    {
+      return bytes.length;
+    }
+  }
+
+  class CharContainerForTesting
+  {
+
+    final char[] chars;
+    int position = 0;
+    int left;
+
+    public CharContainerForTesting(final char[] chars)
+    {
+      this.chars = chars;
+      left = this.chars.length;
+    }
+
+    int fillBytes(final char[] charBuffer, final int offset, final int count)
+    {
+      if (0 < left)
+      {
+        final int actualCount = count < left ? count : left;
+        System.arraycopy(chars, position, charBuffer, offset, actualCount);
+        position += actualCount;
+        left -= actualCount;
+        return actualCount;
+      }
+      return -1;
+    }
+  }
+
   @Rule
   public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
@@ -182,6 +243,38 @@ public class IoUtilTest
         .replace("%20", " "));
   }
 
+  Function1<List<Byte>, byte[]> byteListToByteArray = new Function1<List<Byte>, byte[]>() {
+    @Override
+    public byte[] perform(final List<Byte> byteList)
+    {
+      final int length = byteList.size();
+      final byte[] bytes = new byte[length];
+      for (int i = 0; i < length; i++)
+      {
+        @SuppressWarnings("boxing")
+        final byte b = byteList.get(i);
+        bytes[i] = b;
+      }
+      return bytes;
+    }
+  };
+
+  Function1<List<Character>, char[]> characterListToCharArray = new Function1<List<Character>, char[]>() {
+    @Override
+    public char[] perform(final List<Character> characterList)
+    {
+      final int length = characterList.size();
+      final char[] chars = new char[length];
+      for (int i = 0; i < length; i++)
+      {
+        @SuppressWarnings("boxing")
+        final char b = characterList.get(i);
+        chars[i] = b;
+      }
+      return chars;
+    }
+  };
+
   /**
    * @throws java.lang.Exception
    */
@@ -235,6 +328,16 @@ public class IoUtilTest
     assertTrue(called[0]);
   }
 
+  private static <T> T any(final Class<T> theClass)
+  {
+    return Mockito.any(theClass);
+  }
+
+  private static int anyInt()
+  {
+    return Mockito.anyInt();
+  }
+
   @Test
   public void testAssertBufferSize()
   {
@@ -283,19 +386,73 @@ public class IoUtilTest
   }
 
   @Test
-  public void testReadInputStream()
+  public void testReadInputStream() throws IOException
   {
     for (int bufferSize = 1; bufferSize < 128; bufferSize++)
     {
+      /* given */
       final ByteArrayConsumer4Testing byteArrayConsumer =
         new ByteArrayConsumer4Testing(new ArrayList<Byte>(), new StringBuilder());
 
-      /* test */
+      /* when */
       IoUtil.readInputStream(this.getClass()
           .getResourceAsStream("/file4testing.txt"), bufferSize, byteArrayConsumer);
 
+      /* then */
       assertThat(byteArrayConsumer.byteList, is(equalTo(this.byteList)));
       assertThat(byteArrayConsumer.stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+    }
+  }
+
+  @Test
+  public void testReadInputStreamWithMock() throws IOException
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      /* given */
+      final ByteArrayConsumer4Testing byteArrayConsumer =
+        new ByteArrayConsumer4Testing(new ArrayList<Byte>(), new StringBuilder());
+
+      final ByteContainerForTesting byteContainerForTesting =
+        new ByteContainerForTesting(byteListToByteArray.perform(IoUtilTest.this.byteList));
+
+      final InputStream inputStream = mock(InputStream.class);
+      final Answer<Integer> answer = new Answer<Integer>() {
+        @Override
+        public Integer answer(final InvocationOnMock invocation) throws Throwable
+        {
+          final Object[] params = invocation.getArguments();
+          final byte[] bytes = (byte[]) params[0];
+
+          @SuppressWarnings("boxing")
+          final int offset = (Integer) params[1];
+
+          @SuppressWarnings("boxing")
+          final int count = (Integer) params[2];
+
+          @SuppressWarnings("boxing")
+          final Integer bytesRead = byteContainerForTesting.fillBytes(bytes, offset, count);
+          return bytesRead;
+        }
+      };
+
+      doAnswer(answer).when(inputStream)
+          .read(any(byte[].class), anyInt(), anyInt());
+
+      /* when */
+      IoUtil.readInputStream(inputStream, bufferSize, byteArrayConsumer);
+
+      /* then */
+      assertThat(byteArrayConsumer.byteList, is(equalTo(this.byteList)));
+      assertThat(byteArrayConsumer.stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+
+      final InOrder order = inOrder(inputStream);
+      order.verify(inputStream, times(computeHowManyForReading(byteList.size(), bufferSize)))
+          .read(any(byte[].class), anyInt(), anyInt());
+      order.verify(inputStream, atLeastOnce())
+          .close();
+
+      reset(inputStream);
     }
   }
 
@@ -325,6 +482,7 @@ public class IoUtilTest
     ByteArrayConsumer byteArrayConsumer = null;
 
     byteArrayConsumer = mock(ByteArrayConsumer.class);
+
     doAnswer(new Answer<Void>() {
       @Override
       public Void answer(@SuppressWarnings("unused") final InvocationOnMock invocation) throws Throwable
@@ -332,7 +490,7 @@ public class IoUtilTest
         return null;
       }
     }).when(byteArrayConsumer)
-        .consume(Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
+        .consume(any(byte[].class), anyInt(), anyInt());
 
     IoUtil.readFile(getTestFile(), 1, byteArrayConsumer);
 
@@ -426,7 +584,7 @@ public class IoUtilTest
           return null;
         }
       }).when(outputStream)
-          .write(Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
+          .write(any(byte[].class), anyInt(), anyInt());
 
       /* when */
       IoUtil.writeOutputStream(outputStream, bufferSize, byteArrayProducer);
@@ -437,8 +595,12 @@ public class IoUtilTest
       // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.stringBuilder, stringBuilder));
       assertThat(stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
 
-      verify(outputStream, times((int) Math.ceil((double) expected.length() / bufferSize))).write(
-          Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
+      final InOrder order = inOrder(outputStream);
+      order.verify(outputStream, times(computeHowManyForWriting(expected.length(), bufferSize)))
+          .write(any(byte[].class), anyInt(), anyInt());
+      order.verify(outputStream, atLeastOnce())
+          .close();
+
       reset(outputStream);
       byteArrayProducer.reset();
     }
@@ -579,7 +741,7 @@ public class IoUtilTest
           return null;
         }
       }).when(outputStream)
-          .write(Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
+          .write(any(byte[].class), anyInt(), anyInt());
 
       /* when */
       IoUtil.writeOutputStream(outputStream, bufferSize, IoCommonConstants.UTF_8, charArrayProducer);
@@ -590,7 +752,11 @@ public class IoUtilTest
       // System.out.println(format("\n\n# expected:\n%s\n\n" + "# actual:\n%s", this.stringBuilder, stringBuilder));
       assertThat(stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
 
-      verify(outputStream, times(1)).write(Mockito.any(byte[].class), Mockito.anyInt(), Mockito.anyInt());
+      final InOrder order = inOrder(outputStream);
+      order.verify(outputStream, times(1))
+          .write(any(byte[].class), anyInt(), anyInt());
+      order.verify(outputStream, atLeastOnce())
+          .close();
       reset(outputStream);
       charArrayProducer.reset();
     }
@@ -680,11 +846,111 @@ public class IoUtilTest
     }
   }
 
-  /**
-   * Test method for {@link org.elixirian.kommonlee.io.util.IoUtil#copyFile(java.io.File, java.io.File, int)}.
-   * 
-   * @throws IOException
-   */
+  @Test
+  public void testCopyStream() throws IOException
+  {
+    /* given */
+    final int bufferSize = 16;
+    final ByteContainerForTesting testByteHolder =
+      new ByteContainerForTesting(byteListToByteArray.perform(this.byteList));
+
+    final Answer<Integer> answer = new Answer<Integer>() {
+      @Override
+      public Integer answer(final InvocationOnMock invocation) throws Throwable
+      {
+        final byte[] byteBuffer = (byte[]) invocation.getArguments()[0];
+        return Integer.valueOf(testByteHolder.fillBytes(byteBuffer, 0, byteBuffer.length));
+      }
+    };
+
+    final InputStream inputStream = mock(InputStream.class);
+    final Answer<Integer> answerWithOffsetAndCount = new Answer<Integer>() {
+
+      @Override
+      public Integer answer(final InvocationOnMock invocation) throws Throwable
+      {
+        final byte[] byteBuffer = (byte[]) invocation.getArguments()[0];
+        @SuppressWarnings("boxing")
+        final int offset = (Integer) invocation.getArguments()[1];
+        @SuppressWarnings("boxing")
+        final int givenCount = (Integer) invocation.getArguments()[2];
+        return Integer.valueOf(testByteHolder.fillBytes(byteBuffer, offset, givenCount));
+      }
+    };
+
+    doAnswer(answer).when(inputStream)
+        .read(any(byte[].class));
+    doAnswer(answerWithOffsetAndCount).when(inputStream)
+        .read(any(byte[].class), anyInt(), anyInt());
+
+    final List<Byte> actualList = newArrayList();
+    final StringBuilder actualStringBuilder = new StringBuilder();
+
+    final OutputStream outputStream = mock(OutputStream.class);
+    final Answer<Void> answerForOutputStream = new Answer<Void>() {
+      @Override
+      public Void answer(final InvocationOnMock invocation) throws Throwable
+      {
+        final Object[] params = invocation.getArguments();
+        final byte[] bytes = (byte[]) params[0];
+
+        @SuppressWarnings("boxing")
+        final int offset = (Integer) params[1];
+
+        @SuppressWarnings("boxing")
+        final int count = (Integer) params[2];
+        for (int i = offset; i < offset + count; i++)
+        {
+          final byte each = bytes[i];
+          actualList.add(Byte.valueOf(each));
+          actualStringBuilder.append((char) each);
+        }
+        return null;
+      }
+    };
+    doAnswer(answerForOutputStream).when(outputStream)
+        .write(any(byte[].class), anyInt(), anyInt());
+
+    /* when */
+    IoUtil.copyStream(inputStream, outputStream, bufferSize);
+
+    /* then */
+    final int totalByteSize = byteList.size();
+    assertEquals(totalByteSize, actualList.size());
+    // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.byteList, actualList));
+    assertThat(actualList, is(equalTo(byteList)));
+    // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.stringBuilder, actualStringBuilder));
+    assertThat(actualStringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+
+    final InOrder order = inOrder(inputStream, outputStream);
+    verify(inputStream, never()).read(any(byte[].class));
+    // one more time to check if there are any more bytes.
+    order.verify(inputStream)
+        .read(any(byte[].class), anyInt(), anyInt());
+    order.verify(outputStream)
+        .write(any(byte[].class), anyInt(), anyInt());
+
+    verify(inputStream, times(computeHowManyForReading(totalByteSize, bufferSize))).read(any(byte[].class), anyInt(),
+        anyInt());
+    verify(outputStream, times(computeHowManyForWriting(totalByteSize, bufferSize))).write(any(byte[].class), anyInt(),
+        anyInt());
+
+    order.verify(outputStream, atLeastOnce())
+        .close();
+    order.verify(inputStream, atLeastOnce())
+        .close();
+  }
+
+  private int computeHowManyForReading(final int total, final int bufferSize)
+  {
+    return (int) Math.ceil((double) total / bufferSize) + 1;
+  }
+
+  private int computeHowManyForWriting(final int total, final int bufferSize)
+  {
+    return (int) Math.ceil((double) total / bufferSize);
+  }
+
   @Test
   public void testCopyFile() throws IOException
   {
@@ -710,11 +976,6 @@ public class IoUtilTest
     assertThat(expectedStringBuilder.toString(), is(equalTo(resultStringBuilder.toString())));
   }
 
-  /**
-   * Test method for {@link org.elixirian.kommonlee.io.util.IoUtil#copyFile(java.io.File, java.io.File, int)}.
-   * 
-   * @throws IOException
-   */
   @Test(expected = RuntimeIoException.class)
   public void testCopyFileWithNotExistingFile() throws IOException
   {
@@ -765,6 +1026,63 @@ public class IoUtilTest
       // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.stringBuilder,
       // charArrayConsumer.stringBuilder));
       assertThat(charArrayConsumer.stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+    }
+  }
+
+  @Test
+  public void testReadInputStreamWithCharArrayConsumerWithMock() throws IOException
+  {
+    System.out.println("\n### IoUtilTest.testReadInputStreamWithCharArrayConsumerWithMock()");
+    /* given */
+    final InputStream inputStream = mock(InputStream.class);
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final ByteContainerForTesting byteContainerForTesting =
+        new ByteContainerForTesting(byteListToByteArray.perform(byteList));
+
+      doAnswer(new Answer<Integer>() {
+        @Override
+        public Integer answer(final InvocationOnMock invocation) throws Throwable
+        {
+          final Object[] params = invocation.getArguments();
+          final byte[] bytes = (byte[]) params[0];
+
+          @SuppressWarnings("boxing")
+          final int offset = (Integer) params[1];
+
+          @SuppressWarnings("boxing")
+          final int count = (Integer) params[2];
+
+          @SuppressWarnings("boxing")
+          final Integer bytesRead = byteContainerForTesting.fillBytes(bytes, offset, count);
+          return bytesRead;
+        }
+      }).when(inputStream)
+          .read(any(byte[].class), anyInt(), anyInt());
+
+      final CharArrayConsumer4Testing charArrayConsumer =
+        new CharArrayConsumer4Testing(new ArrayList<Character>(), new StringBuilder());
+
+      /* when */
+      IoUtil.readInputStream(inputStream, bufferSize, IoCommonConstants.UTF_8, charArrayConsumer);
+
+      /* then */
+      System.out.println();
+      // System.out.println(format("# expected:\n%s\n\n# actual:\n%s", this.characterList,
+      // charArrayConsumer.characterList));
+      assertThat(charArrayConsumer.characterList, is(equalTo(this.characterList)));
+      // System.out.println();
+      // System.out.println(format("# expected:\n%s\n\n# actual:\n%s", this.stringBuilder,
+      // charArrayConsumer.stringBuilder));
+      assertThat(charArrayConsumer.stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+
+      final InOrder order = inOrder(inputStream);
+      order.verify(inputStream, atLeastOnce())
+          .read(any(byte[].class), anyInt(), anyInt());
+      order.verify(inputStream, atLeastOnce())
+          .close();
+
+      reset(inputStream);
     }
   }
 

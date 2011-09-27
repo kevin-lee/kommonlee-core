@@ -6,6 +6,7 @@ package org.elixirian.kommonlee.io.util;
 import static org.elixirian.kommonlee.util.MessageFormatter.*;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.Closeable;
 import java.io.File;
@@ -18,6 +19,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
+import java.io.Writer;
 import java.nio.charset.Charset;
 
 import org.elixirian.kommonlee.io.ByteArrayConsumer;
@@ -40,11 +42,11 @@ import org.elixirian.kommonlee.validation.Assertions;
  * </pre>
  * 
  * <pre>
- *     ___  _____
- *    /   \/    /_________  ___ ____ __ ______
- *   /        / /  ___ \  \/  //___// //     /
- *  /        \ /  _____/\    //   //   __   /
- * /____/\____\\_____/   \__//___//___/ /__/
+ *     ___  _____                                _____
+ *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
+ *   /        / /  ___ \  \/  //___// //     / /    /   /  ___ \/  ___ \
+ *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
+ * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -81,10 +83,11 @@ public final class IoUtil
     }
   }
 
-  public static void assertBufferSize(final int bufferSize)
+  public static int assertBufferSize(final int bufferSize)
   {
     Assertions.assertTrue(0 < bufferSize, "The buffer size must be greater than 0. [given size: %s]",
         String.valueOf(bufferSize));
+    return bufferSize;
   }
 
   private static Charset assertCharsetNotNull(final Charset charset)
@@ -96,11 +99,11 @@ public final class IoUtil
       final ByteArrayConsumer byteArrayConsumer)
   {
     assertBufferSize(bufferSize);
-    BufferedInputStream bufferedInputStream = null;
+    InputStream bufferedInputStream = null;
 
     try
     {
-      bufferedInputStream = new BufferedInputStream(inputStream);
+      bufferedInputStream = new BufferedInputStream(inputStream, bufferSize);
       readAllBytes(bufferedInputStream, bufferSize, byteArrayConsumer);
     }
     catch (final IOException e)
@@ -140,12 +143,14 @@ public final class IoUtil
   {
     assertBufferSize(bufferSize);
     assertCharsetNotNull(charset);
-    InputStreamReader inputStreamReader = null;
+    Reader inputStreamReader = null;
+    Reader bufferedReader = null;
 
     try
     {
       inputStreamReader = new InputStreamReader(inputStream, charset);
-      readAllChars(inputStreamReader, bufferSize, charArrayConsumer);
+      bufferedReader = new BufferedReader(inputStreamReader, bufferSize);
+      readAllChars(bufferedReader, bufferSize, charArrayConsumer);
     }
     catch (final IOException e)
     {
@@ -155,16 +160,19 @@ public final class IoUtil
                  "int bufferSize: %s\n" +
                  "Charset charset: %s\n" +
                  "CharArrayConsumer charArrayConsumer: %s\n" +
-                 "InputStreamReader inputStreamReader: %s",
+                 "Reader inputStreamReader: %s\n" +
+                 "Reader bufferedReader: %s",
                  inputStream,
                  String.valueOf(bufferSize),
                  charset,
                  charArrayConsumer,
-                 inputStreamReader), e);
+                 inputStreamReader,
+                 bufferedReader), e);
       /* @formatter:on */
     }
     finally
     {
+      closeQuietly(bufferedReader);
       closeQuietly(inputStreamReader);
       closeQuietly(inputStream);
     }
@@ -189,7 +197,7 @@ public final class IoUtil
     assertBufferSize(bufferSize);
     assertCharsetNotNull(charset);
 
-    InputStreamReader inputStreamReader = null;
+    Reader inputStreamReader = null;
     BufferedReader bufferedReader = null;
 
     try
@@ -206,7 +214,7 @@ public final class IoUtil
                  "int bufferSize: %s\n" +
                  "Charset charset: %s\n" +
                  "StringConsumer stringConsumer: %s\n" +
-                 "InputStreamReader inputStreamReader: %s\n" +
+                 "Reader inputStreamReader: %s\n" +
                  "BufferedReader bufferedReader: %s",
                  inputStream,
                  String.valueOf(bufferSize),
@@ -283,17 +291,12 @@ public final class IoUtil
       final ByteArrayProducer byteArrayProducer)
   {
     assertBufferSize(bufferSize);
+    OutputStream bufferedOutputStream = null;
 
     try
     {
-      final byte[] buffer = new byte[bufferSize];
-      int bytesRead = byteArrayProducer.produce(buffer);
-
-      while (-1 < bytesRead)
-      {
-        outputStream.write(buffer, 0, bytesRead);
-        bytesRead = byteArrayProducer.produce(buffer);
-      }
+      bufferedOutputStream = new BufferedOutputStream(outputStream, bufferSize);
+      writeBytes(bufferedOutputStream, bufferSize, byteArrayProducer);
     }
     catch (final IOException e)
     {
@@ -302,14 +305,30 @@ public final class IoUtil
           format("OutputStream outputStream: %s\n" +
                  "int bufferSize: %s\n" +
                  "ByteArrayProducer byteArrayProducer: %s\n" +
+                 "local BufferedOutputStream bufferedOutputStream: %s\n",
                  outputStream,
                  String.valueOf(bufferSize),
-                 byteArrayProducer), e);
+                 byteArrayProducer,
+                 bufferedOutputStream), e);
       /* @formatter:on */
     }
     finally
     {
+      closeQuietly(bufferedOutputStream);
       closeQuietly(outputStream);
+    }
+  }
+
+  private static void writeBytes(final OutputStream outputStream, final int bufferSize,
+      final ByteArrayProducer byteArrayProducer) throws IOException
+  {
+    final byte[] buffer = new byte[bufferSize];
+    int bytesRead = byteArrayProducer.produce(buffer);
+
+    while (-1 < bytesRead)
+    {
+      outputStream.write(buffer, 0, bytesRead);
+      bytesRead = byteArrayProducer.produce(buffer);
     }
   }
 
@@ -319,20 +338,12 @@ public final class IoUtil
     assertBufferSize(bufferSize);
     assertCharsetNotNull(charset);
 
-    OutputStreamWriter outputStreamWriter = null;
+    Writer outputStreamWriter = null;
 
     try
     {
       outputStreamWriter = new OutputStreamWriter(outputStream, charset);
-
-      final char[] buffer = new char[bufferSize];
-      int charsRead = charArrayProducer.produce(buffer);
-
-      while (-1 < charsRead)
-      {
-        outputStreamWriter.write(buffer, 0, charsRead);
-        charsRead = charArrayProducer.produce(buffer);
-      }
+      writeChars(outputStreamWriter, bufferSize, charArrayProducer);
     }
     catch (final IOException e)
     {
@@ -357,6 +368,19 @@ public final class IoUtil
     }
   }
 
+  private static void writeChars(final Writer writer, final int bufferSize, final CharArrayProducer charArrayProducer)
+      throws IOException
+  {
+    final char[] buffer = new char[bufferSize];
+    int charsRead = charArrayProducer.produce(buffer);
+
+    while (-1 < charsRead)
+    {
+      writer.write(buffer, 0, charsRead);
+      charsRead = charArrayProducer.produce(buffer);
+    }
+  }
+
   public static void writeFile(final File file, final int bufferSize, final ByteArrayProducer byteArrayProducer)
   {
     assertBufferSize(bufferSize);
@@ -366,15 +390,7 @@ public final class IoUtil
     try
     {
       outputStream = new FileOutputStream(file);
-
-      final byte[] buffer = new byte[bufferSize];
-      int bytesRead = byteArrayProducer.produce(buffer);
-
-      while (-1 < bytesRead)
-      {
-        outputStream.write(buffer, 0, bytesRead);
-        bytesRead = byteArrayProducer.produce(buffer);
-      }
+      writeBytes(outputStream, bufferSize, byteArrayProducer);
     }
     catch (final FileNotFoundException e)
     {
@@ -417,21 +433,13 @@ public final class IoUtil
     assertCharsetNotNull(charset);
 
     OutputStream outputStream = null;
-    OutputStreamWriter outputStreamWriter = null;
+    Writer outputStreamWriter = null;
 
     try
     {
       outputStream = new FileOutputStream(file);
       outputStreamWriter = new OutputStreamWriter(outputStream, charset);
-
-      final char[] buffer = new char[bufferSize];
-      int bytesRead = charArrayProducer.produce(buffer);
-
-      while (-1 < bytesRead)
-      {
-        outputStreamWriter.write(buffer, 0, bytesRead);
-        bytesRead = charArrayProducer.produce(buffer);
-      }
+      writeChars(outputStreamWriter, bufferSize, charArrayProducer);
     }
     catch (final FileNotFoundException e)
     {
@@ -476,6 +484,59 @@ public final class IoUtil
     }
   }
 
+  public static void copyStream(final InputStream inputStream, final OutputStream outputStream, final int bufferSize)
+      throws RuntimeIoException
+  {
+    assertBufferSize(bufferSize);
+
+    InputStream bufferedInputStream = null;
+    OutputStream bufferedOutputStream = null;
+
+    try
+    {
+      bufferedInputStream = new BufferedInputStream(inputStream, bufferSize);
+      bufferedOutputStream = new BufferedOutputStream(outputStream, bufferSize);
+
+      copyBytes(bufferedInputStream, bufferSize, bufferedOutputStream);
+    }
+    catch (final IOException e)
+    {
+      /* @formatter:off */
+      throw new RuntimeIoException(
+          format("InputStream inputStream: %s\n" +
+              "OutputStream outputStream: %s\n" +
+              "int bufferSize: %s\n" +
+              "local BufferedInputStream bufferedInputStream: %s\n" +
+              "local BufferedOutputStream bufferedOutputStream: %s",
+              inputStream,
+              outputStream,
+              String.valueOf(bufferSize),
+              bufferedInputStream,
+              bufferedOutputStream), e);
+      /* @formatter:on */
+    }
+    finally
+    {
+      closeQuietly(bufferedOutputStream);
+      closeQuietly(outputStream);
+      closeQuietly(bufferedInputStream);
+      closeQuietly(inputStream);
+    }
+  }
+
+  private static void copyBytes(final InputStream bufferedInputStream, final int bufferSize,
+      final OutputStream bufferedOutputStream) throws IOException
+  {
+    final byte[] buffer = new byte[bufferSize];
+    int bytesRead = bufferedInputStream.read(buffer);
+
+    while (-1 != bytesRead)
+    {
+      bufferedOutputStream.write(buffer, 0, bytesRead);
+      bytesRead = bufferedInputStream.read(buffer);
+    }
+  }
+
   public static void copyFile(final File sourceFile, final File targetFile, final int bufferSize)
       throws RuntimeIoException
   {
@@ -489,20 +550,13 @@ public final class IoUtil
       inputStream = new FileInputStream(sourceFile);
       outputStream = new FileOutputStream(targetFile);
 
-      final byte[] buffer = new byte[bufferSize];
-      int bytesRead = inputStream.read(buffer);
-
-      while (-1 != bytesRead)
-      {
-        outputStream.write(buffer, 0, bytesRead);
-        bytesRead = inputStream.read(buffer);
-      }
+      copyBytes(inputStream, bufferSize, outputStream);
     }
     catch (final FileNotFoundException e)
     {
       /* @formatter:off */
       throw new RuntimeFileNotFoundException(
-          format("File sourceFileL %s\n" +
+          format("File sourceFile: %s\n" +
                  "File targetFile: %s\n" +
                  "int bufferSize: %s\n" +
                  "local InputStream inputStream: %s\n" +
@@ -518,7 +572,7 @@ public final class IoUtil
     {
       /* @formatter:off */
       throw new RuntimeIoException(
-          format("File sourceFileL %s\n" +
+          format("File sourceFile: %s\n" +
           		   "File targetFile: %s\n" +
                  "int bufferSize: %s\n" +
                  "local InputStream inputStream: %s\n" +
