@@ -1,13 +1,7 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.collect;
-
-import java.util.Iterator;
-
-import org.elixirian.kommonlee.type.Clearable;
-import org.elixirian.kommonlee.type.EmptinessCheckable;
-import org.elixirian.kommonlee.type.LengthMeasurable;
+package org.elixirian.kommonlee.type;
 
 /**
  * <pre>
@@ -29,43 +23,7 @@ import org.elixirian.kommonlee.type.LengthMeasurable;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-09-18)
  */
-public interface WritableCollection<E> extends Kollection<E>, Iterable<E>, LengthMeasurable, EmptinessCheckable,
-    Clearable
+public interface LengthMeasurable
 {
-  @Override
-  Iterator<E> iterator();
-
-  @Override
   int length();
-
-  @Override
-  boolean isEmpty();
-
-  @Override
-  boolean isNotEmpty();
-
-  @Override
-  boolean contains(Object element);
-
-  @Override
-  boolean containsAll(Kollection<?> kollection);
-
-  boolean remove(E element);
-
-  boolean removeAll(Kollection<?> elements);
-
-  boolean retainAll(Kollection<?> elements);
-
-  @Override
-  void clear();
-
-  boolean add(E element);
-
-  boolean addAll(Kollection<? extends E> commonCollection);
-
-  @Override
-  int hashCode();
-
-  @Override
-  boolean equals(Object element);
 }

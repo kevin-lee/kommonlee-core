@@ -34,19 +34,19 @@ import org.junit.Test;
 
 /**
  * <pre>
- *     ____________    ___________  ____   _______ _________ _______ _______________  ____
- *    /       /   /   /_    _/\   \/   /  /_    _//  __    //_    _//   __    /     \/   /
- *   /    ___/   /     /   /   \      /    /   / /  /_/   /  /   / /   /_/   /          /
- *  /    ___/   /_____/   /_   /      \  _/   /_/       _/ _/   /_/   __    /          /
- * /_______/________/______/  /___/\___\/______/___/\___\ /______/___/ /___/___/\_____/
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
  * 
  * <pre>
- *     ___  _____  __________  ___________ _____  ____
- *    /   \/    / /      \   \/   /_    _//     \/   /
- *   /        /  /    ___/\      / /   / /          /
- *  /        \  /    ___/  \    /_/   /_/          /
- * /____/\____\/_______/    \__//______/___/\_____/
+ *     ___  _____                                _____
+ *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
+ *   /        / /  ___ \  \/  //___// //     / /    /   /  ___ \/  ___ \
+ *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
+ * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -57,7 +57,7 @@ public class SetsTest
 
   private static final Condition1<Object> NOT_NULL_CONDITION = new Condition1<Object>() {
     @Override
-    public boolean isApplicable(final Object input)
+    public boolean isMet(final Object input)
     {
       return isNotNull(input);
     }
@@ -70,7 +70,7 @@ public class SetsTest
       {
         final List<Integer> list = new ArrayList<Integer>();
         for (final Integer value : source)
-          if (condition.isApplicable(value))
+          if (condition.isMet(value))
             list.add(value);
         return list;
       }
@@ -83,7 +83,7 @@ public class SetsTest
       {
         final List<String> list = new ArrayList<String>();
         for (final String value : source)
-          if (condition.isApplicable(value))
+          if (condition.isMet(value))
             list.add(value);
         return list;
       }
@@ -96,7 +96,7 @@ public class SetsTest
       {
         final List<Object> list = new ArrayList<Object>();
         for (final Object value : source)
-          if (condition.isApplicable(value))
+          if (condition.isMet(value))
             list.add(value);
         return list;
       }
@@ -109,7 +109,7 @@ public class SetsTest
       {
         final List<ComparableObject> list = new ArrayList<ComparableObject>();
         for (final ComparableObject value : source)
-          if (condition.isApplicable(value))
+          if (condition.isMet(value))
             list.add(value);
         return list;
       }
@@ -217,7 +217,7 @@ public class SetsTest
 
     final List<ComparableObject> comparableObjectList = new ArrayList<ComparableObject>(COMPARABLE_OBJECT_LIST);
     Collections.shuffle(list);
-    Set<ComparableObject> comparableObjectSet =
+    final Set<ComparableObject> comparableObjectSet =
       new TreeSet<ComparableObject>(COMPARABLE_OBJECT_FILTER.filter(NOT_NULL_CONDITION, comparableObjectList));
     COMPARABLE_OBJECT_TREE_SET = Collections.unmodifiableSet(comparableObjectSet);
 

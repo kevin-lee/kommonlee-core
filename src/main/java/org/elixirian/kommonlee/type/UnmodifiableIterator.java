@@ -1,13 +1,9 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.collect;
+package org.elixirian.kommonlee.type;
 
 import java.util.Iterator;
-
-import org.elixirian.kommonlee.type.Clearable;
-import org.elixirian.kommonlee.type.EmptinessCheckable;
-import org.elixirian.kommonlee.type.LengthMeasurable;
 
 /**
  * <pre>
@@ -27,45 +23,21 @@ import org.elixirian.kommonlee.type.LengthMeasurable;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-09-18)
+ * @version 0.0.1 (10/2011-10-13)
  */
-public interface WritableCollection<E> extends Kollection<E>, Iterable<E>, LengthMeasurable, EmptinessCheckable,
-    Clearable
+public interface UnmodifiableIterator<E> extends Iterator<E>
 {
   @Override
-  Iterator<E> iterator();
+  boolean hasNext();
 
   @Override
-  int length();
+  E next();
 
+  /**
+   * This method always throws {@link UnsupportedOperationException}.
+   * 
+   * @throws {@link UnsupportedOperationException} It is always thrown if this method is called..
+   */
   @Override
-  boolean isEmpty();
-
-  @Override
-  boolean isNotEmpty();
-
-  @Override
-  boolean contains(Object element);
-
-  @Override
-  boolean containsAll(Kollection<?> kollection);
-
-  boolean remove(E element);
-
-  boolean removeAll(Kollection<?> elements);
-
-  boolean retainAll(Kollection<?> elements);
-
-  @Override
-  void clear();
-
-  boolean add(E element);
-
-  boolean addAll(Kollection<? extends E> commonCollection);
-
-  @Override
-  int hashCode();
-
-  @Override
-  boolean equals(Object element);
+  void remove();
 }

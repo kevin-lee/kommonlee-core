@@ -10,6 +10,7 @@ import org.elixirian.kommonlee.type.Condition1;
 import org.elixirian.kommonlee.type.EmptinessCheckable;
 import org.elixirian.kommonlee.type.Function1;
 import org.elixirian.kommonlee.type.LengthMeasurable;
+import org.elixirian.kommonlee.type.SizeMeasurable;
 
 /**
  * <pre>
@@ -31,7 +32,7 @@ import org.elixirian.kommonlee.type.LengthMeasurable;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-09-18)
  */
-public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, LengthMeasurable, EmptinessCheckable
+public interface Kollection<E> extends Iterable<E>, LengthMeasurable, SizeMeasurable, EmptinessCheckable
 {
   @Override
   Iterator<E> iterator();
@@ -39,34 +40,34 @@ public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, Lengt
   @Override
   int length();
 
+  /**
+   * It must be the same as {@link #length()}.
+   */
+  @Override
+  int size();
+
   @Override
   boolean isEmpty();
 
   @Override
   boolean isNotEmpty();
 
-  @Override
   boolean contains(Object element);
 
-  @Override
   boolean containsAll(Kollection<?> kollection);
 
-  @Override
-  ReadableCollection<E> select(Condition1<? super E> condition);
+  Kollection<E> select(Condition1<? super E> condition);
 
-  @Override
-  <R> ReadableCollection<R> map(Function1<? super E, R> function);
+  <R> Kollection<R> map(Function1<? super E, R> function);
 
-  @Override
-  <R> ReadableCollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
+  <R> Kollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
 
-  @Override
+  int howMany(Condition1<? super E> conditionToMeet);
+
   E[] toArray();
 
-  @Override
   E[] toArray(E[] elements);
 
-  @Override
   Collection<E> convertTo();
 
   @Override
@@ -74,4 +75,7 @@ public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, Lengt
 
   @Override
   boolean equals(Object element);
+
+  @Override
+  String toString();
 }

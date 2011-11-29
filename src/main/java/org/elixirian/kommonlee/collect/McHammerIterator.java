@@ -3,11 +3,7 @@
  */
 package org.elixirian.kommonlee.collect;
 
-import java.util.Iterator;
-
-import org.elixirian.kommonlee.type.Clearable;
-import org.elixirian.kommonlee.type.EmptinessCheckable;
-import org.elixirian.kommonlee.type.LengthMeasurable;
+import org.elixirian.kommonlee.type.UnmodifiableIterator;
 
 /**
  * <pre>
@@ -27,45 +23,20 @@ import org.elixirian.kommonlee.type.LengthMeasurable;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-09-18)
+ * @version 0.0.1 (2011-10-13)
  */
-public interface WritableCollection<E> extends Kollection<E>, Iterable<E>, LengthMeasurable, EmptinessCheckable,
-    Clearable
+public abstract class McHammerIterator<E> implements UnmodifiableIterator<E>
 {
   @Override
-  Iterator<E> iterator();
+  public abstract boolean hasNext();
 
   @Override
-  int length();
+  public abstract E next();
 
   @Override
-  boolean isEmpty();
-
-  @Override
-  boolean isNotEmpty();
-
-  @Override
-  boolean contains(Object element);
-
-  @Override
-  boolean containsAll(Kollection<?> kollection);
-
-  boolean remove(E element);
-
-  boolean removeAll(Kollection<?> elements);
-
-  boolean retainAll(Kollection<?> elements);
-
-  @Override
-  void clear();
-
-  boolean add(E element);
-
-  boolean addAll(Kollection<? extends E> commonCollection);
-
-  @Override
-  int hashCode();
-
-  @Override
-  boolean equals(Object element);
+  public void remove()
+  {
+    throw new UnsupportedOperationException(
+        "U Can't Touch This!\nYou cannot remove any element through this Iterator. It is an object of UnmodifiableIterator.");
+  }
 }

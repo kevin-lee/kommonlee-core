@@ -3,14 +3,6 @@
  */
 package org.elixirian.kommonlee.collect;
 
-import java.util.Collection;
-import java.util.Iterator;
-
-import org.elixirian.kommonlee.type.Condition1;
-import org.elixirian.kommonlee.type.EmptinessCheckable;
-import org.elixirian.kommonlee.type.Function1;
-import org.elixirian.kommonlee.type.LengthMeasurable;
-
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -31,11 +23,8 @@ import org.elixirian.kommonlee.type.LengthMeasurable;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-09-18)
  */
-public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, LengthMeasurable, EmptinessCheckable
+public interface WritableList<E> extends WritableCollection<E>
 {
-  @Override
-  Iterator<E> iterator();
-
   @Override
   int length();
 
@@ -52,22 +41,24 @@ public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, Lengt
   boolean containsAll(Kollection<?> kollection);
 
   @Override
-  ReadableCollection<E> select(Condition1<? super E> condition);
+  boolean remove(E element);
 
   @Override
-  <R> ReadableCollection<R> map(Function1<? super E, R> function);
+  boolean removeAll(Kollection<?> elements);
 
   @Override
-  <R> ReadableCollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
+  boolean retainAll(Kollection<?> elements);
 
   @Override
-  E[] toArray();
+  void clear();
 
   @Override
-  E[] toArray(E[] elements);
+  boolean add(E element);
 
   @Override
-  Collection<E> convertTo();
+  boolean addAll(Kollection<? extends E> commonCollection);
+
+  void add(int index, E element);
 
   @Override
   int hashCode();

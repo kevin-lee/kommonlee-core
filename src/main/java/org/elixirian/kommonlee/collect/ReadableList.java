@@ -3,13 +3,10 @@
  */
 package org.elixirian.kommonlee.collect;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import org.elixirian.kommonlee.type.Condition1;
-import org.elixirian.kommonlee.type.EmptinessCheckable;
 import org.elixirian.kommonlee.type.Function1;
-import org.elixirian.kommonlee.type.LengthMeasurable;
 
 /**
  * <pre>
@@ -31,7 +28,7 @@ import org.elixirian.kommonlee.type.LengthMeasurable;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-09-18)
  */
-public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, LengthMeasurable, EmptinessCheckable
+public interface ReadableList<E> extends ReadableCollection<E>
 {
   @Override
   Iterator<E> iterator();
@@ -45,6 +42,26 @@ public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, Lengt
   @Override
   boolean isNotEmpty();
 
+  /**
+   * @param element
+   * @param fromIndex
+   *          toIndex (inclusive)
+   * @return
+   */
+  int indexOf(E element, int fromIndex);
+
+  int indexOf(E element);
+
+  /**
+   * @param element
+   * @param toIndex
+   *          toIndex (exclusive)
+   * @return
+   */
+  int lastIndexOf(E element, int toIndex);
+
+  int lastIndexOf(E element);
+
   @Override
   boolean contains(Object element);
 
@@ -52,13 +69,13 @@ public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, Lengt
   boolean containsAll(Kollection<?> kollection);
 
   @Override
-  ReadableCollection<E> select(Condition1<? super E> condition);
+  ReadableList<E> select(Condition1<? super E> condition);
 
   @Override
-  <R> ReadableCollection<R> map(Function1<? super E, R> function);
+  <R> ReadableList<R> map(Function1<? super E, R> function);
 
   @Override
-  <R> ReadableCollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
+  <R> ReadableList<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
 
   @Override
   E[] toArray();
@@ -67,11 +84,12 @@ public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, Lengt
   E[] toArray(E[] elements);
 
   @Override
-  Collection<E> convertTo();
-
-  @Override
   int hashCode();
 
   @Override
   boolean equals(Object element);
+
+  E get(int index);
+
+  ReadableList<E> subList(int fromIndex, int toIndex);
 }

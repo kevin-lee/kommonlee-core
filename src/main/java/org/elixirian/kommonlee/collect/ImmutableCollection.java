@@ -3,13 +3,10 @@
  */
 package org.elixirian.kommonlee.collect;
 
-import java.util.Collection;
 import java.util.Iterator;
 
 import org.elixirian.kommonlee.type.Condition1;
-import org.elixirian.kommonlee.type.EmptinessCheckable;
 import org.elixirian.kommonlee.type.Function1;
-import org.elixirian.kommonlee.type.LengthMeasurable;
 
 /**
  * <pre>
@@ -29,9 +26,9 @@ import org.elixirian.kommonlee.type.LengthMeasurable;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-09-18)
+ * @version 0.0.1 (2011-09-28)
  */
-public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, LengthMeasurable, EmptinessCheckable
+public interface ImmutableCollection<E> extends ReadableCollection<E>
 {
   @Override
   Iterator<E> iterator();
@@ -59,15 +56,6 @@ public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, Lengt
 
   @Override
   <R> ReadableCollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
-
-  @Override
-  E[] toArray();
-
-  @Override
-  E[] toArray(E[] elements);
-
-  @Override
-  Collection<E> convertTo();
 
   @Override
   int hashCode();

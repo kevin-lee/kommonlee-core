@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.collect;
+package org.elixirian.kommonlee.type;
 
 /**
  * <pre>
@@ -13,17 +13,19 @@ package org.elixirian.kommonlee.collect;
  * </pre>
  * 
  * <pre>
- *     ___  _____  __________  ___________ _____  ____
- *    /   \/    / /      \   \/   /_    _//     \/   /
- *   /        /  /    ___/\      / /   / /          /
- *  /        \  /    ___/  \    /_/   /_/          /
- * /____/\____\/_______/    \__//______/___/\_____/
+ *     ___  _____                                _____
+ *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
+ *   /        / /  ___ \  \/  //___// //     / /    /   /  ___ \/  ___ \
+ *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
+ * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-09-18)
+ * @version 0.0.1 (2011-09-28)
  */
-public interface LengthMeasurable
+public interface EmptinessCheckable
 {
-  int length();
+  boolean isEmpty();
+
+  boolean isNotEmpty();
 }
