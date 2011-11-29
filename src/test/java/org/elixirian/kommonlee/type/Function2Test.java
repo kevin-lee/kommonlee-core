@@ -18,6 +18,26 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+/**
+ * <pre>
+ *     ___  _____                                              _____
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
+ * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
+ * </pre>
+ * 
+ * <pre>
+ *     ___  _____                                _____
+ *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
+ *   /        / /  ___ \  \/  //___// //     / /    /   /  ___ \/  ___ \
+ *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
+ * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
+ * </pre>
+ * 
+ * @author Lee, SeongHyun (Kevin)
+ * @version 0.0.1 (2011-05-22)
+ */
 public class Function2Test
 {
 	private static class Product
@@ -25,7 +45,7 @@ public class Function2Test
 		private final Long number;
 		private final String name;
 
-		private Product(Long number, String name)
+		private Product(final Long number, final String name)
 		{
 			this.number = number;
 			this.name = name;
@@ -57,7 +77,7 @@ public class Function2Test
 		}
 
 		@Override
-		public boolean equals(Object product)
+		public boolean equals(final Object product)
 		{
 			if (this == product)
 				return true;
@@ -77,7 +97,7 @@ public class Function2Test
 
 		private int quantity;
 
-		private LineItem(Product product, int quantity)
+		private LineItem(final Product product, final int quantity)
 		{
 			this.product = product;
 			this.quantity = quantity;
@@ -88,7 +108,7 @@ public class Function2Test
 			return product;
 		}
 
-		public void setProduct(Product product)
+		public void setProduct(final Product product)
 		{
 			this.product = product;
 		}
@@ -98,7 +118,7 @@ public class Function2Test
 			return quantity;
 		}
 
-		public void setQuantity(int quantity)
+		public void setQuantity(final int quantity)
 		{
 			this.quantity = quantity;
 		}
@@ -113,7 +133,7 @@ public class Function2Test
 		}
 
 		@Override
-		public boolean equals(Object lineItem)
+		public boolean equals(final Object lineItem)
 		{
 			if (this == lineItem)
 				return true;
@@ -139,7 +159,7 @@ public class Function2Test
 
 		private final Set<LineItem> itemList;
 
-		private Order(Long number, Set<LineItem> itemList)
+		private Order(final Long number, final Set<LineItem> itemList)
 		{
 			this.number = number;
 			this.itemList = itemList;
@@ -177,7 +197,7 @@ public class Function2Test
 		}
 
 		@Override
-		public boolean equals(Object order)
+		public boolean equals(final Object order)
 		{
 			if (this == order)
 				return true;
@@ -201,7 +221,7 @@ public class Function2Test
 		private String surname;
 		private String givenName;
 
-		private Customer(String surname, String givenName)
+		private Customer(final String surname, final String givenName)
 		{
 			this.surname = surname;
 			this.givenName = givenName;
@@ -256,7 +276,7 @@ public class Function2Test
 	{
 		final Function2<Product, Integer, LineItem> itemCreator = new Function2<Product, Integer, LineItem>() {
 			@Override
-			public LineItem perform(final Product product, final Integer quantity)
+			public LineItem apply(final Product product, final Integer quantity)
 			{
 				return new LineItem(product, quantity.intValue());
 			}
@@ -265,7 +285,7 @@ public class Function2Test
 		final Order order2 = new Order(1L, new HashSet<LineItem>());
 		for (int i = 0; i < PRODUCTS.length; i++)
 		{
-			order2.addItem(itemCreator.perform(PRODUCTS[i], QUANTITIES[i]));
+			order2.addItem(itemCreator.apply(PRODUCTS[i], QUANTITIES[i]));
 		}
 		assertEquals(order.itemSize(), order2.itemSize());
 		assertThat(order2.getItems(), is(equalTo(order.getItems())));
@@ -275,7 +295,7 @@ public class Function2Test
 
 		final Function2<Customer, Order, String> orderDetailGenerator = new Function2<Customer, Order, String>() {
 			@Override
-			public String perform(final Customer customer, final Order order)
+			public String apply(final Customer customer, final Order order)
 			{
 				final StringBuilder stringBuilder = new StringBuilder("[Order#: ").append(order.getNumber())
 						.append("]\n")
@@ -318,7 +338,7 @@ public class Function2Test
 		final StringBuilder stringBuilder = new StringBuilder("## Order List\n");
 		for (final Order order : orderList)
 		{
-			stringBuilder.append(orderDetailGenerator.perform(customer, order));
+			stringBuilder.append(orderDetailGenerator.apply(customer, order));
 		}
 		// System.out.println(stringBuilder.toString());
 		assertThat(stringBuilder.toString(), is("## Order List\n" + "[Order#: 1]\n" + "[Customer: Lee, Kevin]\n"
@@ -349,12 +369,12 @@ public class Function2Test
 		final Function2<Condition1<LineItem>, Order, List<LineItem>> itemFilter =
 			new Function2<Condition1<LineItem>, Order, List<LineItem>>() {
 				@Override
-				public List<LineItem> perform(final Condition1<LineItem> condition, final Order order)
+				public List<LineItem> apply(final Condition1<LineItem> condition, final Order order)
 				{
 					final List<LineItem> itemList = new ArrayList<LineItem>();
 					for (final LineItem item : order.getItems())
 					{
-						if (condition.isApplicable(item))
+						if (condition.isMet(item))
 						{
 							itemList.add(item);
 						}
@@ -363,9 +383,9 @@ public class Function2Test
 				}
 			};
 
-		final List<LineItem> actualItemList = itemFilter.perform(new Condition1<Function2Test.LineItem>() {
+		final List<LineItem> actualItemList = itemFilter.apply(new Condition1<Function2Test.LineItem>() {
 			@Override
-			public boolean isApplicable(final LineItem item)
+			public boolean isMet(final LineItem item)
 			{
 				return 10 < item.getQuantity();
 			}
@@ -386,9 +406,9 @@ public class Function2Test
 			}
 		}
 
-		final List<LineItem> actualItemList2 = itemFilter.perform(new Condition1<Function2Test.LineItem>() {
+		final List<LineItem> actualItemList2 = itemFilter.apply(new Condition1<Function2Test.LineItem>() {
 			@Override
-			public boolean isApplicable(final LineItem item)
+			public boolean isMet(final LineItem item)
 			{
 				return !"Product E".equals(item);
 			}

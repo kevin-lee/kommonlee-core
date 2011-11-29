@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.type;
+package org.elixirian.kommonlee.type.filter;
 
 /**
  * <pre>
@@ -21,21 +21,35 @@ package org.elixirian.kommonlee.type;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-11-13)
- * @param <X1>
- *          input1
- * @param <X2>
- *          input2
- * @param <X3>
- *          input3
- * @param <X4>
- *          input4
- * @param <X5>
- *          input5
+ * @version 0.0.1 (2010-11-14)
+ * @param <T>
+ *          input
+ * @param <C>
+ *          condition
  * @param <R>
  *          result
  */
-public interface Function5<X1, X2, X3, X4, X5, R>
+public interface ArgsFilter<T, C, R> extends Filter1<T, C, R>, Filter2<T, C, R>, Filter3<T, C, R>, Filter4<T, C, R>,
+		Filter5<T, C, R>, VarargsFilter<T, C, R>, ArrayFilter<T, C, R>
 {
-	R apply(X1 input1, X2 input2, X3 input3, X4 input4, X5 input5);
+	@Override
+	R filter(C condition, T first);
+
+	@Override
+	R filter(C condition, T first, T second);
+
+	@Override
+	R filter(C condition, T first, T second, T third);
+
+	@Override
+	R filter(C condition, T first, T second, T third, T fourth);
+
+	@Override
+	R filter(C condition, T first, T second, T third, T fourth, T fifth);
+
+	@Override
+  R filter(C condition, T first, T second, T third, T fourth, T fifth, T... rest);
+
+	@Override
+  R filter(C condition, T[] values);
 }

@@ -153,7 +153,7 @@ public class FunctionTest
 	private static class NewOrderedItemCreaterFunction implements Function1<OrderedItem, NewOrderedItem>
 	{
 		@Override
-		public NewOrderedItem perform(OrderedItem input)
+		public NewOrderedItem apply(OrderedItem input)
 		{
 			return new NewOrderedItem(input.id, input.name, Status.valueOf(input.status));
 		}
@@ -167,7 +167,7 @@ public class FunctionTest
 			final List<NewOrderedItem> resultList = new ArrayList<NewOrderedItem>();
 			for (final OrderedItem item : orderedItems)
 			{
-				resultList.add(function.perform(item));
+				resultList.add(function.apply(item));
 			}
 			return resultList;
 		}
@@ -219,7 +219,7 @@ public class FunctionTest
 		new OrderedItemToNewOrderedItemConverter().convert(orderedItems,
 			new Function1<OrderedItem, NewOrderedItem>() {
 				@Override
-				public NewOrderedItem perform(final OrderedItem input)
+				public NewOrderedItem apply(final OrderedItem input)
 				{
 					return new NewOrderedItem(input.getId(), 
 											   input.getName(), 
