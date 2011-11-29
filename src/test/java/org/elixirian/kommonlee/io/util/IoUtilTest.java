@@ -245,7 +245,7 @@ public class IoUtilTest
 
   Function1<List<Byte>, byte[]> byteListToByteArray = new Function1<List<Byte>, byte[]>() {
     @Override
-    public byte[] perform(final List<Byte> byteList)
+    public byte[] apply(final List<Byte> byteList)
     {
       final int length = byteList.size();
       final byte[] bytes = new byte[length];
@@ -261,7 +261,7 @@ public class IoUtilTest
 
   Function1<List<Character>, char[]> characterListToCharArray = new Function1<List<Character>, char[]>() {
     @Override
-    public char[] perform(final List<Character> characterList)
+    public char[] apply(final List<Character> characterList)
     {
       final int length = characterList.size();
       final char[] chars = new char[length];
@@ -414,7 +414,7 @@ public class IoUtilTest
         new ByteArrayConsumer4Testing(new ArrayList<Byte>(), new StringBuilder());
 
       final ByteContainerForTesting byteContainerForTesting =
-        new ByteContainerForTesting(byteListToByteArray.perform(IoUtilTest.this.byteList));
+        new ByteContainerForTesting(byteListToByteArray.apply(IoUtilTest.this.byteList));
 
       final InputStream inputStream = mock(InputStream.class);
       final Answer<Integer> answer = new Answer<Integer>() {
@@ -852,7 +852,7 @@ public class IoUtilTest
     /* given */
     final int bufferSize = 16;
     final ByteContainerForTesting testByteHolder =
-      new ByteContainerForTesting(byteListToByteArray.perform(this.byteList));
+      new ByteContainerForTesting(byteListToByteArray.apply(this.byteList));
 
     final Answer<Integer> answer = new Answer<Integer>() {
       @Override
@@ -1038,7 +1038,7 @@ public class IoUtilTest
     for (int bufferSize = 1; bufferSize < 128; bufferSize++)
     {
       final ByteContainerForTesting byteContainerForTesting =
-        new ByteContainerForTesting(byteListToByteArray.perform(byteList));
+        new ByteContainerForTesting(byteListToByteArray.apply(byteList));
 
       doAnswer(new Answer<Integer>() {
         @Override
