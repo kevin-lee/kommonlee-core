@@ -4378,10 +4378,10 @@ public class ToStringGluesTest
     public <P extends Person> AppendPersonIf perform(final StringBuilder stringBuilder, final P person,
         final Condition1<Person> condition, final Condition1<Person>... conditions)
     {
-      boolean isApplicable = condition.isApplicable(person);
+      boolean isApplicable = condition.isMet(person);
       for (final Condition1<Person> each : conditions)
       {
-        isApplicable &= each.isApplicable(person);
+        isApplicable &= each.isMet(person);
       }
       if (isApplicable)
       {
@@ -4396,7 +4396,7 @@ public class ToStringGluesTest
 
   private static final Condition1<Person> NOT_NULL = new Condition1<Person>() {
     @Override
-    public boolean isApplicable(final Person person)
+    public boolean isMet(final Person person)
     {
       return isNotNull(person);
     }
@@ -4406,7 +4406,7 @@ public class ToStringGluesTest
     private final Person person = new Person("", "");
 
     @Override
-    public boolean isApplicable(final Person person)
+    public boolean isMet(final Person person)
     {
       return !equal(this.person, person);
     }
@@ -4416,7 +4416,7 @@ public class ToStringGluesTest
     private final Member person = new Member("", "", null);
 
     @Override
-    public boolean isApplicable(final Person person)
+    public boolean isMet(final Person person)
     {
       return !equal(this.person, person);
     }

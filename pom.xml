@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>kommonlee-util</artifactId>
-	<version>0.0.13-SNAPSHOT</version>
+	<version>0.0.14-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>kommonlee-util</name>
 	<url>http://elixirian.org</url>
@@ -84,7 +84,7 @@
 		<dependency>
 		  <groupId>org.elixirian</groupId>
 		  <artifactId>kommonlee-type</artifactId>
-		  <version>0.0.7-SNAPSHOT</version>
+		  <version>0.0.8-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>

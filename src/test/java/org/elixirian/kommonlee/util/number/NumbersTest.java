@@ -137,7 +137,7 @@ public class NumbersTest
           final List<Integer> result = new ArrayList<Integer>();
           for (final Integer integer : source)
           {
-            if (condition.isApplicable(integer))
+            if (condition.isMet(integer))
             {
               result.add(integer);
             }
@@ -174,7 +174,7 @@ public class NumbersTest
           final List<Integer> result = new ArrayList<Integer>();
           for (final Integer integer : source)
           {
-            if (condition.isApplicable(integer))
+            if (condition.isMet(integer))
             {
               result.add(integer);
             }
@@ -211,7 +211,7 @@ public class NumbersTest
           final List<Long> result = new ArrayList<Long>();
           for (final Long number : source)
           {
-            if (condition.isApplicable(number))
+            if (condition.isMet(number))
             {
               result.add(number);
             }
@@ -248,7 +248,7 @@ public class NumbersTest
           final List<Long> result = new ArrayList<Long>();
           for (final Long number : source)
           {
-            if (condition.isApplicable(number))
+            if (condition.isMet(number))
             {
               result.add(number);
             }
@@ -319,7 +319,7 @@ public class NumbersTest
       Numbers.byteIterableToArrayListFilter();
 
     final Condition1<Byte> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyByte())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyByte())).thenReturn(Boolean.TRUE);
 
     final List<Byte> expected1 = BYTE_LIST;
     final List<Byte> result1 = numberIterableToArrayListFilter.filter(condition, expected1);
@@ -327,7 +327,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyByte())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyByte())).thenReturn(Boolean.FALSE);
     final List<Byte> result2 = numberIterableToArrayListFilter.filter(condition, expected1);
     final List<Byte> expected2 = asList();
     assertEquals(expected2.size(), result2.size());
@@ -340,19 +340,19 @@ public class NumbersTest
           Byte.valueOf((byte) 100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
 
     final List<Byte> result3 = numberIterableToArrayListFilter.filter(condition, byteList);
     final List<Byte> expected3 = byteList.subList(0, 6);
@@ -361,19 +361,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
 
     final List<Byte> result4 = numberIterableToArrayListFilter.filter(condition, byteList);
     final List<Byte> expected4 = byteList.subList(6, 13);
@@ -400,7 +400,7 @@ public class NumbersTest
       Numbers.shortIterableToArrayListFilter();
 
     final Condition1<Short> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyShort())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyShort())).thenReturn(Boolean.TRUE);
 
     final List<Short> expected1 = SHORT_LIST;
     final List<Short> result1 = numberIterableToArrayListFilter.filter(condition, expected1);
@@ -408,7 +408,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyShort())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyShort())).thenReturn(Boolean.FALSE);
     final List<Short> result2 = numberIterableToArrayListFilter.filter(condition, expected1);
     final List<Short> expected2 = asList();
     assertEquals(expected2.size(), result2.size());
@@ -421,19 +421,19 @@ public class NumbersTest
           Short.valueOf((short) 10), Short.valueOf((short) 100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
 
     final List<Short> result3 = numberIterableToArrayListFilter.filter(condition, shortList);
     final List<Short> expected3 = shortList.subList(0, 6);
@@ -442,19 +442,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
 
     final List<Short> result4 = numberIterableToArrayListFilter.filter(condition, shortList);
     final List<Short> expected4 = shortList.subList(6, 13);
@@ -470,7 +470,7 @@ public class NumbersTest
       Numbers.integerIterableToArrayListFilter();
 
     final Condition1<Integer> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyInt())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyInt())).thenReturn(Boolean.TRUE);
 
     final List<Integer> expected1 = INTEGER_LIST;
     final List<Integer> result1 = numberIterableToArrayListFilter.filter(condition, expected1);
@@ -478,7 +478,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyInt())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyInt())).thenReturn(Boolean.FALSE);
     final List<Integer> result2 = numberIterableToArrayListFilter.filter(condition, expected1);
     final List<Integer> expected2 = asList();
     assertEquals(expected2.size(), result2.size());
@@ -490,19 +490,19 @@ public class NumbersTest
           Integer.valueOf(6), Integer.valueOf(10), Integer.valueOf(100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
 
     final List<Integer> result3 = numberIterableToArrayListFilter.filter(condition, integerList);
     final List<Integer> expected3 = integerList.subList(0, 6);
@@ -511,19 +511,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
 
     final List<Integer> result4 = numberIterableToArrayListFilter.filter(condition, integerList);
     final List<Integer> expected4 = integerList.subList(6, 13);
@@ -539,7 +539,7 @@ public class NumbersTest
       Numbers.longIterableToArrayListFilter();
 
     final Condition1<Long> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyLong())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyLong())).thenReturn(Boolean.TRUE);
 
     final List<Long> expected1 = LONG_LIST;
     final List<Long> result1 = numberIterableToArrayListFilter.filter(condition, expected1);
@@ -547,7 +547,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyLong())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyLong())).thenReturn(Boolean.FALSE);
     final List<Long> result2 = numberIterableToArrayListFilter.filter(condition, expected1);
     final List<Long> expected2 = asList();
     assertEquals(expected2.size(), result2.size());
@@ -559,19 +559,19 @@ public class NumbersTest
           Long.valueOf(10), Long.valueOf(100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
 
     final List<Long> result3 = numberIterableToArrayListFilter.filter(condition, longList);
     final List<Long> expected3 = longList.subList(0, 6);
@@ -580,19 +580,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
 
     final List<Long> result4 = numberIterableToArrayListFilter.filter(condition, longList);
     final List<Long> expected4 = longList.subList(6, 13);
@@ -608,7 +608,7 @@ public class NumbersTest
       Numbers.floatIterableToArrayListFilter();
 
     final Condition1<Float> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyFloat())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyFloat())).thenReturn(Boolean.TRUE);
 
     final List<Float> expected1 = FLOAT_LIST;
     final List<Float> result1 = numberIterableToArrayListFilter.filter(condition, expected1);
@@ -616,7 +616,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyFloat())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyFloat())).thenReturn(Boolean.FALSE);
     final List<Float> result2 = numberIterableToArrayListFilter.filter(condition, expected1);
     final List<Float> expected2 = asList();
     assertEquals(expected2.size(), result2.size());
@@ -626,19 +626,19 @@ public class NumbersTest
       asList(-10F, -9.5F, -5.3F, -7.7F, -3.9F, -1.0F, 0F, 1.0F, 2.3F, 5.5F, 6.8F, 10.99F, 100F);
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
 
     final List<Float> result3 = numberIterableToArrayListFilter.filter(condition, floatList);
     final List<Float> expected3 = floatList.subList(0, 6);
@@ -647,19 +647,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
 
     final List<Float> result4 = numberIterableToArrayListFilter.filter(condition, floatList);
     final List<Float> expected4 = floatList.subList(6, 13);
@@ -675,7 +675,7 @@ public class NumbersTest
       Numbers.doubleIterableToArrayListFilter();
 
     final Condition1<Double> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyDouble())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyDouble())).thenReturn(Boolean.TRUE);
 
     final List<Double> expected1 = DOUBLE_LIST;
     final List<Double> result1 = numberIterableToArrayListFilter.filter(condition, expected1);
@@ -683,7 +683,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyDouble())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyDouble())).thenReturn(Boolean.FALSE);
     final List<Double> result2 = numberIterableToArrayListFilter.filter(condition, expected1);
     final List<Double> expected2 = asList();
     assertEquals(expected2.size(), result2.size());
@@ -693,19 +693,19 @@ public class NumbersTest
       asList(-10D, -9.5D, -5.3D, -7.7D, -3.9D, -1.0D, 0D, 1.0D, 2.3D, 5.5D, 6.8D, 10.99D, 100D);
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
 
     final List<Double> result3 = numberIterableToArrayListFilter.filter(condition, doubleList);
     final List<Double> expected3 = doubleList.subList(0, 6);
@@ -714,19 +714,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
 
     final List<Double> result4 = numberIterableToArrayListFilter.filter(condition, doubleList);
     final List<Double> expected4 = doubleList.subList(6, 13);
@@ -742,7 +742,7 @@ public class NumbersTest
       Numbers.bigIntegerIterableToArrayListFilter();
 
     final Condition1<BigInteger> condition = mock(Condition1.class);
-    when(condition.isApplicable(Matchers.any(BigInteger.class))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(Matchers.any(BigInteger.class))).thenReturn(Boolean.TRUE);
 
     final List<BigInteger> expected1 = BIG_INTEGER_LIST;
     final List<BigInteger> result1 = numberIterableToArrayListFilter.filter(condition, expected1);
@@ -750,7 +750,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(Matchers.any(BigInteger.class))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(Matchers.any(BigInteger.class))).thenReturn(Boolean.FALSE);
     final List<BigInteger> result2 = numberIterableToArrayListFilter.filter(condition, expected1);
     final List<BigInteger> expected2 = asList();
     assertEquals(expected2.size(), result2.size());
@@ -763,19 +763,19 @@ public class NumbersTest
           BigInteger.valueOf(100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
 
     final List<BigInteger> result3 = numberIterableToArrayListFilter.filter(condition, bigIntegerList);
     final List<BigInteger> expected3 = bigIntegerList.subList(0, 6);
@@ -784,19 +784,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
 
     final List<BigInteger> result4 = numberIterableToArrayListFilter.filter(condition, bigIntegerList);
     final List<BigInteger> expected4 = bigIntegerList.subList(6, 13);
@@ -812,7 +812,7 @@ public class NumbersTest
       Numbers.bigDecimalIterableToArrayListFilter();
 
     final Condition1<BigDecimal> condition = mock(Condition1.class);
-    when(condition.isApplicable(Matchers.any(BigDecimal.class))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(Matchers.any(BigDecimal.class))).thenReturn(Boolean.TRUE);
 
     final List<BigDecimal> expected1 = BIG_DECIMAL_LIST;
     final List<BigDecimal> result1 = numberIterableToArrayListFilter.filter(condition, expected1);
@@ -820,7 +820,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(Matchers.any(BigDecimal.class))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(Matchers.any(BigDecimal.class))).thenReturn(Boolean.FALSE);
     final List<BigDecimal> result2 = numberIterableToArrayListFilter.filter(condition, expected1);
     final List<BigDecimal> expected2 = asList();
     assertEquals(expected2.size(), result2.size());
@@ -832,19 +832,19 @@ public class NumbersTest
               "2.3"), new BigDecimal("5.5"), new BigDecimal("6.8"), new BigDecimal("10.99"), new BigDecimal("100"));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
 
     final List<BigDecimal> result3 = numberIterableToArrayListFilter.filter(condition, bigDecimalList);
     final List<BigDecimal> expected3 = bigDecimalList.subList(0, 6);
@@ -853,19 +853,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
 
     final List<BigDecimal> result4 = numberIterableToArrayListFilter.filter(condition, bigDecimalList);
     final List<BigDecimal> expected4 = bigDecimalList.subList(6, 13);
@@ -917,7 +917,7 @@ public class NumbersTest
       Numbers.byteIterableToHashSetFilter();
 
     final Condition1<Byte> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyByte())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyByte())).thenReturn(Boolean.TRUE);
 
     final Set<Byte> expected1 = new HashSet<Byte>(BYTE_LIST);
 
@@ -926,7 +926,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyByte())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyByte())).thenReturn(Boolean.FALSE);
     final Set<Byte> result2 = numberIterableToHashSetFilter.filter(condition, expected1);
     final Set<Byte> expected2 = new HashSet<Byte>();
     assertEquals(expected2.size(), result2.size());
@@ -939,19 +939,19 @@ public class NumbersTest
           Byte.valueOf((byte) 100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Byte> result3 = numberIterableToHashSetFilter.filter(condition, byteList);
     final Set<Byte> expected3 = new HashSet<Byte>(byteList.subList(0, 6));
@@ -960,19 +960,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Byte> result4 = numberIterableToHashSetFilter.filter(condition, byteList);
     final Set<Byte> expected4 = new HashSet<Byte>(byteList.subList(6, 13));
@@ -988,7 +988,7 @@ public class NumbersTest
       Numbers.shortIterableToHashSetFilter();
 
     final Condition1<Short> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyShort())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyShort())).thenReturn(Boolean.TRUE);
 
     final Set<Short> expected1 = new HashSet<Short>(SHORT_LIST);
 
@@ -997,7 +997,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyShort())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyShort())).thenReturn(Boolean.FALSE);
     final Set<Short> result2 = numberIterableToHashSetFilter.filter(condition, expected1);
     final Set<Short> expected2 = new HashSet<Short>();
     assertEquals(expected2.size(), result2.size());
@@ -1010,19 +1010,19 @@ public class NumbersTest
           Short.valueOf((short) 10), Short.valueOf((short) 100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Short> result3 = numberIterableToHashSetFilter.filter(condition, shortList);
     final Set<Short> expected3 = new HashSet<Short>(shortList.subList(0, 6));
@@ -1031,19 +1031,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Short> result4 = numberIterableToHashSetFilter.filter(condition, shortList);
     final Set<Short> expected4 = new HashSet<Short>(shortList.subList(6, 13));
@@ -1059,7 +1059,7 @@ public class NumbersTest
       Numbers.integerIterableToHashSetFilter();
 
     final Condition1<Integer> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyInt())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyInt())).thenReturn(Boolean.TRUE);
 
     final Set<Integer> expected1 = new HashSet<Integer>(INTEGER_LIST);
     final Set<Integer> result1 = numberIterableToHashSetFilter.filter(condition, expected1);
@@ -1067,7 +1067,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyInt())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyInt())).thenReturn(Boolean.FALSE);
     final Set<Integer> result2 = numberIterableToHashSetFilter.filter(condition, expected1);
     final Set<Integer> expected2 = new HashSet<Integer>();
     assertEquals(expected2.size(), result2.size());
@@ -1079,19 +1079,19 @@ public class NumbersTest
           Integer.valueOf(6), Integer.valueOf(10), Integer.valueOf(100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Integer> result3 = numberIterableToHashSetFilter.filter(condition, integerList);
     final Set<Integer> expected3 = new HashSet<Integer>(integerList.subList(0, 6));
@@ -1100,19 +1100,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Integer> result4 = numberIterableToHashSetFilter.filter(condition, integerList);
     final Set<Integer> expected4 = new HashSet<Integer>(integerList.subList(6, 13));
@@ -1128,7 +1128,7 @@ public class NumbersTest
       Numbers.longIterableToHashSetFilter();
 
     final Condition1<Long> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyLong())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyLong())).thenReturn(Boolean.TRUE);
 
     final Set<Long> expected1 = new HashSet<Long>(LONG_LIST);
     final Set<Long> result1 = numberIterableToHashSetFilter.filter(condition, expected1);
@@ -1136,7 +1136,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyLong())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyLong())).thenReturn(Boolean.FALSE);
     final Set<Long> result2 = numberIterableToHashSetFilter.filter(condition, expected1);
     final Set<Long> expected2 = new HashSet<Long>();
     assertEquals(expected2.size(), result2.size());
@@ -1148,19 +1148,19 @@ public class NumbersTest
           Long.valueOf(10), Long.valueOf(100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Long> result3 = numberIterableToHashSetFilter.filter(condition, longList);
     final Set<Long> expected3 = new HashSet<Long>(longList.subList(0, 6));
@@ -1169,19 +1169,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Long> result4 = numberIterableToHashSetFilter.filter(condition, longList);
     final Set<Long> expected4 = new HashSet<Long>(longList.subList(6, 13));
@@ -1197,7 +1197,7 @@ public class NumbersTest
       Numbers.floatIterableToHashSetFilter();
 
     final Condition1<Float> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyFloat())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyFloat())).thenReturn(Boolean.TRUE);
 
     final Set<Float> expected1 = new HashSet<Float>(FLOAT_LIST);
     final Set<Float> result1 = numberIterableToHashSetFilter.filter(condition, expected1);
@@ -1205,7 +1205,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyFloat())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyFloat())).thenReturn(Boolean.FALSE);
     final Set<Float> result2 = numberIterableToHashSetFilter.filter(condition, expected1);
     final Set<Float> expected2 = new HashSet<Float>();
     assertEquals(expected2.size(), result2.size());
@@ -1215,19 +1215,19 @@ public class NumbersTest
       asList(-10F, -9.5F, -5.3F, -7.7F, -3.9F, -1.0F, 0F, 1.0F, 2.3F, 5.5F, 6.8F, 10.99F, 100F);
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Float> result3 = numberIterableToHashSetFilter.filter(condition, floatList);
     final Set<Float> expected3 = new HashSet<Float>(floatList.subList(0, 6));
@@ -1236,19 +1236,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Float> result4 = numberIterableToHashSetFilter.filter(condition, floatList);
     final Set<Float> expected4 = new HashSet<Float>(floatList.subList(6, 13));
@@ -1264,7 +1264,7 @@ public class NumbersTest
       Numbers.doubleIterableToHashSetFilter();
 
     final Condition1<Double> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyDouble())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyDouble())).thenReturn(Boolean.TRUE);
 
     final Set<Double> expected1 = new HashSet<Double>(DOUBLE_LIST);
     final Set<Double> result1 = numberIterableToHashSetFilter.filter(condition, expected1);
@@ -1272,7 +1272,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(anyDouble())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyDouble())).thenReturn(Boolean.FALSE);
     final Set<Double> result2 = numberIterableToHashSetFilter.filter(condition, expected1);
     final Set<Double> expected2 = new HashSet<Double>();
     assertEquals(expected2.size(), result2.size());
@@ -1282,19 +1282,19 @@ public class NumbersTest
       asList(-10D, -9.5D, -5.3D, -7.7D, -3.9D, -1.0D, 0D, 1.0D, 2.3D, 5.5D, 6.8D, 10.99D, 100D);
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Double> result3 = numberIterableToHashSetFilter.filter(condition, doubleList);
     final Set<Double> expected3 = new HashSet<Double>(doubleList.subList(0, 6));
@@ -1303,19 +1303,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Double> result4 = numberIterableToHashSetFilter.filter(condition, doubleList);
     final Set<Double> expected4 = new HashSet<Double>(doubleList.subList(6, 13));
@@ -1331,7 +1331,7 @@ public class NumbersTest
       Numbers.bigIntegerIterableToHashSetFilter();
 
     final Condition1<BigInteger> condition = mock(Condition1.class);
-    when(condition.isApplicable(Matchers.any(BigInteger.class))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(Matchers.any(BigInteger.class))).thenReturn(Boolean.TRUE);
 
     final Set<BigInteger> expected1 = new HashSet<BigInteger>(BIG_INTEGER_LIST);
     final Set<BigInteger> result1 = numberIterableToHashSetFilter.filter(condition, expected1);
@@ -1339,7 +1339,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(Matchers.any(BigInteger.class))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(Matchers.any(BigInteger.class))).thenReturn(Boolean.FALSE);
     final Set<BigInteger> result2 = numberIterableToHashSetFilter.filter(condition, expected1);
     final Set<BigInteger> expected2 = new HashSet<BigInteger>();
     assertEquals(expected2.size(), result2.size());
@@ -1352,19 +1352,19 @@ public class NumbersTest
           BigInteger.valueOf(100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<BigInteger> result3 = numberIterableToHashSetFilter.filter(condition, bigIntegerList);
     final Set<BigInteger> expected3 = new HashSet<BigInteger>(bigIntegerList.subList(0, 6));
@@ -1373,19 +1373,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<BigInteger> result4 = numberIterableToHashSetFilter.filter(condition, bigIntegerList);
     final Set<BigInteger> expected4 = new HashSet<BigInteger>(bigIntegerList.subList(6, 13));
@@ -1401,7 +1401,7 @@ public class NumbersTest
       Numbers.bigDecimalIterableToHashSetFilter();
 
     final Condition1<BigDecimal> condition = mock(Condition1.class);
-    when(condition.isApplicable(Matchers.any(BigDecimal.class))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(Matchers.any(BigDecimal.class))).thenReturn(Boolean.TRUE);
 
     final Set<BigDecimal> expected1 = new HashSet<BigDecimal>(BIG_DECIMAL_LIST);
     final Set<BigDecimal> result1 = numberIterableToHashSetFilter.filter(condition, expected1);
@@ -1409,7 +1409,7 @@ public class NumbersTest
     assertThat(result1, is(equalTo(expected1)));
 
     reset(condition);
-    when(condition.isApplicable(Matchers.any(BigDecimal.class))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(Matchers.any(BigDecimal.class))).thenReturn(Boolean.FALSE);
     final Set<BigDecimal> result2 = numberIterableToHashSetFilter.filter(condition, expected1);
     final Set<BigDecimal> expected2 = new HashSet<BigDecimal>();
     assertEquals(expected2.size(), result2.size());
@@ -1421,19 +1421,19 @@ public class NumbersTest
               "2.3"), new BigDecimal("5.5"), new BigDecimal("6.8"), new BigDecimal("10.99"), new BigDecimal("100"));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<BigDecimal> result3 = numberIterableToHashSetFilter.filter(condition, bigDecimalList);
     final Set<BigDecimal> expected3 = new HashSet<BigDecimal>(bigDecimalList.subList(0, 6));
@@ -1442,19 +1442,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<BigDecimal> result4 = numberIterableToHashSetFilter.filter(condition, bigDecimalList);
     final Set<BigDecimal> expected4 = new HashSet<BigDecimal>(bigDecimalList.subList(6, 13));
@@ -1506,7 +1506,7 @@ public class NumbersTest
       Numbers.byteIterableToLinkedHashSetFilter();
 
     final Condition1<Byte> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyByte())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyByte())).thenReturn(Boolean.TRUE);
 
     final Set<Byte> expected1 = new LinkedHashSet<Byte>(BYTE_LIST);
 
@@ -1520,7 +1520,7 @@ public class NumbersTest
     }
 
     reset(condition);
-    when(condition.isApplicable(anyByte())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyByte())).thenReturn(Boolean.FALSE);
     final Set<Byte> result2 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
     final Set<Byte> expected2 = new LinkedHashSet<Byte>();
     assertEquals(expected2.size(), result2.size());
@@ -1538,19 +1538,19 @@ public class NumbersTest
           Byte.valueOf((byte) 100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Byte> result3 = numberIterableToLinkedHashSetFilter.filter(condition, byteList);
     final Set<Byte> expected3 = new LinkedHashSet<Byte>(byteList.subList(0, 6));
@@ -1564,19 +1564,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(byteList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Byte> result4 = numberIterableToLinkedHashSetFilter.filter(condition, byteList);
     final Set<Byte> expected4 = new LinkedHashSet<Byte>(byteList.subList(6, 13));
@@ -1597,7 +1597,7 @@ public class NumbersTest
       Numbers.shortIterableToLinkedHashSetFilter();
 
     final Condition1<Short> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyShort())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyShort())).thenReturn(Boolean.TRUE);
 
     final Set<Short> expected1 = new LinkedHashSet<Short>(SHORT_LIST);
 
@@ -1611,7 +1611,7 @@ public class NumbersTest
     }
 
     reset(condition);
-    when(condition.isApplicable(anyShort())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyShort())).thenReturn(Boolean.FALSE);
     final Set<Short> result2 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
     final Set<Short> expected2 = new LinkedHashSet<Short>();
     assertEquals(expected2.size(), result2.size());
@@ -1629,19 +1629,19 @@ public class NumbersTest
           Short.valueOf((short) 10), Short.valueOf((short) 100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Short> result3 = numberIterableToLinkedHashSetFilter.filter(condition, shortList);
     final Set<Short> expected3 = new LinkedHashSet<Short>(shortList.subList(0, 6));
@@ -1655,19 +1655,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(shortList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Short> result4 = numberIterableToLinkedHashSetFilter.filter(condition, shortList);
     final Set<Short> expected4 = new LinkedHashSet<Short>(shortList.subList(6, 13));
@@ -1688,7 +1688,7 @@ public class NumbersTest
       Numbers.integerIterableToLinkedHashSetFilter();
 
     final Condition1<Integer> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyInt())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyInt())).thenReturn(Boolean.TRUE);
 
     final Set<Integer> expected1 = new LinkedHashSet<Integer>(INTEGER_LIST);
     final Set<Integer> result1 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
@@ -1701,7 +1701,7 @@ public class NumbersTest
     }
 
     reset(condition);
-    when(condition.isApplicable(anyInt())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyInt())).thenReturn(Boolean.FALSE);
     final Set<Integer> result2 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
     final Set<Integer> expected2 = new LinkedHashSet<Integer>();
     assertEquals(expected2.size(), result2.size());
@@ -1718,19 +1718,19 @@ public class NumbersTest
           Integer.valueOf(6), Integer.valueOf(10), Integer.valueOf(100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Integer> result3 = numberIterableToLinkedHashSetFilter.filter(condition, integerList);
     final Set<Integer> expected3 = new LinkedHashSet<Integer>(integerList.subList(0, 6));
@@ -1744,19 +1744,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(integerList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Integer> result4 = numberIterableToLinkedHashSetFilter.filter(condition, integerList);
     final Set<Integer> expected4 = new LinkedHashSet<Integer>(integerList.subList(6, 13));
@@ -1777,7 +1777,7 @@ public class NumbersTest
       Numbers.longIterableToLinkedHashSetFilter();
 
     final Condition1<Long> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyLong())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyLong())).thenReturn(Boolean.TRUE);
 
     final Set<Long> expected1 = new LinkedHashSet<Long>(LONG_LIST);
     final Set<Long> result1 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
@@ -1790,7 +1790,7 @@ public class NumbersTest
     }
 
     reset(condition);
-    when(condition.isApplicable(anyLong())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyLong())).thenReturn(Boolean.FALSE);
     final Set<Long> result2 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
     final Set<Long> expected2 = new LinkedHashSet<Long>();
     assertEquals(expected2.size(), result2.size());
@@ -1807,19 +1807,19 @@ public class NumbersTest
           Long.valueOf(10), Long.valueOf(100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Long> result3 = numberIterableToLinkedHashSetFilter.filter(condition, longList);
     final Set<Long> expected3 = new LinkedHashSet<Long>(longList.subList(0, 6));
@@ -1833,19 +1833,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(longList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Long> result4 = numberIterableToLinkedHashSetFilter.filter(condition, longList);
     final Set<Long> expected4 = new LinkedHashSet<Long>(longList.subList(6, 13));
@@ -1866,7 +1866,7 @@ public class NumbersTest
       Numbers.floatIterableToLinkedHashSetFilter();
 
     final Condition1<Float> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyFloat())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyFloat())).thenReturn(Boolean.TRUE);
 
     final Set<Float> expected1 = new LinkedHashSet<Float>(FLOAT_LIST);
     final Set<Float> result1 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
@@ -1879,7 +1879,7 @@ public class NumbersTest
     }
 
     reset(condition);
-    when(condition.isApplicable(anyFloat())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyFloat())).thenReturn(Boolean.FALSE);
     final Set<Float> result2 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
     final Set<Float> expected2 = new LinkedHashSet<Float>();
     assertEquals(expected2.size(), result2.size());
@@ -1894,19 +1894,19 @@ public class NumbersTest
       asList(-10F, -9.5F, -5.3F, -7.7F, -3.9F, -1.0F, 0F, 1.0F, 2.3F, 5.5F, 6.8F, 10.99F, 100F);
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Float> result3 = numberIterableToLinkedHashSetFilter.filter(condition, floatList);
     final Set<Float> expected3 = new LinkedHashSet<Float>(floatList.subList(0, 6));
@@ -1920,19 +1920,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(floatList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Float> result4 = numberIterableToLinkedHashSetFilter.filter(condition, floatList);
     final Set<Float> expected4 = new LinkedHashSet<Float>(floatList.subList(6, 13));
@@ -1953,7 +1953,7 @@ public class NumbersTest
       Numbers.doubleIterableToLinkedHashSetFilter();
 
     final Condition1<Double> condition = mock(Condition1.class);
-    when(condition.isApplicable(anyDouble())).thenReturn(Boolean.TRUE);
+    when(condition.isMet(anyDouble())).thenReturn(Boolean.TRUE);
 
     final Set<Double> expected1 = new LinkedHashSet<Double>(DOUBLE_LIST);
     final Set<Double> result1 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
@@ -1966,7 +1966,7 @@ public class NumbersTest
     }
 
     reset(condition);
-    when(condition.isApplicable(anyDouble())).thenReturn(Boolean.FALSE);
+    when(condition.isMet(anyDouble())).thenReturn(Boolean.FALSE);
     final Set<Double> result2 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
     final Set<Double> expected2 = new LinkedHashSet<Double>();
     assertEquals(expected2.size(), result2.size());
@@ -1981,19 +1981,19 @@ public class NumbersTest
       asList(-10D, -9.5D, -5.3D, -7.7D, -3.9D, -1.0D, 0D, 1.0D, 2.3D, 5.5D, 6.8D, 10.99D, 100D);
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<Double> result3 = numberIterableToLinkedHashSetFilter.filter(condition, doubleList);
     final Set<Double> expected3 = new LinkedHashSet<Double>(doubleList.subList(0, 6));
@@ -2007,19 +2007,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(doubleList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<Double> result4 = numberIterableToLinkedHashSetFilter.filter(condition, doubleList);
     final Set<Double> expected4 = new LinkedHashSet<Double>(doubleList.subList(6, 13));
@@ -2040,7 +2040,7 @@ public class NumbersTest
       Numbers.bigIntegerIterableToLinkedHashSetFilter();
 
     final Condition1<BigInteger> condition = mock(Condition1.class);
-    when(condition.isApplicable(Matchers.any(BigInteger.class))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(Matchers.any(BigInteger.class))).thenReturn(Boolean.TRUE);
 
     final Set<BigInteger> expected1 = new LinkedHashSet<BigInteger>(BIG_INTEGER_LIST);
     final Set<BigInteger> result1 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
@@ -2053,7 +2053,7 @@ public class NumbersTest
     }
 
     reset(condition);
-    when(condition.isApplicable(Matchers.any(BigInteger.class))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(Matchers.any(BigInteger.class))).thenReturn(Boolean.FALSE);
     final Set<BigInteger> result2 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
     final Set<BigInteger> expected2 = new LinkedHashSet<BigInteger>();
     assertEquals(expected2.size(), result2.size());
@@ -2071,19 +2071,19 @@ public class NumbersTest
           BigInteger.valueOf(100));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<BigInteger> result3 = numberIterableToLinkedHashSetFilter.filter(condition, bigIntegerList);
     final Set<BigInteger> expected3 = new LinkedHashSet<BigInteger>(bigIntegerList.subList(0, 6));
@@ -2097,19 +2097,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigIntegerList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<BigInteger> result4 = numberIterableToLinkedHashSetFilter.filter(condition, bigIntegerList);
     final Set<BigInteger> expected4 = new LinkedHashSet<BigInteger>(bigIntegerList.subList(6, 13));
@@ -2130,7 +2130,7 @@ public class NumbersTest
       Numbers.bigDecimalIterableToLinkedHashSetFilter();
 
     final Condition1<BigDecimal> condition = mock(Condition1.class);
-    when(condition.isApplicable(Matchers.any(BigDecimal.class))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(Matchers.any(BigDecimal.class))).thenReturn(Boolean.TRUE);
 
     final Set<BigDecimal> expected1 = new LinkedHashSet<BigDecimal>(BIG_DECIMAL_LIST);
     final Set<BigDecimal> result1 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
@@ -2143,7 +2143,7 @@ public class NumbersTest
     }
 
     reset(condition);
-    when(condition.isApplicable(Matchers.any(BigDecimal.class))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(Matchers.any(BigDecimal.class))).thenReturn(Boolean.FALSE);
     final Set<BigDecimal> result2 = numberIterableToLinkedHashSetFilter.filter(condition, expected1);
     final Set<BigDecimal> expected2 = new LinkedHashSet<BigDecimal>();
     assertEquals(expected2.size(), result2.size());
@@ -2160,19 +2160,19 @@ public class NumbersTest
               "2.3"), new BigDecimal("5.5"), new BigDecimal("6.8"), new BigDecimal("10.99"), new BigDecimal("100"));
     reset(condition);
     int i = 0;
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
 
     final Set<BigDecimal> result3 = numberIterableToLinkedHashSetFilter.filter(condition, bigDecimalList);
     final Set<BigDecimal> expected3 = new LinkedHashSet<BigDecimal>(bigDecimalList.subList(0, 6));
@@ -2186,19 +2186,19 @@ public class NumbersTest
 
     reset(condition);
     i = 0;
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
-    when(condition.isApplicable(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.FALSE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
+    when(condition.isMet(bigDecimalList.get(i++))).thenReturn(Boolean.TRUE);
 
     final Set<BigDecimal> result4 = numberIterableToLinkedHashSetFilter.filter(condition, bigDecimalList);
     final Set<BigDecimal> expected4 = new LinkedHashSet<BigDecimal>(bigDecimalList.subList(6, 13));
@@ -3005,7 +3005,7 @@ public class NumbersTest
 
     final Condition1<Byte> negativeNumber = new Condition1<Byte>() {
       @Override
-      public boolean isApplicable(Byte input)
+      public boolean isMet(Byte input)
       {
         return input.byteValue() < 0;
       }
@@ -3071,7 +3071,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Byte> positiveNumber = new Condition1<Byte>() {
       @Override
-      public boolean isApplicable(Byte input)
+      public boolean isMet(Byte input)
       {
         return input.byteValue() > 0;
       }
@@ -3148,7 +3148,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Short> negativeNumber = new Condition1<Short>() {
       @Override
-      public boolean isApplicable(Short input)
+      public boolean isMet(Short input)
       {
         return input.shortValue() < 0;
       }
@@ -3214,7 +3214,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Short> positiveNumber = new Condition1<Short>() {
       @Override
-      public boolean isApplicable(Short input)
+      public boolean isMet(Short input)
       {
         return input.shortValue() > 0;
       }
@@ -3291,7 +3291,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Integer> negativeNumber = new Condition1<Integer>() {
       @Override
-      public boolean isApplicable(Integer input)
+      public boolean isMet(Integer input)
       {
         return input.intValue() < 0;
       }
@@ -3452,7 +3452,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Integer> positiveNumber = new Condition1<Integer>() {
       @Override
-      public boolean isApplicable(Integer input)
+      public boolean isMet(Integer input)
       {
         return input.intValue() > 0;
       }
@@ -3624,7 +3624,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Long> negativeNumber = new Condition1<Long>() {
       @Override
-      public boolean isApplicable(Long input)
+      public boolean isMet(Long input)
       {
         return input.longValue() < 0;
       }
@@ -3785,7 +3785,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Long> positiveNumber = new Condition1<Long>() {
       @Override
-      public boolean isApplicable(Long input)
+      public boolean isMet(Long input)
       {
         return input.longValue() > 0;
       }
@@ -3965,7 +3965,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Float> negativeNumber = new Condition1<Float>() {
       @Override
-      public boolean isApplicable(Float input)
+      public boolean isMet(Float input)
       {
         return input.floatValue() < 0;
       }
@@ -4153,7 +4153,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Float> positiveNumber = new Condition1<Float>() {
       @Override
-      public boolean isApplicable(Float input)
+      public boolean isMet(Float input)
       {
         return input.floatValue() > 0;
       }
@@ -4358,7 +4358,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Double> negativeNumber = new Condition1<Double>() {
       @Override
-      public boolean isApplicable(Double input)
+      public boolean isMet(Double input)
       {
         return input.doubleValue() < 0;
       }
@@ -4546,7 +4546,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Double> positiveNumber = new Condition1<Double>() {
       @Override
-      public boolean isApplicable(Double input)
+      public boolean isMet(Double input)
       {
         return input.doubleValue() > 0;
       }
@@ -4745,7 +4745,7 @@ public class NumbersTest
     /* negative */
     final Condition1<BigInteger> negativeNumber = new Condition1<BigInteger>() {
       @Override
-      public boolean isApplicable(BigInteger input)
+      public boolean isMet(BigInteger input)
       {
         return 0 > input.compareTo(BigInteger.ZERO);
       }
@@ -4945,7 +4945,7 @@ public class NumbersTest
     /* positive */
     final Condition1<BigInteger> positiveNumber = new Condition1<BigInteger>() {
       @Override
-      public boolean isApplicable(BigInteger input)
+      public boolean isMet(BigInteger input)
       {
         return 0 < input.compareTo(BigInteger.ZERO);
       }
@@ -5156,7 +5156,7 @@ public class NumbersTest
     /* negative */
     final Condition1<BigDecimal> negativeNumber = new Condition1<BigDecimal>() {
       @Override
-      public boolean isApplicable(BigDecimal input)
+      public boolean isMet(BigDecimal input)
       {
         return 0 > input.compareTo(BigDecimal.ZERO);
       }
@@ -5356,7 +5356,7 @@ public class NumbersTest
     /* positive */
     final Condition1<BigDecimal> positiveNumber = new Condition1<BigDecimal>() {
       @Override
-      public boolean isApplicable(BigDecimal input)
+      public boolean isMet(BigDecimal input)
       {
         return 0 < input.compareTo(BigDecimal.ZERO);
       }
@@ -5594,7 +5594,7 @@ public class NumbersTest
 
     final Condition1<Byte> negativeNumber = new Condition1<Byte>() {
       @Override
-      public boolean isApplicable(Byte input)
+      public boolean isMet(Byte input)
       {
         return input.byteValue() < 0;
       }
@@ -5660,7 +5660,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Byte> positiveNumber = new Condition1<Byte>() {
       @Override
-      public boolean isApplicable(Byte input)
+      public boolean isMet(Byte input)
       {
         return input.byteValue() > 0;
       }
@@ -5737,7 +5737,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Short> negativeNumber = new Condition1<Short>() {
       @Override
-      public boolean isApplicable(Short input)
+      public boolean isMet(Short input)
       {
         return input.shortValue() < 0;
       }
@@ -5803,7 +5803,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Short> positiveNumber = new Condition1<Short>() {
       @Override
-      public boolean isApplicable(Short input)
+      public boolean isMet(Short input)
       {
         return input.shortValue() > 0;
       }
@@ -5880,7 +5880,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Integer> negativeNumber = new Condition1<Integer>() {
       @Override
-      public boolean isApplicable(Integer input)
+      public boolean isMet(Integer input)
       {
         return input.intValue() < 0;
       }
@@ -6041,7 +6041,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Integer> positiveNumber = new Condition1<Integer>() {
       @Override
-      public boolean isApplicable(Integer input)
+      public boolean isMet(Integer input)
       {
         return input.intValue() > 0;
       }
@@ -6214,7 +6214,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Long> negativeNumber = new Condition1<Long>() {
       @Override
-      public boolean isApplicable(Long input)
+      public boolean isMet(Long input)
       {
         return input.longValue() < 0;
       }
@@ -6375,7 +6375,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Long> positiveNumber = new Condition1<Long>() {
       @Override
-      public boolean isApplicable(Long input)
+      public boolean isMet(Long input)
       {
         return input.longValue() > 0;
       }
@@ -6547,7 +6547,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Float> negativeNumber = new Condition1<Float>() {
       @Override
-      public boolean isApplicable(Float input)
+      public boolean isMet(Float input)
       {
         return input.floatValue() < 0;
       }
@@ -6735,7 +6735,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Float> positiveNumber = new Condition1<Float>() {
       @Override
-      public boolean isApplicable(Float input)
+      public boolean isMet(Float input)
       {
         return input.floatValue() > 0;
       }
@@ -6934,7 +6934,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Double> negativeNumber = new Condition1<Double>() {
       @Override
-      public boolean isApplicable(Double input)
+      public boolean isMet(Double input)
       {
         return input.doubleValue() < 0;
       }
@@ -7122,7 +7122,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Double> positiveNumber = new Condition1<Double>() {
       @Override
-      public boolean isApplicable(Double input)
+      public boolean isMet(Double input)
       {
         return input.doubleValue() > 0;
       }
@@ -7320,7 +7320,7 @@ public class NumbersTest
     /* negative */
     final Condition1<BigInteger> negativeNumber = new Condition1<BigInteger>() {
       @Override
-      public boolean isApplicable(BigInteger input)
+      public boolean isMet(BigInteger input)
       {
         return 0 > input.compareTo(BigInteger.ZERO);
       }
@@ -7520,7 +7520,7 @@ public class NumbersTest
     /* positive */
     final Condition1<BigInteger> positiveNumber = new Condition1<BigInteger>() {
       @Override
-      public boolean isApplicable(BigInteger input)
+      public boolean isMet(BigInteger input)
       {
         return 0 < input.compareTo(BigInteger.ZERO);
       }
@@ -7730,7 +7730,7 @@ public class NumbersTest
     /* negative */
     final Condition1<BigDecimal> negativeNumber = new Condition1<BigDecimal>() {
       @Override
-      public boolean isApplicable(BigDecimal input)
+      public boolean isMet(BigDecimal input)
       {
         return 0 > input.compareTo(BigDecimal.ZERO);
       }
@@ -7930,7 +7930,7 @@ public class NumbersTest
     /* positive */
     final Condition1<BigDecimal> positiveNumber = new Condition1<BigDecimal>() {
       @Override
-      public boolean isApplicable(BigDecimal input)
+      public boolean isMet(BigDecimal input)
       {
         return 0 < input.compareTo(BigDecimal.ZERO);
       }
@@ -8175,7 +8175,7 @@ public class NumbersTest
 
     final Condition1<Byte> negativeNumber = new Condition1<Byte>() {
       @Override
-      public boolean isApplicable(Byte input)
+      public boolean isMet(Byte input)
       {
         return input.byteValue() < 0;
       }
@@ -8241,7 +8241,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Byte> positiveNumber = new Condition1<Byte>() {
       @Override
-      public boolean isApplicable(Byte input)
+      public boolean isMet(Byte input)
       {
         return input.byteValue() > 0;
       }
@@ -8318,7 +8318,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Short> negativeNumber = new Condition1<Short>() {
       @Override
-      public boolean isApplicable(Short input)
+      public boolean isMet(Short input)
       {
         return input.shortValue() < 0;
       }
@@ -8384,7 +8384,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Short> positiveNumber = new Condition1<Short>() {
       @Override
-      public boolean isApplicable(Short input)
+      public boolean isMet(Short input)
       {
         return input.shortValue() > 0;
       }
@@ -8462,7 +8462,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Integer> negativeNumber = new Condition1<Integer>() {
       @Override
-      public boolean isApplicable(Integer input)
+      public boolean isMet(Integer input)
       {
         return input.intValue() < 0;
       }
@@ -8623,7 +8623,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Integer> positiveNumber = new Condition1<Integer>() {
       @Override
-      public boolean isApplicable(Integer input)
+      public boolean isMet(Integer input)
       {
         return input.intValue() > 0;
       }
@@ -8795,7 +8795,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Long> negativeNumber = new Condition1<Long>() {
       @Override
-      public boolean isApplicable(Long input)
+      public boolean isMet(Long input)
       {
         return input.longValue() < 0;
       }
@@ -8956,7 +8956,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Long> positiveNumber = new Condition1<Long>() {
       @Override
-      public boolean isApplicable(Long input)
+      public boolean isMet(Long input)
       {
         return input.longValue() > 0;
       }
@@ -9128,7 +9128,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Float> negativeNumber = new Condition1<Float>() {
       @Override
-      public boolean isApplicable(Float input)
+      public boolean isMet(Float input)
       {
         return input.floatValue() < 0;
       }
@@ -9316,7 +9316,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Float> positiveNumber = new Condition1<Float>() {
       @Override
-      public boolean isApplicable(Float input)
+      public boolean isMet(Float input)
       {
         return input.floatValue() > 0;
       }
@@ -9515,7 +9515,7 @@ public class NumbersTest
     /* negative */
     final Condition1<Double> negativeNumber = new Condition1<Double>() {
       @Override
-      public boolean isApplicable(Double input)
+      public boolean isMet(Double input)
       {
         return input.doubleValue() < 0;
       }
@@ -9703,7 +9703,7 @@ public class NumbersTest
     /* positive */
     final Condition1<Double> positiveNumber = new Condition1<Double>() {
       @Override
-      public boolean isApplicable(Double input)
+      public boolean isMet(Double input)
       {
         return input.doubleValue() > 0;
       }
@@ -9902,7 +9902,7 @@ public class NumbersTest
     /* negative */
     final Condition1<BigInteger> negativeNumber = new Condition1<BigInteger>() {
       @Override
-      public boolean isApplicable(BigInteger input)
+      public boolean isMet(BigInteger input)
       {
         return 0 > input.compareTo(BigInteger.ZERO);
       }
@@ -10102,7 +10102,7 @@ public class NumbersTest
     /* positive */
     final Condition1<BigInteger> positiveNumber = new Condition1<BigInteger>() {
       @Override
-      public boolean isApplicable(BigInteger input)
+      public boolean isMet(BigInteger input)
       {
         return 0 < input.compareTo(BigInteger.ZERO);
       }
@@ -10313,7 +10313,7 @@ public class NumbersTest
     /* negative */
     final Condition1<BigDecimal> negativeNumber = new Condition1<BigDecimal>() {
       @Override
-      public boolean isApplicable(BigDecimal input)
+      public boolean isMet(BigDecimal input)
       {
         return 0 > input.compareTo(BigDecimal.ZERO);
       }
@@ -10513,7 +10513,7 @@ public class NumbersTest
     /* positive */
     final Condition1<BigDecimal> positiveNumber = new Condition1<BigDecimal>() {
       @Override
-      public boolean isApplicable(BigDecimal input)
+      public boolean isMet(BigDecimal input)
       {
         return 0 < input.compareTo(BigDecimal.ZERO);
       }

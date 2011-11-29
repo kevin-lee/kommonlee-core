@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 import org.elixirian.kommonlee.type.Condition1;
+import org.elixirian.kommonlee.type.filter.ArgsFilter;
 import org.elixirian.kommonlee.type.filter.Filter1;
 import org.elixirian.kommonlee.type.filter.VarargsFilter;
 
@@ -42,7 +43,7 @@ public final class Numbers
 
   private static final Condition1<Integer> ODD_INTEGER = new Condition1<Integer>() {
     @Override
-    public boolean isApplicable(final Integer input)
+    public boolean isMet(final Integer input)
     {
       return 0 != (input.intValue() & 1);
     }
@@ -55,7 +56,7 @@ public final class Numbers
 
   private static final Condition1<Integer> EVEN_INTEGER = new Condition1<Integer>() {
     @Override
-    public boolean isApplicable(final Integer input)
+    public boolean isMet(final Integer input)
     {
       return 0 == (input.intValue() & 1);
     }
@@ -68,7 +69,7 @@ public final class Numbers
 
   private static final Condition1<Long> ODD_LONG = new Condition1<Long>() {
     @Override
-    public boolean isApplicable(final Long input)
+    public boolean isMet(final Long input)
     {
       return 0 != (input.longValue() & 1);
     }
@@ -81,7 +82,7 @@ public final class Numbers
 
   private static final Condition1<Long> EVEN_LONG = new Condition1<Long>() {
     @Override
-    public boolean isApplicable(final Long input)
+    public boolean isMet(final Long input)
     {
       return 0 == (input.longValue() & 1);
     }
@@ -100,7 +101,7 @@ public final class Numbers
     {
       final C filteredCollection = newCollection();
       for (final T value : numbers)
-        if (condition.isApplicable(value))
+        if (condition.isMet(value))
           filteredCollection.add(value);
 
       return filteredCollection;
@@ -326,7 +327,7 @@ public final class Numbers
   }
 
   public static abstract class NumbersFilter<T extends Number, C extends Collection<T>> implements
-      VarargsFilter<T, Condition1<T>, C>
+      ArgsFilter<T, Condition1<T>, C>
   {
     protected abstract C newCollection();
 
@@ -334,7 +335,7 @@ public final class Numbers
     public C filter(final Condition1<T> condition, final T first)
     {
       final C filteredCollection = newCollection();
-      if (condition.isApplicable(first))
+      if (condition.isMet(first))
         filteredCollection.add(first);
       return filteredCollection;
     }
@@ -343,9 +344,9 @@ public final class Numbers
     public C filter(final Condition1<T> condition, final T first, final T second)
     {
       final C filteredCollection = newCollection();
-      if (condition.isApplicable(first))
+      if (condition.isMet(first))
         filteredCollection.add(first);
-      if (condition.isApplicable(second))
+      if (condition.isMet(second))
         filteredCollection.add(second);
       return filteredCollection;
     }
@@ -354,11 +355,11 @@ public final class Numbers
     public C filter(final Condition1<T> condition, final T first, final T second, final T third)
     {
       final C filteredCollection = newCollection();
-      if (condition.isApplicable(first))
+      if (condition.isMet(first))
         filteredCollection.add(first);
-      if (condition.isApplicable(second))
+      if (condition.isMet(second))
         filteredCollection.add(second);
-      if (condition.isApplicable(third))
+      if (condition.isMet(third))
         filteredCollection.add(third);
       return filteredCollection;
     }
@@ -367,13 +368,13 @@ public final class Numbers
     public C filter(final Condition1<T> condition, final T first, final T second, final T third, final T fourth)
     {
       final C filteredCollection = newCollection();
-      if (condition.isApplicable(first))
+      if (condition.isMet(first))
         filteredCollection.add(first);
-      if (condition.isApplicable(second))
+      if (condition.isMet(second))
         filteredCollection.add(second);
-      if (condition.isApplicable(third))
+      if (condition.isMet(third))
         filteredCollection.add(third);
-      if (condition.isApplicable(fourth))
+      if (condition.isMet(fourth))
         filteredCollection.add(fourth);
       return filteredCollection;
     }
@@ -383,15 +384,15 @@ public final class Numbers
         final T fifth)
     {
       final C filteredCollection = newCollection();
-      if (condition.isApplicable(first))
+      if (condition.isMet(first))
         filteredCollection.add(first);
-      if (condition.isApplicable(second))
+      if (condition.isMet(second))
         filteredCollection.add(second);
-      if (condition.isApplicable(third))
+      if (condition.isMet(third))
         filteredCollection.add(third);
-      if (condition.isApplicable(fourth))
+      if (condition.isMet(fourth))
         filteredCollection.add(fourth);
-      if (condition.isApplicable(fifth))
+      if (condition.isMet(fifth))
         filteredCollection.add(fifth);
       return filteredCollection;
     }
@@ -401,15 +402,15 @@ public final class Numbers
         final T fifth, final T... rest)
     {
       final C filteredCollection = newCollection();
-      if (condition.isApplicable(first))
+      if (condition.isMet(first))
         filteredCollection.add(first);
-      if (condition.isApplicable(second))
+      if (condition.isMet(second))
         filteredCollection.add(second);
-      if (condition.isApplicable(third))
+      if (condition.isMet(third))
         filteredCollection.add(third);
-      if (condition.isApplicable(fourth))
+      if (condition.isMet(fourth))
         filteredCollection.add(fourth);
-      if (condition.isApplicable(fifth))
+      if (condition.isMet(fifth))
         filteredCollection.add(fifth);
       filter0(filteredCollection, condition, rest);
       return filteredCollection;
@@ -419,7 +420,7 @@ public final class Numbers
     {
       for (final T value : numbers)
       {
-        if (condition.isApplicable(value))
+        if (condition.isMet(value))
           filteredCollection.add(value);
       }
     }
