@@ -3,13 +3,13 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>kommonlee-validation</artifactId>
-	<version>0.0.19-SNAPSHOT</version>
+	<version>0.0.20-SNAPSHOT</version>
 	<name>kommonlee-validation</name>
 	<url>http://elixirian.com</url>
 	<parent>
 		<artifactId>kommonlee-parent</artifactId>
 		<groupId>org.elixirian</groupId>
-		<version>0.0.5-SNAPSHOT</version>
+		<version>0.0.6-SNAPSHOT</version>
 	</parent>
 	<build>
 		<plugins>
