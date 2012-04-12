@@ -2,8 +2,6 @@ package org.elixirian.kommonlee.util;
 
 import static org.elixirian.kommonlee.util.Objects.*;
 
-import org.eclipse.jdt.annotation.Nullable;
-
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -14,11 +12,11 @@ import org.eclipse.jdt.annotation.Nullable;
  * </pre>
  * 
  * <pre>
- *     ___  _____  __________  ___________ _____  ____
- *    /   \/    / /      \   \/   /_    _//     \/   /
- *   /        /  /    ___/\      / /   / /          /
- *  /        \  /    ___/  \    /_/   /_/          /
- * /____/\____\/_______/    \__//______/___/\_____/
+ *     ___  _____                                _____
+ *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
+ *   /        / /  ___ \  \/  //___// //     / /    /   /  ___ \/  ___ \
+ *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
+ * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -94,7 +92,7 @@ public final class Strings
    *         0 == value.length()). false if the given String parameter contains a reference pointing to any String value
    *         having the length of which is greater than 0.
    */
-  public static boolean isEmpty(@Nullable final String value)
+  public static boolean isEmpty(final String value)
   {
     return (null == value || 0 == value.length());
   }
@@ -109,7 +107,7 @@ public final class Strings
    *         is greater than 0 (null != value && 0 < value.length()). false if it contains null or a String value with 0
    *         length.
    */
-  public static boolean isNotEmpty(@Nullable final String value)
+  public static boolean isNotEmpty(final String value)
   {
     return !isEmpty(value);
   }
@@ -151,7 +149,7 @@ public final class Strings
    * @exception IllegalArgumentException
    *              if the value of the times parameter is a negative value.
    */
-  public static String repeat(@Nullable final String value, final int times) throws IllegalArgumentException
+  public static String repeat(final String value, final int times) throws IllegalArgumentException
   {
     final String valueToUse = toStringOf(value);
     if (0 > times)

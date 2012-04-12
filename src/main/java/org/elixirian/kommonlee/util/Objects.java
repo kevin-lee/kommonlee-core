@@ -5,9 +5,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -18,11 +15,11 @@ import org.eclipse.jdt.annotation.Nullable;
  * </pre>
  * 
  * <pre>
- *     ___  _____  __________  ___________ _____  ____
- *    /   \/    / /      \   \/   /_    _//     \/   /
- *   /        /  /    ___/\      / /   / /          /
- *  /        \  /    ___/  \    /_/   /_/          /
- * /____/\____\/_______/    \__//______/___/\_____/
+ *     ___  _____                                _____
+ *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
+ *   /        / /  ___ \  \/  //___// //     / /    /   /  ___ \/  ___ \
+ *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
+ * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  * 
  * This class is a utility class to help use {@link Object} in the Java programming language. It was inspired by <a
@@ -1431,7 +1428,7 @@ public final class Objects
    * @see {@link NeoArrays#toStringOfArray(double[])}
    * @see {@link NeoArrays#toStringOfArray(Object[])}
    */
-  public static String toStringOf(@Nullable final Object object)
+  public static String toStringOf(final Object object)
   {
     /* @formatter:off */
     return toStringOfMaybeArrayObject(object);
@@ -1484,7 +1481,7 @@ public final class Objects
     return NeoArrays.toStringOfArray0((Object[]) unknownArray);
   }
 
-  static String toStringOf0(@Nullable final Object object, final String nullDefault)
+  static String toStringOf0(final Object object, final String nullDefault)
   {
     /* @formatter:off */
     return (null == object ?
@@ -1567,8 +1564,7 @@ public final class Objects
    * @throws NullPointerException
    *           if {@code obj} is {@code null}
    */
-  @NonNull
-  public static <T> T notNull(@Nullable final T object)
+  public static <T> T notNull(final T object)
   {
     if (null == object)
     {
@@ -1600,8 +1596,7 @@ public final class Objects
    * @throws NullPointerException
    *           if object is null
    */
-  @NonNull
-  public static <T> T notNull(@Nullable final T object, @NonNull final String message)
+  public static <T> T notNull(final T object, final String message)
   {
     if (null == object)
     {
@@ -1619,8 +1614,7 @@ public final class Objects
    *          the default object to be used if the given object variable contains <code>null</code> reference.
    * @return object if not {@code null}. Otherwise it's the given defaultValue.
    */
-  @NonNull
-  public static <T> T nullThenUse(@Nullable final T object, @NonNull final T defaultValue)
+  public static <T> T nullThenUse(final T object, final T defaultValue)
   {
     return null == object ? defaultValue : object;
   }
@@ -1632,7 +1626,7 @@ public final class Objects
    *          the given object to check its nullity.
    * @return true if the given object is null (the variable contains null reference). false otherwise.
    */
-  public static boolean isNull(@Nullable final Object object)
+  public static boolean isNull(final Object object)
   {
     return null == object;
   }
@@ -1645,7 +1639,7 @@ public final class Objects
    * @return true if the given object is not null (the variable contains some object reference). false if the object is
    *         null (the variable contains null reference).
    */
-  public static boolean isNotNull(@Nullable final Object object)
+  public static boolean isNotNull(final Object object)
   {
     return null != object;
   }
@@ -1659,7 +1653,7 @@ public final class Objects
    *          the other object to check if it is identical to the object1.
    * @return true if both objects are identical (object1 == object2). false otherwise.
    */
-  public static boolean identical(@Nullable final Object object1, @Nullable final Object object2)
+  public static boolean identical(final Object object1, final Object object2)
   {
     return object1 == object2;
   }
@@ -1673,7 +1667,7 @@ public final class Objects
    *          the other object to check if it is not identical to the object1.
    * @return true if both objects are not identical (object1 != object2). false otherwise.
    */
-  public static boolean notIdentical(@Nullable final Object object1, @Nullable final Object object2)
+  public static boolean notIdentical(final Object object1, final Object object2)
   {
     return object1 != object2;
   }
@@ -1691,7 +1685,7 @@ public final class Objects
    * @return T type object casted from the object if it is an instance of the type. null if it is not instance of the
    *         type.
    */
-  public static <T> T castIfInstanceOf(@NonNull final Class<T> type, @Nullable final Object object)
+  public static <T> T castIfInstanceOf(final Class<T> type, final Object object)
   {
     return type.isInstance(object) ? type.cast(object) : null;
   }
@@ -1727,13 +1721,12 @@ public final class Objects
 
     private final IterableToAppendableGlue iterableToAppendableGlue;
 
-    private ToStringBuilder(@NonNull final Object object)
+    private ToStringBuilder(final Object object)
     {
       this(object, DEFAULT_FIELD_SEPARATOR, DEFAULT_NAME_VALUE_SEPARATOR);
     }
 
-    private ToStringBuilder(@NonNull final Object object, @NonNull final String fieldSeparator,
-        @NonNull final String nameValueSeparator)
+    private ToStringBuilder(final Object object, final String fieldSeparator, final String nameValueSeparator)
     {
       /* @formatter:off */
 			this.object                   = notNull(object);

@@ -5,9 +5,6 @@ import static org.elixirian.kommonlee.util.Objects.*;
 import java.io.IOException;
 import java.util.Iterator;
 
-import org.eclipse.jdt.annotation.NonNull;
-import org.eclipse.jdt.annotation.Nullable;
-
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -18,11 +15,11 @@ import org.eclipse.jdt.annotation.Nullable;
  * </pre>
  * 
  * <pre>
- *     ___  _____  __________  ___________ _____  ____
- *    /   \/    / /      \   \/   /_    _//     \/   /
- *   /        /  /    ___/\      / /   / /          /
- *  /        \  /    ___/  \    /_/   /_/          /
- * /____/\____\/_______/    \__//______/___/\_____/
+ *     ___  _____                                _____
+ *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
+ *   /        / /  ___ \  \/  //___// //     / /    /   /  ___ \/  ___ \
+ *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
+ * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -32,7 +29,7 @@ public final class IterableToAppendableGlue implements ToAppendableGlue<Iterable
 {
   private final AppendingAction appendingAction;
 
-  private IterableToAppendableGlue(@NonNull final AppendingAction appendingAction)
+  private IterableToAppendableGlue(final AppendingAction appendingAction)
   {
     this.appendingAction = appendingAction;
   }
@@ -42,21 +39,17 @@ public final class IterableToAppendableGlue implements ToAppendableGlue<Iterable
     return appendingAction;
   }
 
-  @NonNull
-  public static IterableToAppendableGlue withSeparator(@Nullable final String separator)
+  public static IterableToAppendableGlue withSeparator(final String separator)
   {
     return new IterableToAppendableGlue(SimpleAppendingAction.with(separator));
   }
 
-  @NonNull
   public static IterableToAppendableGlue withoutSeparator()
   {
     return new IterableToAppendableGlue(SimpleAppendingAction.withoutSeparator());
   }
 
-  @NonNull
-  private <A extends Appendable, E> A glue0(@NonNull final A appendable, @NonNull final Iterable<E> iterable)
-      throws IOException
+  private <A extends Appendable, E> A glue0(final A appendable, final Iterable<E> iterable) throws IOException
   {
     final Iterator<E> iterator = iterable.iterator();
     if (iterator.hasNext())
@@ -70,7 +63,6 @@ public final class IterableToAppendableGlue implements ToAppendableGlue<Iterable
     return appendable;
   }
 
-  @NonNull
   @Override
   public <A extends Appendable> A glue(final A appendable, final Iterable<?> iterable)
   {

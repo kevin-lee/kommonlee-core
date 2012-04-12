@@ -13,8 +13,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.elixirian.kommonlee.type.Function2;
 import org.elixirian.kommonlee.type.GenericBuilder;
+import org.elixirian.kommonlee.type.function.Function2;
 
 /**
  * <pre>

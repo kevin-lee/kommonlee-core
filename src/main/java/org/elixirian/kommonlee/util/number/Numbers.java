@@ -10,10 +10,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
-import org.elixirian.kommonlee.type.Condition1;
 import org.elixirian.kommonlee.type.filter.ArgsFilter;
 import org.elixirian.kommonlee.type.filter.Filter1;
-import org.elixirian.kommonlee.type.filter.VarargsFilter;
+import org.elixirian.kommonlee.type.function.Condition1;
 
 /**
  * <pre>
@@ -25,11 +24,11 @@ import org.elixirian.kommonlee.type.filter.VarargsFilter;
  * </pre>
  * 
  * <pre>
- *     ___  _____  __________  ___________ _____  ____
- *    /   \/    / /      \   \/   /_    _//     \/   /
- *   /        /  /    ___/\      / /   / /          /
- *  /        \  /    ___/  \    /_/   /_/          /
- * /____/\____\/_______/    \__//______/___/\_____/
+ *     ___  _____                                _____
+ *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
+ *   /        / /  ___ \  \/  //___// //     / /    /   /  ___ \/  ___ \
+ *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
+ * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)

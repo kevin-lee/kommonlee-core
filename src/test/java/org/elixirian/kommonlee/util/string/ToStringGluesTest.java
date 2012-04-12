@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.elixirian.kommonlee.type.Condition1;
+import org.elixirian.kommonlee.type.function.Condition1;
 import org.elixirian.kommonlee.util.string.ToStringGlues.ForIterableBuilder;
 import org.junit.After;
 import org.junit.AfterClass;

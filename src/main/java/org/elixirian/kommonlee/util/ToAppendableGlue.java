@@ -3,8 +3,6 @@
  */
 package org.elixirian.kommonlee.util;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -15,11 +13,11 @@ import org.eclipse.jdt.annotation.NonNull;
  * </pre>
  * 
  * <pre>
- *     ___  _____  __________  ___________ _____  ____
- *    /   \/    / /      \   \/   /_    _//     \/   /
- *   /        /  /    ___/\      / /   / /          /
- *  /        \  /    ___/  \    /_/   /_/          /
- * /____/\____\/_______/    \__//______/___/\_____/
+ *     ___  _____                                _____
+ *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
+ *   /        / /  ___ \  \/  //___// //     / /    /   /  ___ \/  ___ \
+ *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
+ * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -27,5 +25,5 @@ import org.eclipse.jdt.annotation.NonNull;
  */
 public interface ToAppendableGlue<E>
 {
-	<A extends Appendable> A glue(@NonNull final A appendable, @NonNull final E e);
+  <A extends Appendable> A glue(final A appendable, final E e);
 }
