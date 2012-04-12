@@ -698,7 +698,8 @@ public class MapsTest
 
     /* given */
     final NavigableMap<Integer, String> tempExpected2 = new TreeMap<Integer, String>();
-    tempExpected2.putAll(GENERIC_MAP_FILTER.filter(NOT_NULL_CONDITION, INTEGER_TO_STRING_HASH_MAP));
+    tempExpected2.putAll(GENERIC_MAP_FILTER.<Integer, String, Map<Integer, String>, Condition1<Object>> filter(
+        NOT_NULL_CONDITION, INTEGER_TO_STRING_HASH_MAP));
     final SortedMap<Integer, String> expected2 = Collections.unmodifiableSortedMap(tempExpected2);
 
     final SortedMap<Integer, String> input2 = new TreeMap<Integer, String>();
@@ -744,7 +745,8 @@ public class MapsTest
 
     /* given */
     final NavigableMap<String, Integer> tempExpected3 = new TreeMap<String, Integer>();
-    tempExpected3.putAll(GENERIC_MAP_FILTER.filter(NOT_NULL_CONDITION, STRING_TO_INTEGER_HASH_MAP));
+    tempExpected3.putAll(GENERIC_MAP_FILTER.<String, Integer, Map<String, Integer>, Condition1<Object>> filter(
+        NOT_NULL_CONDITION, STRING_TO_INTEGER_HASH_MAP));
     final SortedMap<String, Integer> expected3 = Collections.unmodifiableSortedMap(tempExpected3);
 
     final SortedMap<String, Integer> input3 = new TreeMap<String, Integer>();
@@ -790,7 +792,8 @@ public class MapsTest
 
     /* given */
     final NavigableMap<Object, String> tempExpected4 = new TreeMap<Object, String>();
-    tempExpected4.putAll(GENERIC_MAP_FILTER.filter(NOT_NULL_CONDITION, OBJECT_TO_STRING_HASH_MAP));
+    tempExpected4.putAll(GENERIC_MAP_FILTER.<Object, String, Map<Object, String>, Condition1<Object>> filter(
+        NOT_NULL_CONDITION, OBJECT_TO_STRING_HASH_MAP));
     final SortedMap<Object, String> expected4 = Collections.unmodifiableSortedMap(tempExpected4);
 
     final SortedMap<Object, String> input4 = new TreeMap<Object, String>();
@@ -836,7 +839,8 @@ public class MapsTest
 
     /* given */
     final NavigableMap<Object, Integer> tempExpected5 = new TreeMap<Object, Integer>();
-    tempExpected5.putAll(GENERIC_MAP_FILTER.filter(NOT_NULL_CONDITION, OBJECT_TO_INTEGER_HASH_MAP));
+    tempExpected5.putAll(GENERIC_MAP_FILTER.<Object, Integer, Map<Object, Integer>, Condition1<Object>> filter(
+        NOT_NULL_CONDITION, OBJECT_TO_INTEGER_HASH_MAP));
     final SortedMap<Object, Integer> expected5 = Collections.unmodifiableSortedMap(tempExpected5);
 
     final NavigableMap<Object, Integer> input5 = new TreeMap<Object, Integer>();
@@ -889,7 +893,8 @@ public class MapsTest
     final Class expectedType = EXPECTED_TREE_MAP_TYPE;
 
     final NavigableMap<ComparableObject, Object> tempExpected1 = new TreeMap<ComparableObject, Object>();
-    tempExpected1.putAll(GENERIC_MAP_FILTER.filter(NOT_NULL_CONDITION, COMPARABLE_OBJECT_TO_INTEGER_HASH_MAP));
+    tempExpected1.putAll(GENERIC_MAP_FILTER.<ComparableObject, Integer, Map<ComparableObject, Integer>, Condition1<Object>> filter(
+        NOT_NULL_CONDITION, COMPARABLE_OBJECT_TO_INTEGER_HASH_MAP));
     final Map<ComparableObject, Object> expected1 = Collections.unmodifiableMap(tempExpected1);
 
     final Map<ComparableObject, Object> input1 = new HashMap<ComparableObject, Object>(expected1);
@@ -912,7 +917,8 @@ public class MapsTest
         .toArray())));
 
     final NavigableMap<ComparableObject, Object> tempExpected1_1 = new TreeMap<ComparableObject, Object>();
-    tempExpected1_1.putAll(GENERIC_MAP_FILTER.filter(NOT_NULL_CONDITION, COMPARABLE_OBJECT_TO_STRING_HASH_MAP));
+    tempExpected1_1.putAll(GENERIC_MAP_FILTER.<ComparableObject, String, Map<ComparableObject, String>, Condition1<Object>> filter(
+        NOT_NULL_CONDITION, COMPARABLE_OBJECT_TO_STRING_HASH_MAP));
     final Map<ComparableObject, Object> expected1_1 = Collections.unmodifiableMap(tempExpected1_1);
 
     final Map<ComparableObject, Object> input1_1 = new HashMap<ComparableObject, Object>(expected1_1);
@@ -936,7 +942,8 @@ public class MapsTest
 
     /* given */
     final NavigableMap<Integer, String> tempExpected2 = new TreeMap<Integer, String>();
-    tempExpected2.putAll(GENERIC_MAP_FILTER.filter(NOT_NULL_CONDITION, INTEGER_TO_STRING_HASH_MAP));
+    tempExpected2.putAll(GENERIC_MAP_FILTER.<Integer, String, Map<Integer, String>, Condition1<Object>> filter(
+        NOT_NULL_CONDITION, INTEGER_TO_STRING_HASH_MAP));
     final SortedMap<Integer, String> expected2 = Collections.unmodifiableSortedMap(tempExpected2);
 
     final Map<Integer, String> input2 = new HashMap<Integer, String>();
@@ -960,7 +967,8 @@ public class MapsTest
 
     /* given */
     final NavigableMap<String, Integer> tempExpected3 = new TreeMap<String, Integer>();
-    tempExpected3.putAll(GENERIC_MAP_FILTER.filter(NOT_NULL_CONDITION, STRING_TO_INTEGER_HASH_MAP));
+    tempExpected3.putAll(GENERIC_MAP_FILTER.<String, Integer, Map<String, Integer>, Condition1<Object>> filter(
+        NOT_NULL_CONDITION, STRING_TO_INTEGER_HASH_MAP));
     final SortedMap<String, Integer> expected3 = Collections.unmodifiableSortedMap(tempExpected3);
 
     final Map<String, Integer> input3 = new HashMap<String, Integer>();
@@ -984,7 +992,8 @@ public class MapsTest
 
     /* given */
     final NavigableMap<ComparableObject, String> tempExpected4 = new TreeMap<ComparableObject, String>();
-    tempExpected4.putAll(GENERIC_MAP_FILTER.filter(NOT_NULL_CONDITION, COMPARABLE_OBJECT_TO_STRING_HASH_MAP));
+    tempExpected4.putAll(GENERIC_MAP_FILTER.<ComparableObject, String, Map<ComparableObject, String>, Condition1<Object>> filter(
+        NOT_NULL_CONDITION, COMPARABLE_OBJECT_TO_STRING_HASH_MAP));
     final SortedMap<ComparableObject, String> expected4 = Collections.unmodifiableSortedMap(tempExpected4);
 
     final Map<ComparableObject, String> input4 = new HashMap<ComparableObject, String>();
@@ -1008,7 +1017,8 @@ public class MapsTest
 
     /* given */
     final NavigableMap<ComparableObject, Integer> tempExpected5 = new TreeMap<ComparableObject, Integer>();
-    tempExpected5.putAll(GENERIC_MAP_FILTER.filter(NOT_NULL_CONDITION, COMPARABLE_OBJECT_TO_INTEGER_HASH_MAP));
+    tempExpected5.putAll(GENERIC_MAP_FILTER.<ComparableObject, Integer, Map<ComparableObject, Integer>, Condition1<Object>> filter(
+        NOT_NULL_CONDITION, COMPARABLE_OBJECT_TO_INTEGER_HASH_MAP));
     final SortedMap<ComparableObject, Integer> expected5 = Collections.unmodifiableSortedMap(tempExpected5);
 
     final Map<ComparableObject, Integer> input5 = new HashMap<ComparableObject, Integer>();
