@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.type;
+package org.elixirian.kommonlee.type.function;
 
 /**
  * <pre>
@@ -22,16 +22,10 @@ package org.elixirian.kommonlee.type;
  * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-13)
- * @param <X1>
- *          input1
- * @param <X2>
- *          input2
- * @param <X3>
- *          input3
  * @param <R>
  *          result
  */
-public interface Function3<X1, X2, X3, R>
+public interface Function0<R>
 {
-	R apply(X1 input1, X2 input2, X3 input3);
+	R apply();
 }

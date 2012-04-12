@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.type;
+package org.elixirian.kommonlee.type.selector;
 
 /**
  * <pre>
@@ -21,14 +21,15 @@ package org.elixirian.kommonlee.type;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-11-13)
- * @param <T1>
- * @param <T2>
- * @param <T3>
- * @param <T4>
- * @param <T5>
+ * @version 0.0.1 (2010-11-14)
+ * @param <T>
+ *          input
+ * @param <C>
+ *          condition
+ * @param <R>
+ *          result
  */
-public interface Condition5<T1, T2, T3, T4, T5>
+public interface Selector1<T, C, R>
 {
-	boolean isMet(T1 input1, T2 input2, T3 input3, T4 input4, T5 input5);
+	R select(C condition, T source);
 }

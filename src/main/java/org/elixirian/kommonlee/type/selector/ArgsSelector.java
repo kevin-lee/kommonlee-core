@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.type;
+package org.elixirian.kommonlee.type.selector;
 
 /**
  * <pre>
@@ -21,10 +21,35 @@ package org.elixirian.kommonlee.type;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @param <T1>
- * @param <T2>
+ * @version 0.0.1 (2010-11-14)
+ * @param <T>
+ *          input
+ * @param <C>
+ *          condition
+ * @param <R>
+ *          result
  */
-public interface Condition2<T1, T2>
+public interface ArgsSelector<T, C, R> extends Selector1<T, C, R>, Selector2<T, C, R>, Selector3<T, C, R>,
+    Selector4<T, C, R>, Selector5<T, C, R>, VarargsSelector<T, C, R>, ArraySelector<T, C, R>
 {
-	boolean isMet(T1 input1, T2 input2);
+  @Override
+  R select(C condition, T first);
+
+  @Override
+  R select(C condition, T first, T second);
+
+  @Override
+  R select(C condition, T first, T second, T third);
+
+  @Override
+  R select(C condition, T first, T second, T third, T fourth);
+
+  @Override
+  R select(C condition, T first, T second, T third, T fourth, T fifth);
+
+  @Override
+  R select(C condition, T first, T second, T third, T fourth, T fifth, T... rest);
+
+  @Override
+  R select(C condition, T[] values);
 }

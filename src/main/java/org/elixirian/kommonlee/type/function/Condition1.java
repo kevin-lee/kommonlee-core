@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.type;
+package org.elixirian.kommonlee.type.function;
 
 /**
  * <pre>
@@ -22,24 +22,9 @@ package org.elixirian.kommonlee.type;
  * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-13)
- * @param <X1>
- *          input1
- * @param <X2>
- *          input2
- * @param <X3>
- *          input3
- * @param <X4>
- *          input4
- * @param <X5>
- *          input5
- * @param <X6>
- *          input6
- * @param <X7>
- *          input7
- * @param <R>
- *          result
+ * @param <T>
  */
-public interface Function7<X1, X2, X3, X4, X5, X6, X7, R>
+public interface Condition1<T>
 {
-  R apply(X1 input1, X2 input2, X3 input3, X4 input4, X5 input5, X6 input6, X7 input7);
+	boolean isMet(T input);
 }

@@ -1,4 +1,4 @@
-package org.elixirian.kommonlee.type;
+package org.elixirian.kommonlee.type.function;
 
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
@@ -10,8 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.elixirian.kommonlee.type.Condition1;
-import org.elixirian.kommonlee.type.Function2;
+import org.elixirian.kommonlee.type.function.Condition1;
+import org.elixirian.kommonlee.type.function.Function2;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

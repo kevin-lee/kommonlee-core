@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.type;
+package org.elixirian.kommonlee.type.selector;
 
 /**
  * <pre>
@@ -21,15 +21,15 @@ package org.elixirian.kommonlee.type;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-11-13)
- * @param <X1>
- *          input1
- * @param <X2>
- *          input2
+ * @version 0.0.1 (2010-11-14)
+ * @param <T>
+ *          input
+ * @param <C>
+ *          condition
  * @param <R>
  *          result
  */
-public interface Function2<X1, X2, R>
+public interface Selector3<T, C, R>
 {
-	R apply(X1 input1, X2 input2);
+	R select(C condition, T first, T second, T third);
 }

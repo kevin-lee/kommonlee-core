@@ -21,23 +21,9 @@ package org.elixirian.kommonlee.type;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-11-13)
- * @param <X1>
- *          input1
- * @param <X2>
- *          input2
- * @param <X3>
- *          input3
- * @param <X4>
- *          input4
- * @param <X5>
- *          input5
- * @param <X6>
- *          input6
- * @param <R>
- *          result
+ * @version 0.0.1 (2011-09-18)
  */
-public interface Function6<X1, X2, X3, X4, X5, X6, R>
+public interface Clearable
 {
-	R apply(X1 input1, X2 input2, X3 input3, X4 input4, X5 input5, X6 input6);
+  void clear();
 }

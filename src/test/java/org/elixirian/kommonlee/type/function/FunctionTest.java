@@ -1,4 +1,4 @@
-package org.elixirian.kommonlee.type;
+package org.elixirian.kommonlee.type.function;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.elixirian.kommonlee.type.Function1;
+import org.elixirian.kommonlee.type.function.Function1;
 import org.junit.Test;
 
 /**
