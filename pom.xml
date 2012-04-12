@@ -57,13 +57,13 @@
 		<dependency>
 		  <groupId>org.elixirian</groupId>
 		  <artifactId>kommonlee-test</artifactId>
-		  <version>0.0.12-SNAPSHOT</version>
+		  <version>0.0.13-SNAPSHOT</version>
 		  <scope>test</scope>
 		</dependency>
 		<dependency>
 		  <groupId>org.elixirian</groupId>
 		  <artifactId>kommonlee-util</artifactId>
-		  <version>0.0.14-SNAPSHOT</version>
+		  <version>0.0.15-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
