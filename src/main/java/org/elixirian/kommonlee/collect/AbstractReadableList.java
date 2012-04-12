@@ -9,7 +9,7 @@ import static org.elixirian.kommonlee.util.Objects.*;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import org.elixirian.kommonlee.type.Condition1;
+import org.elixirian.kommonlee.type.function.Condition1;
 
 /**
  * <pre>

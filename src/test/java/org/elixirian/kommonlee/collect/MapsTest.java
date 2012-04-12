@@ -25,7 +25,7 @@ import java.util.TreeMap;
 import org.elixirian.kommonlee.collect.UtilForTesting.ComparableObject;
 import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
 import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
-import org.elixirian.kommonlee.type.Condition1;
+import org.elixirian.kommonlee.type.function.Condition1;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -10,8 +10,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.elixirian.kommonlee.type.Condition1;
-import org.elixirian.kommonlee.type.Function1;
+import org.elixirian.kommonlee.type.function.Condition1;
+import org.elixirian.kommonlee.type.function.Function1;
 
 /**
  * <pre>
@@ -135,6 +135,17 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
       }
     }
     return new ReadableArrayList<R>(list);
+  }
+
+  @Override
+  public void forEach(final Function1<? super E, Void> function)
+  {
+    for (final Object object : this.elements)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) object;
+      function.apply(element);
+    }
   }
 
   @Override

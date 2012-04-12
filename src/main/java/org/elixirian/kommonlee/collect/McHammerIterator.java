@@ -3,7 +3,6 @@
  */
 package org.elixirian.kommonlee.collect;
 
-import org.elixirian.kommonlee.type.UnmodifiableIterator;
 
 /**
  * <pre>
@@ -34,7 +33,7 @@ public abstract class McHammerIterator<E> implements UnmodifiableIterator<E>
   public abstract E next();
 
   @Override
-  public void remove()
+  public final void remove()
   {
     throw new UnsupportedOperationException(
         "U Can't Touch This!\nYou cannot remove any element through this Iterator. It is an object of UnmodifiableIterator.");

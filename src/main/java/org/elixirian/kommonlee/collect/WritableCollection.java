@@ -6,8 +6,9 @@ package org.elixirian.kommonlee.collect;
 import java.util.Iterator;
 
 import org.elixirian.kommonlee.type.Clearable;
-import org.elixirian.kommonlee.type.EmptinessCheckable;
-import org.elixirian.kommonlee.type.LengthMeasurable;
+import org.elixirian.kommonlee.type.checkable.EmptinessCheckable;
+import org.elixirian.kommonlee.type.checkable.LengthCheckable;
+import org.elixirian.kommonlee.type.checkable.NotEmptinessCheckable;
 
 /**
  * <pre>
@@ -29,8 +30,8 @@ import org.elixirian.kommonlee.type.LengthMeasurable;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-09-18)
  */
-public interface WritableCollection<E> extends Kollection<E>, Iterable<E>, LengthMeasurable, EmptinessCheckable,
-    Clearable
+public interface WritableCollection<E> extends Kollection<E>, Iterable<E>, LengthCheckable, EmptinessCheckable,
+    NotEmptinessCheckable, Clearable
 {
   @Override
   Iterator<E> iterator();

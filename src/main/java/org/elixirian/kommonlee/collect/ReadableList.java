@@ -5,8 +5,8 @@ package org.elixirian.kommonlee.collect;
 
 import java.util.Iterator;
 
-import org.elixirian.kommonlee.type.Condition1;
-import org.elixirian.kommonlee.type.Function1;
+import org.elixirian.kommonlee.type.function.Condition1;
+import org.elixirian.kommonlee.type.function.Function1;
 
 /**
  * <pre>

@@ -5,10 +5,8 @@ package org.elixirian.kommonlee.collect;
 
 import java.util.Iterator;
 
-import org.elixirian.kommonlee.type.Clearable;
-import org.elixirian.kommonlee.type.Condition1;
-import org.elixirian.kommonlee.type.Function1;
-import org.elixirian.kommonlee.type.LengthMeasurable;
+import org.elixirian.kommonlee.type.function.Condition1;
+import org.elixirian.kommonlee.type.function.Function1;
 
 /**
  * <pre>
@@ -30,8 +28,7 @@ import org.elixirian.kommonlee.type.LengthMeasurable;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-09-18)
  */
-public interface MutableCollection<E> extends ReadableCollection<E>, WritableCollection<E>, Clearable, Kollection<E>,
-    Iterable<E>, LengthMeasurable
+public interface MutableCollection<E> extends ReadableWritableCollection<E>
 {
   @Override
   Iterator<E> iterator();

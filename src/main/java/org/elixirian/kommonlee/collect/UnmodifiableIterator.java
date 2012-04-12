@@ -1,7 +1,9 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.type;
+package org.elixirian.kommonlee.collect;
+
+import java.util.Iterator;
 
 /**
  * <pre>
@@ -21,11 +23,21 @@ package org.elixirian.kommonlee.type;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-09-28)
+ * @version 0.0.1 (2011-10-13)
  */
-public interface EmptinessCheckable
+public interface UnmodifiableIterator<E> extends Iterator<E>
 {
-  boolean isEmpty();
+  @Override
+  boolean hasNext();
 
-  boolean isNotEmpty();
+  @Override
+  E next();
+
+  /**
+   * This method always throws {@link UnsupportedOperationException}.
+   * 
+   * @throws {@link UnsupportedOperationException} It is always thrown if this method is called..
+   */
+  @Override
+  void remove();
 }

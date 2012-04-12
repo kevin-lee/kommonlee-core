@@ -8,12 +8,13 @@ import static org.elixirian.kommonlee.util.Objects.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import org.elixirian.kommonlee.type.Condition1;
-import org.elixirian.kommonlee.type.Function1;
+import org.elixirian.kommonlee.type.function.Condition1;
+import org.elixirian.kommonlee.type.function.Function1;
 
 /**
  * <pre>
@@ -186,13 +187,30 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
 
   public static final ImmutableArrayList<?> EMPTY_IMMUTABLE_ARRAY_LIST = new EmptyImmutableArrayList<Object>();
 
+  ImmutableArrayList(final Collection<? extends E> collection)
+  {
+    final int length = collection.size();
+    final Object[] elements = collection.toArray();
+    this.elements = new Object[length];
+    System.arraycopy(elements, 0, this.elements, 0, length);
+    this.length = length;
+  }
+
   ImmutableArrayList(final Kollection<? extends E> kollection)
   {
     final int length = kollection.length();
     final Object[] elements = kollection.toArray();
     this.elements = new Object[length];
     System.arraycopy(elements, 0, this.elements, 0, length);
-    this.length = this.elements.length;
+    this.length = length;
+  }
+
+  ImmutableArrayList(final Object[] elements, final int howMany)
+  {
+    final int length = Math.min(elements.length, howMany);
+    this.elements = new Object[length];
+    System.arraycopy(elements, 0, this.elements, 0, length);
+    this.length = length;
   }
 
   ImmutableArrayList(final Object... elements)
@@ -200,29 +218,44 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
     final int length = elements.length;
     this.elements = new Object[length];
     System.arraycopy(elements, 0, this.elements, 0, length);
-    this.length = this.elements.length;
+    this.length = length;
+  }
+
+  private static <T> ImmutableArrayList<T> getEmptyImmutableArrayList(final int langth)
+  {
+    if (0 == langth)
+    {
+      @SuppressWarnings("unchecked")
+      final ImmutableArrayList<T> emptyImmutableArrayList = (ImmutableArrayList<T>) EMPTY_IMMUTABLE_ARRAY_LIST;
+      return emptyImmutableArrayList;
+    }
+    return null;
+  }
+
+  public static <T> ImmutableArrayList<T> copyOf(final Collection<? extends T> collection)
+  {
+    final ImmutableArrayList<T> emptyImmutableArrayList = getEmptyImmutableArrayList(collection.size());
+    return null == emptyImmutableArrayList ? new ImmutableArrayList<T>(collection) : emptyImmutableArrayList;
   }
 
   public static <T> ImmutableArrayList<T> copyOf(final Kollection<? extends T> commonCollection)
   {
-    if (0 == commonCollection.length())
-    {
-      @SuppressWarnings("unchecked")
-      final ImmutableArrayList<T> emptyImmutableArrayList = (ImmutableArrayList<T>) EMPTY_IMMUTABLE_ARRAY_LIST;
-      return emptyImmutableArrayList;
-    }
-    return new ImmutableArrayList<T>(commonCollection);
+    final ImmutableArrayList<T> emptyImmutableArrayList = getEmptyImmutableArrayList(commonCollection.length());
+    return null == emptyImmutableArrayList ? new ImmutableArrayList<T>(commonCollection) : emptyImmutableArrayList;
   }
 
   public static <T> ImmutableArrayList<T> listOf(final T... elements)
   {
-    if (0 == elements.length)
-    {
-      @SuppressWarnings("unchecked")
-      final ImmutableArrayList<T> emptyImmutableArrayList = (ImmutableArrayList<T>) EMPTY_IMMUTABLE_ARRAY_LIST;
-      return emptyImmutableArrayList;
-    }
-    return new ImmutableArrayList<T>(elements);
+    final ImmutableArrayList<T> emptyImmutableArrayList = getEmptyImmutableArrayList(elements.length);
+    return null == emptyImmutableArrayList ? new ImmutableArrayList<T>(elements) : emptyImmutableArrayList;
+  }
+
+  public static <T> ImmutableArrayList<T> listOf(final T[] elements, final int howMany)
+  {
+    final int length = Math.min(elements.length, howMany);
+
+    final ImmutableArrayList<T> emptyImmutableArrayList = getEmptyImmutableArrayList(length);
+    return null == emptyImmutableArrayList ? new ImmutableArrayList<T>(elements, length) : emptyImmutableArrayList;
   }
 
   @Override
@@ -270,6 +303,8 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
   public ImmutableArrayList<E> select(final Condition1<? super E> condition)
   {
     final List<E> list = newArrayList();
+    // final Object[] arrayOfObject = new Object[length];
+    final int i = 0;
     for (final Object object : this.elements)
     {
       @SuppressWarnings("unchecked")
@@ -277,22 +312,30 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
       if (condition.isMet(element))
       {
         list.add(element);
+        // arrayOfObject[i++] = element;
       }
     }
-    return new ImmutableArrayList<E>(list);
+    // return new ImmutableArrayList<E>(list);
+    // @SuppressWarnings("unchecked")
+    // final E[] arrayOfE = (E[]) arrayOfObject;
+    // return listOf(arrayOfE, i);
+    return copyOf(list);
   }
 
   @Override
   public <R> ImmutableArrayList<R> map(final Function1<? super E, R> function)
   {
-    final List<R> list = newArrayList();
+    final Object[] array = new Object[length];
+    int i = 0;
     for (final Object object : this.elements)
     {
       @SuppressWarnings("unchecked")
       final E element = (E) object;
-      list.add(function.apply(element));
+      array[i++] = function.apply(element);
     }
-    return new ImmutableArrayList<R>(list);
+    @SuppressWarnings("unchecked")
+    final R[] arrayOfR = (R[]) array;
+    return listOf(arrayOfR);
   }
 
   @Override
@@ -309,7 +352,18 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
         list.add(function.apply(element));
       }
     }
-    return new ImmutableArrayList<R>(list);
+    return copyOf(list);
+  }
+
+  @Override
+  public void forEach(final Function1<? super E, Void> function)
+  {
+    for (final Object object : this.elements)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) object;
+      function.apply(element);
+    }
   }
 
   @Override
