@@ -30,7 +30,7 @@ import org.elixirian.kommonlee.io.StringConsumer;
 import org.elixirian.kommonlee.io.exception.RuntimeIoException;
 import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
 import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
-import org.elixirian.kommonlee.type.Function1;
+import org.elixirian.kommonlee.type.function.Function1;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
