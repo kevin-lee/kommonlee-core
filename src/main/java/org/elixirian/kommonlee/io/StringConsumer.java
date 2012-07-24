@@ -15,11 +15,11 @@ import java.io.IOException;
  * </pre>
  * 
  * <pre>
- *     ___  _____
- *    /   \/    /_________  ___ ____ __ ______
- *   /        / /  ___ \  \/  //___// //     /
- *  /        \ /  _____/\    //   //   __   /
- * /____/\____\\_____/   \__//___//___/ /__/
+ *     ___  _____                                _____
+ *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
+ *   /        / /  ___ \  \/  //___// //     / /    /   /  ___ \/  ___ \
+ *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
+ * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
@@ -27,12 +27,12 @@ import java.io.IOException;
  */
 public interface StringConsumer
 {
-  /**
-   * It consumes the given String. How the String value is consumed is all up to the implementation of this interface.
-   * 
-   * @param value
-   *          the given String value
-   * @throws IOException
-   */
-  void consume(String value) throws IOException;
+	/**
+	 * It consumes the given String. How the String value is consumed is all up to the implementation of this interface.
+	 * 
+	 * @param value
+	 *          the given String value
+	 * @throws IOException
+	 */
+	void consume(String value) throws IOException;
 }

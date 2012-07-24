@@ -1,9 +1,7 @@
 /**
- * 
+ *
  */
-package org.elixirian.kommonlee.io;
-
-import java.io.IOException;
+package org.elixirian.kommonlee.io.exception;
 
 /**
  * <pre>
@@ -23,21 +21,28 @@ import java.io.IOException;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-07-13)
+ * @version 0.0.1 (2012-07-12)
  */
-public interface CharArrayConsumer
+public class RuntimeUnknownHostException extends NetworkAddressException
 {
-  /**
-   * It consumes the chars in the given byte array. How the chars are consumed is all up to the implementation of this
-   * interface.
-   * 
-   * @param chars
-   *          an array of char to be consumed.
-   * @param offset
-   *          the index of the first char to be consumed.
-   * @param count
-   *          the number of chars to be consumed
-   * @throws IOException
-   */
-  void consume(char[] chars, int offset, int count) throws IOException;
+	private static final long serialVersionUID = 1L;
+
+	public RuntimeUnknownHostException()
+	{
+	}
+
+	public RuntimeUnknownHostException(final String message, final Throwable cause)
+	{
+		super(message, cause);
+	}
+
+	public RuntimeUnknownHostException(final String message)
+	{
+		super(message);
+	}
+
+	public RuntimeUnknownHostException(final Throwable cause)
+	{
+		super(cause);
+	}
 }

@@ -1,9 +1,10 @@
 /**
- * 
+ *
  */
 package org.elixirian.kommonlee.io;
 
 import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * <pre>
@@ -23,21 +24,9 @@ import java.io.IOException;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-07-13)
+ * @version 0.0.1 (2012-07-10)
  */
-public interface CharArrayConsumer
+public interface OutputStreamSource
 {
-  /**
-   * It consumes the chars in the given byte array. How the chars are consumed is all up to the implementation of this
-   * interface.
-   * 
-   * @param chars
-   *          an array of char to be consumed.
-   * @param offset
-   *          the index of the first char to be consumed.
-   * @param count
-   *          the number of chars to be consumed
-   * @throws IOException
-   */
-  void consume(char[] chars, int offset, int count) throws IOException;
+	OutputStream getOutputStream() throws IOException;
 }
