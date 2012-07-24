@@ -1,10 +1,13 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.collect;
+package org.elixirian.kommonlee.collect.immutable;
 
 import java.util.Iterator;
 
+import org.elixirian.kommonlee.collect.Kollection;
+import org.elixirian.kommonlee.collect.ReadableList;
+import org.elixirian.kommonlee.collect.UnmodifiableIterator;
 import org.elixirian.kommonlee.type.function.Condition1;
 import org.elixirian.kommonlee.type.function.Function1;
 
@@ -28,10 +31,10 @@ import org.elixirian.kommonlee.type.function.Function1;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-09-18)
  */
-public interface MutableCollection<E> extends ReadableWritableCollection<E>
+public interface ImmutableList<E> extends ReadableList<E>, ImmutableCollection<E>
 {
   @Override
-  Iterator<E> iterator();
+  UnmodifiableIterator<E> iterator();
 
   @Override
   int length();
@@ -49,35 +52,29 @@ public interface MutableCollection<E> extends ReadableWritableCollection<E>
   boolean containsAll(Kollection<?> kollection);
 
   @Override
-  MutableCollection<E> select(Condition1<? super E> condition);
+  ImmutableList<E> select(Condition1<? super E> condition);
 
   @Override
-  <R> MutableCollection<R> map(Function1<? super E, R> function);
+  <R> ImmutableList<R> map(Function1<? super E, R> function);
 
   @Override
-  <R> MutableCollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
-
-  @Override
-  boolean remove(E element);
-
-  @Override
-  boolean removeAll(Kollection<?> elements);
-
-  @Override
-  boolean retainAll(Kollection<?> elements);
-
-  @Override
-  void clear();
-
-  @Override
-  boolean add(E element);
-
-  @Override
-  boolean addAll(Kollection<? extends E> commonCollection);
+  <R> ImmutableList<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
 
   @Override
   int hashCode();
 
   @Override
   boolean equals(Object element);
+
+  @Override
+  E get(int index);
+
+  @Override
+  int indexOf(E element);
+
+  @Override
+  int lastIndexOf(E element);
+
+  @Override
+  ImmutableList<E> subList(int fromIndex, int toIndex);
 }

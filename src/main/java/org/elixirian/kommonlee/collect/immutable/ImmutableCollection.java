@@ -1,10 +1,12 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.collect;
+package org.elixirian.kommonlee.collect.immutable;
 
 import java.util.Iterator;
 
+import org.elixirian.kommonlee.collect.Kollection;
+import org.elixirian.kommonlee.collect.ReadableCollection;
 import org.elixirian.kommonlee.type.function.Condition1;
 import org.elixirian.kommonlee.type.function.Function1;
 
@@ -26,9 +28,9 @@ import org.elixirian.kommonlee.type.function.Function1;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-09-18)
+ * @version 0.0.1 (2011-09-28)
  */
-public interface ImmutableList<E> extends ReadableList<E>, ImmutableCollection<E>
+public interface ImmutableCollection<E> extends ReadableCollection<E>
 {
   @Override
   Iterator<E> iterator();
@@ -49,29 +51,17 @@ public interface ImmutableList<E> extends ReadableList<E>, ImmutableCollection<E
   boolean containsAll(Kollection<?> kollection);
 
   @Override
-  ImmutableList<E> select(Condition1<? super E> condition);
+  ReadableCollection<E> select(Condition1<? super E> condition);
 
   @Override
-  <R> ImmutableList<R> map(Function1<? super E, R> function);
+  <R> ReadableCollection<R> map(Function1<? super E, R> function);
 
   @Override
-  <R> ImmutableList<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
+  <R> ReadableCollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
 
   @Override
   int hashCode();
 
   @Override
   boolean equals(Object element);
-
-  @Override
-  E get(int index);
-
-  @Override
-  int indexOf(E element);
-
-  @Override
-  int lastIndexOf(E element);
-
-  @Override
-  ImmutableList<E> subList(int fromIndex, int toIndex);
 }

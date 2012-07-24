@@ -59,7 +59,7 @@ public interface ReadableWritableCollection<E> extends ReadableCollection<E>, Wr
   <R> ReadableWritableCollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
 
   @Override
-  E[] toArray();
+  Object[] toArray();
 
   @Override
   E[] toArray(E[] elements);

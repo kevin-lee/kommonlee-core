@@ -65,10 +65,12 @@ public interface Kollection<E> extends Iterable<E>, LengthCheckable, SizeCheckab
   <R> Kollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
 
   void forEach(Function1<? super E, Void> function);
+  
+  void breakableForEach(Function1<? super E, BreakOrContinue> function);
 
   int howMany(Condition1<? super E> conditionToMeet);
 
-  E[] toArray();
+  Object[] toArray();
 
   E[] toArray(E[] elements);
 

@@ -3,6 +3,7 @@
  */
 package org.elixirian.kommonlee.collect;
 
+import java.util.NoSuchElementException;
 
 /**
  * <pre>
@@ -26,16 +27,38 @@ package org.elixirian.kommonlee.collect;
  */
 public abstract class McHammerIterator<E> implements UnmodifiableIterator<E>
 {
-  @Override
-  public abstract boolean hasNext();
+	public static final McHammerIterator<?> EMPTY_MC_HAMMER_ITERATOR = new McHammerIterator<Object>() {
 
-  @Override
-  public abstract E next();
+		@Override
+		public boolean hasNext()
+		{
+			return false;
+		}
 
-  @Override
-  public final void remove()
-  {
-    throw new UnsupportedOperationException(
-        "U Can't Touch This!\nYou cannot remove any element through this Iterator. It is an object of UnmodifiableIterator.");
-  }
+		@Override
+		public Object next()
+		{
+			throw new NoSuchElementException();
+		}
+	};
+
+	public static <T> McHammerIterator<T> emptyMcHammerIterator()
+	{
+		@SuppressWarnings("unchecked")
+		final McHammerIterator<T> emptyMcHammerIterator = (McHammerIterator<T>) EMPTY_MC_HAMMER_ITERATOR;
+		return emptyMcHammerIterator;
+	}
+
+	@Override
+	public abstract boolean hasNext();
+
+	@Override
+	public abstract E next();
+
+	@Override
+	public final void remove()
+	{
+		throw new UnsupportedOperationException(
+				"McHammerIterator: U Can't Touch This!\nYou cannot remove any element through this Iterator. It is an object of UnmodifiableIterator.");
+	}
 }

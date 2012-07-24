@@ -63,7 +63,7 @@ public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, Lengt
   <R> ReadableCollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
 
   @Override
-  E[] toArray();
+  Object[] toArray();
 
   @Override
   E[] toArray(E[] elements);

@@ -1,10 +1,12 @@
 /**
  * 
  */
-package org.elixirian.kommonlee.collect;
+package org.elixirian.kommonlee.collect.mutable;
 
 import java.util.Iterator;
 
+import org.elixirian.kommonlee.collect.Kollection;
+import org.elixirian.kommonlee.collect.ReadableWritableCollection;
 import org.elixirian.kommonlee.type.function.Condition1;
 import org.elixirian.kommonlee.type.function.Function1;
 
@@ -26,9 +28,9 @@ import org.elixirian.kommonlee.type.function.Function1;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-09-28)
+ * @version 0.0.1 (2011-09-18)
  */
-public interface ImmutableCollection<E> extends ReadableCollection<E>
+public interface MutableCollection<E> extends ReadableWritableCollection<E>
 {
   @Override
   Iterator<E> iterator();
@@ -49,13 +51,31 @@ public interface ImmutableCollection<E> extends ReadableCollection<E>
   boolean containsAll(Kollection<?> kollection);
 
   @Override
-  ReadableCollection<E> select(Condition1<? super E> condition);
+  MutableCollection<E> select(Condition1<? super E> condition);
 
   @Override
-  <R> ReadableCollection<R> map(Function1<? super E, R> function);
+  <R> MutableCollection<R> map(Function1<? super E, R> function);
 
   @Override
-  <R> ReadableCollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
+  <R> MutableCollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
+
+  @Override
+  boolean remove(E element);
+
+  @Override
+  boolean removeAll(Kollection<?> elements);
+
+  @Override
+  boolean retainAll(Kollection<?> elements);
+
+  @Override
+  void clear();
+
+  @Override
+  boolean add(E element);
+
+  @Override
+  boolean addAll(Kollection<? extends E> commonCollection);
 
   @Override
   int hashCode();

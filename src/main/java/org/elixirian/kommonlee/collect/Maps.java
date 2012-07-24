@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import org.elixirian.kommonlee.util.CommonConstants;
+
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -29,65 +31,66 @@ import java.util.TreeMap;
  */
 public final class Maps
 {
-  private Maps()
-  {
-  }
+	private Maps() throws IllegalAccessException
+	{
+		throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
+	}
 
-  public static <K, V> HashMap<K, V> newHashMap()
-  {
-    return new HashMap<K, V>();
-  }
+	public static <K, V> HashMap<K, V> newHashMap()
+	{
+		return new HashMap<K, V>();
+	}
 
-  public static <K, V> HashMap<K, V> newHashMap(final Map<? extends K, ? extends V> map)
-  {
-    return new HashMap<K, V>(map);
-  }
+	public static <K, V> HashMap<K, V> newHashMap(final Map<? extends K, ? extends V> map)
+	{
+		return new HashMap<K, V>(map);
+	}
 
-  public static <K, V> HashMap<K, V> newHashMapWithInitialCapacity(final int initialCapacity)
-  {
-    return new HashMap<K, V>(initialCapacity);
-  }
+	public static <K, V> HashMap<K, V> newHashMapWithInitialCapacity(final int initialCapacity)
+	{
+		return new HashMap<K, V>(initialCapacity);
+	}
 
-  public static <K, V> LinkedHashMap<K, V> newLinkedHashMap()
-  {
-    return new LinkedHashMap<K, V>();
-  }
+	public static <K, V> LinkedHashMap<K, V> newLinkedHashMap()
+	{
+		return new LinkedHashMap<K, V>();
+	}
 
-  public static <K, V> HashMap<K, V> newLinkedHashMap(final Map<? extends K, ? extends V> map)
-  {
-    return new LinkedHashMap<K, V>(map);
-  }
+	public static <K, V> LinkedHashMap<K, V> newLinkedHashMap(final Map<? extends K, ? extends V> map)
+	{
+		return new LinkedHashMap<K, V>(map);
+	}
 
-  public static <K, V> HashMap<K, V> newLinkedHashMapWithInitialCapacity(final int initialCapacity)
-  {
-    return new LinkedHashMap<K, V>(initialCapacity);
-  }
+	public static <K, V> LinkedHashMap<K, V> newLinkedHashMapWithInitialCapacity(final int initialCapacity)
+	{
+		return new LinkedHashMap<K, V>(initialCapacity);
+	}
 
-  public static <K, V> TreeMap<K, V> newTreeMap()
-  {
-    return new TreeMap<K, V>();
-  }
+	public static <K, V> TreeMap<K, V> newTreeMap()
+	{
+		return new TreeMap<K, V>();
+	}
 
-  public static <K, V> TreeMap<K, V> newTreeMap(final Comparator<? super K> comparator)
-  {
-    return new TreeMap<K, V>(comparator);
-  }
+	public static <K, V> TreeMap<K, V> newTreeMap(final Comparator<? super K> comparator)
+	{
+		return new TreeMap<K, V>(comparator);
+	}
 
-  public static <K, V> TreeMap<K, V> newTreeMapFromSortedMap(final SortedMap<K, ? extends V> sortedMap)
-  {
-    return new TreeMap<K, V>(sortedMap);
-  }
+	public static <K, V> TreeMap<K, V> newTreeMapFromSortedMap(final SortedMap<K, ? extends V> sortedMap)
+	{
+		return new TreeMap<K, V>(sortedMap);
+	}
 
-  public static <K extends Comparable<K>, V> TreeMap<K, V> newTreeMapFromMap(final Map<? extends K, ? extends V> map)
-  {
-    return new TreeMap<K, V>(map);
-  }
+	public static <K extends Comparable<K>, V> TreeMap<K, V> newTreeMapFromMap(final Map<? extends K, ? extends V> map)
+	{
+		return new TreeMap<K, V>(map);
+	}
 
-  public static <K, V> TreeMap<K, V> newTreeMap(final Comparator<? super K> comparator,
-      final Map<? extends K, ? extends V> map)
-  {
-    final TreeMap<K, V> treeMap = new TreeMap<K, V>(comparator);
-    treeMap.putAll(map);
-    return treeMap;
-  }
+	public static <K, V> TreeMap<K, V> newTreeMap(final Comparator<? super K> comparator,
+			final Map<? extends K, ? extends V> map)
+	{
+		final TreeMap<K, V> treeMap = new TreeMap<K, V>(comparator);
+		treeMap.putAll(map);
+		return treeMap;
+	}
 }
