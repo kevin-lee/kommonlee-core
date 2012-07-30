@@ -1057,4 +1057,177 @@ public class NeoArraysTest
     fail();
   }
 
+  @Test
+  public final void testEqualByteArrayByteArray()
+  {
+    /* given */
+    final byte[] expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    System.out.println("\nexpected:");
+    System.out.println(toStringOf(expected));
+    final byte[] actual = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    System.out.println("\nactual:");
+    System.out.println(toStringOf(actual));
+
+    /* when */
+    System.out.println("result:");
+    @SuppressWarnings("boxing")
+    final Boolean result = NeoArrays.equal(expected, actual);
+    System.out.println(result);
+
+    /* then */
+    assertThat(result, is(equalTo(Boolean.TRUE)));
+  }
+
+  @Test
+  public final void testEqualByteArrayByteArrayWithNotEqual()
+  {
+    /* given */
+    final byte[] expected = { 1, 2, 3, 3, 5, 6, 7, 8, 9, 10 };
+    System.out.println("\nexpected:");
+    System.out.println(toStringOf(expected));
+    final byte[] actual = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    System.out.println("\nactual:");
+    System.out.println(toStringOf(actual));
+
+    /* when */
+    System.out.println("result:");
+    @SuppressWarnings("boxing")
+    final Boolean result = NeoArrays.equal(expected, actual);
+    System.out.println(result);
+
+    /* then */
+    assertThat(result, is(equalTo(Boolean.FALSE)));
+  }
+
+  @Test
+  public final void testEqualByteArrayByteArrayWithDifferentLength()
+  {
+    /* given */
+    final byte[] expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
+    System.out.println("\nexpected:");
+    System.out.println(toStringOf(expected));
+    final byte[] actual = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    System.out.println("\nactual:");
+    System.out.println(toStringOf(actual));
+
+    /* when */
+    System.out.println("result:");
+    @SuppressWarnings("boxing")
+    final Boolean result = NeoArrays.equal(expected, actual);
+    System.out.println(result);
+
+    /* then */
+    assertThat(result, is(equalTo(Boolean.FALSE)));
+  }
+
+  @Test
+  public final void testEqualByteArrayByteArrayWithNull()
+  {
+    /* given */
+    final byte[] expected = null;
+    System.out.println("\nexpected:");
+    System.out.println(toStringOf(expected));
+    final byte[] actual = null;
+    System.out.println("\nactual:");
+    System.out.println(toStringOf(actual));
+
+    /* when */
+    System.out.println("result:");
+    @SuppressWarnings("boxing")
+    final Boolean result = NeoArrays.equal(expected, actual);
+    System.out.println(result);
+
+    /* then */
+    assertThat(result, is(equalTo(Boolean.TRUE)));
+  }
+
+//  @Test
+//  public final void testNotEqualByteArrayByteArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testEqualCharArrayCharArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testNotEqualCharArrayCharArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testEqualShortArrayShortArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testNotEqualShortArrayShortArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testEqualIntArrayIntArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testNotEqualIntArrayIntArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testEqualLongArrayLongArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testNotEqualLongArrayLongArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testEqualFloatArrayFloatArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testNotEqualFloatArrayFloatArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testEqualDoubleArrayDoubleArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testNotEqualDoubleArrayDoubleArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testEqualBooleanArrayBooleanArray()
+//  {
+//    fail("Not yet implemented");
+//  }
+//
+//  @Test
+//  public final void testNotEqualBooleanArrayBooleanArray()
+//  {
+//    fail("Not yet implemented");
+//  }
 }

@@ -22,9 +22,24 @@ package org.elixirian.kommonlee.util;
  * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-07-10)
+ * @version 0.0.2 (2012-05-09) equal methods and notEqual methods to compare array types including primitive ones are
+ *          added.
  */
 public final class NeoArrays
 {
+  /* @formatter:off */
+  public static byte[]    EMPTY_BYTE_ARRAY    = new byte[0];
+  public static char[]    EMPTY_CHAR_ARRAY    = new char[0];
+  public static short[]   EMPTY_SHORT_ARRAY   = new short[0];
+  public static int[]     EMPTY_INT_ARRAY     = new int[0];
+  public static long[]    EMPTY_LONG_ARRAY    = new long[0];
+  public static float[]   EMPTY_FLOAT_ARRAY   = new float[0];
+  public static double[]  EMPTY_DOUBLE_ARRAY  = new double[0];
+  public static boolean[] EMPTY_BOOLEAN_ARRAY = new boolean[0];
+  public static String[]  EMPTY_STRING_ARRAY  = new String[0];
+  public static Object[]  EMPTY_OBJECT_ARRAY  = new Object[0];
+  /* @formatter:on */
+
   private NeoArrays()
   {
     throw new AssertionError(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
@@ -267,4 +282,379 @@ public final class NeoArrays
     return stringBuilder.toString();
   }
 
+  /**
+   * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   * {@code false} otherwise. The both arrays must have the same length. Otherwise these are not equal.
+   * 
+   * @param left
+   *          a byte array
+   * @param right
+   *          a byte array to be compared with for equality
+   * @return {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   *         {@code false} otherwise.
+   */
+  public static boolean equal(final byte[] left, final byte[] right)
+  {
+    if (left == right)
+      return true;
+
+    if (null == left || null == right)
+      return false;
+
+    if (left.length != right.length)
+      return false;
+
+    final int length = left.length;
+    for (int i = 0; i < length; i++)
+    {
+      if (left[i] != right[i])
+        return false;
+    }
+    return true;
+  }
+
+  /**
+   * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   * {@code false} otherwise.
+   * 
+   * @param left
+   *          a byte array
+   * @param right
+   *          a byte array to be compared with for being not equal.
+   * @return {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   *         {@code false} otherwise.
+   */
+  public static boolean notEqual(final byte[] left, final byte[] right)
+  {
+    return !equal(left, right);
+  }
+
+  /**
+   * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   * The both arrays must have the same length. Otherwise these are not equal.
+   * 
+   * @param left
+   *          a char array
+   * @param right
+   *          a char array to be compared with for equality
+   * @return {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   *         {@code false} otherwise.
+   */
+  public static boolean equal(final char[] left, final char[] right)
+  {
+    if (left == right)
+      return true;
+
+    if (null == left || null == right)
+      return false;
+
+    if (left.length != right.length)
+      return false;
+
+    final int length = left.length;
+    for (int i = 0; i < length; i++)
+    {
+      if (left[i] != right[i])
+        return false;
+    }
+    return true;
+  }
+
+  /**
+   * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   * {@code false} otherwise.
+   * 
+   * @param left
+   *          a char array
+   * @param right
+   *          a char array to be compared with for being not equal.
+   * @return {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   *         {@code false} otherwise.
+   */
+  public static boolean notEqual(final char[] left, final char[] right)
+  {
+    return !equal(left, right);
+  }
+
+  /**
+   * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   * The both arrays must have the same length. Otherwise these are not equal.
+   * 
+   * @param left
+   *          a short array
+   * @param right
+   *          a short array to be compared with for equality
+   * @return {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   *         {@code false} otherwise.
+   */
+  public static boolean equal(final short[] left, final short[] right)
+  {
+    if (left == right)
+      return true;
+
+    if (null == left || null == right)
+      return false;
+
+    if (left.length != right.length)
+      return false;
+
+    final int length = left.length;
+    for (int i = 0; i < length; i++)
+    {
+      if (left[i] != right[i])
+        return false;
+    }
+    return true;
+  }
+
+  /**
+   * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   * {@code false} otherwise.
+   * 
+   * @param left
+   *          a short array
+   * @param right
+   *          a short array to be compared with for being not equal.
+   * @return {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   *         {@code false} otherwise.
+   */
+  public static boolean notEqual(final short[] left, final short[] right)
+  {
+    return !equal(left, right);
+  }
+
+  /**
+   * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   * The both arrays must have the same length. Otherwise these are not equal.
+   * 
+   * @param left
+   *          a int array
+   * @param right
+   *          a int array to be compared with for equality
+   * @return {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   *         {@code false} otherwise.
+   */
+  public static boolean equal(final int[] left, final int[] right)
+  {
+    if (left == right)
+      return true;
+
+    if (null == left || null == right)
+      return false;
+
+    if (left.length != right.length)
+      return false;
+
+    final int length = left.length;
+    for (int i = 0; i < length; i++)
+    {
+      if (left[i] != right[i])
+        return false;
+    }
+    return true;
+  }
+
+  /**
+   * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   * {@code false} otherwise.
+   * 
+   * @param left
+   *          an int array
+   * @param right
+   *          an int array to be compared with for being not equal.
+   * @return {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   *         {@code false} otherwise.
+   */
+  public static boolean notEqual(final int[] left, final int[] right)
+  {
+    return !equal(left, right);
+  }
+
+  /**
+   * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   * The both arrays must have the same length. Otherwise these are not equal.
+   * 
+   * @param left
+   *          a long array
+   * @param right
+   *          a long array be compared with for equality
+   * @return {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   *         {@code false} otherwise.
+   */
+  public static boolean equal(final long[] left, final long[] right)
+  {
+    if (left == right)
+      return true;
+
+    if (null == left || null == right)
+      return false;
+
+    if (left.length != right.length)
+      return false;
+
+    final int length = left.length;
+    for (int i = 0; i < length; i++)
+    {
+      if (left[i] != right[i])
+        return false;
+    }
+    return true;
+  }
+
+  /**
+   * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   * {@code false} otherwise.
+   * 
+   * @param left
+   *          a long array
+   * @param right
+   *          a long array to be compared with for being not equal.
+   * @return {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   *         {@code false} otherwise.
+   */
+  public static boolean notEqual(final long[] left, final long[] right)
+  {
+    return !equal(left, right);
+  }
+
+  /**
+   * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   * The both arrays must have the same length. Otherwise these are not equal.
+   * 
+   * @param left
+   *          a float array
+   * @param right
+   *          a float array to be compared with for equality
+   * @return {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   *         {@code false} otherwise.
+   */
+  public static boolean equal(final float[] left, final float[] right)
+  {
+    if (left == right)
+      return true;
+
+    if (null == left || null == right)
+      return false;
+
+    if (left.length != right.length)
+      return false;
+
+    final int length = left.length;
+    for (int i = 0; i < length; i++)
+    {
+      if (left[i] != right[i])
+        return false;
+    }
+    return true;
+  }
+
+  /**
+   * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   * {@code false} otherwise.
+   * 
+   * @param left
+   *          a float array
+   * @param right
+   *          a float array to be compared with for being not equal.
+   * @return {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   *         {@code false} otherwise.
+   */
+  public static boolean notEqual(final float[] left, final float[] right)
+  {
+    return !equal(left, right);
+  }
+
+  /**
+   * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   * The both arrays must have the same length. Otherwise these are not equal.
+   * 
+   * @param left
+   *          a double array
+   * @param right
+   *          a double array to be compared with for equality
+   * @return {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   *         {@code false} otherwise.
+   */
+  public static boolean equal(final double[] left, final double[] right)
+  {
+    if (left == right)
+      return true;
+
+    if (null == left || null == right)
+      return false;
+
+    if (left.length != right.length)
+      return false;
+
+    final int length = left.length;
+    for (int i = 0; i < length; i++)
+    {
+      if (left[i] != right[i])
+        return false;
+    }
+    return true;
+  }
+
+  /**
+   * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   * {@code false} otherwise.
+   * 
+   * @param left
+   *          a double array
+   * @param right
+   *          a double array to be compared with for being not equal.
+   * @return {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   *         {@code false} otherwise.
+   */
+  public static boolean notEqual(final double[] left, final double[] right)
+  {
+    return !equal(left, right);
+  }
+
+  /**
+   * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   * The both arrays must have the same length. Otherwise these are not equal.
+   * 
+   * @param left
+   *          a boolean array
+   * @param right
+   *          a boolean array to be compared with for equality
+   * @return {@code true} if each element in the left array is equal to the one at the same index in the right array.
+   *         {@code false} otherwise.
+   */
+  public static boolean equal(final boolean[] left, final boolean[] right)
+  {
+    if (left == right)
+      return true;
+
+    if (null == left || null == right)
+      return false;
+
+    if (left.length != right.length)
+      return false;
+
+    final int length = left.length;
+    for (int i = 0; i < length; i++)
+    {
+      if (left[i] != right[i])
+        return false;
+    }
+    return true;
+  }
+
+  /**
+   * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   * {@code false} otherwise.
+   * 
+   * @param left
+   *          a boolean array
+   * @param right
+   *          a boolean array to be compared with for being not equal.
+   * @return {@code true} if any element in one array is not equal to the one at the same index in the other array.
+   *         {@code false} otherwise.
+   */
+  public static boolean notEqual(final boolean[] left, final boolean[] right)
+  {
+    return !equal(left, right);
+  }
 }

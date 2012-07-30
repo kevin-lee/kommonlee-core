@@ -250,9 +250,9 @@ public final class Objects
    * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
    * 
    * @param left
-   *          a int value
+   *          an int value
    * @param right
-   *          a int value to be compared with for equality
+   *          an int value to be compared with for equality
    * @return true if the arguments are equal to each other and false otherwise
    */
   public static boolean equal(final int left, final int right)
@@ -264,9 +264,9 @@ public final class Objects
    * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
    * 
    * @param left
-   *          a int value
+   *          an int value
    * @param right
-   *          a int value to be compared with for being not equal.
+   *          an int value to be compared with for being not equal.
    * @return true if the arguments are not equal to each other and false otherwise
    */
   public static boolean notEqual(final int left, final int right)
@@ -448,6 +448,58 @@ public final class Objects
                       left.equals(right)));
     /* @formatter:on */
   }
+
+  // private static boolean deepEqual0(final Object left, final Object right)
+  // {
+//    /* @formatter:off */
+//    if((left == right) ||
+//        ((null != left && null != right) &&
+//          ((left.getClass()
+//            .isArray() &&
+//          right.getClass()
+//            .isArray()))))
+//            /* @formatter:on */
+  // {
+  // if (left instanceof Object[] && right instanceof Object[])
+  // {
+  // return Arrays.deepEquals((Object[]) left, (Object[]) right);
+  // }
+  // else if (left instanceof int[] && right instanceof int[])
+  // {
+  //
+  // }
+  // else
+  // {
+  // return equal(left, right);
+  // }
+  // }
+  // }
+
+  // private static boolean deepEqual0(final Object[] left, final Object[] right)
+  // {
+//    /* @formatter:off */
+//    if((left == right) ||
+//        ((null != left && null != right) &&
+//            ((left.getClass()
+//                .isArray() &&
+//                right.getClass()
+//                .isArray()))))
+//      /* @formatter:on */
+  // {
+  // if (left instanceof Object[] && right instanceof Object[])
+  // {
+  // return deepEquals((Object[]) left, (Object[]) right);
+  // }
+  // else if (left instanceof int[] && right instanceof int[])
+  // {
+  //
+  // }
+  // else
+  // {
+  // return equal(left, right);
+  // }
+  // }
+  // }
 
   /**
    * Returns {@code true} if the arguments are not deeply equal to each other and {@code false} otherwise. Two
