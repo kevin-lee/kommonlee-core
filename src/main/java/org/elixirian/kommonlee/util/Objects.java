@@ -1763,6 +1763,11 @@ public final class Objects
 		 */
 		public static final String DEFAULT_NAME_VALUE_SEPARATOR = "=";
 
+		/**
+		 * System.getProperty("line.separator")
+		 */
+		public static final String NEW_LINE = System.getProperty("line.separator");
+
 		private final Object object;
 
 		private final String nameValueSeparator;
@@ -1930,13 +1935,13 @@ public final class Objects
 		}
 
 		/**
-		 * Add a new line (\n) to this {@link ToStringBuilder} object.
+		 * Add a new line ({@link #NEW_LINE}) to this {@link ToStringBuilder} object.
 		 * 
 		 * @return this {@link ToStringBuilder} object.
 		 */
 		public ToStringBuilder newLine()
 		{
-			return value0("\n");
+			return value0(NEW_LINE);
 		}
 
 		@Override
@@ -1956,6 +1961,11 @@ public final class Objects
 						  .append("}")
 						  .toString();
 			/* @formatter:on */
+		}
+
+		public String toStringThenAddNewLine()
+		{
+			return toString() + NEW_LINE;
 		}
 	}
 

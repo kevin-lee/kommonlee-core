@@ -487,10 +487,10 @@ public class ObjectsTest
 		assertThat(
 				Boolean.valueOf(Objects.notDeepEqual(new boolean[] { true, true, false, true, false }, new boolean[] { true,
 						true, false, true, true })), is(equalTo(Boolean.TRUE)));
-		
+
 		assertThat(Boolean.valueOf(Objects.notDeepEqual(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 5 })),
 				is(equalTo(Boolean.FALSE)));
-		
+
 		assertThat(
 				Boolean.valueOf(Objects.notDeepEqual(new boolean[] { true, true, false, true, false }, new boolean[] { true,
 						true, false, true, false })), is(equalTo(Boolean.FALSE)));
@@ -1176,6 +1176,46 @@ public class ObjectsTest
 				.getFieldSeparator(), is(equalTo(Objects.ToStringBuilder.DEFAULT_FIELD_SEPARATOR)));
 		assertThat(Objects.toStringBuilder(this)
 				.getNameValueSeparator(), is(equalTo(Objects.ToStringBuilder.DEFAULT_NAME_VALUE_SEPARATOR)));
+	}
+
+	@Test
+	public final void testToStringBuilderWithToStringThenAddNewLine()
+	{
+		/* given */
+		/* @formatter:off */
+		final String expected = "SomePojo{id=100, " +
+				"name=Kevin, " +
+				"registered=true, " +
+				"byteValue=10, " +
+				"shortValue=20, " +
+				"intValue=100, " +
+				"longValue=1000000, " +
+				"floatValue=12.34, " +
+				"doubleValue=56.78}" + System.getProperty("line.separator");
+		/* @formatter:on */
+		System.out.println("expected:");
+		System.out.println(expected);
+
+		/* when */
+		String actual =
+			Objects.toStringBuilder(
+					new SomePojo(Long.valueOf(100L), "Kevin", true, (byte) 10, (short) 20, 100, 1000000L, 12.34F, 56.78D))
+					.add("id", 100)
+					.add("name", "Kevin")
+					.add("registered", true)
+					.add("byteValue", 10)
+					.add("shortValue", 20)
+					.add("intValue", 100)
+					.add("longValue", 1000000)
+					.add("floatValue", 12.34)
+					.add("doubleValue", 56.78)
+					.toStringThenAddNewLine();
+
+		System.out.println("actual:");
+		System.out.println(actual);
+
+		/* then */
+		assertThat(actual, is(equalTo(expected)));
 	}
 
 	@Test
