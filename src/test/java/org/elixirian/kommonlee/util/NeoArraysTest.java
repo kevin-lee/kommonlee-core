@@ -3101,6 +3101,48 @@ public class NeoArraysTest
 	}
 
 	@Test
+	public final void testDeepEqualWithPrimitives()
+	{
+		/* given */
+		final int[] expected = { 1, 2, 3, 4, 5, 6, 7 };
+		System.out.println("\nexpected:");
+		System.out.println(toStringOf(expected));
+		final int[] actual = { 1, 2, 3, 4, 5, 6, 7 };
+		System.out.println("\nactual:");
+		System.out.println(toStringOf(actual));
+
+		/* when */
+		System.out.println("result:");
+		@SuppressWarnings("boxing")
+		final Boolean result = NeoArrays.deepEqual(expected, actual);
+		System.out.println(result);
+
+		/* then */
+		assertThat(result, is(equalTo(Boolean.TRUE)));
+	}
+
+	@Test
+	public final void testDeepEqualWithPrimitives2()
+	{
+		/* given */
+		final boolean[] expected = { true, true, false, true, false, false, true, false };
+		System.out.println("\nexpected:");
+		System.out.println(toStringOf(expected));
+		final boolean[] actual = { true, true, false, true, false, false, true, false };
+		System.out.println("\nactual:");
+		System.out.println(toStringOf(actual));
+
+		/* when */
+		System.out.println("result:");
+		@SuppressWarnings("boxing")
+		final Boolean result = NeoArrays.deepEqual(expected, actual);
+		System.out.println(result);
+
+		/* then */
+		assertThat(result, is(equalTo(Boolean.TRUE)));
+	}
+
+	@Test
 	public final void testDeepEqualWithNotEqual()
 	{
 		/* given */
@@ -3247,11 +3289,9 @@ public class NeoArraysTest
 	{
 		/* given */
 		final Object[] expected = { new TestObject(1), null, new TestObject(5), new TestObject(6), new TestObject(7) };
-		;
 		System.out.println("\nexpected:");
 		System.out.println(toStringOf(expected));
 		final Object[] actual = { new TestObject(1), null, new TestObject(5), new TestObject(6), new TestObject(7) };
-		;
 		System.out.println("\nactual:");
 		System.out.println(toStringOf(actual));
 
@@ -3277,6 +3317,48 @@ public class NeoArraysTest
 		final Object[] actual =
 			{ new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(5) },
 					new TestObject(5), new TestObject(6), new TestObject(7) };
+		System.out.println("\nactual:");
+		System.out.println(toStringOf(actual));
+
+		/* when */
+		System.out.println("result:");
+		@SuppressWarnings("boxing")
+		final Boolean result = NeoArrays.notDeepEqual(expected, actual);
+		System.out.println(result);
+
+		/* then */
+		assertThat(result, is(equalTo(Boolean.TRUE)));
+	}
+
+	@Test
+	public final void testNotDeepEqualWithPrimitives()
+	{
+		/* given */
+		final int[] expected = { 1, 2, 3, 4, 5, 6, 7 };
+		System.out.println("\nexpected:");
+		System.out.println(toStringOf(expected));
+		final int[] actual = { 1, 2, 3, 4, 5, 6, 8 };
+		System.out.println("\nactual:");
+		System.out.println(toStringOf(actual));
+
+		/* when */
+		System.out.println("result:");
+		@SuppressWarnings("boxing")
+		final Boolean result = NeoArrays.notDeepEqual(expected, actual);
+		System.out.println(result);
+
+		/* then */
+		assertThat(result, is(equalTo(Boolean.TRUE)));
+	}
+
+	@Test
+	public final void testNotDeepEqualWithPrimitives2()
+	{
+		/* given */
+		final boolean[] expected = { true, true, false, true, false, false, true, false };
+		System.out.println("\nexpected:");
+		System.out.println(toStringOf(expected));
+		final boolean[] actual = { true, true, false, true, false, false, true, true };
 		System.out.println("\nactual:");
 		System.out.println(toStringOf(actual));
 

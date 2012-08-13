@@ -275,6 +275,20 @@ public class ObjectsTest
 				Boolean.valueOf(Objects.deepEqual(new SomeObject[] { new SomeObject("SeongHyun"), new SomeObject("Lee"),
 						new SomeObject("Kevin") }, new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
 						new SomeObject("SeongHyun") })), is(equalTo(Boolean.FALSE)));
+
+		assertThat(Boolean.valueOf(Objects.deepEqual(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 5 })),
+				is(equalTo(Boolean.TRUE)));
+
+		assertThat(
+				Boolean.valueOf(Objects.deepEqual(new boolean[] { true, true, false, true, false }, new boolean[] { true, true,
+						false, true, false })), is(equalTo(Boolean.TRUE)));
+
+		assertThat(Boolean.valueOf(Objects.deepEqual(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 6 })),
+				is(equalTo(Boolean.FALSE)));
+
+		assertThat(
+				Boolean.valueOf(Objects.deepEqual(new boolean[] { true, true, false, true, false }, new boolean[] { true, true,
+						false, true, true })), is(equalTo(Boolean.FALSE)));
 	}
 
 	@Test
@@ -466,6 +480,20 @@ public class ObjectsTest
 				Boolean.valueOf(Objects.notDeepEqual(new SomeObject[] { new SomeObject("SeongHyun"), new SomeObject("Lee"),
 						new SomeObject("Kevin") }, new SomeObject[] { new SomeObject("Kevin"), new SomeObject("Lee"),
 						new SomeObject("SeongHyun") })), is(equalTo(Boolean.TRUE)));
+
+		assertThat(Boolean.valueOf(Objects.notDeepEqual(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 6 })),
+				is(equalTo(Boolean.TRUE)));
+
+		assertThat(
+				Boolean.valueOf(Objects.notDeepEqual(new boolean[] { true, true, false, true, false }, new boolean[] { true,
+						true, false, true, true })), is(equalTo(Boolean.TRUE)));
+		
+		assertThat(Boolean.valueOf(Objects.notDeepEqual(new int[] { 1, 2, 3, 4, 5 }, new int[] { 1, 2, 3, 4, 5 })),
+				is(equalTo(Boolean.FALSE)));
+		
+		assertThat(
+				Boolean.valueOf(Objects.notDeepEqual(new boolean[] { true, true, false, true, false }, new boolean[] { true,
+						true, false, true, false })), is(equalTo(Boolean.FALSE)));
 	}
 
 	@Test
