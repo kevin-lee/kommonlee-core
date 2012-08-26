@@ -1,16 +1,19 @@
 package org.elixirian.kommonlee.util;
 
-import static org.elixirian.kommonlee.util.Objects.*;
+import static org.elixirian.kommonlee.util.Objects.toStringOf;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <pre>
  *     ___  _____                                              _____
- *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
- *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -18,7 +21,7 @@ import static org.elixirian.kommonlee.util.Objects.*;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-02-23)
  * @version 0.0.2 (2010-03-16) bug fixed: It does not remove the extra "%s"s nor does it escape the rest of the "%%s"s
@@ -37,131 +40,199 @@ import static org.elixirian.kommonlee.util.Objects.*;
  */
 public final class Strings
 {
-  private Strings()
-  {
-  }
+	private Strings() throws IllegalAccessException
+	{
+		throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
+	}
 
-  /**
-   * Returns a copy of the given string, with leading and trailing whitespace omitted. If the given String contains
-   * <code>null</code> reference it returns an "" (empty String).
-   * 
-   * @param value
-   *          the given String value
-   * @return the result of value.trim(). If the value is null, return "" (empty String).
-   */
-  public static String nullSafeTrim(final String value)
-  {
-    return (null == value ? "" : value.trim());
-  }
+	/**
+	 * Returns a copy of the given string, with leading and trailing whitespace omitted. If the given String contains
+	 * <code>null</code> reference it returns an "" (empty String).
+	 *
+	 * @param value
+	 *          the given String value
+	 * @return the result of value.trim(). If the value is null, return "" (empty String).
+	 */
+	public static String nullSafeTrim(final String value)
+	{
+		return (null == value ? "" : value.trim());
+	}
 
-  /**
-   * Returns an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
-   * given value itself.
-   * 
-   * @param value
-   *          the given String value to check for nullity.
-   * @return an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
-   *         given value itself
-   */
-  public static String nullThenEmpty(final String value)
-  {
-    return null == value ? "" : value;
-  }
+	/**
+	 * Returns an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
+	 * given value itself.
+	 *
+	 * @param value
+	 *          the given String value to check for nullity.
+	 * @return an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
+	 *         given value itself
+	 */
+	public static String nullThenEmpty(final String value)
+	{
+		return null == value ? "" : value;
+	}
 
-  /**
-   * Returns {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
-   * not empty, returns the given value itself.
-   * 
-   * @param value
-   *          the given String value to check for emptiness.
-   * @return {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
-   *         not empty, returns the given value itself.
-   */
-  public static String emptyThenNull(final String value)
-  {
-    return isEmpty(value) ? null : value;
-  }
+	/**
+	 * Returns {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
+	 * not empty, returns the given value itself.
+	 *
+	 * @param value
+	 *          the given String value to check for emptiness.
+	 * @return {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
+	 *         not empty, returns the given value itself.
+	 */
+	public static String emptyThenNull(final String value)
+	{
+		return isNullOrEmpty(value) ? null : value;
+	}
 
-  /**
-   * Checks if the given String value is empty. It means the given String parameter contains the null reference or no
-   * String value which means its length is 0.
-   * 
-   * @param value
-   *          the given String value.
-   * @return true if the given String parameter contains the null reference or it has no String value (null == value ||
-   *         0 == value.length()). false if the given String parameter contains a reference pointing to any String value
-   *         having the length of which is greater than 0.
-   */
-  public static boolean isEmpty(final String value)
-  {
-    return (null == value || 0 == value.length());
-  }
+	/**
+	 * Checks if the given String value is empty. It means the given String parameter contains the null reference or no
+	 * String value which means its length is 0.
+	 *
+	 * @param value
+	 *          the given String value.
+	 * @return true if the given String parameter contains the null reference or it has no String value (null == value ||
+	 *         0 == value.length()). false if the given String parameter contains a reference pointing to any String value
+	 *         having the length of which is greater than 0.
+	 */
+	public static boolean isNullOrEmpty(final String value)
+	{
+		return (null == value || 0 == value.length());
+	}
 
-  /**
-   * Checks if the given String value is not empty. It means the given String parameter contains neither the null
-   * reference nor any String with 0 length.
-   * 
-   * @param value
-   *          the given String value.
-   * @return true if the given String parameter contains a reference pointing to any String object the length of which
-   *         is greater than 0 (null != value && 0 < value.length()). false if it contains null or a String value with 0
-   *         length.
-   */
-  public static boolean isNotEmpty(final String value)
-  {
-    return !isEmpty(value);
-  }
+	/**
+	 * Checks if the given String value is not empty. It means the given String parameter contains neither the null
+	 * reference nor any String with 0 length.
+	 *
+	 * @param value
+	 *          the given String value.
+	 * @return true if the given String parameter contains a reference pointing to any String object the length of which
+	 *         is greater than 0 (null != value && 0 < value.length()). false if it contains null or a String value with 0
+	 *         length.
+	 */
+	public static boolean isNeitherNullNorEmpty(final String value)
+	{
+		return !isNullOrEmpty(value);
+	}
 
-  /**
-   * Repeats the given String the given number of times.
-   * 
-   * <pre>
-   * Strings.repeat("", -1);
-   * Result: {@link IllegalArgumentException}
-   * 
-   * Strings.repeat("", 0);
-   * Result: ""
-   * 
-   * Strings.repeat("", 10);
-   * Result: ""
-   * 
-   * Strings.repeat("Kevin ", -1);
-   * Result: {@link IllegalArgumentException}
-   * 
-   * Strings.repeat("Kevin ", 0);
-   * Result: ""
-   * 
-   * Strings.repeat("Kevin ", 1);
-   * Result: "Kevin "
-   * 
-   * Strings.repeat("Kevin ", 2);
-   * Result: "Kevin Kevin "
-   * 
-   * Strings.repeat("Kevin ", 5);
-   * Result: "Kevin Kevin Kevin Kevin Kevin "
-   * </pre>
-   * 
-   * @param value
-   *          the given String value.
-   * @param times
-   *          the given number of times to repeat.
-   * @return The String repeated the given number of times.
-   * @exception IllegalArgumentException
-   *              if the value of the times parameter is a negative value.
-   */
-  public static String repeat(final String value, final int times) throws IllegalArgumentException
-  {
-    final String valueToUse = toStringOf(value);
-    if (0 > times)
-    {
-      throw new IllegalArgumentException(
-          "The value of the times parameter cannot be a negative number. It must be a non-negative number.");
-    }
-    final StringBuilder stringBuilder = new StringBuilder(valueToUse.length() * times);
-    for (int i = 0; i < times; i++)
-    {
-      stringBuilder.append(valueToUse);
-    }
-    return stringBuilder.toString();
-  }
+	/**
+	 * Repeats the given String the given number of times.
+	 *
+	 * <pre>
+	 * Strings.repeat("", -1);
+	 * Result: {@link IllegalArgumentException}
+	 *
+	 * Strings.repeat("", 0);
+	 * Result: ""
+	 *
+	 * Strings.repeat("", 10);
+	 * Result: ""
+	 *
+	 * Strings.repeat("Kevin ", -1);
+	 * Result: {@link IllegalArgumentException}
+	 *
+	 * Strings.repeat("Kevin ", 0);
+	 * Result: ""
+	 *
+	 * Strings.repeat("Kevin ", 1);
+	 * Result: "Kevin "
+	 *
+	 * Strings.repeat("Kevin ", 2);
+	 * Result: "Kevin Kevin "
+	 *
+	 * Strings.repeat("Kevin ", 5);
+	 * Result: "Kevin Kevin Kevin Kevin Kevin "
+	 * </pre>
+	 *
+	 * @param value
+	 *          the given String value.
+	 * @param times
+	 *          the given number of times to repeat.
+	 * @return The String repeated the given number of times.
+	 * @exception IllegalArgumentException
+	 *              if the value of the times parameter is a negative value.
+	 */
+	public static String repeat(final String value, final int times) throws IllegalArgumentException
+	{
+		if (0 > times)
+		{
+			throw new IllegalArgumentException(
+					"The value of the times parameter cannot be a negative number. It must be a non-negative number.");
+		}
+		final String valueToUse = toStringOf(value);
+		final StringBuilder stringBuilder = new StringBuilder(valueToUse.length() * times);
+		for (int i = 0; i < times; i++)
+		{
+			stringBuilder.append(valueToUse);
+		}
+		return stringBuilder.toString();
+	}
+
+	public static String[] findMatched(final String regex, final String value)
+	{
+		final Pattern pattern = Pattern.compile(regex);
+		return findMatched(pattern, value);
+	}
+
+	public static String[] findMatched(final Pattern pattern, final String value)
+	{
+		final Matcher matcher = pattern.matcher(value);
+		if (matcher.find())
+		{
+			final int length = matcher.groupCount() + 1;
+			final String[] textFound = new String[length];
+			for (int i = 0; i < length; i++)
+			{
+				textFound[i] = matcher.group(i);
+			}
+			return textFound;
+		}
+		return NeoArrays.EMPTY_STRING_ARRAY;
+	}
+
+	public static String[] matchEntirely(final String regex, final String value)
+	{
+		final Pattern pattern = Pattern.compile(regex);
+		return matchEntirely(pattern, value);
+	}
+
+
+	public static String[] matchEntirely(final Pattern pattern, final String value)
+	{
+		final Matcher matcher = pattern.matcher(value);
+		if (matcher.matches())
+		{
+			final int length = matcher.groupCount() + 1;
+			final String[] textMatched = new String[length];
+			for (int i = 0; i < length; i++)
+			{
+				textMatched[i] = matcher.group(i);
+			}
+			return textMatched;
+		}
+		return NeoArrays.EMPTY_STRING_ARRAY;
+	}
+
+	public static void main(final String[] args)
+	{
+		System.out.println(toStringOf(findMatched("\\d+", "abc123456fgfg")));
+		System.out.println(toStringOf(matchEntirely("\\d+", "abc123456fgfg")));
+		System.out.println(toStringOf(findMatched("(\\d+)[\\D]*(\\d+)", "abc123456fgfg123999")));
+		System.out.println(toStringOf(matchEntirely("(\\d+)[\\D]*(\\d+)", "abc123456fgfg123999")));
+		System.out.println(toStringOf(findMatched("[\\D]*(\\d+)[\\D]*(\\d+)", "abc123456fgfg123999")));
+		System.out.println(toStringOf(matchEntirely("[\\D]*(\\d+)[\\D]*(\\d+)", "abc123456fgfg123999")));
+
+		final String value = "a123";
+		System.out.println(toStringOf(findMatched("\\d\\d\\d", value)));
+		System.out.println(toStringOf(matchEntirely("\\d\\d\\d", value)));
+		final String value1 = "123";
+		System.out.println(toStringOf(findMatched("\\d\\d\\d", value1)));
+		System.out.println(toStringOf(matchEntirely("\\d\\d\\d", value1)));
+
+		final String regexp = "([^:]+):([0-9]+)?(\\+)?:([^:]+)?:?([\\s\\S]*)?";
+		final String input = "111:222+:444:555";
+		System.out.println(toStringOf(findMatched(regexp, input)));
+		System.out.println(toStringOf(matchEntirely(regexp, input)));
+	}
 }
