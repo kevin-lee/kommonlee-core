@@ -213,26 +213,4 @@ public final class Strings
 		}
 		return NeoArrays.EMPTY_STRING_ARRAY;
 	}
-
-	public static void main(final String[] args)
-	{
-		System.out.println(toStringOf(findMatched("\\d+", "abc123456fgfg")));
-		System.out.println(toStringOf(matchEntirely("\\d+", "abc123456fgfg")));
-		System.out.println(toStringOf(findMatched("(\\d+)[\\D]*(\\d+)", "abc123456fgfg123999")));
-		System.out.println(toStringOf(matchEntirely("(\\d+)[\\D]*(\\d+)", "abc123456fgfg123999")));
-		System.out.println(toStringOf(findMatched("[\\D]*(\\d+)[\\D]*(\\d+)", "abc123456fgfg123999")));
-		System.out.println(toStringOf(matchEntirely("[\\D]*(\\d+)[\\D]*(\\d+)", "abc123456fgfg123999")));
-
-		final String value = "a123";
-		System.out.println(toStringOf(findMatched("\\d\\d\\d", value)));
-		System.out.println(toStringOf(matchEntirely("\\d\\d\\d", value)));
-		final String value1 = "123";
-		System.out.println(toStringOf(findMatched("\\d\\d\\d", value1)));
-		System.out.println(toStringOf(matchEntirely("\\d\\d\\d", value1)));
-
-		final String regexp = "([^:]+):([0-9]+)?(\\+)?:([^:]+)?:?([\\s\\S]*)?";
-		final String input = "111:222+:444:555";
-		System.out.println(toStringOf(findMatched(regexp, input)));
-		System.out.println(toStringOf(matchEntirely(regexp, input)));
-	}
 }
