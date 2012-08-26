@@ -7,7 +7,7 @@ import static java.util.Collections.unmodifiableMap;
 import static java.util.Collections.unmodifiableSet;
 import static org.elixirian.kommonlee.util.MessageFormatter.format;
 import static org.elixirian.kommonlee.util.Objects.notNull;
-import static org.elixirian.kommonlee.util.Strings.isNullOrEmpty;
+import static org.elixirian.kommonlee.util.Strings.isNullOrEmptyString;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -348,7 +348,7 @@ public final class ToStringGlues
 		public IterableToStringGlue<E> build()
 		{
 			/* @formatter:off */
-			return isNullOrEmpty(separator) ?
+			return isNullOrEmptyString(separator) ?
 							new IterableToStringGlueWithoutSeparator<E>(
 									whichGlueFunctionWithoutSeparator()) :
 							new IterableToStringGlueWithSeparator<E>(
@@ -443,7 +443,7 @@ public final class ToStringGlues
 		public ArgsToStringGlue<E> build()
 		{
 			/* @formatter:off */
-			return isNullOrEmpty(separator) ?
+			return isNullOrEmptyString(separator) ?
 							new ArgsToStringGlueWithoutSeparator<E>(
 									whichGlueFunctionWithoutSeparator()) :
 							new ArgsToStringGlueWithSeparator<E>(

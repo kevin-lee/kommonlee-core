@@ -14,8 +14,8 @@ import static org.elixirian.kommonlee.util.Objects.hash;
 import static org.elixirian.kommonlee.util.Objects.identical;
 import static org.elixirian.kommonlee.util.Objects.isNotNull;
 import static org.elixirian.kommonlee.util.Objects.toStringBuilder;
-import static org.elixirian.kommonlee.util.Strings.isNeitherNullNorEmpty;
-import static org.elixirian.kommonlee.util.Strings.isNullOrEmpty;
+import static org.elixirian.kommonlee.util.Strings.isNeitherNullNorEmptyString;
+import static org.elixirian.kommonlee.util.Strings.isNullOrEmptyString;
 import static org.elixirian.kommonlee.util.string.ToStringGlues.builderForIterable;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -514,7 +514,7 @@ public class ToStringGluesTest
 		final StringBuilder stringBuilder = new StringBuilder();
 		for (final String each : STRING_LIST)
 		{
-			if (isNeitherNullNorEmpty(each))
+			if (isNeitherNullNorEmptyString(each))
 			{
 				boolean allSpaceChars = true;
 				for (final char c : each.toCharArray())
@@ -542,7 +542,7 @@ public class ToStringGluesTest
 					@Override
 					public boolean isMet(final String value)
 					{
-						return isNullOrEmpty(value);
+						return isNullOrEmptyString(value);
 					}
 				})
 				.ignoreIf(new Condition1<String>() {
@@ -627,7 +627,7 @@ public class ToStringGluesTest
 					@Override
 					public boolean isMet(final String value)
 					{
-						if (isNullOrEmpty(value))
+						if (isNullOrEmptyString(value))
 						{
 							return true;
 						}
@@ -780,7 +780,7 @@ public class ToStringGluesTest
 					@Override
 					public boolean isMet(final String value)
 					{
-						if (isNullOrEmpty(value))
+						if (isNullOrEmptyString(value))
 						{
 							return true;
 						}
@@ -1238,7 +1238,7 @@ public class ToStringGluesTest
 		final StringBuilder stringBuilder = new StringBuilder();
 		for (final String each : STRING_LIST)
 		{
-			if (isNeitherNullNorEmpty(each))
+			if (isNeitherNullNorEmptyString(each))
 			{
 				boolean allSpaceChars = true;
 				for (final char c : each.toCharArray())
@@ -1272,7 +1272,7 @@ public class ToStringGluesTest
 					@Override
 					public boolean isMet(final String value)
 					{
-						return isNullOrEmpty(value);
+						return isNullOrEmptyString(value);
 					}
 				})
 				.ignoreIf(new Condition1<String>() {
@@ -1365,7 +1365,7 @@ public class ToStringGluesTest
 					@Override
 					public boolean isMet(final String value)
 					{
-						if (isNullOrEmpty(value))
+						if (isNullOrEmptyString(value))
 						{
 							return true;
 						}
@@ -1534,7 +1534,7 @@ public class ToStringGluesTest
 					@Override
 					public boolean isMet(final String value)
 					{
-						if (isNullOrEmpty(value))
+						if (isNullOrEmptyString(value))
 						{
 							return true;
 						}
@@ -3090,14 +3090,14 @@ public class ToStringGluesTest
 		for (final Person each : PERSON_LIST)
 		{
 			if (null != each && !ignoreSet.contains(each)
-					&& !(isNullOrEmpty(each.getSurname()) && isNullOrEmpty(each.getGivenName())))
+					&& !(isNullOrEmptyString(each.getSurname()) && isNullOrEmptyString(each.getGivenName())))
 			{
 				if (new Person("Wayne", "Bruce").equals(each))
 				{
 					stringBuilder.append(new Person("Kent", "Clark"));
 					continue;
 				}
-				if (isNullOrEmpty(each.getGivenName()) && isNeitherNullNorEmpty(each.getSurname()))
+				if (isNullOrEmptyString(each.getGivenName()) && isNeitherNullNorEmptyString(each.getSurname()))
 				{
 					stringBuilder.append(new Person("Someone", "Without Given Name"));
 					continue;
@@ -3127,7 +3127,7 @@ public class ToStringGluesTest
 					@Override
 					public boolean isMet(final Person person)
 					{
-						return isNullOrEmpty(person.getSurname()) && isNullOrEmpty(person.getGivenName());
+						return isNullOrEmptyString(person.getSurname()) && isNullOrEmptyString(person.getGivenName());
 					}
 				})
 				.replace(new Person("Wayne", "Bruce"), new Person("Kent", "Clark"))
@@ -3135,7 +3135,7 @@ public class ToStringGluesTest
 					@Override
 					public boolean isMet(final Person person)
 					{
-						return isNullOrEmpty(person.getGivenName()) && isNeitherNullNorEmpty(person.getSurname());
+						return isNullOrEmptyString(person.getGivenName()) && isNeitherNullNorEmptyString(person.getSurname());
 					}
 				}, new Person("Someone", "Without Given Name"))
 				.mapWith(new Person("Jordan", "Hal"), new Function1<Person, Person>() {

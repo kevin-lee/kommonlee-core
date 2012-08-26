@@ -83,7 +83,7 @@ public final class Strings
 	 */
 	public static String emptyThenNull(final String value)
 	{
-		return isNullOrEmpty(value) ? null : value;
+		return isNullOrEmptyString(value) ? null : value;
 	}
 
 	/**
@@ -96,7 +96,7 @@ public final class Strings
 	 *         0 == value.length()). false if the given String parameter contains a reference pointing to any String value
 	 *         having the length of which is greater than 0.
 	 */
-	public static boolean isNullOrEmpty(final String value)
+	public static boolean isNullOrEmptyString(final String value)
 	{
 		return (null == value || 0 == value.length());
 	}
@@ -111,9 +111,9 @@ public final class Strings
 	 *         is greater than 0 (null != value && 0 < value.length()). false if it contains null or a String value with 0
 	 *         length.
 	 */
-	public static boolean isNeitherNullNorEmpty(final String value)
+	public static boolean isNeitherNullNorEmptyString(final String value)
 	{
-		return !isNullOrEmpty(value);
+		return !isNullOrEmptyString(value);
 	}
 
 	/**
