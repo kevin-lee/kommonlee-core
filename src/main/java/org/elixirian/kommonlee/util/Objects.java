@@ -1796,7 +1796,7 @@ public final class Objects
 
 		private String checkName(final String name)
 		{
-			if (Strings.isEmpty(name))
+			if (Strings.isNullOrEmpty(name))
 			{
 				throw new IllegalArgumentException("The name cannot be null or empty.");
 			}
