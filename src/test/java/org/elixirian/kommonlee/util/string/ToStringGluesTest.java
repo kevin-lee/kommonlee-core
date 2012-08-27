@@ -3112,7 +3112,18 @@ public class ToStringGluesTest
 					stringBuilder.append(new Person(each.getSurname(), "Who Am I?"));
 					continue;
 				}
-				stringBuilder.append(each);
+				stringBuilder.append(new Person(each.getSurname(), each.getGivenName()) {
+					@Override
+					public String toString()
+					{
+						/* @formatter:off */
+								return toStringBuilder(this)
+										.add("givenName", getGivenName())
+										.add("surname", getSurname())
+										.toString();
+								/* @formatter:on */
+					}
+				});
 			}
 		}
 		final String expected = stringBuilder.toString();
@@ -3156,9 +3167,28 @@ public class ToStringGluesTest
 				}, new Function1<Person, Person>() {
 
 					@Override
-					public Person apply(final Person input)
+					public Person apply(final Person person)
 					{
-						return new Person(input.getSurname(), "Who Am I?");
+						return new Person(person.getSurname(), "Who Am I?");
+					}
+				})
+				.mapIfNotMappedWithAny(new Function1<Person, Person>() {
+
+					@Override
+					public Person apply(final Person person)
+					{
+						return new Person(person.getSurname(), person.getGivenName()) {
+							@Override
+							public String toString()
+							{
+								/* @formatter:off */
+								return toStringBuilder(this)
+										.add("givenName", getGivenName())
+										.add("surname", getSurname())
+										.toString();
+								/* @formatter:on */
+							}
+						};
 					}
 				})
 				.build();

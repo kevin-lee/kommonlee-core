@@ -71,26 +71,26 @@ public class StringsTest
 			final String nullReference = null;
 			final String emptyString = "";
 			final String notEmpty = "something";
-	
+
 			assertThat(Boolean.valueOf(Strings.isNullOrEmptyString(nullReference)), equalTo(Boolean.TRUE));
 			assertThat(Boolean.valueOf(Strings.isNullOrEmptyString(emptyString)), equalTo(Boolean.TRUE));
 			assertThat(Boolean.valueOf(Strings.isNullOrEmptyString(notEmpty)), equalTo(Boolean.FALSE));
 		}
 
 	/**
-		 * Test method for {@link org.elixirian.kommonlee.util.Strings#isNeitherNullNorEmptyString(java.lang.String)}.
-		 */
-		@Test
-		public final void testIsNeitherNullNorEmptyString()
-		{
-			final String notEmpty = "something";
-			final String nullReference = null;
-			final String emptyString = "";
-	
-			assertThat(Boolean.valueOf(Strings.isNeitherNullNorEmptyString(notEmpty)), equalTo(Boolean.TRUE));
-			assertThat(Boolean.valueOf(Strings.isNeitherNullNorEmptyString(nullReference)), equalTo(Boolean.FALSE));
-			assertThat(Boolean.valueOf(Strings.isNeitherNullNorEmptyString(emptyString)), equalTo(Boolean.FALSE));
-		}
+			 * Test method for {@link org.elixirian.kommonlee.util.Strings#isNeitherNullNorEmptyString(java.lang.String)}.
+			 */
+			@Test
+			public final void testIsNeitherNullNorEmptyStringString()
+			{
+				final String notEmpty = "something";
+				final String nullReference = null;
+				final String emptyString = "";
+
+				assertThat(Boolean.valueOf(Strings.isNeitherNullNorEmptyString(notEmpty)), equalTo(Boolean.TRUE));
+				assertThat(Boolean.valueOf(Strings.isNeitherNullNorEmptyString(nullReference)), equalTo(Boolean.FALSE));
+				assertThat(Boolean.valueOf(Strings.isNeitherNullNorEmptyString(emptyString)), equalTo(Boolean.FALSE));
+			}
 
 	@Test
 	public final void testRepeat()

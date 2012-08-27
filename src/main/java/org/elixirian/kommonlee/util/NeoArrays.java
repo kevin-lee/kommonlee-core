@@ -1,17 +1,45 @@
 /**
- * 
+ * This project is licensed under the Apache License, Version 2.0
+ * if the following condition is met:
+ * (otherwise it cannot be used by anyone but the author, Kevin, only)
+ *
+ * The original KommonLee project is owned by Lee, Seong Hyun (Kevin).
+ *
+ * -What does it mean to you?
+ * Nothing, unless you want to take the ownership of
+ * "the original project" (not yours or forked & modified one).
+ * You are free to use it for both non-commercial and commercial projects
+ * and free to modify it as the Apache License allows.
+ *
+ * -So why is this condition necessary?
+ * It is only to protect the original project (See the case of Java).
+ *
+ *
+ * Copyright 2009 Lee, Seong Hyun (Kevin)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package org.elixirian.kommonlee.util;
 
 /**
  * <pre>
  *     ___  _____                                              _____
- *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
- *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -19,7 +47,7 @@ package org.elixirian.kommonlee.util;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-07-10)
  * @version 0.0.2 (2012-05-09) equal methods and notEqual methods to compare array types including primitive ones are
@@ -28,26 +56,26 @@ package org.elixirian.kommonlee.util;
 public final class NeoArrays
 {
 	/* @formatter:off */
-  public static byte[]    EMPTY_BYTE_ARRAY    = new byte[0];
-  public static char[]    EMPTY_CHAR_ARRAY    = new char[0];
-  public static short[]   EMPTY_SHORT_ARRAY   = new short[0];
-  public static int[]     EMPTY_INT_ARRAY     = new int[0];
-  public static long[]    EMPTY_LONG_ARRAY    = new long[0];
-  public static float[]   EMPTY_FLOAT_ARRAY   = new float[0];
-  public static double[]  EMPTY_DOUBLE_ARRAY  = new double[0];
-  public static boolean[] EMPTY_BOOLEAN_ARRAY = new boolean[0];
-  public static String[]  EMPTY_STRING_ARRAY  = new String[0];
-  public static Object[]  EMPTY_OBJECT_ARRAY  = new Object[0];
+  public static final byte[]    EMPTY_BYTE_ARRAY    = new byte[0];
+  public static final char[]    EMPTY_CHAR_ARRAY    = new char[0];
+  public static final short[]   EMPTY_SHORT_ARRAY   = new short[0];
+  public static final int[]     EMPTY_INT_ARRAY     = new int[0];
+  public static final long[]    EMPTY_LONG_ARRAY    = new long[0];
+  public static final float[]   EMPTY_FLOAT_ARRAY   = new float[0];
+  public static final double[]  EMPTY_DOUBLE_ARRAY  = new double[0];
+  public static final boolean[] EMPTY_BOOLEAN_ARRAY = new boolean[0];
+  public static final String[]  EMPTY_STRING_ARRAY  = new String[0];
+  public static final Object[]  EMPTY_OBJECT_ARRAY  = new Object[0];
   /* @formatter:on */
 
-	private NeoArrays()
+	private NeoArrays() throws IllegalAccessException
 	{
-		throw new AssertionError(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
+		throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
 	}
 
 	/**
 	 * Checks if the given object is an array.
-	 * 
+	 *
 	 * @param object
 	 *          the given array
 	 * @return true if the given of is an array. false otherwise.
@@ -285,7 +313,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * {@code false} otherwise. The both arrays must have the same length. Otherwise these are not equal.
-	 * 
+	 *
 	 * @param left
 	 *          a byte array
 	 * @param right
@@ -316,7 +344,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 * 
+	 *
 	 * @param left
 	 *          a byte array
 	 * @param right
@@ -332,7 +360,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 * 
+	 *
 	 * @param left
 	 *          a char array
 	 * @param right
@@ -363,7 +391,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 * 
+	 *
 	 * @param left
 	 *          a char array
 	 * @param right
@@ -379,7 +407,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 * 
+	 *
 	 * @param left
 	 *          a short array
 	 * @param right
@@ -410,7 +438,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 * 
+	 *
 	 * @param left
 	 *          a short array
 	 * @param right
@@ -426,7 +454,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 * 
+	 *
 	 * @param left
 	 *          a int array
 	 * @param right
@@ -457,7 +485,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 * 
+	 *
 	 * @param left
 	 *          an int array
 	 * @param right
@@ -473,7 +501,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 * 
+	 *
 	 * @param left
 	 *          a long array
 	 * @param right
@@ -504,7 +532,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 * 
+	 *
 	 * @param left
 	 *          a long array
 	 * @param right
@@ -520,7 +548,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 * 
+	 *
 	 * @param left
 	 *          a float array
 	 * @param right
@@ -551,7 +579,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 * 
+	 *
 	 * @param left
 	 *          a float array
 	 * @param right
@@ -567,7 +595,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 * 
+	 *
 	 * @param left
 	 *          a double array
 	 * @param right
@@ -598,7 +626,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 * 
+	 *
 	 * @param left
 	 *          a double array
 	 * @param right
@@ -614,7 +642,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 * 
+	 *
 	 * @param left
 	 *          a boolean array
 	 * @param right
@@ -645,7 +673,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 * 
+	 *
 	 * @param left
 	 *          a boolean array
 	 * @param right
@@ -661,7 +689,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 * 
+	 *
 	 * @param left
 	 *          a Object array
 	 * @param right
@@ -692,7 +720,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 * 
+	 *
 	 * @param left
 	 *          a Object array
 	 * @param right
@@ -708,7 +736,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 * 
+	 *
 	 * @param left
 	 *          a Object array
 	 * @param right
@@ -766,7 +794,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 * 
+	 *
 	 * @param left
 	 *          a Object array
 	 * @param right
@@ -782,7 +810,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 * 
+	 *
 	 * @param left
 	 *          a Object array
 	 * @param right
@@ -813,7 +841,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 * 
+	 *
 	 * @param left
 	 *          a Object array
 	 * @param right
