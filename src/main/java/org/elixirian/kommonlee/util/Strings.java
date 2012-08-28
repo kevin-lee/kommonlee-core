@@ -200,15 +200,50 @@ public final class Strings
 		return stringBuilder.toString();
 	}
 
+	/**
+	 * Returns a String array containing the result of matching the given String value against the given regular
+	 * expression after passing find() test using Matcher object created by matcher() method in the Pattern object created
+	 * with the given regular expression String. The first element in the array is the given String value itself. If no
+	 * matching one is found (if the find() test fails), it returns an empty String array.
+	 *
+	 * @param regex
+	 *          the given Regular Expression String.
+	 * @param value
+	 *          the given String value
+	 * @return a String array containing the result of matching the given String value against the given regular
+	 *         expression after passing find() test using Matcher object created by matcher() method in the Pattern object
+	 *         created with the given regular expression String. The first element in the array is the given String value
+	 *         itself. If no matching one is found, it returns an empty String array.
+	 * @see Pattern#compile(String)
+	 * @see Pattern#matcher(CharSequence)
+	 * @see Matcher#find()
+	 */
 	public static String[] findMatched(final String regex, final String value)
 	{
 		final Pattern pattern = Pattern.compile(regex);
 		return findMatched(pattern, value);
 	}
 
-	public static String[] findMatched(final Pattern pattern, final String value)
+	/**
+	 * Returns a String array containing the result of matching the given String value against the given Pattern object
+	 * containing a regular expression after passing find() test using Matcher object created by matcher() method in the
+	 * given Pattern object. The first element in the array is the given String value itself. If no matching one is found
+	 * (if the find() test fails), it returns an empty String array.
+	 *
+	 * @param compiledRegex
+	 *          the given Pattern object containing a regular expression.
+	 * @param value
+	 *          the given String value
+	 * @return a String array containing the result of matching the given String value against the given Pattern object
+	 *         containing a regular expression after passing find() test using Matcher object created by matcher() method
+	 *         in the given Pattern object. The first element in the array is the given String value itself. If no
+	 *         matching one is found, it returns an empty String array.
+	 * @see Pattern#matcher(CharSequence)
+	 * @see Matcher#find()
+	 */
+	public static String[] findMatched(final Pattern compiledRegex, final String value)
 	{
-		final Matcher matcher = pattern.matcher(value);
+		final Matcher matcher = compiledRegex.matcher(value);
 		if (matcher.find())
 		{
 			final int length = matcher.groupCount() + 1;
@@ -222,16 +257,50 @@ public final class Strings
 		return NeoArrays.EMPTY_STRING_ARRAY;
 	}
 
+	/**
+	 * Returns a String array containing the result of matching the given String value against the given regular
+	 * expression after passing matches() test using Matcher object created by matcher() method in the Pattern object
+	 * created with the given regular expression String. The first element in the array is the given String value itself.
+	 * If no matching one is found (if the matches() test fails), it returns an empty String array.
+	 *
+	 * @param regex
+	 *          the given Regular Expression String.
+	 * @param value
+	 *          the given String value
+	 * @return a String array containing the result of matching the given String value against the given regular
+	 *         expression after passing matches() test using Matcher object created by matcher() method in the Pattern
+	 *         object created with the given regular expression String. The first element in the array is the given String
+	 *         value itself. If no matching one is found (if the matches() test fails), it returns an empty String array.
+	 * @see Pattern#compile(String)
+	 * @see Pattern#matcher(CharSequence)
+	 * @see Matcher#matches()
+	 */
 	public static String[] matchEntirely(final String regex, final String value)
 	{
 		final Pattern pattern = Pattern.compile(regex);
 		return matchEntirely(pattern, value);
 	}
 
-
-	public static String[] matchEntirely(final Pattern pattern, final String value)
+	/**
+	 * Returns a String array containing the result of matching the given String value against the given Pattern object
+	 * containing a regular expression after passing matches() test using Matcher object created by matcher() method in
+	 * the given Pattern object. The first element in the array is the given String value itself. If no matching one is
+	 * found (if the matches() test fails), it returns an empty String array.
+	 *
+	 * @param compiledRegex
+	 *          the given Pattern object containing a regular expression.
+	 * @param value
+	 *          the given String value
+	 * @return a String array containing the result of matching the given String value against the given Pattern object
+	 *         containing a regular expression after passing matches() test using Matcher object created by matcher()
+	 *         method in the given Pattern object. The first element in the array is the given String value itself. If no
+	 *         matching one is found (if the matches() test fails), it returns an empty String array.
+	 * @see Pattern#matcher(CharSequence)
+	 * @see Matcher#matches()
+	 */
+	public static String[] matchEntirely(final Pattern compiledRegex, final String value)
 	{
-		final Matcher matcher = pattern.matcher(value);
+		final Matcher matcher = compiledRegex.matcher(value);
 		if (matcher.matches())
 		{
 			final int length = matcher.groupCount() + 1;
