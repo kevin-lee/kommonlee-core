@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package org.elixirian.kommonlee.collect.immutable;
 
@@ -23,12 +23,12 @@ import org.elixirian.kommonlee.type.function.Function1;
 /**
  * <pre>
  *     ___  _____                                              _____
- *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
- *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -36,7 +36,7 @@ import org.elixirian.kommonlee.type.function.Function1;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-09-28)
  */
@@ -46,9 +46,11 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
 
 	private final int length;
 
-	private static class EmptyImmutableArrayList<E> extends ImmutableArrayList<E>
+	private static final class EmptyImmutableArrayList<E> extends ImmutableArrayList<E>
 	{
 		private static final Object[] EMPTY_ELEMENTS = new Object[0];
+
+		static final EmptyImmutableArrayList<?> EMPTY_IMMUTABLE_ARRAY_LIST = new EmptyImmutableArrayList<Object>();
 
 		EmptyImmutableArrayList()
 		{
@@ -138,6 +140,24 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
 			return immutableArrayList;
 		}
 
+		/**
+		 * It does nothing.
+		 */
+		@Override
+		public void forEach(@SuppressWarnings("unused") final Function1<? super E, Void> function)
+		{
+			return;
+		}
+
+		/**
+		 * It does nothing.
+		 */
+		@Override
+		public void breakableForEach(@SuppressWarnings("unused") final Function1<? super E, BreakOrContinue> function)
+		{
+			return;
+		}
+
 		@Override
 		public E get(@SuppressWarnings("unused") final int index)
 		{
@@ -174,9 +194,27 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
 		{
 			return this;
 		}
+
+		@Override
+		public int hashCode()
+		{
+			return 0;
+		}
+
+		@Override
+		public boolean equals(final Object immutableArrayList)
+		{
+			if (this == immutableArrayList)
+			{
+				return true;
+			}
+			final EmptyImmutableArrayList<?> that = castIfInstanceOf(EmptyImmutableArrayList.class, immutableArrayList);
+			return null != that;
+		}
 	}
 
-	public static final ImmutableArrayList<?> EMPTY_IMMUTABLE_ARRAY_LIST = new EmptyImmutableArrayList<Object>();
+	public static final ImmutableArrayList<?> EMPTY_IMMUTABLE_ARRAY_LIST =
+		EmptyImmutableArrayList.EMPTY_IMMUTABLE_ARRAY_LIST;
 
 	ImmutableArrayList(final Collection<? extends E> collection)
 	{
@@ -283,7 +321,7 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
 	{
 		return new McHammerIteratorForReadableList();
 	}
-	
+
 	@Override
 	public int length()
 	{
@@ -405,9 +443,11 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
 		{
 			return true;
 		}
-		@SuppressWarnings("unchecked")
-		final ImmutableArrayList<E> that = castIfInstanceOf(ImmutableArrayList.class, immutableArrayList);
-		return isNotNull(that) && deepEqual(this.elements, that.toArray());
+		final ImmutableArrayList<?> that = castIfInstanceOf(ImmutableArrayList.class, immutableArrayList);
+		/* @formatter:off */
+		return null != that &&
+						deepEqual(this.elements, that.toArray());
+		/* @formatter:on */
 	}
 
 }
