@@ -1,3 +1,34 @@
+/**
+ * This project is licensed under the Apache License, Version 2.0
+ * if the following condition is met:
+ * (otherwise it cannot be used by anyone but the author, Kevin, only)
+ *
+ * The original KommonLee project is owned by Lee, Seong Hyun (Kevin).
+ *
+ * -What does it mean to you?
+ * Nothing, unless you want to take the ownership of
+ * "the original project" (not yours or forked & modified one).
+ * You are free to use it for both non-commercial and commercial projects
+ * and free to modify it as the Apache License allows.
+ *
+ * -So why is this condition necessary?
+ * It is only to protect the original project (See the case of Java).
+ *
+ *
+ * Copyright 2009 Lee, Seong Hyun (Kevin)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.elixirian.kommonlee.util;
 
 import static org.elixirian.kommonlee.util.Logical.*;
@@ -66,7 +97,7 @@ public class LogicalTest
 
 		for (int i = 0, size = 4 - 1; i < size; i++)
 		{
-			assertFalse(and(((i >>> 1) & 1) == 1, 
+			assertFalse(and(((i >>> 1) & 1) == 1,
 							(i & 1) == 1));
 		}
 
@@ -89,8 +120,8 @@ public class LogicalTest
 
 		for (int i = 0, size = 8 - 1; i < size; i++)
 		{
-			assertFalse(and(((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
+			assertFalse(and(((i >>> 2) & 1) == 1,
+							((i >>> 1) & 1) == 1,
 							(i & 1) == 1));
 		}
 
@@ -107,44 +138,44 @@ public class LogicalTest
     assertTrue(and(true, true, true, true));
 
     /* @formatter:off */
-		assertTrue(and(int1A == int1B, 
-					   int2A == int2B, 
-					   int3A == int3B, 
+		assertTrue(and(int1A == int1B,
+					   int2A == int2B,
+					   int3A == int3B,
 					   1 == int1A));
-		assertTrue(and(equal("Kevin", "Kevin"), 
-					   equal("SeongHyun", "SeongHyun"), 
+		assertTrue(and(equal("Kevin", "Kevin"),
+					   equal("SeongHyun", "SeongHyun"),
 					   equal("Lee", "Lee"),
 					   equal("Kevin Lee", "Kevin Lee")));
-		assertTrue(and(equal("Kevin", "Kevin"), 
-					   equal(int1A, int1B), 
-					   equal(int2A, int2B), 
+		assertTrue(and(equal("Kevin", "Kevin"),
+					   equal(int1A, int1B),
+					   equal(int2A, int2B),
 					   equal(1, int1A)));
 
 		for (int i = 0, size = 16 - 1; i < size; i++)
 		{
 			assertFalse(and(((i >>> 3) & 1) == 1,
-							((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
+							((i >>> 2) & 1) == 1,
+							((i >>> 1) & 1) == 1,
 							(i & 1) == 1));
 		}
 
-		assertFalse(and(int1A == int2A, 
-						int2A == int2B, 
-						1 == int1A, 
+		assertFalse(and(int1A == int2A,
+						int2A == int2B,
+						1 == int1A,
 						int1A == int1B));
 
-		assertFalse(and(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(and(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
 						equal("Kevin Lee", "Kevin Lee")));
 
-		assertFalse(and(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "Kevin"), 
+		assertFalse(and(equal("Kevin", "Kevin"),
+						equal("SeongHyun", "Kevin"),
 						equal("Lee", "Lee"),
 						equal("Kevin Lee", "Kevin Lee")));
 
-		assertFalse(and(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(and(equal("Kevin", "Kevin"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("SeongHyun", "Lee"),
 						equal("Kevin Lee", "Kevin Lee")));
 		/* @formatter:on */
@@ -156,55 +187,55 @@ public class LogicalTest
     assertTrue(and(true, true, true, true, true));
 
     /* @formatter:off */
-		assertTrue(and(int1A == int1B, 
-					   int2A == int2B, 
-					   int3A == int3B, 
-					   int4A == int4B, 
+		assertTrue(and(int1A == int1B,
+					   int2A == int2B,
+					   int3A == int3B,
+					   int4A == int4B,
 					   int5A == int5B));
 
-		assertTrue(and(equal("Kevin", "Kevin"), 
-					   equal("SeongHyun", "SeongHyun"), 
+		assertTrue(and(equal("Kevin", "Kevin"),
+					   equal("SeongHyun", "SeongHyun"),
 					   equal("Lee", "Lee"),
-					   equal("Kevin Lee", "Kevin Lee"), 
+					   equal("Kevin Lee", "Kevin Lee"),
 					   equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
 
-		assertTrue(and(equal("Kevin", "Kevin"), 
-					   equal(int1A, int1B), 
-					   equal(int2A, int2B), 
+		assertTrue(and(equal("Kevin", "Kevin"),
+					   equal(int1A, int1B),
+					   equal(int2A, int2B),
 					   equal(int3A, int3B),
 					   equal(int4A, int4B)));
 
 		for (int i = 0, size = 32 - 1; i < size; i++)
 		{
-			assertFalse(and(((i >>> 4) & 1) == 1, 
+			assertFalse(and(((i >>> 4) & 1) == 1,
 							((i >>> 3) & 1) == 1,
-							((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
+							((i >>> 2) & 1) == 1,
+							((i >>> 1) & 1) == 1,
 							(i & 1) == 1));
 		}
-		
-		assertFalse(and(int1A == int2A, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B, 
+
+		assertFalse(and(int1A == int2A,
+						int2A == int2B,
+						int3A == int3B,
+						int4A == int4B,
 						int5A == int5B));
 
-		assertFalse(and(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(and(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin Lee", "Kevin Lee"),
 						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
 
-		assertFalse(and(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "Kevin"), 
+		assertFalse(and(equal("Kevin", "Kevin"),
+						equal("SeongHyun", "Kevin"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin Lee", "Kevin Lee"),
 						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
 
-		assertFalse(and(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(and(equal("Kevin", "Kevin"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("SeongHyun", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin Lee", "Kevin Lee"),
 						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
 		/* @formatter:on */
   }
@@ -215,27 +246,27 @@ public class LogicalTest
     assertTrue(and(true, true, true, true, true, true, true, true));
 
     /* @formatter:off */
-		assertTrue(and(int1A == int1B, 
-					   int2A == int2B, 
-					   int3A == int3B, 
-					   int4A == int4B, 
-					   int5A == int5B, 
-					   int6A == int6B, 
-					   int7A == int7B, 
+		assertTrue(and(int1A == int1B,
+					   int2A == int2B,
+					   int3A == int3B,
+					   int4A == int4B,
+					   int5A == int5B,
+					   int6A == int6B,
+					   int7A == int7B,
 					   int8A == int8B));
 
-		assertTrue(and(equal("Kevin", "Kevin"), 
-					   equal("SeongHyun", "SeongHyun"), 
+		assertTrue(and(equal("Kevin", "Kevin"),
+					   equal("SeongHyun", "SeongHyun"),
 					   equal("Lee", "Lee"),
-					   equal("Kevin Lee", "Kevin Lee"), 
-					   equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-					   equal(int1A, int1B), 
-					   equal(false, false), 
+					   equal("Kevin Lee", "Kevin Lee"),
+					   equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+					   equal(int1A, int1B),
+					   equal(false, false),
 					   equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertTrue(and(equal("Kevin", "Kevin"), 
-					   equal(int1A, int1B), 
-					   equal(int2A, int2B), 
+		assertTrue(and(equal("Kevin", "Kevin"),
+					   equal(int1A, int1B),
+					   equal(int2A, int2B),
 					   equal(int3A, int3B),
 					   equal(int4A, int4B),
 					   equal(int5A, int5B),
@@ -248,49 +279,49 @@ public class LogicalTest
 		for (int i = 0, size = 256 - 1; i < size; i++)
 		{
 			assertFalse(and(((i >>> 7) & 1) == 1,
-							((i >>> 6) & 1) == 1, 
-							((i >>> 5) & 1) == 1, 
-							((i >>> 4) & 1) == 1, 
+							((i >>> 6) & 1) == 1,
+							((i >>> 5) & 1) == 1,
+							((i >>> 4) & 1) == 1,
 							((i >>> 3) & 1) == 1,
-							((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
+							((i >>> 2) & 1) == 1,
+							((i >>> 1) & 1) == 1,
 							(i & 1) == 1));
 		}
 
-		assertFalse(and(int1A == int2A, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B, 
-						int5A == int5B, 
-						int6A == int6B, 
-						int7A == int7B, 
+		assertFalse(and(int1A == int2A,
+						int2A == int2B,
+						int3A == int3B,
+						int4A == int4B,
+						int5A == int5B,
+						int6A == int6B,
+						int7A == int7B,
 						int8A == int8B));
 
-		assertFalse(and(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(and(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, false), 
+						equal("Kevin Lee", "Kevin Lee"),
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+						equal(int1A, int1B),
+						equal(false, false),
 						equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertFalse(and(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(and(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, true), 
+						equal("Kevin Lee", "Kevin Lee"),
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+						equal(int1A, int1B),
+						equal(false, true),
 						equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertFalse(and(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(and(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, false), 
+						equal("Kevin Lee", "Kevin Lee"),
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+						equal(int1A, int1B),
+						equal(false, false),
 						equal(Boolean.TRUE, Boolean.FALSE)));
 		/* @formatter:on */
   }
@@ -300,47 +331,47 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* true */
-		assertTrue(or(true, 
+		assertTrue(or(true,
 					  true));
 
-		assertTrue(or(int1A == int1B, 
+		assertTrue(or(int1A == int1B,
 					  int2A == int2B));
 
-		assertTrue(or(equal("Kevin", "Kevin"), 
+		assertTrue(or(equal("Kevin", "Kevin"),
 					  equal("Lee", "Lee")));
 
-		assertTrue(or(equal("Kevin", "Kevin"), 
+		assertTrue(or(equal("Kevin", "Kevin"),
 					  equal(int1A, int1B)));
 
 		for (int i = 1, size = 4; i < size; i++)
 		{
-			assertTrue(or(((i >>> 1) & 1) == 1, 
+			assertTrue(or(((i >>> 1) & 1) == 1,
 						  (i & 1) == 1));
 		}
-		
-		assertTrue(or(int1A == int1B, 
+
+		assertTrue(or(int1A == int1B,
 					  int2A == int3B));
 
-		assertTrue(or(int1A == int2A, 
+		assertTrue(or(int1A == int2A,
 					  int2A == int2B));
 
-		assertTrue(or(equal("Kevin", "Lee"), 
+		assertTrue(or(equal("Kevin", "Lee"),
 					  equal("Kevin Lee", "Kevin Lee")));
-		
-		assertTrue(or(equal("Kevin", "Lee"), 
+
+		assertTrue(or(equal("Kevin", "Lee"),
 					  equal(int5A, int5B)));
 
-		assertTrue(or(equal("Kevin Lee", "Kevin Lee"), 
+		assertTrue(or(equal("Kevin Lee", "Kevin Lee"),
 					  equal(false, true)));
 
-		assertTrue(or(equal("Kevin", "Lee"), 
+		assertTrue(or(equal("Kevin", "Lee"),
 					  equal("Kevin Lee", "Kevin Lee")));
 
 		/* false */
 		assertFalse(or(false,
 					   false));
 
-		assertFalse(or(equal("Kevin", "Lee"), 
+		assertFalse(or(equal("Kevin", "Lee"),
 					   equal("Kevin Lee", "Kevin SeongHyun Lee")));
 		/* @formatter:on */
   }
@@ -350,60 +381,60 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* true */
-		assertTrue(or(true, 
-					  true, 
+		assertTrue(or(true,
+					  true,
 					  true));
 
-		assertTrue(or(int1A == int1B, 
-					  int2A == int2B, 
+		assertTrue(or(int1A == int1B,
+					  int2A == int2B,
 					  int3A == int3B));
 
-		assertTrue(or(equal("Kevin", "Kevin"), 
-					  equal("SeongHyun", "SeongHyun"), 
+		assertTrue(or(equal("Kevin", "Kevin"),
+					  equal("SeongHyun", "SeongHyun"),
 					  equal("Lee", "Lee")));
 
-		assertTrue(or(equal("Kevin", "Kevin"), 
-					  equal(int1A, int1B), 
+		assertTrue(or(equal("Kevin", "Kevin"),
+					  equal(int1A, int1B),
 					  equal(int2A, int2B)));
 
 		for (int i = 1, size = 8; i < size; i++)
 		{
-			assertTrue(or(((i >>> 2) & 1) == 1, 
-						  ((i >>> 1) & 1) == 1, 
+			assertTrue(or(((i >>> 2) & 1) == 1,
+						  ((i >>> 1) & 1) == 1,
 						  (i & 1) == 1));
 		}
-		
-		assertTrue(or(int1A == int1B, 
-					  int2A == int3B, 
+
+		assertTrue(or(int1A == int1B,
+					  int2A == int3B,
 					  int3A == int2B));
 
-		assertTrue(or(int1A == int2A, 
-					  int2A == int2B, 
+		assertTrue(or(int1A == int2A,
+					  int2A == int2B,
 					  int3A == int3B));
 
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("Lee", "Lee"), 
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("Lee", "Lee"),
 					  equal("Kevin Lee", "Kevin Lee")));
-		
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("SeongHyun", ""), 
+
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("SeongHyun", ""),
 					  equal(int5A, int5B)));
 
-		assertTrue(or(equal("Kevin Lee", "Kevin Lee"), 
-					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
+		assertTrue(or(equal("Kevin Lee", "Kevin Lee"),
+					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
 					  equal(false, true)));
 
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("Lee", "Lee"), 
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("Lee", "Lee"),
 					  equal("Kevin Lee", "Kevin Lee")));
 
 		/* false */
 		assertFalse(or(false,
-					   false, 
+					   false,
 					   false));
 
-		assertFalse(or(equal("Kevin", "Lee"), 
-					   equal("SeongHyun", "Kevin"), 
+		assertFalse(or(equal("Kevin", "Lee"),
+					   equal("SeongHyun", "Kevin"),
 					   equal("Kevin Lee", "Kevin SeongHyun Lee")));
 		/* @formatter:on */
   }
@@ -413,72 +444,72 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* true */
-		assertTrue(or(true, 
-					  true, 
-					  true, 
+		assertTrue(or(true,
+					  true,
+					  true,
 					  true));
 
-		assertTrue(or(int1A == int1B, 
-					  int2A == int2B, 
-					  int3A == int3B, 
+		assertTrue(or(int1A == int1B,
+					  int2A == int2B,
+					  int3A == int3B,
 					  int4A == int4B));
 
-		assertTrue(or(equal("Kevin", "Kevin"), 
-					  equal("SeongHyun", "SeongHyun"), 
-					  equal("Lee", "Lee"), 
+		assertTrue(or(equal("Kevin", "Kevin"),
+					  equal("SeongHyun", "SeongHyun"),
+					  equal("Lee", "Lee"),
 					  equal("Kevin Lee", "Kevin Lee")));
 
-		assertTrue(or(equal("Kevin", "Kevin"), 
-					  equal(int1A, int1B), 
-					  equal(int2A, int2B), 
+		assertTrue(or(equal("Kevin", "Kevin"),
+					  equal(int1A, int1B),
+					  equal(int2A, int2B),
 					  equal(int3A, int3B)));
 
 		for (int i = 1, size = 16; i < size; i++)
 		{
 			assertTrue(or(((i >>> 3) & 1) == 1,
-						  ((i >>> 2) & 1) == 1, 
-						  ((i >>> 1) & 1) == 1, 
+						  ((i >>> 2) & 1) == 1,
+						  ((i >>> 1) & 1) == 1,
 						  (i & 1) == 1));
 		}
-		
-		assertTrue(or(int1A == int4A, 
-					  int2A == int3B, 
-					  int3A == int2B, 
+
+		assertTrue(or(int1A == int4A,
+					  int2A == int3B,
+					  int3A == int2B,
 					  int4A == int4B));
 
-		assertTrue(or(int1A == int2A, 
-					  int2A == int2B, 
-					  int3A == int3B, 
+		assertTrue(or(int1A == int2A,
+					  int2A == int2B,
+					  int3A == int3B,
 					  int4A == int4B));
 
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("Lee", "Lee"), 
-					  equal("Kevin Lee", "Kevin Lee"), 
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("Lee", "Lee"),
+					  equal("Kevin Lee", "Kevin Lee"),
 					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
-		
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("SeongHyun", ""), 
-					  equal("Lee", "Kevin Lee"), 
+
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("SeongHyun", ""),
+					  equal("Lee", "Kevin Lee"),
 					  equal(int5A, int5B)));
 
-		assertTrue(or(equal("Kevin Lee", "Kevin Lee"), 
-					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-					  equal(int1A, int1B), 
+		assertTrue(or(equal("Kevin Lee", "Kevin Lee"),
+					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+					  equal(int1A, int1B),
 					  equal(false, true)));
 
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("SeongHyun", "SeongHyun"), 
-					  equal("Lee", "Lee"), 
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("SeongHyun", "SeongHyun"),
+					  equal("Lee", "Lee"),
 					  equal("Kevin Lee", "Kevin Lee")));
 
 		/* false */
 		assertFalse(or(false,
-					   false, 
-					   false, 
+					   false,
+					   false,
 					   false));
 
-		assertFalse(or(equal("Kevin", "Lee"), 
-					   equal("SeongHyun", "Kevin"), 
+		assertFalse(or(equal("Kevin", "Lee"),
+					   equal("SeongHyun", "Kevin"),
 					   equal("Lee", "Kevin SeongHyun Lee"),
 					   equal("Kevin Lee", "Kevin SeongHyun Lee")));
 		/* @formatter:on */
@@ -489,80 +520,80 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* true */
-		assertTrue(or(true, 
-					  true, 
-					  true, 
-					  true, 
+		assertTrue(or(true,
+					  true,
+					  true,
+					  true,
 					  true));
 
-		assertTrue(or(int1A == int1B, 
-					  int2A == int2B, 
-					  int3A == int3B, 
-					  int4A == int4B, 
+		assertTrue(or(int1A == int1B,
+					  int2A == int2B,
+					  int3A == int3B,
+					  int4A == int4B,
 					  int5A == int5B));
 
-		assertTrue(or(equal("Kevin", "Kevin"), 
-					  equal("SeongHyun", "SeongHyun"), 
-					  equal("Lee", "Lee"), 
-					  equal("Kevin Lee", "Kevin Lee"), 
+		assertTrue(or(equal("Kevin", "Kevin"),
+					  equal("SeongHyun", "SeongHyun"),
+					  equal("Lee", "Lee"),
+					  equal("Kevin Lee", "Kevin Lee"),
 					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
 
-		assertTrue(or(equal("Kevin", "Kevin"), 
-					  equal(int1A, int1B), 
-					  equal(int2A, int2B), 
+		assertTrue(or(equal("Kevin", "Kevin"),
+					  equal(int1A, int1B),
+					  equal(int2A, int2B),
 					  equal(int3A, int3B),
 					  equal(int4A, int4B)));
 
 		for (int i = 1, size = 32; i < size; i++)
 		{
-			assertTrue(or(((i >>> 4) & 1) == 1, 
+			assertTrue(or(((i >>> 4) & 1) == 1,
 						  ((i >>> 3) & 1) == 1,
-						  ((i >>> 2) & 1) == 1, 
-						  ((i >>> 1) & 1) == 1, 
+						  ((i >>> 2) & 1) == 1,
+						  ((i >>> 1) & 1) == 1,
 						  (i & 1) == 1));
 		}
 
-		assertTrue(or(int1A == int2A, 
-					  int2A == int2B, 
-					  int3A == int3B, 
-					  int4A == int4B, 
+		assertTrue(or(int1A == int2A,
+					  int2A == int2B,
+					  int3A == int3B,
+					  int4A == int4B,
 					  int5A == int5B));
 
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("Lee", "Lee"), 
-					  equal("Kevin Lee", "Kevin Lee"), 
-					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("Lee", "Lee"),
+					  equal("Kevin Lee", "Kevin Lee"),
+					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
 					  equal(int1A, int1B)));
-		
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("SeongHyun", ""), 
-					  equal("Lee", "Kevin Lee"), 
-					  equal(int5B, int1B), 
+
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("SeongHyun", ""),
+					  equal("Lee", "Kevin Lee"),
+					  equal(int5B, int1B),
 					  equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertTrue(or(equal("Kevin Lee", "Kevin Lee"), 
-					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-					  equal(int1A, int1B), 
-					  equal(false, true), 
+		assertTrue(or(equal("Kevin Lee", "Kevin Lee"),
+					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+					  equal(int1A, int1B),
+					  equal(false, true),
 					  equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("SeongHyun", "SeongHyun"), 
-					  equal("Lee", "Lee"), 
-					  equal("Kevin Lee", "Kevin Lee"), 
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("SeongHyun", "SeongHyun"),
+					  equal("Lee", "Lee"),
+					  equal("Kevin Lee", "Kevin Lee"),
 					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
 
 		/* false */
 		assertFalse(or(false,
-					   false, 
-					   false, 
-					   false, 
+					   false,
+					   false,
+					   false,
 					   false));
 
-		assertFalse(or(equal("Kevin", "Lee"), 
-					   equal("SeongHyun", "Kevin"), 
+		assertFalse(or(equal("Kevin", "Lee"),
+					   equal("SeongHyun", "Kevin"),
 					   equal("Lee", "Kevin SeongHyun Lee"),
-					   equal("Kevin Lee", ""), 
+					   equal("Kevin Lee", ""),
 					   equal("Kevin Lee", "Kevin SeongHyun Lee")));
 		/* @formatter:on */
   }
@@ -572,36 +603,36 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* true */
-		assertTrue(or(true, 
-					  true, 
-					  true, 
-					  true, 
-					  true, 
-					  true, 
-					  true, 
+		assertTrue(or(true,
+					  true,
+					  true,
+					  true,
+					  true,
+					  true,
+					  true,
 					  true));
 
-		assertTrue(or(int1A == int1B, 
-					  int2A == int2B, 
-					  int3A == int3B, 
-					  int4A == int4B, 
-					  int5A == int5B, 
-					  int6A == int6B, 
-					  int7A == int7B, 
+		assertTrue(or(int1A == int1B,
+					  int2A == int2B,
+					  int3A == int3B,
+					  int4A == int4B,
+					  int5A == int5B,
+					  int6A == int6B,
+					  int7A == int7B,
 					  int8A == int8B));
 
-		assertTrue(or(equal("Kevin", "Kevin"), 
-					  equal("SeongHyun", "SeongHyun"), 
+		assertTrue(or(equal("Kevin", "Kevin"),
+					  equal("SeongHyun", "SeongHyun"),
 					  equal("Lee", "Lee"),
-					  equal("Kevin Lee", "Kevin Lee"), 
-					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-					  equal(int1A, int1B), 
-					  equal(false, false), 
+					  equal("Kevin Lee", "Kevin Lee"),
+					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+					  equal(int1A, int1B),
+					  equal(false, false),
 					  equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertTrue(or(equal("Kevin", "Kevin"), 
-					  equal(int1A, int1B), 
-					  equal(int2A, int2B), 
+		assertTrue(or(equal("Kevin", "Kevin"),
+					  equal(int1A, int1B),
+					  equal(int2A, int2B),
 					  equal(int3A, int3B),
 					  equal(int4A, int4B),
 					  equal(int5A, int5B),
@@ -614,77 +645,77 @@ public class LogicalTest
 		for (int i = 1, size = 256; i < size; i++)
 		{
 			assertTrue(or(((i >>> 7) & 1) == 1,
-						  ((i >>> 6) & 1) == 1, 
-						  ((i >>> 5) & 1) == 1, 
-						  ((i >>> 4) & 1) == 1, 
+						  ((i >>> 6) & 1) == 1,
+						  ((i >>> 5) & 1) == 1,
+						  ((i >>> 4) & 1) == 1,
 						  ((i >>> 3) & 1) == 1,
-						  ((i >>> 2) & 1) == 1, 
-						  ((i >>> 1) & 1) == 1, 
+						  ((i >>> 2) & 1) == 1,
+						  ((i >>> 1) & 1) == 1,
 						  (i & 1) == 1));
 		}
 
-		assertTrue(or(int1A == int2A, 
-					  int2A == int2B, 
-					  int3A == int3B, 
-					  int4A == int4B, 
-					  int5A == int5B, 
-					  int6A == int6B, 
-					  int7A == int7B, 
+		assertTrue(or(int1A == int2A,
+					  int2A == int2B,
+					  int3A == int3B,
+					  int4A == int4B,
+					  int5A == int5B,
+					  int6A == int6B,
+					  int7A == int7B,
 					  int8A == int8B));
 
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("SeongHyun", "SeongHyun"), 
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("SeongHyun", "SeongHyun"),
 					  equal("Lee", "Lee"),
-					  equal("Kevin Lee", "Kevin Lee"), 
-					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-					  equal(int1A, int1B), 
-					  equal(false, false), 
+					  equal("Kevin Lee", "Kevin Lee"),
+					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+					  equal(int1A, int1B),
+					  equal(false, false),
 					  equal(Boolean.TRUE, Boolean.TRUE)));
-		
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("SeongHyun", ""), 
+
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("SeongHyun", ""),
 					  equal("Lee", "Kevin Lee"),
-					  equal("Kevin SeongHyun Lee", "Kevin Lee"), 
-					  equal("Kevin", "Kevin SeongHyun Lee"), 
-					  equal(int5B, int1B), 
-					  equal(false, true), 
+					  equal("Kevin SeongHyun Lee", "Kevin Lee"),
+					  equal("Kevin", "Kevin SeongHyun Lee"),
+					  equal(int5B, int1B),
+					  equal(false, true),
 					  equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("SeongHyun", "SeongHyun"), 
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("SeongHyun", "SeongHyun"),
 					  equal("Lee", "Lee"),
-					  equal("Kevin Lee", "Kevin Lee"), 
-					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-					  equal(int1A, int1B), 
-					  equal(false, true), 
+					  equal("Kevin Lee", "Kevin Lee"),
+					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+					  equal(int1A, int1B),
+					  equal(false, true),
 					  equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertTrue(or(equal("Kevin", "Lee"), 
-					  equal("SeongHyun", "SeongHyun"), 
+		assertTrue(or(equal("Kevin", "Lee"),
+					  equal("SeongHyun", "SeongHyun"),
 					  equal("Lee", "Lee"),
-					  equal("Kevin Lee", "Kevin Lee"), 
-					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-					  equal(int1A, int1B), 
-					  equal(false, false), 
+					  equal("Kevin Lee", "Kevin Lee"),
+					  equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+					  equal(int1A, int1B),
+					  equal(false, false),
 					  equal(Boolean.TRUE, Boolean.FALSE)));
 
 		/* flase */
 		assertFalse(or(false,
-					   false, 
-					   false, 
-					   false, 
 					   false,
-					   false, 
-					   false, 
+					   false,
+					   false,
+					   false,
+					   false,
+					   false,
 					   false));
 
-		assertFalse(or(equal("Kevin", "Lee"), 
-					   equal("SeongHyun", "Kevin"), 
+		assertFalse(or(equal("Kevin", "Lee"),
+					   equal("SeongHyun", "Kevin"),
 					   equal("Lee", "Kevin SeongHyun Lee"),
-					   equal("Kevin Lee", ""), 
-					   equal("Kevin Lee", "Kevin SeongHyun Lee"), 
-					   equal(int1A, int7A), 
-					   equal(false, true), 
+					   equal("Kevin Lee", ""),
+					   equal("Kevin Lee", "Kevin SeongHyun Lee"),
+					   equal(int1A, int7A),
+					   equal(false, true),
 					   equal(Boolean.FALSE, Boolean.TRUE)));
 		/* @formatter:on */
   }
@@ -694,22 +725,22 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* false */
-		assertFalse(xor(true, 
+		assertFalse(xor(true,
 						true));
 
-		assertFalse(xor(int1A == int1B, 
+		assertFalse(xor(int1A == int1B,
 						int2A == int2B));
 
-		assertFalse(xor(equal("Kevin", "Kevin"), 
+		assertFalse(xor(equal("Kevin", "Kevin"),
 						equal(false, false)));
 
-		assertFalse(xor(equal("Kevin", "Kevin"), 
+		assertFalse(xor(equal("Kevin", "Kevin"),
 						equal(int1A, int1B)));
 
 		/* true and false */
 		for (int i = 1, size = 4 - 1; i < size; i++)
 		{
-			final boolean b1 = ((i >>> 1) & 1) == 1; 
+			final boolean b1 = ((i >>> 1) & 1) == 1;
 			final boolean b2 = (i & 1) == 1;
 			if (b1 ^ b2)
 			{
@@ -722,12 +753,12 @@ public class LogicalTest
 		}
 
 		/* true */
-		assertTrue(xor(int1A == int2A,		// false 
+		assertTrue(xor(int1A == int2A,		// false
 					   int2A == int2B));	// true
 
 		assertTrue(xor(equal("Kevin", "Lee"), 	// false
 					   equal(int1A, int1B)));	// true
-		
+
 		assertTrue(xor(equal(int5B, int1B), 					// false
 					   equal(Boolean.TRUE, Boolean.TRUE)));	// true
 
@@ -741,7 +772,7 @@ public class LogicalTest
 		assertFalse(xor(false,
 						false));
 
-		assertFalse(xor(equal("Kevin", "Lee"), 
+		assertFalse(xor(equal("Kevin", "Lee"),
 						equal(Boolean.FALSE, Boolean.TRUE)));
 		/* @formatter:on */
   }
@@ -751,35 +782,35 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* true */
-		assertTrue(xor(true, 
-					   true, 
+		assertTrue(xor(true,
+					   true,
 					   true));
 
-		assertTrue(xor(int1A == int1B, 
-					   int2A == int2B, 
+		assertTrue(xor(int1A == int1B,
+					   int2A == int2B,
 					   int3A == int3B));
 
-		assertTrue(xor(equal("Kevin", "Kevin"), 
-					   equal(false, false), 
+		assertTrue(xor(equal("Kevin", "Kevin"),
+					   equal(false, false),
 					   equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertTrue(xor(equal("Kevin", "Kevin"), 
-					   equal(int1A, int1B), 
+		assertTrue(xor(equal("Kevin", "Kevin"),
+					   equal(int1A, int1B),
 					   equal(int2A, int2B)));
-		
+
 		/* false */
-		assertFalse(xor(true, 
-						true, 
+		assertFalse(xor(true,
+						true,
 						false));
 
 		assertFalse(xor(int1A == int5B,		// false
 						int4A == int4B,		// true
 						int5A == int5B));	// true
-		
+
 		assertFalse(xor(equal("Kevin Lee", "Lee"), 				// false
 						equal(false, false), 					// true
 						equal(Boolean.TRUE, Boolean.TRUE)));	// true
-		
+
 		assertFalse(xor(equal("Kevin", "Kevin"), 	// true
 						equal(int1A, int1B), 		// true
 						equal(int2A, int7B)));		// false
@@ -808,7 +839,7 @@ public class LogicalTest
 		assertTrue(xor(equal("Kevin", "Kevin"), 					// true
 					   equal("Lee", "Lee"),						// true
 					   equal(int1A, int1B)));					// true
-		
+
 		assertTrue(xor(equal(int5B, int1B), 						// false
 					   equal(false, true), 					// false
 					   equal(Boolean.TRUE, Boolean.TRUE)));		// true
@@ -823,11 +854,11 @@ public class LogicalTest
 						equal(Boolean.TRUE, Boolean.FALSE)));		// false
 
 		assertFalse(xor(false,
-						false, 
+						false,
 						false));
 
-		assertFalse(xor(equal("Kevin", "Lee"), 
-						equal(int1A, int7A), 
+		assertFalse(xor(equal("Kevin", "Lee"),
+						equal(int1A, int7A),
 						equal(Boolean.FALSE, Boolean.TRUE)));
 		/* @formatter:on */
   }
@@ -837,42 +868,42 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* false */
-		assertFalse(xor(true, 
-						true, 
-						true, 
+		assertFalse(xor(true,
+						true,
+						true,
 						true));
 
-		assertFalse(xor(int1A == int1B, 
-						int2A == int2B, 
-						int3A == int3B, 
+		assertFalse(xor(int1A == int1B,
+						int2A == int2B,
+						int3A == int3B,
 						int4A == int4B));
 
-		assertFalse(xor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
-						equal(false, false), 
+		assertFalse(xor(equal("Kevin", "Kevin"),
+						equal(int1A, int1B),
+						equal(false, false),
 						equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertFalse(xor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
-						equal(int2A, int2B), 
+		assertFalse(xor(equal("Kevin", "Kevin"),
+						equal(int1A, int1B),
+						equal(int2A, int2B),
 						equal(int3A, int3B)));
-		
+
 		/* true */
-		assertTrue(xor(true, 
-					   true, 
-					   true, 
+		assertTrue(xor(true,
+					   true,
+					   true,
 					   false));
 
 		assertTrue(xor(int1A == int1B, 		// true
 					   int2A == int7B, 		// false
 					   int3A == int3B, 		// true
 					   int4A == int4B));	// true
-		
-		assertTrue(xor(equal("Kevin", "Kevin Lee"),				// false 
+
+		assertTrue(xor(equal("Kevin", "Kevin Lee"),				// false
 					   equal(int1A, int1B), 					// true
 					   equal(false, false), 					// true
 					   equal(Boolean.TRUE, Boolean.TRUE)));		// true
-		
+
 		assertTrue(xor(equal("Kevin", "Kevin"), 					// true
 					   equal(int7A, int1B), 					// false
 					   equal(int2A, int2B), 					// true
@@ -905,7 +936,7 @@ public class LogicalTest
 					   equal(int1A, int1B), 								// true
 					   equal(false, false), 								// true
 					   equal(Boolean.TRUE, Boolean.TRUE)));					// true
-		
+
 		assertTrue(xor(equal("Kevin", "Lee"), 								// false
 					   equal("SeongHyun", ""), 								// false
 					   equal(false, true), 								// false
@@ -923,13 +954,13 @@ public class LogicalTest
 					   	equal(Boolean.TRUE, Boolean.FALSE)));				// false
 
 		assertFalse(xor(false,
-						false, 
-						false, 
+						false,
+						false,
 						false));
 
-		assertFalse(xor(equal("Kevin", "Lee"), 
-						equal(int1A, int7A), 
-						equal(false, true), 
+		assertFalse(xor(equal("Kevin", "Lee"),
+						equal(int1A, int7A),
+						equal(false, true),
 						equal(Boolean.FALSE, Boolean.TRUE)));
 		/* @formatter:on */
   }
@@ -939,35 +970,35 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* true */
-		assertTrue(xor(true, 
-					   true, 
-					   true, 
-					   true, 
+		assertTrue(xor(true,
+					   true,
+					   true,
+					   true,
 					   true));
 
-		assertTrue(xor(int1A == int1B, 
-					   int2A == int2B, 
-					   int3A == int3B, 
-					   int4A == int4B, 
+		assertTrue(xor(int1A == int1B,
+					   int2A == int2B,
+					   int3A == int3B,
+					   int4A == int4B,
 					   int5A == int5B));
 
-		assertTrue(xor(equal("Kevin", "Kevin"), 
-					   equal("Kevin Lee", "Kevin Lee"), 
-					   equal(int1A, int1B), 
-					   equal(false, false), 
+		assertTrue(xor(equal("Kevin", "Kevin"),
+					   equal("Kevin Lee", "Kevin Lee"),
+					   equal(int1A, int1B),
+					   equal(false, false),
 					   equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertTrue(xor(equal("Kevin", "Kevin"), 
-					   equal(int1A, int1B), 
-					   equal(int2A, int2B), 
+		assertTrue(xor(equal("Kevin", "Kevin"),
+					   equal(int1A, int1B),
+					   equal(int2A, int2B),
 					   equal(int3A, int3B),
 					   equal(int4A, int4B)));
-		
+
 		/* false */
-		assertFalse(xor(true, 
-						true, 
-						true, 
-						true, 
+		assertFalse(xor(true,
+						true,
+						true,
+						true,
 						false));
 
 		assertFalse(xor(int1A == int5B,		// false
@@ -975,13 +1006,13 @@ public class LogicalTest
 						int3A == int3B,		// true
 						int4A == int4B,		// true
 						int5A == int5B));	// true
-		
-		assertFalse(xor(equal("Kevin", "Kevin"),				// true 
+
+		assertFalse(xor(equal("Kevin", "Kevin"),				// true
 						equal("Kevin Lee", "Lee"), 				// false
 						equal(int1A, int1B), 					// true
 						equal(false, false), 					// true
 						equal(Boolean.TRUE, Boolean.TRUE)));	// true
-		
+
 		assertFalse(xor(equal("Kevin", "Kevin"), 	// true
 						equal(int1A, int1B), 		// true
 						equal(int2A, int7B),		// false
@@ -1014,11 +1045,11 @@ public class LogicalTest
 					   int5A == int7B));	// false
 
 		assertTrue(xor(equal("Kevin", "Lee"), 					// false
-					   equal("SeongHyun", "SeongHyun"),			// true 
+					   equal("SeongHyun", "SeongHyun"),			// true
 					   equal("Lee", "Lee"),						// true
 					   equal("Kevin Lee", "SeongHyun Lee"), 	// false
 					   equal(int1A, int1B)));					// true
-		
+
 		assertTrue(xor(equal("Kevin", "Lee"), 					// false
 					   equal("SeongHyun", ""), 					// false
 					   equal(int5B, int1B), 					// false
@@ -1039,15 +1070,15 @@ public class LogicalTest
 						equal(Boolean.TRUE, Boolean.FALSE)));		// false
 
 		assertFalse(xor(false,
-						false, 
-						false, 
-						false, 
+						false,
+						false,
+						false,
 						false));
 
-		assertFalse(xor(equal("Kevin", "Lee"), 
+		assertFalse(xor(equal("Kevin", "Lee"),
 						equal("Lee", "Kevin SeongHyun Lee"),
-						equal(int1A, int7A), 
-						equal(false, true), 
+						equal(int1A, int7A),
+						equal(false, true),
 						equal(Boolean.FALSE, Boolean.TRUE)));
 		/* @formatter:on */
   }
@@ -1057,49 +1088,49 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* false */
-		assertFalse(xor(true, 
-						true, 
-						true, 
-						true, 
-						true, 
-						true, 
-						true, 
+		assertFalse(xor(true,
+						true,
+						true,
+						true,
+						true,
+						true,
+						true,
 						true));
 
-		assertFalse(xor(int1A == int1B, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B, 
-						int5A == int5B, 
-						int6A == int6B, 
-						int7A == int7B, 
+		assertFalse(xor(int1A == int1B,
+						int2A == int2B,
+						int3A == int3B,
+						int4A == int4B,
+						int5A == int5B,
+						int6A == int6B,
+						int7A == int7B,
 						int8A == int8B));
 
-		assertFalse(xor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(xor(equal("Kevin", "Kevin"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, false), 
+						equal("Kevin Lee", "Kevin Lee"),
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+						equal(int1A, int1B),
+						equal(false, false),
 						equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertFalse(xor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
-						equal(int2A, int2B), 
+		assertFalse(xor(equal("Kevin", "Kevin"),
+						equal(int1A, int1B),
+						equal(int2A, int2B),
 						equal(int3A, int3B),
 						equal(int4A, int4B),
 						equal(int5A, int5B),
 						equal(int6A, int6B),
 						equal(int7A, int7B)));
-		
+
 		/* true */
-		assertTrue(xor(true, 
-					   true, 
-					   true, 
-					   true, 
-					   true, 
-					   true, 
+		assertTrue(xor(true,
+					   true,
+					   true,
+					   true,
+					   true,
+					   true,
 					   true));
 
 		assertTrue(xor(int1A == int1B, 		// true
@@ -1109,18 +1140,18 @@ public class LogicalTest
 					   int5A == int5B, 		// true
 					   int6A == int6B, 		// true
 					   int7A == int7B));	// true
-		
-		assertTrue(xor(equal("Kevin", "Kevin"), 
+
+		assertTrue(xor(equal("Kevin", "Kevin"),
 					   equal("Lee", "Lee"),
-					   equal("Kevin Lee", "Kevin Lee"), 
-					   equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-					   equal(int1A, int1B), 
-					   equal(false, false), 
+					   equal("Kevin Lee", "Kevin Lee"),
+					   equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+					   equal(int1A, int1B),
+					   equal(false, false),
 					   equal(Boolean.TRUE, Boolean.TRUE)));
-		
-		assertTrue(xor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
-						equal(int2A, int2B), 
+
+		assertTrue(xor(equal("Kevin", "Kevin"),
+						equal(int1A, int1B),
+						equal(int2A, int2B),
 						equal(int3A, int3B),
 						equal(int4A, int4B),
 						equal(int5A, int5B),
@@ -1160,14 +1191,14 @@ public class LogicalTest
 					   int8A == int8B));	// true
 
 		assertTrue(xor(equal("Kevin", "Lee"), 								// false
-					   equal("SeongHyun", "SeongHyun"),						// true 
+					   equal("SeongHyun", "SeongHyun"),						// true
 					   equal("Lee", "Lee"),									// true
 					   equal("Kevin Lee", "Kevin Lee"), 					// true
 					   equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), // true
 					   equal(int1A, int1B), 								// true
 					   equal(false, false), 								// true
 					   equal(Boolean.TRUE, Boolean.TRUE)));					// true
-		
+
 		assertTrue(xor(equal("Kevin", "Lee"), 								// false
 					   equal("SeongHyun", ""), 								// false
 					   equal("Lee", "Kevin Lee"),							// false
@@ -1196,21 +1227,21 @@ public class LogicalTest
 					   	equal(Boolean.TRUE, Boolean.FALSE)));				// false
 
 		assertFalse(xor(false,
-						false, 
-						false, 
-						false, 
 						false,
-						false, 
-						false, 
+						false,
+						false,
+						false,
+						false,
+						false,
 						false));
 
-		assertFalse(xor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "Kevin"), 
+		assertFalse(xor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "Kevin"),
 						equal("Lee", "Kevin SeongHyun Lee"),
-						equal("Kevin Lee", ""), 
-						equal("Kevin Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int7A), 
-						equal(false, true), 
+						equal("Kevin Lee", ""),
+						equal("Kevin Lee", "Kevin SeongHyun Lee"),
+						equal(int1A, int7A),
+						equal(false, true),
 						equal(Boolean.FALSE, Boolean.TRUE)));
 		/* @formatter:on */
   }
@@ -1236,44 +1267,44 @@ public class LogicalTest
 
     /* @formatter:off */
 		/* false */
-		assertFalse(nor(true, 
+		assertFalse(nor(true,
 						true));
 
-		assertFalse(nor(int1A == int1B, 
+		assertFalse(nor(int1A == int1B,
 						int2A == int2B));
 
-		assertFalse(nor(equal("Kevin", "Kevin"), 
+		assertFalse(nor(equal("Kevin", "Kevin"),
 						equal("Lee", "Lee")));
 
-		assertFalse(nor(equal("Kevin", "Kevin"), 
+		assertFalse(nor(equal("Kevin", "Kevin"),
 						equal(int1A, int1B)));
 
 		for (int i = 1, size = 4; i < size; i++)
 		{
-			assertFalse(nor(((i >>> 1) & 1) == 1, 
+			assertFalse(nor(((i >>> 1) & 1) == 1,
 							(i & 1) == 1));
 		}
 
-		assertFalse(nor(int1A == int2A, 
+		assertFalse(nor(int1A == int2A,
 						int2A == int2B));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
 						equal("SeongHyun", "SeongHyun")));
-		
-		assertFalse(nor(equal("Kevin", "Kevin"), 
+
+		assertFalse(nor(equal("Kevin", "Kevin"),
 						equal("SeongHyun", "")));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
 						equal("Lee", "Lee")));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
 						equal(int1A, int1B)));
 
 		/* true */
 		assertTrue(nor(false,
 					   false));
 
-		assertTrue(nor(equal("Kevin", "Lee"), 
+		assertTrue(nor(equal("Kevin", "Lee"),
 					   equal(int1A, int7A)));
 		/* @formatter:on */
   }
@@ -1283,56 +1314,56 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* false */
-		assertFalse(nor(true, 
-						true, 
+		assertFalse(nor(true,
+						true,
 						true));
 
-		assertFalse(nor(int1A == int1B, 
-						int2A == int2B, 
+		assertFalse(nor(int1A == int1B,
+						int2A == int2B,
 						int3A == int3B));
 
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Kevin"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee")));
 
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
+		assertFalse(nor(equal("Kevin", "Kevin"),
+						equal(int1A, int1B),
 						equal(int2A, int2B)));
 
 		for (int i = 1, size = 8; i < size; i++)
 		{
-			assertFalse(nor(((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
+			assertFalse(nor(((i >>> 2) & 1) == 1,
+							((i >>> 1) & 1) == 1,
 							(i & 1) == 1));
 		}
 
-		assertFalse(nor(int1A == int2A, 
-						int2A == int2B, 
+		assertFalse(nor(int1A == int2A,
+						int2A == int2B,
 						int3A == int3B));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee")));
-		
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", ""), 
+
+		assertFalse(nor(equal("Kevin", "Kevin"),
+						equal("SeongHyun", ""),
 						equal("Lee", "Kevin Lee")));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee")));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal(int1A, int1B)));
 
 		/* true */
 		assertTrue(nor(false,
-					   false, 
+					   false,
 					   false));
 
-		assertTrue(nor(equal("Kevin", "Lee"), 
-					   equal(int1A, int7A), 
+		assertTrue(nor(equal("Kevin", "Lee"),
+					   equal(int1A, int7A),
 					   equal(Boolean.FALSE, Boolean.TRUE)));
 		/* @formatter:on */
   }
@@ -1342,68 +1373,68 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* false */
-		assertFalse(nor(true, 
-						true, 
-						true, 
+		assertFalse(nor(true,
+						true,
+						true,
 						true));
 
-		assertFalse(nor(int1A == int1B, 
-						int2A == int2B, 
-						int3A == int3B, 
+		assertFalse(nor(int1A == int1B,
+						int2A == int2B,
+						int3A == int3B,
 						int4A == int4B));
 
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Kevin"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
 						equal("Kevin Lee", "Kevin Lee")));
 
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
-						equal(int2A, int2B), 
+		assertFalse(nor(equal("Kevin", "Kevin"),
+						equal(int1A, int1B),
+						equal(int2A, int2B),
 						equal(int3A, int3B)));
 
 		for (int i = 1, size = 16; i < size; i++)
 		{
 			assertFalse(nor(((i >>> 3) & 1) == 1,
-							((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
+							((i >>> 2) & 1) == 1,
+							((i >>> 1) & 1) == 1,
 							(i & 1) == 1));
 		}
 
-		assertFalse(nor(int1A == int2A, 
-						int2A == int2B, 
-						int3A == int3B, 
+		assertFalse(nor(int1A == int2A,
+						int2A == int2B,
+						int3A == int3B,
 						int4A == int4B));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
 						equal("Kevin Lee", "Kevin Lee")));
-		
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", ""), 
+
+		assertFalse(nor(equal("Kevin", "Kevin"),
+						equal("SeongHyun", ""),
 						equal("Lee", "Kevin Lee"),
 						equal("Kevin SeongHyun Lee", "Kevin Lee")));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
 						equal("Kevin Lee", "Kevin Lee")));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
 						equal(int1A, int1B)));
 
 		/* true */
 		assertTrue(nor(false,
-					   false, 
-					   false, 
+					   false,
+					   false,
 					   false));
 
-		assertTrue(nor(equal("Kevin", "Lee"), 
-					   equal(int1A, int7A), 
-					   equal(false, true), 
+		assertTrue(nor(equal("Kevin", "Lee"),
+					   equal(int1A, int7A),
+					   equal(false, true),
 					   equal(Boolean.FALSE, Boolean.TRUE)));
 		/* @formatter:on */
   }
@@ -1413,80 +1444,80 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* false */
-		assertFalse(nor(true, 
-						true, 
-						true, 
-						true, 
+		assertFalse(nor(true,
+						true,
+						true,
+						true,
 						true));
 
-		assertFalse(nor(int1A == int1B, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B, 
+		assertFalse(nor(int1A == int1B,
+						int2A == int2B,
+						int3A == int3B,
+						int4A == int4B,
 						int5A == int5B));
 
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Kevin"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin Lee", "Kevin Lee"),
 						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
 
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
-						equal(int2A, int2B), 
+		assertFalse(nor(equal("Kevin", "Kevin"),
+						equal(int1A, int1B),
+						equal(int2A, int2B),
 						equal(int3A, int3B),
 						equal(int4A, int4B)));
 
 		for (int i = 1, size = 32; i < size; i++)
 		{
-			assertFalse(nor(((i >>> 4) & 1) == 1, 
+			assertFalse(nor(((i >>> 4) & 1) == 1,
 							((i >>> 3) & 1) == 1,
-							((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
+							((i >>> 2) & 1) == 1,
+							((i >>> 1) & 1) == 1,
 							(i & 1) == 1));
 		}
 
-		assertFalse(nor(int1A == int2A, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B, 
+		assertFalse(nor(int1A == int2A,
+						int2A == int2B,
+						int3A == int3B,
+						int4A == int4B,
 						int5A == int5B));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin Lee", "Kevin Lee"),
 						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
-		
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", ""), 
+
+		assertFalse(nor(equal("Kevin", "Kevin"),
+						equal("SeongHyun", ""),
 						equal("Lee", "Kevin Lee"),
-						equal("Kevin SeongHyun Lee", "Kevin Lee"), 
+						equal("Kevin SeongHyun Lee", "Kevin Lee"),
 						equal("Kevin", "Kevin SeongHyun Lee")));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin Lee", "Kevin Lee"),
 						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
+						equal("Kevin Lee", "Kevin Lee"),
 						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee")));
 
 		/* true */
 		assertTrue(nor(false,
-					   false, 
-					   false, 
-					   false, 
+					   false,
+					   false,
+					   false,
 					   false));
 
-		assertTrue(nor(equal("Kevin", "Lee"), 
-					   equal("SeongHyun", "Kevin"), 
-					   equal(int1A, int7A), 
-					   equal(false, true), 
+		assertTrue(nor(equal("Kevin", "Lee"),
+					   equal("SeongHyun", "Kevin"),
+					   equal(int1A, int7A),
+					   equal(false, true),
 					   equal(Boolean.FALSE, Boolean.TRUE)));
 		/* @formatter:on */
   }
@@ -1496,36 +1527,36 @@ public class LogicalTest
   {
     /* @formatter:off */
 		/* false */
-		assertFalse(nor(true, 
-						true, 
-						true, 
-						true, 
-						true, 
-						true, 
-						true, 
+		assertFalse(nor(true,
+						true,
+						true,
+						true,
+						true,
+						true,
+						true,
 						true));
 
-		assertFalse(nor(int1A == int1B, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B, 
-						int5A == int5B, 
-						int6A == int6B, 
-						int7A == int7B, 
+		assertFalse(nor(int1A == int1B,
+						int2A == int2B,
+						int3A == int3B,
+						int4A == int4B,
+						int5A == int5B,
+						int6A == int6B,
+						int7A == int7B,
 						int8A == int8B));
 
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Kevin"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, false), 
+						equal("Kevin Lee", "Kevin Lee"),
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+						equal(int1A, int1B),
+						equal(false, false),
 						equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertFalse(nor(equal("Kevin", "Kevin"), 
-						equal(int1A, int1B), 
-						equal(int2A, int2B), 
+		assertFalse(nor(equal("Kevin", "Kevin"),
+						equal(int1A, int1B),
+						equal(int2A, int2B),
 						equal(int3A, int3B),
 						equal(int4A, int4B),
 						equal(int5A, int5B),
@@ -1536,77 +1567,77 @@ public class LogicalTest
 		for (int i = 1, size = 256; i < size; i++)
 		{
 			assertFalse(nor(((i >>> 7) & 1) == 1,
-							((i >>> 6) & 1) == 1, 
-							((i >>> 5) & 1) == 1, 
-							((i >>> 4) & 1) == 1, 
+							((i >>> 6) & 1) == 1,
+							((i >>> 5) & 1) == 1,
+							((i >>> 4) & 1) == 1,
 							((i >>> 3) & 1) == 1,
-							((i >>> 2) & 1) == 1, 
-							((i >>> 1) & 1) == 1, 
+							((i >>> 2) & 1) == 1,
+							((i >>> 1) & 1) == 1,
 							(i & 1) == 1));
 		}
 
-		assertFalse(nor(int1A == int2A, 
-						int2A == int2B, 
-						int3A == int3B, 
-						int4A == int4B, 
-						int5A == int5B, 
-						int6A == int6B, 
-						int7A == int7B, 
+		assertFalse(nor(int1A == int2A,
+						int2A == int2B,
+						int3A == int3B,
+						int4A == int4B,
+						int5A == int5B,
+						int6A == int6B,
+						int7A == int7B,
 						int8A == int8B));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, false), 
+						equal("Kevin Lee", "Kevin Lee"),
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+						equal(int1A, int1B),
+						equal(false, false),
 						equal(Boolean.TRUE, Boolean.TRUE)));
-		
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", ""), 
+
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", ""),
 						equal("Lee", "Kevin Lee"),
-						equal("Kevin SeongHyun Lee", "Kevin Lee"), 
-						equal("Kevin", "Kevin SeongHyun Lee"), 
-						equal(int5B, int1B), 
-						equal(false, true), 
+						equal("Kevin SeongHyun Lee", "Kevin Lee"),
+						equal("Kevin", "Kevin SeongHyun Lee"),
+						equal(int5B, int1B),
+						equal(false, true),
 						equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, true), 
+						equal("Kevin Lee", "Kevin Lee"),
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+						equal(int1A, int1B),
+						equal(false, true),
 						equal(Boolean.TRUE, Boolean.TRUE)));
 
-		assertFalse(nor(equal("Kevin", "Lee"), 
-						equal("SeongHyun", "SeongHyun"), 
+		assertFalse(nor(equal("Kevin", "Lee"),
+						equal("SeongHyun", "SeongHyun"),
 						equal("Lee", "Lee"),
-						equal("Kevin Lee", "Kevin Lee"), 
-						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"), 
-						equal(int1A, int1B), 
-						equal(false, false), 
+						equal("Kevin Lee", "Kevin Lee"),
+						equal("Kevin SeongHyun Lee", "Kevin SeongHyun Lee"),
+						equal(int1A, int1B),
+						equal(false, false),
 						equal(Boolean.TRUE, Boolean.FALSE)));
 
 		/* true */
 		assertTrue(nor(false,
-					   false, 
-					   false, 
-					   false, 
 					   false,
-					   false, 
-					   false, 
+					   false,
+					   false,
+					   false,
+					   false,
+					   false,
 					   false));
 
-		assertTrue(nor(equal("Kevin", "Lee"), 
-					   equal("SeongHyun", "Kevin"), 
+		assertTrue(nor(equal("Kevin", "Lee"),
+					   equal("SeongHyun", "Kevin"),
 					   equal("Lee", "Kevin SeongHyun Lee"),
-					   equal("Kevin Lee", ""), 
-					   equal("Kevin Lee", "Kevin SeongHyun Lee"), 
-					   equal(int1A, int7A), 
-					   equal(false, true), 
+					   equal("Kevin Lee", ""),
+					   equal("Kevin Lee", "Kevin SeongHyun Lee"),
+					   equal(int1A, int7A),
+					   equal(false, true),
 					   equal(Boolean.FALSE, Boolean.TRUE)));
 		/* @formatter:on */
   }
@@ -1614,54 +1645,54 @@ public class LogicalTest
   @Test
   public final void testMixedAndsOrsNorsXors()
   {
-    String surname1 = "Lee";
-    String surname2 = "Lee";
-    String givenName1 = "Kevin";
-    String givenName2 = "Kevin";
+    final String surname1 = "Lee";
+    final String surname2 = "Lee";
+    final String givenName1 = "Kevin";
+    final String givenName2 = "Kevin";
 
     /* @formatter:off */
 		assertTrue(and(
-					   and(equal(surname1, surname2), 
+					   and(equal(surname1, surname2),
 						   equal(givenName1, givenName2)),
-						or(equal(int1A, int2A), 
+						or(equal(int1A, int2A),
 						   equal(int1A, int1B))
 		));
 
 		assertTrue(and(
-					   nor(equal(surname1, givenName1), 
+					   nor(equal(surname1, givenName1),
 						   equal(surname2, givenName2)),
-					   xor(equal(int1A, int1B), 
-						   equal(int2A, int2B), 
-						   equal(int3A, int3B), 
+					   xor(equal(int1A, int1B),
+						   equal(int2A, int2B),
+						   equal(int3A, int3B),
 						   equal(int4A, int1B))
 		));
 
 		assertTrue(or(
-					   and(equal(surname1, givenName1), 
+					   and(equal(surname1, givenName1),
 						   equal(givenName1, givenName2)),
-					   xor(equal(int1A, int2A), 
+					   xor(equal(int1A, int2A),
 						   equal(int3A, int3B))
 		));
 
 		assertTrue(and(
-					   and(equal(surname1, surname2), 
+					   and(equal(surname1, surname2),
 						   equal(givenName1, givenName2)),
-						or(equal(int1A, int2A), 
+						or(equal(int1A, int2A),
 						   equal(int1A, int1B),
-					   nor(equal(surname1, givenName1), 
+					   nor(equal(surname1, givenName1),
 						   equal(surname2, givenName2)),
-					   xor(equal(int1A, int1B), 
-						   equal(int2A, int2B), 
-						   equal(int3A, int3B), 
+					   xor(equal(int1A, int1B),
+						   equal(int2A, int2B),
+						   equal(int3A, int3B),
 						   equal(int5A, int1B)))
 		));
-		
+
 		assertTrue(nor(
-					   and(equal(surname1, surname2), 
+					   and(equal(surname1, surname2),
 						   equal(givenName1, givenName2),
 						   equal(surname1, givenName1)),
-						or(equal(int1A, int3A), 
-						   equal(int2A, int5B), 
+						or(equal(int1A, int3A),
+						   equal(int2A, int5B),
 						   equal(int3A, int2B),
 					   nor(equal(int1A, int1B),
 						   equal(int2A, int4B),
@@ -1672,17 +1703,17 @@ public class LogicalTest
 						   equal(givenName1, givenName2),
 						   equal(int2A, int2B)))
 		));
-		
+
 		assertTrue(and(
-					   and(equal(surname1, surname2), 
-						   equal(givenName1, givenName2), 
-						   xor(equal(int1A, int1B), 
-							   equal(givenName1, givenName2), 
-							   equal(surname1, surname2), 
-							   equal(int5A, int1B), 
+					   and(equal(surname1, surname2),
+						   equal(givenName1, givenName2),
+						   xor(equal(int1A, int1B),
+							   equal(givenName1, givenName2),
+							   equal(surname1, surname2),
+							   equal(int5A, int1B),
 							   equal("", "Kevin"))),
 					   nor(equal(int1A, int2A),
-						   or(equal(int1A, int5B), 
+						   or(equal(int1A, int5B),
 							  equal(surname1, givenName2)))
 		));
 		/* @formatter:on */
