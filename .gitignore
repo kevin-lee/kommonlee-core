@@ -2,18 +2,16 @@ target/
 
 *.pydevproject
 .project
+.classpath
+.settings/
 .metadata
 bin/
-bin/**
-tmp/**
-tmp/**/*
+tmp/
 *.tmp
 *.bak
 *.swp
 *~.nib
 local.properties
-.classpath
-.settings/
 .loadpath
 
 # External tool builders
