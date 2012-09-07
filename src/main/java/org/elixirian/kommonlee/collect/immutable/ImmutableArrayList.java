@@ -66,7 +66,7 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
 		@Override
 		public E[] toArray(final E[] elements)
 		{
-			notNull(elements, "elements cannot be null!");
+			mustNotBeNull(elements, "elements cannot be null!");
 			@SuppressWarnings("unchecked")
 			final E[] newArray = (E[]) Array.newInstance(elements.getClass()
 					.getComponentType(), 0);
