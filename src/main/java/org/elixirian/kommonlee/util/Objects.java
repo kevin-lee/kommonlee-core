@@ -176,6 +176,7 @@ import java.util.List;
  * @version 0.0.6 (2011-09-24) If an array type is passed to {@link #toStringOf(Object)} or
  *          {@link #toStringOf(Object, String)} (the first parameter), {@link NeoArrays#toStringOfArray0(Object[])} is
  *          used.
+ * @version 0.0.7 (2012-08-31)
  */
 public final class Objects
 {
@@ -1636,7 +1637,7 @@ public final class Objects
 	 * <pre>
 	 * public Foo(Bar bar)
 	 * {
-	 * 	this.bar = Objects.nonNull(bar);
+	 * 	this.bar = Objects.mustNotBeNull(bar);
 	 * }
 	 * </pre>
 	 *
@@ -1648,7 +1649,7 @@ public final class Objects
 	 * @throws NullPointerException
 	 *           if {@code obj} is {@code null}
 	 */
-	public static <T> T notNull(final T object)
+	public static <T> T mustNotBeNull(final T object)
 	{
 		if (null == object)
 		{
@@ -1665,8 +1666,8 @@ public final class Objects
 	 * <pre>
 	 * public Foo(Bar bar, Baz baz)
 	 * {
-	 * 	this.bar = Objects.nonNull(bar, &quot;bar must not be null&quot;);
-	 * 	this.baz = Objects.nonNull(baz, &quot;baz must not be null&quot;);
+	 * 	this.bar = Objects.mustNotBeNull(bar, &quot;bar must not be null&quot;);
+	 * 	this.baz = Objects.mustNotBeNull(baz, &quot;baz must not be null&quot;);
 	 * }
 	 * </pre>
 	 *
@@ -1680,7 +1681,7 @@ public final class Objects
 	 * @throws NullPointerException
 	 *           if object is null
 	 */
-	public static <T> T notNull(final T object, final String message)
+	public static <T> T mustNotBeNull(final T object, final String message)
 	{
 		if (null == object)
 		{
@@ -1818,9 +1819,9 @@ public final class Objects
 		private ToStringBuilder(final Object object, final String fieldSeparator, final String nameValueSeparator)
 		{
 			/* @formatter:off */
-			this.object                   = notNull(object);
-			this.fieldSeparator           = notNull(fieldSeparator);
-			this.nameValueSeparator       = notNull(nameValueSeparator);
+			this.object                   = mustNotBeNull(object);
+			this.fieldSeparator           = mustNotBeNull(fieldSeparator);
+			this.nameValueSeparator       = mustNotBeNull(nameValueSeparator);
 			this.stringList               = new ArrayList<String>();
 			this.iterableToAppendableGlue = IterableToAppendableGlue.withoutSeparator();
 			/* @formatter:on */
@@ -2003,7 +2004,7 @@ public final class Objects
 
 	public static ToStringBuilder toStringBuilder(final Object object)
 	{
-		notNull(object, "The given object parameter contains a null reference. It must not be null "
+		mustNotBeNull(object, "The given object parameter contains a null reference. It must not be null "
 				+ "as you cannot build the result value of toString() method of null. ");
 		return new ToStringBuilder(object);
 	}
@@ -2011,11 +2012,11 @@ public final class Objects
 	public static ToStringBuilder toStringBuilder(final Object object, final String fieldSeparator,
 			final String keyValueSeparator)
 	{
-		notNull(object, "The given object parameter contains a null reference. It must not be null "
+		mustNotBeNull(object, "The given object parameter contains a null reference. It must not be null "
 				+ "as you cannot build the result value of toString() method of null. ");
-		notNull(fieldSeparator, "The given fieldSeparator is null. It must not be null "
+		mustNotBeNull(fieldSeparator, "The given fieldSeparator is null. It must not be null "
 				+ "as you cannot build the result value of toString() method of null. ");
-		notNull(keyValueSeparator, "The given keyValueSeparator is null. It must not be null.");
+		mustNotBeNull(keyValueSeparator, "The given keyValueSeparator is null. It must not be null.");
 		return new ToStringBuilder(object, fieldSeparator, keyValueSeparator);
 	}
 

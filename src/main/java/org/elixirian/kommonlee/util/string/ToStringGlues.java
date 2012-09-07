@@ -34,7 +34,7 @@ package org.elixirian.kommonlee.util.string;
 import static java.util.Collections.unmodifiableMap;
 import static java.util.Collections.unmodifiableSet;
 import static org.elixirian.kommonlee.util.MessageFormatter.format;
-import static org.elixirian.kommonlee.util.Objects.notNull;
+import static org.elixirian.kommonlee.util.Objects.mustNotBeNull;
 import static org.elixirian.kommonlee.util.Strings.isNullOrEmptyString;
 
 import java.util.LinkedHashMap;
@@ -179,7 +179,7 @@ public final class ToStringGlues
 						+ "You cannot have one element to be both replaced and mapped by another.", toBeMapped,
 						replacedElementMap.get(toBeMapped)));
 			}
-			notNull(function, "The function to map cannot be null");
+			mustNotBeNull(function, "The function to map cannot be null");
 			elementMapperMap.put(toBeMapped, function);
 			return this;
 		}
@@ -187,7 +187,7 @@ public final class ToStringGlues
 		public <N extends E, F extends Function1<? super E, ? extends E>> Builder<E, T> mapIfNotMappedWithAny(
 				final F function)
 		{
-			notNull(function, "The function to map cannot be null");
+			mustNotBeNull(function, "The function to map cannot be null");
 			mapper = function;
 			return this;
 		}
@@ -232,7 +232,7 @@ public final class ToStringGlues
 								+ "You cannot have one condition to be used to both replace and map an element by another.", condition,
 						conditionallyReplacedElementMap.get(condition)));
 			}
-			notNull(mapBy, "The function to map cannot be null");
+			mustNotBeNull(mapBy, "The function to map cannot be null");
 			conditionallyMappedElementMap.put(condition, mapBy);
 			return this;
 		}

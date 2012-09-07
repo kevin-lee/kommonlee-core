@@ -100,8 +100,8 @@ public final class IterableToAppendableGlue implements ToAppendableGlue<Iterable
     try
     {
       /* @formatter:off */
-			return glue0(notNull(appendable),
-						  notNull(iterable));
+			return glue0(mustNotBeNull(appendable),
+						  mustNotBeNull(iterable));
 			/* @formatter:on */
     }
     catch (final IOException e)

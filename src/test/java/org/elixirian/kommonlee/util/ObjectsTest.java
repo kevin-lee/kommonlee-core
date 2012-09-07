@@ -942,41 +942,41 @@ public class ObjectsTest
 	}
 
 	@Test
-	public final void testNotNullT()
-	{
-		/* when / then */
-		assertThat(Objects.notNull("test"), is(equalTo("test")));
-		assertThat(Objects.notNull(new String("something else")), is(equalTo(new String("something else"))));
-		assertThat(Objects.notNull(new SomeObject("Kevin")), is(equalTo(new SomeObject("Kevin"))));
-
-		/* expect */
-		expectedException.expect(NullPointerException.class);
-
-		/* when / then the expected exception should be thrown. */
-		Objects.notNull(null);
-
-		/* otherwise */
-		fail(format("The expected exception [%s] is not thrown.", NullPointerException.class));
-	}
+		public final void testMustNotBeNullT()
+		{
+			/* when / then */
+			assertThat(Objects.mustNotBeNull("test"), is(equalTo("test")));
+			assertThat(Objects.mustNotBeNull(new String("something else")), is(equalTo(new String("something else"))));
+			assertThat(Objects.mustNotBeNull(new SomeObject("Kevin")), is(equalTo(new SomeObject("Kevin"))));
+	
+			/* expect */
+			expectedException.expect(NullPointerException.class);
+	
+			/* when / then the expected exception should be thrown. */
+			Objects.mustNotBeNull(null);
+	
+			/* otherwise */
+			fail(format("The expected exception [%s] is not thrown.", NullPointerException.class));
+		}
 
 	@Test
-	public final void testNotNullTString()
-	{
-		final String message = "It is null!!!!!";
-		assertThat(Objects.notNull("test", message), is(equalTo("test")));
-		assertThat(Objects.notNull(new String("something else"), message), is(equalTo(new String("something else"))));
-		assertThat(Objects.notNull(new SomeObject("Kevin"), message), is(equalTo(new SomeObject("Kevin"))));
-
-		/* expect */
-		expectedException.expect(NullPointerException.class)
-				.expectMessage(is(equalTo(message)));
-
-		/* when / then the expected exception should be thrown. */
-		Objects.notNull(null, message);
-
-		/* otherwise */
-		fail(format("The expected exception [%s] is not thrown.", NullPointerException.class));
-	}
+		public final void testMustNotBeNullTString()
+		{
+			final String message = "It is null!!!!!";
+			assertThat(Objects.mustNotBeNull("test", message), is(equalTo("test")));
+			assertThat(Objects.mustNotBeNull(new String("something else"), message), is(equalTo(new String("something else"))));
+			assertThat(Objects.mustNotBeNull(new SomeObject("Kevin"), message), is(equalTo(new SomeObject("Kevin"))));
+	
+			/* expect */
+			expectedException.expect(NullPointerException.class)
+					.expectMessage(is(equalTo(message)));
+	
+			/* when / then the expected exception should be thrown. */
+			Objects.mustNotBeNull(null, message);
+	
+			/* otherwise */
+			fail(format("The expected exception [%s] is not thrown.", NullPointerException.class));
+		}
 
 	@Test
 	public final void testNullThenUse()
