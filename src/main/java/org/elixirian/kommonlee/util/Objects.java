@@ -482,58 +482,6 @@ public final class Objects
     /* @formatter:on */
 	}
 
-	// private static boolean deepEqual0(final Object left, final Object right)
-	// {
-//		/* @formatter:off */
-//    if((left == right) ||
-//        ((null != left && null != right) &&
-//          ((left.getClass()
-//            .isArray() &&
-//          right.getClass()
-//            .isArray()))))
-//            /* @formatter:on */
-	// {
-	// if (left instanceof Object[] && right instanceof Object[])
-	// {
-	// return Arrays.deepEquals((Object[]) left, (Object[]) right);
-	// }
-	// else if (left instanceof int[] && right instanceof int[])
-	// {
-	//
-	// }
-	// else
-	// {
-	// return equal(left, right);
-	// }
-	// }
-	// }
-	//
-	// private static boolean deepEqual0(final Object[] left, final Object[] right)
-	// {
-//		/* @formatter:off */
-//    if((left == right) ||
-//        ((null != left && null != right) &&
-//            ((left.getClass()
-//                .isArray() &&
-//                right.getClass()
-//                .isArray()))))
-//      /* @formatter:on */
-	// {
-	// if (left instanceof Object[] && right instanceof Object[])
-	// {
-	// return deepEquals((Object[]) left, (Object[]) right);
-	// }
-	// else if (left instanceof int[] && right instanceof int[])
-	// {
-	//
-	// }
-	// else
-	// {
-	// return equal(left, right);
-	// }
-	// }
-	// }
-
 	/**
 	 * Returns {@code true} if the arguments are not deeply equal to each other and {@code false} otherwise. Two
 	 * {@code null} values are deeply equal so it returns false. If both arguments are arrays, the algorithm in
