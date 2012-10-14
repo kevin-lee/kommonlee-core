@@ -29,7 +29,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.elixirian.kommonlee.type.function;
+package org.elixirian.kommonlee.type.functional;
 
 /**
  * <pre>
@@ -49,10 +49,17 @@ package org.elixirian.kommonlee.type.function;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @param <T1>
- * @param <T2>
+ * @version 0.0.1 (2010-11-13)
+ * @param <X1>
+ *          input1
+ * @param <X2>
+ *          input2
+ * @param <X3>
+ *          input3
+ * @param <R>
+ *          result
  */
-public interface Condition2<T1, T2>
+public interface Function3<X1, X2, X3, R>
 {
-	boolean isMet(T1 input1, T2 input2);
+	R apply(X1 input1, X2 input2, X3 input3);
 }

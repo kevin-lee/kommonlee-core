@@ -29,7 +29,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.elixirian.kommonlee.type.function;
+package org.elixirian.kommonlee.type;
 
 /**
  * <pre>
@@ -49,12 +49,10 @@ package org.elixirian.kommonlee.type.function;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-11-13)
- * @param <T1>
- * @param <T2>
- * @param <T3>
+ * @version 0.0.1 (2012-10-06)
  */
-public interface Condition3<T1, T2, T3>
+public interface DependentSelfCloseableSource<T extends Source<?>,
+																											R extends SelfCloseableSource<?>>
 {
-	boolean isMet(T1 input1, T2 input2, T3 input3);
+	R getSource(T dependencySource) throws Exception;
 }

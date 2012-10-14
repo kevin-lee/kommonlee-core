@@ -29,7 +29,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.elixirian.kommonlee.type.function;
+package org.elixirian.kommonlee.type;
 
 /**
  * <pre>
@@ -49,11 +49,8 @@ package org.elixirian.kommonlee.type.function;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-11-13)
- * @param <R>
- *          result
+ * @version 0.0.1 (2012-10-07)
  */
-public interface Function0<R>
+public interface SelfCloseableSource<T> extends SelfCloseable, Source<T>
 {
-	R apply();
 }

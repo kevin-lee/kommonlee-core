@@ -29,7 +29,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.elixirian.kommonlee.type.function;
+package org.elixirian.kommonlee.type.functional;
 
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
@@ -41,8 +41,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.elixirian.kommonlee.type.function.Condition1;
-import org.elixirian.kommonlee.type.function.Function2;
+import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.type.functional.Function2;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -29,7 +29,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.elixirian.kommonlee.type.function;
+package org.elixirian.kommonlee.type.functional;
 
 /**
  * <pre>
@@ -50,22 +50,10 @@ package org.elixirian.kommonlee.type.function;
  * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-13)
- * @param <X1>
- *          input1
- * @param <X2>
- *          input2
- * @param <X3>
- *          input3
- * @param <X4>
- *          input4
- * @param <X5>
- *          input5
- * @param <X6>
- *          input6
  * @param <R>
  *          result
  */
-public interface Function6<X1, X2, X3, X4, X5, X6, R>
+public interface Function0<R>
 {
-	R apply(X1 input1, X2 input2, X3 input3, X4 input4, X5 input5, X6 input6);
+	R apply();
 }
