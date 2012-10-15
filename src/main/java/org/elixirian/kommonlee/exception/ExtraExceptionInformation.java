@@ -32,6 +32,7 @@
 package org.elixirian.kommonlee.exception;
 
 import static org.elixirian.kommonlee.util.Objects.*;
+import static org.elixirian.kommonlee.util.Strings.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,7 +67,13 @@ public class ExtraExceptionInformation
 	private static final List<String> EMPTY_SUGGESTION_LIST = Collections.emptyList();
 
 	public static ExtraExceptionInformation EMPTY_EXTRA_EXCEPTION_INFORMATION = new ExtraExceptionInformation(
-			ParamInfo.EMPTY_PARAM_LIST, ParamInfo.EMPTY_PARAM_LIST, "", EMPTY_SUGGESTION_LIST);
+			ParamInfo.EMPTY_PARAM_LIST, ParamInfo.EMPTY_PARAM_LIST, "", EMPTY_SUGGESTION_LIST) {
+		@Override
+		public String toString()
+		{
+			return "{No Extra Exception Info}";
+		}
+	};
 
 	private final List<ParamInfo<?>> paramInfoList;
 
@@ -228,7 +235,7 @@ public class ExtraExceptionInformation
 		return new Builder();
 	}
 
-	public ExtraExceptionInformation(final Builder builder)
+	private ExtraExceptionInformation(final Builder builder)
 	{
 		this(builder.paramInfoList, builder.otherObjectInfoList, builder.possibleReason, builder.suggestionList);
 	}
@@ -248,7 +255,7 @@ public class ExtraExceptionInformation
           ParamInfo.EMPTY_PARAM_LIST :
           Collections.unmodifiableList(otherObjectInfoList);
     /* @formatter:on */
-		this.possibleReason = possibleReason;
+		this.possibleReason = nullThenEmpty(possibleReason);
 		/* @formatter:off */
     this.suggestionList =
       null == suggestionList ||
