@@ -51,7 +51,7 @@ import java.util.Random;
 import java.util.Set;
 
 import org.elixirian.kommonlee.type.filter.Filter1;
-import org.elixirian.kommonlee.type.function.Condition1;
+import org.elixirian.kommonlee.type.functional.Condition1;
 import org.elixirian.kommonlee.util.number.Numbers.NumberIterableFilter;
 import org.elixirian.kommonlee.util.number.Numbers.NumbersFilter;
 import org.junit.After;

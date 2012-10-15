@@ -44,7 +44,7 @@ import java.util.regex.Pattern;
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- *
+ * 
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -52,7 +52,7 @@ import java.util.regex.Pattern;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- *
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-02-23)
  * @version 0.0.2 (2010-03-16) bug fixed: It does not remove the extra "%s"s nor does it escape the rest of the "%%s"s
@@ -79,7 +79,7 @@ public final class Strings
 	/**
 	 * Returns a copy of the given string, with leading and trailing whitespace omitted. If the given String contains
 	 * <code>null</code> reference it returns an "" (empty String).
-	 *
+	 * 
 	 * @param value
 	 *          the given String value
 	 * @return the result of value.trim(). If the value is null, return "" (empty String).
@@ -92,7 +92,7 @@ public final class Strings
 	/**
 	 * Returns an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
 	 * given value itself.
-	 *
+	 * 
 	 * @param value
 	 *          the given String value to check for nullity.
 	 * @return an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
@@ -106,7 +106,7 @@ public final class Strings
 	/**
 	 * Returns {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
 	 * not empty, returns the given value itself.
-	 *
+	 * 
 	 * @param value
 	 *          the given String value to check for emptiness.
 	 * @return {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
@@ -120,7 +120,7 @@ public final class Strings
 	/**
 	 * Checks if the given String value is empty. It means the given String parameter contains the null reference or no
 	 * String value which means its length is 0.
-	 *
+	 * 
 	 * @param value
 	 *          the given String value.
 	 * @return true if the given String parameter contains the null reference or it has no String value (null == value ||
@@ -135,7 +135,7 @@ public final class Strings
 	/**
 	 * Checks if the given String value is not empty. It means the given String parameter contains neither the null
 	 * reference nor any String with 0 length.
-	 *
+	 * 
 	 * @param value
 	 *          the given String value.
 	 * @return true if the given String parameter contains a reference pointing to any String object the length of which
@@ -149,33 +149,33 @@ public final class Strings
 
 	/**
 	 * Repeats the given String the given number of times.
-	 *
+	 * 
 	 * <pre>
 	 * Strings.repeat("", -1);
 	 * Result: {@link IllegalArgumentException}
-	 *
+	 * 
 	 * Strings.repeat("", 0);
 	 * Result: ""
-	 *
+	 * 
 	 * Strings.repeat("", 10);
 	 * Result: ""
-	 *
+	 * 
 	 * Strings.repeat("Kevin ", -1);
 	 * Result: {@link IllegalArgumentException}
-	 *
+	 * 
 	 * Strings.repeat("Kevin ", 0);
 	 * Result: ""
-	 *
+	 * 
 	 * Strings.repeat("Kevin ", 1);
 	 * Result: "Kevin "
-	 *
+	 * 
 	 * Strings.repeat("Kevin ", 2);
 	 * Result: "Kevin Kevin "
-	 *
+	 * 
 	 * Strings.repeat("Kevin ", 5);
 	 * Result: "Kevin Kevin Kevin Kevin Kevin "
 	 * </pre>
-	 *
+	 * 
 	 * @param value
 	 *          the given String value.
 	 * @param times
@@ -205,7 +205,7 @@ public final class Strings
 	 * expression after passing find() test using Matcher object created by matcher() method in the Pattern object created
 	 * with the given regular expression String. The first element in the array is the given String value itself. If no
 	 * matching one is found (if the find() test fails), it returns an empty String array.
-	 *
+	 * 
 	 * @param regex
 	 *          the given Regular Expression String.
 	 * @param value
@@ -229,7 +229,7 @@ public final class Strings
 	 * containing a regular expression after passing find() test using Matcher object created by matcher() method in the
 	 * given Pattern object. The first element in the array is the given String value itself. If no matching one is found
 	 * (if the find() test fails), it returns an empty String array.
-	 *
+	 * 
 	 * @param compiledRegex
 	 *          the given Pattern object containing a regular expression.
 	 * @param value
@@ -262,7 +262,7 @@ public final class Strings
 	 * expression after passing matches() test using Matcher object created by matcher() method in the Pattern object
 	 * created with the given regular expression String. The first element in the array is the given String value itself.
 	 * If no matching one is found (if the matches() test fails), it returns an empty String array.
-	 *
+	 * 
 	 * @param regex
 	 *          the given Regular Expression String.
 	 * @param value
@@ -286,7 +286,7 @@ public final class Strings
 	 * containing a regular expression after passing matches() test using Matcher object created by matcher() method in
 	 * the given Pattern object. The first element in the array is the given String value itself. If no matching one is
 	 * found (if the matches() test fails), it returns an empty String array.
-	 *
+	 * 
 	 * @param compiledRegex
 	 *          the given Pattern object containing a regular expression.
 	 * @param value

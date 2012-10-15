@@ -39,7 +39,7 @@ package org.elixirian.kommonlee.util;
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- *
+ * 
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -47,7 +47,7 @@ package org.elixirian.kommonlee.util;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- *
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-07-10)
  * @version 0.0.2 (2012-05-09) equal methods and notEqual methods to compare array types including primitive ones are
@@ -75,7 +75,7 @@ public final class NeoArrays
 
 	/**
 	 * Checks if the given object is an array.
-	 *
+	 * 
 	 * @param object
 	 *          the given array
 	 * @return true if the given of is an array. false otherwise.
@@ -313,7 +313,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * {@code false} otherwise. The both arrays must have the same length. Otherwise these are not equal.
-	 *
+	 * 
 	 * @param left
 	 *          a byte array
 	 * @param right
@@ -344,7 +344,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a byte array
 	 * @param right
@@ -360,7 +360,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 *
+	 * 
 	 * @param left
 	 *          a char array
 	 * @param right
@@ -391,7 +391,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a char array
 	 * @param right
@@ -407,7 +407,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 *
+	 * 
 	 * @param left
 	 *          a short array
 	 * @param right
@@ -438,7 +438,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a short array
 	 * @param right
@@ -454,7 +454,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 *
+	 * 
 	 * @param left
 	 *          a int array
 	 * @param right
@@ -485,7 +485,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          an int array
 	 * @param right
@@ -501,7 +501,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 *
+	 * 
 	 * @param left
 	 *          a long array
 	 * @param right
@@ -532,7 +532,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a long array
 	 * @param right
@@ -548,7 +548,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 *
+	 * 
 	 * @param left
 	 *          a float array
 	 * @param right
@@ -579,7 +579,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a float array
 	 * @param right
@@ -595,7 +595,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 *
+	 * 
 	 * @param left
 	 *          a double array
 	 * @param right
@@ -626,7 +626,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a double array
 	 * @param right
@@ -642,7 +642,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 *
+	 * 
 	 * @param left
 	 *          a boolean array
 	 * @param right
@@ -673,7 +673,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a boolean array
 	 * @param right
@@ -689,7 +689,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 *
+	 * 
 	 * @param left
 	 *          a Object array
 	 * @param right
@@ -720,7 +720,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a Object array
 	 * @param right
@@ -736,7 +736,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 *
+	 * 
 	 * @param left
 	 *          a Object array
 	 * @param right
@@ -794,7 +794,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a Object array
 	 * @param right
@@ -810,7 +810,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if each element in the left array is equal to the one at the same index in the right array.
 	 * The both arrays must have the same length. Otherwise these are not equal.
-	 *
+	 * 
 	 * @param left
 	 *          a Object array
 	 * @param right
@@ -841,7 +841,7 @@ public final class NeoArrays
 	/**
 	 * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
 	 * {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a Object array
 	 * @param right

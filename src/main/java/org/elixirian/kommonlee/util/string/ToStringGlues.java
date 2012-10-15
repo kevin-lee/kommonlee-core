@@ -44,9 +44,9 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.elixirian.kommonlee.type.GenericBuilder;
-import org.elixirian.kommonlee.type.function.Condition1;
-import org.elixirian.kommonlee.type.function.Function1;
-import org.elixirian.kommonlee.type.function.Function2;
+import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.functional.Function2;
 import org.elixirian.kommonlee.util.CommonConstants;
 
 /**

@@ -44,7 +44,7 @@ import java.util.List;
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- *
+ * 
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -52,7 +52,7 @@ import java.util.List;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- *
+ * 
  * This class is a utility class to help use {@link Object} in the Java programming language. It was inspired by <a
  * href="http://download.java.net/jdk7/docs/api/java/util/Objects.html">http://download
  * .java.net/jdk7/docs/api/java/util/Objects.html</a> and <a
@@ -70,7 +70,7 @@ import java.util.List;
  * {@link ToStringBuilder} which can be used to create toString value for the {@link Object#toString()} method so that
  * do the users not only need to use {@link StringBuilder} for this purpose but also have easier way to do it e.g.)
  * instead of doing
- *
+ * 
  * <pre>
  * <code>
  * return new StringBuilder.append(getClass().getSimpleName())
@@ -94,11 +94,11 @@ import java.util.List;
  * &#47;&#47; Result:
  * SimpleClassName{fieldName1=actualValue1, fieldName2=actualValue2}
  * </pre>
- *
+ * 
  * </p>
  * <p>
  * <h2>Easy way to write equals method body</h2>
- *
+ * 
  * <pre>
  * <code>
  * &#64;Override
@@ -156,9 +156,9 @@ import java.util.List;
  * }
  * </code>
  * </pre>
- *
+ * 
  * </p>
- *
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-04-06)
  * @version 0.0.2 (2010-07-05) {@link org.elixirian.kommonlee.util.Objects.ToStringBuilder},
@@ -197,7 +197,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a byte value
 	 * @param right
@@ -211,7 +211,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a byte value
 	 * @param right
@@ -225,7 +225,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a char value
 	 * @param right
@@ -239,7 +239,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a char value
 	 * @param right
@@ -253,7 +253,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a short value
 	 * @param right
@@ -267,7 +267,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a short value
 	 * @param right
@@ -281,7 +281,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          an int value
 	 * @param right
@@ -295,7 +295,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          an int value
 	 * @param right
@@ -309,7 +309,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a long value
 	 * @param right
@@ -323,7 +323,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a long value
 	 * @param right
@@ -337,7 +337,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a float value
 	 * @param right
@@ -351,7 +351,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a float value
 	 * @param right
@@ -365,7 +365,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a double value
 	 * @param right
@@ -379,7 +379,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a double value
 	 * @param right
@@ -393,7 +393,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a boolean value
 	 * @param right
@@ -407,7 +407,7 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are not equal to each other and {@code false} otherwise.
-	 *
+	 * 
 	 * @param left
 	 *          a boolean value
 	 * @param right
@@ -424,7 +424,7 @@ public final class Objects
 	 * arguments are {@code null}, {@code true} is returned and if exactly one argument is {@code null}, {@code false} is
 	 * returned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals} method of the first
 	 * argument.
-	 *
+	 * 
 	 * @param left
 	 *          an object
 	 * @param right
@@ -442,7 +442,7 @@ public final class Objects
 	 * both arguments are {@code null}, {@code false} is returned and if exactly one argument is {@code null},
 	 * {@code true} is returned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals}
 	 * method of the first argument and the opposite result of it is returned.
-	 *
+	 * 
 	 * @param left
 	 *          an object
 	 * @param right
@@ -460,7 +460,7 @@ public final class Objects
 	 * values are deeply equal. If both arguments are arrays, the algorithm in
 	 * {@link Arrays#deepEquals(Object[], Object[]) Arrays.deepEquals} is used to determine equality. Otherwise, equality
 	 * is determined by using the {@link Object#equals(Object) equals} method of the first argument.
-	 *
+	 * 
 	 * @param left
 	 *          an object
 	 * @param right
@@ -488,7 +488,7 @@ public final class Objects
 	 * {@link Arrays#deepEquals(Object[], Object[]) Arrays.deepEquals} is used to determine equality and the opposite
 	 * result is turned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals} method of the
 	 * first argument then the opposite result of it is returned.
-	 *
+	 * 
 	 * @param left
 	 *          an object
 	 * @param right
@@ -503,7 +503,7 @@ public final class Objects
 
 	/**
 	 * Returns the hash code of the given input value.
-	 *
+	 * 
 	 * @param value
 	 *          the given input value.
 	 * @return the hash code of the given input value.
@@ -516,7 +516,7 @@ public final class Objects
 
 	/**
 	 * Returns the hash code of the given input value.
-	 *
+	 * 
 	 * @param value
 	 *          the given input value.
 	 * @return the hash code of the given input value.
@@ -529,7 +529,7 @@ public final class Objects
 
 	/**
 	 * Returns the hash code of the given input value.
-	 *
+	 * 
 	 * @param value
 	 *          the given input value.
 	 * @return the hash code of the given input value.
@@ -542,7 +542,7 @@ public final class Objects
 
 	/**
 	 * Returns the hash code of the given input value.
-	 *
+	 * 
 	 * @param value
 	 *          the given input value.
 	 * @return the hash code of the given input value.
@@ -555,7 +555,7 @@ public final class Objects
 
 	/**
 	 * Returns the hash code of the given input value.
-	 *
+	 * 
 	 * @param value
 	 *          the given input value.
 	 * @return the hash code of the given input value.
@@ -568,7 +568,7 @@ public final class Objects
 
 	/**
 	 * Returns the hash code of the given input value.
-	 *
+	 * 
 	 * @param value
 	 *          the given input value.
 	 * @return the hash code of the given input value.
@@ -581,7 +581,7 @@ public final class Objects
 
 	/**
 	 * Returns the hash code of the given input value.
-	 *
+	 * 
 	 * @param value
 	 *          the given input value.
 	 * @return the hash code of the given input value.
@@ -595,7 +595,7 @@ public final class Objects
 
 	/**
 	 * Returns the hash code of the given input value.
-	 *
+	 * 
 	 * @param value
 	 *          the given input value.
 	 * @return the hash code of the given input value.
@@ -608,7 +608,7 @@ public final class Objects
 
 	/**
 	 * Returns the hash code of a non-{@code null} argument and 0 for a {@code null} argument.
-	 *
+	 * 
 	 * @param object
 	 *          an object
 	 * @return the hash code of a non-{@code null} argument and 0 for a {@code null} argument
@@ -626,7 +626,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -640,7 +640,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
-	 *
+	 * 
 	 * @param value
 	 *          the value to be hashed.
 	 * @return a hash value of the input value
@@ -657,7 +657,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -671,7 +671,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the values in an input array using the given seed.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param values
@@ -693,7 +693,7 @@ public final class Objects
 	/**
 	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
 	 * placed into an array.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -714,7 +714,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -728,7 +728,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
-	 *
+	 * 
 	 * @param value
 	 *          the value to be hashed.
 	 * @return a hash value of the input value
@@ -745,7 +745,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -759,7 +759,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the values in an input array using the given seed.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param values
@@ -781,7 +781,7 @@ public final class Objects
 	/**
 	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
 	 * placed into an array.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -802,7 +802,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -816,7 +816,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
-	 *
+	 * 
 	 * @param value
 	 *          the value to be hashed.
 	 * @return a hash value of the input value
@@ -833,7 +833,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -847,7 +847,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the values in an input array using the given seed.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param values
@@ -869,7 +869,7 @@ public final class Objects
 	/**
 	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
 	 * placed into an array.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -890,7 +890,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -904,7 +904,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
-	 *
+	 * 
 	 * @param value
 	 *          the value to be hashed.
 	 * @return a hash value of the input value
@@ -921,7 +921,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -935,7 +935,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the values in an input array using the given seed.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param values
@@ -957,7 +957,7 @@ public final class Objects
 	/**
 	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
 	 * placed into an array.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -978,7 +978,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -992,7 +992,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
-	 *
+	 * 
 	 * @param value
 	 *          the value to be hashed.
 	 * @return a hash value of the input value
@@ -1009,7 +1009,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1023,7 +1023,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the values in an input array using the given seed.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param values
@@ -1045,7 +1045,7 @@ public final class Objects
 	/**
 	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
 	 * placed into an array.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1067,7 +1067,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1081,7 +1081,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
-	 *
+	 * 
 	 * @param value
 	 *          the value to be hashed.
 	 * @return a hash value of the input value
@@ -1098,7 +1098,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1112,7 +1112,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the values in an input array using the given seed.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param values
@@ -1134,7 +1134,7 @@ public final class Objects
 	/**
 	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
 	 * placed into an array.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1155,7 +1155,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1169,7 +1169,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
-	 *
+	 * 
 	 * @param value
 	 *          the value to be hashed.
 	 * @return a hash value of the input value
@@ -1186,7 +1186,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1200,7 +1200,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the values in an input array using the given seed.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param values
@@ -1222,7 +1222,7 @@ public final class Objects
 	/**
 	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
 	 * placed into an array.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1243,7 +1243,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1257,7 +1257,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
-	 *
+	 * 
 	 * @param value
 	 *          the value to be hashed.
 	 * @return a hash value of the input value
@@ -1274,7 +1274,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1288,7 +1288,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the values in an input array using the given seed.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param values
@@ -1310,7 +1310,7 @@ public final class Objects
 	/**
 	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
 	 * placed into an array.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1331,7 +1331,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1350,7 +1350,7 @@ public final class Objects
 	 * return HASH_PRIME * seed + value;
 	 * </code>
 	 * </p>
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1364,7 +1364,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the values in an input array using the given seed.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param values
@@ -1386,7 +1386,7 @@ public final class Objects
 	/**
 	 * Generates a hash code for a sequence of input values. The hash code is generated as if all the input values were
 	 * placed into an array.
-	 *
+	 * 
 	 * @param seed
 	 *          the seed to be used.
 	 * @param value
@@ -1402,7 +1402,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the given input value using the {@link #HASH_SEED}.
-	 *
+	 * 
 	 * @param value
 	 *          the value to be hashed.
 	 * @return a hash value of the input value
@@ -1414,7 +1414,7 @@ public final class Objects
 
 	/**
 	 * Generates a hash code for the values in an input array using the {@link #HASH_SEED}.
-	 *
+	 * 
 	 * @param values
 	 *          the values to be hashed.
 	 * @return a hash value of the input values.
@@ -1427,7 +1427,7 @@ public final class Objects
 	/**
 	 * Generates a hash code for a sequence of input values using the {@link #HASH_SEED}. The hash code is generated as if
 	 * all the input values were placed into an array.
-	 *
+	 * 
 	 * @param value
 	 *          the first value to be hashed.
 	 * @param values
@@ -1443,7 +1443,7 @@ public final class Objects
 	 * Returns the result of calling {@code toString} for an argument which is neither {@code null} nor array. It returns
 	 * " {@code null}" for a {@code null} argument and the result of {@link NeoArrays#toStringOfArray0(Object[])} for the
 	 * array type argument. It's the same as calling {@link NeoArrays#toStringOfArray(Object[])} when it's an array.
-	 *
+	 * 
 	 * @param object
 	 *          an object
 	 * @return the result of calling {@code toString} for an argument which is neither {@code null} nor array. It returns
@@ -1528,7 +1528,7 @@ public final class Objects
 	 * nor array and returns the second argument if it's null. If the first argument is of type array, it returns the
 	 * result of {@link NeoArrays#toStringOfArray0(Object[])}. It's the same as calling
 	 * {@link NeoArrays#toStringOfArray(Object[])} when it's an array.
-	 *
+	 * 
 	 * @param object
 	 *          an object
 	 * @param nullDefault
@@ -1561,7 +1561,7 @@ public final class Objects
 	 * Note that if one of the arguments is {@code null}, a {@code NullPointerException} may or may not be thrown
 	 * depending on what ordering policy, if any, the {@link Comparator} chooses to have for {@code null} values.
 	 * </p>
-	 *
+	 * 
 	 * @param <T>
 	 *          the type of the objects being compared
 	 * @param left
@@ -1581,14 +1581,14 @@ public final class Objects
 	/**
 	 * Checks that the specified object reference is not {@code null}. This method is designed primarily for doing
 	 * parameter validation in methods and constructors, as demonstrated below:
-	 *
+	 * 
 	 * <pre>
 	 * public Foo(Bar bar)
 	 * {
 	 * 	this.bar = Objects.mustNotBeNull(bar);
 	 * }
 	 * </pre>
-	 *
+	 * 
 	 * @param <T>
 	 *          the type of the reference
 	 * @param object
@@ -1610,7 +1610,7 @@ public final class Objects
 	 * Checks that the specified object reference is not {@code null} and throws a customized {@link NullPointerException}
 	 * if it is. This method is designed primarily for doing parameter validation in methods and constructors with
 	 * multiple parameters, as demonstrated below:
-	 *
+	 * 
 	 * <pre>
 	 * public Foo(Bar bar, Baz baz)
 	 * {
@@ -1618,7 +1618,7 @@ public final class Objects
 	 * 	this.baz = Objects.mustNotBeNull(baz, &quot;baz must not be null&quot;);
 	 * }
 	 * </pre>
-	 *
+	 * 
 	 * @param <T>
 	 *          the type of the reference
 	 * @param object
@@ -1654,7 +1654,7 @@ public final class Objects
 
 	/**
 	 * Checks if the given object is null (the Object variable contains null reference).
-	 *
+	 * 
 	 * @param object
 	 *          the given object to check its nullity.
 	 * @return true if the given object is null (the variable contains null reference). false otherwise.
@@ -1666,7 +1666,7 @@ public final class Objects
 
 	/**
 	 * Checks if the given object is not null (the Object variable contains some object reference).
-	 *
+	 * 
 	 * @param object
 	 *          the given object to check its nullity.
 	 * @return true if the given object is not null (the variable contains some object reference). false if the object is
@@ -1679,7 +1679,7 @@ public final class Objects
 
 	/**
 	 * Checks if two objects are identical (object1 == object2)
-	 *
+	 * 
 	 * @param object1
 	 *          an obejct
 	 * @param object2
@@ -1693,7 +1693,7 @@ public final class Objects
 
 	/**
 	 * Checks if two objects are NOT identical (object1 != object2)
-	 *
+	 * 
 	 * @param object1
 	 *          an object
 	 * @param object2
@@ -1708,7 +1708,7 @@ public final class Objects
 	/**
 	 * casts the given object to the given type object then returns the casted object if the object is an instance of the
 	 * given {@link Class} type . Otherwise, it returns null.
-	 *
+	 * 
 	 * @param <T>
 	 *          the type
 	 * @param type
@@ -1726,7 +1726,7 @@ public final class Objects
 	/**
 	 * Builder to build the description of the given object. In other words, it is to build the result of the
 	 * {@link java.lang.Object#toString()} method.
-	 *
+	 * 
 	 * @author Lee, SeongHyun (Kevin)
 	 * @version 0.0.1 (2010-07-05)
 	 * @version 0.0.2 (2010-10-30) It does not used {@link IterableToAppendableGlue} any more
@@ -1796,7 +1796,7 @@ public final class Objects
 
 		/**
 		 * Add {@link #fieldSeparator}.
-		 *
+		 * 
 		 * @return this {@link ToStringBuilder} object;
 		 */
 		private ToStringBuilder separator()
@@ -1892,7 +1892,7 @@ public final class Objects
 
 		/**
 		 * Add the given value followed by the value of {@link #getFieldSeparator()} object to this {@link ToStringBuilder}.
-		 *
+		 * 
 		 * @param value
 		 *          the value to be added.
 		 * @return this {@link ToStringBuilder} object.
@@ -1905,7 +1905,7 @@ public final class Objects
 		/**
 		 * Add the given value to this {@link ToStringBuilder} object without having the value of
 		 * {@link #getFieldSeparator()} at the end of the value.
-		 *
+		 * 
 		 * @param value
 		 *          the value to be added.
 		 * @return this {@link ToStringBuilder} object
@@ -1917,7 +1917,7 @@ public final class Objects
 
 		/**
 		 * Add a new line ({@link #NEW_LINE}) to this {@link ToStringBuilder} object.
-		 *
+		 * 
 		 * @return this {@link ToStringBuilder} object.
 		 */
 		public ToStringBuilder newLine()

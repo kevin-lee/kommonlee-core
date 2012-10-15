@@ -56,8 +56,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-import org.elixirian.kommonlee.type.function.Condition1;
-import org.elixirian.kommonlee.type.function.Function1;
+import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.type.functional.Function1;
 import org.elixirian.kommonlee.util.string.ToStringGlues.ForIterableBuilder;
 import org.junit.After;
 import org.junit.AfterClass;

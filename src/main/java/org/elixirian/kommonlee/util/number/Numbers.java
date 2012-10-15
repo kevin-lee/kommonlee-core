@@ -40,7 +40,7 @@ import java.util.LinkedHashSet;
 
 import org.elixirian.kommonlee.type.filter.ArgsFilter;
 import org.elixirian.kommonlee.type.filter.Filter1;
-import org.elixirian.kommonlee.type.function.Condition1;
+import org.elixirian.kommonlee.type.functional.Condition1;
 
 /**
  * <pre>
