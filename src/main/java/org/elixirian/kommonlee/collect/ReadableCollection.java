@@ -37,8 +37,8 @@ import java.util.Iterator;
 import org.elixirian.kommonlee.type.checkable.EmptinessCheckable;
 import org.elixirian.kommonlee.type.checkable.LengthCheckable;
 import org.elixirian.kommonlee.type.checkable.NotEmptinessCheckable;
-import org.elixirian.kommonlee.type.function.Condition1;
-import org.elixirian.kommonlee.type.function.Function1;
+import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.type.functional.Function1;
 
 /**
  * <pre>

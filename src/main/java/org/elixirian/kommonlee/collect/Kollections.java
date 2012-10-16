@@ -35,7 +35,7 @@ import static org.elixirian.kommonlee.util.Objects.*;
 
 import java.util.Iterator;
 
-import org.elixirian.kommonlee.type.function.Function1;
+import org.elixirian.kommonlee.type.functional.Function1;
 import org.elixirian.kommonlee.util.CommonConstants;
 import org.elixirian.kommonlee.util.IterableToAppendableGlue;
 import org.elixirian.kommonlee.util.Objects;

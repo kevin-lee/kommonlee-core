@@ -83,6 +83,13 @@ public abstract class McHammerIterator<E> implements UnmodifiableIterator<E>
 	@Override
 	public abstract E next();
 
+	/**
+	 * McHammerIterator: U Can't Touch This! You always get {@link UnsupportedOperationException} when you call this
+	 * method.
+	 * 
+	 * @exception UnsupportedOperationException
+	 *              always!!!
+	 */
 	@Override
 	public final void remove()
 	{

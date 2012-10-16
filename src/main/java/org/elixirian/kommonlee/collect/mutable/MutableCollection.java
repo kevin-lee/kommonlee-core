@@ -35,8 +35,8 @@ import java.util.Iterator;
 
 import org.elixirian.kommonlee.collect.Kollection;
 import org.elixirian.kommonlee.collect.ReadableWritableCollection;
-import org.elixirian.kommonlee.type.function.Condition1;
-import org.elixirian.kommonlee.type.function.Function1;
+import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.type.functional.Function1;
 
 /**
  * <pre>

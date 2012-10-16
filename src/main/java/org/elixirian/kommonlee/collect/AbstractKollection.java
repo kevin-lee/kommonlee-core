@@ -33,7 +33,7 @@ package org.elixirian.kommonlee.collect;
 
 import java.util.Iterator;
 
-import org.elixirian.kommonlee.type.function.Condition1;
+import org.elixirian.kommonlee.type.functional.Condition1;
 
 /**
  * <pre>

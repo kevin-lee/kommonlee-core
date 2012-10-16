@@ -37,8 +37,8 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.elixirian.kommonlee.collect.immutable.ImmutableArrayList;
-import org.elixirian.kommonlee.type.function.Condition1;
-import org.elixirian.kommonlee.type.function.Function1;
+import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.type.functional.Function1;
 import org.elixirian.kommonlee.util.NeoArrays;
 import org.elixirian.kommonlee.util.Objects;
 import org.junit.After;

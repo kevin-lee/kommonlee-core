@@ -31,7 +31,7 @@
  */
 package org.elixirian.kommonlee.collect;
 
-import static org.elixirian.kommonlee.collect.Lists.*;
+import static org.elixirian.kommonlee.util.collect.Lists.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,8 +39,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.elixirian.kommonlee.type.function.Condition1;
-import org.elixirian.kommonlee.type.function.Function1;
+import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.type.functional.Function1;
 
 /**
  * <pre>
@@ -114,7 +114,7 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
 	{
 		return new McHammerIteratorForReadableList();
 	}
-	
+
 	@Override
 	public int length()
 	{
