@@ -93,7 +93,17 @@
     <dependency>
       <groupId>org.elixirian</groupId>
       <artifactId>kommonlee-type</artifactId>
-      <version>0.0.12-SNAPSHOT</version>
+      <version>0.0.13-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.elixirian</groupId>
+      <artifactId>kommonlee-util</artifactId>
+      <version>0.0.22-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.elixirian</groupId>
+      <artifactId>kommonlee-exception</artifactId>
+      <version>0.0.13-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>
