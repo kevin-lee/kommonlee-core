@@ -31,9 +31,9 @@
  */
 package org.elixirian.kommonlee.io.util;
 
-import static org.elixirian.kommonlee.collect.Lists.*;
 import static org.elixirian.kommonlee.test.CommonTestHelper.*;
 import static org.elixirian.kommonlee.util.MessageFormatter.*;
+import static org.elixirian.kommonlee.util.collect.Lists.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -58,7 +58,7 @@ import org.elixirian.kommonlee.io.StringConsumer;
 import org.elixirian.kommonlee.io.exception.RuntimeIoException;
 import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
 import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
-import org.elixirian.kommonlee.type.function.Function1;
+import org.elixirian.kommonlee.type.functional.Function1;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -79,7 +79,7 @@ import org.mockito.stubbing.Answer;
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- *
+ * 
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -87,7 +87,7 @@ import org.mockito.stubbing.Answer;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- *
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-04-02)
  */
@@ -555,8 +555,8 @@ public class IoUtilTest
     {
       if (0 < left)
       {
-        final int byteLength = bytes.length;
-        final int count = byteLength < left ? byteLength : left;
+        final int bytesLength = bytes.length;
+        final int count = bytesLength < left ? bytesLength : left;
         System.arraycopy(byteArray, position, bytes, 0, count);
         position += count;
         left -= count;
@@ -1095,7 +1095,7 @@ public class IoUtilTest
       IoUtil.readInputStream(inputStream, bufferSize, IoCommonConstants.UTF_8, charArrayConsumer);
 
       /* then */
-      System.out.println();
+      // System.out.println();
       // System.out.println(format("# expected:\n%s\n\n# actual:\n%s", this.characterList,
       // charArrayConsumer.characterList));
       assertThat(charArrayConsumer.characterList, is(equalTo(this.characterList)));
