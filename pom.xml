@@ -3,13 +3,13 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>kommonlee-validation</artifactId>
-	<version>0.0.24-SNAPSHOT</version>
+	<version>0.0.25-SNAPSHOT</version>
 	<name>kommonlee-validation</name>
 	<url>http://elixirian.com</url>
 	<parent>
 		<artifactId>kommonlee-parent</artifactId>
 		<groupId>org.elixirian</groupId>
-		<version>0.0.7-SNAPSHOT</version>
+		<version>0.0.8-SNAPSHOT</version>
 	</parent>
 	<build>
 		<plugins>
@@ -51,19 +51,19 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
+			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 		  <groupId>org.elixirian</groupId>
 		  <artifactId>kommonlee-test</artifactId>
-		  <version>0.0.16-SNAPSHOT</version>
+		  <version>0.0.17-SNAPSHOT</version>
 		  <scope>test</scope>
 		</dependency>
 		<dependency>
 		  <groupId>org.elixirian</groupId>
 		  <artifactId>kommonlee-util</artifactId>
-		  <version>0.0.22-SNAPSHOT</version>
+		  <version>0.0.23-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
