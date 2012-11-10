@@ -32,13 +32,14 @@
 package org.elixirian.kommonlee.util.number;
 
 import static java.util.Arrays.*;
-import static org.elixirian.kommonlee.util.number.DoublesTotal.*;
+import static org.elixirian.kommonlee.util.number.DoubleTotal.*;
 import static org.elixirian.kommonlee.util.number.Numbers.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.util.Random;
 
+import org.elixirian.kommonlee.type.functional.Function1;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -49,7 +50,7 @@ import org.junit.Test;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-04-11)
  */
-public class DoublesTotalTest
+public class DoubleTotalTest
 {
   private static final int HOW_MANY = 30;
 
@@ -839,6 +840,65 @@ public class DoublesTotalTest
     assertTrue(expected4 == actual4);
   }
 
+  @SuppressWarnings({ "unchecked", "boxing" })
+  private static final ValueContainer<Double>[] VALUE_CONTAINERS = new ValueContainer[] {
+      new ValueContainer<Double>(Double.MIN_VALUE), new ValueContainer<Double>(-5D), new ValueContainer<Double>(-1D),
+      new ValueContainer<Double>(0D), new ValueContainer<Double>(1D), new ValueContainer<Double>(3D),
+      new ValueContainer<Double>(5D), new ValueContainer<Double>(Double.MAX_VALUE) };
+
+  private static final ValueContainer<Double>[] RANDOM_VALUE_CONTAINERS = getRandomValues(50);
+
+  private static ValueContainer<Double>[] getRandomValues(final int length)
+  {
+    @SuppressWarnings("unchecked")
+    final ValueContainer<Double>[] values = new ValueContainer[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final ValueContainer<Double> valueContainer = new ValueContainer<Double>(random.nextDouble());
+      values[i] = valueContainer;
+    }
+    return values;
+  }
+
+  @Test
+  public final void testTotalArrayOfT()
+  {
+    final ValueContainer<Double>[] numbers1 = VALUE_CONTAINERS;
+
+    double total1 = 0;
+    for (final ValueContainer<Double> n : numbers1)
+      total1 += n.getValue();
+
+    final double expected1 = total1;
+    final double actual1 = total(numbers1, new Function1<ValueContainer<Double>, Double>() {
+      @Override
+      public Double apply(final ValueContainer<Double> input)
+      {
+        return input.getValue();
+      }
+    });
+    // System.out.println("expected: " + expected1 + "\nactual:   " + actual1);
+    assertTrue(expected1 == actual1);
+
+    final ValueContainer<Double>[] numbers2 = RANDOM_VALUE_CONTAINERS;
+
+    double total2 = 0;
+    for (final ValueContainer<Double> n : numbers2)
+      total2 += n.getValue();
+
+    final double expected2 = total2;
+    final double actual2 = total(numbers2, new Function1<ValueContainer<Double>, Double>() {
+      @Override
+      public Double apply(final ValueContainer<Double> input)
+      {
+        return input.getValue();
+      }
+    });
+    // System.out.println("expected: " + expected3 + "\nactual:   " + actual3);
+    assertTrue(expected2 == actual2);
+  }
+
   @Test
   public final void testTotalIterableOfDouble()
   {
@@ -882,6 +942,44 @@ public class DoublesTotalTest
     final double actual4 = total(numbers4);
     // System.out.println("expected: " + expected4 + "\nactual:   " + actual4);
     assertTrue(expected4 == actual4);
+  }
+
+  @Test
+  public final void testTotalIterableOfT()
+  {
+    final Iterable<ValueContainer<Double>> numbers1 = asList(VALUE_CONTAINERS);
+
+    double total1 = 0;
+    for (final ValueContainer<Double> n : numbers1)
+      total1 += n.getValue();
+
+    final double expected1 = total1;
+    final double actual1 = total(numbers1, new Function1<ValueContainer<Double>, Double>() {
+      @Override
+      public Double apply(final ValueContainer<Double> input)
+      {
+        return input.getValue();
+      }
+    });
+    // System.out.println("expected: " + expected1 + "\nactual:   " + actual1);
+    assertTrue(expected1 == actual1);
+
+    final Iterable<ValueContainer<Double>> numbers2 = asList(RANDOM_VALUE_CONTAINERS);
+
+    double total2 = 0;
+    for (final ValueContainer<Double> n : numbers2)
+      total2 += n.getValue();
+
+    final double expected2 = total2;
+    final double actual2 = total(numbers2, new Function1<ValueContainer<Double>, Double>() {
+      @Override
+      public Double apply(final ValueContainer<Double> input)
+      {
+        return input.getValue();
+      }
+    });
+    // System.out.println("expected: " + expected3 + "\nactual:   " + actual3);
+    assertTrue(expected2 == actual2);
   }
 
 }

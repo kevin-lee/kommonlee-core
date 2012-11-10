@@ -31,6 +31,11 @@
  */
 package org.elixirian.kommonlee.util.number;
 
+import java.math.BigDecimal;
+
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.util.CommonConstants;
+
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -51,102 +56,90 @@ package org.elixirian.kommonlee.util.number;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-14)
  */
-public final class LongsTotal
+public final class BigDecimalTotal
 {
-  private LongsTotal()
+  private BigDecimalTotal() throws IllegalAccessException
   {
+    throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
-  public static long sum(final long number1, final long number2)
+  public static BigDecimal total(final BigDecimal number1, final BigDecimal number2)
   {
-    return number1 + number2;
+    return number1.add(number2);
   }
 
-  public static long sum(final long number1, final long number2, final long number3)
+  public static BigDecimal total(final BigDecimal number1, final BigDecimal number2, final BigDecimal number3)
   {
-    return number1 + number2 + number3;
+    return number1.add(number2)
+        .add(number3);
   }
 
-  public static long sum(final long number1, final long number2, final long number3, final long number4)
+  public static BigDecimal total(final BigDecimal number1, final BigDecimal number2, final BigDecimal number3,
+      final BigDecimal number4)
   {
-    return number1 + number2 + number3 + number4;
+    return number1.add(number2)
+        .add(number3)
+        .add(number4);
   }
 
-  public static long sum(final long number1, final long number2, final long number3, final long number4,
-      final long number5)
+  public static BigDecimal total(final BigDecimal number1, final BigDecimal number2, final BigDecimal number3,
+      final BigDecimal number4, final BigDecimal number5)
   {
-    return number1 + number2 + number3 + number4 + number5;
+    return number1.add(number2)
+        .add(number3)
+        .add(number4)
+        .add(number5);
   }
 
-  public static long sum(final long number1, final long number2, final long number3, final long number4,
-      final long number5, final long... rest)
+  public static BigDecimal total(final BigDecimal number1, final BigDecimal number2, final BigDecimal number3,
+      final BigDecimal number4, final BigDecimal number5, final BigDecimal... rest)
   {
-    long total = sum(number1, number2, number3, number4, number5);
-    for (final long each : rest)
+    BigDecimal total = total(number1, number2, number3, number4, number5);
+    for (final BigDecimal each : rest)
     {
-      total += each;
+      total = total.add(each);
     }
     return total;
   }
 
-  public static long sum(final long[] numbers)
+  public static BigDecimal total(final BigDecimal[] numbers)
   {
-    long total = 0;
-    for (final long each : numbers)
+    BigDecimal total = BigDecimal.ZERO;
+    for (final BigDecimal each : numbers)
     {
-      total += each;
+      total = total.add(each);
     }
     return total;
   }
 
-  public static long total(final Long number1, final Long number2)
+  public static <T> BigDecimal total(final T[] numberSource, final Function1<T, BigDecimal> bigDecimalMapper)
   {
-    return number1.longValue() + number2.longValue();
-  }
-
-  public static long total(final Long number1, final Long number2, final Long number3)
-  {
-    return number1.longValue() + number2.longValue() + number3.longValue();
-  }
-
-  public static long total(final Long number1, final Long number2, final Long number3, final Long number4)
-  {
-    return number1.longValue() + number2.longValue() + number3.longValue() + number4.longValue();
-  }
-
-  public static long total(final Long number1, final Long number2, final Long number3, final Long number4,
-      final Long number5)
-  {
-    return number1.longValue() + number2.longValue() + number3.longValue() + number4.longValue() + number5.longValue();
-  }
-
-  public static long total(final Long number1, final Long number2, final Long number3, final Long number4,
-      final Long number5, final Long... rest)
-  {
-    long total = total(number1, number2, number3, number4, number5);
-    for (final Long each : rest)
+    BigDecimal total = BigDecimal.ZERO;
+    for (final T each : numberSource)
     {
-      total += each.longValue();
+      final BigDecimal bigDecimal = bigDecimalMapper.apply(each);
+      total = total.add(bigDecimal);
     }
     return total;
   }
 
-  public static long total(final Long[] numbers)
+  public static BigDecimal total(final Iterable<BigDecimal> numbers)
   {
-    long total = 0;
-    for (final Long each : numbers)
+    BigDecimal total = BigDecimal.ZERO;
+    for (final BigDecimal each : numbers)
     {
-      total += each.longValue();
+      total = total.add(each);
     }
     return total;
   }
 
-  public static long total(final Iterable<Long> numbers)
+  public static <T> BigDecimal total(final Iterable<T> numberSource, final Function1<T, BigDecimal> bigDecimalMapper)
   {
-    long total = 0;
-    for (final Long each : numbers)
+    BigDecimal total = BigDecimal.ZERO;
+    for (final T each : numberSource)
     {
-      total += each.longValue();
+      final BigDecimal bigDecimal = bigDecimalMapper.apply(each);
+      total = total.add(bigDecimal);
     }
     return total;
   }

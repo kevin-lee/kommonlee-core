@@ -32,13 +32,14 @@
 package org.elixirian.kommonlee.util.number;
 
 import static java.util.Arrays.*;
-import static org.elixirian.kommonlee.util.number.FloatsToDoubleTotal.*;
+import static org.elixirian.kommonlee.util.number.FloatToDoubleTotal.*;
 import static org.elixirian.kommonlee.util.number.Numbers.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.util.Random;
 
+import org.elixirian.kommonlee.type.functional.Function1;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -49,7 +50,7 @@ import org.junit.Test;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-04-11)
  */
-public class FloatsToDoubleTotalTest
+public class FloatToDoubleTotalTest
 {
   private static final int HOW_MANY = 30;
 
@@ -820,6 +821,65 @@ public class FloatsToDoubleTotalTest
     assertTrue(expected4 == actual4);
   }
 
+  @SuppressWarnings({ "unchecked", "boxing" })
+  private static final ValueContainer<Float>[] VALUE_CONTAINERS = new ValueContainer[] {
+      new ValueContainer<Float>(Float.MIN_VALUE), new ValueContainer<Float>(-5F), new ValueContainer<Float>(-1F),
+      new ValueContainer<Float>(0F), new ValueContainer<Float>(1F), new ValueContainer<Float>(3F),
+      new ValueContainer<Float>(5F), new ValueContainer<Float>(Float.MAX_VALUE) };
+
+  private static final ValueContainer<Float>[] RANDOM_VALUE_CONTAINERS = getRandomValues(50);
+
+  private static ValueContainer<Float>[] getRandomValues(final int length)
+  {
+    final ValueContainer<Float>[] values = new ValueContainer[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final ValueContainer<Float> valueContainer = new ValueContainer<Float>(random.nextFloat());
+      values[i] = valueContainer;
+    }
+    return values;
+  }
+
+  @Test
+  public final void testTotalArrayOfT()
+  {
+    final ValueContainer<Float>[] numbers1 = VALUE_CONTAINERS;
+
+    double total1 = 0;
+    for (final ValueContainer<Float> n : numbers1)
+      total1 += n.getValue();
+
+    final double expected1 = total1;
+    final double actual1 = total(numbers1, new Function1<ValueContainer<Float>, Float>() {
+      @Override
+      public Float apply(final ValueContainer<Float> input)
+      {
+        return input.getValue();
+      }
+    });
+
+    // System.out.println("expected: " + expected1 + "\nactual:   " + actual1);
+    assertTrue(expected1 == actual1);
+
+    final ValueContainer<Float>[] numbers2 = RANDOM_VALUE_CONTAINERS;
+
+    double total2 = 0;
+    for (final ValueContainer<Float> n : numbers2)
+      total2 += n.getValue();
+
+    final double expected2 = total2;
+    final double actual2 = total(numbers2, new Function1<ValueContainer<Float>, Float>() {
+      @Override
+      public Float apply(final ValueContainer<Float> input)
+      {
+        return input.getValue();
+      }
+    });
+    // System.out.println("expected: " + expected3 + "\nactual:   " + actual3);
+    assertTrue(expected2 == actual2);
+  }
+
   @Test
   public final void testTotalIterableOfFloat()
   {
@@ -863,6 +923,44 @@ public class FloatsToDoubleTotalTest
     final double actual4 = total(numbers4);
     // System.out.println("expected: " + expected4 + "\nactual:   " + actual4);
     assertTrue(expected4 == actual4);
+  }
+
+  @Test
+  public final void testTotalIterableOfT()
+  {
+    final Iterable<ValueContainer<Float>> numbers1 = asList(VALUE_CONTAINERS);
+
+    double total1 = 0;
+    for (final ValueContainer<Float> n : numbers1)
+      total1 += n.getValue();
+
+    final double expected1 = total1;
+    final double actual1 = total(numbers1, new Function1<ValueContainer<Float>, Float>() {
+      @Override
+      public Float apply(final ValueContainer<Float> input)
+      {
+        return input.getValue();
+      }
+    });
+    // System.out.println("expected: " + expected1 + "\nactual:   " + actual1);
+    assertTrue(expected1 == actual1);
+
+    final Iterable<ValueContainer<Float>> numbers2 = asList(RANDOM_VALUE_CONTAINERS);
+
+    double total2 = 0;
+    for (final ValueContainer<Float> n : numbers2)
+      total2 += n.getValue();
+
+    final double expected2 = total2;
+    final double actual2 = total(numbers2, new Function1<ValueContainer<Float>, Float>() {
+      @Override
+      public Float apply(final ValueContainer<Float> input)
+      {
+        return input.getValue();
+      }
+    });
+    // System.out.println("expected: " + expected2 + "\nactual:   " + actual2);
+    assertTrue(expected2 == actual2);
   }
 
 }

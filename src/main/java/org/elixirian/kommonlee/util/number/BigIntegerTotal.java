@@ -31,6 +31,11 @@
  */
 package org.elixirian.kommonlee.util.number;
 
+import java.math.BigInteger;
+
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.util.CommonConstants;
+
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -51,105 +56,91 @@ package org.elixirian.kommonlee.util.number;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-14)
  */
-public final class ShortsTotal
+public final class BigIntegerTotal
 {
-  private ShortsTotal()
+  private BigIntegerTotal() throws IllegalAccessException
   {
+    throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
-  public static int sum(final short number1, final short number2)
+  public static BigInteger total(final BigInteger number1, final BigInteger number2)
   {
-    return number1 + number2;
+    return number1.add(number2);
   }
 
-  public static int sum(final short number1, final short number2, final short number3)
+  public static BigInteger total(final BigInteger number1, final BigInteger number2, final BigInteger number3)
   {
-    return number1 + number2 + number3;
+    return number1.add(number2)
+        .add(number3);
   }
 
-  public static int sum(final short number1, final short number2, final short number3, final short number4)
+  public static BigInteger total(final BigInteger number1, final BigInteger number2, final BigInteger number3,
+      final BigInteger number4)
   {
-    return number1 + number2 + number3 + number4;
+    return number1.add(number2)
+        .add(number3)
+        .add(number4);
   }
 
-  public static int sum(final short number1, final short number2, final short number3, final short number4,
-      final short number5)
+  public static BigInteger total(final BigInteger number1, final BigInteger number2, final BigInteger number3,
+      final BigInteger number4, final BigInteger number5)
   {
-    return number1 + number2 + number3 + number4 + number5;
+    return number1.add(number2)
+        .add(number3)
+        .add(number4)
+        .add(number5);
   }
 
-  public static int sum(final short number1, final short number2, final short number3, final short number4,
-      final short number5, final short... rest)
+  public static BigInteger total(final BigInteger number1, final BigInteger number2, final BigInteger number3,
+      final BigInteger number4, final BigInteger number5, final BigInteger... rest)
   {
-    int total = sum(number1, number2, number3, number4, number5);
-    for (final short each : rest)
+    BigInteger total = total(number1, number2, number3, number4, number5);
+    for (final BigInteger each : rest)
     {
-      total += each;
+      total = total.add(each);
     }
     return total;
   }
 
-  public static int sum(final short[] numbers)
+  public static BigInteger total(final BigInteger[] numbers)
   {
-    int total = 0;
-    for (final short each : numbers)
+    BigInteger total = BigInteger.ZERO;
+    for (final BigInteger each : numbers)
     {
-      total += each;
+      total = total.add(each);
     }
     return total;
   }
 
-  public static int total(final Short number1, final Short number2)
+  public static <T> BigInteger total(final T[] numberSource, final Function1<T, BigInteger> bigIntegerMapper)
   {
-    return number1.shortValue() + number2.shortValue();
-  }
-
-  public static int total(final Short number1, final Short number2, final Short number3)
-  {
-    return number1.shortValue() + number2.shortValue() + number3.shortValue();
-  }
-
-  public static int total(final Short number1, final Short number2, final Short number3, final Short number4)
-  {
-    return number1.shortValue() + number2.shortValue() + number3.shortValue() + number4.shortValue();
-  }
-
-  public static int total(final Short number1, final Short number2, final Short number3, final Short number4,
-      final Short number5)
-  {
-    return number1.shortValue() + number2.shortValue() + number3.shortValue() + number4.shortValue()
-        + number5.shortValue();
-  }
-
-  public static int total(final Short number1, final Short number2, final Short number3, final Short number4,
-      final Short number5, final Short... rest)
-  {
-    int total = total(number1, number2, number3, number4, number5);
-    for (final Short each : rest)
+    BigInteger total = BigInteger.ZERO;
+    for (final T each : numberSource)
     {
-      total += each.shortValue();
+      final BigInteger bigInteger = bigIntegerMapper.apply(each);
+      total = total.add(bigInteger);
     }
     return total;
   }
 
-  public static int total(final Short[] numbers)
+  public static BigInteger total(final Iterable<BigInteger> numbers)
   {
-    int total = 0;
-    for (final Short each : numbers)
+    BigInteger total = BigInteger.ZERO;
+    for (final BigInteger each : numbers)
     {
-      total += each.shortValue();
+      total = total.add(each);
     }
     return total;
   }
 
-  public static int total(final Iterable<Short> numbers)
+  public static <T> BigInteger total(final Iterable<T> numberSource, final Function1<T, BigInteger> bigIntegerMapper)
   {
-    int total = 0;
-    for (final Short each : numbers)
+    BigInteger total = BigInteger.ZERO;
+    for (final T each : numberSource)
     {
-      total += each.shortValue();
+      final BigInteger bigInteger = bigIntegerMapper.apply(each);
+      total = total.add(bigInteger);
     }
     return total;
   }
-
 }

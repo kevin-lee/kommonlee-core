@@ -41,6 +41,7 @@ import java.util.LinkedHashSet;
 import org.elixirian.kommonlee.type.filter.ArgsFilter;
 import org.elixirian.kommonlee.type.filter.Filter1;
 import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.util.CommonConstants;
 
 /**
  * <pre>
@@ -64,8 +65,9 @@ import org.elixirian.kommonlee.type.functional.Condition1;
  */
 public final class Numbers
 {
-  private Numbers()
+  private Numbers() throws IllegalAccessException
   {
+    throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
   private static final Condition1<Integer> ODD_INTEGER = new Condition1<Integer>() {

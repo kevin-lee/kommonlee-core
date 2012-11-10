@@ -31,6 +31,9 @@
  */
 package org.elixirian.kommonlee.util.number;
 
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.util.CommonConstants;
+
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -51,101 +54,127 @@ package org.elixirian.kommonlee.util.number;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-14)
  */
-public final class IntegersTotal
+public final class ByteTotal
 {
-  private IntegersTotal()
+  private ByteTotal() throws IllegalAccessException
   {
+    throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
-  public static int sum(final int number1, final int number2)
+  public static int sum(final byte number1, final byte number2)
   {
     return number1 + number2;
   }
 
-  public static int sum(final int number1, final int number2, final int number3)
+  public static int sum(final byte number1, final byte number2, final byte number3)
   {
     return number1 + number2 + number3;
   }
 
-  public static int sum(final int number1, final int number2, final int number3, final int number4)
+  public static int sum(final byte number1, final byte number2, final byte number3, final byte number4)
   {
     return number1 + number2 + number3 + number4;
   }
 
-  public static int sum(final int number1, final int number2, final int number3, final int number4, final int number5)
+  public static int sum(final byte number1, final byte number2, final byte number3, final byte number4,
+      final byte number5)
   {
     return number1 + number2 + number3 + number4 + number5;
   }
 
-  public static int sum(final int number1, final int number2, final int number3, final int number4, final int number5,
-      final int... rest)
+  public static int sum(final byte number1, final byte number2, final byte number3, final byte number4,
+      final byte number5, final byte... rest)
   {
     int total = sum(number1, number2, number3, number4, number5);
-    for (final int each : rest)
+    for (final byte each : rest)
     {
       total += each;
     }
     return total;
   }
 
-  public static int sum(final int[] numbers)
+  public static int sum(final byte[] numbers)
   {
     int total = 0;
-    for (final int each : numbers)
+    for (final byte each : numbers)
     {
       total += each;
     }
     return total;
   }
 
-  public static int total(final Integer number1, final Integer number2)
+  public static int total(final Byte number1, final Byte number2)
   {
-    return number1.intValue() + number2.intValue();
+    return number1.byteValue() + number2.byteValue();
   }
 
-  public static int total(final Integer number1, final Integer number2, final Integer number3)
+  public static int total(final Byte number1, final Byte number2, final Byte number3)
   {
-    return number1.intValue() + number2.intValue() + number3.intValue();
+    return number1.byteValue() + number2.byteValue() + number3.byteValue();
   }
 
-  public static int total(final Integer number1, final Integer number2, final Integer number3, final Integer number4)
+  public static int total(final Byte number1, final Byte number2, final Byte number3, final Byte number4)
   {
-    return number1.intValue() + number2.intValue() + number3.intValue() + number4.intValue();
+    return number1.byteValue() + number2.byteValue() + number3.byteValue() + number4.byteValue();
   }
 
-  public static int total(final Integer number1, final Integer number2, final Integer number3, final Integer number4,
-      final Integer number5)
+  public static int total(final Byte number1, final Byte number2, final Byte number3, final Byte number4,
+      final Byte number5)
   {
-    return number1.intValue() + number2.intValue() + number3.intValue() + number4.intValue() + number5.intValue();
+    return number1.byteValue() + number2.byteValue() + number3.byteValue() + number4.byteValue() + number5.byteValue();
   }
 
-  public static int total(final Integer number1, final Integer number2, final Integer number3, final Integer number4,
-      final Integer number5, final Integer... rest)
+  public static int total(final Byte number1, final Byte number2, final Byte number3, final Byte number4,
+      final Byte number5, final Byte... rest)
   {
     int total = total(number1, number2, number3, number4, number5);
-    for (final Integer each : rest)
+    for (final Byte each : rest)
     {
-      total += each.intValue();
+      total += each.byteValue();
     }
     return total;
   }
 
-  public static int total(final Integer[] numbers)
+  public static int total(final Byte[] numbers)
   {
     int total = 0;
-    for (final Integer each : numbers)
+    for (final Byte each : numbers)
     {
-      total += each.intValue();
+      total += each.byteValue();
     }
     return total;
   }
 
-  public static int total(final Iterable<Integer> numbers)
+  public static <T> int total(final T[] numberSource, final Function1<T, Byte> byteMapper)
   {
     int total = 0;
-    for (final Integer each : numbers)
+    for (final T each : numberSource)
     {
-      total += each.intValue();
+      @SuppressWarnings("boxing")
+      final byte b = byteMapper.apply(each);
+      total += b;
+    }
+    return total;
+  }
+
+  public static int total(final Iterable<Byte> numbers)
+  {
+    int total = 0;
+    for (final byte each : numbers)
+    {
+      total += each;
+    }
+    return total;
+  }
+
+  public static <T> int total(final Iterable<T> numberSource, final Function1<T, Byte> byteMapper)
+  {
+    int total = 0;
+    for (final T each : numberSource)
+    {
+      @SuppressWarnings("boxing")
+      final byte b = byteMapper.apply(each);
+      total += b;
     }
     return total;
   }

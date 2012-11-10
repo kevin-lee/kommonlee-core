@@ -31,6 +31,9 @@
  */
 package org.elixirian.kommonlee.util.number;
 
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.util.CommonConstants;
+
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -51,37 +54,38 @@ package org.elixirian.kommonlee.util.number;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-14)
  */
-public final class FloatsToDoubleTotal
+public final class FloatTotal
 {
-  private FloatsToDoubleTotal()
+  private FloatTotal() throws IllegalAccessException
   {
+    throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
-  public static double sum(final float number1, final float number2)
+  public static float sum(final float number1, final float number2)
   {
-    return (double) number1 + number2;
+    return number1 + number2;
   }
 
-  public static double sum(final float number1, final float number2, final float number3)
+  public static float sum(final float number1, final float number2, final float number3)
   {
-    return (double) number1 + number2 + number3;
+    return number1 + number2 + number3;
   }
 
-  public static double sum(final float number1, final float number2, final float number3, final float number4)
+  public static float sum(final float number1, final float number2, final float number3, final float number4)
   {
-    return (double) number1 + number2 + number3 + number4;
+    return number1 + number2 + number3 + number4;
   }
 
-  public static double sum(final float number1, final float number2, final float number3, final float number4,
+  public static float sum(final float number1, final float number2, final float number3, final float number4,
       final float number5)
   {
-    return (double) number1 + number2 + number3 + number4 + number5;
+    return number1 + number2 + number3 + number4 + number5;
   }
 
-  public static double sum(final float number1, final float number2, final float number3, final float number4,
+  public static float sum(final float number1, final float number2, final float number3, final float number4,
       final float number5, final float... rest)
   {
-    double total = sum(number1, number2, number3, number4, number5);
+    float total = sum(number1, number2, number3, number4, number5);
     for (final float each : rest)
     {
       total += each;
@@ -89,9 +93,9 @@ public final class FloatsToDoubleTotal
     return total;
   }
 
-  public static double sum(final float[] numbers)
+  public static float sum(final float[] numbers)
   {
-    double total = 0;
+    float total = 0;
     for (final float each : numbers)
     {
       total += each;
@@ -99,32 +103,32 @@ public final class FloatsToDoubleTotal
     return total;
   }
 
-  public static double total(final Float number1, final Float number2)
+  public static float total(final Float number1, final Float number2)
   {
-    return (double) number1.floatValue() + number2.floatValue();
+    return number1.floatValue() + number2.floatValue();
   }
 
-  public static double total(final Float number1, final Float number2, final Float number3)
+  public static float total(final Float number1, final Float number2, final Float number3)
   {
-    return (double) number1.floatValue() + number2.floatValue() + number3.floatValue();
+    return number1.floatValue() + number2.floatValue() + number3.floatValue();
   }
 
-  public static double total(final Float number1, final Float number2, final Float number3, final Float number4)
+  public static float total(final Float number1, final Float number2, final Float number3, final Float number4)
   {
-    return (double) number1.floatValue() + number2.floatValue() + number3.floatValue() + number4.floatValue();
+    return number1.floatValue() + number2.floatValue() + number3.floatValue() + number4.floatValue();
   }
 
-  public static double total(final Float number1, final Float number2, final Float number3, final Float number4,
+  public static float total(final Float number1, final Float number2, final Float number3, final Float number4,
       final Float number5)
   {
-    return (double) number1.floatValue() + number2.floatValue() + number3.floatValue() + number4.floatValue()
+    return number1.floatValue() + number2.floatValue() + number3.floatValue() + number4.floatValue()
         + number5.floatValue();
   }
 
-  public static double total(final Float number1, final Float number2, final Float number3, final Float number4,
+  public static float total(final Float number1, final Float number2, final Float number3, final Float number4,
       final Float number5, final Float... rest)
   {
-    double total = total(number1, number2, number3, number4, number5);
+    float total = total(number1, number2, number3, number4, number5);
     for (final Float each : rest)
     {
       total += each.floatValue();
@@ -132,9 +136,9 @@ public final class FloatsToDoubleTotal
     return total;
   }
 
-  public static double total(final Float[] numbers)
+  public static float total(final Float[] numbers)
   {
-    double total = 0;
+    float total = 0;
     for (final Float each : numbers)
     {
       total += each.floatValue();
@@ -142,12 +146,36 @@ public final class FloatsToDoubleTotal
     return total;
   }
 
-  public static double total(final Iterable<Float> numbers)
+  public static <T> float total(final T[] numberSource, final Function1<T, Float> floatMapper)
   {
-    double total = 0;
+    float total = 0;
+    for (final T each : numberSource)
+    {
+      @SuppressWarnings("boxing")
+      final float f = floatMapper.apply(each);
+      total += f;
+    }
+    return total;
+  }
+
+  public static float total(final Iterable<Float> numbers)
+  {
+    float total = 0;
     for (final Float each : numbers)
     {
       total += each.floatValue();
+    }
+    return total;
+  }
+
+  public static <T> float total(final Iterable<T> numberSource, final Function1<T, Float> floatMapper)
+  {
+    float total = 0;
+    for (final T each : numberSource)
+    {
+      @SuppressWarnings("boxing")
+      final float f = floatMapper.apply(each);
+      total += f;
     }
     return total;
   }

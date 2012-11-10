@@ -31,6 +31,9 @@
  */
 package org.elixirian.kommonlee.util.number;
 
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.util.CommonConstants;
+
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -51,10 +54,11 @@ package org.elixirian.kommonlee.util.number;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-14)
  */
-public final class IntegersToLongTotal
+public final class IntegerToLongTotal
 {
-  private IntegersToLongTotal()
+  private IntegerToLongTotal() throws IllegalAccessException
   {
+    throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
   public static long sum(final int number1, final int number2)
@@ -77,8 +81,8 @@ public final class IntegersToLongTotal
     return (long) number1 + number2 + number3 + number4 + number5;
   }
 
-  public static long sum(final int number1, final int number2, final int number3, final int number4,
-      final int number5, final int... rest)
+  public static long sum(final int number1, final int number2, final int number3, final int number4, final int number5,
+      final int... rest)
   {
     long total = sum(number1, number2, number3, number4, number5);
     for (final int each : rest)
@@ -140,12 +144,36 @@ public final class IntegersToLongTotal
     return total;
   }
 
+  public static <T> long total(final T[] numberSource, final Function1<T, Integer> integerMapper)
+  {
+    long total = 0;
+    for (final T each : numberSource)
+    {
+      @SuppressWarnings("boxing")
+      final int i = integerMapper.apply(each);
+      total += i;
+    }
+    return total;
+  }
+
   public static long total(final Iterable<Integer> numbers)
   {
     long total = 0;
     for (final Integer each : numbers)
     {
       total += each.intValue();
+    }
+    return total;
+  }
+
+  public static <T> long total(final Iterable<T> numberSource, final Function1<T, Integer> integerMapper)
+  {
+    long total = 0;
+    for (final T each : numberSource)
+    {
+      @SuppressWarnings("boxing")
+      final int i = integerMapper.apply(each);
+      total += i;
     }
     return total;
   }

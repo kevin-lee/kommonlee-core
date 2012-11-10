@@ -31,6 +31,9 @@
  */
 package org.elixirian.kommonlee.util.number;
 
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.util.CommonConstants;
+
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -51,10 +54,11 @@ package org.elixirian.kommonlee.util.number;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-14)
  */
-public final class DoublesTotal
+public final class DoubleTotal
 {
-  private DoublesTotal()
+  private DoubleTotal() throws IllegalAccessException
   {
+    throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
   public static double sum(final double number1, final double number2)
@@ -142,12 +146,36 @@ public final class DoublesTotal
     return total;
   }
 
+  public static <T> double total(final T[] numberSource, final Function1<T, Double> doubleMapper)
+  {
+    double total = 0;
+    for (final T each : numberSource)
+    {
+      @SuppressWarnings("boxing")
+      final double d = doubleMapper.apply(each);
+      total += d;
+    }
+    return total;
+  }
+
   public static double total(final Iterable<Double> numbers)
   {
     double total = 0;
     for (final Double each : numbers)
     {
       total += each.doubleValue();
+    }
+    return total;
+  }
+
+  public static <T> double total(final Iterable<T> numberSource, final Function1<T, Double> doubleMapper)
+  {
+    double total = 0;
+    for (final T each : numberSource)
+    {
+      @SuppressWarnings("boxing")
+      final double d = doubleMapper.apply(each);
+      total += d;
     }
     return total;
   }

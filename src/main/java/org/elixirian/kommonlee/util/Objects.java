@@ -32,7 +32,6 @@
 package org.elixirian.kommonlee.util;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -457,16 +456,16 @@ public final class Objects
 
 	/**
 	 * Returns {@code true} if the arguments are deeply equal to each other and {@code false} otherwise. Two {@code null}
-	 * values are deeply equal. If both arguments are arrays, the algorithm in
-	 * {@link Arrays#deepEquals(Object[], Object[]) Arrays.deepEquals} is used to determine equality. Otherwise, equality
-	 * is determined by using the {@link Object#equals(Object) equals} method of the first argument.
+	 * values are deeply equal. If both arguments are arrays, the algorithm in {@link NeoArrays#deepEqual(Object, Object)
+	 * NeoArrays.deepEqual(Object, Object)} is used to determine equality. Otherwise, equality is determined by using the
+	 * {@link #equal(Object, Object) Objects.equal(Object, Object)} method.
 	 * 
 	 * @param left
 	 *          an object
 	 * @param right
 	 *          an object to be compared with for deep equality
 	 * @return {@code true} if the arguments are deeply equal to each other and {@code false} otherwise
-	 * @see {@link Arrays#deepEquals(Object[], Object[])}, {@link #equal(Object, Object)}
+	 * @see {@link NeoArrays#deepEqual(Object, Object)}, {@link #equal(Object, Object)}
 	 */
 	public static boolean deepEqual(final Object left, final Object right)
 	{
@@ -485,16 +484,16 @@ public final class Objects
 	/**
 	 * Returns {@code true} if the arguments are not deeply equal to each other and {@code false} otherwise. Two
 	 * {@code null} values are deeply equal so it returns false. If both arguments are arrays, the algorithm in
-	 * {@link Arrays#deepEquals(Object[], Object[]) Arrays.deepEquals} is used to determine equality and the opposite
-	 * result is turned. Otherwise, equality is determined by using the {@link Object#equals(Object) equals} method of the
-	 * first argument then the opposite result of it is returned.
+	 * {@link NeoArrays#deepEqual(Object, Object) NeoArrays.deepEqual(Object, Object)} is used to determine equality and
+	 * the opposite result is turned. Otherwise, equality is determined by using the {@link #equal(Object, Object)
+	 * Objects.equal(Object, Object)} method then the opposite result of it is returned.
 	 * 
 	 * @param left
 	 *          an object
 	 * @param right
 	 *          an object to be compared with for being not deeply equal.
 	 * @return {@code true} if the arguments are not deeply equal to each other and {@code false} otherwise
-	 * @see {@link Arrays#deepEquals(Object[], Object[])}, {@link #notEqual(Object, Object)}
+	 * @see {@link NeoArrays#notDeepEqual(Object, Object)}, {@link #notEqual(Object, Object)}
 	 */
 	public static boolean notDeepEqual(final Object left, final Object right)
 	{
