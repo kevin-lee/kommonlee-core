@@ -53,5 +53,5 @@ package org.elixirian.kommonlee.collect;
  */
 public enum BreakOrContinue
 {
-	STOP_IT, GO_ON;
+	BREAK, CONTINUE;
 }

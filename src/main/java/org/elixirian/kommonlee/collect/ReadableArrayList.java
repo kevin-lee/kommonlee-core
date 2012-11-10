@@ -207,7 +207,7 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
 		{
 			@SuppressWarnings("unchecked")
 			final E element = (E) object;
-			if (BreakOrContinue.STOP_IT == function.apply(element))
+			if (BreakOrContinue.BREAK == function.apply(element))
 			{
 				break;
 			}

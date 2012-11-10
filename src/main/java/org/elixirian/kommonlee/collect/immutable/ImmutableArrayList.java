@@ -432,7 +432,7 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
 		{
 			@SuppressWarnings("unchecked")
 			final E element = (E) object;
-			if (BreakOrContinue.STOP_IT == function.apply(element))
+			if (BreakOrContinue.BREAK == function.apply(element))
 			{
 				break;
 			}
