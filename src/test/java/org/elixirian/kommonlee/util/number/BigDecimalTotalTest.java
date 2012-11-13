@@ -650,5 +650,14 @@ public class BigDecimalTotalTest
     });
     // System.out.println("expected: " + expected3 + "\nactual:   " + actual3);
     assertThat(actual2, is(equalTo(expected2)));
+    final BigDecimal actual2_2 = total(numbers2, new ToBigDecimalMapper<ValueContainer<BigDecimal>>() {
+      @Override
+      public BigDecimal apply(final ValueContainer<BigDecimal> input)
+      {
+        return input.getValue();
+      }
+    });
+    // System.out.println("expected: " + expected3 + "\nactual:   " + actual3);
+    assertThat(actual2_2, is(equalTo(expected2)));
   }
 }
