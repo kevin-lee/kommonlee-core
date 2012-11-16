@@ -87,10 +87,10 @@ public class ArrayToCollectionMapper<E, NE, F extends Function1<? super E, NE>, 
 
   /* @formatter:off */
 	public static <E,
-									 NE,
-									 F extends Function1<? super E, NE>,
-									 R extends Collection<NE>,
-									 CC extends CollectionCreator<NE, ? extends R>>
+								 NE,
+								 F extends Function1<? super E, NE>,
+								 R extends Collection<NE>,
+								 CC extends CollectionCreator<NE, ? extends R>>
 					ArrayToCollectionMapper<E, NE, F, R>
 		newInstance(final CC collectionCreator)
 	{

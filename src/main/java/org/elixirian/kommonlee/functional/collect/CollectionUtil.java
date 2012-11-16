@@ -91,10 +91,10 @@ public final class CollectionUtil
   // IterableToCollectionMapper.newInstance(ArrayListCreator.getInstance());
 
   private static final ArrayToCollectionMapper<?, ?, ? extends Function1<?, ?>, ? extends ArrayList<?>> ARRAY_TO_ARRAY_LIST_MAPPER =
-    ArrayToCollectionMapper.newInstance(ArrayListCreator.getInstance());
+    ArrayToCollectionMapper.<Object, Object, Function1<Object, Object>, ArrayList<Object>, ArrayListCreator<Object>> newInstance(ArrayListCreator.getInstance());
 
   private static final ArrayToCollectionMapper<?, ?, ? extends Function1<?, ?>, ? extends HashSet<?>> ARRAY_TO_HASH_SET_MAPPER =
-    ArrayToCollectionMapper.newInstance(HashSetCreator.getInstance());
+    ArrayToCollectionMapper.<Object, Object, Function1<Object, Object>, HashSet<Object>, HashSetCreator<Object>> newInstance(HashSetCreator.getInstance());
 
   public static class IterableToArrayListMapper<E, NE> extends
       IterableToCollectionMapper<E, Iterable<? extends E>, NE, Function1<? super E, NE>, ArrayList<NE>>
@@ -148,10 +148,10 @@ public final class CollectionUtil
   }
 
   private static final ArrayToCollectionSelectableMapper<?, ? extends Condition1<?>, ?, ? extends Function1<?, ?>, ? extends ArrayList<?>> ARRAY_TO_ARRAY_LIST_SELECTABLE_MAPPER =
-    ArrayToCollectionSelectableMapper.newInstance(ArrayListCreator.getInstance());
+    ArrayToCollectionSelectableMapper.<Object, Condition1<Object>, Object, Function1<Object, Object>, ArrayList<Object>, ArrayListCreator<Object>> newInstance(ArrayListCreator.getInstance());
 
   private static final ArrayToCollectionSelectableMapper<?, ? extends Condition1<?>, ?, ? extends Function1<?, ?>, ? extends HashSet<?>> ARRAY_TO_HASH_SET_SELECTABLE_MAPPER =
-    ArrayToCollectionSelectableMapper.newInstance(HashSetCreator.getInstance());
+    ArrayToCollectionSelectableMapper.<Object, Condition1<Object>, Object, Function1<Object, Object>, HashSet<Object>, HashSetCreator<Object>> newInstance(HashSetCreator.getInstance());
 
   private static final IterableToArrayListSelectableMapper<?, ?> ITERABLE_TO_ARRAY_LIST_SELECTABLE_MAPPER =
     IterableToArrayListSelectableMapper.newInstance(ArrayListCreator.getInstance());
@@ -162,16 +162,16 @@ public final class CollectionUtil
   private static final ForEachInIterable<?, ? extends Iterable<?>, ? extends VoidFunction1<?>> FOR_EACH_IN_ITERABLE =
     new ForEachInIterable<Object, Iterable<Object>, VoidFunction1<Object>>();
 
-  private static final BreakableForEachInIterable<?, ? extends Iterable<Object>, ? extends BreakableFunction1<Object>> BREAKABLE_FOR_EACH_IN_ITERABLE =
+  private static final BreakableForEachInIterable<?, ? extends Iterable<Object>, ? extends BreakableFunction1<?>> BREAKABLE_FOR_EACH_IN_ITERABLE =
     new BreakableForEachInIterable<Object, Iterable<Object>, BreakableFunction1<Object>>();
 
   private static final ForEachInArray<?, ? extends VoidFunction1<?>> FOR_EACH_IN_ARRAY =
     new ForEachInArray<Object, VoidFunction1<Object>>();
 
-  private static final BreakableForEachInArray<?, ? extends BreakableFunction1<Object>> BREAKABLE_FOR_EACH_IN_ARRAY =
+  private static final BreakableForEachInArray<?, ? extends BreakableFunction1<?>> BREAKABLE_FOR_EACH_IN_ARRAY =
     new BreakableForEachInArray<Object, BreakableFunction1<Object>>();
 
-  private static final MapToHashMapWithNewKeyMapper<Object, Object, Map<Object, Object>, Object, Function1<Object, Object>> MAP_TO_MAP_WITH_NEW_KEY_MAPPER =
+  private static final MapToHashMapWithNewKeyMapper<?, ?, ? extends Map<?, ?>, ?, ? extends Function1<?, ?>> MAP_TO_MAP_WITH_NEW_KEY_MAPPER =
     new MapToHashMapWithNewKeyMapper<Object, Object, Map<Object, Object>, Object, Function1<Object, Object>>(
         HashMapCreator.getInstance());
 
@@ -635,14 +635,14 @@ public final class CollectionUtil
     return mapToMapWithNewKeyMapper.apply(function, source);
   }
 
-  public static <E, F extends VoidFunction1<E>, I extends Iterable<E>> void forEach(final F function, final I source)
+  public static <E, F extends VoidFunction1<? super E>, I extends Iterable<? extends E>> void forEach(final F function, final I source)
   {
     @SuppressWarnings("unchecked")
     final ForEachInIterable<E, I, F> forEachInIterable = (ForEachInIterable<E, I, F>) FOR_EACH_IN_ITERABLE;
     forEachInIterable.forEach(function, source);
   }
 
-  public static <E, F extends BreakableFunction1<E>, I extends Iterable<E>> void forEach(final F function,
+  public static <E, F extends BreakableFunction1<? super E>, I extends Iterable<? extends E>> void forEach(final F function,
       final I source)
   {
     @SuppressWarnings("unchecked")
@@ -651,14 +651,14 @@ public final class CollectionUtil
     forEachInIterable.forEach(function, source);
   }
 
-  public static <E, F extends VoidFunction1<E>> void forEach(final F function, final E[] source)
+  public static <E, F extends VoidFunction1<? super E>> void forEach(final F function, final E[] source)
   {
     @SuppressWarnings("unchecked")
     final ForEachInArray<E, F> forEachInIterable = (ForEachInArray<E, F>) FOR_EACH_IN_ARRAY;
     forEachInIterable.forEach(function, source);
   }
 
-  public static <E, F extends BreakableFunction1<E>> void forEach(final F function, final E[] source)
+  public static <E, F extends BreakableFunction1<? super E>> void forEach(final F function, final E[] source)
   {
     @SuppressWarnings("unchecked")
     final BreakableForEachInArray<E, F> forEachInIterable = (BreakableForEachInArray<E, F>) BREAKABLE_FOR_EACH_IN_ARRAY;

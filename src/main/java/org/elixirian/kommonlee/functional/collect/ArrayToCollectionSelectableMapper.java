@@ -88,11 +88,11 @@ public class ArrayToCollectionSelectableMapper<E, C extends Condition1<? super E
 
   /* @formatter:off */
 	public static <E,
-									 C extends Condition1<E>,
-									 NE,
-									 F extends Function1<? super E, NE>,
-									 R extends Collection<NE>,
-									 CC extends CollectionCreator<NE, ? extends R>>
+								 C extends Condition1<E>,
+								 NE,
+								 F extends Function1<? super E, NE>,
+								 R extends Collection<NE>,
+								 CC extends CollectionCreator<NE, ? extends R>>
 					ArrayToCollectionSelectableMapper<E, C, NE, F, R>
 		newInstance(final CC collectionCreator)
 	{
