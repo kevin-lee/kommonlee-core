@@ -38,6 +38,7 @@ import org.elixirian.kommonlee.type.checkable.EmptinessCheckable;
 import org.elixirian.kommonlee.type.checkable.LengthCheckable;
 import org.elixirian.kommonlee.type.checkable.NotEmptinessCheckable;
 import org.elixirian.kommonlee.type.checkable.SizeCheckable;
+import org.elixirian.kommonlee.type.functional.BreakOrContinue;
 import org.elixirian.kommonlee.type.functional.Condition1;
 import org.elixirian.kommonlee.type.functional.Function1;
 
@@ -93,7 +94,7 @@ public interface Kollection<E> extends Iterable<E>, LengthCheckable, SizeCheckab
   <R> Kollection<R> mapSelectively(Condition1<? super E> condition, Function1<? super E, R> function);
 
   void forEach(Function1<? super E, Void> function);
-  
+
   void breakableForEach(Function1<? super E, BreakOrContinue> function);
 
   int howMany(Condition1<? super E> conditionToMeet);
