@@ -34,7 +34,8 @@ package org.elixirian.kommonlee.functional.collect;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.Pair;
+import org.elixirian.kommonlee.type.functional.Function2;
 
 /**
  * <pre>
@@ -63,13 +64,15 @@ import org.elixirian.kommonlee.type.functional.Function1;
  *          Input Map type
  * @param <NK>
  *          New Key after function applied.
+ * @param <NE>
+ *          New Value after the function applied.
  * @param <F>
- *          Function to map Key
+ *          Function to map Key and Value
  */
-public class MapToHashMapWithNewKeyMapper<K, E, T extends Map<? extends K, ? extends E>, NK, F extends Function1<? super K, NK>>
-    extends MapToMapWithNewKeyMapper<K, E, Map<? extends K, ? extends E>, NK, Function1<? super K, NK>, HashMap<NK, E>>
+public class MapToHashMapWithNewKeyNewValueMapper<K, E, T extends Map<? extends K, ? extends E>, NK, NE, F extends Function2<? super K, ? super E, Pair<NK, NE>>>
+    extends MapToMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F, HashMap<NK, NE>>
 {
-  MapToHashMapWithNewKeyMapper(final HashMapCreator<NK, E> mapCreator)
+  MapToHashMapWithNewKeyNewValueMapper(final HashMapCreator<NK, NE> mapCreator)
   {
     super(mapCreator);
   }
@@ -79,10 +82,11 @@ public class MapToHashMapWithNewKeyMapper<K, E, T extends Map<? extends K, ? ext
 	               E,
 	               T extends Map<? extends K, ? extends E>,
 	               NK,
-	               F extends Function1<? super K, NK>>
-		MapToHashMapWithNewKeyMapper<K, E, T, NK, F> newInstance(final HashMapCreator<NK, E> mapCreator)
+	               NE,
+	               F extends Function2<? super K, ? super E, Pair<NK, NE>>>
+		MapToHashMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F> newInstance(final HashMapCreator<NK, NE> mapCreator)
 	{
-		return new MapToHashMapWithNewKeyMapper<K, E, T, NK, F>(mapCreator);
+		return new MapToHashMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F>(mapCreator);
 	}
 	/* @formatter:on */
 }

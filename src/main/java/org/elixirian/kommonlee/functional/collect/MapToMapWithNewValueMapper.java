@@ -31,10 +31,11 @@
  */
 package org.elixirian.kommonlee.functional.collect;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.functional.Function2;
 
 /**
  * <pre>
@@ -61,28 +62,42 @@ import org.elixirian.kommonlee.type.functional.Function1;
  *          Element
  * @param <T>
  *          Input Map type
- * @param <NK>
- *          New Key after function applied.
+ * @param <NE>
+ *          New value after function applied.
  * @param <F>
- *          Function to map Key
+ *          Function to map value
+ * @param <R>
+ *          Return Map type
  */
-public class MapToHashMapWithNewKeyMapper<K, E, T extends Map<? extends K, ? extends E>, NK, F extends Function1<? super K, NK>>
-    extends MapToMapWithNewKeyMapper<K, E, Map<? extends K, ? extends E>, NK, Function1<? super K, NK>, HashMap<NK, E>>
+public class MapToMapWithNewValueMapper<K, E, T extends Map<? extends K, ? extends E>, NE, F extends Function1<? super E, NE>, R extends Map<K, NE>>
+    implements Function2<F, T, R>
 {
-  MapToHashMapWithNewKeyMapper(final HashMapCreator<NK, E> mapCreator)
+  private final MapCreator<K, NE, ? extends R> mapCreator;
+
+  public <MC extends MapCreator<K, NE, ? extends R>> MapToMapWithNewValueMapper(final MC mapCreator)
   {
-    super(mapCreator);
+    this.mapCreator = mapCreator;
+  }
+
+  @Override
+  public R apply(final F function, final T inputMap)
+  {
+    final R result = mapCreator.createMap();
+    for (final Entry<? extends K, ? extends E> entry : inputMap.entrySet())
+    {
+      result.put(entry.getKey(), function.apply(entry.getValue()));
+    }
+    return result;
   }
 
   /* @formatter:off */
-	public static <K,
-	               E,
-	               T extends Map<? extends K, ? extends E>,
-	               NK,
-	               F extends Function1<? super K, NK>>
-		MapToHashMapWithNewKeyMapper<K, E, T, NK, F> newInstance(final HashMapCreator<NK, E> mapCreator)
+	public static <K, E, T extends Map<? extends K, ? extends E>,
+                 NE, F extends Function1<? super E, NE>,
+                 R extends Map<K, NE>,
+                 MC extends MapCreator<K, NE, ? extends R>>
+		MapToMapWithNewValueMapper<K, E, T, NE, F, R> newInstance(final MC mapCreator)
 	{
-		return new MapToHashMapWithNewKeyMapper<K, E, T, NK, F>(mapCreator);
+		return new MapToMapWithNewValueMapper<K, E, T, NE, F, R>(mapCreator);
 	}
 	/* @formatter:on */
 }

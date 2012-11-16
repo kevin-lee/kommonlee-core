@@ -61,15 +61,16 @@ import org.elixirian.kommonlee.type.functional.Function1;
  *          Element
  * @param <T>
  *          Input Map type
- * @param <NK>
- *          New Key after function applied.
+ * @param <NE>
+ *          New value after function applied.
  * @param <F>
- *          Function to map Key
+ *          Function to map value
  */
-public class MapToHashMapWithNewKeyMapper<K, E, T extends Map<? extends K, ? extends E>, NK, F extends Function1<? super K, NK>>
-    extends MapToMapWithNewKeyMapper<K, E, Map<? extends K, ? extends E>, NK, Function1<? super K, NK>, HashMap<NK, E>>
+public class MapToHashMapWithNewValueMapper<K, E, T extends Map<? extends K, ? extends E>, NE, F extends Function1<? super E, NE>>
+    extends
+    MapToMapWithNewValueMapper<K, E, Map<? extends K, ? extends E>, NE, Function1<? super E, NE>, HashMap<K, NE>>
 {
-  MapToHashMapWithNewKeyMapper(final HashMapCreator<NK, E> mapCreator)
+  MapToHashMapWithNewValueMapper(final HashMapCreator<K, NE> mapCreator)
   {
     super(mapCreator);
   }
@@ -78,11 +79,11 @@ public class MapToHashMapWithNewKeyMapper<K, E, T extends Map<? extends K, ? ext
 	public static <K,
 	               E,
 	               T extends Map<? extends K, ? extends E>,
-	               NK,
-	               F extends Function1<? super K, NK>>
-		MapToHashMapWithNewKeyMapper<K, E, T, NK, F> newInstance(final HashMapCreator<NK, E> mapCreator)
+	               NE,
+	               F extends Function1<? super E, NE>>
+		MapToHashMapWithNewValueMapper<K, E, T, NE, F> newInstance(final HashMapCreator<K, NE> mapCreator)
 	{
-		return new MapToHashMapWithNewKeyMapper<K, E, T, NK, F>(mapCreator);
+		return new MapToHashMapWithNewValueMapper<K, E, T, NE, F>(mapCreator);
 	}
 	/* @formatter:on */
 }

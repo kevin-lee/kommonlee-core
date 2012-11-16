@@ -43,8 +43,10 @@ import org.elixirian.kommonlee.functional.GenericVarargsSelector;
 import org.elixirian.kommonlee.functional.VoidFunction1;
 import org.elixirian.kommonlee.functional.string.PrefixAndSuffixAdder;
 import org.elixirian.kommonlee.functional.string.StringArrayToTrimmedStringListSelector;
+import org.elixirian.kommonlee.type.Pair;
 import org.elixirian.kommonlee.type.functional.Condition1;
 import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.functional.Function2;
 import org.elixirian.kommonlee.util.CommonConstants;
 
 /**
@@ -172,8 +174,13 @@ public final class CollectionUtil
     new BreakableForEachInArray<Object, BreakableFunction1<Object>>();
 
   private static final MapToHashMapWithNewKeyMapper<?, ?, ? extends Map<?, ?>, ?, ? extends Function1<?, ?>> MAP_TO_MAP_WITH_NEW_KEY_MAPPER =
-    new MapToHashMapWithNewKeyMapper<Object, Object, Map<Object, Object>, Object, Function1<Object, Object>>(
-        HashMapCreator.getInstance());
+    MapToHashMapWithNewKeyMapper.<Object, Object, Map<Object, Object>, Object, Function1<Object, Object>> newInstance(HashMapCreator.getInstance());
+
+  private static final MapToHashMapWithNewValueMapper<?, ?, ? extends Map<?, ?>, ?, ? extends Function1<?, ?>> MAP_TO_MAP_WITH_NEW_VALUE_MAPPER =
+    MapToHashMapWithNewValueMapper.<Object, Object, Map<Object, Object>, Object, Function1<Object, Object>> newInstance(HashMapCreator.getInstance());
+
+  private static final MapToHashMapWithNewKeyNewValueMapper<?, ?, ? extends Map<?, ?>, ?, ?, ? extends Function2<?, ?, ? extends Pair<?, ?>>> MAP_TO_MAP_WITH_NEW_KEY_NEW_VALUE_MAPPER =
+    MapToHashMapWithNewKeyNewValueMapper.<Object, Object, Map<Object, Object>, Object, Object, Function2<Object, Object, Pair<Object, Object>>> newInstance(HashMapCreator.getInstance());
 
   // ///////////////////////// SELECTORS
 
@@ -375,22 +382,58 @@ public final class CollectionUtil
     }
   }
 
-  public static class MapperFromIterable
+  public static class MapToHashMapWithNewKeyMapperFunction
   {
-    static final MapperFromIterable INSTANCE = new MapperFromIterable();
+    static final MapToHashMapWithNewKeyMapperFunction INSTANCE = new MapToHashMapWithNewKeyMapperFunction();
 
-    private MapperFromIterable()
+    private MapToHashMapWithNewKeyMapperFunction()
     {
     }
 
-    public IterableToArrayListMapperFunction toArrayList()
+    public <K, E, T extends Map<? extends K, ? extends E>, NK, F extends Function1<? super K, NK>> HashMap<NK, E> map(
+        final F function, final T inputMap)
     {
-      return IterableToArrayListMapperFunction.INSTANCE;
+      @SuppressWarnings("unchecked")
+      final MapToHashMapWithNewKeyMapper<K, E, T, NK, F> mapToMapWithNewKeyMapper =
+        (MapToHashMapWithNewKeyMapper<K, E, T, NK, F>) MAP_TO_MAP_WITH_NEW_KEY_MAPPER;
+      return mapToMapWithNewKeyMapper.apply(function, inputMap);
+    }
+  }
+
+  public static class MapToHashMapWithNewValueMapperFunction
+  {
+    static final MapToHashMapWithNewValueMapperFunction INSTANCE = new MapToHashMapWithNewValueMapperFunction();
+
+    private MapToHashMapWithNewValueMapperFunction()
+    {
     }
 
-    public IterableToHashSetMapperFunction toHashSet()
+    public <K, E, T extends Map<? extends K, ? extends E>, NE, F extends Function1<? super E, NE>> HashMap<K, NE> map(
+        final F function, final T inputMap)
     {
-      return IterableToHashSetMapperFunction.INSTANCE;
+      @SuppressWarnings("unchecked")
+      final MapToHashMapWithNewValueMapper<K, E, T, NE, F> mapToHashMapWithNewValueMapper =
+        (MapToHashMapWithNewValueMapper<K, E, T, NE, F>) MAP_TO_MAP_WITH_NEW_VALUE_MAPPER;
+      return mapToHashMapWithNewValueMapper.apply(function, inputMap);
+    }
+  }
+
+  public static class MapToHashMapWithNewKeyNewValueMapperFunction
+  {
+    static final MapToHashMapWithNewKeyNewValueMapperFunction INSTANCE =
+      new MapToHashMapWithNewKeyNewValueMapperFunction();
+
+    private MapToHashMapWithNewKeyNewValueMapperFunction()
+    {
+    }
+
+    public <K, E, T extends Map<? extends K, ? extends E>, NK, NE, F extends Function2<? super K, ? super E, Pair<NK, NE>>> HashMap<NK, NE> map(
+        final F function, final T inputMap)
+    {
+      @SuppressWarnings("unchecked")
+      final MapToHashMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F> mapToHashMapWithNewKeyNewValueMapper =
+        (MapToHashMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F>) MAP_TO_MAP_WITH_NEW_KEY_NEW_VALUE_MAPPER;
+      return mapToHashMapWithNewKeyNewValueMapper.apply(function, inputMap);
     }
   }
 
@@ -413,6 +456,63 @@ public final class CollectionUtil
     }
   }
 
+  public static class MapperFromIterable
+  {
+    static final MapperFromIterable INSTANCE = new MapperFromIterable();
+
+    private MapperFromIterable()
+    {
+    }
+
+    public IterableToArrayListMapperFunction toArrayList()
+    {
+      return IterableToArrayListMapperFunction.INSTANCE;
+    }
+
+    public IterableToHashSetMapperFunction toHashSet()
+    {
+      return IterableToHashSetMapperFunction.INSTANCE;
+    }
+  }
+
+  public static class MapperFromMapToHashMap
+  {
+    static final MapperFromMapToHashMap INSTANCE = new MapperFromMapToHashMap();
+
+    private MapperFromMapToHashMap()
+    {
+    }
+
+    public MapToHashMapWithNewKeyMapperFunction withNewKey()
+    {
+      return MapToHashMapWithNewKeyMapperFunction.INSTANCE;
+    }
+
+    public MapToHashMapWithNewValueMapperFunction withNewValue()
+    {
+      return MapToHashMapWithNewValueMapperFunction.INSTANCE;
+    }
+
+    public MapToHashMapWithNewKeyNewValueMapperFunction withNewKeyNewValue()
+    {
+      return MapToHashMapWithNewKeyNewValueMapperFunction.INSTANCE;
+    }
+  }
+
+  public static class MapperFromMap
+  {
+    static final MapperFromMap INSTANCE = new MapperFromMap();
+
+    private MapperFromMap()
+    {
+    }
+
+    public MapperFromMapToHashMap toHashMap()
+    {
+      return MapperFromMapToHashMap.INSTANCE;
+    }
+  }
+
   public static class Mappers
   {
     static final Mappers INSTANCE = new Mappers();
@@ -429,6 +529,11 @@ public final class CollectionUtil
     public MapperFromIterable fromIterable()
     {
       return MapperFromIterable.INSTANCE;
+    }
+
+    public MapperFromMap fromMap()
+    {
+      return MapperFromMap.INSTANCE;
     }
   }
 
@@ -631,7 +736,7 @@ public final class CollectionUtil
     return arrayToListSelector.select(condition, source);
   }
 
-  public <K, E, T extends Map<? extends K, ? extends E>, NK, F extends Function1<? super K, NK>> HashMap<NK, E> map(
+  public static <K, E, T extends Map<? extends K, ? extends E>, NK, F extends Function1<? super K, NK>> HashMap<NK, E> map(
       final F function, final T source)
   {
     @SuppressWarnings("unchecked")
