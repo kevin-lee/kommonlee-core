@@ -31,8 +31,7 @@
  */
 package org.elixirian.kommonlee.functional.collect;
 
-import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.selector.Selector1;
+import org.elixirian.kommonlee.functional.VoidFunction1;
 
 /**
  * <pre>
@@ -52,26 +51,18 @@ import org.elixirian.kommonlee.type.selector.Selector1;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-02-25)
+ * @version 0.0.1 (2011-07-23)
  * @param <E>
+ * @param <T>
+ * @param <F>
  */
-public final class ElementCountSelector<E> implements Selector1<Iterable<? extends E>, Condition1<E>, Integer>
+public class ForEachInIterable<E, T extends Iterable<? extends E>, F extends VoidFunction1<? super E>>
 {
-  ElementCountSelector()
+  public void forEach(final F function, final T source)
   {
-  }
-
-  @Override
-  public Integer select(final Condition1<E> condition, final Iterable<? extends E> source)
-  {
-    int count = 0;
-    for (final E e : source)
+    for (final E element : source)
     {
-      if (condition.isMet(e))
-      {
-        count++;
-      }
+      function.apply(element);
     }
-    return Integer.valueOf(count);
   }
 }

@@ -31,8 +31,10 @@
  */
 package org.elixirian.kommonlee.functional.collect;
 
-import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.selector.Selector1;
+import java.util.Collection;
+
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.functional.Function2;
 
 /**
  * <pre>
@@ -52,26 +54,47 @@ import org.elixirian.kommonlee.type.selector.Selector1;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-02-25)
+ * @version 0.0.1 (2011-07-23)
  * @param <E>
+ *          source element type
+ * @param <NE>
+ *          The mapped type from the type E
+ * @param <F>
+ *          Function object to map the source type E to create the type NE
+ * @param <R>
+ *          Collection containing all the mapped objects.
  */
-public final class ElementCountSelector<E> implements Selector1<Iterable<? extends E>, Condition1<E>, Integer>
+public class ArrayToCollectionMapper<E, NE, F extends Function1<? super E, NE>, R extends Collection<NE>> implements
+    Function2<F, E[], R>
 {
-  ElementCountSelector()
+  private final CollectionCreator<NE, ? extends R> collectionCreator;
+
+  protected <CC extends CollectionCreator<NE, ? extends R>> ArrayToCollectionMapper(final CC collectionCreator)
   {
+    this.collectionCreator = collectionCreator;
   }
 
   @Override
-  public Integer select(final Condition1<E> condition, final Iterable<? extends E> source)
+  public R apply(final F function, final E[] source)
   {
-    int count = 0;
-    for (final E e : source)
+    final R result = collectionCreator.createCollection();
+    for (final E element : source)
     {
-      if (condition.isMet(e))
-      {
-        count++;
-      }
+      result.add(function.apply(element));
     }
-    return Integer.valueOf(count);
+    return result;
   }
+
+  /* @formatter:off */
+	public static <E,
+									 NE,
+									 F extends Function1<? super E, NE>,
+									 R extends Collection<NE>,
+									 CC extends CollectionCreator<NE, ? extends R>>
+					ArrayToCollectionMapper<E, NE, F, R>
+		newInstance(final CC collectionCreator)
+	{
+		return new ArrayToCollectionMapper<E, NE, F, R>(collectionCreator);
+	}
+	/* @formatter:on */
 }

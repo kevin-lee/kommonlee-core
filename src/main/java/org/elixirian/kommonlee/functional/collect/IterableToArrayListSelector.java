@@ -57,28 +57,15 @@ import org.elixirian.kommonlee.type.functional.Condition1;
  * @param <E>
  */
 public final class IterableToArrayListSelector<E> extends
-		IterableToCollectionSelector<E, Iterable<? extends E>, Condition1<? super E>, ArrayList<E>>
+    IterableToCollectionSelector<E, Iterable<? extends E>, Condition1<? super E>, ArrayList<E>>
 {
-	public IterableToArrayListSelector(final ArrayListCreator<E> collectionCreator)
-	{
-		super(collectionCreator);
-	}
+  IterableToArrayListSelector(final ArrayListCreator<E> collectionCreator)
+  {
+    super(collectionCreator);
+  }
 
-	public ArrayList<E> select(final Condition1<? super E> condition, final Iterable<? extends E> input)
-	{
-		final ArrayList<E> filteredList = new ArrayList<E>();
-		for (final E element : input)
-		{
-			if (condition.isMet(element))
-			{
-				filteredList.add(element);
-			}
-		}
-		return filteredList;
-	}
-
-	public static <E> IterableToArrayListSelector<E> newInstance(final ArrayListCreator<E> collectionCreator)
-	{
-		return new IterableToArrayListSelector<E>(collectionCreator);
-	}
+  public static <E> IterableToArrayListSelector<E> newInstance(final ArrayListCreator<E> collectionCreator)
+  {
+    return new IterableToArrayListSelector<E>(collectionCreator);
+  }
 }

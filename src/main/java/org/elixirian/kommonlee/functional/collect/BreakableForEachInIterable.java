@@ -31,8 +31,8 @@
  */
 package org.elixirian.kommonlee.functional.collect;
 
-import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.selector.Selector1;
+import org.elixirian.kommonlee.functional.BreakableFunction1;
+import org.elixirian.kommonlee.type.functional.BreakOrContinue;
 
 /**
  * <pre>
@@ -52,26 +52,24 @@ import org.elixirian.kommonlee.type.selector.Selector1;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-02-25)
+ * @version 0.0.1 (2011-07-23)
  * @param <E>
+ * @param <T>
+ * @param <F>
  */
-public final class ElementCountSelector<E> implements Selector1<Iterable<? extends E>, Condition1<E>, Integer>
+public final class BreakableForEachInIterable<E, T extends Iterable<? extends E>, F extends BreakableFunction1<? super E>>
 {
-  ElementCountSelector()
+  BreakableForEachInIterable()
   {
   }
 
-  @Override
-  public Integer select(final Condition1<E> condition, final Iterable<? extends E> source)
+  public void forEach(final F function, final T source)
   {
-    int count = 0;
-    for (final E e : source)
+    for (final E element : source)
     {
-      if (condition.isMet(e))
-      {
-        count++;
-      }
+      final BreakOrContinue breakOrContinue = function.apply(element);
+      if (BreakOrContinue.BREAK == breakOrContinue)
+        break;
     }
-    return Integer.valueOf(count);
   }
 }

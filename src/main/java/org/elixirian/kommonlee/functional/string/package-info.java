@@ -31,6 +31,6 @@
  */
 
 /**
- * Functions for String
+ * CollectionUtil for String
  */
 package org.elixirian.kommonlee.functional.string;

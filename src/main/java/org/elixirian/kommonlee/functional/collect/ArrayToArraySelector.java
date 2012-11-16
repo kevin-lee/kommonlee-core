@@ -63,22 +63,26 @@ import org.elixirian.kommonlee.type.selector.ArraySelector;
  * @param <C>
  *          condition to select.
  */
-public final class ArrayToArraySelector<E, C extends Condition1<E>> implements ArraySelector<E, C, E[]>
+public final class ArrayToArraySelector<E, C extends Condition1<? super E>> implements ArraySelector<E, C, E[]>
 {
-	@Override
-	public E[] select(final C condition, final E[] source)
-	{
-		final List<E> result = newArrayList();
-		for (final E t : source)
-		{
-			if (condition.isMet(t))
-			{
-				result.add(t);
-			}
-		}
-		@SuppressWarnings("unchecked")
-		final E[] resultArray = (E[]) Array.newInstance(source.getClass()
-				.getComponentType(), result.size());
-		return result.toArray(resultArray);
-	}
+  ArrayToArraySelector()
+  {
+  }
+
+  @Override
+  public E[] select(final C condition, final E[] source)
+  {
+    final List<E> result = newArrayList();
+    for (final E t : source)
+    {
+      if (condition.isMet(t))
+      {
+        result.add(t);
+      }
+    }
+    @SuppressWarnings("unchecked")
+    final E[] resultArray = (E[]) Array.newInstance(source.getClass()
+        .getComponentType(), result.size());
+    return result.toArray(resultArray);
+  }
 }

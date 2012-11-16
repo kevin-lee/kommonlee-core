@@ -2,7 +2,7 @@ package org.elixirian.kommonlee.functional.collect;
 
 import static org.elixirian.kommonlee.util.collect.Lists.*;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.elixirian.kommonlee.type.functional.Condition1;
 import org.elixirian.kommonlee.type.selector.ArraySelector;
@@ -30,19 +30,24 @@ import org.elixirian.kommonlee.type.selector.ArraySelector;
  *          type of element to be filtered to remove all the null element in the given array.
  * @param <C>
  */
-public class ArrayToListSelector<E, C extends Condition1<E>> implements ArraySelector<E, C, List<E>>
+public final class ArrayToArrayListSelector<E, C extends Condition1<? super E>> implements
+    ArraySelector<E, C, ArrayList<E>>
 {
-	@Override
-	public List<E> select(final C condition, final E[] source)
-	{
-		final List<E> list = newArrayList();
-		for (final E each : source)
-		{
-			if (condition.isMet(each))
-			{
-				list.add(each);
-			}
-		}
-		return list;
-	}
+  ArrayToArrayListSelector()
+  {
+  }
+
+  @Override
+  public ArrayList<E> select(final C condition, final E[] source)
+  {
+    final ArrayList<E> list = newArrayList();
+    for (final E each : source)
+    {
+      if (condition.isMet(each))
+      {
+        list.add(each);
+      }
+    }
+    return list;
+  }
 }

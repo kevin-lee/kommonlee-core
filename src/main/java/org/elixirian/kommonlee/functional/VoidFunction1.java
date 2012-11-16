@@ -29,10 +29,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.elixirian.kommonlee.functional.collect;
-
-import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.selector.Selector1;
+package org.elixirian.kommonlee.functional;
 
 /**
  * <pre>
@@ -52,26 +49,9 @@ import org.elixirian.kommonlee.type.selector.Selector1;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-02-25)
- * @param <E>
+ * @version 0.0.1 (2012-11-16)
  */
-public final class ElementCountSelector<E> implements Selector1<Iterable<? extends E>, Condition1<E>, Integer>
+public interface VoidFunction1<X>
 {
-  ElementCountSelector()
-  {
-  }
-
-  @Override
-  public Integer select(final Condition1<E> condition, final Iterable<? extends E> source)
-  {
-    int count = 0;
-    for (final E e : source)
-    {
-      if (condition.isMet(e))
-      {
-        count++;
-      }
-    }
-    return Integer.valueOf(count);
-  }
+  void apply(X input);
 }

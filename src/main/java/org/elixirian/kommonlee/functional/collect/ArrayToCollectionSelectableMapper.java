@@ -31,8 +31,11 @@
  */
 package org.elixirian.kommonlee.functional.collect;
 
+import java.util.Collection;
+
 import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.selector.Selector1;
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.functional.Function3;
 
 /**
  * <pre>
@@ -52,26 +55,48 @@ import org.elixirian.kommonlee.type.selector.Selector1;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-02-25)
+ * @version 0.0.1 (2011-07-23)
  * @param <E>
+ * @param <C>
+ * @param <NE>
+ * @param <F>
+ * @param <R>
  */
-public final class ElementCountSelector<E> implements Selector1<Iterable<? extends E>, Condition1<E>, Integer>
+public class ArrayToCollectionSelectableMapper<E, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>, R extends Collection<NE>>
+    implements Function3<C, F, E[], R>
 {
-  ElementCountSelector()
+  private final CollectionCreator<NE, ? extends R> collectionCreator;
+
+  protected <CC extends CollectionCreator<NE, ? extends R>> ArrayToCollectionSelectableMapper(final CC collectionCreator)
   {
+    this.collectionCreator = collectionCreator;
   }
 
   @Override
-  public Integer select(final Condition1<E> condition, final Iterable<? extends E> source)
+  public R apply(final C condition, final F function, final E[] source)
   {
-    int count = 0;
-    for (final E e : source)
+    final R result = collectionCreator.createCollection();
+    for (final E element : source)
     {
-      if (condition.isMet(e))
+      if (condition.isMet(element))
       {
-        count++;
+        result.add(function.apply(element));
       }
     }
-    return Integer.valueOf(count);
+    return result;
   }
+
+  /* @formatter:off */
+	public static <E,
+									 C extends Condition1<E>,
+									 NE,
+									 F extends Function1<? super E, NE>,
+									 R extends Collection<NE>,
+									 CC extends CollectionCreator<NE, ? extends R>>
+					ArrayToCollectionSelectableMapper<E, C, NE, F, R>
+		newInstance(final CC collectionCreator)
+	{
+		return new ArrayToCollectionSelectableMapper<E, C, NE, F, R>(collectionCreator);
+	}
+	/* @formatter:on */
 }

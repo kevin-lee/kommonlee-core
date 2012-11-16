@@ -31,8 +31,10 @@
  */
 package org.elixirian.kommonlee.functional.collect;
 
-import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.selector.Selector1;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.elixirian.kommonlee.type.functional.Function1;
 
 /**
  * <pre>
@@ -52,26 +54,32 @@ import org.elixirian.kommonlee.type.selector.Selector1;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-02-25)
+ * @version 0.0.1 (2011-07-23)
+ * @param <K>
+ *          Key
  * @param <E>
+ *          Element
+ * @param <T>
+ *          Input Map type
+ * @param <NK>
+ *          New Key after function applied.
+ * @param <F>
+ *          Function to map Key
  */
-public final class ElementCountSelector<E> implements Selector1<Iterable<? extends E>, Condition1<E>, Integer>
+public class MapToHashMapWithNewKeyMapper<K, E, T extends Map<? extends K, ? extends E>, NK, F extends Function1<? super K, NK>>
+    extends MapToMapWithNewKeyMapper<K, E, Map<? extends K, ? extends E>, NK, Function1<? super K, NK>, HashMap<NK, E>>
 {
-  ElementCountSelector()
+  public MapToHashMapWithNewKeyMapper(final HashMapCreator<NK, E> mapCreator)
   {
+    super(mapCreator);
   }
 
-  @Override
-  public Integer select(final Condition1<E> condition, final Iterable<? extends E> source)
-  {
-    int count = 0;
-    for (final E e : source)
-    {
-      if (condition.isMet(e))
-      {
-        count++;
-      }
-    }
-    return Integer.valueOf(count);
-  }
+  /* @formatter:off */
+	public static <K, E, T extends Map<? extends K, ? extends E>,
+	                 NK, F extends Function1<? super K, NK>>
+		MapToHashMapWithNewKeyMapper<K, E, T, NK, F> newInstance(final HashMapCreator<NK, E> mapCreator)
+	{
+		return new MapToHashMapWithNewKeyMapper<K, E, T, NK, F>(mapCreator);
+	}
+	/* @formatter:on */
 }

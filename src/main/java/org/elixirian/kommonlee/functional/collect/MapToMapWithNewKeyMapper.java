@@ -34,8 +34,8 @@ package org.elixirian.kommonlee.functional.collect;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.elixirian.kommonlee.type.filter.Filter1;
 import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.functional.Function2;
 
 /**
  * <pre>
@@ -70,27 +70,27 @@ import org.elixirian.kommonlee.type.functional.Function1;
  *          Return Map type
  */
 public class MapToMapWithNewKeyMapper<K, E, T extends Map<? extends K, ? extends E>, NK, F extends Function1<? super K, NK>, R extends Map<NK, E>>
-		implements Filter1<T, F, R>
+    implements Function2<F, T, R>
 {
-	private final MapCreator<NK, E, ? extends R> mapCreator;
+  private final MapCreator<NK, E, ? extends R> mapCreator;
 
-	public <MC extends MapCreator<NK, E, ? extends R>> MapToMapWithNewKeyMapper(final MC mapCreator)
-	{
-		this.mapCreator = mapCreator;
-	}
+  public <MC extends MapCreator<NK, E, ? extends R>> MapToMapWithNewKeyMapper(final MC mapCreator)
+  {
+    this.mapCreator = mapCreator;
+  }
 
-	@Override
-	public R filter(final F function, final T inputMap)
-	{
-		final R result = mapCreator.createMap();
-		for (final Entry<? extends K, ? extends E> entry : inputMap.entrySet())
-		{
-			result.put(function.apply(entry.getKey()), entry.getValue());
-		}
-		return result;
-	}
+  @Override
+  public R apply(final F function, final T inputMap)
+  {
+    final R result = mapCreator.createMap();
+    for (final Entry<? extends K, ? extends E> entry : inputMap.entrySet())
+    {
+      result.put(function.apply(entry.getKey()), entry.getValue());
+    }
+    return result;
+  }
 
-	/* @formatter:off */
+  /* @formatter:off */
 	public static <K, E, T extends Map<? extends K, ? extends E>,
 	                 NK, F extends Function1<? super K, NK>,
 	                 R extends Map<NK, E>,

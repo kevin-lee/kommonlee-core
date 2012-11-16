@@ -31,8 +31,9 @@
  */
 package org.elixirian.kommonlee.functional.collect;
 
+import java.util.HashSet;
+
 import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.selector.Selector1;
 
 /**
  * <pre>
@@ -52,26 +53,19 @@ import org.elixirian.kommonlee.type.selector.Selector1;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-02-25)
+ * @version 0.0.1 (2011-07-06)
  * @param <E>
  */
-public final class ElementCountSelector<E> implements Selector1<Iterable<? extends E>, Condition1<E>, Integer>
+public final class IterableToHashSetSelector<E> extends
+    IterableToCollectionSelector<E, Iterable<? extends E>, Condition1<? super E>, HashSet<E>>
 {
-  ElementCountSelector()
+  public IterableToHashSetSelector(final HashSetCreator<E> collectionCreator)
   {
+    super(collectionCreator);
   }
 
-  @Override
-  public Integer select(final Condition1<E> condition, final Iterable<? extends E> source)
+  public static <E> IterableToHashSetSelector<E> newInstance(final HashSetCreator<E> collectionCreator)
   {
-    int count = 0;
-    for (final E e : source)
-    {
-      if (condition.isMet(e))
-      {
-        count++;
-      }
-    }
-    return Integer.valueOf(count);
+    return new IterableToHashSetSelector<E>(collectionCreator);
   }
 }

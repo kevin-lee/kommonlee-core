@@ -34,7 +34,7 @@ package org.elixirian.kommonlee.functional.collect;
 import java.util.Collection;
 
 import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.functional.Function2;
+import org.elixirian.kommonlee.type.selector.Selector1;
 
 /**
  * <pre>
@@ -61,30 +61,30 @@ import org.elixirian.kommonlee.type.functional.Function2;
  * @param <R>
  */
 public class IterableToCollectionSelector<E, T extends Iterable<? extends E>, C extends Condition1<? super E>, R extends Collection<E>>
-		implements Function2<C, T, R>
+    implements Selector1<T, C, R>
 {
-	private final CollectionCreator<E, ? extends R> collectionCreator;
+  private final CollectionCreator<E, ? extends R> collectionCreator;
 
-	public <CC extends CollectionCreator<E, ? extends R>> IterableToCollectionSelector(final CC collectionCreator)
-	{
-		this.collectionCreator = collectionCreator;
-	}
+  public <CC extends CollectionCreator<E, ? extends R>> IterableToCollectionSelector(final CC collectionCreator)
+  {
+    this.collectionCreator = collectionCreator;
+  }
 
-	@Override
-	public R apply(final C condition, final T source)
-	{
-		final R result = collectionCreator.createCollection();
-		for (final E element : source)
-		{
-			if (condition.isMet(element))
-			{
-				result.add(element);
-			}
-		}
-		return result;
-	}
+  @Override
+  public R select(final C condition, final T source)
+  {
+    final R result = collectionCreator.createCollection();
+    for (final E element : source)
+    {
+      if (condition.isMet(element))
+      {
+        result.add(element);
+      }
+    }
+    return result;
+  }
 
-	/* @formatter:off */
+  /* @formatter:off */
 	public static <E,
 									 T extends Iterable<? extends E>,
 									 C extends Condition1<? super E>,
