@@ -218,7 +218,8 @@ public final class CollectionUtil
     {
     }
 
-    public <E, C extends Condition1<? super E>> ArrayList<E> select(final C condition, final Iterable<E> source)
+    public <E, T extends Iterable<? extends E>, C extends Condition1<? super E>> ArrayList<E> select(final C condition,
+        final T source)
     {
       @SuppressWarnings("unchecked")
       final IterableToArrayListSelector<E> listToArrayListSelector =
@@ -235,7 +236,8 @@ public final class CollectionUtil
     {
     }
 
-    public <E, C extends Condition1<? super E>> HashSet<E> select(final C condition, final Iterable<E> source)
+    public <E, T extends Iterable<? extends E>, C extends Condition1<? super E>> HashSet<E> select(final C condition,
+        final T source)
     {
       @SuppressWarnings("unchecked")
       final IterableToHashSetSelector<E> iterableToHashSetSelector =
@@ -594,7 +596,8 @@ public final class CollectionUtil
     return elementCountSelector;
   }
 
-  public static <E, C extends Condition1<? super E>> ArrayList<E> select(final C condition, final Iterable<E> source)
+  public static <E, T extends Iterable<? extends E>, C extends Condition1<? super E>> ArrayList<E> select(
+      final C condition, final T source)
   {
     @SuppressWarnings("unchecked")
     final IterableToArrayListSelector<E> listToArrayListSelector =
@@ -602,7 +605,8 @@ public final class CollectionUtil
     return listToArrayListSelector.select(condition, source);
   }
 
-  public static <E, C extends Condition1<? super E>> ArrayList<E> select(final C condition, final List<E> source)
+  public static <E, T extends List<? extends E>, C extends Condition1<? super E>> ArrayList<E> select(
+      final C condition, final T source)
   {
     @SuppressWarnings("unchecked")
     final IterableToArrayListSelector<E> listToArrayListSelector =
@@ -610,7 +614,8 @@ public final class CollectionUtil
     return listToArrayListSelector.select(condition, source);
   }
 
-  public static <E, C extends Condition1<? super E>> HashSet<E> select(final C condition, final Set<E> source)
+  public static <E, T extends Set<? extends E>, C extends Condition1<? super E>> HashSet<E> select(final C condition,
+      final T source)
   {
     @SuppressWarnings("unchecked")
     final IterableToHashSetSelector<E> listToArrayListSelector =
@@ -635,19 +640,20 @@ public final class CollectionUtil
     return mapToMapWithNewKeyMapper.apply(function, source);
   }
 
-  public static <E, F extends VoidFunction1<? super E>, I extends Iterable<? extends E>> void forEach(final F function, final I source)
+  public static <E, T extends Iterable<? extends E>, F extends VoidFunction1<? super E>> void forEach(final F function,
+      final T source)
   {
     @SuppressWarnings("unchecked")
-    final ForEachInIterable<E, I, F> forEachInIterable = (ForEachInIterable<E, I, F>) FOR_EACH_IN_ITERABLE;
+    final ForEachInIterable<E, T, F> forEachInIterable = (ForEachInIterable<E, T, F>) FOR_EACH_IN_ITERABLE;
     forEachInIterable.forEach(function, source);
   }
 
-  public static <E, F extends BreakableFunction1<? super E>, I extends Iterable<? extends E>> void forEach(final F function,
-      final I source)
+  public static <E, T extends Iterable<? extends E>, F extends BreakableFunction1<? super E>> void forEach(
+      final F function, final T source)
   {
     @SuppressWarnings("unchecked")
-    final BreakableForEachInIterable<E, I, F> forEachInIterable =
-      (BreakableForEachInIterable<E, I, F>) BREAKABLE_FOR_EACH_IN_ITERABLE;
+    final BreakableForEachInIterable<E, T, F> forEachInIterable =
+      (BreakableForEachInIterable<E, T, F>) BREAKABLE_FOR_EACH_IN_ITERABLE;
     forEachInIterable.forEach(function, source);
   }
 
