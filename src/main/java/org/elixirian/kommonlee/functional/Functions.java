@@ -40,6 +40,7 @@ import org.elixirian.kommonlee.functional.string.PrefixAndSuffixAdder;
 import org.elixirian.kommonlee.functional.string.StringArrayToTrimmedStringListSelector;
 import org.elixirian.kommonlee.functional.string.StringArrayTrimmer;
 import org.elixirian.kommonlee.functional.string.ToLowerCaseConverter;
+import org.elixirian.kommonlee.type.Pair;
 import org.elixirian.kommonlee.util.CommonConstants;
 import org.elixirian.kommonlee.util.string.IterableToStringGlue;
 import org.elixirian.kommonlee.util.string.ToStringGlues;
@@ -66,6 +67,62 @@ import org.elixirian.kommonlee.util.string.ToStringGlues;
  */
 public final class Functions
 {
+  public static class SimplePair<L, R> implements Pair<L, R>
+  {
+    private final L first;
+    private final R second;
+
+    public SimplePair(final L first, final R second)
+    {
+      this.first = first;
+      this.second = second;
+    }
+
+    @Override
+    public L getFirst()
+    {
+      return first;
+    }
+
+    @Override
+    public R getSecond()
+    {
+      return second;
+    }
+
+    @Override
+    public int hashCode()
+    {
+      return hash(first, second);
+    }
+
+    @Override
+    public boolean equals(final Object pair)
+    {
+      if (this == pair)
+      {
+        return true;
+      }
+      final SimplePair<?, ?> that = castIfInstanceOf(SimplePair.class, pair);
+      /* @formatter:off */
+      return null != that &&
+             (equal(this.first,  that.getFirst()) &&
+              equal(this.second, that.getSecond()));
+      /* @formatter:on */
+    }
+
+    @Override
+    public String toString()
+    {
+      /* @formatter:off */
+      return toStringBuilder(this)
+              .add("first", first)
+              .add("second", second)
+            .toString();
+      /* @formatter:on */
+    }
+  }
+
   public static final StringArrayToTrimmedStringListSelector STRING_ARRAY_TO_LIST_TRIM_SELECTOR =
     new StringArrayToTrimmedStringListSelector();
 
@@ -130,4 +187,8 @@ public final class Functions
     return TO_LOWER_CASE_CONVERTER;
   }
 
+  public static <L, R> SimplePair<L, R> newPair(final L first, final R second)
+  {
+    return new SimplePair<L, R>(first, second);
+  }
 }

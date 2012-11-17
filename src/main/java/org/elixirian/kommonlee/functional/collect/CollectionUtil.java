@@ -98,6 +98,9 @@ public final class CollectionUtil
   private static final ArrayToCollectionMapper<?, ?, ? extends Function1<?, ?>, ? extends HashSet<?>> ARRAY_TO_HASH_SET_MAPPER =
     ArrayToCollectionMapper.<Object, Object, Function1<Object, Object>, HashSet<Object>, HashSetCreator<Object>> newInstance(HashSetCreator.getInstance());
 
+  private static final ArrayToMapMapper<?, ?, ?, ? extends Function1<?, ? extends Pair<?, ?>>, ? extends HashMap<?, ?>> ARRAY_TO_HASH_MAP_MAPPER =
+    ArrayToMapMapper.<Object, Object, Object, Function1<Object, Pair<Object, Object>>, HashMap<Object, Object>, HashMapCreator<Object, Object>> newInstance(HashMapCreator.getInstance());
+
   public static class IterableToArrayListMapper<E, NE> extends
       IterableToCollectionMapper<E, Iterable<? extends E>, NE, Function1<? super E, NE>, ArrayList<NE>>
   {
@@ -148,6 +151,9 @@ public final class CollectionUtil
       return new IterableToArrayListSelectableMapper<E, NE>(collectionCreator);
     }
   }
+
+  private static final IterableToMapMapper<?, ? extends Iterable<?>, ?, ?, ? extends Function1<?, ? extends Pair<?, ?>>, ? extends HashMap<?, ?>> ITERABLE_TO_HASH_MAP_MAPPER =
+    IterableToMapMapper.<Object, Iterable<Object>, Object, Object, Function1<Object, Pair<Object, Object>>, HashMap<Object, Object>, HashMapCreator<Object, Object>> newInstance(HashMapCreator.getInstance());
 
   private static final ArrayToCollectionSelectableMapper<?, ? extends Condition1<?>, ?, ? extends Function1<?, ?>, ? extends ArrayList<?>> ARRAY_TO_ARRAY_LIST_SELECTABLE_MAPPER =
     ArrayToCollectionSelectableMapper.<Object, Condition1<Object>, Object, Function1<Object, Object>, ArrayList<Object>, ArrayListCreator<Object>> newInstance(ArrayListCreator.getInstance());
@@ -346,6 +352,24 @@ public final class CollectionUtil
     }
   }
 
+  public static class ArrayToHashMapMapperFunction
+  {
+    static final ArrayToHashMapMapperFunction INSTANCE = new ArrayToHashMapMapperFunction();
+
+    private ArrayToHashMapMapperFunction()
+    {
+    }
+
+    public <E, NE, NK, F extends Function1<? super E, ? extends Pair<NK, NE>>> HashMap<NK, NE> map(final F function,
+        final E[] source)
+    {
+      @SuppressWarnings("unchecked")
+      final ArrayToMapMapper<E, NK, NE, F, HashMap<NK, NE>> arrayToHashMapMapper =
+        (ArrayToMapMapper<E, NK, NE, F, HashMap<NK, NE>>) ARRAY_TO_HASH_MAP_MAPPER;
+      return arrayToHashMapMapper.apply(function, source);
+    }
+  }
+
   public static class IterableToArrayListMapperFunction
   {
     static final IterableToArrayListMapperFunction INSTANCE = new IterableToArrayListMapperFunction();
@@ -379,6 +403,24 @@ public final class CollectionUtil
       final IterableToHashSetMapper<E, NE> iterableToHashSetMapper =
         (IterableToHashSetMapper<E, NE>) ITERABLE_TO_HASH_SET_MAPPER;
       return iterableToHashSetMapper.apply(function, source);
+    }
+  }
+
+  public static class IterableToHashMapMapperFunction
+  {
+    static final IterableToHashMapMapperFunction INSTANCE = new IterableToHashMapMapperFunction();
+
+    private IterableToHashMapMapperFunction()
+    {
+    }
+
+    public <E, T extends Iterable<? extends E>, NK, NE, F extends Function1<? super E, ? extends Pair<NK, NE>>> HashMap<NK, NE> map(
+        final F function, final T source)
+    {
+      @SuppressWarnings("unchecked")
+      final IterableToMapMapper<E, T, NK, NE, F, HashMap<NK, NE>> iterableToHashMapMapper =
+        (IterableToMapMapper<E, T, NK, NE, F, HashMap<NK, NE>>) ITERABLE_TO_HASH_MAP_MAPPER;
+      return iterableToHashMapMapper.apply(function, source);
     }
   }
 
@@ -454,6 +496,11 @@ public final class CollectionUtil
     {
       return ArrayToHashSetMapperFunction.INSTANCE;
     }
+
+    public ArrayToHashMapMapperFunction toHashMap()
+    {
+      return ArrayToHashMapMapperFunction.INSTANCE;
+    }
   }
 
   public static class MapperFromIterable
@@ -472,6 +519,11 @@ public final class CollectionUtil
     public IterableToHashSetMapperFunction toHashSet()
     {
       return IterableToHashSetMapperFunction.INSTANCE;
+    }
+
+    public IterableToHashMapMapperFunction toHashMap()
+    {
+      return IterableToHashMapMapperFunction.INSTANCE;
     }
   }
 
