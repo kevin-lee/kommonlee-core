@@ -137,7 +137,7 @@ public final class CollectionUtil
 
   public static class IterableToArrayListSelectableMapper<E, NE>
       extends
-      IterableToCollectionSelectableMapper<E, Iterable<? extends E>, Condition1<E>, NE, Function1<? super E, NE>, ArrayList<NE>>
+      IterableToCollectionSelectableMapper<E, Iterable<? extends E>, Condition1<? super E>, NE, Function1<? super E, NE>, ArrayList<NE>>
   {
 
     public IterableToArrayListSelectableMapper(final ArrayListCreator<NE> collectionCreator)
@@ -152,6 +152,23 @@ public final class CollectionUtil
     }
   }
 
+  public static class IterableToHashSetSelectableMapper<E, NE>
+      extends
+      IterableToCollectionSelectableMapper<E, Iterable<? extends E>, Condition1<? super E>, NE, Function1<? super E, NE>, HashSet<NE>>
+  {
+
+    public IterableToHashSetSelectableMapper(final HashSetCreator<NE> collectionCreator)
+    {
+      super(collectionCreator);
+    }
+
+    public static <E, NE> IterableToHashSetSelectableMapper<E, NE> newInstance(
+        final HashSetCreator<NE> collectionCreator)
+    {
+      return new IterableToHashSetSelectableMapper<E, NE>(collectionCreator);
+    }
+  }
+
   private static final IterableToMapMapper<?, ? extends Iterable<?>, ?, ?, ? extends Function1<?, ? extends Pair<?, ?>>, ? extends HashMap<?, ?>> ITERABLE_TO_HASH_MAP_MAPPER =
     IterableToMapMapper.<Object, Iterable<Object>, Object, Object, Function1<Object, Pair<Object, Object>>, HashMap<Object, Object>, HashMapCreator<Object, Object>> newInstance(HashMapCreator.getInstance());
 
@@ -163,6 +180,9 @@ public final class CollectionUtil
 
   private static final IterableToArrayListSelectableMapper<?, ?> ITERABLE_TO_ARRAY_LIST_SELECTABLE_MAPPER =
     IterableToArrayListSelectableMapper.newInstance(ArrayListCreator.getInstance());
+
+  private static final IterableToHashSetSelectableMapper<?, ?> ITERABLE_TO_HASH_SET_SELECTABLE_MAPPER =
+    IterableToHashSetSelectableMapper.newInstance(HashSetCreator.getInstance());
 
   private static final GenericVarargsSelector<?, ?, ?> GENERIC_VARARGS_SELECTOR =
     new GenericVarargsSelector<Object, Condition1<Object>, List<Object>>(ArrayListCreator.getInstance());
@@ -655,13 +675,13 @@ public final class CollectionUtil
     {
     }
 
-    public <E, T extends Iterable<? extends E>, NE, F extends Function1<? super E, NE>> ArrayList<NE> mapSelectively(
-        final F function, final T source)
+    public <E, T extends Iterable<? extends E>, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>> ArrayList<NE> mapSelectively(
+        final C condition, final F function, final T source)
     {
       @SuppressWarnings("unchecked")
-      final IterableToArrayListMapper<E, NE> iterableToArrayListMapper =
-        (IterableToArrayListMapper<E, NE>) ITERABLE_TO_ARRAY_LIST_MAPPER;
-      return iterableToArrayListMapper.apply(function, source);
+      final IterableToArrayListSelectableMapper<E, NE> iterableToArrayListMapper =
+        (IterableToArrayListSelectableMapper<E, NE>) ITERABLE_TO_ARRAY_LIST_SELECTABLE_MAPPER;
+      return iterableToArrayListMapper.apply(condition, function, source);
     }
   }
 
@@ -673,13 +693,13 @@ public final class CollectionUtil
     {
     }
 
-    public <E, T extends Iterable<? extends E>, NE, F extends Function1<? super E, NE>> HashSet<NE> mapSelectively(
-        final F function, final T source)
+    public <E, T extends Iterable<? extends E>, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>> HashSet<NE> mapSelectively(
+        final C condition, final F function, final T source)
     {
       @SuppressWarnings("unchecked")
-      final IterableToHashSetMapper<E, NE> iterableToHashSetMapper =
-        (IterableToHashSetMapper<E, NE>) ITERABLE_TO_HASH_SET_MAPPER;
-      return iterableToHashSetMapper.apply(function, source);
+      final IterableToHashSetSelectableMapper<E, NE> iterableToHashSetSelectableMapper =
+        (IterableToHashSetSelectableMapper<E, NE>) ITERABLE_TO_HASH_SET_SELECTABLE_MAPPER;
+      return iterableToHashSetSelectableMapper.apply(condition, function, source);
     }
   }
 

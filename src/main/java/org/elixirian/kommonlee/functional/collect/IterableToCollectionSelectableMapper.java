@@ -63,31 +63,31 @@ import org.elixirian.kommonlee.type.functional.Function3;
  * @param <F>
  * @param <R>
  */
-public class IterableToCollectionSelectableMapper<E, T extends Iterable<? extends E>, C extends Condition1<E>, NE, F extends Function1<? super E, NE>, R extends Collection<NE>>
-		implements Function3<C, F, T, R>
+public class IterableToCollectionSelectableMapper<E, T extends Iterable<? extends E>, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>, R extends Collection<NE>>
+    implements Function3<C, F, T, R>
 {
-	private final CollectionCreator<NE, ? extends R> collectionCreator;
+  private final CollectionCreator<NE, ? extends R> collectionCreator;
 
-	public <CC extends CollectionCreator<NE, ? extends R>> IterableToCollectionSelectableMapper(final CC collectionCreator)
-	{
-		this.collectionCreator = collectionCreator;
-	}
+  public <CC extends CollectionCreator<NE, ? extends R>> IterableToCollectionSelectableMapper(final CC collectionCreator)
+  {
+    this.collectionCreator = collectionCreator;
+  }
 
-	@Override
-	public R apply(final C condition, final F function, final T source)
-	{
-		final R result = collectionCreator.createCollection();
-		for (final E element : source)
-		{
-			if (condition.isMet(element))
-			{
-				result.add(function.apply(element));
-			}
-		}
-		return result;
-	}
+  @Override
+  public R apply(final C condition, final F function, final T source)
+  {
+    final R result = collectionCreator.createCollection();
+    for (final E element : source)
+    {
+      if (condition.isMet(element))
+      {
+        result.add(function.apply(element));
+      }
+    }
+    return result;
+  }
 
-	/* @formatter:off */
+  /* @formatter:off */
 	public static <E,
 									 T extends Iterable<? extends E>,
 									 C extends Condition1<E>,
