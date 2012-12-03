@@ -92,6 +92,9 @@ public final class CollectionUtil
   // Function1<Object, Object>, ? extends List<Object>> ITERABLE_TO_COLLECTION_MAPPER =
   // IterableToCollectionMapper.newInstance(ArrayListCreator.getInstance());
 
+  private static final ArrayToArrayMapper<?, ?, ? extends Function1<?, ?>> ARRAY_TO_ARRAY_MAPPER =
+    new ArrayToArrayMapper<Object, Object, Function1<Object, Object>>();
+
   private static final ArrayToCollectionMapper<?, ?, ? extends Function1<?, ?>, ? extends ArrayList<?>> ARRAY_TO_ARRAY_LIST_MAPPER =
     ArrayToCollectionMapper.<Object, Object, Function1<Object, Object>, ArrayList<Object>, ArrayListCreator<Object>> newInstance(ArrayListCreator.getInstance());
 
@@ -171,6 +174,9 @@ public final class CollectionUtil
 
   private static final IterableToMapMapper<?, ? extends Iterable<?>, ?, ?, ? extends Function1<?, ? extends Pair<?, ?>>, ? extends HashMap<?, ?>> ITERABLE_TO_HASH_MAP_MAPPER =
     IterableToMapMapper.<Object, Iterable<Object>, Object, Object, Function1<Object, Pair<Object, Object>>, HashMap<Object, Object>, HashMapCreator<Object, Object>> newInstance(HashMapCreator.getInstance());
+
+  private static final ArrayToArraySelectableMapper<?, ? extends Condition1<?>, ?, ? extends Function1<?, ?>> ARRAY_TO_ARRAY_SELECTABLE_MAPPER =
+    new ArrayToArraySelectableMapper<Object, Condition1<Object>, Object, Function1<Object, Object>>();
 
   private static final ArrayToCollectionSelectableMapper<?, ? extends Condition1<?>, ?, ? extends Function1<?, ?>, ? extends ArrayList<?>> ARRAY_TO_ARRAY_LIST_SELECTABLE_MAPPER =
     ArrayToCollectionSelectableMapper.<Object, Condition1<Object>, Object, Function1<Object, Object>, ArrayList<Object>, ArrayListCreator<Object>> newInstance(ArrayListCreator.getInstance());
@@ -337,6 +343,24 @@ public final class CollectionUtil
   }
 
   // ////////////////// MAPPERS
+
+  public static class ArrayToArrayMapperFunction
+  {
+    static final ArrayToArrayMapperFunction INSTANCE = new ArrayToArrayMapperFunction();
+
+    private ArrayToArrayMapperFunction()
+    {
+    }
+
+    public <E, NE, F extends Function1<? super E, NE>> NE[] map(final Class<NE> toArrayOf, final F function,
+        final E[] source)
+    {
+      @SuppressWarnings("unchecked")
+      final ArrayToArrayMapper<E, NE, Function1<? super E, NE>> arrayToArrayMapper =
+        (ArrayToArrayMapper<E, NE, Function1<? super E, NE>>) ARRAY_TO_ARRAY_MAPPER;
+      return arrayToArrayMapper.apply(toArrayOf, function, source);
+    }
+  }
 
   public static class ArrayToArrayListMapperFunction
   {
@@ -507,6 +531,11 @@ public final class CollectionUtil
     {
     }
 
+    public ArrayToArrayMapperFunction toArray()
+    {
+      return ArrayToArrayMapperFunction.INSTANCE;
+    }
+
     public ArrayToArrayListMapperFunction toArrayList()
     {
       return ArrayToArrayListMapperFunction.INSTANCE;
@@ -611,6 +640,24 @@ public final class CollectionUtil
 
   // ////////////////// SELECTABLE MAPPERS
 
+  public static class ArrayToArraySelectableMapperFunction
+  {
+    static final ArrayToArraySelectableMapperFunction INSTANCE = new ArrayToArraySelectableMapperFunction();
+
+    private ArrayToArraySelectableMapperFunction()
+    {
+    }
+
+    public <E, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>> NE[] mapSelectively(
+        final Class<NE> toArrayOf, final C condition, final F function, final E[] source)
+    {
+      @SuppressWarnings("unchecked")
+      final ArrayToArraySelectableMapper<E, C, NE, F> arrayToArrayListSelectableMapper =
+        (ArrayToArraySelectableMapper<E, C, NE, F>) ARRAY_TO_ARRAY_SELECTABLE_MAPPER;
+      return arrayToArrayListSelectableMapper.apply(toArrayOf, condition, function, source);
+    }
+  }
+
   public static class ArrayToArrayListSelectableMapperFunction
   {
     static final ArrayToArrayListSelectableMapperFunction INSTANCE = new ArrayToArrayListSelectableMapperFunction();
@@ -653,6 +700,11 @@ public final class CollectionUtil
 
     private SelectableMapperFromArray()
     {
+    }
+
+    public ArrayToArraySelectableMapperFunction toArray()
+    {
+      return ArrayToArraySelectableMapperFunction.INSTANCE;
     }
 
     public ArrayToArrayListSelectableMapperFunction toArrayList()

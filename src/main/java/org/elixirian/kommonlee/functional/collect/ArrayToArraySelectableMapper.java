@@ -37,7 +37,8 @@ import java.lang.reflect.Array;
 import java.util.List;
 
 import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.selector.ArraySelector;
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.functional.Function4;
 
 /**
  * <pre>
@@ -57,36 +58,41 @@ import org.elixirian.kommonlee.type.selector.ArraySelector;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-02-26)
+ * @version 0.0.1 (2011-07-23)
  * @param <E>
- *          element
+ *          source element type
  * @param <C>
- *          condition to select.
+ *          condition to choose whether to map the source to the new type, NE, or not
+ * @param <NE>
+ *          The mapped type from the type E. The return type will be an array of NE.
+ * @param <F>
+ *          the mapper function
  */
-public final class ArrayToArraySelector<E, C extends Condition1<? super E>> implements ArraySelector<E, C, E[]>
+public class ArrayToArraySelectableMapper<E, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>>
+    implements Function4<Class<NE>, C, F, E[], NE[]>
 {
-  ArrayToArraySelector()
+  ArrayToArraySelectableMapper()
   {
   }
 
   @Override
-  public E[] select(final C condition, final E[] source)
+  public NE[] apply(final Class<NE> toArrayOf, final C condition, final F function, final E[] source)
   {
-    final List<E> result = newArrayList();
-    for (final E t : source)
+    final List<NE> list = newArrayList();
+    for (final E element : source)
     {
-      if (condition.isMet(t))
+      if (condition.isMet(element))
       {
-        result.add(t);
+        list.add(function.apply(element));
       }
     }
     /* @formatter:off */
     @SuppressWarnings("unchecked")
-    final E[] resultArray = (E[]) Array.newInstance(
-        source.getClass()
-              .getComponentType(),
-        result.size());
+    final NE[] resultArray = list.toArray(
+        (NE[]) Array
+            .newInstance(toArrayOf,
+                         list.size()));
     /* @formatter:on */
-    return result.toArray(resultArray);
+    return resultArray;
   }
 }

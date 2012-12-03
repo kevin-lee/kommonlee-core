@@ -36,8 +36,8 @@ import static org.elixirian.kommonlee.util.collect.Lists.*;
 import java.lang.reflect.Array;
 import java.util.List;
 
-import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.selector.ArraySelector;
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.functional.Function3;
 
 /**
  * <pre>
@@ -57,36 +57,36 @@ import org.elixirian.kommonlee.type.selector.ArraySelector;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-02-26)
+ * @version 0.0.1 (2011-07-23)
  * @param <E>
- *          element
- * @param <C>
- *          condition to select.
+ *          source element type
+ * @param <NE>
+ *          The mapped type from the type E. The return type will be an array of NE.
+ * @param <F>
+ *          Function object to map the source type E to create the type NE
  */
-public final class ArrayToArraySelector<E, C extends Condition1<? super E>> implements ArraySelector<E, C, E[]>
+public class ArrayToArrayMapper<E, NE, F extends Function1<? super E, NE>> implements
+    Function3<Class<NE>, F, E[], NE[]>
 {
-  ArrayToArraySelector()
+  ArrayToArrayMapper()
   {
   }
 
   @Override
-  public E[] select(final C condition, final E[] source)
+  public NE[] apply(final Class<NE> resultType, final F function, final E[] source)
   {
-    final List<E> result = newArrayList();
-    for (final E t : source)
+    final List<NE> list = newArrayList();
+    for (final E element : source)
     {
-      if (condition.isMet(t))
-      {
-        result.add(t);
-      }
+      list.add(function.apply(element));
     }
     /* @formatter:off */
     @SuppressWarnings("unchecked")
-    final E[] resultArray = (E[]) Array.newInstance(
-        source.getClass()
-              .getComponentType(),
-        result.size());
+    final NE[] resultArray = list.toArray(
+        (NE[]) Array
+            .newInstance(resultType,
+                         list.size()));
     /* @formatter:on */
-    return result.toArray(resultArray);
+    return resultArray;
   }
 }
