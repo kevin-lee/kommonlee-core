@@ -79,13 +79,13 @@ public final class Functions
     }
 
     @Override
-    public L getFirst()
+    public L getValue1()
     {
       return first;
     }
 
     @Override
-    public R getSecond()
+    public R getValue2()
     {
       return second;
     }
@@ -106,8 +106,8 @@ public final class Functions
       final SimplePair<?, ?> that = castIfInstanceOf(SimplePair.class, pair);
       /* @formatter:off */
       return null != that &&
-             (equal(this.first,  that.getFirst()) &&
-              equal(this.second, that.getSecond()));
+             (equal(this.first,  that.getValue1()) &&
+              equal(this.second, that.getValue2()));
       /* @formatter:on */
     }
 

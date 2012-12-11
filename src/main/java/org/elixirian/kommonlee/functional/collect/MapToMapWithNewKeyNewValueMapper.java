@@ -88,7 +88,7 @@ public class MapToMapWithNewKeyNewValueMapper<K, E, T extends Map<? extends K, ?
     for (final Entry<? extends K, ? extends E> entry : inputMap.entrySet())
     {
       final Pair<NK, NE> mappedKeyValuepPair = function.apply(entry.getKey(), entry.getValue());
-      result.put(mappedKeyValuepPair.getFirst(), mappedKeyValuepPair.getSecond());
+      result.put(mappedKeyValuepPair.getValue1(), mappedKeyValuepPair.getValue2());
     }
     return result;
   }

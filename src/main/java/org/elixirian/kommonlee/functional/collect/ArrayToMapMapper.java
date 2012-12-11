@@ -86,7 +86,7 @@ public class ArrayToMapMapper<E, NK, NE, F extends Function1<? super E, ? extend
     for (final E e : source)
     {
       final Pair<NK, NE> mappedKeyValuepPair = function.apply(e);
-      result.put(mappedKeyValuepPair.getFirst(), mappedKeyValuepPair.getSecond());
+      result.put(mappedKeyValuepPair.getValue1(), mappedKeyValuepPair.getValue2());
     }
     return result;
   }
