@@ -9,7 +9,7 @@
   </parent>
 
   <artifactId>kommonlee-collection</artifactId>
-  <version>0.0.14-SNAPSHOT</version>
+  <version>0.0.15-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>kommonlee-collection</name>
@@ -78,12 +78,12 @@
     <dependency>
       <groupId>org.elixirian</groupId>
       <artifactId>kommonlee-type</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.16-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.elixirian</groupId>
       <artifactId>kommonlee-util</artifactId>
-      <version>0.0.25-SNAPSHOT</version>
+      <version>0.0.26-SNAPSHOT</version>
     </dependency>
   </dependencies>
 </project>
