@@ -93,13 +93,13 @@ public class PairTest
     }
 
     @Override
-    public Pojo getFirst()
+    public Pojo getValue1()
     {
       return left;
     }
 
     @Override
-    public Pojo getSecond()
+    public Pojo getValue2()
     {
       return right;
     }
@@ -117,13 +117,13 @@ public class PairTest
     }
 
     @Override
-    public Pojo getFirst()
+    public Pojo getValue1()
     {
       return left;
     }
 
     @Override
-    public AnotherPojo getSecond()
+    public AnotherPojo getValue2()
     {
       return right;
     }
@@ -133,12 +133,12 @@ public class PairTest
   public final void testGetLeft()
   {
     final Pair<Pojo, Pojo> pojoPair = new PojoPair(new Pojo(GIVEN_NAME), new Pojo(SURNAME));
-    assertThat(pojoPair.getFirst()
+    assertThat(pojoPair.getValue1()
         .getName(), is(equalTo(GIVEN_NAME)));
 
     final Pair<Pojo, AnotherPojo> pojoAnotherPojoPair =
       new PojoAnotherPojoPair(new Pojo(GIVEN_NAME), new AnotherPojo(NUMBER));
-    assertThat(pojoAnotherPojoPair.getFirst()
+    assertThat(pojoAnotherPojoPair.getValue1()
         .getName(), is(equalTo(GIVEN_NAME)));
   }
 
@@ -146,12 +146,12 @@ public class PairTest
   public final void testGetRight()
   {
     final Pair<Pojo, Pojo> pojoPair = new PojoPair(new Pojo(GIVEN_NAME), new Pojo(SURNAME));
-    assertThat(pojoPair.getSecond()
+    assertThat(pojoPair.getValue2()
         .getName(), is(equalTo(SURNAME)));
 
     final Pair<Pojo, AnotherPojo> pojoAnotherPojoPair =
       new PojoAnotherPojoPair(new Pojo(GIVEN_NAME), new AnotherPojo(NUMBER));
-    assertThat(pojoAnotherPojoPair.getSecond()
+    assertThat(pojoAnotherPojoPair.getValue2()
         .getNumber(), is(equalTo(NUMBER)));
   }
 
@@ -159,16 +159,16 @@ public class PairTest
   public final void testGetLeftAndGetRight()
   {
     final Pair<Pojo, Pojo> pojoPair = new PojoPair(new Pojo(GIVEN_NAME), new Pojo(SURNAME));
-    assertThat(pojoPair.getFirst()
+    assertThat(pojoPair.getValue1()
         .getName(), is(equalTo(GIVEN_NAME)));
-    assertThat(pojoPair.getSecond()
+    assertThat(pojoPair.getValue2()
         .getName(), is(equalTo(SURNAME)));
 
     final Pair<Pojo, AnotherPojo> pojoAnotherPojoPair =
       new PojoAnotherPojoPair(new Pojo(GIVEN_NAME), new AnotherPojo(NUMBER));
-    assertThat(pojoAnotherPojoPair.getFirst()
+    assertThat(pojoAnotherPojoPair.getValue1()
         .getName(), is(equalTo(GIVEN_NAME)));
-    assertThat(pojoAnotherPojoPair.getSecond()
+    assertThat(pojoAnotherPojoPair.getValue2()
         .getNumber(), is(equalTo(NUMBER)));
   }
 

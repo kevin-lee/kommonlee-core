@@ -48,28 +48,14 @@ package org.elixirian.kommonlee.type;
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  * 
- * This interface is to create a Pair object which stores two objects in order to pass as a parameter or to return as a
- * result or to store in the data structure or just to have two different or the same types in one object for any
- * purposes.
- * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-09-14)
- * @param <T1>
- * @param <T2>
+ * @version 0.0.1 (2011-09-25)
  */
-public interface Pair<T1, T2>
+public interface Tuple2<T1, T2> extends Pair<T1, T2>
 {
-  /**
-   * Returns the first object (T1) in this {@link Pair}.
-   * 
-   * @return the first object (T1) in this {@link Pair}.
-   */
+  @Override
   T1 getValue1();
 
-  /**
-   * Returns the second object (T2) in this {@link Pair}.
-   * 
-   * @return the second object (T2) in this {@link Pair}.
-   */
+  @Override
   T2 getValue2();
 }
