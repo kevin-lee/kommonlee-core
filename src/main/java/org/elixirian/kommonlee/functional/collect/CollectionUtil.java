@@ -77,16 +77,54 @@ public final class CollectionUtil
   private static final ArrayToArrayListSelector<?, ? extends Condition1<?>> ARRAY_TO_ARRAY_LIST_SELECTOR =
     new ArrayToArrayListSelector<Object, Condition1<Object>>();
 
+  public static <E, C extends Condition1<? super E>> ArrayToArrayListSelector<E, C> arrayToArrayListSelector()
+  {
+    @SuppressWarnings("unchecked")
+    final ArrayToArrayListSelector<E, C> arrayToArrayListSelector =
+      (ArrayToArrayListSelector<E, C>) ARRAY_TO_ARRAY_LIST_SELECTOR;
+    return arrayToArrayListSelector;
+  }
+
   private static final ArrayToArraySelector<?, ? extends Condition1<?>> ARRAY_TO_ARRAY_SELECTOR =
     new ArrayToArraySelector<Object, Condition1<Object>>();
 
+  public static <E, C extends Condition1<? super E>> ArrayToArraySelector<E, C> arrayToArraySelector()
+  {
+    @SuppressWarnings("unchecked")
+    final ArrayToArraySelector<E, C> arrayToArraySelector = (ArrayToArraySelector<E, C>) ARRAY_TO_ARRAY_SELECTOR;
+    return arrayToArraySelector;
+  }
+
   private final static ElementCountSelector<?> ELEMENT_COUNT_SELECTOR = new ElementCountSelector<Object>();
+
+  public static <E> ElementCountSelector<E> elementCountSelector()
+  {
+    @SuppressWarnings("unchecked")
+    final ElementCountSelector<E> elementCountSelector = (ElementCountSelector<E>) ELEMENT_COUNT_SELECTOR;
+    return elementCountSelector;
+  }
 
   private static final IterableToArrayListSelector<Object> ITERABLE_TO_ARRAY_LIST_SELECTOR =
     IterableToArrayListSelector.newInstance(ArrayListCreator.getInstance());
 
+  public static <E> IterableToArrayListSelector<E> iterableToArrayListSelector()
+  {
+    @SuppressWarnings("unchecked")
+    final IterableToArrayListSelector<E> iterableToArrayListSelector =
+      (IterableToArrayListSelector<E>) ITERABLE_TO_ARRAY_LIST_SELECTOR;
+    return iterableToArrayListSelector;
+  }
+
   private static final IterableToHashSetSelector<Object> ITERABLE_TO_HASH_SET_SELECTOR =
     IterableToHashSetSelector.newInstance(HashSetCreator.getInstance());
+
+  public static <E> IterableToHashSetSelector<E> iterableToHashSetSelector()
+  {
+    @SuppressWarnings("unchecked")
+    final IterableToHashSetSelector<E> iterableToHashSetSelector =
+      (IterableToHashSetSelector<E>) ITERABLE_TO_HASH_SET_SELECTOR;
+    return iterableToHashSetSelector;
+  }
 
   // public static final IterableToCollectionMapper<Object, ? extends Iterable<Object>, Object, ? extends
   // Function1<Object, Object>, ? extends List<Object>> ITERABLE_TO_COLLECTION_MAPPER =
@@ -95,14 +133,45 @@ public final class CollectionUtil
   private static final ArrayToArrayMapper<?, ?, ? extends Function1<?, ?>> ARRAY_TO_ARRAY_MAPPER =
     new ArrayToArrayMapper<Object, Object, Function1<Object, Object>>();
 
+  public static <E, NE, F extends Function1<? super E, NE>> ArrayToArrayMapper<E, NE, F> arrayToArrayMapper()
+  {
+    @SuppressWarnings("unchecked")
+    final ArrayToArrayMapper<E, NE, F> arrayToArrayMapper = (ArrayToArrayMapper<E, NE, F>) ARRAY_TO_ARRAY_MAPPER;
+    return arrayToArrayMapper;
+  }
+
   private static final ArrayToCollectionMapper<?, ?, ? extends Function1<?, ?>, ? extends ArrayList<?>> ARRAY_TO_ARRAY_LIST_MAPPER =
     ArrayToCollectionMapper.<Object, Object, Function1<Object, Object>, ArrayList<Object>, ArrayListCreator<Object>> newInstance(ArrayListCreator.getInstance());
+
+  public static <E, NE, F extends Function1<? super E, NE>> ArrayToCollectionMapper<E, NE, F, ArrayList<NE>> arrayToArrayListMapper()
+  {
+    @SuppressWarnings("unchecked")
+    final ArrayToCollectionMapper<E, NE, F, ArrayList<NE>> arrayToArrayListMapper =
+      (ArrayToCollectionMapper<E, NE, F, ArrayList<NE>>) ARRAY_TO_ARRAY_LIST_MAPPER;
+    return arrayToArrayListMapper;
+  }
 
   private static final ArrayToCollectionMapper<?, ?, ? extends Function1<?, ?>, ? extends HashSet<?>> ARRAY_TO_HASH_SET_MAPPER =
     ArrayToCollectionMapper.<Object, Object, Function1<Object, Object>, HashSet<Object>, HashSetCreator<Object>> newInstance(HashSetCreator.getInstance());
 
+  public static <E, NE, F extends Function1<? super E, NE>> ArrayToCollectionMapper<E, NE, F, HashSet<NE>> arrayToHashSetMapper()
+  {
+    @SuppressWarnings("unchecked")
+    final ArrayToCollectionMapper<E, NE, F, HashSet<NE>> arrayToArrayListMapper =
+      (ArrayToCollectionMapper<E, NE, F, HashSet<NE>>) ARRAY_TO_HASH_SET_MAPPER;
+    return arrayToArrayListMapper;
+  }
+
   private static final ArrayToMapMapper<?, ?, ?, ? extends Function1<?, ? extends Pair<?, ?>>, ? extends HashMap<?, ?>> ARRAY_TO_HASH_MAP_MAPPER =
     ArrayToMapMapper.<Object, Object, Object, Function1<Object, Pair<Object, Object>>, HashMap<Object, Object>, HashMapCreator<Object, Object>> newInstance(HashMapCreator.getInstance());
+
+  public static <E, NK, NE, F extends Function1<? super E, ? extends Pair<NK, NE>>, R extends Map<NK, NE>> ArrayToMapMapper<E, NK, NE, F, R> arrayToMapMapper()
+  {
+    @SuppressWarnings("unchecked")
+    final ArrayToMapMapper<E, NK, NE, F, R> arrayToHashMapMapper =
+      (ArrayToMapMapper<E, NK, NE, F, R>) ARRAY_TO_HASH_MAP_MAPPER;
+    return arrayToHashMapMapper;
+  }
 
   public static class IterableToArrayListMapper<E, NE> extends
       IterableToCollectionMapper<E, Iterable<? extends E>, NE, Function1<? super E, NE>, ArrayList<NE>>
