@@ -33,7 +33,6 @@ package org.elixirian.kommonlee.util.type;
 
 import static org.elixirian.kommonlee.util.Objects.*;
 
-import org.elixirian.kommonlee.type.Pair;
 import org.elixirian.kommonlee.type.Tuple3;
 
 /**
@@ -61,14 +60,29 @@ import org.elixirian.kommonlee.type.Tuple3;
  * @param <T2>
  * @param <T3>
  */
-public class ImmutableTuple3<T1, T2, T3> extends ImmutableTuple2<T1, T2> implements Tuple3<T1, T2, T3>
+public class ImmutableTuple3<T1, T2, T3> implements Tuple3<T1, T2, T3>
 {
+  private final T1 value1;
+  private final T2 value2;
   private final T3 value3;
 
   public ImmutableTuple3(final T1 value1, final T2 value2, final T3 value3)
   {
-    super(value1, value2);
+    this.value1 = value1;
+    this.value2 = value2;
     this.value3 = value3;
+  }
+
+  @Override
+  public T1 getValue1()
+  {
+    return value1;
+  }
+
+  @Override
+  public T2 getValue2()
+  {
+    return value2;
   }
 
   @Override
@@ -80,11 +94,7 @@ public class ImmutableTuple3<T1, T2, T3> extends ImmutableTuple2<T1, T2> impleme
   @Override
   public int hashCode()
   {
-    /* @formatter:off */
-    return hash(
-                super.hashCode(),
-                value3);
-    /* @formatter:on */
+    return hash(value1, value2, value3);
   }
 
   @Override
@@ -97,7 +107,8 @@ public class ImmutableTuple3<T1, T2, T3> extends ImmutableTuple2<T1, T2> impleme
     final Tuple3<?, ?, ?> that = castIfInstanceOf(Tuple3.class, tuple);
     /* @formatter:off */
     return null != that &&
-        (super.equals(that) &&
+        (equal(this.value1, that.getValue1()) &&
+         equal(this.value2, that.getValue2()) &&
          equal(this.value3, that.getValue3()));
     /* @formatter:on */
   }
@@ -107,8 +118,8 @@ public class ImmutableTuple3<T1, T2, T3> extends ImmutableTuple2<T1, T2> impleme
   {
     /* @formatter:off */
     return toStringBuilder(this)
-            .add("value1", getValue1())
-            .add("value2", getValue2())
+            .add("value1", value1)
+            .add("value2", value2)
             .add("value3", value3)
           .toString();
     /* @formatter:on */

@@ -62,15 +62,45 @@ import org.elixirian.kommonlee.type.Tuple5;
  * @param <T4>
  * @param <T5>
  */
-public class ImmutableTuple5<T1, T2, T3, T4, T5> extends ImmutableTuple4<T1, T2, T3, T4> implements
-    Tuple5<T1, T2, T3, T4, T5>
+public class ImmutableTuple5<T1, T2, T3, T4, T5> implements Tuple5<T1, T2, T3, T4, T5>
 {
+  private final T1 value1;
+  private final T2 value2;
+  private final T3 value3;
+  private final T4 value4;
   private final T5 value5;
 
   public ImmutableTuple5(final T1 value1, final T2 value2, final T3 value3, final T4 value4, final T5 value5)
   {
-    super(value1, value2, value3, value4);
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+    this.value4 = value4;
     this.value5 = value5;
+  }
+
+  @Override
+  public T1 getValue1()
+  {
+    return value1;
+  }
+
+  @Override
+  public T2 getValue2()
+  {
+    return value2;
+  }
+
+  @Override
+  public T3 getValue3()
+  {
+    return value3;
+  }
+
+  @Override
+  public T4 getValue4()
+  {
+    return value4;
   }
 
   @Override
@@ -82,11 +112,7 @@ public class ImmutableTuple5<T1, T2, T3, T4, T5> extends ImmutableTuple4<T1, T2,
   @Override
   public int hashCode()
   {
-    /* @formatter:off */
-    return hash(
-                super.hashCode(),
-                value5);
-    /* @formatter:on */
+    return hash(value1, value2, value3, value4, value5);
   }
 
   @Override
@@ -99,7 +125,10 @@ public class ImmutableTuple5<T1, T2, T3, T4, T5> extends ImmutableTuple4<T1, T2,
     final Tuple5<?, ?, ?, ?, ?> that = castIfInstanceOf(Tuple5.class, tuple);
     /* @formatter:off */
     return null != that &&
-        (super.equals(that) &&
+        (equal(this.value1, that.getValue1()) &&
+         equal(this.value2, that.getValue2()) &&
+         equal(this.value3, that.getValue3()) &&
+         equal(this.value4, that.getValue4()) &&
          equal(this.value5, that.getValue5()));
     /* @formatter:on */
   }
@@ -109,10 +138,10 @@ public class ImmutableTuple5<T1, T2, T3, T4, T5> extends ImmutableTuple4<T1, T2,
   {
     /* @formatter:off */
     return toStringBuilder(this)
-            .add("value1", getValue1())
-            .add("value2", getValue2())
-            .add("value3", getValue3())
-            .add("value4", getValue4())
+            .add("value1", value1)
+            .add("value2", value2)
+            .add("value3", value3)
+            .add("value4", value4)
             .add("value5", value5)
           .toString();
     /* @formatter:on */

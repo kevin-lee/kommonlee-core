@@ -31,23 +31,15 @@
  */
 package org.elixirian.kommonlee.util.string;
 
-import static java.util.Arrays.asList;
-import static java.util.Collections.unmodifiableMap;
-import static java.util.Collections.unmodifiableSet;
-import static org.elixirian.kommonlee.util.Logical.and;
-import static org.elixirian.kommonlee.util.MessageFormatter.format;
-import static org.elixirian.kommonlee.util.Objects.castIfInstanceOf;
-import static org.elixirian.kommonlee.util.Objects.equal;
-import static org.elixirian.kommonlee.util.Objects.hash;
-import static org.elixirian.kommonlee.util.Objects.identical;
-import static org.elixirian.kommonlee.util.Objects.isNotNull;
-import static org.elixirian.kommonlee.util.Objects.toStringBuilder;
-import static org.elixirian.kommonlee.util.Strings.isNeitherNullNorEmptyString;
-import static org.elixirian.kommonlee.util.Strings.isNullOrEmptyString;
-import static org.elixirian.kommonlee.util.string.ToStringGlues.builderForIterable;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static java.util.Arrays.*;
+import static java.util.Collections.*;
+import static org.elixirian.kommonlee.util.Logical.*;
+import static org.elixirian.kommonlee.util.MessageFormatter.*;
+import static org.elixirian.kommonlee.util.Objects.*;
+import static org.elixirian.kommonlee.util.Strings.*;
+import static org.elixirian.kommonlee.util.string.ToStringGlues.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -101,7 +93,7 @@ public class ToStringGluesTest
 		@Override
 		public int hashCode()
 		{
-			return hash(hash(surname), givenName);
+			return hash(surname, givenName);
 		}
 
 		@Override

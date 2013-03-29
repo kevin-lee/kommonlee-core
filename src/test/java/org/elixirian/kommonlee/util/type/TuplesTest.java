@@ -1,5 +1,6 @@
 package org.elixirian.kommonlee.util.type;
 
+import static org.elixirian.kommonlee.util.Objects.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -77,6 +78,12 @@ public class TuplesTest
     final Pair<Integer, String> actual = Tuples.pair(999, "Kevin");
 
     /* then */
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
     assertThat(actual, is(equalTo(expected)));
 
     assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
@@ -95,6 +102,12 @@ public class TuplesTest
     final Tuple2<Integer, String> actual = Tuples.tuple2(999, "Kevin");
 
     /* then */
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
     assertThat(actual, is(equalTo(expected)));
 
     assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
@@ -113,6 +126,12 @@ public class TuplesTest
     final Tuple3<Integer, String, Boolean> actual = Tuples.tuple3(999, "Kevin", true);
 
     /* then */
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2(), expected.getValue3());
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
     assertThat(actual, is(equalTo(expected)));
 
     assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
@@ -134,6 +153,13 @@ public class TuplesTest
       Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode =
+      hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4());
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
     assertThat(actual, is(equalTo(expected)));
 
     assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
@@ -157,6 +183,13 @@ public class TuplesTest
       Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode =
+      hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(), expected.getValue5());
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
     assertThat(actual, is(equalTo(expected)));
 
     assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
@@ -183,6 +216,14 @@ public class TuplesTest
       Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode =
+      hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
+          expected.getValue5(), expected.getValue6());
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
     assertThat(actual, is(equalTo(expected)));
 
     assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
@@ -211,6 +252,14 @@ public class TuplesTest
           Arrays.asList("Name", "Kevin", "Lee"));
 
     /* then */
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode =
+      hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
+          expected.getValue5(), expected.getValue6(), expected.getValue7());
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
     assertThat(actual, is(equalTo(expected)));
 
     assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
@@ -221,5 +270,4 @@ public class TuplesTest
     assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
     assertThat(actual.getValue7(), is(equalTo(expected.getValue7())));
   }
-
 }
