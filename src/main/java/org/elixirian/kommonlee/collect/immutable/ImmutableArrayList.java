@@ -44,6 +44,8 @@ import org.elixirian.kommonlee.collect.AbstractReadableList;
 import org.elixirian.kommonlee.collect.Kollection;
 import org.elixirian.kommonlee.collect.McHammerIterator;
 import org.elixirian.kommonlee.collect.UnmodifiableIterator;
+import org.elixirian.kommonlee.functional.BreakableFunction1;
+import org.elixirian.kommonlee.functional.VoidFunction1;
 import org.elixirian.kommonlee.type.functional.BreakOrContinue;
 import org.elixirian.kommonlee.type.functional.Condition1;
 import org.elixirian.kommonlee.type.functional.Function1;
@@ -172,7 +174,7 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
      * It does nothing.
      */
     @Override
-    public void forEach(@SuppressWarnings("unused") final Function1<? super E, Void> function)
+    public void forEach(@SuppressWarnings("unused") final VoidFunction1<? super E> function)
     {
       return;
     }
@@ -181,7 +183,7 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
      * It does nothing.
      */
     @Override
-    public void breakableForEach(@SuppressWarnings("unused") final Function1<? super E, BreakOrContinue> function)
+    public void breakableForEach(@SuppressWarnings("unused") final BreakableFunction1<? super E> function)
     {
       return;
     }
@@ -415,7 +417,7 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
   }
 
   @Override
-  public void forEach(final Function1<? super E, Void> function)
+  public void forEach(final VoidFunction1<? super E> function)
   {
     for (final Object object : this.elements)
     {
@@ -426,7 +428,7 @@ public class ImmutableArrayList<E> extends AbstractReadableList<E> implements Im
   }
 
   @Override
-  public void breakableForEach(final Function1<? super E, BreakOrContinue> function)
+  public void breakableForEach(final BreakableFunction1<? super E> function)
   {
     for (final Object object : this.elements)
     {

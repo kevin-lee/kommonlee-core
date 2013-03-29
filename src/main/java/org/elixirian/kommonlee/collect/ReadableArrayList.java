@@ -39,6 +39,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.elixirian.kommonlee.functional.BreakableFunction1;
+import org.elixirian.kommonlee.functional.VoidFunction1;
 import org.elixirian.kommonlee.type.functional.BreakOrContinue;
 import org.elixirian.kommonlee.type.functional.Condition1;
 import org.elixirian.kommonlee.type.functional.Function1;
@@ -191,7 +193,7 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
   }
 
   @Override
-  public void forEach(final Function1<? super E, Void> function)
+  public void forEach(final VoidFunction1<? super E> function)
   {
     for (final Object object : this.elements)
     {
@@ -202,7 +204,7 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
   }
 
   @Override
-  public void breakableForEach(final Function1<? super E, BreakOrContinue> function)
+  public void breakableForEach(final BreakableFunction1<? super E> function)
   {
     for (final Object object : this.elements)
     {
