@@ -51,15 +51,12 @@ package org.elixirian.kommonlee.type;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-09-25)
  */
-public interface Tuple4<T1, T2, T3, T4> extends Tuple3<T1, T2, T3>
+public interface Tuple4<T1, T2, T3, T4>
 {
-  @Override
   T1 getValue1();
 
-  @Override
   T2 getValue2();
 
-  @Override
   T3 getValue3();
 
   T4 getValue4();
