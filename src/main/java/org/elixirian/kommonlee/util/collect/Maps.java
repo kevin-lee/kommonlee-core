@@ -31,6 +31,7 @@
  */
 package org.elixirian.kommonlee.util.collect;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -176,6 +177,20 @@ public final class Maps
   private Maps() throws IllegalAccessException
   {
     throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
+  }
+
+  /**
+   * Returns an immutable empty map returned from Collections.emptyMap() if the given map parameter contains a null
+   * reference. Otherwise it returns the parameter map back to the caller.
+   * 
+   * @param map
+   *          the given Map object. It can be null.
+   * @return an immutable empty map returned from Collections.emptyMap() if the given map parameter contains a null
+   *         reference. Otherwise it returns the parameter map back to the caller.
+   */
+  public static <K, V> Map<K, V> immutableEmptyMapIfNull(final Map<K, V> map)
+  {
+    return null == map ? Collections.<K, V> emptyMap() : map;
   }
 
   public static <K, V> HashMap<K, V> newHashMap()

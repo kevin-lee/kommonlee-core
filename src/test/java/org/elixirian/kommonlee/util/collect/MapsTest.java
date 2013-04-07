@@ -301,6 +301,42 @@ public class MapsTest
   }
 
   @Test
+  public void testImmutableEmptyMapIfNullForNull()
+  {
+    /* given */
+    final Map<Long, String> expected = Collections.emptyMap();
+
+    final Map<Long, String> map = null;
+
+    /* when */
+    final Map<Long, String> actual = Maps.immutableEmptyMapIfNull(map);
+
+    /* then */
+    assertThat(actual, is(notNullValue()));
+    assertThat(actual, is(equalTo(expected)));
+  }
+
+  @SuppressWarnings("boxing")
+  @Test
+  public void testImmutableEmptyMapIfNullForNonNull()
+  {
+    /* given */
+    final Map<Long, String> expected = new HashMap<Long, String>();
+    expected.put(1L, "Kevin");
+    expected.put(2L, "Lee");
+    expected.put(3L, "Test");
+
+    final Map<Long, String> set = expected;
+
+    /* when */
+    final Map<Long, String> actual = Maps.immutableEmptyMapIfNull(set);
+
+    /* then */
+    assertThat(actual, is(notNullValue()));
+    assertThat(actual, is(equalTo(expected)));
+  }
+
+  @Test
   public final void testNewHashMap()
   {
     /* given */
