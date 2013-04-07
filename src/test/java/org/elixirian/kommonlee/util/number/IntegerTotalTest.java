@@ -52,7 +52,7 @@ import org.junit.Test;
  */
 public class IntegerTotalTest
 {
-  private static final int HOW_MANY = 30;
+  // private static final int HOW_MANY = 30;
 
   /* @formatter:off */
 	private static final int[] NUMBERS1 = { Integer.MIN_VALUE, -5,   -4,  -3,  -2,  -1,  0,  1,  2,  3,  4,  5,  Integer.MAX_VALUE };
@@ -60,8 +60,8 @@ public class IntegerTotalTest
 	/* @formatter:on */
 
   private static final Random random = new Random();
-  private static final int[] NUMBERS3 = getRandomNumbers(50);
-  private static final int[] NUMBERS4 = getRandomNumbers(50);
+  private static final int[] NUMBERS3 = getRandomNumbers(3);
+  private static final int[] NUMBERS4 = getRandomNumbers(5);
 
   private static int[] getRandomNumbers(final int length)
   {
@@ -292,10 +292,10 @@ public class IntegerTotalTest
       }
     }
 
-    final int[] numbers3 = new int[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final int[] numbers4 = new int[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final int[] numbers3 = new int[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final int[] numbers4 = new int[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     for (final int n1 : numbers3)
     {
@@ -370,10 +370,10 @@ public class IntegerTotalTest
       }
     }
 
-    final int[] numbers3 = new int[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final int[] numbers4 = new int[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final int[] numbers3 = new int[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final int[] numbers4 = new int[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     for (final int n1 : numbers3)
     {
@@ -664,10 +664,10 @@ public class IntegerTotalTest
       }
     }
 
-    final Integer[] numbers3 = new Integer[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Integer[] numbers4 = new Integer[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Integer[] numbers3 = new Integer[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Integer[] numbers4 = new Integer[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     for (final Integer n1 : numbers3)
     {
@@ -744,10 +744,10 @@ public class IntegerTotalTest
       }
     }
 
-    final Integer[] numbers3 = new Integer[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Integer[] numbers4 = new Integer[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Integer[] numbers3 = new Integer[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Integer[] numbers4 = new Integer[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     for (final Integer n1 : numbers3)
     {

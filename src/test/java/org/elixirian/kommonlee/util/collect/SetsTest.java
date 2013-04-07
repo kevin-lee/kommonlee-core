@@ -53,8 +53,8 @@ import java.util.TreeSet;
 
 import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
 import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
-import org.elixirian.kommonlee.type.filter.Filter1;
 import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.type.selector.Selector1;
 import org.elixirian.kommonlee.util.collect.UtilForTesting.ComparableObject;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -94,10 +94,10 @@ public class SetsTest
     }
   };
 
-  private static final Filter1<Iterable<Integer>, Condition1<Object>, List<Integer>> INTEGER_FILTER =
-    new Filter1<Iterable<Integer>, Condition1<Object>, List<Integer>>() {
+  private static final Selector1<Iterable<Integer>, Condition1<Object>, List<Integer>> INTEGER_SELECTOR =
+    new Selector1<Iterable<Integer>, Condition1<Object>, List<Integer>>() {
       @Override
-      public List<Integer> filter(final Condition1<Object> condition, final Iterable<Integer> source)
+      public List<Integer> select(final Condition1<Object> condition, final Iterable<Integer> source)
       {
         final List<Integer> list = new ArrayList<Integer>();
         for (final Integer value : source)
@@ -107,10 +107,10 @@ public class SetsTest
       }
     };
 
-  private static final Filter1<Iterable<String>, Condition1<Object>, List<String>> STRING_FILTER =
-    new Filter1<Iterable<String>, Condition1<Object>, List<String>>() {
+  private static final Selector1<Iterable<String>, Condition1<Object>, List<String>> STRING_SELECTOR =
+    new Selector1<Iterable<String>, Condition1<Object>, List<String>>() {
       @Override
-      public List<String> filter(final Condition1<Object> condition, final Iterable<String> source)
+      public List<String> select(final Condition1<Object> condition, final Iterable<String> source)
       {
         final List<String> list = new ArrayList<String>();
         for (final String value : source)
@@ -120,10 +120,10 @@ public class SetsTest
       }
     };
 
-  private static final Filter1<List<Object>, Condition1<Object>, List<Object>> OBJECT_FILTER =
-    new Filter1<List<Object>, Condition1<Object>, List<Object>>() {
+  private static final Selector1<List<Object>, Condition1<Object>, List<Object>> OBJECT_SELECTOR =
+    new Selector1<List<Object>, Condition1<Object>, List<Object>>() {
       @Override
-      public List<Object> filter(final Condition1<Object> condition, final List<Object> source)
+      public List<Object> select(final Condition1<Object> condition, final List<Object> source)
       {
         final List<Object> list = new ArrayList<Object>();
         for (final Object value : source)
@@ -133,10 +133,10 @@ public class SetsTest
       }
     };
 
-  private static final Filter1<Iterable<ComparableObject>, Condition1<Object>, List<ComparableObject>> COMPARABLE_OBJECT_FILTER =
-    new Filter1<Iterable<ComparableObject>, Condition1<Object>, List<ComparableObject>>() {
+  private static final Selector1<Iterable<ComparableObject>, Condition1<Object>, List<ComparableObject>> COMPARABLE_OBJECT_SELECTOR =
+    new Selector1<Iterable<ComparableObject>, Condition1<Object>, List<ComparableObject>>() {
       @Override
-      public List<ComparableObject> filter(final Condition1<Object> condition, final Iterable<ComparableObject> source)
+      public List<ComparableObject> select(final Condition1<Object> condition, final Iterable<ComparableObject> source)
       {
         final List<ComparableObject> list = new ArrayList<ComparableObject>();
         for (final ComparableObject value : source)
@@ -160,7 +160,7 @@ public class SetsTest
     Collections.unmodifiableSet(new LinkedHashSet<Integer>(INTEGER_LIST));
 
   private static final Set<Integer> INTEGER_VALUE_TREE_SET = Collections.unmodifiableSet(new TreeSet<Integer>(
-      INTEGER_FILTER.filter(NOT_NULL_CONDITION, INTEGER_LIST)));
+      INTEGER_SELECTOR.select(NOT_NULL_CONDITION, INTEGER_LIST)));
 
   private static final Set<Integer> INTEGER_VALUE_TREE_SET_WITH_COMPARATOR;
 
@@ -177,7 +177,7 @@ public class SetsTest
     Collections.unmodifiableSet(new LinkedHashSet<String>(STRING_LIST));
 
   private static final Set<String> STRING_VALUE_TREE_SET = Collections.unmodifiableSet(new TreeSet<String>(
-      STRING_FILTER.filter(NOT_NULL_CONDITION, STRING_LIST)));
+      STRING_SELECTOR.select(NOT_NULL_CONDITION, STRING_LIST)));
 
   private static final Set<String> STRING_VALUE_TREE_SET_WITH_COMPARATOR;
 
@@ -238,7 +238,7 @@ public class SetsTest
     OBJECT_HASH_SET = Collections.unmodifiableSet(set);
 
     Collections.shuffle(list);
-    set = new TreeSet<Object>(OBJECT_FILTER.filter(NOT_NULL_CONDITION, list));
+    set = new TreeSet<Object>(OBJECT_SELECTOR.select(NOT_NULL_CONDITION, list));
     Collections.unmodifiableSet(set);
 
     Collections.shuffle(list);
@@ -249,7 +249,7 @@ public class SetsTest
     final List<ComparableObject> comparableObjectList = new ArrayList<ComparableObject>(COMPARABLE_OBJECT_LIST);
     Collections.shuffle(list);
     final Set<ComparableObject> comparableObjectSet =
-      new TreeSet<ComparableObject>(COMPARABLE_OBJECT_FILTER.filter(NOT_NULL_CONDITION, comparableObjectList));
+      new TreeSet<ComparableObject>(COMPARABLE_OBJECT_SELECTOR.select(NOT_NULL_CONDITION, comparableObjectList));
     COMPARABLE_OBJECT_TREE_SET = Collections.unmodifiableSet(comparableObjectSet);
 
     // Collections.shuffle(comparableObjectList);
@@ -885,7 +885,7 @@ public class SetsTest
     final List<Integer> input1 = INTEGER_LIST;
 
     /* when */
-    final TreeSet<Integer> set1 = newTreeSet(INTEGER_FILTER.filter(NOT_NULL_CONDITION, input1));
+    final TreeSet<Integer> set1 = newTreeSet(INTEGER_SELECTOR.select(NOT_NULL_CONDITION, input1));
 
     /* then */
     assertThat(set1, is(instanceOf(expectedType)));
@@ -899,7 +899,7 @@ public class SetsTest
     final List<String> input2 = STRING_LIST;
 
     /* when */
-    final TreeSet<String> set2 = newTreeSet(STRING_FILTER.filter(NOT_NULL_CONDITION, input2));
+    final TreeSet<String> set2 = newTreeSet(STRING_SELECTOR.select(NOT_NULL_CONDITION, input2));
 
     /* then */
     assertThat(set2, is(instanceOf(expectedType)));
@@ -913,7 +913,7 @@ public class SetsTest
     final List<ComparableObject> input3 = COMPARABLE_OBJECT_LIST;
 
     /* when */
-    final TreeSet<ComparableObject> set3 = newTreeSet(COMPARABLE_OBJECT_FILTER.filter(NOT_NULL_CONDITION, input3));
+    final TreeSet<ComparableObject> set3 = newTreeSet(COMPARABLE_OBJECT_SELECTOR.select(NOT_NULL_CONDITION, input3));
 
     /* then */
     assertThat(set3, is(instanceOf(expectedType)));
@@ -931,7 +931,7 @@ public class SetsTest
     final Class expectedType = EXPECTED_TREE_SET_TYPE;
 
     final Collection<Integer> expected1 = INTEGER_VALUE_TREE_SET;
-    final Iterable<Integer> input1 = INTEGER_FILTER.filter(NOT_NULL_CONDITION, INTEGER_LIST);
+    final Iterable<Integer> input1 = INTEGER_SELECTOR.select(NOT_NULL_CONDITION, INTEGER_LIST);
 
     /* when */
     final TreeSet<Integer> set1 = newTreeSet(input1);
@@ -948,7 +948,7 @@ public class SetsTest
     final Iterable<String> input2 = STRING_LIST;
 
     /* when */
-    final TreeSet<String> set2 = newTreeSet(STRING_FILTER.filter(NOT_NULL_CONDITION, input2));
+    final TreeSet<String> set2 = newTreeSet(STRING_SELECTOR.select(NOT_NULL_CONDITION, input2));
 
     /* then */
     assertThat(set2, is(instanceOf(expectedType)));
@@ -962,7 +962,7 @@ public class SetsTest
     final Iterable<ComparableObject> input3 = COMPARABLE_OBJECT_LIST;
 
     /* when */
-    final TreeSet<ComparableObject> set3 = newTreeSet(COMPARABLE_OBJECT_FILTER.filter(NOT_NULL_CONDITION, input3));
+    final TreeSet<ComparableObject> set3 = newTreeSet(COMPARABLE_OBJECT_SELECTOR.select(NOT_NULL_CONDITION, input3));
 
     /* then */
     assertThat(set3, is(instanceOf(expectedType)));
@@ -980,7 +980,7 @@ public class SetsTest
     final Class expectedType = EXPECTED_TREE_SET_TYPE;
 
     final Collection<Integer> expected1 = INTEGER_VALUE_TREE_SET;
-    final Iterator<Integer> input1 = INTEGER_FILTER.filter(NOT_NULL_CONDITION, INTEGER_LIST)
+    final Iterator<Integer> input1 = INTEGER_SELECTOR.select(NOT_NULL_CONDITION, INTEGER_LIST)
         .iterator();
 
     /* when */
@@ -995,7 +995,7 @@ public class SetsTest
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_TREE_SET;
-    final Iterator<String> input2 = STRING_FILTER.filter(NOT_NULL_CONDITION, STRING_LIST)
+    final Iterator<String> input2 = STRING_SELECTOR.select(NOT_NULL_CONDITION, STRING_LIST)
         .iterator();
 
     /* when */
@@ -1011,7 +1011,7 @@ public class SetsTest
     /* given */
     final Collection<ComparableObject> expected3 = COMPARABLE_OBJECT_TREE_SET;
     final Iterator<ComparableObject> input3 =
-      COMPARABLE_OBJECT_FILTER.filter(NOT_NULL_CONDITION, COMPARABLE_OBJECT_LIST)
+      COMPARABLE_OBJECT_SELECTOR.select(NOT_NULL_CONDITION, COMPARABLE_OBJECT_LIST)
           .iterator();
 
     /* when */
@@ -1047,8 +1047,8 @@ public class SetsTest
 
     /* given */
     final Collection<String> expected2 = STRING_VALUE_TREE_SET;
-    final List<String> filteredList1 = STRING_FILTER.filter(NOT_NULL_CONDITION, STRING_LIST);
-    final String[] input2 = filteredList1.toArray(new String[filteredList1.size()]);
+    final List<String> selectedList1 = STRING_SELECTOR.select(NOT_NULL_CONDITION, STRING_LIST);
+    final String[] input2 = selectedList1.toArray(new String[selectedList1.size()]);
 
     /* when */
     final TreeSet<String> set2 = newTreeSet(input2);
@@ -1062,9 +1062,9 @@ public class SetsTest
 
     /* given */
     final Collection<ComparableObject> expected3 = COMPARABLE_OBJECT_TREE_SET;
-    final List<ComparableObject> filteredList2 =
-      COMPARABLE_OBJECT_FILTER.filter(NOT_NULL_CONDITION, COMPARABLE_OBJECT_LIST);
-    final ComparableObject[] input3 = filteredList2.toArray(new ComparableObject[filteredList2.size()]);
+    final List<ComparableObject> selectedList2 =
+      COMPARABLE_OBJECT_SELECTOR.select(NOT_NULL_CONDITION, COMPARABLE_OBJECT_LIST);
+    final ComparableObject[] input3 = selectedList2.toArray(new ComparableObject[selectedList2.size()]);
 
     /* when */
     final TreeSet<ComparableObject> set3 = newTreeSet(input3);

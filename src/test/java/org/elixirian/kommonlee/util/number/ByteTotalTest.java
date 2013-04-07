@@ -53,7 +53,7 @@ import org.junit.Test;
  */
 public class ByteTotalTest
 {
-  private static final int HOW_MANY = 30;
+  // private static final int HOW_MANY = 30;
 
   /* @formatter:off */
 	private static final byte[] NUMBERS1 = { Byte.MIN_VALUE, -5,   -4,  -3,  -2,  -1,  0,  1,  2,  3,  4,  5,  Byte.MAX_VALUE };
@@ -61,8 +61,8 @@ public class ByteTotalTest
 	/* @formatter:on */
 
   private static final Random random = new Random();
-  private static final byte[] NUMBERS3 = getRandomNumbers(50);
-  private static final byte[] NUMBERS4 = getRandomNumbers(50);
+  private static final byte[] NUMBERS3 = getRandomNumbers(3);
+  private static final byte[] NUMBERS4 = getRandomNumbers(5);
 
   private static byte[] getRandomNumbers(final int length)
   {
@@ -285,10 +285,10 @@ public class ByteTotalTest
       }
     }
 
-    final byte[] numbers3 = new byte[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final byte[] numbers4 = new byte[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final byte[] numbers3 = new byte[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final byte[] numbers4 = new byte[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     for (final byte n1 : numbers3)
     {
@@ -358,10 +358,10 @@ public class ByteTotalTest
       }
     }
 
-    final byte[] numbers3 = new byte[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final byte[] numbers4 = new byte[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final byte[] numbers3 = new byte[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final byte[] numbers4 = new byte[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     int total3 = 0;
     for (final byte n : numbers3)
@@ -637,10 +637,10 @@ public class ByteTotalTest
       }
     }
 
-    final Byte[] numbers3 = new Byte[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Byte[] numbers4 = new Byte[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Byte[] numbers3 = new Byte[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Byte[] numbers4 = new Byte[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     for (final Byte n1 : numbers3)
     {
@@ -715,10 +715,10 @@ public class ByteTotalTest
       }
     }
 
-    final Byte[] numbers3 = new Byte[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Byte[] numbers4 = new Byte[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Byte[] numbers3 = new Byte[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Byte[] numbers4 = new Byte[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     int total3 = 0;
     for (final Byte n : numbers3)

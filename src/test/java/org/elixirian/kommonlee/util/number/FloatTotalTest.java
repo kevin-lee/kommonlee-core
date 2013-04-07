@@ -52,7 +52,7 @@ import org.junit.Test;
  */
 public class FloatTotalTest
 {
-  private static final int HOW_MANY = 30;
+  // private static final int HOW_MANY = 30;
 
   /* @formatter:off */
 	private static final float[] NUMBERS1 = { Integer.MIN_VALUE, -5,   -4,  -3,  -2,  -1,  0,  1,  2,  3,  4,  5,  Integer.MAX_VALUE };
@@ -60,8 +60,8 @@ public class FloatTotalTest
 	/* @formatter:on */
 
   private static final Random random = new Random();
-  private static final float[] NUMBERS3 = getRandomNumbers(50);
-  private static final float[] NUMBERS4 = getRandomNumbers(50);
+  private static final float[] NUMBERS3 = getRandomNumbers(3);
+  private static final float[] NUMBERS4 = getRandomNumbers(5);
 
   private static float[] getRandomNumbers(final int length)
   {
@@ -292,10 +292,10 @@ public class FloatTotalTest
       }
     }
 
-    final float[] numbers3 = new float[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final float[] numbers4 = new float[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final float[] numbers3 = new float[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final float[] numbers4 = new float[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     for (final float n1 : numbers3)
     {
@@ -365,10 +365,10 @@ public class FloatTotalTest
       }
     }
 
-    final float[] numbers3 = new float[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final float[] numbers4 = new float[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final float[] numbers3 = new float[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final float[] numbers4 = new float[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     for (final float n1 : numbers3)
     {
@@ -668,10 +668,10 @@ public class FloatTotalTest
       }
     }
 
-    final Float[] numbers3 = new Float[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Float[] numbers4 = new Float[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Float[] numbers3 = new Float[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Float[] numbers4 = new Float[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     for (final Float n1 : numbers3)
     {
@@ -748,10 +748,10 @@ public class FloatTotalTest
       }
     }
 
-    final Float[] numbers3 = new Float[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Float[] numbers4 = new Float[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Float[] numbers3 = new Float[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Float[] numbers4 = new Float[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     for (final Float n1 : numbers3)
     {

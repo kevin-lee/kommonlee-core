@@ -38,9 +38,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
-import org.elixirian.kommonlee.type.filter.ArgsFilter;
-import org.elixirian.kommonlee.type.filter.Filter1;
 import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.type.selector.ArgsSelector;
+import org.elixirian.kommonlee.type.selector.Selector1;
 import org.elixirian.kommonlee.util.CommonConstants;
 
 /**
@@ -122,25 +122,25 @@ public final class Numbers
     return EVEN_LONG;
   }
 
-  public static abstract class NumberIterableFilter<T extends Number, C extends Collection<T>> implements
-      Filter1<Iterable<T>, Condition1<T>, C>
+  public static abstract class NumberIterableSelector<T extends Number, C extends Collection<T>> implements
+      Selector1<Iterable<T>, Condition1<T>, C>
   {
     @Override
-    public C filter(final Condition1<T> condition, final Iterable<T> numbers)
+    public C select(final Condition1<T> condition, final Iterable<T> numbers)
     {
-      final C filteredCollection = newCollection();
+      final C selectedCollection = newCollection();
       for (final T value : numbers)
         if (condition.isMet(value))
-          filteredCollection.add(value);
+          selectedCollection.add(value);
 
-      return filteredCollection;
+      return selectedCollection;
     }
 
     protected abstract C newCollection();
   }
 
-  private static final class NumberIterableToArrayListFilter<T extends Number> extends
-      NumberIterableFilter<T, ArrayList<T>>
+  private static final class NumberIterableToArrayListSelector<T extends Number> extends
+      NumberIterableSelector<T, ArrayList<T>>
   {
     @Override
     protected ArrayList<T> newCollection()
@@ -149,8 +149,8 @@ public final class Numbers
     }
   }
 
-  private static final class NumberIterableToHashSetFilter<T extends Number> extends
-      NumberIterableFilter<T, HashSet<T>>
+  private static final class NumberIterableToHashSetSelector<T extends Number> extends
+      NumberIterableSelector<T, HashSet<T>>
   {
     @Override
     protected HashSet<T> newCollection()
@@ -159,8 +159,8 @@ public final class Numbers
     }
   }
 
-  private static final class NumberIterableToLinkedHashSetFilter<T extends Number> extends
-      NumberIterableFilter<T, LinkedHashSet<T>>
+  private static final class NumberIterableToLinkedHashSetSelector<T extends Number> extends
+      NumberIterableSelector<T, LinkedHashSet<T>>
   {
     @Override
     protected LinkedHashSet<T> newCollection()
@@ -169,301 +169,301 @@ public final class Numbers
     }
   }
 
-  public static <T extends Number> NumberIterableFilter<T, ArrayList<T>> numberIterableToArrayListFilter()
+  public static <T extends Number> NumberIterableSelector<T, ArrayList<T>> numberIterableToArrayListSelector()
   {
-    return new NumberIterableToArrayListFilter<T>();
+    return new NumberIterableToArrayListSelector<T>();
   }
 
-  private static final NumberIterableFilter<Byte, ArrayList<Byte>> BYTE_ITERABLE_TO_ARRAY_LIST_FILTER =
-    numberIterableToArrayListFilter();
-  private static final NumberIterableFilter<Short, ArrayList<Short>> SHORT_ITERABLE_TO_ARRAY_LIST_FILTER =
-    numberIterableToArrayListFilter();
-  private static final NumberIterableFilter<Integer, ArrayList<Integer>> INTEGER_ITERABLE_TO_ARRAY_LIST_FILTER =
-    numberIterableToArrayListFilter();
-  private static final NumberIterableFilter<Long, ArrayList<Long>> LONG_ITERABLE_TO_ARRAY_LIST_FILTER =
-    numberIterableToArrayListFilter();
-  private static final NumberIterableFilter<Float, ArrayList<Float>> FLOAT_ITERABLE_TO_ARRAY_LIST_FILTER =
-    numberIterableToArrayListFilter();
-  private static final NumberIterableFilter<Double, ArrayList<Double>> DOUBLE_ITERABLE_TO_ARRAY_LIST_FILTER =
-    numberIterableToArrayListFilter();
-  private static final NumberIterableFilter<BigInteger, ArrayList<BigInteger>> BIG_INTEGER_ITERABLE_TO_ARRAY_LIST_FILTER =
-    numberIterableToArrayListFilter();
-  private static final NumberIterableFilter<BigDecimal, ArrayList<BigDecimal>> BIG_DECIMAL_ITERABLE_TO_ARRAY_LIST_FILTER =
-    numberIterableToArrayListFilter();
+  private static final NumberIterableSelector<Byte, ArrayList<Byte>> BYTE_ITERABLE_TO_ARRAY_LIST_SELECTOR =
+    numberIterableToArrayListSelector();
+  private static final NumberIterableSelector<Short, ArrayList<Short>> SHORT_ITERABLE_TO_ARRAY_LIST_SELECTOR =
+    numberIterableToArrayListSelector();
+  private static final NumberIterableSelector<Integer, ArrayList<Integer>> INTEGER_ITERABLE_TO_ARRAY_LIST_SELECTOR =
+    numberIterableToArrayListSelector();
+  private static final NumberIterableSelector<Long, ArrayList<Long>> LONG_ITERABLE_TO_ARRAY_LIST_SELECTOR =
+    numberIterableToArrayListSelector();
+  private static final NumberIterableSelector<Float, ArrayList<Float>> FLOAT_ITERABLE_TO_ARRAY_LIST_SELECTOR =
+    numberIterableToArrayListSelector();
+  private static final NumberIterableSelector<Double, ArrayList<Double>> DOUBLE_ITERABLE_TO_ARRAY_LIST_SELECTOR =
+    numberIterableToArrayListSelector();
+  private static final NumberIterableSelector<BigInteger, ArrayList<BigInteger>> BIG_INTEGER_ITERABLE_TO_ARRAY_LIST_SELECTOR =
+    numberIterableToArrayListSelector();
+  private static final NumberIterableSelector<BigDecimal, ArrayList<BigDecimal>> BIG_DECIMAL_ITERABLE_TO_ARRAY_LIST_SELECTOR =
+    numberIterableToArrayListSelector();
 
-  public static NumberIterableFilter<Byte, ArrayList<Byte>> byteIterableToArrayListFilter()
+  public static NumberIterableSelector<Byte, ArrayList<Byte>> byteIterableToArrayListSelector()
   {
-    return BYTE_ITERABLE_TO_ARRAY_LIST_FILTER;
+    return BYTE_ITERABLE_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumberIterableFilter<Short, ArrayList<Short>> shortIterableToArrayListFilter()
+  public static NumberIterableSelector<Short, ArrayList<Short>> shortIterableToArrayListSelector()
   {
-    return SHORT_ITERABLE_TO_ARRAY_LIST_FILTER;
+    return SHORT_ITERABLE_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumberIterableFilter<Integer, ArrayList<Integer>> integerIterableToArrayListFilter()
+  public static NumberIterableSelector<Integer, ArrayList<Integer>> integerIterableToArrayListSelector()
   {
-    return INTEGER_ITERABLE_TO_ARRAY_LIST_FILTER;
+    return INTEGER_ITERABLE_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumberIterableFilter<Long, ArrayList<Long>> longIterableToArrayListFilter()
+  public static NumberIterableSelector<Long, ArrayList<Long>> longIterableToArrayListSelector()
   {
-    return LONG_ITERABLE_TO_ARRAY_LIST_FILTER;
+    return LONG_ITERABLE_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumberIterableFilter<Float, ArrayList<Float>> floatIterableToArrayListFilter()
+  public static NumberIterableSelector<Float, ArrayList<Float>> floatIterableToArrayListSelector()
   {
-    return FLOAT_ITERABLE_TO_ARRAY_LIST_FILTER;
+    return FLOAT_ITERABLE_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumberIterableFilter<Double, ArrayList<Double>> doubleIterableToArrayListFilter()
+  public static NumberIterableSelector<Double, ArrayList<Double>> doubleIterableToArrayListSelector()
   {
-    return DOUBLE_ITERABLE_TO_ARRAY_LIST_FILTER;
+    return DOUBLE_ITERABLE_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumberIterableFilter<BigInteger, ArrayList<BigInteger>> bigIntegerIterableToArrayListFilter()
+  public static NumberIterableSelector<BigInteger, ArrayList<BigInteger>> bigIntegerIterableToArrayListSelector()
   {
-    return BIG_INTEGER_ITERABLE_TO_ARRAY_LIST_FILTER;
+    return BIG_INTEGER_ITERABLE_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumberIterableFilter<BigDecimal, ArrayList<BigDecimal>> bigDecimalIterableToArrayListFilter()
+  public static NumberIterableSelector<BigDecimal, ArrayList<BigDecimal>> bigDecimalIterableToArrayListSelector()
   {
-    return BIG_DECIMAL_ITERABLE_TO_ARRAY_LIST_FILTER;
+    return BIG_DECIMAL_ITERABLE_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static <T extends Number> NumberIterableFilter<T, HashSet<T>> numberIterableToHashSetFilter()
+  public static <T extends Number> NumberIterableSelector<T, HashSet<T>> numberIterableToHashSetSelector()
   {
-    return new NumberIterableToHashSetFilter<T>();
+    return new NumberIterableToHashSetSelector<T>();
   }
 
-  private static final NumberIterableFilter<Byte, HashSet<Byte>> BYTE_ITERABLE_TO_HASH_SET_FILTER =
-    numberIterableToHashSetFilter();
-  private static final NumberIterableFilter<Short, HashSet<Short>> SHORT_ITERABLE_TO_HASH_SET_FILTER =
-    numberIterableToHashSetFilter();
-  private static final NumberIterableFilter<Integer, HashSet<Integer>> INTEGER_ITERABLE_TO_HASH_SET_FILTER =
-    numberIterableToHashSetFilter();
-  private static final NumberIterableFilter<Long, HashSet<Long>> LONG_ITERABLE_TO_HASH_SET_FILTER =
-    numberIterableToHashSetFilter();
-  private static final NumberIterableFilter<Float, HashSet<Float>> FLOAT_ITERABLE_TO_HASH_SET_FILTER =
-    numberIterableToHashSetFilter();
-  private static final NumberIterableFilter<Double, HashSet<Double>> DOUBLE_ITERABLE_TO_HASH_SET_FILTER =
-    numberIterableToHashSetFilter();
-  private static final NumberIterableFilter<BigInteger, HashSet<BigInteger>> BIG_INTEGER_ITERABLE_TO_HASH_SET_FILTER =
-    numberIterableToHashSetFilter();
-  private static final NumberIterableFilter<BigDecimal, HashSet<BigDecimal>> BIG_DECIMAL_ITERABLE_TO_HASH_SET_FILTER =
-    numberIterableToHashSetFilter();
+  private static final NumberIterableSelector<Byte, HashSet<Byte>> BYTE_ITERABLE_TO_HASH_SET_SELECTOR =
+    numberIterableToHashSetSelector();
+  private static final NumberIterableSelector<Short, HashSet<Short>> SHORT_ITERABLE_TO_HASH_SET_SELECTOR =
+    numberIterableToHashSetSelector();
+  private static final NumberIterableSelector<Integer, HashSet<Integer>> INTEGER_ITERABLE_TO_HASH_SET_SELECTOR =
+    numberIterableToHashSetSelector();
+  private static final NumberIterableSelector<Long, HashSet<Long>> LONG_ITERABLE_TO_HASH_SET_SELECTOR =
+    numberIterableToHashSetSelector();
+  private static final NumberIterableSelector<Float, HashSet<Float>> FLOAT_ITERABLE_TO_HASH_SET_SELECTOR =
+    numberIterableToHashSetSelector();
+  private static final NumberIterableSelector<Double, HashSet<Double>> DOUBLE_ITERABLE_TO_HASH_SET_SELECTOR =
+    numberIterableToHashSetSelector();
+  private static final NumberIterableSelector<BigInteger, HashSet<BigInteger>> BIG_INTEGER_ITERABLE_TO_HASH_SET_SELECTOR =
+    numberIterableToHashSetSelector();
+  private static final NumberIterableSelector<BigDecimal, HashSet<BigDecimal>> BIG_DECIMAL_ITERABLE_TO_HASH_SET_SELECTOR =
+    numberIterableToHashSetSelector();
 
-  public static NumberIterableFilter<Byte, HashSet<Byte>> byteIterableToHashSetFilter()
+  public static NumberIterableSelector<Byte, HashSet<Byte>> byteIterableToHashSetSelector()
   {
-    return BYTE_ITERABLE_TO_HASH_SET_FILTER;
+    return BYTE_ITERABLE_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<Short, HashSet<Short>> shortIterableToHashSetFilter()
+  public static NumberIterableSelector<Short, HashSet<Short>> shortIterableToHashSetSelector()
   {
-    return SHORT_ITERABLE_TO_HASH_SET_FILTER;
+    return SHORT_ITERABLE_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<Integer, HashSet<Integer>> integerIterableToHashSetFilter()
+  public static NumberIterableSelector<Integer, HashSet<Integer>> integerIterableToHashSetSelector()
   {
-    return INTEGER_ITERABLE_TO_HASH_SET_FILTER;
+    return INTEGER_ITERABLE_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<Long, HashSet<Long>> longIterableToHashSetFilter()
+  public static NumberIterableSelector<Long, HashSet<Long>> longIterableToHashSetSelector()
   {
-    return LONG_ITERABLE_TO_HASH_SET_FILTER;
+    return LONG_ITERABLE_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<Float, HashSet<Float>> floatIterableToHashSetFilter()
+  public static NumberIterableSelector<Float, HashSet<Float>> floatIterableToHashSetSelector()
   {
-    return FLOAT_ITERABLE_TO_HASH_SET_FILTER;
+    return FLOAT_ITERABLE_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<Double, HashSet<Double>> doubleIterableToHashSetFilter()
+  public static NumberIterableSelector<Double, HashSet<Double>> doubleIterableToHashSetSelector()
   {
-    return DOUBLE_ITERABLE_TO_HASH_SET_FILTER;
+    return DOUBLE_ITERABLE_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<BigInteger, HashSet<BigInteger>> bigIntegerIterableToHashSetFilter()
+  public static NumberIterableSelector<BigInteger, HashSet<BigInteger>> bigIntegerIterableToHashSetSelector()
   {
-    return BIG_INTEGER_ITERABLE_TO_HASH_SET_FILTER;
+    return BIG_INTEGER_ITERABLE_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<BigDecimal, HashSet<BigDecimal>> bigDecimalIterableToHashSetFilter()
+  public static NumberIterableSelector<BigDecimal, HashSet<BigDecimal>> bigDecimalIterableToHashSetSelector()
   {
-    return BIG_DECIMAL_ITERABLE_TO_HASH_SET_FILTER;
+    return BIG_DECIMAL_ITERABLE_TO_HASH_SET_SELECTOR;
   }
 
-  public static <T extends Number> NumberIterableFilter<T, LinkedHashSet<T>> numberIterableToLinkedHashSetFilter()
+  public static <T extends Number> NumberIterableSelector<T, LinkedHashSet<T>> numberIterableToLinkedHashSetSelector()
   {
-    return new NumberIterableToLinkedHashSetFilter<T>();
+    return new NumberIterableToLinkedHashSetSelector<T>();
   }
 
-  private static final NumberIterableFilter<Byte, LinkedHashSet<Byte>> BYTE_ITERABLE_TO_LINKED_HASH_SET_FILTER =
-    numberIterableToLinkedHashSetFilter();
-  private static final NumberIterableFilter<Short, LinkedHashSet<Short>> SHORT_ITERABLE_TO_LINKED_HASH_SET_FILTER =
-    numberIterableToLinkedHashSetFilter();
-  private static final NumberIterableFilter<Integer, LinkedHashSet<Integer>> INTEGER_ITERABLE_TO_LINKED_HASH_SET_FILTER =
-    numberIterableToLinkedHashSetFilter();
-  private static final NumberIterableFilter<Long, LinkedHashSet<Long>> LONG_ITERABLE_TO_LINKED_HASH_SET_FILTER =
-    numberIterableToLinkedHashSetFilter();
-  private static final NumberIterableFilter<Float, LinkedHashSet<Float>> FLOAT_ITERABLE_TO_LINKED_HASH_SET_FILTER =
-    numberIterableToLinkedHashSetFilter();
-  private static final NumberIterableFilter<Double, LinkedHashSet<Double>> DOUBLE_ITERABLE_TO_LINKED_HASH_SET_FILTER =
-    numberIterableToLinkedHashSetFilter();
-  private static final NumberIterableFilter<BigInteger, LinkedHashSet<BigInteger>> BIG_INTEGER_ITERABLE_TO_LINKED_HASH_SET_FILTER =
-    numberIterableToLinkedHashSetFilter();
-  private static final NumberIterableFilter<BigDecimal, LinkedHashSet<BigDecimal>> BIG_DECIMAL_ITERABLE_TO_LINKED_HASH_SET_FILTER =
-    numberIterableToLinkedHashSetFilter();
+  private static final NumberIterableSelector<Byte, LinkedHashSet<Byte>> BYTE_ITERABLE_TO_LINKED_HASH_SET_SELECTOR =
+    numberIterableToLinkedHashSetSelector();
+  private static final NumberIterableSelector<Short, LinkedHashSet<Short>> SHORT_ITERABLE_TO_LINKED_HASH_SET_SELECTOR =
+    numberIterableToLinkedHashSetSelector();
+  private static final NumberIterableSelector<Integer, LinkedHashSet<Integer>> INTEGER_ITERABLE_TO_LINKED_HASH_SET_SELECTOR =
+    numberIterableToLinkedHashSetSelector();
+  private static final NumberIterableSelector<Long, LinkedHashSet<Long>> LONG_ITERABLE_TO_LINKED_HASH_SET_SELECTOR =
+    numberIterableToLinkedHashSetSelector();
+  private static final NumberIterableSelector<Float, LinkedHashSet<Float>> FLOAT_ITERABLE_TO_LINKED_HASH_SET_SELECTOR =
+    numberIterableToLinkedHashSetSelector();
+  private static final NumberIterableSelector<Double, LinkedHashSet<Double>> DOUBLE_ITERABLE_TO_LINKED_HASH_SET_SELECTOR =
+    numberIterableToLinkedHashSetSelector();
+  private static final NumberIterableSelector<BigInteger, LinkedHashSet<BigInteger>> BIG_INTEGER_ITERABLE_TO_LINKED_HASH_SET_SELECTOR =
+    numberIterableToLinkedHashSetSelector();
+  private static final NumberIterableSelector<BigDecimal, LinkedHashSet<BigDecimal>> BIG_DECIMAL_ITERABLE_TO_LINKED_HASH_SET_SELECTOR =
+    numberIterableToLinkedHashSetSelector();
 
-  public static NumberIterableFilter<Byte, LinkedHashSet<Byte>> byteIterableToLinkedHashSetFilter()
+  public static NumberIterableSelector<Byte, LinkedHashSet<Byte>> byteIterableToLinkedHashSetSelector()
   {
-    return BYTE_ITERABLE_TO_LINKED_HASH_SET_FILTER;
+    return BYTE_ITERABLE_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<Short, LinkedHashSet<Short>> shortIterableToLinkedHashSetFilter()
+  public static NumberIterableSelector<Short, LinkedHashSet<Short>> shortIterableToLinkedHashSetSelector()
   {
-    return SHORT_ITERABLE_TO_LINKED_HASH_SET_FILTER;
+    return SHORT_ITERABLE_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<Integer, LinkedHashSet<Integer>> integerIterableToLinkedHashSetFilter()
+  public static NumberIterableSelector<Integer, LinkedHashSet<Integer>> integerIterableToLinkedHashSetSelector()
   {
-    return INTEGER_ITERABLE_TO_LINKED_HASH_SET_FILTER;
+    return INTEGER_ITERABLE_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<Long, LinkedHashSet<Long>> longIterableToLinkedHashSetFilter()
+  public static NumberIterableSelector<Long, LinkedHashSet<Long>> longIterableToLinkedHashSetSelector()
   {
-    return LONG_ITERABLE_TO_LINKED_HASH_SET_FILTER;
+    return LONG_ITERABLE_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<Float, LinkedHashSet<Float>> floatIterableToLinkedHashSetFilter()
+  public static NumberIterableSelector<Float, LinkedHashSet<Float>> floatIterableToLinkedHashSetSelector()
   {
-    return FLOAT_ITERABLE_TO_LINKED_HASH_SET_FILTER;
+    return FLOAT_ITERABLE_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<Double, LinkedHashSet<Double>> doubleIterableToLinkedHashSetFilter()
+  public static NumberIterableSelector<Double, LinkedHashSet<Double>> doubleIterableToLinkedHashSetSelector()
   {
-    return DOUBLE_ITERABLE_TO_LINKED_HASH_SET_FILTER;
+    return DOUBLE_ITERABLE_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<BigInteger, LinkedHashSet<BigInteger>> bigIntegerIterableToLinkedHashSetFilter()
+  public static NumberIterableSelector<BigInteger, LinkedHashSet<BigInteger>> bigIntegerIterableToLinkedHashSetSelector()
   {
-    return BIG_INTEGER_ITERABLE_TO_LINKED_HASH_SET_FILTER;
+    return BIG_INTEGER_ITERABLE_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumberIterableFilter<BigDecimal, LinkedHashSet<BigDecimal>> bigDecimalIterableToLinkedHashSetFilter()
+  public static NumberIterableSelector<BigDecimal, LinkedHashSet<BigDecimal>> bigDecimalIterableToLinkedHashSetSelector()
   {
-    return BIG_DECIMAL_ITERABLE_TO_LINKED_HASH_SET_FILTER;
+    return BIG_DECIMAL_ITERABLE_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static abstract class NumbersFilter<T extends Number, C extends Collection<T>> implements
-      ArgsFilter<T, Condition1<T>, C>
+  public static abstract class NumbersSelector<T extends Number, C extends Collection<T>> implements
+      ArgsSelector<T, Condition1<T>, C>
   {
     protected abstract C newCollection();
 
     @Override
-    public C filter(final Condition1<T> condition, final T first)
+    public C select(final Condition1<T> condition, final T first)
     {
-      final C filteredCollection = newCollection();
+      final C selectedCollection = newCollection();
       if (condition.isMet(first))
-        filteredCollection.add(first);
-      return filteredCollection;
+        selectedCollection.add(first);
+      return selectedCollection;
     }
 
     @Override
-    public C filter(final Condition1<T> condition, final T first, final T second)
+    public C select(final Condition1<T> condition, final T first, final T second)
     {
-      final C filteredCollection = newCollection();
+      final C selectedCollection = newCollection();
       if (condition.isMet(first))
-        filteredCollection.add(first);
+        selectedCollection.add(first);
       if (condition.isMet(second))
-        filteredCollection.add(second);
-      return filteredCollection;
+        selectedCollection.add(second);
+      return selectedCollection;
     }
 
     @Override
-    public C filter(final Condition1<T> condition, final T first, final T second, final T third)
+    public C select(final Condition1<T> condition, final T first, final T second, final T third)
     {
-      final C filteredCollection = newCollection();
+      final C selectedCollection = newCollection();
       if (condition.isMet(first))
-        filteredCollection.add(first);
+        selectedCollection.add(first);
       if (condition.isMet(second))
-        filteredCollection.add(second);
+        selectedCollection.add(second);
       if (condition.isMet(third))
-        filteredCollection.add(third);
-      return filteredCollection;
+        selectedCollection.add(third);
+      return selectedCollection;
     }
 
     @Override
-    public C filter(final Condition1<T> condition, final T first, final T second, final T third, final T fourth)
+    public C select(final Condition1<T> condition, final T first, final T second, final T third, final T fourth)
     {
-      final C filteredCollection = newCollection();
+      final C selectedCollection = newCollection();
       if (condition.isMet(first))
-        filteredCollection.add(first);
+        selectedCollection.add(first);
       if (condition.isMet(second))
-        filteredCollection.add(second);
+        selectedCollection.add(second);
       if (condition.isMet(third))
-        filteredCollection.add(third);
+        selectedCollection.add(third);
       if (condition.isMet(fourth))
-        filteredCollection.add(fourth);
-      return filteredCollection;
+        selectedCollection.add(fourth);
+      return selectedCollection;
     }
 
     @Override
-    public C filter(final Condition1<T> condition, final T first, final T second, final T third, final T fourth,
+    public C select(final Condition1<T> condition, final T first, final T second, final T third, final T fourth,
         final T fifth)
     {
-      final C filteredCollection = newCollection();
+      final C selectedCollection = newCollection();
       if (condition.isMet(first))
-        filteredCollection.add(first);
+        selectedCollection.add(first);
       if (condition.isMet(second))
-        filteredCollection.add(second);
+        selectedCollection.add(second);
       if (condition.isMet(third))
-        filteredCollection.add(third);
+        selectedCollection.add(third);
       if (condition.isMet(fourth))
-        filteredCollection.add(fourth);
+        selectedCollection.add(fourth);
       if (condition.isMet(fifth))
-        filteredCollection.add(fifth);
-      return filteredCollection;
+        selectedCollection.add(fifth);
+      return selectedCollection;
     }
 
     @Override
-    public C filter(final Condition1<T> condition, final T first, final T second, final T third, final T fourth,
+    public C select(final Condition1<T> condition, final T first, final T second, final T third, final T fourth,
         final T fifth, final T... rest)
     {
-      final C filteredCollection = newCollection();
+      final C selectedCollection = newCollection();
       if (condition.isMet(first))
-        filteredCollection.add(first);
+        selectedCollection.add(first);
       if (condition.isMet(second))
-        filteredCollection.add(second);
+        selectedCollection.add(second);
       if (condition.isMet(third))
-        filteredCollection.add(third);
+        selectedCollection.add(third);
       if (condition.isMet(fourth))
-        filteredCollection.add(fourth);
+        selectedCollection.add(fourth);
       if (condition.isMet(fifth))
-        filteredCollection.add(fifth);
-      filter0(filteredCollection, condition, rest);
-      return filteredCollection;
+        selectedCollection.add(fifth);
+      select0(selectedCollection, condition, rest);
+      return selectedCollection;
     }
 
-    private void filter0(final C filteredCollection, final Condition1<T> condition, final T[] numbers)
+    private void select0(final C selectedCollection, final Condition1<T> condition, final T[] numbers)
     {
       for (final T value : numbers)
       {
         if (condition.isMet(value))
-          filteredCollection.add(value);
+          selectedCollection.add(value);
       }
     }
 
     @Override
-    public C filter(final Condition1<T> condition, final T[] source)
+    public C select(final Condition1<T> condition, final T[] source)
     {
-      final C filteredCollection = newCollection();
-      filter0(filteredCollection, condition, source);
-      return filteredCollection;
+      final C selectedCollection = newCollection();
+      select0(selectedCollection, condition, source);
+      return selectedCollection;
     }
   }
 
-  private static final class NumbersToArrayListFilter<T extends Number> extends NumbersFilter<T, ArrayList<T>>
+  private static final class NumbersToArrayListSelector<T extends Number> extends NumbersSelector<T, ArrayList<T>>
   {
     @Override
     protected ArrayList<T> newCollection()
@@ -472,7 +472,7 @@ public final class Numbers
     }
   }
 
-  private static final class NumbersToHashSetFilter<T extends Number> extends NumbersFilter<T, HashSet<T>>
+  private static final class NumbersToHashSetSelector<T extends Number> extends NumbersSelector<T, HashSet<T>>
   {
     @Override
     protected HashSet<T> newCollection()
@@ -481,7 +481,8 @@ public final class Numbers
     }
   }
 
-  private static final class NumbersToLinkedHashSetFilter<T extends Number> extends NumbersFilter<T, LinkedHashSet<T>>
+  private static final class NumbersToLinkedHashSetSelector<T extends Number> extends
+      NumbersSelector<T, LinkedHashSet<T>>
   {
     @Override
     protected LinkedHashSet<T> newCollection()
@@ -490,180 +491,186 @@ public final class Numbers
     }
   }
 
-  public static <T extends Number> NumbersFilter<T, ArrayList<T>> numbersToArrayListFilter()
+  public static <T extends Number> NumbersSelector<T, ArrayList<T>> numbersToArrayListSelector()
   {
-    return new NumbersToArrayListFilter<T>();
+    return new NumbersToArrayListSelector<T>();
   }
 
-  private static final NumbersFilter<Byte, ArrayList<Byte>> BYTES_TO_ARRAY_LIST_FILTER = numbersToArrayListFilter();
-  private static final NumbersFilter<Short, ArrayList<Short>> SHORTS_TO_ARRAY_LIST_FILTER = numbersToArrayListFilter();
-  private static final NumbersFilter<Integer, ArrayList<Integer>> INTEGERS_TO_ARRAY_LIST_FILTER =
-    numbersToArrayListFilter();
-  private static final NumbersFilter<Long, ArrayList<Long>> LONGS_TO_ARRAY_LIST_FILTER = numbersToArrayListFilter();
-  private static final NumbersFilter<Float, ArrayList<Float>> FLOATS_TO_ARRAY_LIST_FILTER = numbersToArrayListFilter();
-  private static final NumbersFilter<Double, ArrayList<Double>> DOUBLES_TO_ARRAY_LIST_FILTER =
-    numbersToArrayListFilter();
-  private static final NumbersFilter<BigInteger, ArrayList<BigInteger>> BIG_INTEGERS_TO_ARRAY_LIST_FILTER =
-    numbersToArrayListFilter();
-  private static final NumbersFilter<BigDecimal, ArrayList<BigDecimal>> BIG_DECIMALS_TO_ARRAY_LIST_FILTER =
-    numbersToArrayListFilter();
+  private static final NumbersSelector<Byte, ArrayList<Byte>> BYTES_TO_ARRAY_LIST_SELECTOR =
+    numbersToArrayListSelector();
+  private static final NumbersSelector<Short, ArrayList<Short>> SHORTS_TO_ARRAY_LIST_SELECTOR =
+    numbersToArrayListSelector();
+  private static final NumbersSelector<Integer, ArrayList<Integer>> INTEGERS_TO_ARRAY_LIST_SELECTOR =
+    numbersToArrayListSelector();
+  private static final NumbersSelector<Long, ArrayList<Long>> LONGS_TO_ARRAY_LIST_SELECTOR =
+    numbersToArrayListSelector();
+  private static final NumbersSelector<Float, ArrayList<Float>> FLOATS_TO_ARRAY_LIST_SELECTOR =
+    numbersToArrayListSelector();
+  private static final NumbersSelector<Double, ArrayList<Double>> DOUBLES_TO_ARRAY_LIST_SELECTOR =
+    numbersToArrayListSelector();
+  private static final NumbersSelector<BigInteger, ArrayList<BigInteger>> BIG_INTEGERS_TO_ARRAY_LIST_SELECTOR =
+    numbersToArrayListSelector();
+  private static final NumbersSelector<BigDecimal, ArrayList<BigDecimal>> BIG_DECIMALS_TO_ARRAY_LIST_SELECTOR =
+    numbersToArrayListSelector();
 
-  public static NumbersFilter<Byte, ArrayList<Byte>> bytesToArrayListFilter()
+  public static NumbersSelector<Byte, ArrayList<Byte>> bytesToArrayListSelector()
   {
-    return BYTES_TO_ARRAY_LIST_FILTER;
+    return BYTES_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumbersFilter<Short, ArrayList<Short>> shortsToArrayListFilter()
+  public static NumbersSelector<Short, ArrayList<Short>> shortsToArrayListSelector()
   {
-    return SHORTS_TO_ARRAY_LIST_FILTER;
+    return SHORTS_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumbersFilter<Integer, ArrayList<Integer>> integersToArrayListFilter()
+  public static NumbersSelector<Integer, ArrayList<Integer>> integersToArrayListSelector()
   {
-    return INTEGERS_TO_ARRAY_LIST_FILTER;
+    return INTEGERS_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumbersFilter<Long, ArrayList<Long>> longsToArrayListFilter()
+  public static NumbersSelector<Long, ArrayList<Long>> longsToArrayListSelector()
   {
-    return LONGS_TO_ARRAY_LIST_FILTER;
+    return LONGS_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumbersFilter<Float, ArrayList<Float>> floatsToArrayListFilter()
+  public static NumbersSelector<Float, ArrayList<Float>> floatsToArrayListSelector()
   {
-    return FLOATS_TO_ARRAY_LIST_FILTER;
+    return FLOATS_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumbersFilter<Double, ArrayList<Double>> doublesToArrayListFilter()
+  public static NumbersSelector<Double, ArrayList<Double>> doublesToArrayListSelector()
   {
-    return DOUBLES_TO_ARRAY_LIST_FILTER;
+    return DOUBLES_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumbersFilter<BigInteger, ArrayList<BigInteger>> bigIntegersToArrayListFilter()
+  public static NumbersSelector<BigInteger, ArrayList<BigInteger>> bigIntegersToArrayListSelector()
   {
-    return BIG_INTEGERS_TO_ARRAY_LIST_FILTER;
+    return BIG_INTEGERS_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static NumbersFilter<BigDecimal, ArrayList<BigDecimal>> bigDecimalsToArrayListFilter()
+  public static NumbersSelector<BigDecimal, ArrayList<BigDecimal>> bigDecimalsToArrayListSelector()
   {
-    return BIG_DECIMALS_TO_ARRAY_LIST_FILTER;
+    return BIG_DECIMALS_TO_ARRAY_LIST_SELECTOR;
   }
 
-  public static <T extends Number> NumbersFilter<T, HashSet<T>> numbersToHashSetFilter()
+  public static <T extends Number> NumbersSelector<T, HashSet<T>> numbersToHashSetSelector()
   {
-    return new NumbersToHashSetFilter<T>();
+    return new NumbersToHashSetSelector<T>();
   }
 
-  private static final NumbersFilter<Byte, HashSet<Byte>> BYTES_TO_HASH_SET_FILTER = numbersToHashSetFilter();
-  private static final NumbersFilter<Short, HashSet<Short>> SHORTS_TO_HASH_SET_FILTER = numbersToHashSetFilter();
-  private static final NumbersFilter<Integer, HashSet<Integer>> INTEGERS_TO_HASH_SET_FILTER = numbersToHashSetFilter();
-  private static final NumbersFilter<Long, HashSet<Long>> LONGS_TO_HASH_SET_FILTER = numbersToHashSetFilter();
-  private static final NumbersFilter<Float, HashSet<Float>> FLOATS_TO_HASH_SET_FILTER = numbersToHashSetFilter();
-  private static final NumbersFilter<Double, HashSet<Double>> DOUBLES_TO_HASH_SET_FILTER = numbersToHashSetFilter();
-  private static final NumbersFilter<BigInteger, HashSet<BigInteger>> BIG_INTEGERS_TO_HASH_SET_FILTER =
-    numbersToHashSetFilter();
-  private static final NumbersFilter<BigDecimal, HashSet<BigDecimal>> BIG_DECIMALS_TO_HASH_SET_FILTER =
-    numbersToHashSetFilter();
+  private static final NumbersSelector<Byte, HashSet<Byte>> BYTES_TO_HASH_SET_SELECTOR = numbersToHashSetSelector();
+  private static final NumbersSelector<Short, HashSet<Short>> SHORTS_TO_HASH_SET_SELECTOR = numbersToHashSetSelector();
+  private static final NumbersSelector<Integer, HashSet<Integer>> INTEGERS_TO_HASH_SET_SELECTOR =
+    numbersToHashSetSelector();
+  private static final NumbersSelector<Long, HashSet<Long>> LONGS_TO_HASH_SET_SELECTOR = numbersToHashSetSelector();
+  private static final NumbersSelector<Float, HashSet<Float>> FLOATS_TO_HASH_SET_SELECTOR = numbersToHashSetSelector();
+  private static final NumbersSelector<Double, HashSet<Double>> DOUBLES_TO_HASH_SET_SELECTOR =
+    numbersToHashSetSelector();
+  private static final NumbersSelector<BigInteger, HashSet<BigInteger>> BIG_INTEGERS_TO_HASH_SET_SELECTOR =
+    numbersToHashSetSelector();
+  private static final NumbersSelector<BigDecimal, HashSet<BigDecimal>> BIG_DECIMALS_TO_HASH_SET_SELECTOR =
+    numbersToHashSetSelector();
 
-  public static NumbersFilter<Byte, HashSet<Byte>> bytesToHashSetFilter()
+  public static NumbersSelector<Byte, HashSet<Byte>> bytesToHashSetSelector()
   {
-    return BYTES_TO_HASH_SET_FILTER;
+    return BYTES_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<Short, HashSet<Short>> shortsToHashSetFilter()
+  public static NumbersSelector<Short, HashSet<Short>> shortsToHashSetSelector()
   {
-    return SHORTS_TO_HASH_SET_FILTER;
+    return SHORTS_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<Integer, HashSet<Integer>> integersToHashSetFilter()
+  public static NumbersSelector<Integer, HashSet<Integer>> integersToHashSetSelector()
   {
-    return INTEGERS_TO_HASH_SET_FILTER;
+    return INTEGERS_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<Long, HashSet<Long>> longsToHashSetFilter()
+  public static NumbersSelector<Long, HashSet<Long>> longsToHashSetSelector()
   {
-    return LONGS_TO_HASH_SET_FILTER;
+    return LONGS_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<Float, HashSet<Float>> floatsToHashSetFilter()
+  public static NumbersSelector<Float, HashSet<Float>> floatsToHashSetSelector()
   {
-    return FLOATS_TO_HASH_SET_FILTER;
+    return FLOATS_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<Double, HashSet<Double>> doublesToHashSetFilter()
+  public static NumbersSelector<Double, HashSet<Double>> doublesToHashSetSelector()
   {
-    return DOUBLES_TO_HASH_SET_FILTER;
+    return DOUBLES_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<BigInteger, HashSet<BigInteger>> bigIntegersToHashSetFilter()
+  public static NumbersSelector<BigInteger, HashSet<BigInteger>> bigIntegersToHashSetSelector()
   {
-    return BIG_INTEGERS_TO_HASH_SET_FILTER;
+    return BIG_INTEGERS_TO_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<BigDecimal, HashSet<BigDecimal>> bigDecimalsToHashSetFilter()
+  public static NumbersSelector<BigDecimal, HashSet<BigDecimal>> bigDecimalsToHashSetSelector()
   {
-    return BIG_DECIMALS_TO_HASH_SET_FILTER;
+    return BIG_DECIMALS_TO_HASH_SET_SELECTOR;
   }
 
-  public static <T extends Number> NumbersFilter<T, LinkedHashSet<T>> numbersToLinkedHashSetFilter()
+  public static <T extends Number> NumbersSelector<T, LinkedHashSet<T>> numbersToLinkedHashSetSelector()
   {
-    return new NumbersToLinkedHashSetFilter<T>();
+    return new NumbersToLinkedHashSetSelector<T>();
   }
 
-  private static final NumbersFilter<Byte, LinkedHashSet<Byte>> BYTES_TO_LINKED_HASH_SET_FILTER =
-    numbersToLinkedHashSetFilter();
-  private static final NumbersFilter<Short, LinkedHashSet<Short>> SHORTS_TO_LINKED_HASH_SET_FILTER =
-    numbersToLinkedHashSetFilter();
-  private static final NumbersFilter<Integer, LinkedHashSet<Integer>> INTEGERS_TO_LINKED_HASH_SET_FILTER =
-    numbersToLinkedHashSetFilter();
-  private static final NumbersFilter<Long, LinkedHashSet<Long>> LONGS_TO_LINKED_HASH_SET_FILTER =
-    numbersToLinkedHashSetFilter();
-  private static final NumbersFilter<Float, LinkedHashSet<Float>> FLOATS_TO_LINKED_HASH_SET_FILTER =
-    numbersToLinkedHashSetFilter();
-  private static final NumbersFilter<Double, LinkedHashSet<Double>> DOUBLES_TO_LINKED_HASH_SET_FILTER =
-    numbersToLinkedHashSetFilter();
-  private static final NumbersFilter<BigInteger, LinkedHashSet<BigInteger>> BIG_INTEGERS_TO_LINKED_HASH_SET_FILTER =
-    numbersToLinkedHashSetFilter();
-  private static final NumbersFilter<BigDecimal, LinkedHashSet<BigDecimal>> BIG_DECIMALS_TO_LINKED_HASH_SET_FILTER =
-    numbersToLinkedHashSetFilter();
+  private static final NumbersSelector<Byte, LinkedHashSet<Byte>> BYTES_TO_LINKED_HASH_SET_SELECTOR =
+    numbersToLinkedHashSetSelector();
+  private static final NumbersSelector<Short, LinkedHashSet<Short>> SHORTS_TO_LINKED_HASH_SET_SELECTOR =
+    numbersToLinkedHashSetSelector();
+  private static final NumbersSelector<Integer, LinkedHashSet<Integer>> INTEGERS_TO_LINKED_HASH_SET_SELECTOR =
+    numbersToLinkedHashSetSelector();
+  private static final NumbersSelector<Long, LinkedHashSet<Long>> LONGS_TO_LINKED_HASH_SET_SELECTOR =
+    numbersToLinkedHashSetSelector();
+  private static final NumbersSelector<Float, LinkedHashSet<Float>> FLOATS_TO_LINKED_HASH_SET_SELECTOR =
+    numbersToLinkedHashSetSelector();
+  private static final NumbersSelector<Double, LinkedHashSet<Double>> DOUBLES_TO_LINKED_HASH_SET_SELECTOR =
+    numbersToLinkedHashSetSelector();
+  private static final NumbersSelector<BigInteger, LinkedHashSet<BigInteger>> BIG_INTEGERS_TO_LINKED_HASH_SET_SELECTOR =
+    numbersToLinkedHashSetSelector();
+  private static final NumbersSelector<BigDecimal, LinkedHashSet<BigDecimal>> BIG_DECIMALS_TO_LINKED_HASH_SET_SELECTOR =
+    numbersToLinkedHashSetSelector();
 
-  public static NumbersFilter<Byte, LinkedHashSet<Byte>> bytesToLinkedHashSetFilter()
+  public static NumbersSelector<Byte, LinkedHashSet<Byte>> bytesToLinkedHashSetSelector()
   {
-    return BYTES_TO_LINKED_HASH_SET_FILTER;
+    return BYTES_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<Short, LinkedHashSet<Short>> shortsToLinkedHashSetFilter()
+  public static NumbersSelector<Short, LinkedHashSet<Short>> shortsToLinkedHashSetSelector()
   {
-    return SHORTS_TO_LINKED_HASH_SET_FILTER;
+    return SHORTS_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<Integer, LinkedHashSet<Integer>> integersToLinkedHashSetFilter()
+  public static NumbersSelector<Integer, LinkedHashSet<Integer>> integersToLinkedHashSetSelector()
   {
-    return INTEGERS_TO_LINKED_HASH_SET_FILTER;
+    return INTEGERS_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<Long, LinkedHashSet<Long>> longsToLinkedHashSetFilter()
+  public static NumbersSelector<Long, LinkedHashSet<Long>> longsToLinkedHashSetSelector()
   {
-    return LONGS_TO_LINKED_HASH_SET_FILTER;
+    return LONGS_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<Float, LinkedHashSet<Float>> floatsToLinkedHashSetFilter()
+  public static NumbersSelector<Float, LinkedHashSet<Float>> floatsToLinkedHashSetSelector()
   {
-    return FLOATS_TO_LINKED_HASH_SET_FILTER;
+    return FLOATS_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<Double, LinkedHashSet<Double>> doublesToLinkedHashSetFilter()
+  public static NumbersSelector<Double, LinkedHashSet<Double>> doublesToLinkedHashSetSelector()
   {
-    return DOUBLES_TO_LINKED_HASH_SET_FILTER;
+    return DOUBLES_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<BigInteger, LinkedHashSet<BigInteger>> bigIntegersToLinkedHashSetFilter()
+  public static NumbersSelector<BigInteger, LinkedHashSet<BigInteger>> bigIntegersToLinkedHashSetSelector()
   {
-    return BIG_INTEGERS_TO_LINKED_HASH_SET_FILTER;
+    return BIG_INTEGERS_TO_LINKED_HASH_SET_SELECTOR;
   }
 
-  public static NumbersFilter<BigDecimal, LinkedHashSet<BigDecimal>> bigDecimalsToLinkedHashSetFilter()
+  public static NumbersSelector<BigDecimal, LinkedHashSet<BigDecimal>> bigDecimalsToLinkedHashSetSelector()
   {
-    return BIG_DECIMALS_TO_LINKED_HASH_SET_FILTER;
+    return BIG_DECIMALS_TO_LINKED_HASH_SET_SELECTOR;
   }
 
   /* convert primitive to boxed primitive */

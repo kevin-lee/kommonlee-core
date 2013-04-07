@@ -52,7 +52,7 @@ import org.junit.Test;
  */
 public class DoubleTotalTest
 {
-  private static final int HOW_MANY = 30;
+  // private static final int HOW_MANY = 30;
 
   /* @formatter:off */
 	private static final double[] NUMBERS1 = { Integer.MIN_VALUE, -5,   -4,  -3,  -2,  -1,  0,  1,  2,  3,  4,  5,  Integer.MAX_VALUE };
@@ -60,8 +60,8 @@ public class DoubleTotalTest
 	/* @formatter:on */
 
   private static final Random random = new Random();
-  private static final double[] NUMBERS3 = getRandomNumbers(50);
-  private static final double[] NUMBERS4 = getRandomNumbers(50);
+  private static final double[] NUMBERS3 = getRandomNumbers(3);
+  private static final double[] NUMBERS4 = getRandomNumbers(5);
 
   private static double[] getRandomNumbers(final int length)
   {
@@ -287,10 +287,10 @@ public class DoubleTotalTest
       }
     }
 
-    final double[] numbers3 = new double[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final double[] numbers4 = new double[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final double[] numbers3 = new double[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final double[] numbers4 = new double[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     for (final double n1 : numbers3)
     {
@@ -361,10 +361,10 @@ public class DoubleTotalTest
       }
     }
 
-    final double[] numbers3 = new double[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final double[] numbers4 = new double[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final double[] numbers3 = new double[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final double[] numbers4 = new double[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     for (final double n1 : numbers3)
     {
@@ -674,10 +674,10 @@ public class DoubleTotalTest
       }
     }
 
-    final Double[] numbers3 = new Double[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Double[] numbers4 = new Double[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Double[] numbers3 = new Double[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Double[] numbers4 = new Double[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     for (final Double n1 : numbers3)
     {
@@ -749,10 +749,10 @@ public class DoubleTotalTest
       }
     }
 
-    final Double[] numbers3 = new Double[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Double[] numbers4 = new Double[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Double[] numbers3 = new Double[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Double[] numbers4 = new Double[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     for (final Double n1 : numbers3)
     {

@@ -53,15 +53,14 @@ import org.junit.Test;
 public class BigIntegerTotalTest
 {
   private static final BigInteger[] NUMBERS1 = { BigInteger.valueOf(Long.MIN_VALUE), BigInteger.valueOf(-5),
-      BigInteger.valueOf(-2), BigInteger.valueOf(-1), BigInteger.valueOf(0), BigInteger.valueOf(1),
-      BigInteger.valueOf(2), BigInteger.valueOf(5), BigInteger.valueOf(Long.MAX_VALUE) };
-  private static final BigInteger[] NUMBERS2 = { BigInteger.valueOf(Long.MIN_VALUE), BigInteger.valueOf(-100),
-      BigInteger.valueOf(-80), BigInteger.valueOf(-70), BigInteger.valueOf(10), BigInteger.valueOf(20),
-      BigInteger.valueOf(50), BigInteger.valueOf(Long.MAX_VALUE) };
+      BigInteger.valueOf(-1), BigInteger.valueOf(0), BigInteger.valueOf(1), BigInteger.valueOf(5),
+      BigInteger.valueOf(Long.MAX_VALUE) };
+  private static final BigInteger[] NUMBERS2 = { BigInteger.valueOf(-10), BigInteger.valueOf(-1),
+      BigInteger.valueOf(0), BigInteger.valueOf(1), BigInteger.valueOf(10) };
 
   private static final Random random = new Random();
-  private static final BigInteger[] NUMBERS3 = getRandomNumbers(15);
-  private static final BigInteger[] NUMBERS4 = getRandomNumbers(15);
+  private static final BigInteger[] NUMBERS3 = getRandomNumbers(2);
+  private static final BigInteger[] NUMBERS4 = getRandomNumbers(3);
 
   private static BigInteger[] getRandomNumbers(final int length)
   {

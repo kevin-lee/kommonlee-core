@@ -52,7 +52,7 @@ import org.junit.Test;
  */
 public class LongTotalTest
 {
-  private static final int HOW_MANY = 30;
+  // private static final int HOW_MANY = 30;
 
   /* @formatter:off */
 	private static final long[] NUMBERS1 = { Integer.MIN_VALUE, -5,   -4,  -3,  -2,  -1,  Integer.MAX_VALUE,
@@ -63,8 +63,8 @@ public class LongTotalTest
 	/* @formatter:on */
 
   private static final Random random = new Random();
-  private static final long[] NUMBERS3 = getRandomNumbers(50);
-  private static final long[] NUMBERS4 = getRandomNumbers(50);
+  private static final long[] NUMBERS3 = getRandomNumbers(3);
+  private static final long[] NUMBERS4 = getRandomNumbers(5);
 
   private static long[] getRandomNumbers(final int length)
   {
@@ -295,10 +295,10 @@ public class LongTotalTest
       }
     }
 
-    final long[] numbers3 = new long[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final long[] numbers4 = new long[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final long[] numbers3 = new long[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final long[] numbers4 = new long[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     for (final long n1 : numbers3)
     {
@@ -374,10 +374,10 @@ public class LongTotalTest
       }
     }
 
-    final long[] numbers3 = new long[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final long[] numbers4 = new long[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final long[] numbers3 = new long[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final long[] numbers4 = new long[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     for (final long n1 : numbers3)
     {
@@ -669,10 +669,10 @@ public class LongTotalTest
       }
     }
 
-    final Long[] numbers3 = new Long[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Long[] numbers4 = new Long[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Long[] numbers3 = new Long[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Long[] numbers4 = new Long[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     for (final Long n1 : numbers3)
     {
@@ -749,10 +749,10 @@ public class LongTotalTest
       }
     }
 
-    final Long[] numbers3 = new Long[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Long[] numbers4 = new Long[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Long[] numbers3 = new Long[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Long[] numbers4 = new Long[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     for (final Long n1 : numbers3)
     {

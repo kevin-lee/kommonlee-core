@@ -32,6 +32,7 @@
 package org.elixirian.kommonlee.util.number;
 
 import static java.util.Arrays.*;
+import static org.elixirian.kommonlee.util.Objects.*;
 import static org.elixirian.kommonlee.util.number.BigDecimalTotal.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
@@ -52,16 +53,16 @@ import org.junit.Test;
  */
 public class BigDecimalTotalTest
 {
-  private static final BigDecimal[] NUMBERS1 = { BigDecimal.valueOf(Double.MIN_VALUE), BigDecimal.valueOf(-5.5D),
-      BigDecimal.valueOf(-2.3D), BigDecimal.valueOf(-1.1234D), BigDecimal.valueOf(0), BigDecimal.valueOf(1.0D),
-      BigDecimal.valueOf(2.3D), BigDecimal.valueOf(5.5D), BigDecimal.valueOf(Double.MAX_VALUE) };
-  private static final BigDecimal[] NUMBERS2 = { BigDecimal.valueOf(Double.MIN_VALUE), BigDecimal.valueOf(-100.20D),
-      BigDecimal.valueOf(-80.88D), BigDecimal.valueOf(-70.765D), BigDecimal.valueOf(10.00D),
-      BigDecimal.valueOf(20.23D), BigDecimal.valueOf(50.001D), BigDecimal.valueOf(Double.MAX_VALUE) };
+  private static final BigDecimal[] NUMBERS1 = { new BigDecimal(toStringOf(Double.MIN_VALUE)),
+      new BigDecimal(toStringOf(-50.5D)), new BigDecimal(toStringOf(-1.1234D)), new BigDecimal(toStringOf(0)),
+      new BigDecimal(toStringOf(1.1234D)), new BigDecimal(toStringOf(50.5D)),
+      new BigDecimal(toStringOf(Double.MAX_VALUE)) };
+  private static final BigDecimal[] NUMBERS2 = { new BigDecimal("-10"), new BigDecimal("-1"), BigDecimal.ZERO,
+      BigDecimal.ONE, BigDecimal.TEN };
 
   private static final Random random = new Random();
-  private static final BigDecimal[] NUMBERS3 = getRandomNumbers(10);
-  private static final BigDecimal[] NUMBERS4 = getRandomNumbers(15);
+  private static final BigDecimal[] NUMBERS3 = getRandomNumbers(2);
+  private static final BigDecimal[] NUMBERS4 = getRandomNumbers(3);
 
   private static BigDecimal[] getRandomNumbers(final int length)
   {

@@ -52,7 +52,7 @@ import org.junit.Test;
  */
 public class ShortTotalTest
 {
-  private static final int HOW_MANY = 30;
+  // private static final int HOW_MANY = 30;
 
   /* @formatter:off */
 	private static final short[] NUMBERS1 =
@@ -62,8 +62,8 @@ public class ShortTotalTest
 	/* @formatter:on */
 
   private static final Random random = new Random();
-  private static final short[] NUMBERS3 = getRandomNumbers(50);
-  private static final short[] NUMBERS4 = getRandomNumbers(50);
+  private static final short[] NUMBERS3 = getRandomNumbers(3);
+  private static final short[] NUMBERS4 = getRandomNumbers(5);
 
   private static short[] getRandomNumbers(final int length)
   {
@@ -294,10 +294,10 @@ public class ShortTotalTest
       }
     }
 
-    final short[] numbers3 = new short[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final short[] numbers4 = new short[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final short[] numbers3 = new short[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final short[] numbers4 = new short[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     for (final short n1 : numbers3)
     {
@@ -372,10 +372,10 @@ public class ShortTotalTest
       }
     }
 
-    final short[] numbers3 = new short[HOW_MANY];
-    System.arraycopy(NUMBERS3, 0, numbers3, 0, HOW_MANY);
-    final short[] numbers4 = new short[HOW_MANY];
-    System.arraycopy(NUMBERS4, 0, numbers4, 0, HOW_MANY);
+    final short[] numbers3 = new short[NUMBERS3.length];
+    System.arraycopy(NUMBERS3, 0, numbers3, 0, NUMBERS3.length);
+    final short[] numbers4 = new short[NUMBERS4.length];
+    System.arraycopy(NUMBERS4, 0, numbers4, 0, NUMBERS4.length);
 
     for (final short n1 : numbers3)
     {
@@ -660,10 +660,10 @@ public class ShortTotalTest
       }
     }
 
-    final Short[] numbers3 = new Short[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Short[] numbers4 = new Short[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Short[] numbers3 = new Short[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Short[] numbers4 = new Short[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     for (final Short n1 : numbers3)
     {
@@ -740,10 +740,10 @@ public class ShortTotalTest
       }
     }
 
-    final Short[] numbers3 = new Short[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, HOW_MANY);
-    final Short[] numbers4 = new Short[HOW_MANY];
-    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, HOW_MANY);
+    final Short[] numbers3 = new Short[NUMBERS3.length];
+    System.arraycopy(convertToBoxed(NUMBERS3), 0, numbers3, 0, NUMBERS3.length);
+    final Short[] numbers4 = new Short[NUMBERS4.length];
+    System.arraycopy(convertToBoxed(NUMBERS4), 0, numbers4, 0, NUMBERS4.length);
 
     for (final Short n1 : numbers3)
     {
