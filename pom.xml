@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>kommonlee-io</artifactId>
-	<version>0.0.21-SNAPSHOT</version>
+	<version>0.0.22-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>kommonlee-io</name>
@@ -72,22 +72,22 @@
 		<dependency>
 		  <groupId>org.elixirian</groupId>
 		  <artifactId>kommonlee-exception</artifactId>
-		  <version>0.0.18-SNAPSHOT</version>
+		  <version>0.0.19-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 		  <groupId>org.elixirian</groupId>
 		  <artifactId>kommonlee-util</artifactId>
-		  <version>0.0.28-SNAPSHOT</version>
+		  <version>0.0.29-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 		  <groupId>org.elixirian</groupId>
 		  <artifactId>kommonlee-validation</artifactId>
-		  <version>0.0.28-SNAPSHOT</version>
+		  <version>0.0.29-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 		  <groupId>org.elixirian</groupId>
 		  <artifactId>kommonlee-collection</artifactId>
-		  <version>0.0.16-SNAPSHOT</version>
+		  <version>0.0.17-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
