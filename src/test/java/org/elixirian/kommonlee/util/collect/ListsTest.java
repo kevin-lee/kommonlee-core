@@ -377,6 +377,327 @@ public class ListsTest
     assertEquals(expected3.size(), list3.size());
   }
 
+  @Test
+  public final void testNewArrayListOrEmptyListIfNullForCollectionOfQextendsE()
+  {
+    /* given */
+    @SuppressWarnings("rawtypes")
+    final Class<ArrayList> expectedType = EXPECTED_ARRAY_LIST_TYPE;
+
+    final Collection<Integer> expected1 = INTEGER_VALUE_LIST;
+
+    /* when */
+    final List<Integer> list1 = newArrayListOrEmptyListIfNull(expected1);
+
+    /* then */
+    assertThat(list1, is(instanceOf(expectedType)));
+    assertThat(list1, is(equalTo(expected1)));
+    assertEquals(expected1.size(), list1.size());
+
+    /* given */
+    final Collection<String> expected2 = STRING_VALUE_LIST;
+
+    /* when */
+    final List<String> list2 = newArrayListOrEmptyListIfNull(expected2);
+
+    /* then */
+    assertThat(list2, is(instanceOf(expectedType)));
+    assertThat(list2, is(equalTo(expected2)));
+    assertEquals(expected2.size(), list2.size());
+
+    /* given */
+    final Collection<Object> expected3 = OBJECT_LIST;
+
+    /* when */
+    final List<Object> list3 = newArrayListOrEmptyListIfNull(expected3);
+
+    /* then */
+    assertThat(list3, is(instanceOf(expectedType)));
+    assertThat(list3, is(equalTo(expected3)));
+    assertEquals(expected3.size(), list3.size());
+  }
+
+  @Test
+  public final void testNewArrayListOrEmptyListIfNullForNullCollectionOfQextendsE()
+  {
+    /* given */
+    @SuppressWarnings("rawtypes")
+    final Class<? extends List> expectedType = Collections.emptyList()
+        .getClass();
+
+    final List<Integer> expected1 = Collections.emptyList();
+
+    final Collection<Integer> input1 = null;
+
+    /* when */
+    final List<Integer> actual1 = newArrayListOrEmptyListIfNull(input1);
+
+    /* then */
+    assertThat(actual1, is(not(nullValue())));
+    assertThat(actual1, is(instanceOf(expectedType)));
+    assertThat(actual1, is(equalTo(expected1)));
+    assertEquals(0, actual1.size());
+    assertEquals(expected1.size(), actual1.size());
+
+    /* given */
+    final List<String> expected2 = Collections.emptyList();
+
+    final List<String> input2 = null;
+
+    /* when */
+    final List<String> actual2 = newArrayListOrEmptyListIfNull(input2);
+
+    /* then */
+    assertThat(actual2, is(not(nullValue())));
+    assertThat(actual2, is(instanceOf(expectedType)));
+    assertThat(actual2, is(equalTo(expected2)));
+    assertEquals(0, actual2.size());
+    assertEquals(expected2.size(), actual2.size());
+  }
+
+  @Test
+  public final void testNewArrayListOrEmptyListIfNullForIterableOfQextendsE()
+  {
+    /* given */
+    @SuppressWarnings("rawtypes")
+    final Class<ArrayList> expectedType = EXPECTED_ARRAY_LIST_TYPE;
+
+    final Collection<Integer> expected1 = INTEGER_VALUE_LIST;
+    final Iterable<Integer> input1 = expected1;
+
+    /* when */
+    final List<Integer> list1 = newArrayList(input1);
+
+    /* then */
+    assertThat(list1, is(instanceOf(expectedType)));
+    assertThat(list1, is(equalTo(expected1)));
+    assertEquals(expected1.size(), list1.size());
+
+    /* given */
+    final Collection<String> expected2 = STRING_VALUE_LIST;
+    final Iterable<String> input2 = expected2;
+
+    /* when */
+    final List<String> list2 = newArrayList(input2);
+
+    /* then */
+    assertThat(list2, is(instanceOf(expectedType)));
+    assertThat(list2, is(equalTo(expected2)));
+    assertEquals(expected2.size(), list2.size());
+
+    /* given */
+    final Collection<Object> expected3 = OBJECT_LIST;
+    final Iterable<Object> input3 = expected3;
+
+    /* when */
+    final List<Object> list3 = newArrayList(input3);
+
+    /* then */
+    assertThat(list3, is(instanceOf(expectedType)));
+    assertThat(list3, is(equalTo(expected3)));
+    assertEquals(expected3.size(), list3.size());
+  }
+
+  @Test
+  public final void testNewArrayListOrEmptyListIfNullForNullIterableOfQextendsE()
+  {
+    /* given */
+    @SuppressWarnings("rawtypes")
+    final Class<? extends List> expectedType = Collections.emptyList()
+        .getClass();
+
+    final List<Integer> expected1 = Collections.emptyList();
+
+    final Iterable<Integer> input1 = null;
+
+    /* when */
+    final List<Integer> actual1 = newArrayListOrEmptyListIfNull(input1);
+
+    /* then */
+    assertThat(actual1, is(not(nullValue())));
+    assertThat(actual1, is(instanceOf(expectedType)));
+    assertThat(actual1, is(equalTo(expected1)));
+    assertEquals(0, actual1.size());
+    assertEquals(expected1.size(), actual1.size());
+
+    /* given */
+    final List<String> expected2 = Collections.emptyList();
+
+    final Iterable<String> input2 = null;
+
+    /* when */
+    final List<String> actual2 = newArrayListOrEmptyListIfNull(input2);
+
+    /* then */
+    assertThat(actual2, is(not(nullValue())));
+    assertThat(actual2, is(instanceOf(expectedType)));
+    assertThat(actual2, is(equalTo(expected2)));
+    assertEquals(0, actual2.size());
+    assertEquals(expected2.size(), actual2.size());
+  }
+
+  @Test
+  public final void testNewArrayListOrEmptyListIfNullForIteratorOfQextendsE()
+  {
+    /* given */
+    @SuppressWarnings("rawtypes")
+    final Class<ArrayList> expectedType = EXPECTED_ARRAY_LIST_TYPE;
+
+    final Collection<Integer> expected1 = INTEGER_VALUE_LIST;
+    final Iterator<Integer> input1 = expected1.iterator();
+
+    /* when */
+    final List<Integer> list1 = newArrayList(input1);
+
+    /* then */
+    assertThat(list1, is(instanceOf(expectedType)));
+    assertThat(list1, is(equalTo(expected1)));
+    assertEquals(expected1.size(), list1.size());
+
+    /* given */
+    final Collection<String> expected2 = STRING_VALUE_LIST;
+    final Iterator<String> input2 = expected2.iterator();
+
+    /* when */
+    final List<String> list2 = newArrayList(input2);
+
+    /* then */
+    assertThat(list2, is(instanceOf(expectedType)));
+    assertThat(list2, is(equalTo(expected2)));
+    assertEquals(expected2.size(), list2.size());
+
+    /* given */
+    final Collection<Object> expected3 = OBJECT_LIST;
+    final Iterator<Object> input3 = expected3.iterator();
+
+    /* when */
+    final List<Object> list3 = newArrayList(input3);
+
+    /* then */
+    assertThat(list3, is(instanceOf(expectedType)));
+    assertThat(list3, is(equalTo(expected3)));
+    assertEquals(expected3.size(), list3.size());
+  }
+
+  @Test
+  public final void testNewArrayListOrEmptyListIfNullForNullIteratorOfQextendsE()
+  {
+    /* given */
+    @SuppressWarnings("rawtypes")
+    final Class<? extends List> expectedType = Collections.emptyList()
+        .getClass();
+
+    final List<Integer> expected1 = Collections.emptyList();
+
+    final Iterator<Integer> input1 = null;
+
+    /* when */
+    final List<Integer> actual1 = newArrayListOrEmptyListIfNull(input1);
+
+    /* then */
+    assertThat(actual1, is(not(nullValue())));
+    assertThat(actual1, is(instanceOf(expectedType)));
+    assertThat(actual1, is(equalTo(expected1)));
+    assertEquals(0, actual1.size());
+    assertEquals(expected1.size(), actual1.size());
+
+    /* given */
+    final List<String> expected2 = Collections.emptyList();
+
+    final Iterator<String> input2 = null;
+
+    /* when */
+    final List<String> actual2 = newArrayListOrEmptyListIfNull(input2);
+
+    /* then */
+    assertThat(actual2, is(not(nullValue())));
+    assertThat(actual2, is(instanceOf(expectedType)));
+    assertThat(actual2, is(equalTo(expected2)));
+    assertEquals(0, actual2.size());
+    assertEquals(expected2.size(), actual2.size());
+  }
+
+  @Test
+  public final void testNewArrayListOrEmptyListIfNullForEArray()
+  {
+    /* given */
+    @SuppressWarnings("rawtypes")
+    final Class<ArrayList> expectedType = EXPECTED_ARRAY_LIST_TYPE;
+
+    final Collection<Integer> expected1 = INTEGER_VALUE_LIST;
+    final Integer[] input1 = expected1.toArray(new Integer[expected1.size()]);
+
+    /* when */
+    final List<Integer> list1 = newArrayList(input1);
+
+    /* then */
+    assertThat(list1, is(instanceOf(expectedType)));
+    assertThat(list1, is(equalTo(expected1)));
+    assertEquals(expected1.size(), list1.size());
+
+    /* given */
+    final Collection<String> expected2 = STRING_VALUE_LIST;
+    final String[] input2 = expected2.toArray(new String[expected2.size()]);
+
+    /* when */
+    final List<String> list2 = newArrayList(input2);
+
+    /* then */
+    assertThat(list2, is(instanceOf(expectedType)));
+    assertThat(list2, is(equalTo(expected2)));
+    assertEquals(expected2.size(), list2.size());
+
+    /* given */
+    final Collection<Object> expected3 = OBJECT_LIST;
+    final Object[] input3 = expected3.toArray(new Object[expected3.size()]);
+
+    /* when */
+    final List<Object> list3 = newArrayList(input3);
+
+    /* then */
+    assertThat(list3, is(instanceOf(expectedType)));
+    assertThat(list3, is(equalTo(expected3)));
+    assertEquals(expected3.size(), list3.size());
+  }
+
+  @Test
+  public final void testNewArrayListOrEmptyListIfNullForNullEArray()
+  {
+    /* given */
+    @SuppressWarnings("rawtypes")
+    final Class<? extends List> expectedType = Collections.emptyList()
+        .getClass();
+
+    final List<Integer> expected1 = Collections.emptyList();
+
+    final Integer[] input1 = null;
+
+    /* when */
+    final List<Integer> actual1 = newArrayListOrEmptyListIfNull(input1);
+
+    /* then */
+    assertThat(actual1, is(not(nullValue())));
+    assertThat(actual1, is(instanceOf(expectedType)));
+    assertThat(actual1, is(equalTo(expected1)));
+    assertEquals(0, actual1.size());
+    assertEquals(expected1.size(), actual1.size());
+
+    /* given */
+    final List<String> expected2 = Collections.emptyList();
+
+    final String[] input2 = null;
+
+    /* when */
+    final List<String> actual2 = newArrayListOrEmptyListIfNull(input2);
+
+    /* then */
+    assertThat(actual2, is(not(nullValue())));
+    assertThat(actual2, is(instanceOf(expectedType)));
+    assertThat(actual2, is(equalTo(expected2)));
+    assertEquals(0, actual2.size());
+    assertEquals(expected2.size(), actual2.size());
+  }
+
   // private static final Random random = new Random(1234);
 
   @Test

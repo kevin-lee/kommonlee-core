@@ -143,13 +143,93 @@ public final class Lists
   }
 
   /**
-   * Returns an immutable empty list returned from Collections.emptyList() if the given list parameter contains a
-   * null reference. Otherwise it returns the parameter list back to the caller.
+   * Returns a new instance of {@link ArrayList} containing the elements of the specified collection, in the order they
+   * are returned by the collection's iterator. If the given Collection is null, it returns an immutable empty list
+   * returned from Collections.emptyList().
+   * 
+   * @param <E>
+   *          the type of element the ArrayList contains.
+   * @param elements
+   *          the elements the given ArrayList contains.
+   * @return a new instance of {@link ArrayList} containing the elements of the specified collection, in the order they
+   *         are returned by the collection's iterator. If the given Collection is null, it returns an immutable empty
+   *         list returned from Collections.emptyList().
+   */
+  public static <E> List<E> newArrayListOrEmptyListIfNull(final Collection<? extends E> elements)
+  {
+    return null == elements ? Collections.<E> emptyList() : newArrayList(elements);
+  }
+
+  /**
+   * Returns a new instance of {@link ArrayList} containing the elements in the given {@link Iterable}. If the given
+   * Iterable is null, it returns an immutable empty list returned from Collections.emptyList().
+   * 
+   * @param <E>
+   *          the type of element the Iterable contains.
+   * @param elements
+   *          the elements the given Iterable contains.
+   * @return a new instance of {@link ArrayList} containing the elements in the given {@link Iterable}. If the given
+   *         Iterable is null, it returns an immutable empty list returned from Collections.emptyList().
+   */
+  public static <E> List<E> newArrayListOrEmptyListIfNull(final Iterable<? extends E> elements)
+  {
+    return null == elements ? Collections.<E> emptyList() : newArrayList(elements);
+  }
+
+  /**
+   * Returns a new instance of {@link ArrayList} containing the elements in the given {@link Iterator}. If the given
+   * Iterator is null, it returns an immutable empty list returned from Collections.emptyList().
+   * 
+   * @param <E>
+   *          the type of element the Iterator contains.
+   * @param elements
+   *          the elements the given Iterator contains.
+   * @return a new instance of {@link ArrayList} containing the elements in the given {@link Iterator}. If the given
+   *         Iterator is null, it returns an immutable empty list returned from Collections.emptyList().
+   */
+  public static <E> List<E> newArrayListOrEmptyListIfNull(final Iterator<? extends E> elements)
+  {
+    return null == elements ? Collections.<E> emptyList() : newArrayList(elements);
+  }
+
+  /**
+   * Returns a new instance of {@link ArrayList} containing the given elements. If the given elements array (varargs) is
+   * null, it returns an immutable empty list returned from Collections.emptyList(). Note: It doesn't mean that it
+   * returns an empty list if only one element is given and it's null , but the entire elements varargs (array) is null
+   * then it returns an empty list.
+   * 
+   * <pre>
+   * List&lt;String&gt; list = newArrayListOrImmutableEmptyListIfNull(null);
+   * // list is an instance of ArrayList containing one element that is a null reference.
+   * // list.size() == 1 and list.get(0) == null
+   * </pre>
+   * 
+   * <pre>
+   * String[] array = null;
+   * List&lt;String&gt; list = newArrayListOrImmutableEmptyListIfNull(array);
+   * // (or newArrayListOrImmutableEmptyListIfNull((String[]) null)
+   * // list is an empty list.
+   * // list.size() == 0 and list.get(0) -&gt; IndexOutOfBoundsException
+   * </pre>
+   * 
+   * @param elements
+   *          the given elements
+   * @return a new instance of {@link ArrayList} containing the given elements. If the given elements array (varargs) is
+   *         null, it returns an immutable empty list returned from Collections.emptyList().
+   */
+  public static <E> List<E> newArrayListOrEmptyListIfNull(final E... elements)
+  {
+    return null == elements ? Collections.<E> emptyList() : newArrayList(elements);
+  }
+
+  /**
+   * Returns an immutable empty list returned from Collections.emptyList() if the given list parameter contains a null
+   * reference. Otherwise it returns the parameter list back to the caller.
    * 
    * @param list
    *          the given List object. It can be null.
-   * @return an immutable empty list returned from Collections.emptyList() if the given list parameter contains a
-   *         null reference. Otherwise it returns the parameter list back to the caller.
+   * @return an immutable empty list returned from Collections.emptyList() if the given list parameter contains a null
+   *         reference. Otherwise it returns the parameter list back to the caller.
    */
   public static <E> List<E> immutableEmptyListIfNull(final List<E> list)
   {
