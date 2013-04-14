@@ -34,6 +34,7 @@ package org.elixirian.kommonlee.collect.immutable;
 import java.util.Collection;
 
 import org.elixirian.kommonlee.collect.Kollection;
+import org.elixirian.kommonlee.util.CommonConstants;
 
 /**
  * <pre>
@@ -57,11 +58,16 @@ import org.elixirian.kommonlee.collect.Kollection;
  */
 public final class ImmutableLists
 {
+  private ImmutableLists() throws IllegalAccessException
+  {
+    throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
+  }
+
   public static <T> ImmutableList<T> emptyList()
   {
     return ImmutableArrayList.emptyList();
   }
-  
+
   public static <T> ImmutableArrayList<T> copyOf(final Collection<? extends T> collection)
   {
     return ImmutableArrayList.copyOf(collection);
