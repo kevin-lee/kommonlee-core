@@ -84,6 +84,8 @@ public interface Kollection<E> extends Iterable<E>, LengthCheckable, SizeCheckab
   @Override
   boolean isNotEmpty();
 
+  boolean exists(Condition1<? super E> seeker);
+  
   boolean contains(Object element);
 
   boolean containsAll(Kollection<?> kollection);

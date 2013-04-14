@@ -29,17 +29,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.elixirian.kommonlee.collect;
+package org.elixirian.kommonlee.collect.immutable;
 
-import java.util.Iterator;
+import java.util.Collection;
 
-import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.collect.Kollection;
 
 /**
  * <pre>
  *     ___  _____                                              _____
- *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
- *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
@@ -53,99 +53,32 @@ import org.elixirian.kommonlee.type.functional.Condition1;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-10-13)
+ * @version 0.0.1 (2011-09-18)
  */
-public abstract class AbstractKollection<E> implements Kollection<E>
+public final class ImmutableLists
 {
-  @Override
-  public int size()
+  public static <T> ImmutableList<T> emptyList()
   {
-    return length();
+    return ImmutableArrayList.emptyList();
+  }
+  
+  public static <T> ImmutableArrayList<T> copyOf(final Collection<? extends T> collection)
+  {
+    return ImmutableArrayList.copyOf(collection);
   }
 
-  @Override
-  public boolean isEmpty()
+  public static <T> ImmutableArrayList<T> copyOf(final Kollection<? extends T> kollection)
   {
-    return 0 == length();
+    return ImmutableArrayList.copyOf(kollection);
   }
 
-  @Override
-  public boolean isNotEmpty()
+  public static <T> ImmutableArrayList<T> listOf(final T... elements)
   {
-    return !isEmpty();
+    return ImmutableArrayList.listOf(elements);
   }
 
-  @Override
-  public boolean exists(final Condition1<? super E> seeker)
+  public static <T> ImmutableArrayList<T> listOf(final T[] elements, final int howMany)
   {
-    final Iterator<E> iterator = iterator();
-    while (iterator.hasNext())
-    {
-      if (seeker.isMet(iterator.next()))
-      {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  @Override
-  public boolean contains(final Object element)
-  {
-    final Iterator<E> iterator = iterator();
-    if (null == element)
-    {
-      while (iterator.hasNext())
-      {
-        if (null == iterator.next())
-        {
-          return true;
-        }
-      }
-      return false;
-    }
-    while (iterator.hasNext())
-    {
-      if (element.equals(iterator.next()))
-      {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  @Override
-  public boolean containsAll(final Kollection<?> kollection)
-  {
-    for (final Object element : kollection)
-    {
-      if (!contains(element))
-      {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  @Override
-  public int howMany(final Condition1<? super E> conditionToMeet)
-  {
-    int count = 0;
-    final Iterator<E> iterator = iterator();
-    while (iterator.hasNext())
-    {
-      final E element = iterator.next();
-      if (conditionToMeet.isMet(element))
-      {
-        count++;
-      }
-    }
-    return count;
-  }
-
-  @Override
-  public String toString()
-  {
-    return Kollections.toStringOf(this);
+    return ImmutableArrayList.listOf(elements, howMany);
   }
 }
