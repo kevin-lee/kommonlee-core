@@ -20,6 +20,19 @@
 		<url>http://elixirian.com</url>
 	</organization>
 
+  <repositories>
+    <repository>
+      <id>releases</id>
+      <name>Kevin's Releases</name>
+      <url>http://nexus.lckymn.com/content/repositories/releases</url>
+    </repository>
+    <repository>
+      <id>snapshots</id>
+      <name>Kevin's Snapshots</name>
+      <url>http://nexus.lckymn.com/content/repositories/snapshots</url>
+    </repository>
+  </repositories>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -58,12 +71,18 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.10</version>
-			<scope>test</scope>
-		</dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.9.5</version>
+      <scope>test</scope>
+    </dependency>
 
 		<dependency>
 		  <groupId>org.elixirian</groupId>
