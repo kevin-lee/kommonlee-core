@@ -138,8 +138,8 @@ public class CollectTest
 		/* @formatter:on */
 
     System.out.println("emptyList.select: " + resultFromEmptyListSelect);
-    System.out.println("emptyList.select == ImmutableArrayList.EMPTY_IMMUTABLE_ARRAY_LIST): "
-        + (resultFromEmptyListSelect == ImmutableLists.<Integer> emptyList()));
+    System.out.println("emptyList.select == ImmutableArrayList.EMPTY_IMMUTABLE_ARRAY_LIST): " + 
+          (resultFromEmptyListSelect == ImmutableLists.<Integer> emptyList()));
 
     /* @formatter:off */
     System.out.println("list2.map: "+ list2.map(new Function1<Integer, String>()
@@ -151,8 +151,8 @@ public class CollectTest
         { @Override public String apply(final Integer input) { return -100 > input.intValue() ? "Fewer than -100" : "NO"; } });
     /* @formatter:on */
     System.out.println("someList.map: " + resultFromEmptyListMapMethod);
-    System.out.println("resultFromEmptyList.map() == ImmutableArrayList.EMPTY_IMMUTABLE_ARRAY_LIST: "
-        + (resultFromEmptyListMapMethod == ImmutableLists.<String> emptyList()));
+    System.out.println("resultFromEmptyList.map() == ImmutableArrayList.EMPTY_IMMUTABLE_ARRAY_LIST: " +
+          (resultFromEmptyListMapMethod == ImmutableLists.<String> emptyList()));
 
     /* @formatter:off */
     System.out.println(list2.mapSelectively(new Condition1<Integer>()
