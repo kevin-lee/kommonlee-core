@@ -35,9 +35,9 @@ import static org.elixirian.kommonlee.util.Objects.*;
 import static org.elixirian.kommonlee.util.collect.Lists.*;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.elixirian.kommonlee.collect.AbstractReadableList;
@@ -285,7 +285,7 @@ public abstract class ImmutableArrayList<E> extends AbstractReadableList<E> impl
     @Override
     public List<E> convertTo()
     {
-      throw new UnsupportedOperationException();
+      return Collections.emptyList();
     }
   }
 
@@ -363,10 +363,10 @@ public abstract class ImmutableArrayList<E> extends AbstractReadableList<E> impl
     }
 
     @Override
-    public ArrayList<E> convertTo()
+    public List<E> convertTo()
     {
       @SuppressWarnings("unchecked")
-      final ArrayList<E> list = newArrayList((E[]) this.elements);
+      final List<E> list = Collections.unmodifiableList(newArrayList((E[]) this.elements));
       return list;
     }
 
