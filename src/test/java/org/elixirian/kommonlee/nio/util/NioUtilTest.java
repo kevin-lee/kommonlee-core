@@ -32,6 +32,7 @@
 package org.elixirian.kommonlee.nio.util;
 
 import static org.elixirian.kommonlee.test.CommonTestHelper.*;
+import static org.elixirian.kommonlee.util.collect.Lists.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -41,12 +42,23 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.elixirian.kommonlee.io.ByteArrayConsumer;
+import org.elixirian.kommonlee.io.ByteArrayConsumingContainer;
 import org.elixirian.kommonlee.io.ByteArrayProducer;
+import org.elixirian.kommonlee.io.CharArrayConsumer;
+import org.elixirian.kommonlee.io.CharArrayConsumingContainer;
+import org.elixirian.kommonlee.io.DataConsumers;
+import org.elixirian.kommonlee.io.IoCommonConstants;
 import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
+import org.elixirian.kommonlee.util.NeoArrays;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -66,7 +78,7 @@ import org.mockito.stubbing.Answer;
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- *
+ * 
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -74,7 +86,7 @@ import org.mockito.stubbing.Answer;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- *
+ * 
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-07-13)
  */
@@ -84,7 +96,8 @@ public class NioUtilTest
   public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
   private List<Byte> byteList;
-  private StringBuilder stringBuilder;
+  private List<Character> charList;
+  private String string;
 
   /**
    * @throws java.lang.Exception
@@ -108,13 +121,26 @@ public class NioUtilTest
   @Before
   public void setUp() throws Exception
   {
-    byteList = new ArrayList<Byte>();
-    stringBuilder = new StringBuilder();
-    readFile(getTestFile(), byteList, stringBuilder);
-
+    final List<Byte> byteList = new ArrayList<Byte>();
+    this.string = readFile(getTestFile(), byteList);
+    this.byteList = Collections.unmodifiableList(byteList);
+    charList = Arrays.asList(NeoArrays.convertToBoxedPrimitive(string.toCharArray()));
   }
 
-  private void readFile(final File file, final List<Byte> byteList, final StringBuilder stringBuilder)
+  private List<Character> toCharListWithCharSet(final String string, final Charset charset)
+  {
+    final String stringWithDifferentCharset = new String(string.getBytes(), charset);
+    final List<Character> charList = newArrayList();
+    for (final char c : stringWithDifferentCharset.toCharArray())
+    {
+      @SuppressWarnings("boxing")
+      final Character character = c;
+      charList.add(character);
+    }
+    return charList;
+  }
+
+  private String readFile(final File file, final List<Byte> byteList)
   {
     FileInputStream fileInputStream = null;
     try
@@ -126,11 +152,13 @@ public class NioUtilTest
       {
         for (int i = 0; i < bytesRead; i++)
         {
-          byteList.add(Byte.valueOf(buffer[i]));
-          stringBuilder.append((char) buffer[i]);
+          @SuppressWarnings("boxing")
+          final Byte bt = buffer[i];
+          byteList.add(bt);
         }
         bytesRead = fileInputStream.read(buffer);
       }
+      return new String(NeoArrays.convertToPrimitive(byteList.toArray(new Byte[0])));
     }
     catch (final FileNotFoundException e)
     {
@@ -157,10 +185,16 @@ public class NioUtilTest
 
   private File getTestFile()
   {
-    return new File(this.getClass()
-        .getResource("/file4testing.txt")
-        .getFile()
-        .replace("%20", " "));
+    try
+    {
+      return new File(new URI(this.getClass()
+          .getResource("/file4testing.txt")
+          .toString()));
+    }
+    catch (final URISyntaxException e)
+    {
+      throw new UnsupportedOperationException(e);
+    }
   }
 
   /**
@@ -223,25 +257,28 @@ public class NioUtilTest
 
   private static class ByteArrayConsumer4Testing implements ByteArrayConsumer
   {
-    private final List<Byte> byteList;
-    private final StringBuilder stringBuilder;
-
-    public ByteArrayConsumer4Testing(final List<Byte> byteList, final StringBuilder stringBuilder)
-    {
-      this.byteList = byteList;
-      this.stringBuilder = stringBuilder;
-    }
+    private final List<Byte> byteList = newArrayList();
 
     @Override
     public void consume(final byte[] bytes, final int offset, final int count)
     {
-      for (int i = offset, size = offset + count; i < size; i++)
+      for (int i = offset; i < offset + count; i++)
       {
-        byteList.add(Byte.valueOf(bytes[i]));
-        stringBuilder.append((char) bytes[i]);
+        final Byte b = bytes[i];
+        byteList.add(b);
       }
     }
 
+    public List<Byte> getByteList()
+    {
+      return Collections.unmodifiableList(byteList);
+    }
+
+    @Override
+    public String toString()
+    {
+      return new String(NeoArrays.convertToPrimitive(byteList.toArray(new Byte[0])));
+    }
   }
 
   @Test
@@ -249,34 +286,159 @@ public class NioUtilTest
   {
     for (int bufferSize = 1; bufferSize < 128; bufferSize++)
     {
-      final ByteArrayConsumer4Testing byteArrayConsumer =
-        new ByteArrayConsumer4Testing(new ArrayList<Byte>(), new StringBuilder());
+      final ByteArrayConsumer4Testing byteArrayConsumer = new ByteArrayConsumer4Testing();
 
       /* test */
       NioUtil.readInputStream(this.getClass()
           .getResourceAsStream("/file4testing.txt"), bufferSize, byteArrayConsumer);
 
-      assertThat(byteArrayConsumer.byteList, is(equalTo(this.byteList)));
-      assertThat(byteArrayConsumer.stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+      assertThat(byteArrayConsumer.getByteList(), is(equalTo(this.byteList)));
+      assertThat(byteArrayConsumer.toString(), is(equalTo(this.string)));
     }
   }
 
   @Test
-  public void testReadFile()
+  public void testReadInputStreamWithByteArrayConsumingContainer()
   {
     for (int bufferSize = 1; bufferSize < 128; bufferSize++)
     {
-      final ByteArrayConsumer4Testing byteArrayConsumer =
-        new ByteArrayConsumer4Testing(new ArrayList<Byte>(), new StringBuilder());
+      final ByteArrayConsumingContainer byteArrayConsumingContainer = DataConsumers.newByteArrayConsumingContainer();
 
       /* test */
-      NioUtil.readFile(new File(this.getClass()
-          .getResource("/file4testing.txt")
-          .getFile()
-          .replace("%20", " ")), bufferSize, byteArrayConsumer);
+      NioUtil.readInputStream(this.getClass()
+          .getResourceAsStream("/file4testing.txt"), bufferSize, byteArrayConsumingContainer);
 
-      assertThat(byteArrayConsumer.byteList, is(equalTo(this.byteList)));
-      assertThat(byteArrayConsumer.stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+      assertThat(byteArrayConsumingContainer.getDataList(), is(equalTo(this.byteList)));
+      assertThat(byteArrayConsumingContainer.toString(), is(equalTo(this.string)));
+    }
+  }
+
+  private static class CharArrayConsumer4Testing implements CharArrayConsumer
+  {
+    private final List<Character> charList = newArrayList();
+
+    @Override
+    public void consume(final char[] chars, final int offset, final int count)
+    {
+      for (int i = offset, size = offset + count; i < size; i++)
+      {
+        charList.add(Character.valueOf(chars[i]));
+      }
+    }
+
+    public List<Character> getCharList()
+    {
+      return Collections.unmodifiableList(charList);
+    }
+
+    @Override
+    public String toString()
+    {
+      return new String(NeoArrays.convertToPrimitive(charList.toArray(new Character[0])));
+    }
+  }
+
+  @Test
+  public void testReadInputStreamWithCharArrayConsumer()
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final CharArrayConsumer4Testing charArrayConsumer = new CharArrayConsumer4Testing();
+
+      /* test */
+      NioUtil.readInputStream(this.getClass()
+          .getResourceAsStream("/file4testing.txt"), bufferSize, IoCommonConstants.UTF_8, charArrayConsumer);
+
+      assertThat(charArrayConsumer.getCharList(),
+          is(equalTo(toCharListWithCharSet(this.string, IoCommonConstants.UTF_8))));
+      assertThat(charArrayConsumer.toString(), is(equalTo(this.string)));
+    }
+  }
+
+  @Test
+  public void testReadInputStreamWithCharArrayConsumingContainer()
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final CharArrayConsumingContainer charArrayConsumingContainer = DataConsumers.newCharArrayConsumingContainer();
+
+      /* test */
+      NioUtil.readInputStream(this.getClass()
+          .getResourceAsStream("/file4testing.txt"), bufferSize, IoCommonConstants.UTF_8, charArrayConsumingContainer);
+
+      assertThat(charArrayConsumingContainer.getDataList(),
+          is(equalTo(toCharListWithCharSet(this.string, IoCommonConstants.UTF_8))));
+      assertThat(charArrayConsumingContainer.toString(), is(equalTo(this.string)));
+    }
+  }
+
+  @Test
+  public void testReadFile() throws URISyntaxException
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final ByteArrayConsumer4Testing byteArrayConsumer = new ByteArrayConsumer4Testing();
+
+      /* test */
+      NioUtil.readFile(new File(new URI(this.getClass()
+          .getResource("/file4testing.txt")
+          .toString())), bufferSize, byteArrayConsumer);
+
+      assertThat(byteArrayConsumer.getByteList(), is(equalTo(this.byteList)));
+      assertThat(byteArrayConsumer.toString(), is(equalTo(this.string)));
+    }
+  }
+
+  @Test
+  public void testReadFileWithByteArrayConsumingContainer() throws URISyntaxException
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final ByteArrayConsumingContainer byteArrayConsumingContainer = DataConsumers.newByteArrayConsumingContainer();
+
+      /* test */
+      NioUtil.readFile(new File(new URI(this.getClass()
+          .getResource("/file4testing.txt")
+          .toString())), bufferSize, byteArrayConsumingContainer);
+
+      assertThat(byteArrayConsumingContainer.getDataList(), is(equalTo(this.byteList)));
+      assertThat(byteArrayConsumingContainer.toString(), is(equalTo(this.string)));
+    }
+  }
+
+  @Test
+  public void testReadFileWithCharArrayConsumer() throws URISyntaxException
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final CharArrayConsumer4Testing charArrayConsumer = new CharArrayConsumer4Testing();
+
+      /* test */
+      NioUtil.readFile(new File(new URI(this.getClass()
+          .getResource("/file4testing.txt")
+          .toString())), bufferSize, IoCommonConstants.UTF_8, charArrayConsumer);
+
+      assertThat(charArrayConsumer.getCharList(), is(equalTo(this.charList)));
+      assertThat(new String(NeoArrays.convertToPrimitive(charArrayConsumer.getCharList()
+          .toArray(new Character[0]))), is(equalTo(this.string)));
+    }
+  }
+
+  @Test
+  public void testReadFileWithCharArrayConsumingContainer() throws URISyntaxException
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final CharArrayConsumingContainer charArrayConsumingContainer = DataConsumers.newCharArrayConsumingContainer();
+
+      /* test */
+      NioUtil.readFile(new File(new URI(this.getClass()
+          .getResource("/file4testing.txt")
+          .toString())), bufferSize, IoCommonConstants.UTF_8, charArrayConsumingContainer);
+
+      assertThat(charArrayConsumingContainer.getDataList(), is(equalTo(this.charList)));
+      assertThat(new String(NeoArrays.convertToPrimitive(charArrayConsumingContainer.getDataList()
+          .toArray(new Character[0]))), is(equalTo(this.string)));
     }
   }
 
@@ -354,24 +516,17 @@ public class NioUtilTest
   {
     final File file = new File(temporaryFolder.getRoot(), "file4testing2.txt");
 
-    final String expected = this.stringBuilder.toString();
-    final byte[] byteArray = new byte[expected.length()];
-    final ByteArrayProducer4Testing byteArrayProducer = new ByteArrayProducer4Testing(byteArray);
-    for (int i = 0, size = expected.length(); i < size; i++)
-    {
-      byteArray[i] = (byte) expected.charAt(i);
-    }
+    final String expected = this.string;
+    final ByteArrayProducer4Testing byteArrayProducer = new ByteArrayProducer4Testing(expected.getBytes());
     for (int bufferSize = 1; bufferSize < 128; bufferSize++)
     {
       /* test */
       NioUtil.writeFile(file, bufferSize, byteArrayProducer);
 
       final List<Byte> byteList = new ArrayList<Byte>();
-      final StringBuilder stringBuilder = new StringBuilder();
-
-      readFile(file, byteList, stringBuilder);
+      final String string = readFile(file, byteList);
       assertThat(byteList, is(equalTo(this.byteList)));
-      assertThat(stringBuilder.toString(), is(equalTo(this.stringBuilder.toString())));
+      assertThat(string, is(equalTo(this.string)));
 
       assertTrue(file.delete());
       byteArrayProducer.reset();
@@ -387,7 +542,7 @@ public class NioUtilTest
     {
       file = new File(temporaryFolder.getRoot(), "file4testing2.txt");
 
-      final String expected = this.stringBuilder.toString();
+      final String expected = this.string;
       byteArray = new byte[expected.length()];
       for (int i = 0, size = expected.length(); i < size; i++)
       {
@@ -419,14 +574,12 @@ public class NioUtilTest
     final File file = new File(temporaryFolder.getRoot(), "file4testing2.txt");
 
     final List<Byte> expectedByteList = new ArrayList<Byte>();
-    final StringBuilder expectedStringBuilder = new StringBuilder();
-    readFile(sourceFile, expectedByteList, expectedStringBuilder);
+    final String expectedString = readFile(sourceFile, expectedByteList);
 
     final List<Byte> resultByteList = new ArrayList<Byte>();
-    final StringBuilder resultStringBuilder = new StringBuilder();
-    readFile(file, resultByteList, resultStringBuilder);
+    final String resultString = readFile(file, resultByteList);
 
     assertThat(resultByteList, is(equalTo(expectedByteList)));
-    assertThat(resultStringBuilder.toString(), is(equalTo(expectedStringBuilder.toString())));
+    assertThat(resultString.toString(), is(equalTo(expectedString)));
   }
 }
