@@ -22,14 +22,14 @@
 
   <repositories>
     <repository>
-      <id>releases</id>
-      <name>Kevin's Releases</name>
-      <url>http://nexus.lckymn.com/content/repositories/releases</url>
+      <id>kevin-public-snapshots</id>
+      <name>Kevin's Public Snapshots</name>
+      <url>http://nexus.lckymn.com/content/repositories/kevin-public-snapshots</url>
     </repository>
     <repository>
-      <id>snapshots</id>
-      <name>Kevin's Snapshots</name>
-      <url>http://nexus.lckymn.com/content/repositories/snapshots</url>
+      <id>kevin-public-releases</id>
+      <name>Kevin's Public Releases</name>
+      <url>http://nexus.lckymn.com/content/repositories/kevin-public-releases</url>
     </repository>
   </repositories>
 
