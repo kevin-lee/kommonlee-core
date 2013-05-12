@@ -262,7 +262,7 @@ public class IoUtilTest
         bytesRead = fileInputStream.read(buffer);
       }
 
-      return new String(NeoArrays.convertToPrimitive(byteList.toArray(new Byte[0])));
+      return new String(NeoArrays.convertToPrimitive(byteList.toArray(new Byte[0])), IoCommonConstants.UTF_8);
     }
     catch (final FileNotFoundException e)
     {
@@ -699,7 +699,8 @@ public class IoUtilTest
 
       /* then */
       // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.stringBuilder, stringBuilder));
-      assertThat(new String(NeoArrays.convertToPrimitive(byteList.toArray(new Byte[0]))), is(equalTo(this.string)));
+      assertThat(new String(NeoArrays.convertToPrimitive(byteList.toArray(new Byte[0])), IoCommonConstants.UTF_8),
+          is(equalTo(this.string)));
       // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.byteList, byteList));
       assertThat(byteList, is(equalTo(this.byteList)));
 
