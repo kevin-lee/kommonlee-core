@@ -861,8 +861,8 @@ public final class NeoArrays
     for (int i = 0; i < length; i++)
     {
       @SuppressWarnings("boxing")
-      final byte b = bytes[i];
-      primitives[i] = b;
+      final byte x = bytes[i];
+      primitives[i] = x;
     }
     return primitives;
   }
@@ -874,8 +874,8 @@ public final class NeoArrays
     for (int i = 0; i < length; i++)
     {
       @SuppressWarnings("boxing")
-      final Byte b = bytes[i];
-      boxedPrimitives[i] = b;
+      final Byte x = bytes[i];
+      boxedPrimitives[i] = x;
     }
     return boxedPrimitives;
   }
@@ -887,8 +887,8 @@ public final class NeoArrays
     for (int i = 0; i < length; i++)
     {
       @SuppressWarnings("boxing")
-      final char c = characters[i];
-      primitives[i] = c;
+      final char x = characters[i];
+      primitives[i] = x;
     }
     return primitives;
   }
@@ -900,8 +900,164 @@ public final class NeoArrays
     for (int i = 0; i < length; i++)
     {
       @SuppressWarnings("boxing")
-      final Character b = chars[i];
-      boxedPrimitives[i] = b;
+      final Character x = chars[i];
+      boxedPrimitives[i] = x;
+    }
+    return boxedPrimitives;
+  }
+
+  public static short[] convertToPrimitive(final Short[] shorts)
+  {
+    final int length = shorts.length;
+    final short[] primitives = new short[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final short x = shorts[i];
+      primitives[i] = x;
+    }
+    return primitives;
+  }
+
+  public static Short[] convertToBoxedPrimitive(final short[] shorts)
+  {
+    final int length = shorts.length;
+    final Short[] boxedPrimitives = new Short[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final Short x = shorts[i];
+      boxedPrimitives[i] = x;
+    }
+    return boxedPrimitives;
+  }
+
+  public static int[] convertToPrimitive(final Integer[] integers)
+  {
+    final int length = integers.length;
+    final int[] primitives = new int[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final int x = integers[i];
+      primitives[i] = x;
+    }
+    return primitives;
+  }
+
+  public static Integer[] convertToBoxedPrimitive(final int[] ints)
+  {
+    final int length = ints.length;
+    final Integer[] boxedPrimitives = new Integer[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final Integer x = ints[i];
+      boxedPrimitives[i] = x;
+    }
+    return boxedPrimitives;
+  }
+
+  public static long[] convertToPrimitive(final Long[] longs)
+  {
+    final int length = longs.length;
+    final long[] primitives = new long[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final long x = longs[i];
+      primitives[i] = x;
+    }
+    return primitives;
+  }
+
+  public static Long[] convertToBoxedPrimitive(final long[] longs)
+  {
+    final int length = longs.length;
+    final Long[] boxedPrimitives = new Long[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final Long x = longs[i];
+      boxedPrimitives[i] = x;
+    }
+    return boxedPrimitives;
+  }
+
+  public static float[] convertToPrimitive(final Float[] floats)
+  {
+    final int length = floats.length;
+    final float[] primitives = new float[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final float x = floats[i];
+      primitives[i] = x;
+    }
+    return primitives;
+  }
+
+  public static Float[] convertToBoxedPrimitive(final float[] floats)
+  {
+    final int length = floats.length;
+    final Float[] boxedPrimitives = new Float[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final Float x = floats[i];
+      boxedPrimitives[i] = x;
+    }
+    return boxedPrimitives;
+  }
+
+  public static double[] convertToPrimitive(final Double[] doubles)
+  {
+    final int length = doubles.length;
+    final double[] primitives = new double[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final double x = doubles[i];
+      primitives[i] = x;
+    }
+    return primitives;
+  }
+
+  public static Double[] convertToBoxedPrimitive(final double[] doubles)
+  {
+    final int length = doubles.length;
+    final Double[] boxedPrimitives = new Double[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final Double x = doubles[i];
+      boxedPrimitives[i] = x;
+    }
+    return boxedPrimitives;
+  }
+
+  public static boolean[] convertToPrimitive(final Boolean[] booleans)
+  {
+    final int length = booleans.length;
+    final boolean[] primitives = new boolean[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final boolean x = booleans[i];
+      primitives[i] = x;
+    }
+    return primitives;
+  }
+
+  public static Boolean[] convertToBoxedPrimitive(final boolean[] booleans)
+  {
+    final int length = booleans.length;
+    final Boolean[] boxedPrimitives = new Boolean[length];
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("boxing")
+      final Boolean x = booleans[i];
+      boxedPrimitives[i] = x;
     }
     return boxedPrimitives;
   }
