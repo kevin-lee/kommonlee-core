@@ -187,6 +187,12 @@ public abstract class ImmutableArrayList<E> extends AbstractReadableList<E> impl
     }
 
     @Override
+    public E find(@SuppressWarnings("unused") final Condition1<? super E> condition)
+    {
+      return null;
+    }
+
+    @Override
     public EmptyImmutableArrayList<E> select(@SuppressWarnings("unused") final Condition1<? super E> condition)
     {
       return this;
@@ -386,6 +392,21 @@ public abstract class ImmutableArrayList<E> extends AbstractReadableList<E> impl
     public boolean contains(final Object element)
     {
       return 0 <= indexOf0(element, 0);
+    }
+
+    @Override
+    public E find(final Condition1<? super E> condition)
+    {
+      for (final Object object : this.elements)
+      {
+        @SuppressWarnings("unchecked")
+        final E element = (E) object;
+        if (condition.isMet(element))
+        {
+          return element;
+        }
+      }
+      return null;
     }
 
     @Override

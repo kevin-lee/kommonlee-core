@@ -103,6 +103,9 @@ public interface ReadableList<E> extends ReadableCollection<E>
 
   @Override
   boolean containsAll(Kollection<?> kollection);
+  
+  @Override
+  E find(Condition1<? super E> condition);
 
   @Override
   ReadableList<E> select(Condition1<? super E> condition);

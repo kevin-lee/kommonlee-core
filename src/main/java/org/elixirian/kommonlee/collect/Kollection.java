@@ -85,10 +85,20 @@ public interface Kollection<E> extends Iterable<E>, LengthCheckable, SizeCheckab
   boolean isNotEmpty();
 
   boolean exists(Condition1<? super E> seeker);
-  
+
   boolean contains(Object element);
 
   boolean containsAll(Kollection<?> kollection);
+
+  /**
+   * Finds the first element in the {@link Kollection} satisfying the given condition, if any.
+   * 
+   * @param condition
+   *          the given condition to find the element
+   * @return the first element in the {@link Kollection} satisfying the given condition. null if there is no element
+   *         satisfying the condition.
+   */
+  E find(Condition1<? super E> condition);
 
   Kollection<E> select(Condition1<? super E> condition);
 

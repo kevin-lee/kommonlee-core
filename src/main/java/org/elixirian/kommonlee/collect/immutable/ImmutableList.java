@@ -80,6 +80,9 @@ public interface ImmutableList<E> extends ReadableList<E>, ImmutableCollection<E
   boolean containsAll(Kollection<?> kollection);
 
   @Override
+  E find(Condition1<? super E> condition);
+  
+  @Override
   ImmutableList<E> select(Condition1<? super E> condition);
 
   @Override

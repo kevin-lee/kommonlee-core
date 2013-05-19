@@ -144,6 +144,21 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
   }
 
   @Override
+  public E find(final Condition1<? super E> condition)
+  {
+    for (final Object object : this.elements)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) object;
+      if (condition.isMet(element))
+      {
+        return element;
+      }
+    }
+    return null;
+  }
+
+  @Override
   public ReadableArrayList<E> select(final Condition1<? super E> condition)
   {
     final Object[] arrayOfObject = new Object[length];

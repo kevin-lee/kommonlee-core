@@ -80,6 +80,9 @@ public interface ReadableCollection<E> extends Kollection<E>, Iterable<E>, Lengt
 
   @Override
   boolean containsAll(Kollection<?> kollection);
+  
+  @Override
+  E find(Condition1<? super E> condition);
 
   @Override
   ReadableCollection<E> select(Condition1<? super E> condition);
