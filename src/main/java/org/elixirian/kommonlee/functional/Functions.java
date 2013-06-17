@@ -40,7 +40,7 @@ import org.elixirian.kommonlee.functional.string.PrefixAndSuffixAdder;
 import org.elixirian.kommonlee.functional.string.StringArrayToTrimmedStringListSelector;
 import org.elixirian.kommonlee.functional.string.StringArrayTrimmer;
 import org.elixirian.kommonlee.functional.string.ToLowerCaseConverter;
-import org.elixirian.kommonlee.type.Pair;
+import org.elixirian.kommonlee.type.functional.Function1;
 import org.elixirian.kommonlee.util.CommonConstants;
 import org.elixirian.kommonlee.util.string.IterableToStringGlue;
 import org.elixirian.kommonlee.util.string.ToStringGlues;
@@ -67,61 +67,13 @@ import org.elixirian.kommonlee.util.string.ToStringGlues;
  */
 public final class Functions
 {
-  public static class SimplePair<L, R> implements Pair<L, R>
-  {
-    private final L first;
-    private final R second;
-
-    public SimplePair(final L first, final R second)
-    {
-      this.first = first;
-      this.second = second;
-    }
-
+  public static final Function1<?, ?> IDENTITY_FUNCTION = new Function1<Object, Object>() {
     @Override
-    public L getValue1()
+    public Object apply(final Object input)
     {
-      return first;
+      return input;
     }
-
-    @Override
-    public R getValue2()
-    {
-      return second;
-    }
-
-    @Override
-    public int hashCode()
-    {
-      return hash(first, second);
-    }
-
-    @Override
-    public boolean equals(final Object pair)
-    {
-      if (this == pair)
-      {
-        return true;
-      }
-      final SimplePair<?, ?> that = castIfInstanceOf(SimplePair.class, pair);
-      /* @formatter:off */
-      return null != that &&
-             (equal(this.first,  that.getValue1()) &&
-              equal(this.second, that.getValue2()));
-      /* @formatter:on */
-    }
-
-    @Override
-    public String toString()
-    {
-      /* @formatter:off */
-      return toStringBuilder(this)
-              .add("first", first)
-              .add("second", second)
-            .toString();
-      /* @formatter:on */
-    }
-  }
+  };
 
   public static final StringArrayToTrimmedStringListSelector STRING_ARRAY_TO_LIST_TRIM_SELECTOR =
     new StringArrayToTrimmedStringListSelector();
@@ -187,8 +139,16 @@ public final class Functions
     return TO_LOWER_CASE_CONVERTER;
   }
 
-  public static <L, R> SimplePair<L, R> newPair(final L first, final R second)
+  public static <T> Function1<T, T> identityFunction()
   {
-    return new SimplePair<L, R>(first, second);
+    @SuppressWarnings("unchecked")
+    final Function1<T, T> identityFunction = (Function1<T, T>) IDENTITY_FUNCTION;
+    return identityFunction;
+  }
+
+  public static <T> T identity(final T input)
+  {
+    return Functions.<T> identityFunction()
+        .apply(input);
   }
 }

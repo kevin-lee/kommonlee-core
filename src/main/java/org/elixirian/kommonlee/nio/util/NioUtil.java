@@ -41,18 +41,21 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Reader;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 
 import org.elixirian.kommonlee.io.ByteArrayConsumer;
 import org.elixirian.kommonlee.io.ByteArrayProducer;
 import org.elixirian.kommonlee.io.CharArrayConsumer;
+import org.elixirian.kommonlee.io.IoCommonConstants;
 import org.elixirian.kommonlee.io.exception.RuntimeFileNotFoundException;
 import org.elixirian.kommonlee.io.exception.RuntimeIoException;
 import org.elixirian.kommonlee.io.util.IoUtil;
@@ -275,6 +278,57 @@ public final class NioUtil
 
   }
 
+  public static void writeOutputStream(final OutputStream outputStream, final int bufferSize,
+      final ByteArrayProducer byteArrayProducer)
+  {
+    assertBufferSize(bufferSize);
+
+    WritableByteChannel writableByteChannel = null;
+
+    try
+    {
+      writableByteChannel = Channels.newChannel(outputStream);
+      writeWritableByteChannel(writableByteChannel, bufferSize, byteArrayProducer);
+    }
+    catch (final FileNotFoundException e)
+    {
+      throw new RuntimeFileNotFoundException(e);
+    }
+    catch (final IOException e)
+    {
+      throw new RuntimeIoException(e);
+    }
+    finally
+    {
+      closeQuietly(writableByteChannel);
+      closeQuietly(outputStream);
+    }
+  }
+
+  private static void writeWritableByteChannel(final WritableByteChannel writableByteChannel, final int bufferSize,
+      final ByteArrayProducer byteArrayProducer) throws IOException
+  {
+    final int bytesLength = byteArrayProducer.length();
+    final int actualBufferSize = bytesLength < bufferSize ? bytesLength : bufferSize;
+    final ByteBuffer byteBuffer = ByteBuffer.allocateDirect(actualBufferSize);
+    final byte[] bytes = new byte[actualBufferSize];
+
+    int count = 0;
+    count = byteArrayProducer.produce(bytes);
+    while (-1 < count)
+    {
+      byteBuffer.put(bytes, 0, count);
+
+      byteBuffer.flip();
+      while (byteBuffer.hasRemaining())
+        writableByteChannel.write(byteBuffer);
+
+      byteBuffer.clear();
+
+      count = byteArrayProducer.produce(bytes);
+    }
+  }
+
   public static void writeFile(final File file, final int bufferSize, final ByteArrayProducer byteArrayProducer)
   {
     assertBufferSize(bufferSize);
@@ -286,7 +340,7 @@ public final class NioUtil
     {
       fileOutputStream = new FileOutputStream(file);
       fileChannel = fileOutputStream.getChannel();
-      writeFile0(fileChannel, bufferSize, byteArrayProducer);
+      writeFileChannel(fileChannel, bufferSize, byteArrayProducer);
     }
     catch (final FileNotFoundException e)
     {
@@ -303,7 +357,7 @@ public final class NioUtil
     }
   }
 
-  private static void writeFile0(final FileChannel fileChannel, final int bufferSize,
+  private static void writeFileChannel(final FileChannel fileChannel, final int bufferSize,
       final ByteArrayProducer byteArrayProducer) throws IOException
   {
     final int bytesLength = byteArrayProducer.length();
@@ -327,6 +381,61 @@ public final class NioUtil
     }
   }
 
+  public static void copy(final InputStream inputStream, final OutputStream outputStream)
+  {
+    copy(IoCommonConstants.BUFFER_SIZE_512Ki, inputStream, outputStream);
+  }
+
+  public static void copy(final int bufferSize, final InputStream inputStream, final OutputStream outputStream)
+  {
+    assertBufferSize(bufferSize);
+
+    ReadableByteChannel readableByteChannel = null;
+    WritableByteChannel writableByteChannel = null;
+    try
+    {
+      readableByteChannel = Channels.newChannel(inputStream);
+      writableByteChannel = Channels.newChannel(outputStream);
+
+      copyChannel(bufferSize, readableByteChannel, writableByteChannel);
+    }
+    catch (final FileNotFoundException e)
+    {
+      throw new RuntimeFileNotFoundException(e);
+    }
+    catch (final IOException e)
+    {
+      throw new RuntimeIoException(e);
+    }
+    finally
+    {
+      closeQuietly(writableByteChannel);
+      closeQuietly(readableByteChannel);
+      closeQuietly(outputStream);
+      closeQuietly(inputStream);
+    }
+  }
+
+  private static void copyChannel(final int bufferSize, final ReadableByteChannel readableByteChannel,
+      final WritableByteChannel writableByteChannel) throws IOException
+  {
+    final ByteBuffer buffer = ByteBuffer.allocate(bufferSize);
+
+    int read = readableByteChannel.read(buffer);
+
+    while (-1 < read)
+    {
+      buffer.flip();
+      writableByteChannel.write(buffer);
+
+      while (buffer.hasRemaining())
+        writableByteChannel.write(buffer);
+
+      buffer.clear();
+      read = readableByteChannel.read(buffer);
+    }
+  }
+
   public static void copyFile(final File sourceFile, final File targetFile)
   {
     FileInputStream sourceFileInputStream = null;
@@ -340,7 +449,7 @@ public final class NioUtil
       sourceFileChannel = sourceFileInputStream.getChannel();
       targetFileChannel = targetFileOutputStream.getChannel();
 
-      copyFile0(sourceFileChannel, targetFileChannel);
+      copyFileChannel(sourceFileChannel, targetFileChannel);
     }
     catch (final FileNotFoundException e)
     {
@@ -359,7 +468,7 @@ public final class NioUtil
     }
   }
 
-  private static void copyFile0(final FileChannel sourceFileChannel, final FileChannel targetFileChannel)
+  private static void copyFileChannel(final FileChannel sourceFileChannel, final FileChannel targetFileChannel)
       throws IOException
   {
     final long size = sourceFileChannel.size();

@@ -114,15 +114,15 @@ public class ResetableSimpleByteArrayProducerTest
     final byte[] expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     @SuppressWarnings("boxing")
     final Integer expectedLength = expected.length;
-    System.out.println("expected:");
-    System.out.println(Objects.toStringOf(expected));
+    System.out.println("  expected:");
+    System.out.println("  " + Objects.toStringOf(expected));
 
     /* when */
     final ResetableSimpleByteArrayProducer resetableSimpleByteArrayProducer =
       new ResetableSimpleByteArrayProducer(expected);
     final byte[] actual = resetableSimpleByteArrayProducer.byteArray;
-    System.out.println("\nactual:");
-    System.out.println(Objects.toStringOf(actual));
+    System.out.println("\n  actual:");
+    System.out.println("  " + Objects.toStringOf(actual));
     @SuppressWarnings("boxing")
     final Integer actualLength = actual.length;
 
@@ -145,7 +145,7 @@ public class ResetableSimpleByteArrayProducerTest
     @SuppressWarnings("boxing")
     final Integer expectedPosition = resetableSimpleByteArrayProducer.position;
     @SuppressWarnings("boxing")
-    final Integer expectedLeft = resetableSimpleByteArrayProducer.left;
+    final Integer expectedLength = resetableSimpleByteArrayProducer.length;
 
     final byte[] bytes = new byte[3];
 
@@ -163,34 +163,34 @@ public class ResetableSimpleByteArrayProducerTest
     @SuppressWarnings("boxing")
     final Integer positionBeforeReset = resetableSimpleByteArrayProducer.position;
     @SuppressWarnings("boxing")
-    final Integer leftBeforeReset = resetableSimpleByteArrayProducer.left;
-    System.out.println("\npositionBeforeReset:");
-    System.out.println(positionBeforeReset);
-    System.out.println("leftBeforeReset:");
-    System.out.println(leftBeforeReset);
+    final Integer lengthBeforeReset = resetableSimpleByteArrayProducer.length();
+    System.out.println("  positionBeforeReset:");
+    System.out.println("  " + positionBeforeReset);
+    System.out.println("  lengthBeforeReset:");
+    System.out.println("  " + lengthBeforeReset);
     assertThat(positionBeforeReset, is(equalTo(Integer.valueOf(byteArray.length))));
-    assertThat(leftBeforeReset, is(equalTo(Integer.valueOf(0))));
+    assertThat(lengthBeforeReset, is(expectedLength));
 
     /* when */
     resetableSimpleByteArrayProducer.reset();
 
     /* then */
-    System.out.println("\nexpectedPosition:");
-    System.out.println(expectedPosition);
-    System.out.println("expectedLeft:");
-    System.out.println(expectedLeft);
+    System.out.println("\n  expectedPosition:");
+    System.out.println("  " + expectedPosition);
+    System.out.println("  expectedLength:");
+    System.out.println("  " + expectedLength);
 
     @SuppressWarnings("boxing")
     final Integer actualPosition = resetableSimpleByteArrayProducer.position;
     @SuppressWarnings("boxing")
-    final Integer actualLeft = resetableSimpleByteArrayProducer.left;
-    System.out.println("\nactualPosition:");
-    System.out.println(actualPosition);
-    System.out.println("actualLeft:");
-    System.out.println(actualLeft);
+    final Integer actualLength = resetableSimpleByteArrayProducer.length();
+    System.out.println("\n  actualPosition:");
+    System.out.println("  " + actualPosition);
+    System.out.println("  actualLength:");
+    System.out.println("  " + actualLength);
 
     assertThat(actualPosition, is(equalTo(expectedPosition)));
-    assertThat(actualLeft, is(equalTo(expectedLeft)));
+    assertThat(actualLength, is(equalTo(expectedLength)));
     System.out.println("}");
   }
 

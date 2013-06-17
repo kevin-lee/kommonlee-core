@@ -31,6 +31,7 @@
  */
 package org.elixirian.kommonlee.util.type;
 
+import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.elixirian.kommonlee.util.Objects.*;
 
 import org.elixirian.kommonlee.type.Tuple4;
@@ -127,12 +128,7 @@ public class ImmutableTuple4<T1, T2, T3, T4> implements Tuple4<T1, T2, T3, T4>
   public String toString()
   {
     /* @formatter:off */
-    return toStringBuilder(this)
-            .add("value1", value1)
-            .add("value2", value2)
-            .add("value3", value3)
-            .add("value4", value4)
-          .toString();
+    return format("(%s, %s, %s, %s)", value1, value2, value3, value4);
     /* @formatter:on */
   }
 }

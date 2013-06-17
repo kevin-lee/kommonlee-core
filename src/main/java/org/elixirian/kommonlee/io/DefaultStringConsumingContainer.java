@@ -31,11 +31,14 @@
  */
 package org.elixirian.kommonlee.io;
 
+import static org.elixirian.kommonlee.util.Strings.*;
 import static org.elixirian.kommonlee.util.collect.Lists.*;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+
+import org.elixirian.kommonlee.type.functional.Function2;
 
 /**
  * <pre>
@@ -59,6 +62,40 @@ import java.util.List;
  */
 public class DefaultStringConsumingContainer implements StringConsumingContainer
 {
+  private static final Function2<String, List<String>, String> ADD_NOTHING_TO_THE_END =
+    new Function2<String, List<String>, String>() {
+      @Override
+      public String apply(@SuppressWarnings("unused") final String addIt, final List<String> stringList)
+      {
+        final StringBuilder stringBuilder = new StringBuilder();
+        for (final String line : stringList)
+        {
+          stringBuilder.append(line);
+        }
+        return stringBuilder.toString();
+      }
+    };
+
+  private static final Function2<String, List<String>, String> ADD_TO_THE_END =
+    new Function2<String, List<String>, String>() {
+      @Override
+      public String apply(final String addIt, final List<String> stringList)
+      {
+        final StringBuilder stringBuilder = new StringBuilder();
+        for (final String line : stringList)
+        {
+          stringBuilder.append(line)
+              .append(addIt);
+        }
+        final int length = stringBuilder.length();
+        if (0 < length)
+        {
+          stringBuilder.delete(length - addIt.length(), length);
+        }
+        return stringBuilder.toString();
+      }
+    };
+
   private final List<String> stringList = newArrayList();
 
   @Override
@@ -76,17 +113,16 @@ public class DefaultStringConsumingContainer implements StringConsumingContainer
   @Override
   public String toString()
   {
-    final StringBuilder stringBuilder = new StringBuilder();
-    for (final String line : stringList)
-    {
-      stringBuilder.append(line)
-          .append("\n");
-    }
-    final int length = stringBuilder.length();
-    if (0 < length)
-    {
-      stringBuilder.delete(length - 1, length);
-    }
-    return stringBuilder.toString();
+    return ADD_TO_THE_END.apply("\n", stringList);
+  }
+
+  @Override
+  public String toString(final String withAddingItToTheEndOfEach)
+  {
+    /* @formatter:off */
+    return isNullOrEmptyString(withAddingItToTheEndOfEach) ?
+            ADD_NOTHING_TO_THE_END.apply(withAddingItToTheEndOfEach, stringList) :
+            ADD_TO_THE_END.apply(withAddingItToTheEndOfEach, stringList);
+    /* @formatter:on */
   }
 }

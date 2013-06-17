@@ -55,4 +55,6 @@ public interface StringConsumingContainer extends StringConsumer, DataContainer<
 {
   @Override
   String toString();
+
+  String toString(String withAddingItToTheEndOfEach);
 }

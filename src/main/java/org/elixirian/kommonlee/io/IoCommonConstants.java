@@ -99,9 +99,59 @@ public final class IoCommonConstants
   public static final int BUFFER_SIZE_512Ki = 512 * BUFFER_SIZE_1Ki;
 
   /**
-   * 1 Mi (mebi): 1024 * 1024 == 1048576
+   * 1024 Ki (kibi) == 1 Mi (mebi): 1024 * 1024 == 1048576
    */
-  public static final int BUFFER_SIZE_1Mi = BUFFER_SIZE_1Ki * BUFFER_SIZE_1Ki;
+  public static final int BUFFER_SIZE_1024Ki = 1024 * BUFFER_SIZE_1Ki;
+
+  /**
+   * 1 Mi (mebi) == 1024 Ki (kibi): 1024 * 1024 == 1048576
+   */
+  public static final int BUFFER_SIZE_1Mi = BUFFER_SIZE_1024Ki;
+
+  /**
+   * 8 Mi (mebi): 8 * 1 Mi == 8388608
+   */
+  public static final int BUFFER_SIZE_8Mi = 8 * BUFFER_SIZE_1Mi;
+
+  /**
+   * 16 Mi (mebi): 16 * 1 Mi == 16777216
+   */
+  public static final int BUFFER_SIZE_16Mi = 16 * BUFFER_SIZE_1Mi;
+
+  /**
+   * 32 Mi (mebi): 32 * 1 Mi == 33554432
+   */
+  public static final int BUFFER_SIZE_32Mi = 32 * BUFFER_SIZE_1Mi;
+
+  /**
+   * 64 Mi (mebi): 64 * 1 Mi == 67108864
+   */
+  public static final int BUFFER_SIZE_64Mi = 64 * BUFFER_SIZE_1Mi;
+
+  /**
+   * 128 Mi (mebi): 128 * 1 Mi == 134217728
+   */
+  public static final int BUFFER_SIZE_128Mi = 128 * BUFFER_SIZE_1Mi;
+
+  /**
+   * 256 Mi (mebi): 256 * 1 Mi == 268435456
+   */
+  public static final int BUFFER_SIZE_256Mi = 256 * BUFFER_SIZE_1Mi;
+
+  /**
+   * 512 Mi (mebi): 512 * 1 Mi == 536870912
+   */
+  public static final int BUFFER_SIZE_512Mi = 512 * BUFFER_SIZE_1Mi;
+
+  /**
+   * 1024 Mi (mebi) == 1 Gi (gibi): 1024 * 1 Mi == 1073741824
+   */
+  public static final int BUFFER_SIZE_1024Mi = 1024 * BUFFER_SIZE_1Mi;
+
+  /**
+   * 1 Gi (gibi) == 1024 Mi (mebi): 1024 * 1 Mi == 1073741824
+   */
+  public static final int BUFFER_SIZE_1Gi = BUFFER_SIZE_1024Mi;
 
   /**
    * <pre>

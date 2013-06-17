@@ -32,9 +32,11 @@
 package org.elixirian.kommonlee.nio.util;
 
 import static org.elixirian.kommonlee.test.CommonTestHelper.*;
+import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.elixirian.kommonlee.util.collect.Lists.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
 
 import java.io.Closeable;
@@ -42,6 +44,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
@@ -57,6 +61,7 @@ import org.elixirian.kommonlee.io.CharArrayConsumer;
 import org.elixirian.kommonlee.io.CharArrayConsumingContainer;
 import org.elixirian.kommonlee.io.DataConsumers;
 import org.elixirian.kommonlee.io.IoCommonConstants;
+import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
 import org.elixirian.kommonlee.test.CommonTestHelper.Accessibility;
 import org.elixirian.kommonlee.util.NeoArrays;
 import org.junit.After;
@@ -66,6 +71,7 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.mockito.InOrder;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -94,6 +100,9 @@ public class NioUtilTest
 {
   @Rule
   public TemporaryFolder temporaryFolder = new TemporaryFolder();
+
+  @Rule
+  public CauseCheckableExpectedException causeCheckableExpectedException = CauseCheckableExpectedException.none();
 
   private List<Byte> byteList;
   private List<Character> charList;
@@ -125,6 +134,11 @@ public class NioUtilTest
     this.string = readFile(getTestFile(), byteList);
     this.byteList = Collections.unmodifiableList(byteList);
     charList = Arrays.asList(NeoArrays.convertToBoxedPrimitive(string.toCharArray()));
+  }
+
+  @After
+  public void tearDown() throws Exception
+  {
   }
 
   private List<Character> toCharListWithCharSet(final String string, final Charset charset)
@@ -197,12 +211,19 @@ public class NioUtilTest
     }
   }
 
-  /**
-   * @throws java.lang.Exception
-   */
-  @After
-  public void tearDown() throws Exception
+  private static <T> T any(final Class<T> theClass)
   {
+    return Mockito.any(theClass);
+  }
+
+  private int computeHowManyForReading(final int total, final int bufferSize)
+  {
+    return (int) Math.ceil((double) total / bufferSize) + 1;
+  }
+
+  private int computeHowManyForWriting(final int total, final int bufferSize)
+  {
+    return (int) Math.ceil((double) total / bufferSize);
   }
 
   @Test(expected = IllegalAccessException.class)
@@ -211,9 +232,6 @@ public class NioUtilTest
     testNotAccessibleConstructor(NioUtil.class, this, Accessibility.PRIVATE, classArrayOf(), objectArrayOf());
   }
 
-  /**
-   * Test method for {@link org.elixirian.kommonlee.nio.util.NioUtil#closeQuietly(java.io.Closeable)}.
-   */
   @Test
   public final void testCloseQuietly()
   {
@@ -512,17 +530,100 @@ public class NioUtilTest
   }
 
   @Test
+  public void testWriteOutputStream() throws IOException
+  {
+    /* given */
+    final String expected = this.string;
+    final ByteArrayProducer4Testing byteArrayProducer = new ByteArrayProducer4Testing(expected.getBytes());
+
+    final OutputStream outputStream = mock(OutputStream.class);
+
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final List<Byte> byteListForWriting = new ArrayList<Byte>();
+
+      doAnswer(new Answer<Void>() {
+        @Override
+        public Void answer(final InvocationOnMock invocation) throws Throwable
+        {
+          final Object[] params = invocation.getArguments();
+          final byte[] bytes = (byte[]) params[0];
+
+          @SuppressWarnings("boxing")
+          final int offset = (Integer) params[1];
+
+          @SuppressWarnings("boxing")
+          final int count = (Integer) params[2];
+          for (int i = offset; i < offset + count; i++)
+          {
+            final byte each = bytes[i];
+            byteListForWriting.add(Byte.valueOf(each));
+          }
+          return null;
+        }
+      }).when(outputStream)
+          .write(any(byte[].class), anyInt(), anyInt());
+
+      /* when */
+      NioUtil.writeOutputStream(outputStream, bufferSize, byteArrayProducer);
+
+      /* then */
+      assertThat(byteListForWriting, is(equalTo(this.byteList)));
+      assertThat(new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0]))),
+          is(equalTo(this.string)));
+
+      final InOrder writeOrder = inOrder(outputStream);
+      writeOrder.verify(outputStream, times(computeHowManyForWriting(byteListForWriting.size(), bufferSize)))
+          .write(any(byte[].class), anyInt(), anyInt());
+      writeOrder.verify(outputStream, atLeastOnce())
+          .close();
+
+      reset(outputStream);
+
+      byteArrayProducer.reset();
+    }
+  }
+
+  @Test
+  public void testWriteOutputStreamWith0SizeBuffer() throws IOException
+  {
+
+    try
+    {
+      NioUtil.writeOutputStream(null, 1, null);
+      fail("This line must not be reachable.");
+    }
+    catch (final NullPointerException e)
+    {
+      // NullPointerException should be caught.
+    }
+
+    /* expect */
+    causeCheckableExpectedException.expect(IllegalArgumentException.class)
+        .expectMessageContains("buffer size must be greater than 0");
+
+    /* when / then: the expected exception should be thrown. */
+    NioUtil.writeOutputStream(null, 0, null);
+
+    /* otherwise */
+    fail(format("The expected exception [%s] is not thrown.", IllegalArgumentException.class));
+  }
+
+  @Test
   public void testWriteFile()
   {
+    /* given */
     final File file = new File(temporaryFolder.getRoot(), "file4testing2.txt");
 
     final String expected = this.string;
     final ByteArrayProducer4Testing byteArrayProducer = new ByteArrayProducer4Testing(expected.getBytes());
     for (int bufferSize = 1; bufferSize < 128; bufferSize++)
     {
-      /* test */
+
+      /* when */
       NioUtil.writeFile(file, bufferSize, byteArrayProducer);
 
+      /* then */
       final List<Byte> byteList = new ArrayList<Byte>();
       final String string = readFile(file, byteList);
       assertThat(byteList, is(equalTo(this.byteList)));
@@ -560,11 +661,215 @@ public class NioUtilTest
     NioUtil.writeFile(file, 0, byteArrayProducer);
   }
 
-  /**
-   * Test method for {@link org.elixirian.kommonlee.nio.util.NioUtil#copyFile(java.io.File, java.io.File, int)}.
-   */
   @Test
-  public final void testCopyFileFileFileInt()
+  public final void testCopyIntInputStreamOutputStream() throws IOException
+  {
+
+    /* given */
+    final InputStream inputStream = mock(InputStream.class);
+
+    final OutputStream outputStream = mock(OutputStream.class);
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      /* @formatter:off */
+      final List<Byte> byteListForReading = Arrays.asList(NeoArrays
+                                                         .convertToBoxedPrimitive(this
+                                                                                 .string
+                                                                                 .getBytes()));
+      final int size = byteListForReading.size();
+      /* @formatter:on */
+      final int[] position = new int[] { 0 };
+
+      doAnswer(new Answer<Integer>() {
+        @SuppressWarnings("boxing")
+        @Override
+        public Integer answer(final InvocationOnMock invocation) throws Throwable
+        {
+          if (size <= position[0])
+          {
+            return -1;
+          }
+
+          final Object[] params = invocation.getArguments();
+
+          final byte[] bytes = (byte[]) params[0];
+
+          @SuppressWarnings("boxing")
+          final int offset = (Integer) params[1];
+
+          @SuppressWarnings("boxing")
+          final int count = (Integer) params[2];
+
+          final int howMany = size < position[0] + count ? (size - position[0]) : count;
+          final int length = offset + howMany;
+
+          for (int i = offset; i < length; i++)
+          {
+            bytes[i] = byteListForReading.get(position[0]);
+            position[0]++;
+          }
+          return howMany;
+        }
+      }).when(inputStream)
+          .read(any(byte[].class), anyInt(), anyInt());
+
+      final List<Byte> byteListForWriting = new ArrayList<Byte>();
+      doAnswer(new Answer<Void>() {
+        @Override
+        public Void answer(final InvocationOnMock invocation) throws Throwable
+        {
+          final Object[] params = invocation.getArguments();
+          final byte[] bytes = (byte[]) params[0];
+
+          @SuppressWarnings("boxing")
+          final int offset = (Integer) params[1];
+
+          @SuppressWarnings("boxing")
+          final int count = (Integer) params[2];
+          for (int i = offset; i < offset + count; i++)
+          {
+            final byte each = bytes[i];
+            byteListForWriting.add(Byte.valueOf(each));
+          }
+          return null;
+        }
+      }).when(outputStream)
+          .write(any(byte[].class), anyInt(), anyInt());
+
+      /* when */
+      NioUtil.copy(bufferSize, inputStream, outputStream);
+
+      /* then */
+      // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.string,
+      // new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0])))));
+      assertThat(new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0])),
+          IoCommonConstants.UTF_8), is(equalTo(this.string)));
+      // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", byteListForReading, byteListForWriting));
+      /* @formatter:off */
+      assertThat(byteListForWriting, is(equalTo(byteListForReading)));
+      /* @formatter:on */
+
+      final InOrder order = inOrder(inputStream);
+      order.verify(inputStream, times(computeHowManyForReading(byteListForReading.size(), bufferSize)))
+          .read(any(byte[].class), anyInt(), anyInt());
+      order.verify(inputStream, atLeastOnce())
+          .close();
+
+      final InOrder writeOrder = inOrder(outputStream);
+      writeOrder.verify(outputStream, times(computeHowManyForWriting(byteListForWriting.size(), bufferSize)))
+          .write(any(byte[].class), anyInt(), anyInt());
+      writeOrder.verify(outputStream, atLeastOnce())
+          .close();
+
+      reset(outputStream);
+      reset(inputStream);
+    }
+  }
+
+  @Test
+  public final void testCopyInputStreamOutputStream() throws IOException
+  {
+
+    /* given */
+    final InputStream inputStream = mock(InputStream.class);
+
+    final OutputStream outputStream = mock(OutputStream.class);
+    final int bufferSize = IoCommonConstants.BUFFER_SIZE_512Ki;
+
+    /* @formatter:off */
+    final List<Byte> byteListForReading = Arrays.asList(NeoArrays
+        .convertToBoxedPrimitive(this
+            .string
+            .getBytes()));
+    final int size = byteListForReading.size();
+    /* @formatter:on */
+    final int[] position = new int[] { 0 };
+
+    doAnswer(new Answer<Integer>() {
+      @SuppressWarnings("boxing")
+      @Override
+      public Integer answer(final InvocationOnMock invocation) throws Throwable
+      {
+        if (size <= position[0])
+        {
+          return -1;
+        }
+
+        final Object[] params = invocation.getArguments();
+
+        final byte[] bytes = (byte[]) params[0];
+
+        @SuppressWarnings("boxing")
+        final int offset = (Integer) params[1];
+
+        @SuppressWarnings("boxing")
+        final int count = (Integer) params[2];
+
+        final int howMany = size < position[0] + count ? (size - position[0]) : count;
+        final int length = offset + howMany;
+
+        for (int i = offset; i < length; i++)
+        {
+          bytes[i] = byteListForReading.get(position[0]);
+          position[0]++;
+        }
+        return howMany;
+      }
+    }).when(inputStream)
+        .read(any(byte[].class), anyInt(), anyInt());
+
+    final List<Byte> byteListForWriting = new ArrayList<Byte>();
+    doAnswer(new Answer<Void>() {
+      @Override
+      public Void answer(final InvocationOnMock invocation) throws Throwable
+      {
+        final Object[] params = invocation.getArguments();
+        final byte[] bytes = (byte[]) params[0];
+
+        @SuppressWarnings("boxing")
+        final int offset = (Integer) params[1];
+
+        @SuppressWarnings("boxing")
+        final int count = (Integer) params[2];
+        for (int i = offset; i < offset + count; i++)
+        {
+          final byte each = bytes[i];
+          byteListForWriting.add(Byte.valueOf(each));
+        }
+        return null;
+      }
+    }).when(outputStream)
+        .write(any(byte[].class), anyInt(), anyInt());
+
+    /* when */
+    NioUtil.copy(inputStream, outputStream);
+
+    /* then */
+    // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.string,
+    // new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0])))));
+    assertThat(new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0])),
+        IoCommonConstants.UTF_8), is(equalTo(this.string)));
+    // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", byteListForReading, byteListForWriting));
+    assertThat(byteListForWriting, is(equalTo(byteListForReading)));
+
+    final InOrder order = inOrder(inputStream);
+    order.verify(inputStream, times(computeHowManyForReading(byteListForReading.size(), bufferSize)))
+        .read(any(byte[].class), anyInt(), anyInt());
+    order.verify(inputStream, atLeastOnce())
+        .close();
+
+    final InOrder writeOrder = inOrder(outputStream);
+    writeOrder.verify(outputStream, times(computeHowManyForWriting(byteListForWriting.size(), bufferSize)))
+        .write(any(byte[].class), anyInt(), anyInt());
+    writeOrder.verify(outputStream, atLeastOnce())
+        .close();
+
+    reset(outputStream);
+    reset(inputStream);
+  }
+
+  @Test
+  public final void testCopyFileFileFile()
   {
     final File sourceFile = getTestFile();
 

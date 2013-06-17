@@ -114,14 +114,14 @@ public class SimpleByteArrayProducerTest
     final byte[] expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
     @SuppressWarnings("boxing")
     final Integer expectedLength = expected.length;
-    System.out.println("expected:");
-    System.out.println(Objects.toStringOf(expected));
+    System.out.println("  expected:");
+    System.out.println("  " + Objects.toStringOf(expected));
 
     /* when */
     final SimpleByteArrayProducer simpleByteArrayProducer = new SimpleByteArrayProducer(expected);
     final byte[] actual = simpleByteArrayProducer.byteArray;
-    System.out.println("\nactual:");
-    System.out.println(Objects.toStringOf(actual));
+    System.out.println("\n  actual:");
+    System.out.println("  " + Objects.toStringOf(actual));
     @SuppressWarnings("boxing")
     final Integer actualLength = actual.length;
 
@@ -155,13 +155,13 @@ public class SimpleByteArrayProducerTest
     {
       final byte[] expected = new byte[count];
       System.arraycopy(byteArray, position, expected, 0, count);
-      System.out.println("expected:");
-      System.out.println(Objects.toStringOf(expected));
+      System.out.println("  expected:");
+      System.out.println("  " + Objects.toStringOf(expected));
 
       final byte[] actual = new byte[count];
       System.arraycopy(bytes, 0, actual, 0, count);
-      System.out.println("\nactual:");
-      System.out.println(Objects.toStringOf(actual));
+      System.out.println("\n  actual:");
+      System.out.println("  " + Objects.toStringOf(actual));
 
       /* then */
       assertThat(actual, is(equalTo(expected)));
@@ -184,15 +184,15 @@ public class SimpleByteArrayProducerTest
 
     @SuppressWarnings("boxing")
     final Integer expected = byteArray.length;
-    System.out.println("expected:");
-    System.out.println(expected);
+    System.out.println("  expected:");
+    System.out.println("  " + expected);
 
     /* when */
     final SimpleByteArrayProducer simpleByteArrayProducer = new SimpleByteArrayProducer(byteArray);
     @SuppressWarnings("boxing")
     final Integer actual = simpleByteArrayProducer.length();
-    System.out.println("\nactual:");
-    System.out.println(actual);
+    System.out.println("\n  actual:");
+    System.out.println("  " + actual);
 
     /* then */
     assertThat(actual, is(equalTo(expected)));

@@ -31,9 +31,11 @@
  */
 package org.elixirian.kommonlee.util.type;
 
+import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.elixirian.kommonlee.util.Objects.*;
 
 import org.elixirian.kommonlee.type.Pair;
+import org.elixirian.kommonlee.type.Tuple2;
 
 /**
  * <pre>
@@ -59,7 +61,7 @@ import org.elixirian.kommonlee.type.Pair;
  * @param <T1>
  * @param <T2>
  */
-public class ImmutablePair<T1, T2> implements Pair<T1, T2>
+public class ImmutablePair<T1, T2> implements Pair<T1, T2>, Tuple2<T1, T2>
 {
   private final T1 value1;
   private final T2 value2;
@@ -107,10 +109,7 @@ public class ImmutablePair<T1, T2> implements Pair<T1, T2>
   public String toString()
   {
     /* @formatter:off */
-    return toStringBuilder(this)
-            .add("value1", value1)
-            .add("value2", value2)
-          .toString();
+    return format("(%s, %s)", value1, value2);
     /* @formatter:on */
   }
 }

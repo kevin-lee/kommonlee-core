@@ -53,7 +53,7 @@ package org.elixirian.kommonlee.io;
  */
 public class ResetableSimpleByteArrayProducer extends SimpleByteArrayProducer implements ResetableByteArrayProducer
 {
-  public ResetableSimpleByteArrayProducer(final byte[] byteArray)
+  protected ResetableSimpleByteArrayProducer(final byte[] byteArray)
   {
     super(byteArray);
   }
@@ -62,6 +62,5 @@ public class ResetableSimpleByteArrayProducer extends SimpleByteArrayProducer im
   public void reset()
   {
     this.position = 0;
-    this.left = byteArray.length;
   }
 }

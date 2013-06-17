@@ -31,6 +31,7 @@
  */
 package org.elixirian.kommonlee.util.type;
 
+import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.elixirian.kommonlee.util.Objects.*;
 
 import org.elixirian.kommonlee.type.Tuple7;
@@ -157,16 +158,6 @@ public class ImmutableTuple7<T1, T2, T3, T4, T5, T6, T7> implements Tuple7<T1, T
   @Override
   public String toString()
   {
-    /* @formatter:off */
-    return toStringBuilder(this)
-            .add("value1", value1)
-            .add("value2", value2)
-            .add("value3", value3)
-            .add("value4", value4)
-            .add("value5", value5)
-            .add("value6", value6)
-            .add("value7", value7)
-          .toString();
-    /* @formatter:on */
+    return format("(%s, %s, %s, %s, %s, %s, %s)", value1, value2, value3, value4, value5, value6, value7);
   }
 }

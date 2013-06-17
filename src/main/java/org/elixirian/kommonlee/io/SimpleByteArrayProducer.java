@@ -58,26 +58,25 @@ import org.elixirian.kommonlee.validation.Assertions;
 public class SimpleByteArrayProducer implements ByteArrayProducer
 {
   protected final byte[] byteArray;
+  protected final int length;
   protected int position;
-  protected int left;
 
-  public SimpleByteArrayProducer(final byte[] byteArray)
+  protected SimpleByteArrayProducer(final byte[] byteArray)
   {
     Assertions.assertNotNull(byteArray, "byteArray is null yet it must not be null.");
     this.byteArray = byteArray;
-    this.left = byteArray.length;
+    this.length = byteArray.length;
   }
 
   @Override
   public int produce(final byte[] bytes) throws IOException
   {
-    if (0 < left)
+    if (length > position)
     {
-      final int bytesLength = bytes.length;
-      final int count = bytesLength < left ? bytesLength : left;
+      final int lengthMinusPosition = length - position;
+      final int count = lengthMinusPosition < bytes.length ? lengthMinusPosition : bytes.length;
       System.arraycopy(byteArray, position, bytes, 0, count);
       position += count;
-      left -= count;
       return count;
     }
     return -1;
@@ -86,6 +85,6 @@ public class SimpleByteArrayProducer implements ByteArrayProducer
   @Override
   public int length()
   {
-    return byteArray.length;
+    return length;
   }
 }
