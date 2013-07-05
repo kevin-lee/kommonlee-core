@@ -31,6 +31,13 @@
  */
 package org.elixirian.kommonlee.util.type;
 
+import org.elixirian.kommonlee.type.Pair;
+import org.elixirian.kommonlee.type.Tuple2;
+import org.elixirian.kommonlee.type.Tuple3;
+import org.elixirian.kommonlee.type.Tuple4;
+import org.elixirian.kommonlee.type.Tuple5;
+import org.elixirian.kommonlee.type.Tuple6;
+import org.elixirian.kommonlee.type.Tuple7;
 import org.elixirian.kommonlee.util.CommonConstants;
 
 /**
@@ -60,40 +67,40 @@ public final class Tuples
     throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
   }
 
-  public static <T1, T2> ImmutablePair<T1, T2> pair(final T1 value1, final T2 value2)
+  public static <T1, T2> Pair<T1, T2> pair(final T1 value1, final T2 value2)
   {
     return tuple2(value1, value2);
   }
 
-  public static <T1, T2> ImmutableTuple2<T1, T2> tuple2(final T1 value1, final T2 value2)
+  public static <T1, T2> Tuple2<T1, T2> tuple2(final T1 value1, final T2 value2)
   {
     return new ImmutableTuple2<T1, T2>(value1, value2);
   }
 
-  public static <T1, T2, T3> ImmutableTuple3<T1, T2, T3> tuple3(final T1 value1, final T2 value2, final T3 value3)
+  public static <T1, T2, T3> Tuple3<T1, T2, T3> tuple3(final T1 value1, final T2 value2, final T3 value3)
   {
     return new ImmutableTuple3<T1, T2, T3>(value1, value2, value3);
   }
 
-  public static <T1, T2, T3, T4> ImmutableTuple4<T1, T2, T3, T4> tuple4(final T1 value1, final T2 value2,
-      final T3 value3, final T4 value4)
+  public static <T1, T2, T3, T4> Tuple4<T1, T2, T3, T4> tuple4(final T1 value1, final T2 value2, final T3 value3,
+      final T4 value4)
   {
     return new ImmutableTuple4<T1, T2, T3, T4>(value1, value2, value3, value4);
   }
 
-  public static <T1, T2, T3, T4, T5> ImmutableTuple5<T1, T2, T3, T4, T5> tuple5(final T1 value1, final T2 value2,
+  public static <T1, T2, T3, T4, T5> Tuple5<T1, T2, T3, T4, T5> tuple5(final T1 value1, final T2 value2,
       final T3 value3, final T4 value4, final T5 value5)
   {
     return new ImmutableTuple5<T1, T2, T3, T4, T5>(value1, value2, value3, value4, value5);
   }
 
-  public static <T1, T2, T3, T4, T5, T6> ImmutableTuple6<T1, T2, T3, T4, T5, T6> tuple6(final T1 value1,
-      final T2 value2, final T3 value3, final T4 value4, final T5 value5, final T6 value6)
+  public static <T1, T2, T3, T4, T5, T6> Tuple6<T1, T2, T3, T4, T5, T6> tuple6(final T1 value1, final T2 value2,
+      final T3 value3, final T4 value4, final T5 value5, final T6 value6)
   {
     return new ImmutableTuple6<T1, T2, T3, T4, T5, T6>(value1, value2, value3, value4, value5, value6);
   }
 
-  public static <T1, T2, T3, T4, T5, T6, T7> ImmutableTuple7<T1, T2, T3, T4, T5, T6, T7> tuple7(final T1 value1,
+  public static <T1, T2, T3, T4, T5, T6, T7> Tuple7<T1, T2, T3, T4, T5, T6, T7> tuple7(final T1 value1,
       final T2 value2, final T3 value3, final T4 value4, final T5 value5, final T6 value6, final T7 value7)
   {
     return new ImmutableTuple7<T1, T2, T3, T4, T5, T6, T7>(value1, value2, value3, value4, value5, value6, value7);

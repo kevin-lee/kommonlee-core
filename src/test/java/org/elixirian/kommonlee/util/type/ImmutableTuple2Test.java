@@ -4,6 +4,11 @@ import static org.elixirian.kommonlee.util.Objects.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import static org.elixirian.kommonlee.util.type.Tuples.*;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.elixirian.kommonlee.type.Tuple2;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -89,7 +94,10 @@ public class ImmutableTuple2Test
 
     /* when */
     @SuppressWarnings("boxing")
-    final Tuple2<Integer, String> actual = Tuples.tuple2(999, "Kevin");
+    final Tuple2<Integer, String> actual = tuple2(999, "Kevin");
+    
+    final Map<String, Tuple2<String, Tuple2<Integer, String>>> map = new HashMap<String, Tuple2<String,Tuple2<Integer,String>>>();
+    map.put("test", tuple2("Lee", tuple2(1, "Kevin")));
 
     /* then */
     @SuppressWarnings("boxing")

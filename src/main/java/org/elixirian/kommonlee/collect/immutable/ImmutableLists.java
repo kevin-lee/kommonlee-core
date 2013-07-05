@@ -68,22 +68,22 @@ public final class ImmutableLists
     return ImmutableArrayList.emptyList();
   }
 
-  public static <T> ImmutableArrayList<T> copyOf(final Collection<? extends T> collection)
+  public static <T> ImmutableList<T> copyOf(final Collection<? extends T> collection)
   {
     return ImmutableArrayList.copyOf(collection);
   }
 
-  public static <T> ImmutableArrayList<T> copyOf(final Kollection<? extends T> kollection)
+  public static <T> ImmutableList<T> copyOf(final Kollection<? extends T> kollection)
   {
     return ImmutableArrayList.copyOf(kollection);
   }
 
-  public static <T> ImmutableArrayList<T> listOf(final T... elements)
+  public static <T> ImmutableList<T> listOf(final T... elements)
   {
     return ImmutableArrayList.listOf(elements);
   }
 
-  public static <T> ImmutableArrayList<T> listOf(final T[] elements, final int howMany)
+  public static <T> ImmutableList<T> listOf(final T[] elements, final int howMany)
   {
     return ImmutableArrayList.listOf(elements, howMany);
   }

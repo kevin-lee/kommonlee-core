@@ -1,6 +1,7 @@
 package org.elixirian.kommonlee.util.type;
 
 import static org.elixirian.kommonlee.util.Objects.*;
+import static org.elixirian.kommonlee.util.type.Tuples.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
@@ -8,7 +9,9 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.elixirian.kommonlee.type.Pair;
 import org.elixirian.kommonlee.type.Tuple2;
@@ -99,13 +102,39 @@ public class TuplesTest
 
     /* when */
     @SuppressWarnings("boxing")
-    final Tuple2<Integer, String> actual = Tuples.tuple2(999, "Kevin");
+    final Tuple2<Integer, String> actual = tuple2(999, "Kevin");
 
     /* then */
     @SuppressWarnings("boxing")
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
+    assertThat(actual, is(equalTo(expected)));
+
+    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
+    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+  }
+
+  @Test
+  public final void testTuple2WithGenerified()
+  {
+    /* given */
+    final Map<String, Tuple2<String, Tuple2<Integer, String>>> map =
+      new HashMap<String, Tuple2<String, Tuple2<Integer, String>>>();
+    final Tuple2<String, Tuple2<Integer, String>> expected = tuple2("Lee", tuple2(1, "Kevin"));
+
+    /* when */
+    map.put("test", tuple2("Lee", tuple2(1, "Kevin")));
+
+    /* then */
+    final Tuple2<String, Tuple2<Integer, String>> actual = map.get("test");
+
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode = expected.hashCode();
     assertThat(actualHashCode, is(equalTo(expectedHashCode)));
 
     assertThat(actual, is(equalTo(expected)));
@@ -140,6 +169,34 @@ public class TuplesTest
   }
 
   @Test
+  public final void testTuple3WithGenerified()
+  {
+    /* given */
+    final Map<String, Tuple3<String, String, Tuple3<Integer, String, Date>>> map =
+      new HashMap<String, Tuple3<String, String, Tuple3<Integer, String, Date>>>();
+    final Date date = new Date();
+    final Tuple3<String, String, Tuple3<Integer, String, Date>> expected =
+      tuple3("Kevin", "Lee", tuple3(1, "Kevin", date));
+
+    /* when */
+    map.put("test", tuple3("Kevin", "Lee", tuple3(1, "Kevin", date)));
+
+    /* then */
+    final Tuple3<String, String, Tuple3<Integer, String, Date>> actual = map.get("test");
+
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode = expected.hashCode();
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
+    assertThat(actual, is(equalTo(expected)));
+
+    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
+    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+  }
+
+  @Test
   public final void testTuple4()
   {
     /* given */
@@ -166,6 +223,34 @@ public class TuplesTest
     assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
     assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
     assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
+  }
+
+  @Test
+  public final void testTuple4WithGenerified()
+  {
+    /* given */
+    final Map<String, Tuple4<String, String, Integer, Tuple4<Integer, String, String, Date>>> map =
+      new HashMap<String, Tuple4<String, String, Integer, Tuple4<Integer, String, String, Date>>>();
+    final Date date = new Date();
+    final Tuple4<String, String, Integer, Tuple4<Integer, String, String, Date>> expected =
+      tuple4("Kevin", "Lee", 1, tuple4(1, "Kevin", "Lee", date));
+
+    /* when */
+    map.put("test", tuple4("Kevin", "Lee", 1, tuple4(1, "Kevin", "Lee", date)));
+
+    /* then */
+    final Tuple4<String, String, Integer, Tuple4<Integer, String, String, Date>> actual = map.get("test");
+
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode = expected.hashCode();
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
+    assertThat(actual, is(equalTo(expected)));
+
+    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
+    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
   }
 
   @Test
@@ -197,6 +282,35 @@ public class TuplesTest
     assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
     assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
     assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
+  }
+
+  @Test
+  public final void testTuple5WithGenerified()
+  {
+    /* given */
+    final Map<String, Tuple5<String, String, Integer, Boolean, Tuple5<Integer, String, String, Boolean, Date>>> map =
+      new HashMap<String, Tuple5<String, String, Integer, Boolean, Tuple5<Integer, String, String, Boolean, Date>>>();
+    final Date date = new Date();
+    final Tuple5<String, String, Integer, Boolean, Tuple5<Integer, String, String, Boolean, Date>> expected =
+      tuple5("Kevin", "Lee", 1, true, tuple5(1, "Kevin", "Lee", false, date));
+
+    /* when */
+    map.put("test", tuple5("Kevin", "Lee", 1, true, tuple5(1, "Kevin", "Lee", false, date)));
+
+    /* then */
+    final Tuple5<String, String, Integer, Boolean, Tuple5<Integer, String, String, Boolean, Date>> actual =
+      map.get("test");
+
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode = expected.hashCode();
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
+    assertThat(actual, is(equalTo(expected)));
+
+    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
+    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
   }
 
   @Test
@@ -235,6 +349,39 @@ public class TuplesTest
   }
 
   @Test
+  public final void testTuple6WithGenerified()
+  {
+    /* given */
+    final Map<String, Tuple6<String, String, Integer, Boolean, BigInteger, Tuple6<Integer, String, String, Boolean, BigInteger, Date>>> map =
+      new HashMap<String, Tuple6<String, String, Integer, Boolean, BigInteger, Tuple6<Integer, String, String, Boolean, BigInteger, Date>>>();
+    final Date date = new Date();
+    final Tuple6<String, String, Integer, Boolean, BigInteger, Tuple6<Integer, String, String, Boolean, BigInteger, Date>> expected =
+      tuple6("Kevin", "Lee", 1, true, BigInteger.valueOf(1),
+          tuple6(1, "Kevin", "Lee", false, BigInteger.valueOf(999), date));
+
+    /* when */
+    map.put(
+        "test",
+        tuple6("Kevin", "Lee", 1, true, BigInteger.valueOf(1),
+            tuple6(1, "Kevin", "Lee", false, BigInteger.valueOf(999), date)));
+
+    /* then */
+    final Tuple6<String, String, Integer, Boolean, BigInteger, Tuple6<Integer, String, String, Boolean, BigInteger, Date>> actual =
+      map.get("test");
+
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode = expected.hashCode();
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
+    assertThat(actual, is(equalTo(expected)));
+
+    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
+    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+  }
+
+  @Test
   public final void testTuple7()
   {
     /* given */
@@ -269,5 +416,38 @@ public class TuplesTest
     assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
     assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
     assertThat(actual.getValue7(), is(equalTo(expected.getValue7())));
+  }
+
+  @Test
+  public final void testTuple7WithGenerified()
+  {
+    /* given */
+    final Map<String, Tuple7<String, String, Integer, Boolean, BigInteger, BigDecimal, Tuple7<Integer, String, String, Boolean, BigInteger, BigDecimal, Date>>> map =
+      new HashMap<String, Tuple7<String, String, Integer, Boolean, BigInteger, BigDecimal, Tuple7<Integer, String, String, Boolean, BigInteger, BigDecimal, Date>>>();
+    final Date date = new Date();
+    final Tuple7<String, String, Integer, Boolean, BigInteger, BigDecimal, Tuple7<Integer, String, String, Boolean, BigInteger, BigDecimal, Date>> expected =
+      tuple7("Kevin", "Lee", 1, true, BigInteger.valueOf(1), new BigDecimal("1.05"),
+          tuple7(1, "Kevin", "Lee", false, BigInteger.valueOf(999), new BigDecimal("999.99"), date));
+
+    /* when */
+    map.put(
+        "test",
+        tuple7("Kevin", "Lee", 1, true, BigInteger.valueOf(1), new BigDecimal("1.05"),
+            tuple7(1, "Kevin", "Lee", false, BigInteger.valueOf(999), new BigDecimal("999.99"), date)));
+
+    /* then */
+    final Tuple7<String, String, Integer, Boolean, BigInteger, BigDecimal, Tuple7<Integer, String, String, Boolean, BigInteger, BigDecimal, Date>> actual =
+      map.get("test");
+
+    @SuppressWarnings("boxing")
+    final Integer actualHashCode = actual.hashCode();
+    @SuppressWarnings("boxing")
+    final Integer expectedHashCode = expected.hashCode();
+    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+
+    assertThat(actual, is(equalTo(expected)));
+
+    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
+    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
   }
 }
