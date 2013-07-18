@@ -14,8 +14,6 @@ import org.junit.Test;
 
 public class ByteArrayThreadUnsafeInputStreamTest
 {
-  private static final byte[] SOME_BYTES = new byte[] { Byte.MIN_VALUE, -100, -55, -10, -5, -2, 0, 2, 5, 10, 55, 100,
-      Byte.MAX_VALUE };
   private byte[] expected;
 
   @BeforeClass
@@ -28,12 +26,16 @@ public class ByteArrayThreadUnsafeInputStreamTest
   {
   }
 
+  private static byte[] getByte()
+  {
+    final byte[] bytes = new byte[] { Byte.MIN_VALUE, -100, -55, -10, -5, -2, 0, 2, 5, 10, 55, 100, Byte.MAX_VALUE };
+    return Arrays.copyOf(bytes, bytes.length);
+  }
+
   @Before
   public void setUp() throws Exception
   {
-    final int length = SOME_BYTES.length;
-    expected = new byte[length];
-    System.arraycopy(SOME_BYTES, 0, expected, 0, length);
+    expected = getByte();
   }
 
   @After
@@ -508,7 +510,7 @@ public class ByteArrayThreadUnsafeInputStreamTest
   }
 
   @Test
-  public void testGetMark() throws Exception
+  public final void testGetMark() throws Exception
   {
     /* given */
     final int expected = 0;
@@ -525,7 +527,7 @@ public class ByteArrayThreadUnsafeInputStreamTest
   }
 
   @Test
-  public void testGetMark2() throws Exception
+  public final void testGetMark2() throws Exception
   {
     /* given */
     final int expected = 0;
@@ -546,7 +548,7 @@ public class ByteArrayThreadUnsafeInputStreamTest
   }
 
   @Test
-  public void testIsNotEmpty() throws Exception
+  public final void testIsNotEmpty() throws Exception
   {
     /* given */
     final Boolean expected = Boolean.TRUE;
@@ -567,7 +569,7 @@ public class ByteArrayThreadUnsafeInputStreamTest
   }
 
   @Test
-  public void testIsNotEmpty2() throws Exception
+  public final void testIsNotEmpty2() throws Exception
   {
     /* given */
     final Boolean expected = Boolean.FALSE;
@@ -587,7 +589,7 @@ public class ByteArrayThreadUnsafeInputStreamTest
   }
 
   @Test
-  public void testIsEmpty() throws Exception
+  public final void testIsEmpty() throws Exception
   {
     /* given */
     final Boolean expected = Boolean.TRUE;
@@ -606,7 +608,7 @@ public class ByteArrayThreadUnsafeInputStreamTest
   }
 
   @Test
-  public void testIsEmpty2() throws Exception
+  public final void testIsEmpty2() throws Exception
   {
     /* given */
     final Boolean expected = Boolean.FALSE;
@@ -627,7 +629,7 @@ public class ByteArrayThreadUnsafeInputStreamTest
   }
 
   @Test
-  public void testLength() throws Exception
+  public final void testLength() throws Exception
   {
     /* given */
     final int expected = this.expected.length;
