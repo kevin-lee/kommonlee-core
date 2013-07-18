@@ -29,7 +29,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.elixirian.kommonlee.type;
+package org.elixirian.kommonlee.type.mutable;
 
 /**
  * <pre>
@@ -49,9 +49,9 @@ package org.elixirian.kommonlee.type;
  * </pre>
  * 
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2011-09-18)
+ * @version 0.0.1 (2013-07-15)
  */
-public interface Clearable
+public interface Trimmable<T>
 {
-  void clear();
+  T trim();
 }
