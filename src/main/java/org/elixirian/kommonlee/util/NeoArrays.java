@@ -343,6 +343,43 @@ public final class NeoArrays
     return true;
   }
 
+  public static boolean equal(final byte[] left, final int fromOfLeft, final int toOfLeft, final byte[] right,
+      final int fromOfRight, final int toOfRight)
+  {
+    if (null == left)
+    {
+      return null == right;
+    }
+    if (null == right)
+    {
+      return false;
+    }
+
+    KollectionUtil.checkRange(left.length, fromOfLeft, "from of left array", toOfLeft, "to of left array");
+    KollectionUtil.checkRange(right.length, fromOfRight, "from of right array", toOfRight, "to of right array");
+
+    final int howManyOfLeft = toOfLeft - fromOfLeft;
+    final int howManyOfRight = toOfRight - fromOfRight;
+
+    if (howManyOfLeft != howManyOfRight)
+    {
+      return false;
+    }
+
+    int leftIndex = fromOfLeft;
+    int rightIndex = fromOfRight;
+    while (toOfLeft > leftIndex && toOfRight > rightIndex)
+    {
+      if (left[leftIndex] != right[rightIndex])
+      {
+        return false;
+      }
+      leftIndex++;
+      rightIndex++;
+    }
+    return true;
+  }
+
   /**
    * Returns {@code true} if any element in one array is not equal to the one at the same index in the other array.
    * {@code false} otherwise.

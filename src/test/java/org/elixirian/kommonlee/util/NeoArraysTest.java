@@ -1314,6 +1314,156 @@ public class NeoArraysTest
   }
 
   @Test
+  public final void testEqualByteArrayIntIntByteArrayIntInt()
+  {
+    /* given */
+    final byte[] left = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    final byte[] right = { 3, 4, 5, 6, 7, 8 };
+
+    /* when */
+    final boolean actual = NeoArrays.equal(left, 2, left.length - 2, right, 0, right.length);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testEqualByteArrayIntIntByteArrayIntInt2()
+  {
+    /* given */
+    final byte[] left = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    final byte[] right = { -11, 3, 4, 5, 6, 7, 8, 111 };
+
+    /* when */
+    final boolean actual = NeoArrays.equal(left, 2, left.length - 2, right, 1, right.length - 1);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testEqualByteArrayIntIntByteArrayIntInt3()
+  {
+    /* given */
+    final byte[] left = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    final byte[] right = Arrays.copyOf(left, left.length);
+
+    /* when */
+    final boolean actual = NeoArrays.equal(left, 0, left.length, right, 0, right.length);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testEqualByteArrayIntIntByteArrayIntInt4()
+  {
+    /* given */
+    final byte[] left = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    final byte[] right = Arrays.copyOf(left, left.length);
+    final int from = 3;
+    final int to = left.length - 2;
+
+    /* when */
+    final boolean actual = NeoArrays.equal(left, from, to, right, from, to);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testEqualByteArrayIntIntByteArrayIntIntWithInvalidFromAndInvalidTo()
+  {
+    /* given */
+    final byte[] left = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    final byte[] right = Arrays.copyOf(left, left.length);
+    final int from = 3;
+    final int to = left.length - 2;
+    final int invalidFrom = left.length - 2;
+    final int invalidTo = 3;
+
+    /* expect */
+    causeCheckableExpectedException.expect(IndexOutOfBoundsException.class);
+
+    /* when */
+    final boolean actual = NeoArrays.equal(left, invalidFrom, invalidTo, right, from, to);
+
+    /* otherwise */
+    fail("IndexOutOfBoundsException is not thrown with invalid index values. [invalidFrom: " + invalidFrom
+        + ", invalidTo: " + invalidTo + "]");
+  }
+
+  @Test
+  public final void testEqualByteArrayIntIntByteArrayIntIntWithInvalidFromAndInvalidTo2()
+  {
+    /* given */
+    final byte[] left = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    final byte[] right = Arrays.copyOf(left, left.length);
+    final int from = 3;
+    final int to = left.length - 2;
+    final int invalidFrom = left.length - 2;
+    final int invalidTo = 3;
+
+    /* expect */
+    causeCheckableExpectedException.expect(IndexOutOfBoundsException.class);
+
+    /* when */
+    final boolean actual = NeoArrays.equal(left, from, to, right, invalidFrom, invalidTo);
+
+    /* otherwise */
+    fail("IndexOutOfBoundsException is not thrown with invalid index values. [invalidFrom: " + invalidFrom
+        + ", invalidTo: " + invalidTo + "]");
+  }
+
+  @Test
+  public final void testEqualByteArrayIntIntByteArrayIntIntWithNullArray()
+  {
+    /* given */
+    final byte[] left = null;
+    final byte[] right = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    final int from = 3;
+    final int to = right.length - 2;
+
+    /* when */
+    final boolean actual = NeoArrays.equal(left, from, to, right, from, to);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testEqualByteArrayIntIntByteArrayIntIntWithNullArray2()
+  {
+    /* given */
+    final byte[] left = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    final byte[] right = null;
+    final int from = 3;
+    final int to = left.length - 2;
+
+    /* when */
+    final boolean actual = NeoArrays.equal(left, from, to, right, from, to);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+  
+  @Test
+  public final void testEqualByteArrayIntIntByteArrayIntIntWithBothNullArrays()
+  {
+    /* given */
+    final byte[] left = null;
+    final byte[] right = null;
+    final int from = -3;
+    final int to = - 2;
+    
+    /* when */
+    final boolean actual = NeoArrays.equal(left, from, to, right, from, to);
+    
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
   public final void testEqualCharArrayCharArray()
   {
     /* given */

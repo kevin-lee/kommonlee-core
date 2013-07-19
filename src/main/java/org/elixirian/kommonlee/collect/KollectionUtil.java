@@ -143,6 +143,16 @@ public final class KollectionUtil
     }
   }
 
+  public static void checkRange(final int length, final int fromIndex, final String fromIndexName, final int toIndex,
+      final String toIndexName)
+  {
+    if (0 > fromIndex || toIndex > length || fromIndex > toIndex)
+    {
+      throw new IndexOutOfBoundsException(nullThenUse(fromIndexName, "fromIndex") + ": " + fromIndex + ", "
+          + nullThenUse(toIndexName, "toIndexName") + ": " + toIndex + ", length: " + length);
+    }
+  }
+
   public static void checkInitialLength(final int initialLength)
   {
     if (0 > initialLength)
