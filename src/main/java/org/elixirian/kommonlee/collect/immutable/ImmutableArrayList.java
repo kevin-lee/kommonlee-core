@@ -31,6 +31,7 @@
  */
 package org.elixirian.kommonlee.collect.immutable;
 
+import static org.elixirian.kommonlee.collect.KollectionUtil.*;
 import static org.elixirian.kommonlee.util.Objects.*;
 import static org.elixirian.kommonlee.util.collect.Lists.*;
 
@@ -489,7 +490,7 @@ public abstract class ImmutableArrayList<E> extends AbstractReadableList<E> impl
     @Override
     public E get(final int index)
     {
-      ensureIndex(index, length);
+      checkIndex(length, index);
       @SuppressWarnings("unchecked")
       final E e = (E) this.elements[index];
       return e;
@@ -498,7 +499,7 @@ public abstract class ImmutableArrayList<E> extends AbstractReadableList<E> impl
     @Override
     public ImmutableArrayList<E> subList(final int fromIndex, final int toIndex)
     {
-      ensureRange(fromIndex, toIndex, length);
+      checkRange(length, fromIndex, toIndex);
       final int howMany = toIndex - fromIndex;
       final Object[] subElements = new Object[howMany];
       System.arraycopy(this.elements, fromIndex, subElements, 0, howMany);

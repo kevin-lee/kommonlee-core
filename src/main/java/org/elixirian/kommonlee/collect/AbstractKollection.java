@@ -146,6 +146,6 @@ public abstract class AbstractKollection<E> implements Kollection<E>
   @Override
   public String toString()
   {
-    return Kollections.toStringOf(this);
+    return KollectionUtil.toStringOf(this);
   }
 }

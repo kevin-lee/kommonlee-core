@@ -31,6 +31,8 @@
  */
 package org.elixirian.kommonlee.util;
 
+import org.elixirian.kommonlee.collect.KollectionUtil;
+
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -1060,5 +1062,31 @@ public final class NeoArrays
       boxedPrimitives[i] = x;
     }
     return boxedPrimitives;
+  }
+
+  /**
+   * @param elements
+   *          the given byte array.
+   * @param from
+   *          the initial index of the range to be included for the hash calculation, inclusive
+   * @param to
+   *          the final index of the range to be included for the hash calculation, exclusive. (This index may lie
+   *          outside the array.)
+   * @return a content-based hash code for the given <tt>bytes</tt> 'elements' array.
+   */
+  public static int hash(final byte[] elements, final int from, final int to)
+  {
+    if (null == elements)
+    {
+      return 0;
+    }
+    KollectionUtil.checkRange(elements.length, from, to);
+
+    int result = 1;
+    for (int i = from; i < to; i++)
+    {
+      result = 31 * result + elements[i];
+    }
+    return result;
   }
 }

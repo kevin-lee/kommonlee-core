@@ -33,10 +33,10 @@ package org.elixirian.kommonlee.collect;
 
 import java.util.Iterator;
 
-import org.elixirian.kommonlee.type.Clearable;
 import org.elixirian.kommonlee.type.checkable.EmptinessCheckable;
 import org.elixirian.kommonlee.type.checkable.LengthCheckable;
 import org.elixirian.kommonlee.type.checkable.NotEmptinessCheckable;
+import org.elixirian.kommonlee.type.mutable.Clearable;
 
 /**
  * <pre>

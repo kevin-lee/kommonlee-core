@@ -31,6 +31,7 @@
  */
 package org.elixirian.kommonlee.collect;
 
+import static org.elixirian.kommonlee.collect.KollectionUtil.*;
 import static org.elixirian.kommonlee.util.collect.Lists.*;
 
 import java.util.ArrayList;
@@ -256,7 +257,7 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
   @Override
   public E get(final int index)
   {
-    ensureIndex(index, length);
+    checkIndex(length, index);
     @SuppressWarnings("unchecked")
     final E element = (E) this.elements[index];
     return element;
@@ -265,7 +266,7 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
   @Override
   public ReadableList<E> subList(final int fromIndex, final int toIndex)
   {
-    ensureRange(fromIndex, toIndex, length);
+    checkRange(length, fromIndex, toIndex);
     final int howMany = toIndex - fromIndex;
     final Object[] subElements = new Object[howMany];
     System.arraycopy(this.elements, fromIndex, subElements, 0, howMany);

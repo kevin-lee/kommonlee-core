@@ -32,11 +32,12 @@
 package org.elixirian.kommonlee.util;
 
 import static org.elixirian.kommonlee.util.Objects.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
+import static org.fest.assertions.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
@@ -69,6 +70,9 @@ import org.junit.Test;
  */
 public class NeoArraysTest
 {
+  @Rule
+  public CauseCheckableExpectedException causeCheckableExpectedException = CauseCheckableExpectedException.none();
+
   @BeforeClass
   public static void setUpBeforeClass() throws Exception
   {
@@ -109,11 +113,11 @@ public class NeoArraysTest
     final boolean actual5 = NeoArrays.isArray(input5);
 
     /* then */
-    assertThat(actual1, is(Boolean.FALSE));
-    assertThat(actual2, is(Boolean.FALSE));
-    assertThat(actual3, is(Boolean.FALSE));
-    assertThat(actual4, is(Boolean.FALSE));
-    assertThat(actual5, is(Boolean.FALSE));
+    assertThat(actual1).isFalse();
+    assertThat(actual2).isFalse();
+    assertThat(actual3).isFalse();
+    assertThat(actual4).isFalse();
+    assertThat(actual5).isFalse();
     System.out.println("\n##### NeoArraysTest.testIsArrayWithNotArray() ends");
   }
 
@@ -135,10 +139,10 @@ public class NeoArraysTest
     final boolean actual4 = NeoArrays.isArray(array4);
 
     /* then */
-    assertThat(actual1, is(Boolean.TRUE));
-    assertThat(actual2, is(Boolean.TRUE));
-    assertThat(actual3, is(Boolean.TRUE));
-    assertThat(actual4, is(Boolean.TRUE));
+    assertThat(actual1).isTrue();
+    assertThat(actual2).isTrue();
+    assertThat(actual3).isTrue();
+    assertThat(actual4).isTrue();
     System.out.println("\n##### NeoArraysTest.testIsArray() ends");
   }
 
@@ -166,10 +170,10 @@ public class NeoArraysTest
     final Boolean actual4 = NeoArrays.isNotArray(notArray4);
 
     /* then */
-    assertThat(actual1, is(Boolean.TRUE));
-    assertThat(actual2, is(Boolean.TRUE));
-    assertThat(actual3, is(Boolean.TRUE));
-    assertThat(actual4, is(Boolean.TRUE));
+    assertThat(actual1).isTrue();
+    assertThat(actual2).isTrue();
+    assertThat(actual3).isTrue();
+    assertThat(actual4).isTrue();
 
     /* given */
     final String[] array1 = new String[0];
@@ -191,10 +195,10 @@ public class NeoArraysTest
     final Boolean actual2_4 = NeoArrays.isNotArray(array4);
 
     /* then */
-    assertThat(actual2_1, is(Boolean.FALSE));
-    assertThat(actual2_2, is(Boolean.FALSE));
-    assertThat(actual2_3, is(Boolean.FALSE));
-    assertThat(actual2_4, is(Boolean.FALSE));
+    assertThat(actual2_1).isFalse();
+    assertThat(actual2_2).isFalse();
+    assertThat(actual2_3).isFalse();
+    assertThat(actual2_4).isFalse();
     System.out.println("\n##### NeoArraysTest.testIsNotArray() ends");
   }
 
@@ -245,7 +249,7 @@ public class NeoArraysTest
     final String expected3 = "[]";
 
     final Object[] array4 = null;
-    final Object expected4 = "null";
+    final String expected4 = "null";
 
     /* when */
     System.out.println("\nexpected:\n" + expected1);
@@ -269,10 +273,10 @@ public class NeoArraysTest
     System.out.println(actual4);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
-    assertThat(actual2, is(equalTo(expected2)));
-    assertThat(actual3, is(equalTo(expected3)));
-    assertThat(actual4, is(equalTo(expected4)));
+    assertThat(actual1).isEqualTo(expected1);
+    assertThat(actual2).isEqualTo(expected2);
+    assertThat(actual3).isEqualTo(expected3);
+    assertThat(actual4).isEqualTo(expected4);
     System.out.println("\n##### NeoArraysTest.testToStringOfArray() ends");
   }
 
@@ -295,7 +299,7 @@ public class NeoArraysTest
     final String expected3 = "[[]]";
 
     final Object[][] array4 = null;
-    final Object expected4 = "null";
+    final String expected4 = "null";
 
     /* when */
     System.out.println("\nexpected:\n" + expected1);
@@ -319,10 +323,10 @@ public class NeoArraysTest
     System.out.println(actual4);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
-    assertThat(actual2, is(equalTo(expected2)));
-    assertThat(actual3, is(equalTo(expected3)));
-    assertThat(actual4, is(equalTo(expected4)));
+    assertThat(actual1).isEqualTo(expected1);
+    assertThat(actual2).isEqualTo(expected2);
+    assertThat(actual3).isEqualTo(expected3);
+    assertThat(actual4).isEqualTo(expected4);
     System.out.println("\n##### NeoArraysTest.testToStringOfArrayWith2DArray() ends");
   }
 
@@ -346,7 +350,7 @@ public class NeoArraysTest
     final String expected3 = "[[[], []], [[]]]";
 
     final Object[][] array4 = null;
-    final Object expected4 = "null";
+    final String expected4 = "null";
 
     /* when */
     System.out.println("\nexpected:\n" + expected1);
@@ -370,10 +374,10 @@ public class NeoArraysTest
     System.out.println(actual4);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
-    assertThat(actual2, is(equalTo(expected2)));
-    assertThat(actual3, is(equalTo(expected3)));
-    assertThat(actual4, is(equalTo(expected4)));
+    assertThat(actual1).isEqualTo(expected1);
+    assertThat(actual2).isEqualTo(expected2);
+    assertThat(actual3).isEqualTo(expected3);
+    assertThat(actual4).isEqualTo(expected4);
     System.out.println("\n##### NeoArraysTest.testToStringOfArrayWith3DArray() ends");
   }
 
@@ -388,7 +392,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -398,7 +402,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* given */
     final String expected = "null";
@@ -408,7 +412,7 @@ public class NeoArraysTest
     final String actual = NeoArrays.toStringOfArray(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Rule
@@ -425,7 +429,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray0(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -435,7 +439,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray0(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* Exceptional */
     /* given */
@@ -448,7 +452,7 @@ public class NeoArraysTest
     NeoArrays.toStringOfArray0(array);
 
     /* otherwise-fail */
-    fail();
+    fail("NullPointerException is expected for the null reference passed to the NeoArrays.toStringOfArray0(boolean[] array) method.");
   }
 
   @Test
@@ -462,7 +466,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -472,7 +476,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* given */
     final String expected = "null";
@@ -482,7 +486,7 @@ public class NeoArraysTest
     final String actual = NeoArrays.toStringOfArray(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -496,7 +500,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray0(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -506,7 +510,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray0(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* Exceptional */
     /* given */
@@ -519,7 +523,7 @@ public class NeoArraysTest
     NeoArrays.toStringOfArray0(array);
 
     /* otherwise-fail */
-    fail();
+    fail("NullPointerException is expected for the null reference passed to the NeoArrays.toStringOfArray0(byte[] array) method.");
   }
 
   @Test
@@ -535,7 +539,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -545,7 +549,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* given */
     final String expected = "null";
@@ -555,7 +559,7 @@ public class NeoArraysTest
     final String actual = NeoArrays.toStringOfArray(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -571,7 +575,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray0(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -581,7 +585,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray0(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* Exceptional */
     /* given */
@@ -594,7 +598,7 @@ public class NeoArraysTest
     NeoArrays.toStringOfArray0(array);
 
     /* otherwise-fail */
-    fail();
+    fail("NullPointerException is expected for the null reference passed to the NeoArrays.toStringOfArray0(short[] array) method.");
   }
 
   @Test
@@ -608,7 +612,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -618,7 +622,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* given */
     final String expected = "null";
@@ -628,7 +632,7 @@ public class NeoArraysTest
     final String actual = NeoArrays.toStringOfArray(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -642,7 +646,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray0(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -652,7 +656,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray0(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* Exceptional */
     /* given */
@@ -665,7 +669,7 @@ public class NeoArraysTest
     NeoArrays.toStringOfArray0(array);
 
     /* otherwise-fail */
-    fail();
+    fail("NullPointerException is expected for the null reference passed to the NeoArrays.toStringOfArray0(short[] array) method.");
   }
 
   @Test
@@ -684,7 +688,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -694,7 +698,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* given */
     final String expected = "null";
@@ -704,7 +708,7 @@ public class NeoArraysTest
     final String actual = NeoArrays.toStringOfArray(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -722,7 +726,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray0(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -732,7 +736,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray0(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* Exceptional */
     /* given */
@@ -745,7 +749,7 @@ public class NeoArraysTest
     NeoArrays.toStringOfArray0(array);
 
     /* otherwise-fail */
-    fail();
+    fail("NullPointerException is expected for the null reference passed to the NeoArrays.toStringOfArray0(int[] array) method.");
   }
 
   @Test
@@ -764,7 +768,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -774,7 +778,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* given */
     final String expected = "null";
@@ -784,7 +788,7 @@ public class NeoArraysTest
     final String actual = NeoArrays.toStringOfArray(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -803,7 +807,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray0(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -813,7 +817,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray0(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* Exceptional */
     /* given */
@@ -826,7 +830,7 @@ public class NeoArraysTest
     NeoArrays.toStringOfArray0(array);
 
     /* otherwise-fail */
-    fail();
+    fail("NullPointerException is expected for the null reference passed to the NeoArrays.toStringOfArray0(long[] array) method.");
   }
 
   @Test
@@ -845,7 +849,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -855,7 +859,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* given */
     final String expected = "null";
@@ -865,7 +869,7 @@ public class NeoArraysTest
     final String actual = NeoArrays.toStringOfArray(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -884,7 +888,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray0(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -894,7 +898,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray0(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* Exceptional */
     /* given */
@@ -907,7 +911,7 @@ public class NeoArraysTest
     NeoArrays.toStringOfArray0(array);
 
     /* otherwise-fail */
-    fail();
+    fail("NullPointerException is expected for the null reference passed to the NeoArrays.toStringOfArray0(float[] array) method.");
   }
 
   @Test
@@ -927,7 +931,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -937,7 +941,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* given */
     final String expected = "null";
@@ -947,7 +951,7 @@ public class NeoArraysTest
     final String actual = NeoArrays.toStringOfArray(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -967,7 +971,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray0(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -977,7 +981,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray0(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* Exceptional */
     /* given */
@@ -990,7 +994,7 @@ public class NeoArraysTest
     NeoArrays.toStringOfArray0(array);
 
     /* otherwise-fail */
-    fail();
+    fail("NullPointerException is expected for the null reference passed to the NeoArrays.toStringOfArray0(double[] array) method.");
   }
 
   class TestPojo
@@ -1033,7 +1037,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -1043,7 +1047,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* given */
     final String expected = "null";
@@ -1053,7 +1057,7 @@ public class NeoArraysTest
     final String actual = NeoArrays.toStringOfArray(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -1073,7 +1077,7 @@ public class NeoArraysTest
     final String actual1 = NeoArrays.toStringOfArray0(array1);
 
     /* then */
-    assertThat(actual1, is(equalTo(expected1)));
+    assertThat(actual1).isEqualTo(expected1);
 
     /* given */
     final String expected2 = "[]";
@@ -1083,7 +1087,7 @@ public class NeoArraysTest
     final String actual2 = NeoArrays.toStringOfArray0(array2);
 
     /* then */
-    assertThat(actual2, is(equalTo(expected2)));
+    assertThat(actual2).isEqualTo(expected2);
 
     /* Exceptional */
     /* given */
@@ -1096,7 +1100,7 @@ public class NeoArraysTest
     NeoArrays.toStringOfArray0(array);
 
     /* otherwise-fail */
-    fail();
+    fail("NullPointerException is expected for the null reference passed to the NeoArrays.toStringOfArray0(Object[] array) method.");
   }
 
   @Test
@@ -1117,7 +1121,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1138,7 +1142,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1159,7 +1163,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1180,7 +1184,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1201,7 +1205,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1222,7 +1226,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1243,7 +1247,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1264,7 +1268,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1285,7 +1289,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1306,7 +1310,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1327,7 +1331,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1348,7 +1352,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1369,7 +1373,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1390,7 +1394,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1411,7 +1415,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1432,7 +1436,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1453,7 +1457,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1474,7 +1478,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1495,7 +1499,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1516,7 +1520,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1537,7 +1541,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1558,7 +1562,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1579,7 +1583,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1600,7 +1604,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1621,7 +1625,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1642,7 +1646,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1663,7 +1667,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1684,7 +1688,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1705,7 +1709,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1726,7 +1730,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1747,7 +1751,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1768,7 +1772,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1789,7 +1793,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1810,7 +1814,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1831,7 +1835,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1851,7 +1855,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1871,7 +1875,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1891,7 +1895,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1911,7 +1915,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1931,7 +1935,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1952,7 +1956,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -1973,7 +1977,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -1994,7 +1998,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2015,7 +2019,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2036,7 +2040,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2057,7 +2061,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2078,7 +2082,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2099,7 +2103,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2120,7 +2124,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2141,7 +2145,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2162,7 +2166,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2183,7 +2187,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2204,7 +2208,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2225,7 +2229,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2246,7 +2250,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2267,7 +2271,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2288,7 +2292,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2309,7 +2313,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2330,7 +2334,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2351,7 +2355,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2372,7 +2376,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2393,7 +2397,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2414,7 +2418,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2435,7 +2439,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2456,7 +2460,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2477,7 +2481,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2498,7 +2502,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2519,7 +2523,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2540,7 +2544,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2561,7 +2565,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2582,7 +2586,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2603,7 +2607,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2624,7 +2628,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2645,7 +2649,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2666,7 +2670,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2682,12 +2686,11 @@ public class NeoArraysTest
 
     /* when */
     System.out.println("result:");
-    @SuppressWarnings("boxing")
-    final Boolean result = NeoArrays.notEqual(expected, actual);
+    final boolean result = NeoArrays.notEqual(expected, actual);
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2708,7 +2711,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2729,7 +2732,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2750,7 +2753,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2771,7 +2774,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   private static class TestObject
@@ -2837,7 +2840,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2862,7 +2865,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2887,7 +2890,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2912,7 +2915,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2935,7 +2938,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -2956,7 +2959,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -2981,7 +2984,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3006,7 +3009,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3031,7 +3034,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3056,7 +3059,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3079,7 +3082,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3100,7 +3103,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3125,7 +3128,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3146,7 +3149,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3167,7 +3170,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3192,7 +3195,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3217,7 +3220,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3242,7 +3245,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3265,7 +3268,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3288,7 +3291,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3309,7 +3312,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3330,7 +3333,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3355,7 +3358,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3376,7 +3379,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3397,7 +3400,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3422,7 +3425,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3447,7 +3450,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3472,7 +3475,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3495,7 +3498,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3518,7 +3521,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3539,7 +3542,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3560,7 +3563,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3585,7 +3588,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3610,7 +3613,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3635,7 +3638,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3660,7 +3663,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3683,7 +3686,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3706,7 +3709,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3727,7 +3730,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3748,7 +3751,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3773,7 +3776,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3798,7 +3801,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3823,7 +3826,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3848,7 +3851,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3871,7 +3874,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3894,7 +3897,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.TRUE)));
+    assertThat(result).isTrue();
   }
 
   @Test
@@ -3915,7 +3918,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3936,7 +3939,7 @@ public class NeoArraysTest
     System.out.println(result);
 
     /* then */
-    assertThat(result, is(equalTo(Boolean.FALSE)));
+    assertThat(result).isFalse();
   }
 
   @Test
@@ -3950,7 +3953,7 @@ public class NeoArraysTest
     final byte[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -3965,7 +3968,7 @@ public class NeoArraysTest
     final byte[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -3980,7 +3983,7 @@ public class NeoArraysTest
     final byte[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -3995,7 +3998,7 @@ public class NeoArraysTest
     final byte[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4010,7 +4013,7 @@ public class NeoArraysTest
     final byte[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4025,7 +4028,7 @@ public class NeoArraysTest
     final byte[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4039,7 +4042,7 @@ public class NeoArraysTest
     final Byte[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4054,7 +4057,7 @@ public class NeoArraysTest
     final Byte[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4069,7 +4072,7 @@ public class NeoArraysTest
     final Byte[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4084,7 +4087,7 @@ public class NeoArraysTest
     final Byte[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4099,7 +4102,7 @@ public class NeoArraysTest
     final Byte[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4114,7 +4117,7 @@ public class NeoArraysTest
     final Byte[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4128,7 +4131,7 @@ public class NeoArraysTest
     final char[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4143,7 +4146,7 @@ public class NeoArraysTest
     final char[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4158,7 +4161,7 @@ public class NeoArraysTest
     final char[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4173,7 +4176,7 @@ public class NeoArraysTest
     final char[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4187,7 +4190,7 @@ public class NeoArraysTest
     final Character[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4202,7 +4205,7 @@ public class NeoArraysTest
     final Character[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4217,7 +4220,7 @@ public class NeoArraysTest
     final Character[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4232,7 +4235,7 @@ public class NeoArraysTest
     final Character[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4246,7 +4249,7 @@ public class NeoArraysTest
     final short[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4261,7 +4264,7 @@ public class NeoArraysTest
     final short[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4276,7 +4279,7 @@ public class NeoArraysTest
     final short[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4291,7 +4294,7 @@ public class NeoArraysTest
     final short[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4306,7 +4309,7 @@ public class NeoArraysTest
     final short[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4321,7 +4324,7 @@ public class NeoArraysTest
     final short[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4335,7 +4338,7 @@ public class NeoArraysTest
     final Short[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4350,7 +4353,7 @@ public class NeoArraysTest
     final Short[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4365,7 +4368,7 @@ public class NeoArraysTest
     final Short[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4380,7 +4383,7 @@ public class NeoArraysTest
     final Short[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4395,7 +4398,7 @@ public class NeoArraysTest
     final Short[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4410,7 +4413,7 @@ public class NeoArraysTest
     final Short[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4424,7 +4427,7 @@ public class NeoArraysTest
     final int[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4439,7 +4442,7 @@ public class NeoArraysTest
     final int[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4454,7 +4457,7 @@ public class NeoArraysTest
     final int[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4469,7 +4472,7 @@ public class NeoArraysTest
     final int[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4484,7 +4487,7 @@ public class NeoArraysTest
     final int[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4501,7 +4504,7 @@ public class NeoArraysTest
     final int[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4515,7 +4518,7 @@ public class NeoArraysTest
     final Integer[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4530,7 +4533,7 @@ public class NeoArraysTest
     final Integer[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4545,7 +4548,7 @@ public class NeoArraysTest
     final Integer[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4560,7 +4563,7 @@ public class NeoArraysTest
     final Integer[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4575,7 +4578,7 @@ public class NeoArraysTest
     final Integer[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4592,7 +4595,7 @@ public class NeoArraysTest
     final Integer[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4606,7 +4609,7 @@ public class NeoArraysTest
     final long[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4621,7 +4624,7 @@ public class NeoArraysTest
     final long[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4636,7 +4639,7 @@ public class NeoArraysTest
     final long[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4651,7 +4654,7 @@ public class NeoArraysTest
     final long[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4666,7 +4669,7 @@ public class NeoArraysTest
     final long[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4685,7 +4688,7 @@ public class NeoArraysTest
     final long[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4699,7 +4702,7 @@ public class NeoArraysTest
     final Long[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4714,7 +4717,7 @@ public class NeoArraysTest
     final Long[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4729,7 +4732,7 @@ public class NeoArraysTest
     final Long[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4744,7 +4747,7 @@ public class NeoArraysTest
     final Long[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4759,7 +4762,7 @@ public class NeoArraysTest
     final Long[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4778,7 +4781,7 @@ public class NeoArraysTest
     final Long[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4792,7 +4795,7 @@ public class NeoArraysTest
     final float[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4807,7 +4810,7 @@ public class NeoArraysTest
     final float[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4822,7 +4825,7 @@ public class NeoArraysTest
     final float[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4837,7 +4840,7 @@ public class NeoArraysTest
     final float[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4852,7 +4855,7 @@ public class NeoArraysTest
     final float[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4871,7 +4874,7 @@ public class NeoArraysTest
     final float[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4885,7 +4888,7 @@ public class NeoArraysTest
     final Float[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4900,7 +4903,7 @@ public class NeoArraysTest
     final Float[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4915,7 +4918,7 @@ public class NeoArraysTest
     final Float[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4930,7 +4933,7 @@ public class NeoArraysTest
     final Float[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4945,7 +4948,7 @@ public class NeoArraysTest
     final Float[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4964,7 +4967,7 @@ public class NeoArraysTest
     final Float[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4978,7 +4981,7 @@ public class NeoArraysTest
     final double[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -4993,7 +4996,7 @@ public class NeoArraysTest
     final double[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5008,7 +5011,7 @@ public class NeoArraysTest
     final double[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5023,7 +5026,7 @@ public class NeoArraysTest
     final double[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5038,7 +5041,7 @@ public class NeoArraysTest
     final double[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5057,7 +5060,7 @@ public class NeoArraysTest
     final double[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5071,7 +5074,7 @@ public class NeoArraysTest
     final Double[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5086,7 +5089,7 @@ public class NeoArraysTest
     final Double[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5101,7 +5104,7 @@ public class NeoArraysTest
     final Double[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5116,7 +5119,7 @@ public class NeoArraysTest
     final Double[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5131,7 +5134,7 @@ public class NeoArraysTest
     final Double[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5150,7 +5153,7 @@ public class NeoArraysTest
     final Double[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5164,7 +5167,7 @@ public class NeoArraysTest
     final boolean[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5179,7 +5182,7 @@ public class NeoArraysTest
     final boolean[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5194,7 +5197,7 @@ public class NeoArraysTest
     final boolean[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5209,7 +5212,7 @@ public class NeoArraysTest
     final boolean[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5224,7 +5227,7 @@ public class NeoArraysTest
     final boolean[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5239,7 +5242,7 @@ public class NeoArraysTest
     final boolean[] actual = NeoArrays.convertToPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5253,7 +5256,7 @@ public class NeoArraysTest
     final Boolean[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5268,7 +5271,7 @@ public class NeoArraysTest
     final Boolean[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5283,7 +5286,7 @@ public class NeoArraysTest
     final Boolean[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5298,7 +5301,7 @@ public class NeoArraysTest
     final Boolean[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5313,7 +5316,7 @@ public class NeoArraysTest
     final Boolean[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -5328,7 +5331,53 @@ public class NeoArraysTest
     final Boolean[] actual = NeoArrays.convertToBoxedPrimitive(array);
 
     /* then */
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
   }
 
+  @Test
+  public final void testHashByteArrayIntInt()
+  {
+    /* given */
+    final int expected = Arrays.hashCode(new byte[] { -10, -5, -1, 0, 1, 5 });
+    final byte[] array = new byte[] { -100, -50, -10, -5, -1, 0, 1, 5, 10, 50, 100 };
+
+    /* when */
+    final int actual = NeoArrays.hash(array, 2, array.length - 3);
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testHashByteArrayIntIntWithNullArray()
+  {
+    /* given */
+    final int expected = Arrays.hashCode(new byte[] { -10, -5, -1, 0, 1, 5 });
+    final byte[] array = new byte[] { -100, -50, -10, -5, -1, 0, 1, 5, 10, 50, 100 };
+
+    /* when */
+    final int actual = NeoArrays.hash(array, 2, array.length - 3);
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testHashByteArrayIntIntWithInvalidRange()
+  {
+    /* given */
+    final int expected = Arrays.hashCode(new byte[] { -10, -5, -1, 0, 1, 5 });
+    final byte[] array = new byte[] { -100, -50, -10, -5, -1, 0, 1, 5, 10, 50, 100 };
+    final int from = 2;
+    final int to = 1;
+
+    /* expect */
+    causeCheckableExpectedException.expect(IndexOutOfBoundsException.class);
+
+    /* when */
+    final int actual = NeoArrays.hash(array, 2, 1);
+
+    /* otherwise */
+    fail("IndexOutOfBoundsException is not thrown for invalid range! [range: from: " + from + ", to:" + to + "]");
+  }
 }
