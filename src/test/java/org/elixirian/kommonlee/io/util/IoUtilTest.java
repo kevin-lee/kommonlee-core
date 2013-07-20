@@ -256,7 +256,9 @@ public class IoUtilTest
 
         for (int i = 0; i < bytesRead; i++)
         {
-          byteList.add(buffer[i]);
+          @SuppressWarnings("boxing")
+          final Byte b = buffer[i];
+          byteList.add(b);
         }
 
         bytesRead = fileInputStream.read(buffer);
@@ -436,15 +438,11 @@ public class IoUtilTest
     @Override
     public void consume(final byte[] bytes, final int offset, final int count)
     {
-      // for (int i = offset, size = offset + count; i < size; i++)
-      // {
-      // byteList.add(Byte.valueOf(bytes[i]));
-      // stringBuilder.append((char) bytes[i]);
-      // }
-
       for (int i = offset; i < offset + count; i++)
       {
-        byteList.add(bytes[i]);
+        @SuppressWarnings("boxing")
+        final Byte b = bytes[i];
+        byteList.add(b);
       }
     }
 
@@ -460,7 +458,8 @@ public class IoUtilTest
       final byte[] bytes = new byte[length];
       for (int i = 0; i < length; i++)
       {
-        bytes[i] = byteList.get(i);
+        bytes[i] = byteList.get(i)
+            .byteValue();
       }
       return new String(bytes);
     }
@@ -655,6 +654,12 @@ public class IoUtilTest
     public int length()
     {
       return byteArray.length;
+    }
+
+    @Override
+    public byte[] toByteArray()
+    {
+      return Arrays.copyOf(byteArray, byteArray.length);
     }
   }
 

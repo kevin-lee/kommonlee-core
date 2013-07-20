@@ -31,8 +31,7 @@
  */
 package org.elixirian.kommonlee.io;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.fest.assertions.api.Assertions.*;
 
 import java.io.IOException;
 
@@ -103,7 +102,7 @@ public class ResetableSimpleByteArrayProducerTest
     new ResetableSimpleByteArrayProducer(expected);
 
     /* otherwise-fail */
-    fail();
+    fail("IllegalArgumentException is not thrown for a byte[] variable that contains the null reference.");
   }
 
   @Test
@@ -112,23 +111,21 @@ public class ResetableSimpleByteArrayProducerTest
     System.out.println("\nResetableSimpleByteArrayProducerTest.testResetableSimpleByteArrayProducer() {");
     /* given */
     final byte[] expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-    @SuppressWarnings("boxing")
-    final Integer expectedLength = expected.length;
+    final int expectedLength = expected.length;
     System.out.println("  expected:");
     System.out.println("  " + Objects.toStringOf(expected));
 
     /* when */
     final ResetableSimpleByteArrayProducer resetableSimpleByteArrayProducer =
       new ResetableSimpleByteArrayProducer(expected);
-    final byte[] actual = resetableSimpleByteArrayProducer.byteArray;
+    final byte[] actual = resetableSimpleByteArrayProducer.toByteArray();
     System.out.println("\n  actual:");
     System.out.println("  " + Objects.toStringOf(actual));
-    @SuppressWarnings("boxing")
-    final Integer actualLength = actual.length;
+    final int actualLength = actual.length;
 
     /* then */
-    assertThat(actualLength, is(equalTo(expectedLength)));
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actualLength).isEqualTo(expectedLength);
+    assertThat(actual).isEqualTo(expected);
 
     System.out.println("}");
   }
@@ -142,34 +139,30 @@ public class ResetableSimpleByteArrayProducerTest
     final ResetableSimpleByteArrayProducer resetableSimpleByteArrayProducer =
       new ResetableSimpleByteArrayProducer(byteArray);
 
-    @SuppressWarnings("boxing")
-    final Integer expectedPosition = resetableSimpleByteArrayProducer.position;
-    @SuppressWarnings("boxing")
-    final Integer expectedLength = resetableSimpleByteArrayProducer.length;
+    final int expectedPosition = resetableSimpleByteArrayProducer.byteArrayThreadUnsafeInputStream.getCurrentPosition();
+    final int expectedLength = resetableSimpleByteArrayProducer.length();
 
     final byte[] bytes = new byte[3];
 
     int count = resetableSimpleByteArrayProducer.produce(bytes);
 
-    @SuppressWarnings("boxing")
-    final Integer countInteger = count;
-    assertThat(countInteger, is(not(equalTo(Integer.valueOf(-1)))));
+    final int countInteger = count;
+    assertThat(countInteger).isNotEqualTo(-1);
 
     while (-1 != count)
     {
       count = resetableSimpleByteArrayProducer.produce(bytes);
     }
 
-    @SuppressWarnings("boxing")
-    final Integer positionBeforeReset = resetableSimpleByteArrayProducer.position;
-    @SuppressWarnings("boxing")
-    final Integer lengthBeforeReset = resetableSimpleByteArrayProducer.length();
+    final int positionBeforeReset =
+      resetableSimpleByteArrayProducer.byteArrayThreadUnsafeInputStream.getCurrentPosition();
+    final int lengthBeforeReset = resetableSimpleByteArrayProducer.length();
     System.out.println("  positionBeforeReset:");
     System.out.println("  " + positionBeforeReset);
     System.out.println("  lengthBeforeReset:");
     System.out.println("  " + lengthBeforeReset);
-    assertThat(positionBeforeReset, is(equalTo(Integer.valueOf(byteArray.length))));
-    assertThat(lengthBeforeReset, is(expectedLength));
+    assertThat(positionBeforeReset).isEqualTo(Integer.valueOf(byteArray.length));
+    assertThat(lengthBeforeReset).isEqualTo(expectedLength);
 
     /* when */
     resetableSimpleByteArrayProducer.reset();
@@ -180,17 +173,15 @@ public class ResetableSimpleByteArrayProducerTest
     System.out.println("  expectedLength:");
     System.out.println("  " + expectedLength);
 
-    @SuppressWarnings("boxing")
-    final Integer actualPosition = resetableSimpleByteArrayProducer.position;
-    @SuppressWarnings("boxing")
-    final Integer actualLength = resetableSimpleByteArrayProducer.length();
+    final int actualPosition = resetableSimpleByteArrayProducer.byteArrayThreadUnsafeInputStream.getCurrentPosition();
+    final int actualLength = resetableSimpleByteArrayProducer.length();
     System.out.println("\n  actualPosition:");
     System.out.println("  " + actualPosition);
     System.out.println("  actualLength:");
     System.out.println("  " + actualLength);
 
-    assertThat(actualPosition, is(equalTo(expectedPosition)));
-    assertThat(actualLength, is(equalTo(expectedLength)));
+    assertThat(actualPosition).isEqualTo(expectedPosition);
+    assertThat(actualLength).isEqualTo(expectedLength);
     System.out.println("}");
   }
 

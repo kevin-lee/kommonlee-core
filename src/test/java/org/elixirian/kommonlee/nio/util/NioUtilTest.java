@@ -282,6 +282,7 @@ public class NioUtilTest
     {
       for (int i = offset; i < offset + count; i++)
       {
+        @SuppressWarnings("boxing")
         final Byte b = bytes[i];
         byteList.add(b);
       }
@@ -527,6 +528,12 @@ public class NioUtilTest
     {
       return byteArray.length;
     }
+
+    @Override
+    public byte[] toByteArray()
+    {
+      return Arrays.copyOf(byteArray, byteArray.length);
+    }
   }
 
   @Test
@@ -694,10 +701,8 @@ public class NioUtilTest
 
           final byte[] bytes = (byte[]) params[0];
 
-          @SuppressWarnings("boxing")
           final int offset = (Integer) params[1];
 
-          @SuppressWarnings("boxing")
           final int count = (Integer) params[2];
 
           final int howMany = size < position[0] + count ? (size - position[0]) : count;
@@ -799,10 +804,8 @@ public class NioUtilTest
 
         final byte[] bytes = (byte[]) params[0];
 
-        @SuppressWarnings("boxing")
         final int offset = (Integer) params[1];
 
-        @SuppressWarnings("boxing")
         final int count = (Integer) params[2];
 
         final int howMany = size < position[0] + count ? (size - position[0]) : count;

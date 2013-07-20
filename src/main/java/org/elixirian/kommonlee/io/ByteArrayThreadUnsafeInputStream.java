@@ -32,6 +32,7 @@
 package org.elixirian.kommonlee.io;
 
 import java.io.ByteArrayInputStream;
+import java.util.Arrays;
 
 import org.elixirian.kommonlee.type.checkable.EmptinessCheckable;
 import org.elixirian.kommonlee.type.checkable.LengthCheckable;
@@ -192,10 +193,7 @@ public class ByteArrayThreadUnsafeInputStream extends ByteArrayInputStream imple
 
   public byte[] toByteArray()
   {
-    final int length = this.count;
-    final byte[] bytes = new byte[length];
-    System.arraycopy(this.buf, 0, bytes, 0, length);
-    return bytes;
+    return Arrays.copyOf(this.buf, this.count);
   }
 
   public int getCurrentPosition()

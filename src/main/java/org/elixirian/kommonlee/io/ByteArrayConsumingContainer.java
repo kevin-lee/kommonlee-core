@@ -53,6 +53,8 @@ package org.elixirian.kommonlee.io;
  */
 public interface ByteArrayConsumingContainer extends ByteArrayConsumer, DataContainer<Byte>
 {
+  byte[] toByteArray();
+  
   @Override
   String toString();
 }

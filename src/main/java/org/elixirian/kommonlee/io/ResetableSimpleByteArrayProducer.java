@@ -61,6 +61,6 @@ public class ResetableSimpleByteArrayProducer extends SimpleByteArrayProducer im
   @Override
   public void reset()
   {
-    this.position = 0;
+    this.byteArrayThreadUnsafeInputStream.reset();
   }
 }

@@ -31,10 +31,8 @@
  */
 package org.elixirian.kommonlee.io;
 
-import static org.elixirian.kommonlee.util.collect.Lists.*;
-
 import java.io.IOException;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 import org.elixirian.kommonlee.util.NeoArrays;
@@ -61,33 +59,31 @@ import org.elixirian.kommonlee.util.NeoArrays;
  */
 public class DefaultByteArrayConsumingContainer implements ByteArrayConsumingContainer
 {
-  private final List<Byte> byteList = newArrayList();
+  private final ByteArrayThreadUnsafeOutputStream bytes = new ByteArrayThreadUnsafeOutputStream();
 
   @Override
   public void consume(final byte[] bytes, final int offset, final int count) throws IOException
   {
-    final int length = offset + count;
-    for (int i = 0; i < length; i++)
-    {
-      @SuppressWarnings("boxing")
-      final Byte b = bytes[i];
-      byteList.add(b);
-    }
+    this.bytes.write(bytes, offset, count);
+  }
+
+  @Override
+  public byte[] toByteArray()
+  {
+    return this.bytes.toByteArray();
   }
 
   @Override
   public List<Byte> getDataList()
   {
-    return Collections.unmodifiableList(byteList);
+    return Arrays.asList(NeoArrays.convertToBoxedPrimitive(bytes.toByteArray()));
   }
 
   @Override
   public String toString()
   {
     /* @formatter:off */
-    return new String(NeoArrays
-                     .convertToPrimitive(byteList
-                                        .toArray(new Byte[0])));
+    return new String(bytes.toByteArray());
     /* @formatter:on */
   }
 }

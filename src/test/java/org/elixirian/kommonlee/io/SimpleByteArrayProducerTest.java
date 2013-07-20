@@ -119,7 +119,7 @@ public class SimpleByteArrayProducerTest
 
     /* when */
     final SimpleByteArrayProducer simpleByteArrayProducer = new SimpleByteArrayProducer(expected);
-    final byte[] actual = simpleByteArrayProducer.byteArray;
+    final byte[] actual = simpleByteArrayProducer.toByteArray();
     System.out.println("\n  actual:");
     System.out.println("  " + Objects.toStringOf(actual));
     @SuppressWarnings("boxing")

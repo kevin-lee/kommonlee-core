@@ -75,4 +75,6 @@ public interface ByteArrayProducer extends LengthCheckable
 	 */
 	@Override
 	int length();
+	
+	byte[] toByteArray();
 }
