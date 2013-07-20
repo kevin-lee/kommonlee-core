@@ -133,7 +133,7 @@ public class ByteArrayThreadUnsafeOutputStream extends ByteArrayOutputStream imp
     if (0 < minimumCapacity - buf.length)
     {
       int newCapacity = buf.length + increaseSizeBy;
-      if (newCapacity - minimumCapacity < 0)
+      if (0 > newCapacity - minimumCapacity)
       {
         newCapacity = minimumCapacity;
       }

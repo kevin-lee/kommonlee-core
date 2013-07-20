@@ -165,7 +165,7 @@ public final class KollectionUtil
   {
     if (0 > index || length <= index)
     {
-      throw new IndexOutOfBoundsException("The index cannot be greater than or equal to the length. index: %s" + index
+      throw new IndexOutOfBoundsException("The index cannot be greater than or equal to the length. index: " + index
           + ", length: " + length);
     }
   }
