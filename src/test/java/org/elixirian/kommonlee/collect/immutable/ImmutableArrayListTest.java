@@ -1080,7 +1080,7 @@ public class ImmutableArrayListTest
     final ImmutableArrayList<Integer> list =
       new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
 
-    final Integer actual = list.foldLeft(0)
+    final Integer actual = list.<Integer, Function2<Integer, Integer, Integer>> foldLeft(0)
         .apply(new Function2<Integer, Integer, Integer>() {
           @Override
           public Integer apply(final Integer input1, final Integer input2)
@@ -1108,7 +1108,7 @@ public class ImmutableArrayListTest
     final ImmutableArrayList<Integer> list =
       new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
 
-    final Integer actual = list.foldLeft(0)
+    final Integer actual = list.<Integer, Function2<Number, Integer, Integer>> foldLeft(0)
         .apply(new Function2<Number, Integer, Integer>() {
           @Override
           public Integer apply(final Number input1, final Integer input2)
@@ -1136,7 +1136,7 @@ public class ImmutableArrayListTest
     final ImmutableArrayList<Integer> list =
       new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
 
-    final Integer actual = list.foldLeft(0)
+    final Integer actual = list.<Integer, Function2<Integer, Number, Integer>> foldLeft(0)
         .apply(new Function2<Integer, Number, Integer>() {
           @Override
           public Integer apply(final Integer input1, final Number input2)
@@ -1164,7 +1164,7 @@ public class ImmutableArrayListTest
     final ImmutableArrayList<Integer> list =
       new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
 
-    final Integer actual = list.foldLeft(0)
+    final Integer actual = list.<Integer, Function2<Number, Number, Integer>> foldLeft(0)
         .apply(new Function2<Number, Number, Integer>() {
           @Override
           public Integer apply(final Number input1, final Number input2)
@@ -1192,7 +1192,7 @@ public class ImmutableArrayListTest
     final ImmutableArrayList<Integer> list =
       new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
 
-    final Number actual = list.foldLeft((Number) 0)
+    final Number actual = list.<Number, Function2<Number, Number, Number>> foldLeft((Number) 0)
         .apply(new Function2<Number, Number, Number>() {
           @Override
           public Number apply(final Number input1, final Number input2)
@@ -1220,7 +1220,7 @@ public class ImmutableArrayListTest
     final ImmutableArrayList<Integer> list =
       new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
 
-    final Long actual = list.foldLeft(0L)
+    final Long actual = list.<Long, Function2<Number, Number, Long>> foldLeft(0L)
         .apply(new Function2<Number, Number, Long>() {
           @Override
           public Long apply(final Number input1, final Number input2)
