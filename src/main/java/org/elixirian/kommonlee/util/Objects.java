@@ -1306,11 +1306,16 @@ public final class Objects
     return hash0(value, values);
   }
 
+  private static int hash0(final int seed, final Object value)
+  {
+    return HASH_PRIME * seed + hashCodeOf(value);
+  }
+
   /**
    * Generates a hash code for the given input value using {@link #HASH_PRIME} and the given seed. The result will be
    * <p>
    * <code>
-   * return HASH_PRIME * seed + value;
+   * return HASH_PRIME * seed + {@link #hashCodeOf(Object)};
    * </code>
    * </p>
    * 
@@ -1320,9 +1325,9 @@ public final class Objects
    *          the value to be hashed.
    * @return a hash value of the input value
    */
-  private static int hash0(final int seed, final Object value)
+  public static int hashObjectWithSeed(final int seed, final Object value)
   {
-    return HASH_PRIME * seed + hashCodeOf(value);
+    return hash0(seed, value);
   }
 
   private static int hash0(final Object first, final Object[] values)

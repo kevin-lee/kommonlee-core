@@ -83,6 +83,7 @@ public interface ReadableList<E> extends ReadableCollection<E>
 
   /**
    * @param element
+   *          the given element to search for
    * @param toIndex
    *          toIndex (exclusive) so calling {@link #lastIndexOf(Object, int)} with the length of this list is the same
    *          as {@link #lastIndexOf(Object)}
@@ -92,7 +93,8 @@ public interface ReadableList<E> extends ReadableCollection<E>
    *          length = 5
    *          lastIndexOf(someObject, 5) == lastIndexOf(someObject)
    * </pre>
-   * @return
+   * @return the index (index < toIndex) of the last element of this list that is equal to the given element, or -1 if
+   *         it is not found.
    */
   int lastIndexOf(E element, int toIndex);
 
@@ -103,7 +105,7 @@ public interface ReadableList<E> extends ReadableCollection<E>
 
   @Override
   boolean containsAll(Kollection<?> kollection);
-  
+
   @Override
   E find(Condition1<? super E> condition);
 

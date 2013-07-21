@@ -38,6 +38,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+import org.elixirian.kommonlee.type.functional.Function1;
 import org.elixirian.kommonlee.type.functional.Function2;
 
 /**
@@ -62,19 +63,18 @@ import org.elixirian.kommonlee.type.functional.Function2;
  */
 public class DefaultStringConsumingContainer implements StringConsumingContainer
 {
-  private static final Function2<String, List<String>, String> ADD_NOTHING_TO_THE_END =
-    new Function2<String, List<String>, String>() {
-      @Override
-      public String apply(@SuppressWarnings("unused") final String addIt, final List<String> stringList)
+  private static final Function1<List<String>, String> ADD_NOTHING_TO_THE_END = new Function1<List<String>, String>() {
+    @Override
+    public String apply(final List<String> stringList)
+    {
+      final StringBuilder stringBuilder = new StringBuilder();
+      for (final String line : stringList)
       {
-        final StringBuilder stringBuilder = new StringBuilder();
-        for (final String line : stringList)
-        {
-          stringBuilder.append(line);
-        }
-        return stringBuilder.toString();
+        stringBuilder.append(line);
       }
-    };
+      return stringBuilder.toString();
+    }
+  };
 
   private static final Function2<String, List<String>, String> ADD_TO_THE_END =
     new Function2<String, List<String>, String>() {
@@ -121,7 +121,7 @@ public class DefaultStringConsumingContainer implements StringConsumingContainer
   {
     /* @formatter:off */
     return isNullOrEmptyString(withAddingItToTheEndOfEach) ?
-            ADD_NOTHING_TO_THE_END.apply(withAddingItToTheEndOfEach, stringList) :
+            ADD_NOTHING_TO_THE_END.apply(stringList) :
             ADD_TO_THE_END.apply(withAddingItToTheEndOfEach, stringList);
     /* @formatter:on */
   }

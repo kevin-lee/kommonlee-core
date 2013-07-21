@@ -42,6 +42,7 @@ import org.elixirian.kommonlee.type.checkable.NotEmptinessCheckable;
 import org.elixirian.kommonlee.type.checkable.SizeCheckable;
 import org.elixirian.kommonlee.type.functional.Condition1;
 import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.functional.Function2;
 
 /**
  * <pre>
@@ -111,6 +112,14 @@ public interface Kollection<E> extends Iterable<E>, LengthCheckable, SizeCheckab
   void breakableForEach(BreakableFunction1<? super E> function);
 
   int howMany(Condition1<? super E> conditionToMeet);
+  
+  <R, F2 extends Function2<? super R, ? super E, R>> R foldLeft(R startValue, F2 function);
+  
+  <R, F2 extends Function2<? super R, ? super E, R>> Function1<F2, R> foldLeft(R startValue);
+
+  <R, F2 extends Function2<? super E, ? super R, R>> Function1<F2, R> foldRight(R startValue);
+  
+  <R, F2 extends Function2<? super E, ? super R, R>> R foldRight(R startValue, F2 function);
 
   Object[] toArray();
 
@@ -123,6 +132,8 @@ public interface Kollection<E> extends Iterable<E>, LengthCheckable, SizeCheckab
 
   @Override
   boolean equals(Object element);
+  
+  boolean notEquals(Object element);
 
   @Override
   String toString();

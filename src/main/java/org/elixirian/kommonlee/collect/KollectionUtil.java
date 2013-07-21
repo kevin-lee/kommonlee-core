@@ -76,7 +76,7 @@ public final class KollectionUtil
     while (iterator.hasNext())
     {
       final Object element = iterator.next();
-      result = hash(result, element);
+      result = hashObjectWithSeed(result, element);
     }
     return result;
   }
@@ -121,11 +121,25 @@ public final class KollectionUtil
     }
     final String kollectionName = kollection.getClass()
         .getSimpleName();
+    return toStringOf0(kollectionName, kollection);
+  }
+
+  public static String toStringOf(final String kollectionName, final Kollection<?> kollection)
+  {
+    if (null == kollection)
+    {
+      return "null";
+    }
+    return toStringOf0(kollectionName, kollection);
+  }
+
+  private static String toStringOf0(final String kollectionName, final Kollection<?> kollection)
+  {
     final Kollection<?> functionAppliedKollection = kollection.map(new Function1<Object, Object>() {
       @Override
       public Object apply(final Object input)
       {
-        return kollection == input ? "{this (" + kollectionName + ") Kollection}" : input;
+        return kollection == input ? "{this (" + kollectionName + ")}" : input;
       }
     });
 
@@ -165,8 +179,19 @@ public final class KollectionUtil
   {
     if (0 > index || length <= index)
     {
-      throw new IndexOutOfBoundsException("The index cannot be greater than or equal to the length. index: " + index
-          + ", length: " + length);
+      throw new IndexOutOfBoundsException(
+          "The index cannot be greater than or equal to the length (it must be 0 <= toIndex < length). index: " + index
+              + ", length: " + length);
+    }
+  }
+
+  public static void checkToIndex(final int length, final int toIndex)
+  {
+    if (0 >= toIndex || length < toIndex)
+    {
+      throw new IndexOutOfBoundsException(
+          "The toIndex cannot be greater than the length nor can it be less than or equal to 0 (it must be 0 < toIndex <= length). index: "
+              + toIndex + ", length: " + length);
     }
   }
 

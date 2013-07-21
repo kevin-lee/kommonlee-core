@@ -174,7 +174,7 @@ public class MutableByteArrayListTest
       { { 0, 4, -1, -1 }, { 1, 6, 6 }, { 2, 2, -1, -1 }, { 3, 3, -1, -1 }, { 5, 5, 5, -1 } };
 
     /* when */
-    final MutableByteList mutableByteList = new MutableByteArrayList(elements);
+    final MutableByteList mutableByteList = new MutableByteArrayList(Arrays.copyOf(elements, expectedLength));
     final int actualLength = mutableByteList.length();
 
     /* then */
@@ -200,7 +200,7 @@ public class MutableByteArrayListTest
     final byte[] expectedBytes = Arrays.copyOf(elements, expectedLength);
 
     /* when */
-    final MutableByteList mutableByteList = new MutableByteArrayList(elements);
+    final MutableByteList mutableByteList = new MutableByteArrayList(Arrays.copyOf(elements, expectedLength));
     final int actualLength = mutableByteList.length();
 
     /* then */
@@ -226,7 +226,7 @@ public class MutableByteArrayListTest
     final int[][] expectedIndicesArray = { { 4, 4, 0, 0 }, { 7, 1, -1 }, { 2, 2, -1 }, { 3, 3, -1 }, { 5, 5, -1, -1 } };
 
     /* when */
-    final MutableByteList mutableByteList = new MutableByteArrayList(elements);
+    final MutableByteList mutableByteList = new MutableByteArrayList(Arrays.copyOf(elements, expectedLength));
     final int actualLength = mutableByteList.length();
 
     /* then */
@@ -255,7 +255,7 @@ public class MutableByteArrayListTest
     final int[] expectedIndices = { 4, 7, 2, 3, 5 };
 
     /* when */
-    final MutableByteList mutableByteList = new MutableByteArrayList(elements);
+    final MutableByteList mutableByteList = new MutableByteArrayList(Arrays.copyOf(elements, expectedLength));
     final int actualLength = mutableByteList.length();
 
     /* then */

@@ -45,6 +45,7 @@ import org.elixirian.kommonlee.functional.VoidFunction1;
 import org.elixirian.kommonlee.type.functional.BreakOrContinue;
 import org.elixirian.kommonlee.type.functional.Condition1;
 import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.functional.Function2;
 
 /**
  * <pre>
@@ -128,7 +129,7 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
   @Override
   public boolean contains(final Object element)
   {
-    return 0 <= indexOf0(element, 0);
+    return 0 <= indexOf0(element);
   }
 
   @Override
@@ -271,6 +272,57 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
     final Object[] subElements = new Object[howMany];
     System.arraycopy(this.elements, fromIndex, subElements, 0, howMany);
     return new ReadableArrayList<E>(subElements);
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super R, ? super E, R>> R foldLeft(final R startValue, final F2 function)
+  {
+    R result = startValue;
+    for (final Object object : this.elements)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) object;
+      result = function.apply(result, element);
+    }
+    return result;
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super R, ? super E, R>> Function1<F2, R> foldLeft(final R startValue)
+  {
+    return new Function1<F2, R>() {
+      @Override
+      public R apply(final F2 function)
+      {
+        return foldLeft(startValue, function);
+      }
+    };
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super E, ? super R, R>> R foldRight(final R startValue, final F2 function)
+  {
+    R result = startValue;
+    for (int i = length - 1; i >= 0; i--)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) elements[i];
+      result = function.apply(element, result);
+    }
+    return result;
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super E, ? super R, R>> Function1<F2, R> foldRight(final R startValue)
+  {
+    return new Function1<F2, R>() {
+
+      @Override
+      public R apply(final F2 function)
+      {
+        return foldRight(startValue, function);
+      }
+    };
   }
 
 }

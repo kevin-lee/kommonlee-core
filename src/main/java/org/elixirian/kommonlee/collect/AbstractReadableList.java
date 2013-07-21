@@ -117,6 +117,31 @@ public abstract class AbstractReadableList<E> extends AbstractKollection<E> impl
     }
     return -1;
   }
+  
+  protected int indexOf0(final Object element)
+  {
+    final int length = length();
+    
+    if (null == element)
+    {
+      for (int i = 0; i < length; i++)
+      {
+        if (null == get(i))
+        {
+          return i;
+        }
+      }
+      return -1;
+    }
+    for (int i = 0; i < length; i++)
+    {
+      if (element.equals(get(i)))
+      {
+        return i;
+      }
+    }
+    return -1;
+  }
 
   @Override
   public int indexOf(final E element, final int fromIndex)
@@ -127,13 +152,13 @@ public abstract class AbstractReadableList<E> extends AbstractKollection<E> impl
   @Override
   public int indexOf(final E element)
   {
-    return indexOf0(element, 0);
+    return indexOf0(element);
   }
 
   protected int lastIndexOf0(final Object element, final int toIndex)
   {
     final int length = length();
-    checkIndex(length, toIndex);
+    checkToIndex(length, toIndex);
 
     if (null == element)
     {
@@ -162,10 +187,37 @@ public abstract class AbstractReadableList<E> extends AbstractKollection<E> impl
     return lastIndexOf0(element, toIndex);
   }
 
+
+  protected int lastIndexOf0(final Object element)
+  {
+    final int length = length();
+    final int toIndex = length - 1;
+
+    if (null == element)
+    {
+      for (int i = toIndex; i >= 0; i--)
+      {
+        if (null == get(i))
+        {
+          return i;
+        }
+      }
+      return -1;
+    }
+    for (int i = toIndex; i >= 0; i--)
+    {
+      if (element.equals(get(i)))
+      {
+        return i;
+      }
+    }
+    return -1;
+  }
+  
   @Override
   public int lastIndexOf(final E element)
   {
-    return lastIndexOf0(element, length());
+    return lastIndexOf0(element);
   }
 
   @Override
@@ -199,5 +251,11 @@ public abstract class AbstractReadableList<E> extends AbstractKollection<E> impl
     }
     final ReadableList<?> that = castIfInstanceOf(ReadableList.class, list);
     return isNotNull(that) && KollectionUtil.equalReadableLists(this, that);
+  }
+  
+  @Override
+  public boolean notEquals(final Object element)
+  {
+    return !equals(element);
   }
 }
