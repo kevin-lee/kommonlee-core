@@ -34,8 +34,7 @@ package org.elixirian.kommonlee.nio.util;
 import static org.elixirian.kommonlee.test.CommonTestHelper.*;
 import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.elixirian.kommonlee.util.collect.Lists.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.fest.assertions.api.Assertions.*;
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
 
@@ -105,6 +104,7 @@ public class NioUtilTest
   public CauseCheckableExpectedException causeCheckableExpectedException = CauseCheckableExpectedException.none();
 
   private List<Byte> byteList;
+  private byte[] byteArray;
   private List<Character> charList;
   private String string;
 
@@ -133,6 +133,7 @@ public class NioUtilTest
     final List<Byte> byteList = new ArrayList<Byte>();
     this.string = readFile(getTestFile(), byteList);
     this.byteList = Collections.unmodifiableList(byteList);
+    this.byteArray = this.string.getBytes();
     charList = Arrays.asList(NeoArrays.convertToBoxedPrimitive(string.toCharArray()));
   }
 
@@ -244,10 +245,10 @@ public class NioUtilTest
       }
     };
 
-    assertFalse(called[0]);
+    assertThat(called[0]).isFalse();
     /* test */
     NioUtil.closeQuietly(closeable);
-    assertTrue(called[0]);
+    assertThat(called[0]).isTrue();
 
     called[0] = false;
     closeable = new Closeable() {
@@ -267,10 +268,10 @@ public class NioUtilTest
       }
     };
 
-    assertFalse(called[0]);
+    assertThat(called[0]).isFalse();
     /* test */
     NioUtil.closeQuietly(closeable);
-    assertTrue(called[0]);
+    assertThat(called[0]).isTrue();
   }
 
   private static class ByteArrayConsumer4Testing implements ByteArrayConsumer
@@ -311,8 +312,8 @@ public class NioUtilTest
       NioUtil.readInputStream(this.getClass()
           .getResourceAsStream("/file4testing.txt"), bufferSize, byteArrayConsumer);
 
-      assertThat(byteArrayConsumer.getByteList(), is(equalTo(this.byteList)));
-      assertThat(byteArrayConsumer.toString(), is(equalTo(this.string)));
+      assertThat(byteArrayConsumer.getByteList()).isEqualTo(this.byteList);
+      assertThat(byteArrayConsumer.toString()).isEqualTo(this.string);
     }
   }
 
@@ -327,9 +328,43 @@ public class NioUtilTest
       NioUtil.readInputStream(this.getClass()
           .getResourceAsStream("/file4testing.txt"), bufferSize, byteArrayConsumingContainer);
 
-      assertThat(byteArrayConsumingContainer.getDataList(), is(equalTo(this.byteList)));
-      assertThat(byteArrayConsumingContainer.toString(), is(equalTo(this.string)));
+      assertThat(byteArrayConsumingContainer.getDataList()).isEqualTo(this.byteList);
+      assertThat(byteArrayConsumingContainer.toString()).isEqualTo(this.string);
     }
+  }
+
+  @Test
+  public void testReadInputStreamToByteArray()
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final InputStream inputStream = this.getClass()
+          .getResourceAsStream("/file4testing.txt");
+
+      /* test */
+      final byte[] actual = NioUtil.readInputStreamToByteArray(inputStream, bufferSize);
+
+      assertThat(actual).isEqualTo(this.byteArray);
+      assertThat(actual.length).isEqualTo(this.byteArray.length);
+      assertThat(new String(actual)).isEqualTo(this.string);
+    }
+  }
+
+  @Test
+  public void testReadInputStreamToByteArrayWithZeroSizeBuffer()
+  {
+    /* given */
+    final InputStream inputStream = this.getClass()
+        .getResourceAsStream("/file4testing.txt");
+
+    /* expect */
+    causeCheckableExpectedException.expect(IllegalArgumentException.class);
+
+    /* when */
+    NioUtil.readInputStreamToByteArray(inputStream, 0);
+
+    /* otherwise */
+    fail(format("The expected exception [%s] is not thrown.", IllegalArgumentException.class));
   }
 
   private static class CharArrayConsumer4Testing implements CharArrayConsumer
@@ -368,9 +403,8 @@ public class NioUtilTest
       NioUtil.readInputStream(this.getClass()
           .getResourceAsStream("/file4testing.txt"), bufferSize, IoCommonConstants.UTF_8, charArrayConsumer);
 
-      assertThat(charArrayConsumer.getCharList(),
-          is(equalTo(toCharListWithCharSet(this.string, IoCommonConstants.UTF_8))));
-      assertThat(charArrayConsumer.toString(), is(equalTo(this.string)));
+      assertThat(charArrayConsumer.getCharList()).isEqualTo(toCharListWithCharSet(this.string, IoCommonConstants.UTF_8));
+      assertThat(charArrayConsumer.toString()).isEqualTo(this.string);
     }
   }
 
@@ -385,9 +419,9 @@ public class NioUtilTest
       NioUtil.readInputStream(this.getClass()
           .getResourceAsStream("/file4testing.txt"), bufferSize, IoCommonConstants.UTF_8, charArrayConsumingContainer);
 
-      assertThat(charArrayConsumingContainer.getDataList(),
-          is(equalTo(toCharListWithCharSet(this.string, IoCommonConstants.UTF_8))));
-      assertThat(charArrayConsumingContainer.toString(), is(equalTo(this.string)));
+      assertThat(charArrayConsumingContainer.getDataList()).isEqualTo(
+          toCharListWithCharSet(this.string, IoCommonConstants.UTF_8));
+      assertThat(charArrayConsumingContainer.toString()).isEqualTo(this.string);
     }
   }
 
@@ -403,8 +437,8 @@ public class NioUtilTest
           .getResource("/file4testing.txt")
           .toString())), bufferSize, byteArrayConsumer);
 
-      assertThat(byteArrayConsumer.getByteList(), is(equalTo(this.byteList)));
-      assertThat(byteArrayConsumer.toString(), is(equalTo(this.string)));
+      assertThat(byteArrayConsumer.getByteList()).isEqualTo(this.byteList);
+      assertThat(byteArrayConsumer.toString()).isEqualTo(this.string);
     }
   }
 
@@ -420,8 +454,49 @@ public class NioUtilTest
           .getResource("/file4testing.txt")
           .toString())), bufferSize, byteArrayConsumingContainer);
 
-      assertThat(byteArrayConsumingContainer.getDataList(), is(equalTo(this.byteList)));
-      assertThat(byteArrayConsumingContainer.toString(), is(equalTo(this.string)));
+      assertThat(byteArrayConsumingContainer.getDataList()).isEqualTo(this.byteList);
+      assertThat(byteArrayConsumingContainer.toString()).isEqualTo(this.string);
+    }
+  }
+
+  @Test
+  public void testReadFileToByteArray() throws URISyntaxException
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      /* given */
+      final File file = new File(new URI(this.getClass()
+          .getResource("/file4testing.txt")
+          .toString()));
+
+      /* when */
+      final byte[] actual = NioUtil.readFileToByteArray(file, bufferSize);
+
+      /* then */
+      assertThat(actual).isEqualTo(this.byteArray);
+      assertThat(actual.length).isEqualTo(this.byteArray.length);
+      assertThat(new String(actual)).isEqualTo(this.string);
+    }
+  }
+
+  @Test
+  public void testReadFileToByteArrayWithZeroSizeBuffer() throws URISyntaxException
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      /* given */
+      final File file = new File(new URI(this.getClass()
+          .getResource("/file4testing.txt")
+          .toString()));
+
+      /* expect */
+      causeCheckableExpectedException.expect(IllegalArgumentException.class);
+
+      /* when */
+      NioUtil.readFileToByteArray(file, 0);
+
+      /* otherwise */
+      fail(format("The expected exception [%s] is not thrown.", IllegalArgumentException.class));
     }
   }
 
@@ -437,9 +512,9 @@ public class NioUtilTest
           .getResource("/file4testing.txt")
           .toString())), bufferSize, IoCommonConstants.UTF_8, charArrayConsumer);
 
-      assertThat(charArrayConsumer.getCharList(), is(equalTo(this.charList)));
+      assertThat(charArrayConsumer.getCharList()).isEqualTo(this.charList);
       assertThat(new String(NeoArrays.convertToPrimitive(charArrayConsumer.getCharList()
-          .toArray(new Character[0]))), is(equalTo(this.string)));
+          .toArray(new Character[0])))).isEqualTo(this.string);
     }
   }
 
@@ -455,9 +530,9 @@ public class NioUtilTest
           .getResource("/file4testing.txt")
           .toString())), bufferSize, IoCommonConstants.UTF_8, charArrayConsumingContainer);
 
-      assertThat(charArrayConsumingContainer.getDataList(), is(equalTo(this.charList)));
+      assertThat(charArrayConsumingContainer.getDataList()).isEqualTo(this.charList);
       assertThat(new String(NeoArrays.convertToPrimitive(charArrayConsumingContainer.getDataList()
-          .toArray(new Character[0]))), is(equalTo(this.string)));
+          .toArray(new Character[0])))).isEqualTo(this.string);
     }
   }
 
@@ -575,9 +650,9 @@ public class NioUtilTest
       NioUtil.writeOutputStream(outputStream, bufferSize, byteArrayProducer);
 
       /* then */
-      assertThat(byteListForWriting, is(equalTo(this.byteList)));
-      assertThat(new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0]))),
-          is(equalTo(this.string)));
+      assertThat(byteListForWriting).isEqualTo(this.byteList);
+      assertThat(new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0])))).isEqualTo(
+          this.string);
 
       final InOrder writeOrder = inOrder(outputStream);
       writeOrder.verify(outputStream, times(computeHowManyForWriting(byteListForWriting.size(), bufferSize)))
@@ -633,10 +708,10 @@ public class NioUtilTest
       /* then */
       final List<Byte> byteList = new ArrayList<Byte>();
       final String string = readFile(file, byteList);
-      assertThat(byteList, is(equalTo(this.byteList)));
-      assertThat(string, is(equalTo(this.string)));
+      assertThat(byteList).isEqualTo(this.byteList);
+      assertThat(string).isEqualTo(this.string);
 
-      assertTrue(file.delete());
+      assertThat(file.delete()).isTrue();
       byteArrayProducer.reset();
     }
   }
@@ -747,11 +822,12 @@ public class NioUtilTest
       /* then */
       // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.string,
       // new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0])))));
-      assertThat(new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0])),
-          IoCommonConstants.UTF_8), is(equalTo(this.string)));
+      assertThat(
+          new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0])), IoCommonConstants.UTF_8)).isEqualTo(
+          this.string);
       // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", byteListForReading, byteListForWriting));
       /* @formatter:off */
-      assertThat(byteListForWriting, is(equalTo(byteListForReading)));
+      assertThat(byteListForWriting).isEqualTo(byteListForReading);
       /* @formatter:on */
 
       final InOrder order = inOrder(inputStream);
@@ -850,10 +926,11 @@ public class NioUtilTest
     /* then */
     // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.string,
     // new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0])))));
-    assertThat(new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0])),
-        IoCommonConstants.UTF_8), is(equalTo(this.string)));
+    assertThat(
+        new String(NeoArrays.convertToPrimitive(byteListForWriting.toArray(new Byte[0])), IoCommonConstants.UTF_8)).isEqualTo(
+        this.string);
     // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", byteListForReading, byteListForWriting));
-    assertThat(byteListForWriting, is(equalTo(byteListForReading)));
+    assertThat(byteListForWriting).isEqualTo(byteListForReading);
 
     final InOrder order = inOrder(inputStream);
     order.verify(inputStream, times(computeHowManyForReading(byteListForReading.size(), bufferSize)))
@@ -887,7 +964,7 @@ public class NioUtilTest
     final List<Byte> resultByteList = new ArrayList<Byte>();
     final String resultString = readFile(file, resultByteList);
 
-    assertThat(resultByteList, is(equalTo(expectedByteList)));
-    assertThat(resultString.toString(), is(equalTo(expectedString)));
+    assertThat(resultByteList).isEqualTo(expectedByteList);
+    assertThat(resultString.toString()).isEqualTo(expectedString);
   }
 }

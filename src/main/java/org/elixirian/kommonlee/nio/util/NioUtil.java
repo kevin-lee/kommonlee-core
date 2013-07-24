@@ -53,8 +53,10 @@ import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 
 import org.elixirian.kommonlee.io.ByteArrayConsumer;
+import org.elixirian.kommonlee.io.ByteArrayConsumingContainer;
 import org.elixirian.kommonlee.io.ByteArrayProducer;
 import org.elixirian.kommonlee.io.CharArrayConsumer;
+import org.elixirian.kommonlee.io.DataConsumers;
 import org.elixirian.kommonlee.io.IoCommonConstants;
 import org.elixirian.kommonlee.io.exception.RuntimeFileNotFoundException;
 import org.elixirian.kommonlee.io.exception.RuntimeIoException;
@@ -125,6 +127,14 @@ public final class NioUtil
     IoUtil.assertBufferSize(bufferSize);
   }
 
+  public static byte[] readInputStreamToByteArray(final InputStream inputStream, final int bufferSize)
+  {
+    final ByteArrayConsumingContainer byteArrayConsumingContainer =
+      DataConsumers.newByteArrayConsumingContainer(bufferSize);
+    readInputStream(inputStream, bufferSize, byteArrayConsumingContainer);
+    return byteArrayConsumingContainer.toByteArray();
+  }
+
   public static void readInputStream(final InputStream inputStream, final int bufferSize,
       final ByteArrayConsumer byteArrayConsumer)
   {
@@ -185,6 +195,13 @@ public final class NioUtil
       closeQuietly(readableByteChannel);
       closeQuietly(inputStream);
     }
+  }
+
+  public static byte[] readFileToByteArray(final File file, final int bufferSize)
+  {
+    final ByteArrayConsumingContainer byteArrayConsumingContainer = DataConsumers.newByteArrayConsumingContainer();
+    readFile(file, bufferSize, byteArrayConsumingContainer);
+    return byteArrayConsumingContainer.toByteArray();
   }
 
   public static void readFile(final File file, final int bufferSize, final ByteArrayConsumer byteArrayConsumer)
