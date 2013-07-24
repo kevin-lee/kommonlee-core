@@ -58,7 +58,7 @@ public class ByteArrayThreadUnsafeOutputStreamTest
     final ByteArrayThreadUnsafeOutputStream byteArrayThreadUnsafeOutputStream = new ByteArrayThreadUnsafeOutputStream();
     final int actualCapacity = byteArrayThreadUnsafeOutputStream.getCapacity();
     final int actualCount = byteArrayThreadUnsafeOutputStream.length();
-    final int actualIncreaseBy = byteArrayThreadUnsafeOutputStream.getIncreaseSizeBy();
+    final int actualIncreaseBy = byteArrayThreadUnsafeOutputStream.getIncreaseBy();
 
     /* then */
     assertThat(actualCapacity).isEqualTo(expectedCapacity);
@@ -79,7 +79,7 @@ public class ByteArrayThreadUnsafeOutputStreamTest
       new ByteArrayThreadUnsafeOutputStream(expectedCapacity);
     final int actualCapacity = byteArrayThreadUnsafeOutputStream.getCapacity();
     final int actualCount = byteArrayThreadUnsafeOutputStream.length();
-    final int actualIncreaseBy = byteArrayThreadUnsafeOutputStream.getIncreaseSizeBy();
+    final int actualIncreaseBy = byteArrayThreadUnsafeOutputStream.getIncreaseBy();
 
     /* then */
     assertThat(actualCapacity).isEqualTo(expectedCapacity);
@@ -100,7 +100,7 @@ public class ByteArrayThreadUnsafeOutputStreamTest
       new ByteArrayThreadUnsafeOutputStream(expectedCapacity, expectedIncreaseBy);
     final int actualCapacity = byteArrayThreadUnsafeOutputStream.getCapacity();
     final int actualCount = byteArrayThreadUnsafeOutputStream.length();
-    final int actualIncreaseBy = byteArrayThreadUnsafeOutputStream.getIncreaseSizeBy();
+    final int actualIncreaseBy = byteArrayThreadUnsafeOutputStream.getIncreaseBy();
 
     /* then */
     assertThat(actualCapacity).isEqualTo(expectedCapacity);
@@ -260,7 +260,7 @@ public class ByteArrayThreadUnsafeOutputStreamTest
 
     final int actualCapacity = byteArrayThreadUnsafeOutputStream.getCapacity();
     final int actualCount = byteArrayThreadUnsafeOutputStream.length();
-    final int actualIncreaseBy = byteArrayThreadUnsafeOutputStream.getIncreaseSizeBy();
+    final int actualIncreaseBy = byteArrayThreadUnsafeOutputStream.getIncreaseBy();
 
     /* then */
     // close does NOTHING!
@@ -350,25 +350,25 @@ public class ByteArrayThreadUnsafeOutputStreamTest
   }
 
   @Test
-  public final void testGetIncreaseSizeBy() throws Exception
-  {
-    /* given */
-    final int expectedCapacity = 1;
-    final int expectedCount = 0;
-    final int expectedIncreaseBy = 999;
-
-    /* when */
-    final ByteArrayThreadUnsafeOutputStream byteArrayThreadUnsafeOutputStream =
-      new ByteArrayThreadUnsafeOutputStream(expectedCapacity, expectedIncreaseBy);
-    final int actualCapacity = byteArrayThreadUnsafeOutputStream.getCapacity();
-    final int actualCount = byteArrayThreadUnsafeOutputStream.length();
-    final int actualIncreaseBy = byteArrayThreadUnsafeOutputStream.getIncreaseSizeBy();
-
-    /* then */
-    assertThat(actualCapacity).isEqualTo(expectedCapacity);
-    assertThat(actualCount).isEqualTo(expectedCount);
-    assertThat(actualIncreaseBy).isEqualTo(expectedIncreaseBy);
-  }
+    public final void testGetIncreaseBy() throws Exception
+    {
+      /* given */
+      final int expectedCapacity = 1;
+      final int expectedCount = 0;
+      final int expectedIncreaseBy = 999;
+  
+      /* when */
+      final ByteArrayThreadUnsafeOutputStream byteArrayThreadUnsafeOutputStream =
+        new ByteArrayThreadUnsafeOutputStream(expectedCapacity, expectedIncreaseBy);
+      final int actualCapacity = byteArrayThreadUnsafeOutputStream.getCapacity();
+      final int actualCount = byteArrayThreadUnsafeOutputStream.length();
+      final int actualIncreaseBy = byteArrayThreadUnsafeOutputStream.getIncreaseBy();
+  
+      /* then */
+      assertThat(actualCapacity).isEqualTo(expectedCapacity);
+      assertThat(actualCount).isEqualTo(expectedCount);
+      assertThat(actualIncreaseBy).isEqualTo(expectedIncreaseBy);
+    }
 
   @Test
   public final void testToString() throws Exception

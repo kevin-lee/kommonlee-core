@@ -62,7 +62,13 @@ public class DataConsumers
 
   public static ByteArrayConsumingContainer newByteArrayConsumingContainer()
   {
-    return new DefaultByteArrayConsumingContainer();
+    return DefaultByteArrayConsumingContainer.newInstance();
+  }
+
+  public static ByteArrayConsumingContainer newByteArrayConsumingContainer(final int increaseBy)
+  {
+    return DefaultByteArrayConsumingContainer.newInstance(ByteArrayThreadUnsafeOutputStream.newInstance(increaseBy,
+        increaseBy));
   }
 
   public static CharArrayConsumingContainer newCharArrayConsumingContainer()

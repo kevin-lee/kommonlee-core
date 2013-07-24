@@ -31,6 +31,7 @@
  */
 package org.elixirian.kommonlee.io;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -59,7 +60,17 @@ import org.elixirian.kommonlee.util.NeoArrays;
  */
 public class DefaultByteArrayConsumingContainer implements ByteArrayConsumingContainer
 {
-  private final ByteArrayThreadUnsafeOutputStream bytes = new ByteArrayThreadUnsafeOutputStream();
+  private final ByteArrayOutputStream bytes;
+
+  /**
+   * Use {@link DataConsumers} to instantiate this {@link DefaultByteArrayConsumingContainer}.
+   * 
+   * @param bytes
+   */
+  DefaultByteArrayConsumingContainer(final ByteArrayOutputStream bytes)
+  {
+    this.bytes = bytes;
+  }
 
   @Override
   public void consume(final byte[] bytes, final int offset, final int count) throws IOException
@@ -86,4 +97,20 @@ public class DefaultByteArrayConsumingContainer implements ByteArrayConsumingCon
     return new String(bytes.toByteArray());
     /* @formatter:on */
   }
+
+  public static ByteArrayConsumingContainer newInstance()
+  {
+    return new DefaultByteArrayConsumingContainer(ByteArrayThreadUnsafeOutputStream.newInstance());
+  }
+
+  public static ByteArrayConsumingContainer newInstance(final int increaseBy)
+  {
+    return new DefaultByteArrayConsumingContainer(ByteArrayThreadUnsafeOutputStream.newInstance(increaseBy, increaseBy));
+  }
+
+  public static ByteArrayConsumingContainer newInstance(final ByteArrayOutputStream byteArrayOutputStream)
+  {
+    return new DefaultByteArrayConsumingContainer(byteArrayOutputStream);
+  }
+
 }

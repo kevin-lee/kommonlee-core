@@ -70,27 +70,27 @@ public class ByteArrayThreadUnsafeOutputStream extends ByteArrayOutputStream imp
 
   public static final int DEFAULT_INCREASE_SIZE_BY = 32;
 
-  protected final int increaseSizeBy;
+  protected final int increaseBy;
 
-  public ByteArrayThreadUnsafeOutputStream()
+  ByteArrayThreadUnsafeOutputStream()
   {
     this(DEFAULT_INITIAL_CAPACITY, DEFAULT_INCREASE_SIZE_BY);
   }
 
-  public ByteArrayThreadUnsafeOutputStream(final int size)
+  ByteArrayThreadUnsafeOutputStream(final int size)
   {
     this(size, DEFAULT_INCREASE_SIZE_BY);
   }
 
-  public ByteArrayThreadUnsafeOutputStream(final int size, final int increaseSizeBy)
+  ByteArrayThreadUnsafeOutputStream(final int size, final int increaseSizeBy)
   {
     super(size);
-    this.increaseSizeBy = increaseSizeBy;
+    this.increaseBy = increaseSizeBy;
   }
 
-  public int getIncreaseSizeBy()
+  public int getIncreaseBy()
   {
-    return increaseSizeBy;
+    return increaseBy;
   }
 
   @SuppressWarnings("sync-override")
@@ -132,7 +132,7 @@ public class ByteArrayThreadUnsafeOutputStream extends ByteArrayOutputStream imp
   {
     if (0 < minimumCapacity - buf.length)
     {
-      int newCapacity = buf.length + increaseSizeBy;
+      int newCapacity = buf.length + increaseBy;
       if (0 > newCapacity - minimumCapacity)
       {
         newCapacity = minimumCapacity;
@@ -241,5 +241,25 @@ public class ByteArrayThreadUnsafeOutputStream extends ByteArrayOutputStream imp
   public int getCapacity()
   {
     return buf.length;
+  }
+
+  public static ByteArrayThreadUnsafeOutputStream newInstance()
+  {
+    return new ByteArrayThreadUnsafeOutputStream();
+  }
+
+  public static ByteArrayThreadUnsafeOutputStream newInstanceWithInitialSize(final int size)
+  {
+    return new ByteArrayThreadUnsafeOutputStream(size, DEFAULT_INCREASE_SIZE_BY);
+  }
+
+  public static ByteArrayThreadUnsafeOutputStream newInstanceWithIncreaseSizeBy(final int increaseBy)
+  {
+    return new ByteArrayThreadUnsafeOutputStream(DEFAULT_INITIAL_CAPACITY, increaseBy);
+  }
+
+  public static ByteArrayThreadUnsafeOutputStream newInstance(final int size, final int increaseBy)
+  {
+    return new ByteArrayThreadUnsafeOutputStream(size, increaseBy);
   }
 }

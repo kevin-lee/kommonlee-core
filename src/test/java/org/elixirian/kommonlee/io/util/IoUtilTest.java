@@ -34,9 +34,9 @@ package org.elixirian.kommonlee.io.util;
 import static org.elixirian.kommonlee.test.CommonTestHelper.*;
 import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.elixirian.kommonlee.util.collect.Lists.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
+import static org.fest.assertions.api.Assertions.*;
 
 import java.io.Closeable;
 import java.io.File;
@@ -167,6 +167,7 @@ public class IoUtilTest
   public CauseCheckableExpectedException causeCheckableExpectedException = CauseCheckableExpectedException.none();
 
   private List<Byte> byteList;
+  private byte[] byteArray;
   private List<Character> characterList;
   private List<String> stringList;
   private String string;
@@ -197,6 +198,7 @@ public class IoUtilTest
     byteList = newArrayList();
     stringList = newArrayList();
     string = readFile(getTestFile(), byteList);
+    byteArray = string.getBytes();
 
     characterList =
       Collections.unmodifiableList(Arrays.asList(NeoArrays.convertToBoxedPrimitive(string.toCharArray())));
@@ -365,9 +367,9 @@ public class IoUtilTest
       }
     };
 
-    assertFalse(called[0]);
+    assertThat(called[0]).isFalse();
     IoUtil.closeQuietly(closeable);
-    assertTrue(called[0]);
+    assertThat(called[0]).isTrue();
 
     called[0] = false;
     closeable = new Closeable() {
@@ -387,9 +389,9 @@ public class IoUtilTest
       }
     };
 
-    assertFalse(called[0]);
+    assertThat(called[0]).isFalse();
     IoUtil.closeQuietly(closeable);
-    assertTrue(called[0]);
+    assertThat(called[0]).isTrue();
   }
 
   private static <T> T any(final Class<T> theClass)
@@ -423,7 +425,9 @@ public class IoUtilTest
       {
         exceptionThrown = true;
       }
-      assertTrue(format("expected exception [%s] is not thrown.", IllegalArgumentException.class), exceptionThrown);
+      assertThat(exceptionThrown).describedAs(
+          format("expected exception [%s] is not thrown.", IllegalArgumentException.class))
+          .isTrue();
     }
   }
 
@@ -478,8 +482,8 @@ public class IoUtilTest
           .getResourceAsStream("/file4testing.txt"), bufferSize, byteArrayConsumer);
 
       /* then */
-      assertThat(byteArrayConsumer.toString(), is(equalTo(this.string)));
-      assertThat(byteArrayConsumer.getByteList(), is(equalTo(this.byteList)));
+      assertThat(byteArrayConsumer.toString()).isEqualTo(this.string);
+      assertThat(byteArrayConsumer.getByteList()).isEqualTo(this.byteList);
     }
   }
 
@@ -496,8 +500,8 @@ public class IoUtilTest
           .getResourceAsStream("/file4testing.txt"), bufferSize, byteArrayConsumer);
 
       /* then */
-      assertThat(byteArrayConsumer.toString(), is(equalTo(this.string)));
-      assertThat(byteArrayConsumer.getDataList(), is(equalTo(this.byteList)));
+      assertThat(byteArrayConsumer.toString()).isEqualTo(this.string);
+      assertThat(byteArrayConsumer.getDataList()).isEqualTo(this.byteList);
     }
   }
 
@@ -539,8 +543,8 @@ public class IoUtilTest
       IoUtil.readInputStream(inputStream, bufferSize, byteArrayConsumer);
 
       /* then */
-      assertThat(byteArrayConsumer.getByteList(), is(equalTo(this.byteList)));
-      assertThat(byteArrayConsumer.toString(), is(equalTo(this.string)));
+      assertThat(byteArrayConsumer.getByteList()).isEqualTo(this.byteList);
+      assertThat(byteArrayConsumer.toString()).isEqualTo(this.string);
 
       final InOrder order = inOrder(inputStream);
       order.verify(inputStream, times(computeHowManyForReading(byteList.size(), bufferSize)))
@@ -550,6 +554,42 @@ public class IoUtilTest
 
       reset(inputStream);
     }
+  }
+
+  @Test
+  public void testReadInputStreamToByteArray() throws IOException
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      /* given */
+      final InputStream inputStream = this.getClass()
+          .getResourceAsStream("/file4testing.txt");
+
+      /* when */
+      final byte[] actual = IoUtil.readInputStreamToByteArray(inputStream, bufferSize);
+
+      /* then */
+      assertThat(actual).isEqualTo(this.byteArray);
+      assertThat(actual.length).isEqualTo(this.byteArray.length);
+      assertThat(new String(actual)).isEqualTo(this.string);
+    }
+  }
+
+  @Test
+  public void testReadInputStreamToByteArrayWithZeroSizeBuffer() throws IOException
+  {
+    /* given */
+    final InputStream inputStream = this.getClass()
+        .getResourceAsStream("/file4testing.txt");
+
+    /* expect */
+    causeCheckableExpectedException.expect(IllegalArgumentException.class);
+
+    /* when / then: the expected exception should be thrown. */
+    IoUtil.readInputStreamToByteArray(inputStream, 0);
+
+    /* otherwise */
+    fail(format("The expected exception [%s] is not thrown.", IllegalArgumentException.class));
   }
 
   @Test
@@ -565,8 +605,8 @@ public class IoUtilTest
           .getFile()
           .replace("%20", " ")), bufferSize, byteArrayConsumer);
 
-      assertThat(byteArrayConsumer.getByteList(), is(equalTo(this.byteList)));
-      assertThat(byteArrayConsumer.toString(), is(equalTo(this.string)));
+      assertThat(byteArrayConsumer.getByteList()).isEqualTo(this.byteList);
+      assertThat(byteArrayConsumer.toString()).isEqualTo(this.string);
     }
   }
 
@@ -583,8 +623,8 @@ public class IoUtilTest
           .getFile()
           .replace("%20", " ")), bufferSize, byteArrayConsumer);
 
-      assertThat(byteArrayConsumer.getDataList(), is(equalTo(this.byteList)));
-      assertThat(byteArrayConsumer.toString(), is(equalTo(this.string)));
+      assertThat(byteArrayConsumer.getDataList()).isEqualTo(this.byteList);
+      assertThat(byteArrayConsumer.toString()).isEqualTo(this.string);
     }
   }
 
@@ -612,6 +652,44 @@ public class IoUtilTest
 
     /* when / then: the expected exception should be thrown. */
     IoUtil.readFile(getTestFile(), 0, byteArrayConsumer);
+
+    /* otherwise */
+    fail(format("The expected exception [%s] is not thrown.", IllegalArgumentException.class));
+  }
+
+  @Test
+  public void testReadFileToByteArray()
+  {
+    for (int bufferSize = 1; bufferSize < 128; bufferSize++)
+    {
+      final File file = new File(this.getClass()
+          .getResource("/file4testing.txt")
+          .getFile()
+          .replace("%20", " "));
+
+      /* test */
+      final byte[] actual = IoUtil.readFileToByteArray(file, bufferSize);
+
+      assertThat(actual).isEqualTo(this.byteArray);
+      assertThat(actual.length).isEqualTo(this.byteArray.length);
+      assertThat(new String(actual)).isEqualTo(this.string);
+    }
+  }
+
+  @Test
+  public void testReadFileToByteArrayWithZeroSizeBuffer() throws Exception
+  {
+    /* given */
+    final File file = new File(this.getClass()
+        .getResource("/file4testing.txt")
+        .getFile()
+        .replace("%20", " "));
+
+    /* expect */
+    causeCheckableExpectedException.expect(IllegalArgumentException.class);
+
+    /* when / then: the expected exception should be thrown. */
+    IoUtil.readFileToByteArray(file, 0);
 
     /* otherwise */
     fail(format("The expected exception [%s] is not thrown.", IllegalArgumentException.class));
@@ -704,10 +782,10 @@ public class IoUtilTest
 
       /* then */
       // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.stringBuilder, stringBuilder));
-      assertThat(new String(NeoArrays.convertToPrimitive(byteList.toArray(new Byte[0])), IoCommonConstants.UTF_8),
-          is(equalTo(this.string)));
+      assertThat(new String(NeoArrays.convertToPrimitive(byteList.toArray(new Byte[0])), IoCommonConstants.UTF_8)).isEqualTo(
+          this.string);
       // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.byteList, byteList));
-      assertThat(byteList, is(equalTo(this.byteList)));
+      assertThat(byteList).isEqualTo(this.byteList);
 
       final InOrder order = inOrder(outputStream);
       order.verify(outputStream, times(computeHowManyForWriting(byteArray.length, bufferSize)))
@@ -735,10 +813,10 @@ public class IoUtilTest
 
       final List<Byte> byteList = new ArrayList<Byte>();
       final String string = readFile(file, byteList);
-      assertThat(byteList, is(equalTo(this.byteList)));
-      assertThat(string, is(equalTo(this.string)));
+      assertThat(byteList).isEqualTo(this.byteList);
+      assertThat(string).isEqualTo(this.string);
 
-      assertTrue(file.delete());
+      assertThat(file.delete()).isTrue();
       byteArrayProducer.reset();
     }
   }
@@ -854,10 +932,9 @@ public class IoUtilTest
       /* then */
       // System.out.println(format("\n\n# expected:\n%s\n\n" + "# actual:\n%s", this.stringBuilder, stringBuilder));
       final String actual = new String(NeoArrays.convertToPrimitive(byteList.toArray(new Byte[0])));
-      assertThat(actual, is(equalTo(new String(this.string))));
+      assertThat(actual).isEqualTo(new String(this.string));
       // System.out.println(format("\n\n# expected:\n%s\n\n" + "# actual:\n%s", this.characterList, charList));
-      assertThat(Arrays.asList(NeoArrays.convertToBoxedPrimitive(actual.toCharArray())),
-          is(equalTo(this.characterList)));
+      assertThat(Arrays.asList(NeoArrays.convertToBoxedPrimitive(actual.toCharArray()))).isEqualTo(this.characterList);
 
       final InOrder order = inOrder(outputStream);
       order.verify(outputStream, times(1))
@@ -891,11 +968,11 @@ public class IoUtilTest
       final List<Character> charList = new ArrayList<Character>();
       final StringBuilder stringBuilder = new StringBuilder();
       readCharsFromFile(file, charList, stringBuilder);
-      assertThat(charList, is(equalTo(this.characterList)));
+      assertThat(charList).isEqualTo(this.characterList);
       // System.out.println(format("\n\n# expected:\n%s\n\n" + "# actual:\n%s", this.stringBuilder, stringBuilder));
-      assertThat(stringBuilder.toString(), is(equalTo(this.string)));
+      assertThat(stringBuilder.toString()).isEqualTo(this.string);
 
-      assertTrue(file.delete());
+      assertThat(file.delete()).isTrue();
       charArrayProducer.reset();
     }
   }
@@ -1021,11 +1098,11 @@ public class IoUtilTest
 
     /* then */
     final int totalByteSize = byteList.size();
-    assertEquals(totalByteSize, actualList.size());
+    assertThat(totalByteSize).isEqualTo(actualList.size());
     // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.byteList, actualList));
-    assertThat(actualList, is(equalTo(byteList)));
+    assertThat(actualList).isEqualTo(byteList);
     // System.out.println(format("\n\n# expected:\n%s\n\n# actual:\n%s", this.stringBuilder, actualStringBuilder));
-    assertThat(new String(NeoArrays.convertToPrimitive(byteList.toArray(new Byte[0]))), is(equalTo(this.string)));
+    assertThat(new String(NeoArrays.convertToPrimitive(byteList.toArray(new Byte[0])))).isEqualTo(this.string);
 
     final InOrder order = inOrder(inputStream, outputStream);
     verify(inputStream, never()).read(any(byte[].class));
@@ -1067,7 +1144,7 @@ public class IoUtilTest
     final File targetFile = new File(folder, "copyOfTestFile");
 
     IoUtil.copyFile(sourceFile, targetFile, bufferSize);
-    assertEquals(sourceFile.length(), targetFile.length());
+    assertThat(sourceFile.length()).isEqualTo(targetFile.length());
 
     final List<Byte> expectedLineList = new ArrayList<Byte>();
     final String expectedString = readFile(sourceFile, expectedLineList);
@@ -1075,8 +1152,8 @@ public class IoUtilTest
     final List<Byte> resultList = new ArrayList<Byte>();
     final String resultString = readFile(targetFile, resultList);
 
-    assertThat(expectedLineList, is(equalTo(resultList)));
-    assertThat(expectedString, is(equalTo(resultString)));
+    assertThat(expectedLineList).isEqualTo(resultList);
+    assertThat(expectedString).isEqualTo(resultString);
   }
 
   @Test(expected = RuntimeIoException.class)
@@ -1126,11 +1203,11 @@ public class IoUtilTest
       // System.out.println();
       // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.stringBuilder,
       // charArrayConsumer.stringBuilder));
-      assertThat(charArrayConsumer.toString(), is(equalTo(this.string)));
+      assertThat(charArrayConsumer.toString()).isEqualTo(this.string);
       // System.out.println();
       // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.characterList,
       // charArrayConsumer.characterList));
-      assertThat(charArrayConsumer.getCharacterList(), is(equalTo(this.characterList)));
+      assertThat(charArrayConsumer.getCharacterList()).isEqualTo(this.characterList);
     }
   }
 
@@ -1150,11 +1227,11 @@ public class IoUtilTest
       // System.out.println();
       // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.stringBuilder,
       // charArrayConsumer.stringBuilder));
-      assertThat(charArrayConsumingContainer.toString(), is(equalTo(this.string)));
+      assertThat(charArrayConsumingContainer.toString()).isEqualTo(this.string);
       // System.out.println();
       // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.characterList,
       // charArrayConsumer.characterList));
-      assertThat(charArrayConsumingContainer.getDataList(), is(equalTo(this.characterList)));
+      assertThat(charArrayConsumingContainer.getDataList()).isEqualTo(this.characterList);
     }
   }
 
@@ -1198,11 +1275,11 @@ public class IoUtilTest
       // System.out.println();
       // System.out.println(format("# expected:\n%s\n\n# actual:\n%s", this.characterList,
       // charArrayConsumer.characterList));
-      assertThat(charArrayConsumer.getCharacterList(), is(equalTo(this.characterList)));
+      assertThat(charArrayConsumer.getCharacterList()).isEqualTo(this.characterList);
       // System.out.println();
       // System.out.println(format("# expected:\n%s\n\n# actual:\n%s", this.stringBuilder,
       // charArrayConsumer.stringBuilder));
-      assertThat(charArrayConsumer.toString(), is(equalTo(this.string)));
+      assertThat(charArrayConsumer.toString()).isEqualTo(this.string);
 
       final InOrder order = inOrder(inputStream);
       order.verify(inputStream, atLeastOnce())
@@ -1265,11 +1342,11 @@ public class IoUtilTest
       /* then */
       // System.out.println();
       // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.stringList, stringArrayConsumer.stringList));
-      assertThat(stringArrayConsumer.getStringList(), is(equalTo(this.stringList)));
+      assertThat(stringArrayConsumer.getStringList()).isEqualTo(this.stringList);
       // System.out.println();
       // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.lineStringBuilder,
       // stringArrayConsumer.stringBuilder));
-      assertThat(stringArrayConsumer.toString(), is(equalTo(this.lineString.toString())));
+      assertThat(stringArrayConsumer.toString()).isEqualTo(this.lineString.toString());
     }
   }
 
@@ -1288,11 +1365,11 @@ public class IoUtilTest
       /* then */
       // System.out.println();
       // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.stringList, stringArrayConsumer.stringList));
-      assertThat(stringConsumingContainer.getDataList(), is(equalTo(this.stringList)));
+      assertThat(stringConsumingContainer.getDataList()).isEqualTo(this.stringList);
       // System.out.println();
       // System.out.println(format("# expected:\n%s\n# actual:\n%s", this.lineStringBuilder,
       // stringArrayConsumer.stringBuilder));
-      assertThat(stringConsumingContainer.toString(), is(equalTo(this.lineString.toString())));
+      assertThat(stringConsumingContainer.toString()).isEqualTo(this.lineString.toString());
     }
   }
 }
