@@ -2,6 +2,14 @@ package org.elixirian.kommonlee.collect.immutable;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Arrays;
@@ -12,6 +20,7 @@ import java.util.List;
 import org.elixirian.kommonlee.collect.KollectionUtil;
 import org.elixirian.kommonlee.functional.BreakableFunction1;
 import org.elixirian.kommonlee.functional.VoidFunction1;
+import org.elixirian.kommonlee.io.util.IoUtil;
 import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
 import org.elixirian.kommonlee.type.functional.BreakOrContinue;
 import org.elixirian.kommonlee.type.functional.Condition1;
@@ -24,11 +33,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 public class ImmutableArrayListTest
 {
   @Rule
   public CauseCheckableExpectedException causeCheckableExpectedException = CauseCheckableExpectedException.none();
+
+  @Rule
+  public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
   @BeforeClass
   public static void setUpBeforeClass()
@@ -55,7 +68,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final int expected = 1;
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
 
     /* when */
     final int actual = list.hashCode();
@@ -69,7 +82,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final int expected = 1;
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.DefaultImmutableArrayList<Integer>(new Integer[0]);
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(new Integer[0]);
 
     /* when */
     final int actual = list.hashCode();
@@ -85,7 +98,7 @@ public class ImmutableArrayListTest
     final Integer[] elements = { 1, 2, 3 };
     final int expected = Objects.hash(elements);
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final int actual = list.hashCode();
@@ -100,7 +113,7 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = {};
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final boolean actual = list.isEmpty();
@@ -113,7 +126,7 @@ public class ImmutableArrayListTest
   public final void testIsEmpty1_2()
   {
     /* given */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
 
     /* when */
     final boolean actual = list.isEmpty();
@@ -128,7 +141,7 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = { 1, 2, 3 };
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final boolean actual = list.isEmpty();
@@ -143,7 +156,7 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = { 1, 2, 3 };
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final boolean actual = list.isNotEmpty();
@@ -158,7 +171,7 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = {};
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final boolean actual = list.isNotEmpty();
@@ -171,7 +184,7 @@ public class ImmutableArrayListTest
   public final void testIsNotEmpty2_2()
   {
     /* given */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
 
     /* when */
     final boolean actual = list.isNotEmpty();
@@ -186,7 +199,7 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = { 1 };
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final boolean actual = list.contains(1);
@@ -201,7 +214,7 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = {};
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final boolean actual = list.contains(1);
@@ -216,7 +229,7 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = { 2, 3 };
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final boolean actual = list.contains(1);
@@ -229,7 +242,7 @@ public class ImmutableArrayListTest
   public final void testContains4()
   {
     /* given */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
 
     /* when */
     final boolean actual = list.contains(1);
@@ -244,11 +257,11 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = { 1, 2, 3 };
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
     final boolean actual = list.equals(expected);
 
     /* then */
@@ -261,11 +274,11 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = { 1, 2, 3, 4, 5 };
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length - 1));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length - 1));
     final boolean actual = list.equals(expected);
 
     /* then */
@@ -278,11 +291,11 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = {};
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
     final boolean actual = list.equals(expected);
 
     /* then */
@@ -296,11 +309,11 @@ public class ImmutableArrayListTest
     final Integer[] elements1 = { 1 };
     final Integer[] elements2 = { 1, 2 };
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements1, elements1.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements1, elements1.length));
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements1, elements2.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements1, elements2.length));
     final boolean actual = list.equals(expected);
 
     /* then */
@@ -311,10 +324,10 @@ public class ImmutableArrayListTest
   public final void testEquals5()
   {
     /* given */
-    final ImmutableArrayList<Integer> expected = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> expected = ImmutableArrayList.emptyList();
 
     /* when */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
     final boolean actual = list.equals(expected);
 
     /* then */
@@ -327,11 +340,11 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = { 1, 2, 3 };
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
     final boolean actual = list.notEquals(expected);
 
     /* then */
@@ -344,11 +357,11 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = { 1, 2, 3, 4, 5 };
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length - 1));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length - 1));
     final boolean actual = list.notEquals(expected);
 
     /* then */
@@ -361,11 +374,11 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = {};
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
     final boolean actual = list.notEquals(expected);
 
     /* then */
@@ -379,11 +392,11 @@ public class ImmutableArrayListTest
     final Integer[] elements1 = { 1 };
     final Integer[] elements2 = { 1, 2 };
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements1, elements1.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements1, elements1.length));
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements1, elements2.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements1, elements2.length));
     final boolean actual = list.notEquals(expected);
 
     /* then */
@@ -394,10 +407,10 @@ public class ImmutableArrayListTest
   public final void testNotEquals5()
   {
     /* given */
-    final ImmutableArrayList<Integer> expected = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> expected = ImmutableArrayList.emptyList();
 
     /* when */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
     final boolean actual = list.notEquals(expected);
 
     /* then */
@@ -411,7 +424,7 @@ public class ImmutableArrayListTest
     final ImmutableArrayList<Integer> expected = ImmutableArrayList.listOf(1);
 
     /* when */
-    final ImmutableArrayList<Integer> actual = new ImmutableArrayList.DefaultImmutableArrayList(1);
+    final ImmutableArrayList<Integer> actual = new DefaultImmutableArrayList(1);
 
     /* then */
     assertThat(actual).isEqualTo(expected);
@@ -425,7 +438,7 @@ public class ImmutableArrayListTest
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
     final Object[] actual = list.toArray();
 
     /* then */
@@ -440,7 +453,7 @@ public class ImmutableArrayListTest
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
     final Object[] actual = list.toArray();
 
     /* then */
@@ -454,7 +467,7 @@ public class ImmutableArrayListTest
     final Integer[] expected = {};
 
     /* when */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
     final Object[] actual = list.toArray();
 
     /* then */
@@ -469,7 +482,7 @@ public class ImmutableArrayListTest
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
     final Integer[] actual = list.toArray(new Integer[0]);
 
     /* then */
@@ -484,7 +497,7 @@ public class ImmutableArrayListTest
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
     final Integer[] actual = list.toArray(new Integer[1]);
 
     /* then */
@@ -499,7 +512,7 @@ public class ImmutableArrayListTest
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
     final Integer[] actual = list.toArray(new Integer[expected.length]);
 
     /* then */
@@ -514,7 +527,7 @@ public class ImmutableArrayListTest
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expected.length));
     final Integer[] actual = list.toArray(new Integer[expected.length]);
 
     /* then */
@@ -528,7 +541,7 @@ public class ImmutableArrayListTest
     final Integer[] expected = {};
 
     /* when */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
     final Integer[] actual = list.toArray(new Integer[expected.length]);
 
     /* then */
@@ -542,8 +555,7 @@ public class ImmutableArrayListTest
     final List<Integer> expected = Arrays.asList(1, 2, 3, 4, 5);
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(expected.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(expected.toArray());
     final List<Integer> actual = list.convertTo();
 
     /* then */
@@ -557,8 +569,7 @@ public class ImmutableArrayListTest
     final List<Integer> expected = Collections.emptyList();
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(expected.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(expected.toArray());
     final List<Integer> actual = list.convertTo();
 
     /* then */
@@ -573,8 +584,7 @@ public class ImmutableArrayListTest
     final Iterator<Integer> expected = elements.iterator();
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     final Iterator<Integer> actual = list.iterator();
 
     /* then */
@@ -589,8 +599,7 @@ public class ImmutableArrayListTest
     final int expected = elements.size();
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     final int actual = list.length();
 
     /* then */
@@ -605,8 +614,7 @@ public class ImmutableArrayListTest
     final int expected = 0;
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     final int actual = list.length();
 
     /* then */
@@ -620,7 +628,7 @@ public class ImmutableArrayListTest
     final int expected = 0;
 
     /* when */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
     final int actual = list.length();
 
     /* then */
@@ -635,8 +643,7 @@ public class ImmutableArrayListTest
     final Integer expected = 3;
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     final Integer actual = list.find(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
@@ -656,8 +663,7 @@ public class ImmutableArrayListTest
     final List<Integer> elements = Arrays.asList(1, 2, 3, 4, 5);
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     final Integer actual = list.find(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
@@ -677,8 +683,7 @@ public class ImmutableArrayListTest
     final List<Integer> elements = Collections.emptyList();
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     final Integer actual = list.find(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
@@ -698,7 +703,7 @@ public class ImmutableArrayListTest
     final List<Integer> elements = Collections.emptyList();
 
     /* when */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
     final Integer actual = list.find(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
@@ -716,11 +721,10 @@ public class ImmutableArrayListTest
   {
     /* given */
     final List<Integer> elements = Arrays.asList(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5);
-    final ImmutableList<Integer> expected = new ImmutableArrayList.DefaultImmutableArrayList<Integer>(1, 2, 3, 4, 5);
+    final ImmutableList<Integer> expected = new DefaultImmutableArrayList<Integer>(1, 2, 3, 4, 5);
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     final ImmutableList<Integer> actual = list.select(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
@@ -739,11 +743,10 @@ public class ImmutableArrayListTest
   {
     /* given */
     final List<Integer> elements = Collections.emptyList();
-    final ImmutableList<Integer> expected = new ImmutableArrayList.DefaultImmutableArrayList<Integer>();
+    final ImmutableList<Integer> expected = new DefaultImmutableArrayList<Integer>();
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     final ImmutableList<Integer> actual = list.select(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
@@ -761,10 +764,10 @@ public class ImmutableArrayListTest
   public final void testSelect3()
   {
     /* given */
-    final ImmutableList<Integer> expected = new ImmutableArrayList.DefaultImmutableArrayList<Integer>();
+    final ImmutableList<Integer> expected = new DefaultImmutableArrayList<Integer>();
 
     /* when */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
     final ImmutableList<Integer> actual = list.select(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
@@ -784,12 +787,10 @@ public class ImmutableArrayListTest
     /* given */
     final List<Integer> elements = Arrays.asList(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5);
     final ImmutableList<String> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<String>("-5", "-4", "-3", "-2", "-1", "0", "1", "2", "3", "4",
-          "5");
+      new DefaultImmutableArrayList<String>("-5", "-4", "-3", "-2", "-1", "0", "1", "2", "3", "4", "5");
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     final ImmutableList<String> actual = list.map(new Function1<Integer, String>() {
       @Override
       public String apply(final Integer input)
@@ -808,12 +809,10 @@ public class ImmutableArrayListTest
   {
     /* given */
     final List<Integer> elements = Arrays.asList(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5);
-    final ImmutableList<String> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<String>("1", "2", "3", "4", "5");
+    final ImmutableList<String> expected = new DefaultImmutableArrayList<String>("1", "2", "3", "4", "5");
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     final ImmutableList<String> actual = list.mapSelectively(new Condition1<Integer>() {
 
       @Override
@@ -846,8 +845,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final int[] actual = { 0 };
 
@@ -881,8 +879,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final int[] actual = { -777 };
 
@@ -915,8 +912,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Integer actual = list.foldLeft(0, new Function2<Integer, Integer, Integer>() {
       @Override
@@ -942,8 +938,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Integer actual = list.foldLeft(0, new Function2<Number, Integer, Integer>() {
       @Override
@@ -969,8 +964,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Integer actual = list.foldLeft(0, new Function2<Integer, Number, Integer>() {
       @Override
@@ -996,8 +990,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Integer actual = list.foldLeft(0, new Function2<Number, Number, Integer>() {
       @Override
@@ -1023,8 +1016,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Number actual = list.foldLeft((Number) 0, new Function2<Number, Number, Number>() {
       @Override
@@ -1050,8 +1042,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Long actual = list.foldLeft(0L, new Function2<Number, Number, Long>() {
       @Override
@@ -1077,8 +1068,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Integer actual = list.<Integer, Function2<Integer, Integer, Integer>> foldLeft(0)
         .apply(new Function2<Integer, Integer, Integer>() {
@@ -1105,8 +1095,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Integer actual = list.<Integer, Function2<Number, Integer, Integer>> foldLeft(0)
         .apply(new Function2<Number, Integer, Integer>() {
@@ -1133,8 +1122,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Integer actual = list.<Integer, Function2<Integer, Number, Integer>> foldLeft(0)
         .apply(new Function2<Integer, Number, Integer>() {
@@ -1161,8 +1149,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Integer actual = list.<Integer, Function2<Number, Number, Integer>> foldLeft(0)
         .apply(new Function2<Number, Number, Integer>() {
@@ -1189,8 +1176,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Number actual = list.<Number, Function2<Number, Number, Number>> foldLeft((Number) 0)
         .apply(new Function2<Number, Number, Number>() {
@@ -1217,8 +1203,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Long actual = list.<Long, Function2<Number, Number, Long>> foldLeft(0L)
         .apply(new Function2<Number, Number, Long>() {
@@ -1247,8 +1232,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final Double actual = list.foldRight(1D, new Function2<Integer, Double, Double>() {
       @Override
@@ -1277,8 +1261,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final BigDecimal actual = list.foldRight(BigDecimal.ONE, new Function2<Integer, BigDecimal, BigDecimal>() {
       @Override
@@ -1307,8 +1290,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final BigDecimal actual = list.foldRight(BigDecimal.ONE, new Function2<Number, Number, BigDecimal>() {
       @Override
@@ -1337,8 +1319,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final BigDecimal actual = list.foldRight(BigDecimal.ONE, new Function2<Number, BigDecimal, BigDecimal>() {
       @Override
@@ -1367,8 +1348,7 @@ public class ImmutableArrayListTest
     }
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final BigDecimal actual = list.foldRight(BigDecimal.ONE, new Function2<Integer, Number, BigDecimal>() {
       @Override
@@ -1389,7 +1369,7 @@ public class ImmutableArrayListTest
     final Integer expected = 999;
 
     /* when */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.DefaultImmutableArrayList<Integer>(999);
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(999);
     final Integer actual = list.get(0);
 
     /* then */
@@ -1404,8 +1384,7 @@ public class ImmutableArrayListTest
     final int expectedLength = elements.size();
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     for (int i = 0; i < expectedLength; i++)
     {
       final Integer expected = elements.get(i);
@@ -1431,8 +1410,7 @@ public class ImmutableArrayListTest
     final List<Integer> expectedList = Arrays.asList(expected);
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final ImmutableList<Integer> actualSubList = list.subList(fromIndex, toIndex);
     final Object[] actual = actualSubList.toArray();
@@ -1445,10 +1423,13 @@ public class ImmutableArrayListTest
   }
 
   @Test
-  public final void testEmptyList1_1()
+  public final void testEmptyList1_1() throws NoSuchMethodException, SecurityException, InstantiationException,
+      IllegalAccessException, IllegalArgumentException, InvocationTargetException
   {
     /* given */
-    final ImmutableArrayList<Integer> expected = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final Constructor<EmptyImmutableArrayList> constructor = EmptyImmutableArrayList.class.getDeclaredConstructor();
+    constructor.setAccessible(true);
+    final ImmutableArrayList<Integer> expected = constructor.newInstance();
 
     /* when */
     final ImmutableArrayList<Integer> actual = ImmutableArrayList.emptyList();
@@ -1463,7 +1444,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final ImmutableArrayList<Integer> expected =
-      (ImmutableArrayList<Integer>) ImmutableArrayList.EmptyImmutableArrayList.EMPTY_IMMUTABLE_ARRAY_LIST;
+      (ImmutableArrayList<Integer>) EmptyImmutableArrayList.EMPTY_IMMUTABLE_ARRAY_LIST;
 
     /* when */
     final ImmutableArrayList<Integer> actual = ImmutableArrayList.emptyList();
@@ -1491,7 +1472,7 @@ public class ImmutableArrayListTest
   public final void testEmptyList2_1()
   {
     /* given */
-    final ImmutableArrayList<Integer> expected = new ImmutableArrayList.DefaultImmutableArrayList<Integer>(0);
+    final ImmutableArrayList<Integer> expected = new DefaultImmutableArrayList<Integer>(0);
 
     /* when */
     final ImmutableArrayList<Integer> actual = ImmutableArrayList.emptyList();
@@ -1507,7 +1488,7 @@ public class ImmutableArrayListTest
     final ImmutableArrayList<Integer> expected = ImmutableArrayList.emptyList();
 
     /* when */
-    final ImmutableArrayList<Integer> actual = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> actual = ImmutableArrayList.emptyList();
 
     /* then */
     assertThat(actual).isEqualTo(expected);
@@ -1531,13 +1512,14 @@ public class ImmutableArrayListTest
   public final void testListOfTArray2()
   {
     /* given */
-    final ImmutableArrayList<Integer> expected = new ImmutableArrayList.DefaultImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> expected = new DefaultImmutableArrayList<Integer>();
 
     /* when */
     final ImmutableArrayList<Integer> actual = ImmutableArrayList.listOf();
 
     /* then */
     assertThat(actual).isEqualTo(expected);
+    assertThat(actual).isNotSameAs(expected);
   }
 
   @Test
@@ -1546,7 +1528,7 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = { -7, -2, -1, 0, 1, 2, 7 };
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final ImmutableArrayList<Integer> actual = ImmutableArrayList.listOf(Arrays.copyOf(elements, elements.length));
@@ -1559,7 +1541,7 @@ public class ImmutableArrayListTest
   public final void testListOfTArray4()
   {
     /* given */
-    final ImmutableArrayList<Integer> expected = new ImmutableArrayList.DefaultImmutableArrayList<Integer>(-1);
+    final ImmutableArrayList<Integer> expected = new DefaultImmutableArrayList<Integer>(-1);
 
     /* when */
     final ImmutableArrayList<Integer> actual = ImmutableArrayList.listOf(1);
@@ -1587,7 +1569,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final Integer[] elements = { -7, -2, -1, 0, 1, 2, 7 };
-    final ImmutableArrayList<Integer> expected = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> expected = ImmutableArrayList.emptyList();
 
     /* when */
     final ImmutableArrayList<Integer> actual = ImmutableArrayList.listOf(Arrays.copyOf(elements, elements.length), 0);
@@ -1601,7 +1583,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final Integer[] elements = { -7, -2, -1, 0, 1, 2, 7 };
-    final ImmutableArrayList<Integer> expected = new ImmutableArrayList.DefaultImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> expected = new DefaultImmutableArrayList<Integer>();
 
     /* when */
     final ImmutableArrayList<Integer> actual = ImmutableArrayList.listOf(Arrays.copyOf(elements, elements.length), 0);
@@ -1630,7 +1612,7 @@ public class ImmutableArrayListTest
     /* given */
     final Integer[] elements = { -7, -2, -1, 0, 1, 2, 7 };
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
     final ImmutableArrayList<Integer> actual = ImmutableArrayList.listOf(Arrays.copyOf(elements, elements.length), 0);
@@ -1646,7 +1628,7 @@ public class ImmutableArrayListTest
     final Integer[] elements = { -7, -2, -1, 0, 1, 2, 7 };
     final int expectedLength = 3;
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
 
     /* when */
     final ImmutableArrayList<Integer> actual =
@@ -1666,7 +1648,7 @@ public class ImmutableArrayListTest
     final int expectedLength = elements.length;
     final int length = 999;
     final ImmutableArrayList<Integer> expected =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
 
     /* when */
     final ImmutableArrayList<Integer> actual =
@@ -1695,7 +1677,7 @@ public class ImmutableArrayListTest
     }
     final int expected = 3;
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
 
@@ -1716,8 +1698,7 @@ public class ImmutableArrayListTest
   public final void testHowMany2()
   {
     /* given */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(-10, -5, -3, -2, -1, 0, 1, 2);
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(-10, -5, -3, -2, -1, 0, 1, 2);
     final int expected = 5;
 
     /* when */
@@ -1742,7 +1723,7 @@ public class ImmutableArrayListTest
     final Integer[] elements = { -7, -2, -1, 0 };
     final int expected = 0;
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
 
     /* when */
 
@@ -1764,7 +1745,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final int expected = 0;
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.DefaultImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>();
 
     /* when */
 
@@ -1785,7 +1766,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final int expected = 0;
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
 
     /* when */
 
@@ -1818,7 +1799,7 @@ public class ImmutableArrayListTest
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
     final int actualLength = list.length();
 
     for (int i = 0; i < targets.length; i++)
@@ -1847,7 +1828,7 @@ public class ImmutableArrayListTest
     final int invlidIndex = -1;
 
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
 
     /* expect */
     causeCheckableExpectedException.expect(IndexOutOfBoundsException.class);
@@ -1869,7 +1850,7 @@ public class ImmutableArrayListTest
     final int index = 0;
 
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
 
     /* when */
     list.indexOf(1, index);
@@ -1887,7 +1868,7 @@ public class ImmutableArrayListTest
     final int invlidIndex = elements.length;
 
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
 
     /* expect */
     causeCheckableExpectedException.expect(IndexOutOfBoundsException.class);
@@ -1909,7 +1890,7 @@ public class ImmutableArrayListTest
     final int index = elements.length - 1;
 
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
 
     /* when */
     list.indexOf(1, index);
@@ -1926,8 +1907,7 @@ public class ImmutableArrayListTest
     final int expectedLength = expected.size();
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(expected.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(expected.toArray());
     final int actualLength = list.length();
 
     /* then */
@@ -1947,7 +1927,7 @@ public class ImmutableArrayListTest
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(expected, expectedLength));
     final int actualLength = list.length();
 
     /* then */
@@ -1974,7 +1954,7 @@ public class ImmutableArrayListTest
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
     final int actualLength = list.length();
 
     for (int i = 0; i < targets.length; i++)
@@ -2003,7 +1983,7 @@ public class ImmutableArrayListTest
     final int invlidIndex = 0;
 
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
 
     /* expect */
     causeCheckableExpectedException.expect(IndexOutOfBoundsException.class);
@@ -2025,7 +2005,7 @@ public class ImmutableArrayListTest
     final int index = 1;
 
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
 
     /* when */
     list.lastIndexOf(1, index);
@@ -2043,7 +2023,7 @@ public class ImmutableArrayListTest
     final int invlidIndex = expectedLength + 1;
 
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
 
     /* expect */
     causeCheckableExpectedException.expect(IndexOutOfBoundsException.class);
@@ -2065,7 +2045,7 @@ public class ImmutableArrayListTest
     final int index = expectedLength;
 
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
 
     /* when */
     list.lastIndexOf(1, index);
@@ -2087,7 +2067,7 @@ public class ImmutableArrayListTest
 
     /* when */
     final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, expectedLength));
     final int actualLength = list.length();
 
     /* then */
@@ -2112,8 +2092,7 @@ public class ImmutableArrayListTest
     final int expected = elements.size();
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
     final int actual = list.size();
 
     /* then */
@@ -2126,8 +2105,7 @@ public class ImmutableArrayListTest
     /* given */
     final List<Integer> elements = Collections.emptyList();
     final int expected = 0;
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     /* when */
     final int actual = list.size();
@@ -2141,7 +2119,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final int expected = 0;
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
 
     /* when */
     final int actual = list.size();
@@ -2155,8 +2133,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final List<Integer> elements = Arrays.asList(-5, -4, -3, -2, -1, 0, 999, 1, 2, 3, 4, 5);
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     /* when */
 
@@ -2177,8 +2154,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final List<Integer> elements = Arrays.asList(-5, -4, -3, -2, -1, 0, 999, 1, 2, 3, 4, 5);
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     /* when */
 
@@ -2199,8 +2175,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final List<Integer> elements = Arrays.asList(-5, -4, -3, -2, -1, 0);
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     /* when */
 
@@ -2221,8 +2196,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final List<Integer> elements = Collections.emptyList();
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     /* when */
     final boolean actual = list.exists(new Condition1<Number>() {
@@ -2241,7 +2215,7 @@ public class ImmutableArrayListTest
   public final void testExists5()
   {
     /* given */
-    final ImmutableArrayList<Integer> list = new ImmutableArrayList.EmptyImmutableArrayList<Integer>();
+    final ImmutableArrayList<Integer> list = ImmutableArrayList.emptyList();
 
     /* when */
     final boolean actual = list.exists(new Condition1<Number>() {
@@ -2261,12 +2235,10 @@ public class ImmutableArrayListTest
   {
     /* given */
     final List<Integer> elements = Arrays.asList(-5, -4, -3, -2, -1, 0, 999, 1, 2, 3, 4, 5);
-    final ImmutableArrayList<Integer> input =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(2, -1, -3, 0, 3 - 2, 999, 1);
+    final ImmutableArrayList<Integer> input = new DefaultImmutableArrayList<Integer>(2, -1, -3, 0, 3 - 2, 999, 1);
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final boolean actual = list.containsAll(input);
 
@@ -2279,12 +2251,10 @@ public class ImmutableArrayListTest
   {
     /* given */
     final List<Integer> elements = Arrays.asList(-5, -4, -3, -2, -1, 0, 999, 1, 2, 3, 4, 5);
-    final ImmutableArrayList<Integer> input =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(2, -1, -3, 0, 3, 111, -2, 999, 1);
+    final ImmutableArrayList<Integer> input = new DefaultImmutableArrayList<Integer>(2, -1, -3, 0, 3, 111, -2, 999, 1);
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final boolean actual = list.containsAll(input);
 
@@ -2311,13 +2281,132 @@ public class ImmutableArrayListTest
     final String expected = stringBuilder.toString();
 
     /* when */
-    final ImmutableArrayList<Integer> list =
-      new ImmutableArrayList.DefaultImmutableArrayList<Integer>(elements.toArray());
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
 
     final String actual = list.toString();
 
     /* then */
     assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testSerialization()
+  {
+    /* given */
+    final File file = new File(temporaryFolder.getRoot(), "test-list-serialized.txt");
+    final ImmutableList<String> expected = ImmutableLists.listOf("Kevin", "Lee", "Hello");
+
+    FileOutputStream fileOutputStream = null;
+    ObjectOutputStream outputStream = null;
+
+    /* when */
+    try
+    {
+      fileOutputStream = new FileOutputStream(file);
+      outputStream = new ObjectOutputStream(fileOutputStream);
+      outputStream.writeObject(expected);
+    }
+    catch (final IOException e)
+    {
+      throw new AssertionError(e);
+    }
+    finally
+    {
+      IoUtil.closeQuietly(fileOutputStream, outputStream);
+    }
+
+    FileInputStream fileInputStream = null;
+    ObjectInputStream inputStream = null;
+
+    ImmutableList<String> actual = null;
+
+    try
+    {
+      fileInputStream = new FileInputStream(file);
+      inputStream = new ObjectInputStream(fileInputStream);
+
+      try
+      {
+        actual = (ImmutableList<String>) inputStream.readObject();
+      }
+      catch (final ClassNotFoundException e)
+      {
+        throw new AssertionError(e);
+      }
+    }
+    catch (final IOException e)
+    {
+      throw new AssertionError(e);
+    }
+    finally
+    {
+      IoUtil.closeQuietly(fileInputStream, inputStream);
+    }
+
+    /* then */
+    assertThat(actual).hasSameSizeAs(expected);
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).containsExactlyElementsOf(expected);
+  }
+
+  @Test
+  public final void testSerializationForEmptyList()
+  {
+    /* given */
+    final File file = new File(temporaryFolder.getRoot(), "test-list-serialized.txt");
+    final ImmutableList<String> expected = ImmutableLists.emptyList();
+
+    FileOutputStream fileOutputStream = null;
+    ObjectOutputStream outputStream = null;
+
+    /* when */
+    try
+    {
+      fileOutputStream = new FileOutputStream(file);
+      outputStream = new ObjectOutputStream(fileOutputStream);
+      outputStream.writeObject(expected);
+    }
+    catch (final IOException e)
+    {
+      throw new AssertionError(e);
+    }
+    finally
+    {
+      IoUtil.closeQuietly(fileOutputStream, outputStream);
+    }
+
+    FileInputStream fileInputStream = null;
+    ObjectInputStream inputStream = null;
+
+    ImmutableList<String> actual = null;
+
+    try
+    {
+      fileInputStream = new FileInputStream(file);
+      inputStream = new ObjectInputStream(fileInputStream);
+
+      try
+      {
+        actual = (ImmutableList<String>) inputStream.readObject();
+      }
+      catch (final ClassNotFoundException e)
+      {
+        throw new AssertionError(e);
+      }
+    }
+    catch (final IOException e)
+    {
+      throw new AssertionError(e);
+    }
+    finally
+    {
+      IoUtil.closeQuietly(fileInputStream, inputStream);
+    }
+
+    /* then */
+    assertThat(actual).hasSameSizeAs(expected);
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).containsExactlyElementsOf(expected);
   }
 
 }

@@ -31,10 +31,10 @@
  */
 package org.elixirian.kommonlee.nio.util;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.elixirian.kommonlee.test.CommonTestHelper.*;
 import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.elixirian.kommonlee.util.collect.Lists.*;
-import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
 
@@ -272,6 +272,29 @@ public class NioUtilTest
     /* test */
     NioUtil.closeQuietly(closeable);
     assertThat(called[0]).isTrue();
+  }
+
+  @Test
+  public void testCloseQuietlyCloseableAndCloseableVarargs() throws IOException
+  {
+    /* given */
+    final Closeable closeable1 = mock(Closeable.class, "closeable1");
+    final Closeable closeable2 = mock(Closeable.class, "closeable2");
+    final Closeable closeable3 = mock(Closeable.class, "closeable3");
+
+    /* when */
+    NioUtil.closeQuietly(closeable1, closeable2, closeable3);
+
+    /* then */
+
+    final InOrder inOrder = inOrder(closeable1, closeable2, closeable3);
+
+    inOrder.verify(closeable1, times(1))
+        .close();
+    inOrder.verify(closeable2, times(1))
+        .close();
+    inOrder.verify(closeable3, times(1))
+        .close();
   }
 
   private static class ByteArrayConsumer4Testing implements ByteArrayConsumer

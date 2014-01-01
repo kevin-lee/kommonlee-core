@@ -394,6 +394,26 @@ public class IoUtilTest
     assertThat(called[0]).isTrue();
   }
 
+  @Test
+  public void testCloseQuietlyCloseableAndCloseableVarargs() throws IOException
+  {
+    /* given */
+    final Closeable closeable1 = mock(Closeable.class, "closeable1");
+    final Closeable closeable2 = mock(Closeable.class, "closeable2");
+    final Closeable closeable3 = mock(Closeable.class, "closeable3");
+
+    /* when */
+    IoUtil.closeQuietly(closeable1, closeable2, closeable3);
+
+    /* then */
+
+    final InOrder inOrder = inOrder(closeable1, closeable2, closeable3);
+    
+    inOrder.verify(closeable1, times(1)).close();
+    inOrder.verify(closeable2, times(1)).close();
+    inOrder.verify(closeable3, times(1)).close();
+  }
+
   private static <T> T any(final Class<T> theClass)
   {
     return Mockito.any(theClass);

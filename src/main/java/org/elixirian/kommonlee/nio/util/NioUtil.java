@@ -122,6 +122,23 @@ public final class NioUtil
     }
   }
 
+  /**
+   * Calls close() method on any {@link Closeable} object without throwing {@link IOException}.
+   * 
+   * @param closeable
+   *          the given {@link Closeable} object the close() method of which is to be called by this method.
+   * @param rest
+   *          the rest of {@link Closeable} objects.
+   */
+  public static void closeQuietly(final Closeable closeable, final Closeable... rest)
+  {
+    closeQuietly(closeable);
+    for (final Closeable each : rest)
+    {
+      closeQuietly(each);
+    }
+  }
+
   public static void assertBufferSize(final int bufferSize)
   {
     IoUtil.assertBufferSize(bufferSize);

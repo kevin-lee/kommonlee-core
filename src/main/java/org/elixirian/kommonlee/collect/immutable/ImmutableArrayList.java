@@ -35,6 +35,9 @@ import static org.elixirian.kommonlee.collect.KollectionUtil.*;
 import static org.elixirian.kommonlee.util.Objects.*;
 import static org.elixirian.kommonlee.util.collect.Lists.*;
 
+import java.io.InvalidObjectException;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
@@ -52,6 +55,7 @@ import org.elixirian.kommonlee.type.functional.BreakOrContinue;
 import org.elixirian.kommonlee.type.functional.Condition1;
 import org.elixirian.kommonlee.type.functional.Function1;
 import org.elixirian.kommonlee.type.functional.Function2;
+import org.elixirian.kommonlee.util.NeoArrays;
 
 /**
  * <pre>
@@ -73,7 +77,8 @@ import org.elixirian.kommonlee.type.functional.Function2;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-09-28)
  */
-public abstract class ImmutableArrayList<E> extends AbstractReadableList<E> implements ImmutableList<E>
+@SuppressWarnings("serial")
+public abstract class ImmutableArrayList<E> extends AbstractReadableList<E> implements ImmutableList<E>, Serializable
 {
   static final <E> ImmutableArrayList<E> emptyList()
   {
@@ -119,504 +124,537 @@ public abstract class ImmutableArrayList<E> extends AbstractReadableList<E> impl
         : emptyImmutableArrayList;
   }
 
-  static final class EmptyImmutableArrayList<E> extends ImmutableArrayList<E>
+  private static class SerializationProxy implements Serializable
   {
-    private static final Object[] EMPTY_ELEMENTS = new Object[0];
+    private static final long serialVersionUID = 0L;
 
-    static final EmptyImmutableArrayList<?> EMPTY_IMMUTABLE_ARRAY_LIST = new EmptyImmutableArrayList<Object>();
+    final Object[] elements;
 
-    EmptyImmutableArrayList()
+    SerializationProxy(final Object[] elements)
     {
-      // super(EMPTY_ELEMENTS, 0);
+      this.elements = elements;
     }
 
-    @Override
-    public Object[] toArray()
+    Object readResolve()
     {
-      return EMPTY_ELEMENTS;
-    }
-
-    @Override
-    public E[] toArray(final E[] elements)
-    {
-      mustNotBeNull(elements, "elements cannot be null!");
-      @SuppressWarnings("unchecked")
-      final E[] newArray = (E[]) Array.newInstance(elements.getClass()
-          .getComponentType(), 0);
-      return newArray;
-    }
-
-    @Override
-    public int howMany(@SuppressWarnings("unused") final Condition1<? super E> conditionToMeet)
-    {
-      return 0;
-    }
-
-    @Override
-    public <R, F2 extends Function2<? super R, ? super E, R>> R foldLeft(final R startValue,
-        @SuppressWarnings("unused") final F2 function)
-    {
-      return startValue;
-    }
-
-    @Override
-    public <R, F2 extends Function2<? super R, ? super E, R>> Function1<F2, R> foldLeft(final R startValue)
-    {
-      return new Function1<F2, R>() {
-        @Override
-        public R apply(@SuppressWarnings("unused") final F2 function)
-        {
-          return startValue;
-        }
-      };
-    }
-
-    @Override
-    public <R, F2 extends Function2<? super E, ? super R, R>> R foldRight(final R startValue,
-        @SuppressWarnings("unused") final F2 function)
-    {
-      return startValue;
-    }
-
-    @Override
-    public <R, F2 extends Function2<? super E, ? super R, R>> Function1<F2, R> foldRight(final R startValue)
-    {
-      return new Function1<F2, R>() {
-        @Override
-        public R apply(@SuppressWarnings("unused") final F2 function)
-        {
-          return startValue;
-        }
-      };
-    }
-
-    @Override
-    public UnmodifiableIterator<E> iterator()
-    {
-      final McHammerIterator<E> emptyMcHammerIterator = McHammerIterator.emptyMcHammerIterator();
-      return emptyMcHammerIterator;
-    }
-
-    @Override
-    public int length()
-    {
-      return 0;
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-      return true;
-    }
-
-    @Override
-    public boolean isNotEmpty()
-    {
-      return false;
-    }
-
-    @Override
-    public boolean contains(@SuppressWarnings("unused") final Object element)
-    {
-      return false;
-    }
-
-    @Override
-    public boolean containsAll(@SuppressWarnings("unused") final Kollection<?> kollection)
-    {
-      return false;
-    }
-
-    @Override
-    public E find(@SuppressWarnings("unused") final Condition1<? super E> condition)
-    {
-      return null;
-    }
-
-    @Override
-    public EmptyImmutableArrayList<E> select(@SuppressWarnings("unused") final Condition1<? super E> condition)
-    {
-      return this;
-    }
-
-    @Override
-    public <R> EmptyImmutableArrayList<R> map(@SuppressWarnings("unused") final Function1<? super E, R> function)
-    {
-      @SuppressWarnings("unchecked")
-      final EmptyImmutableArrayList<R> immutableArrayList = (EmptyImmutableArrayList<R>) this;
-      return immutableArrayList;
-    }
-
-    @Override
-    public <R> EmptyImmutableArrayList<R> mapSelectively(
-        @SuppressWarnings("unused") final Condition1<? super E> condition,
-        @SuppressWarnings("unused") final Function1<? super E, R> function)
-    {
-      @SuppressWarnings("unchecked")
-      final EmptyImmutableArrayList<R> immutableArrayList = (EmptyImmutableArrayList<R>) this;
-      return immutableArrayList;
-    }
-
-    /**
-     * It does nothing.
-     */
-    @Override
-    public void forEach(@SuppressWarnings("unused") final VoidFunction1<? super E> function)
-    {
-      return;
-    }
-
-    /**
-     * It does nothing.
-     */
-    @Override
-    public void breakableForEach(@SuppressWarnings("unused") final BreakableFunction1<? super E> function)
-    {
-      return;
-    }
-
-    @Override
-    public E get(@SuppressWarnings("unused") final int index)
-    {
-      throw new IndexOutOfBoundsException("This is an empty DefaultImmutableArrayList.");
-    }
-
-    @Override
-    public int indexOf(@SuppressWarnings("unused") final E element)
-    {
-      return -1;
-    }
-
-    @Override
-    public int indexOf(@SuppressWarnings("unused") final E element, @SuppressWarnings("unused") final int fromIndex)
-    {
-      return -1;
-    }
-
-    @Override
-    public int lastIndexOf(@SuppressWarnings("unused") final E element)
-    {
-      return -1;
-    }
-
-    @Override
-    public int lastIndexOf(@SuppressWarnings("unused") final E element, @SuppressWarnings("unused") final int toIndex)
-    {
-      return -1;
-    }
-
-    @Override
-    public EmptyImmutableArrayList<E> subList(@SuppressWarnings("unused") final int fromIndex,
-        @SuppressWarnings("unused") final int toIndex)
-    {
-      return this;
-    }
-
-    @Override
-    public int hashCode()
-    {
-      return 1;
-    }
-
-    @Override
-    public boolean equals(final Object immutableArrayList)
-    {
-      if (this == immutableArrayList)
-      {
-        return true;
-      }
-      final EmptyImmutableArrayList<?> that = castIfInstanceOf(EmptyImmutableArrayList.class, immutableArrayList);
-      return null != that;
-    }
-
-    @Override
-    public List<E> convertTo()
-    {
-      return Collections.emptyList();
+      return listOf(elements);
     }
   }
 
-  static class DefaultImmutableArrayList<E> extends ImmutableArrayList<E>
+  private void readObject(@SuppressWarnings("unused") final ObjectInputStream objectInputStream)
+      throws InvalidObjectException
   {
-    private final Object[] elements;
+    throw new InvalidObjectException("For serialization, SerializationProxy must be used.");
+  }
 
-    private final int length;
-
-    DefaultImmutableArrayList(final Collection<? extends E> collection)
-    {
-      final int length = collection.size();
-      final Object[] elements = collection.toArray();
-      this.elements = Arrays.copyOf(elements, length);
-      this.length = this.elements.length;
-    }
-
-    DefaultImmutableArrayList(final Kollection<? extends E> kollection)
-    {
-      final int length = kollection.length();
-      final Object[] elements = kollection.toArray();
-      this.elements = Arrays.copyOf(elements, length);
-      this.length = this.elements.length;
-    }
-
-    DefaultImmutableArrayList(final Object[] elements, final int howMany)
-    {
-      final int length = Math.min(elements.length, howMany);
-      this.elements = Arrays.copyOf(elements, length);
-      this.length = this.elements.length;
-    }
-
-    DefaultImmutableArrayList(final Object... elements)
-    {
-      final int length = elements.length;
-      this.elements = Arrays.copyOf(elements, length);
-      this.length = length;
-    }
-
-    @Override
-    public boolean isEmpty()
-    {
-      return 0 == length;
-    }
-
-    @Override
-    public boolean isNotEmpty()
-    {
-      return !isEmpty();
-    }
-
-    @Override
-    public Object[] toArray()
-    {
-      final Object[] copyOf = new Object[length];
-      System.arraycopy(elements, 0, copyOf, 0, length);
-      return copyOf;
-    }
-
-    @Override
-    public E[] toArray(final E[] elements)
-    {
-      if (length == elements.length)
-      {
-        System.arraycopy(this.elements, 0, elements, 0, length);
-        return elements;
-      }
-      @SuppressWarnings("unchecked")
-      final E[] copyOf = (E[]) Arrays.copyOf(this.elements, length, elements.getClass());
-      return copyOf;
-    }
-
-    @Override
-    public List<E> convertTo()
-    {
-      @SuppressWarnings("unchecked")
-      final List<E> list = Collections.unmodifiableList(newArrayList((E[]) this.elements));
-      return list;
-    }
-
-    @Override
-    public UnmodifiableIterator<E> iterator()
-    {
-      return new McHammerIteratorForReadableList();
-    }
-
-    @Override
-    public int length()
-    {
-      return length;
-    }
-
-    @Override
-    public boolean contains(final Object element)
-    {
-      return 0 <= indexOf0(element);
-    }
-
-    @Override
-    public E find(final Condition1<? super E> condition)
-    {
-      for (final Object object : this.elements)
-      {
-        @SuppressWarnings("unchecked")
-        final E element = (E) object;
-        if (condition.isMet(element))
-        {
-          return element;
-        }
-      }
-      return null;
-    }
-
-    @Override
-    public ImmutableArrayList<E> select(final Condition1<? super E> condition)
-    {
-      final Object[] arrayOfObject = new Object[length];
-      int i = 0;
-      for (final Object object : this.elements)
-      {
-        @SuppressWarnings("unchecked")
-        final E element = (E) object;
-        if (condition.isMet(element))
-        {
-          arrayOfObject[i++] = element;
-        }
-      }
-      @SuppressWarnings("unchecked")
-      final ImmutableArrayList<E> copyOf = (ImmutableArrayList<E>) listOf(arrayOfObject, i);
-      return copyOf;
-    }
-
-    @Override
-    public <R> ImmutableArrayList<R> map(final Function1<? super E, R> function)
-    {
-      final Object[] array = new Object[length];
-      int i = 0;
-      for (final Object object : this.elements)
-      {
-        @SuppressWarnings("unchecked")
-        final E element = (E) object;
-        array[i++] = function.apply(element);
-      }
-      @SuppressWarnings("unchecked")
-      final R[] arrayOfR = (R[]) array;
-      return listOf(arrayOfR);
-    }
-
-    @Override
-    public <R> ImmutableArrayList<R> mapSelectively(final Condition1<? super E> condition,
-        final Function1<? super E, R> function)
-    {
-      final List<R> list = newArrayList();
-      for (final Object object : this.elements)
-      {
-        @SuppressWarnings("unchecked")
-        final E element = (E) object;
-        if (condition.isMet(element))
-        {
-          list.add(function.apply(element));
-        }
-      }
-      return copyOf(list);
-    }
-
-    @Override
-    public void forEach(final VoidFunction1<? super E> function)
-    {
-      for (final Object object : this.elements)
-      {
-        @SuppressWarnings("unchecked")
-        final E element = (E) object;
-        function.apply(element);
-      }
-    }
-
-    @Override
-    public void breakableForEach(final BreakableFunction1<? super E> function)
-    {
-      for (final Object object : this.elements)
-      {
-        @SuppressWarnings("unchecked")
-        final E element = (E) object;
-        if (BreakOrContinue.BREAK == function.apply(element))
-        {
-          break;
-        }
-      }
-    }
-
-    @Override
-    public <R, F2 extends Function2<? super R, ? super E, R>> R foldLeft(final R startValue, final F2 function)
-    {
-      R result = startValue;
-      for (final Object object : this.elements)
-      {
-        @SuppressWarnings("unchecked")
-        final E element = (E) object;
-        result = function.apply(result, element);
-      }
-      return result;
-    }
-
-    @Override
-    public <R, F2 extends Function2<? super R, ? super E, R>> Function1<F2, R> foldLeft(final R startValue)
-    {
-      return new Function1<F2, R>() {
-        @Override
-        public R apply(final F2 function)
-        {
-          return foldLeft(startValue, function);
-        }
-      };
-    }
-
-    @Override
-    public <R, F2 extends Function2<? super E, ? super R, R>> R foldRight(final R startValue, final F2 function)
-    {
-      R result = startValue;
-      for (int i = length - 1; i >= 0; i--)
-      {
-        @SuppressWarnings("unchecked")
-        final E element = (E) elements[i];
-        result = function.apply(element, result);
-      }
-      return result;
-    }
-
-    @Override
-    public <R, F2 extends Function2<? super E, ? super R, R>> Function1<F2, R> foldRight(final R startValue)
-    {
-      return new Function1<F2, R>() {
-
-        @Override
-        public R apply(final F2 function)
-        {
-          return foldRight(startValue, function);
-        }
-      };
-    }
-
-    @Override
-    public E get(final int index)
-    {
-      checkIndex(length, index);
-      @SuppressWarnings("unchecked")
-      final E e = (E) this.elements[index];
-      return e;
-    }
-
-    @Override
-    public ImmutableArrayList<E> subList(final int fromIndex, final int toIndex)
-    {
-      checkRange(length, fromIndex, toIndex);
-      final int howMany = toIndex - fromIndex;
-      final Object[] subElements = new Object[howMany];
-      System.arraycopy(this.elements, fromIndex, subElements, 0, howMany);
-      return new DefaultImmutableArrayList<E>(subElements);
-    }
-
-    @Override
-    public int hashCode()
-    {
-      return hash(this.elements);
-    }
-
-    @Override
-    public boolean equals(final Object immutableArrayList)
-    {
-      if (this == immutableArrayList)
-      {
-        return true;
-      }
-      final ImmutableArrayList<?> that = castIfInstanceOf(ImmutableArrayList.class, immutableArrayList);
-      /* @formatter:off */
-      return null != that &&
-						deepEqual(this.elements, that.toArray());
-		/* @formatter:on */
-    }
+  protected Object writeReplace()
+  {
+    return new SerializationProxy(toArray());
   }
 
   @Override
   public String toString()
   {
     return KollectionUtil.toStringOf("ImmutableList", this);
+  }
+}
+
+final class EmptyImmutableArrayList<E> extends ImmutableArrayList<E>
+{
+  private static final long serialVersionUID = 0L;
+
+  static final EmptyImmutableArrayList<?> EMPTY_IMMUTABLE_ARRAY_LIST = new EmptyImmutableArrayList<Object>();
+
+  private EmptyImmutableArrayList()
+  {
+  }
+
+  @Override
+  public Object[] toArray()
+  {
+    return NeoArrays.EMPTY_OBJECT_ARRAY;
+  }
+
+  @Override
+  public E[] toArray(final E[] elements)
+  {
+    mustNotBeNull(elements, "elements cannot be null!");
+    @SuppressWarnings("unchecked")
+    final E[] newArray = (E[]) Array.newInstance(elements.getClass()
+        .getComponentType(), 0);
+    return newArray;
+  }
+
+  @Override
+  public int howMany(@SuppressWarnings("unused") final Condition1<? super E> conditionToMeet)
+  {
+    return 0;
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super R, ? super E, R>> R foldLeft(final R startValue,
+      @SuppressWarnings("unused") final F2 function)
+  {
+    return startValue;
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super R, ? super E, R>> Function1<F2, R> foldLeft(final R startValue)
+  {
+    return new Function1<F2, R>() {
+      @Override
+      public R apply(@SuppressWarnings("unused") final F2 function)
+      {
+        return startValue;
+      }
+    };
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super E, ? super R, R>> R foldRight(final R startValue,
+      @SuppressWarnings("unused") final F2 function)
+  {
+    return startValue;
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super E, ? super R, R>> Function1<F2, R> foldRight(final R startValue)
+  {
+    return new Function1<F2, R>() {
+      @Override
+      public R apply(@SuppressWarnings("unused") final F2 function)
+      {
+        return startValue;
+      }
+    };
+  }
+
+  @Override
+  public UnmodifiableIterator<E> iterator()
+  {
+    final McHammerIterator<E> emptyMcHammerIterator = McHammerIterator.emptyMcHammerIterator();
+    return emptyMcHammerIterator;
+  }
+
+  @Override
+  public int length()
+  {
+    return 0;
+  }
+
+  @Override
+  public boolean isEmpty()
+  {
+    return true;
+  }
+
+  @Override
+  public boolean isNotEmpty()
+  {
+    return false;
+  }
+
+  @Override
+  public boolean contains(@SuppressWarnings("unused") final Object element)
+  {
+    return false;
+  }
+
+  @Override
+  public boolean containsAll(@SuppressWarnings("unused") final Kollection<?> kollection)
+  {
+    return false;
+  }
+
+  @Override
+  public E find(@SuppressWarnings("unused") final Condition1<? super E> condition)
+  {
+    return null;
+  }
+
+  @Override
+  public EmptyImmutableArrayList<E> select(@SuppressWarnings("unused") final Condition1<? super E> condition)
+  {
+    return this;
+  }
+
+  @Override
+  public <R> EmptyImmutableArrayList<R> map(@SuppressWarnings("unused") final Function1<? super E, R> function)
+  {
+    @SuppressWarnings("unchecked")
+    final EmptyImmutableArrayList<R> immutableArrayList = (EmptyImmutableArrayList<R>) this;
+    return immutableArrayList;
+  }
+
+  @Override
+  public <R> EmptyImmutableArrayList<R> mapSelectively(
+      @SuppressWarnings("unused") final Condition1<? super E> condition,
+      @SuppressWarnings("unused") final Function1<? super E, R> function)
+  {
+    @SuppressWarnings("unchecked")
+    final EmptyImmutableArrayList<R> immutableArrayList = (EmptyImmutableArrayList<R>) this;
+    return immutableArrayList;
+  }
+
+  /**
+   * It does nothing.
+   */
+  @Override
+  public void forEach(@SuppressWarnings("unused") final VoidFunction1<? super E> function)
+  {
+    return;
+  }
+
+  /**
+   * It does nothing.
+   */
+  @Override
+  public void breakableForEach(@SuppressWarnings("unused") final BreakableFunction1<? super E> function)
+  {
+    return;
+  }
+
+  @Override
+  public E get(@SuppressWarnings("unused") final int index)
+  {
+    throw new IndexOutOfBoundsException("This is an empty DefaultImmutableArrayList.");
+  }
+
+  @Override
+  public int indexOf(@SuppressWarnings("unused") final E element)
+  {
+    return -1;
+  }
+
+  @Override
+  public int indexOf(@SuppressWarnings("unused") final E element, @SuppressWarnings("unused") final int fromIndex)
+  {
+    return -1;
+  }
+
+  @Override
+  public int lastIndexOf(@SuppressWarnings("unused") final E element)
+  {
+    return -1;
+  }
+
+  @Override
+  public int lastIndexOf(@SuppressWarnings("unused") final E element, @SuppressWarnings("unused") final int toIndex)
+  {
+    return -1;
+  }
+
+  @Override
+  public EmptyImmutableArrayList<E> subList(@SuppressWarnings("unused") final int fromIndex,
+      @SuppressWarnings("unused") final int toIndex)
+  {
+    return this;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return 1;
+  }
+
+  @Override
+  public boolean equals(final Object immutableArrayList)
+  {
+    if (this == immutableArrayList)
+    {
+      return true;
+    }
+    final EmptyImmutableArrayList<?> that = castIfInstanceOf(EmptyImmutableArrayList.class, immutableArrayList);
+    return null != that;
+  }
+
+  @Override
+  public List<E> convertTo()
+  {
+    return Collections.emptyList();
+  }
+
+  private Object readResolve()
+  {
+    return EMPTY_IMMUTABLE_ARRAY_LIST;
+  }
+}
+
+@SuppressWarnings("serial")
+final class DefaultImmutableArrayList<E> extends ImmutableArrayList<E>
+{
+  private final transient Object[] elements;
+
+  private final transient int length;
+
+  DefaultImmutableArrayList(final Collection<? extends E> collection)
+  {
+    final int length = collection.size();
+    final Object[] elements = collection.toArray();
+    this.elements = Arrays.copyOf(elements, length);
+    this.length = this.elements.length;
+  }
+
+  DefaultImmutableArrayList(final Kollection<? extends E> kollection)
+  {
+    final int length = kollection.length();
+    final Object[] elements = kollection.toArray();
+    this.elements = Arrays.copyOf(elements, length);
+    this.length = this.elements.length;
+  }
+
+  DefaultImmutableArrayList(final Object[] elements, final int howMany)
+  {
+    final int length = Math.min(elements.length, howMany);
+    this.elements = Arrays.copyOf(elements, length);
+    this.length = this.elements.length;
+  }
+
+  DefaultImmutableArrayList(final Object... elements)
+  {
+    final int length = elements.length;
+    this.elements = Arrays.copyOf(elements, length);
+    this.length = length;
+  }
+
+  @Override
+  public boolean isEmpty()
+  {
+    return 0 == length;
+  }
+
+  @Override
+  public boolean isNotEmpty()
+  {
+    return !isEmpty();
+  }
+
+  @Override
+  public Object[] toArray()
+  {
+    final Object[] copyOf = new Object[length];
+    System.arraycopy(elements, 0, copyOf, 0, length);
+    return copyOf;
+  }
+
+  @Override
+  public E[] toArray(final E[] elements)
+  {
+    if (length == elements.length)
+    {
+      System.arraycopy(this.elements, 0, elements, 0, length);
+      return elements;
+    }
+    @SuppressWarnings("unchecked")
+    final E[] copyOf = (E[]) Arrays.copyOf(this.elements, length, elements.getClass());
+    return copyOf;
+  }
+
+  @Override
+  public List<E> convertTo()
+  {
+    @SuppressWarnings("unchecked")
+    final List<E> list = Collections.unmodifiableList(newArrayList((E[]) this.elements));
+    return list;
+  }
+
+  @Override
+  public UnmodifiableIterator<E> iterator()
+  {
+    return new McHammerIteratorForReadableList();
+  }
+
+  @Override
+  public int length()
+  {
+    return length;
+  }
+
+  @Override
+  public boolean contains(final Object element)
+  {
+    return 0 <= indexOf0(element);
+  }
+
+  @Override
+  public E find(final Condition1<? super E> condition)
+  {
+    for (final Object object : this.elements)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) object;
+      if (condition.isMet(element))
+      {
+        return element;
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public ImmutableArrayList<E> select(final Condition1<? super E> condition)
+  {
+    final Object[] arrayOfObject = new Object[length];
+    int i = 0;
+    for (final Object object : this.elements)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) object;
+      if (condition.isMet(element))
+      {
+        arrayOfObject[i++] = element;
+      }
+    }
+    @SuppressWarnings("unchecked")
+    final ImmutableArrayList<E> copyOf = (ImmutableArrayList<E>) listOf(arrayOfObject, i);
+    return copyOf;
+  }
+
+  @Override
+  public <R> ImmutableArrayList<R> map(final Function1<? super E, R> function)
+  {
+    final Object[] array = new Object[length];
+    int i = 0;
+    for (final Object object : this.elements)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) object;
+      array[i++] = function.apply(element);
+    }
+    @SuppressWarnings("unchecked")
+    final R[] arrayOfR = (R[]) array;
+    return listOf(arrayOfR);
+  }
+
+  @Override
+  public <R> ImmutableArrayList<R> mapSelectively(final Condition1<? super E> condition,
+      final Function1<? super E, R> function)
+  {
+    final List<R> list = newArrayList();
+    for (final Object object : this.elements)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) object;
+      if (condition.isMet(element))
+      {
+        list.add(function.apply(element));
+      }
+    }
+    return copyOf(list);
+  }
+
+  @Override
+  public void forEach(final VoidFunction1<? super E> function)
+  {
+    for (final Object object : this.elements)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) object;
+      function.apply(element);
+    }
+  }
+
+  @Override
+  public void breakableForEach(final BreakableFunction1<? super E> function)
+  {
+    for (final Object object : this.elements)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) object;
+      if (BreakOrContinue.BREAK == function.apply(element))
+      {
+        break;
+      }
+    }
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super R, ? super E, R>> R foldLeft(final R startValue, final F2 function)
+  {
+    R result = startValue;
+    for (final Object object : this.elements)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) object;
+      result = function.apply(result, element);
+    }
+    return result;
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super R, ? super E, R>> Function1<F2, R> foldLeft(final R startValue)
+  {
+    return new Function1<F2, R>() {
+      @Override
+      public R apply(final F2 function)
+      {
+        return foldLeft(startValue, function);
+      }
+    };
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super E, ? super R, R>> R foldRight(final R startValue, final F2 function)
+  {
+    R result = startValue;
+    for (int i = length - 1; i >= 0; i--)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) elements[i];
+      result = function.apply(element, result);
+    }
+    return result;
+  }
+
+  @Override
+  public <R, F2 extends Function2<? super E, ? super R, R>> Function1<F2, R> foldRight(final R startValue)
+  {
+    return new Function1<F2, R>() {
+
+      @Override
+      public R apply(final F2 function)
+      {
+        return foldRight(startValue, function);
+      }
+    };
+  }
+
+  @Override
+  public E get(final int index)
+  {
+    checkIndex(length, index);
+    @SuppressWarnings("unchecked")
+    final E e = (E) this.elements[index];
+    return e;
+  }
+
+  @Override
+  public ImmutableArrayList<E> subList(final int fromIndex, final int toIndex)
+  {
+    checkRange(length, fromIndex, toIndex);
+    final int howMany = toIndex - fromIndex;
+    final Object[] subElements = new Object[howMany];
+    System.arraycopy(this.elements, fromIndex, subElements, 0, howMany);
+    return new DefaultImmutableArrayList<E>(subElements);
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return hash(this.elements);
+  }
+
+  @Override
+  public boolean equals(final Object immutableArrayList)
+  {
+    if (this == immutableArrayList)
+    {
+      return true;
+    }
+    final ImmutableArrayList<?> that = castIfInstanceOf(ImmutableArrayList.class, immutableArrayList);
+    /* @formatter:off */
+    return null != that &&
+          deepEqual(this.elements, that.toArray());
+  /* @formatter:on */
   }
 }

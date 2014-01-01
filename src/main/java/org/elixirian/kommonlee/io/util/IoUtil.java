@@ -91,7 +91,7 @@ public final class IoUtil
   }
 
   /**
-   * Calls close() method on any {@link Closeable} object without throwing {@link IOException}.
+   * Calls close() method on the given {@link Closeable} object without throwing {@link IOException}.
    * 
    * @param closeable
    *          the given {@link Closeable} object the close() method of which is to be called by this method.
@@ -110,6 +110,23 @@ public final class IoUtil
           IoUtil.class.getSimpleName(), Integer.valueOf(Thread.currentThread()
               .getStackTrace()[1].getLineNumber()), closeable));
       e.printStackTrace();
+    }
+  }
+
+  /**
+   * Calls close() method on the given {@link Closeable} objects without throwing {@link IOException}.
+   * 
+   * @param closeable
+   *          the given {@link Closeable} object the close() method of which is to be called by this method.
+   * @param rest
+   *          the rest of {@link Closeable} objects.
+   */
+  public static void closeQuietly(final Closeable closeable, final Closeable... rest)
+  {
+    closeQuietly(closeable);
+    for (final Closeable each : rest)
+    {
+      closeQuietly(each);
     }
   }
 
@@ -282,7 +299,8 @@ public final class IoUtil
 
   public static byte[] readFileToByteArray(final File file, final int bufferSize)
   {
-    final ByteArrayConsumingContainer byteArrayConsumingContainer = DataConsumers.newByteArrayConsumingContainer(bufferSize);
+    final ByteArrayConsumingContainer byteArrayConsumingContainer =
+      DataConsumers.newByteArrayConsumingContainer(bufferSize);
     readFile(file, bufferSize, byteArrayConsumingContainer);
     return byteArrayConsumingContainer.toByteArray();
   }
