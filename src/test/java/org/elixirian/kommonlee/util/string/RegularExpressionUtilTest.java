@@ -2,7 +2,7 @@ package org.elixirian.kommonlee.util.string;
 
 import java.util.regex.Pattern;
 
-import static org.fest.assertions.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.After;
 import org.junit.AfterClass;

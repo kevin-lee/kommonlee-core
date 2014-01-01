@@ -33,7 +33,7 @@ package org.elixirian.kommonlee.util;
 
 import static org.elixirian.kommonlee.util.Objects.*;
 //import static org.junit.Assert.*;
-import static org.fest.assertions.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;

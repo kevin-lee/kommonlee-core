@@ -36,7 +36,7 @@ import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.elixirian.kommonlee.util.collect.Lists.*;
 import static org.mockito.Mockito.*;
 
-import static org.fest.assertions.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.io.Closeable;
 import java.io.File;

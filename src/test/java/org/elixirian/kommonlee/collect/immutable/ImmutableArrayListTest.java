@@ -1,6 +1,6 @@
 package org.elixirian.kommonlee.collect.immutable;
 
-import static org.fest.assertions.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
