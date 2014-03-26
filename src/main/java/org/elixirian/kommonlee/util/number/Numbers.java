@@ -455,7 +455,7 @@ public final class Numbers
     }
 
     @Override
-    public C select(final Condition1<T> condition, final T[] source)
+    public C select(final T[] source, final Condition1<T> condition)
     {
       final C selectedCollection = newCollection();
       select0(selectedCollection, condition, source);

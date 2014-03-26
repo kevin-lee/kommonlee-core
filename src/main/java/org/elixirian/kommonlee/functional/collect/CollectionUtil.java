@@ -41,7 +41,6 @@ import java.util.Set;
 import org.elixirian.kommonlee.functional.BreakableFunction1;
 import org.elixirian.kommonlee.functional.GenericVarargsSelector;
 import org.elixirian.kommonlee.functional.VoidFunction1;
-import org.elixirian.kommonlee.functional.string.PrefixAndSuffixAdder;
 import org.elixirian.kommonlee.functional.string.StringArrayToTrimmedStringListSelector;
 import org.elixirian.kommonlee.type.Pair;
 import org.elixirian.kommonlee.type.functional.Condition1;
@@ -74,15 +73,24 @@ public final class CollectionUtil
   public static final StringArrayToTrimmedStringListSelector STRING_ARRAY_TO_LIST_TRIM_SELECTOR =
     new StringArrayToTrimmedStringListSelector();
 
-  private static final ArrayToArrayListSelector<?, ? extends Condition1<?>> ARRAY_TO_ARRAY_LIST_SELECTOR =
-    new ArrayToArrayListSelector<Object, Condition1<Object>>();
+  private static final ArrayToArrayListSelector<?> ARRAY_TO_ARRAY_LIST_SELECTOR =
+    new ArrayToArrayListSelector<Object>();
 
-  public static <E, C extends Condition1<? super E>> ArrayToArrayListSelector<E, C> arrayToArrayListSelector()
+  public static <E> ArrayToArrayListSelector<E> arrayToArrayListSelector()
   {
     @SuppressWarnings("unchecked")
-    final ArrayToArrayListSelector<E, C> arrayToArrayListSelector =
-      (ArrayToArrayListSelector<E, C>) ARRAY_TO_ARRAY_LIST_SELECTOR;
+    final ArrayToArrayListSelector<E> arrayToArrayListSelector =
+      (ArrayToArrayListSelector<E>) ARRAY_TO_ARRAY_LIST_SELECTOR;
     return arrayToArrayListSelector;
+  }
+
+  private static final ArrayToHashSetSelector<?> ARRAY_TO_HASH_SET_SELECTOR = new ArrayToHashSetSelector<Object>();
+
+  public static <E> ArrayToHashSetSelector<E> arrayToHashSetSelector()
+  {
+    @SuppressWarnings("unchecked")
+    final ArrayToHashSetSelector<E> arrayToHashSetSelector = (ArrayToHashSetSelector<E>) ARRAY_TO_HASH_SET_SELECTOR;
+    return arrayToHashSetSelector;
   }
 
   private static final ArrayToArraySelector<?, ? extends Condition1<?>> ARRAY_TO_ARRAY_SELECTOR =
@@ -130,13 +138,13 @@ public final class CollectionUtil
   // Function1<Object, Object>, ? extends List<Object>> ITERABLE_TO_COLLECTION_MAPPER =
   // IterableToCollectionMapper.newInstance(ArrayListCreator.getInstance());
 
-  private static final ArrayToArrayMapper<?, ?, ? extends Function1<?, ?>> ARRAY_TO_ARRAY_MAPPER =
-    new ArrayToArrayMapper<Object, Object, Function1<Object, Object>>();
+  private static final ArrayToArrayMapper<?, ? extends Function1<?, ?>, ?> ARRAY_TO_ARRAY_MAPPER =
+    new ArrayToArrayMapper<Object, Function1<Object, Object>, Object>();
 
-  public static <E, NE, F extends Function1<? super E, NE>> ArrayToArrayMapper<E, NE, F> arrayToArrayMapper()
+  public static <E, F extends Function1<? super E, NE>, NE> ArrayToArrayMapper<E, F, NE> arrayToArrayMapper()
   {
     @SuppressWarnings("unchecked")
-    final ArrayToArrayMapper<E, NE, F> arrayToArrayMapper = (ArrayToArrayMapper<E, NE, F>) ARRAY_TO_ARRAY_MAPPER;
+    final ArrayToArrayMapper<E, F, NE> arrayToArrayMapper = (ArrayToArrayMapper<E, F, NE>) ARRAY_TO_ARRAY_MAPPER;
     return arrayToArrayMapper;
   }
 
@@ -253,11 +261,17 @@ public final class CollectionUtil
   private static final ArrayToCollectionSelectableMapper<?, ? extends Condition1<?>, ?, ? extends Function1<?, ?>, ? extends HashSet<?>> ARRAY_TO_HASH_SET_SELECTABLE_MAPPER =
     ArrayToCollectionSelectableMapper.<Object, Condition1<Object>, Object, Function1<Object, Object>, HashSet<Object>, HashSetCreator<Object>> newInstance(HashSetCreator.getInstance());
 
+  private static final ArrayToHashMapSelectableMapper<?, ?, ?, ? extends Condition1<?>, ? extends Function1<?, ? extends Pair<?, ?>>> ARRAY_TO_HASH_MAP_SELECTABLE_MAPPER =
+    ArrayToHashMapSelectableMapper.<Object, Object, Object, Condition1<Object>, Function1<Object, Pair<Object, Object>>> newInstance(HashMapCreator.getInstance());
+
   private static final IterableToArrayListSelectableMapper<?, ?> ITERABLE_TO_ARRAY_LIST_SELECTABLE_MAPPER =
     IterableToArrayListSelectableMapper.newInstance(ArrayListCreator.getInstance());
 
   private static final IterableToHashSetSelectableMapper<?, ?> ITERABLE_TO_HASH_SET_SELECTABLE_MAPPER =
     IterableToHashSetSelectableMapper.newInstance(HashSetCreator.getInstance());
+
+  private static final IterableToHashMapSelectableMapper<?, ? extends Iterable<Object>, ? extends Condition1<?>, ?, ?, ? extends Function1<?, ? extends Pair<?, ?>>> ITERABLE_TO_HASH_MAP_SELECTABLE_MAPPER =
+    IterableToHashMapSelectableMapper.<Object, Iterable<Object>, Condition1<Object>, Object, Object, Function1<Object, Pair<Object, Object>>> newInstance(HashMapCreator.getInstance());
 
   private static final GenericVarargsSelector<?, ?, ?> GENERIC_VARARGS_SELECTOR =
     new GenericVarargsSelector<Object, Condition1<Object>, List<Object>>(ArrayListCreator.getInstance());
@@ -285,36 +299,37 @@ public final class CollectionUtil
 
   // ///////////////////////// SELECTORS
 
-  public static class ArrayToArraySelectorFunction
+  public enum ArrayToArraySelectorFunction
   {
-    static final ArrayToArraySelectorFunction INSTANCE = new ArrayToArraySelectorFunction();
+    INSTANCE;
 
-    private ArrayToArraySelectorFunction()
-    {
-    }
-
-    public <E, C extends Condition1<? super E>> E[] select(final C condition, final E[] source)
+    public <E, C extends Condition1<? super E>> E[] select(final E[] source, final C condition)
     {
       @SuppressWarnings("unchecked")
       final ArrayToArraySelector<E, C> arrayToArraySelector = (ArrayToArraySelector<E, C>) ARRAY_TO_ARRAY_SELECTOR;
-      return arrayToArraySelector.select(condition, source);
+      return arrayToArraySelector.select(source, condition);
     }
   }
 
-  public static class ArrayToArrayListSelectorFunction
+  public enum ArrayToArrayListSelectorFunction
   {
-    static final ArrayToArrayListSelectorFunction INSTANCE = new ArrayToArrayListSelectorFunction();
+    INSTANCE;
 
-    private ArrayToArrayListSelectorFunction()
+    public <E> ArrayList<E> select(final E[] source, final Condition1<? super E> condition)
     {
+      final ArrayToArrayListSelector<E> arrayToArrayListSelector = arrayToArrayListSelector();
+      return arrayToArrayListSelector.select(source, condition);
     }
+  }
 
-    public <E, C extends Condition1<? super E>> ArrayList<E> select(final C condition, final E[] source)
+  public enum ArrayToHashSelectorFunction
+  {
+    INSTANCE;
+
+    public <E> HashSet<E> select(final E[] source, final Condition1<? super E> condition)
     {
-      @SuppressWarnings("unchecked")
-      final ArrayToArrayListSelector<E, C> arrayToArrayListSelector =
-        (ArrayToArrayListSelector<E, C>) ARRAY_TO_ARRAY_LIST_SELECTOR;
-      return arrayToArrayListSelector.select(condition, source);
+      final ArrayToHashSetSelector<E> arrayToArrayListSelector = arrayToHashSetSelector();
+      return arrayToArrayListSelector.select(source, condition);
     }
   }
 
@@ -326,13 +341,13 @@ public final class CollectionUtil
     {
     }
 
-    public <E, T extends Iterable<? extends E>, C extends Condition1<? super E>> ArrayList<E> select(final C condition,
-        final T source)
+    public <E, T extends Iterable<? extends E>, C extends Condition1<? super E>> ArrayList<E> select(final T source,
+        final C condition)
     {
       @SuppressWarnings("unchecked")
       final IterableToArrayListSelector<E> listToArrayListSelector =
         (IterableToArrayListSelector<E>) ITERABLE_TO_ARRAY_LIST_SELECTOR;
-      return listToArrayListSelector.select(condition, source);
+      return listToArrayListSelector.select(source, condition);
     }
   }
 
@@ -344,13 +359,13 @@ public final class CollectionUtil
     {
     }
 
-    public <E, T extends Iterable<? extends E>, C extends Condition1<? super E>> HashSet<E> select(final C condition,
-        final T source)
+    public <E, T extends Iterable<? extends E>, C extends Condition1<? super E>> HashSet<E> select(final T source,
+        final C condition)
     {
       @SuppressWarnings("unchecked")
       final IterableToHashSetSelector<E> iterableToHashSetSelector =
         (IterableToHashSetSelector<E>) ITERABLE_TO_HASH_SET_SELECTOR;
-      return iterableToHashSetSelector.select(condition, source);
+      return iterableToHashSetSelector.select(source, condition);
     }
   }
 
@@ -390,6 +405,11 @@ public final class CollectionUtil
     {
       return ArrayToArrayListSelectorFunction.INSTANCE;
     }
+
+    public ArrayToHashSelectorFunction toHashSet()
+    {
+      return ArrayToHashSelectorFunction.INSTANCE;
+    }
   }
 
   public static class Selectors
@@ -421,13 +441,13 @@ public final class CollectionUtil
     {
     }
 
-    public <E, NE, F extends Function1<? super E, NE>> NE[] map(final Class<NE> toArrayOf, final F function,
-        final E[] source)
+    public <E, F extends Function1<? super E, NE>, NE> NE[] map(final Class<NE> toArrayOf, final E[] source,
+        final F function)
     {
       @SuppressWarnings("unchecked")
-      final ArrayToArrayMapper<E, NE, Function1<? super E, NE>> arrayToArrayMapper =
-        (ArrayToArrayMapper<E, NE, Function1<? super E, NE>>) ARRAY_TO_ARRAY_MAPPER;
-      return arrayToArrayMapper.apply(toArrayOf, function, source);
+      final ArrayToArrayMapper<E, Function1<? super E, NE>, NE> arrayToArrayMapper =
+        (ArrayToArrayMapper<E, Function1<? super E, NE>, NE>) ARRAY_TO_ARRAY_MAPPER;
+      return arrayToArrayMapper.apply(toArrayOf, source, function);
     }
   }
 
@@ -439,12 +459,12 @@ public final class CollectionUtil
     {
     }
 
-    public <E, NE, F extends Function1<? super E, NE>> ArrayList<NE> map(final F function, final E[] source)
+    public <E, NE, F extends Function1<? super E, NE>> ArrayList<NE> map(final E[] source, final F function)
     {
       @SuppressWarnings("unchecked")
       final ArrayToCollectionMapper<E, NE, F, ArrayList<NE>> arrayToArrayListMapper =
         (ArrayToCollectionMapper<E, NE, F, ArrayList<NE>>) ARRAY_TO_ARRAY_LIST_MAPPER;
-      return arrayToArrayListMapper.apply(function, source);
+      return arrayToArrayListMapper.apply(source, function);
     }
   }
 
@@ -456,12 +476,12 @@ public final class CollectionUtil
     {
     }
 
-    public <E, NE, F extends Function1<? super E, NE>> HashSet<NE> map(final F function, final E[] source)
+    public <E, NE, F extends Function1<? super E, NE>> HashSet<NE> map(final E[] source, final F function)
     {
       @SuppressWarnings("unchecked")
       final ArrayToCollectionMapper<E, NE, F, HashSet<NE>> arrayToHashSetMapper =
         (ArrayToCollectionMapper<E, NE, F, HashSet<NE>>) ARRAY_TO_HASH_SET_MAPPER;
-      return arrayToHashSetMapper.apply(function, source);
+      return arrayToHashSetMapper.apply(source, function);
     }
   }
 
@@ -473,13 +493,13 @@ public final class CollectionUtil
     {
     }
 
-    public <E, NE, NK, F extends Function1<? super E, ? extends Pair<NK, NE>>> HashMap<NK, NE> map(final F function,
-        final E[] source)
+    public <E, NE, NK, F extends Function1<? super E, ? extends Pair<NK, NE>>> HashMap<NK, NE> map(final E[] source,
+        final F function)
     {
       @SuppressWarnings("unchecked")
       final ArrayToMapMapper<E, NK, NE, F, HashMap<NK, NE>> arrayToHashMapMapper =
         (ArrayToMapMapper<E, NK, NE, F, HashMap<NK, NE>>) ARRAY_TO_HASH_MAP_MAPPER;
-      return arrayToHashMapMapper.apply(function, source);
+      return arrayToHashMapMapper.apply(source, function);
     }
   }
 
@@ -492,12 +512,12 @@ public final class CollectionUtil
     }
 
     public <E, T extends Iterable<? extends E>, NE, F extends Function1<? super E, NE>> ArrayList<NE> map(
-        final F function, final T source)
+        final T source, final F function)
     {
       @SuppressWarnings("unchecked")
       final IterableToArrayListMapper<E, NE> iterableToArrayListMapper =
         (IterableToArrayListMapper<E, NE>) ITERABLE_TO_ARRAY_LIST_MAPPER;
-      return iterableToArrayListMapper.apply(function, source);
+      return iterableToArrayListMapper.apply(source, function);
     }
   }
 
@@ -509,13 +529,13 @@ public final class CollectionUtil
     {
     }
 
-    public <E, T extends Iterable<? extends E>, NE, F extends Function1<? super E, NE>> HashSet<NE> map(
-        final F function, final T source)
+    public <E, T extends Iterable<? extends E>, NE, F extends Function1<? super E, NE>> HashSet<NE> map(final T source,
+        final F function)
     {
       @SuppressWarnings("unchecked")
       final IterableToHashSetMapper<E, NE> iterableToHashSetMapper =
         (IterableToHashSetMapper<E, NE>) ITERABLE_TO_HASH_SET_MAPPER;
-      return iterableToHashSetMapper.apply(function, source);
+      return iterableToHashSetMapper.apply(source, function);
     }
   }
 
@@ -528,12 +548,12 @@ public final class CollectionUtil
     }
 
     public <E, T extends Iterable<? extends E>, NK, NE, F extends Function1<? super E, ? extends Pair<NK, NE>>> HashMap<NK, NE> map(
-        final F function, final T source)
+        final T source, final F function)
     {
       @SuppressWarnings("unchecked")
       final IterableToMapMapper<E, T, NK, NE, F, HashMap<NK, NE>> iterableToHashMapMapper =
         (IterableToMapMapper<E, T, NK, NE, F, HashMap<NK, NE>>) ITERABLE_TO_HASH_MAP_MAPPER;
-      return iterableToHashMapMapper.apply(function, source);
+      return iterableToHashMapMapper.apply(source, function);
     }
   }
 
@@ -551,7 +571,7 @@ public final class CollectionUtil
       @SuppressWarnings("unchecked")
       final MapToHashMapWithNewKeyMapper<K, E, T, NK, F> mapToMapWithNewKeyMapper =
         (MapToHashMapWithNewKeyMapper<K, E, T, NK, F>) MAP_TO_MAP_WITH_NEW_KEY_MAPPER;
-      return mapToMapWithNewKeyMapper.apply(function, inputMap);
+      return mapToMapWithNewKeyMapper.apply(inputMap, function);
     }
   }
 
@@ -564,12 +584,12 @@ public final class CollectionUtil
     }
 
     public <K, E, T extends Map<? extends K, ? extends E>, NE, F extends Function1<? super E, NE>> HashMap<K, NE> map(
-        final F function, final T inputMap)
+        final T inputMap, final F function)
     {
       @SuppressWarnings("unchecked")
       final MapToHashMapWithNewValueMapper<K, E, T, NE, F> mapToHashMapWithNewValueMapper =
         (MapToHashMapWithNewValueMapper<K, E, T, NE, F>) MAP_TO_MAP_WITH_NEW_VALUE_MAPPER;
-      return mapToHashMapWithNewValueMapper.apply(function, inputMap);
+      return mapToHashMapWithNewValueMapper.apply(inputMap, function);
     }
   }
 
@@ -583,12 +603,12 @@ public final class CollectionUtil
     }
 
     public <K, E, T extends Map<? extends K, ? extends E>, NK, NE, F extends Function2<? super K, ? super E, Pair<NK, NE>>> HashMap<NK, NE> map(
-        final F function, final T inputMap)
+        final T inputMap, final F function)
     {
       @SuppressWarnings("unchecked")
       final MapToHashMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F> mapToHashMapWithNewKeyNewValueMapper =
         (MapToHashMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F>) MAP_TO_MAP_WITH_NEW_KEY_NEW_VALUE_MAPPER;
-      return mapToHashMapWithNewKeyNewValueMapper.apply(function, inputMap);
+      return mapToHashMapWithNewKeyNewValueMapper.apply(inputMap, function);
     }
   }
 
@@ -718,12 +738,12 @@ public final class CollectionUtil
     }
 
     public <E, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>> NE[] mapSelectively(
-        final Class<NE> toArrayOf, final C condition, final F function, final E[] source)
+        final Class<NE> toArrayOf, final E[] source, final C condition, final F function)
     {
       @SuppressWarnings("unchecked")
       final ArrayToArraySelectableMapper<E, C, NE, F> arrayToArrayListSelectableMapper =
         (ArrayToArraySelectableMapper<E, C, NE, F>) ARRAY_TO_ARRAY_SELECTABLE_MAPPER;
-      return arrayToArrayListSelectableMapper.apply(toArrayOf, condition, function, source);
+      return arrayToArrayListSelectableMapper.apply(toArrayOf, source, condition, function);
     }
   }
 
@@ -736,12 +756,12 @@ public final class CollectionUtil
     }
 
     public <E, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>> ArrayList<NE> mapSelectively(
-        final C condition, final F function, final E[] source)
+        final E[] source, final C condition, final F function)
     {
       @SuppressWarnings("unchecked")
       final ArrayToCollectionSelectableMapper<E, C, NE, F, ArrayList<NE>> arrayToArrayListSelectableMapper =
         (ArrayToCollectionSelectableMapper<E, C, NE, F, ArrayList<NE>>) ARRAY_TO_ARRAY_LIST_SELECTABLE_MAPPER;
-      return arrayToArrayListSelectableMapper.apply(condition, function, source);
+      return arrayToArrayListSelectableMapper.apply(source, condition, function);
     }
   }
 
@@ -754,12 +774,30 @@ public final class CollectionUtil
     }
 
     public <E, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>> HashSet<NE> mapSelectively(
-        final C condition, final F function, final E[] source)
+        final E[] source, final C condition, final F function)
     {
       @SuppressWarnings("unchecked")
       final ArrayToCollectionSelectableMapper<E, C, NE, F, HashSet<NE>> arrayToHashSetSelectableMapper =
         (ArrayToCollectionSelectableMapper<E, C, NE, F, HashSet<NE>>) ARRAY_TO_HASH_SET_SELECTABLE_MAPPER;
-      return arrayToHashSetSelectableMapper.apply(condition, function, source);
+      return arrayToHashSetSelectableMapper.apply(source, condition, function);
+    }
+  }
+
+  public static class ArrayToHashMapSelectableMapperFunction
+  {
+    static final ArrayToHashMapSelectableMapperFunction INSTANCE = new ArrayToHashMapSelectableMapperFunction();
+
+    private ArrayToHashMapSelectableMapperFunction()
+    {
+    }
+
+    public <E, C extends Condition1<? super E>, NK, NE, F extends Function1<? super E, ? extends Pair<NK, NE>>> HashMap<NK, NE> mapSelectively(
+        final E[] source, final C condition, final F function)
+    {
+      @SuppressWarnings("unchecked")
+      final ArrayToHashMapSelectableMapper<E, NK, NE, C, F> arrayToHashSetSelectableMapper =
+        (ArrayToHashMapSelectableMapper<E, NK, NE, C, F>) ARRAY_TO_HASH_MAP_SELECTABLE_MAPPER;
+      return arrayToHashSetSelectableMapper.apply(source, condition, function);
     }
   }
 
@@ -785,6 +823,11 @@ public final class CollectionUtil
     {
       return ArrayToHashSetSelectableMapperFunction.INSTANCE;
     }
+
+    public ArrayToHashMapSelectableMapperFunction toHashMap()
+    {
+      return ArrayToHashMapSelectableMapperFunction.INSTANCE;
+    }
   }
 
   public static class IterableToArrayListSelectableMapperFunction
@@ -797,12 +840,12 @@ public final class CollectionUtil
     }
 
     public <E, T extends Iterable<? extends E>, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>> ArrayList<NE> mapSelectively(
-        final C condition, final F function, final T source)
+        final T source, final C condition, final F function)
     {
       @SuppressWarnings("unchecked")
       final IterableToArrayListSelectableMapper<E, NE> iterableToArrayListMapper =
         (IterableToArrayListSelectableMapper<E, NE>) ITERABLE_TO_ARRAY_LIST_SELECTABLE_MAPPER;
-      return iterableToArrayListMapper.apply(condition, function, source);
+      return iterableToArrayListMapper.apply(source, condition, function);
     }
   }
 
@@ -815,12 +858,30 @@ public final class CollectionUtil
     }
 
     public <E, T extends Iterable<? extends E>, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>> HashSet<NE> mapSelectively(
-        final C condition, final F function, final T source)
+        final T source, final C condition, final F function)
     {
       @SuppressWarnings("unchecked")
       final IterableToHashSetSelectableMapper<E, NE> iterableToHashSetSelectableMapper =
         (IterableToHashSetSelectableMapper<E, NE>) ITERABLE_TO_HASH_SET_SELECTABLE_MAPPER;
-      return iterableToHashSetSelectableMapper.apply(condition, function, source);
+      return iterableToHashSetSelectableMapper.apply(source, condition, function);
+    }
+  }
+
+  public static class IterableToHashMapSelectableMapperFunction
+  {
+    static final IterableToHashMapSelectableMapperFunction INSTANCE = new IterableToHashMapSelectableMapperFunction();
+
+    private IterableToHashMapSelectableMapperFunction()
+    {
+    }
+
+    public <E, T extends Iterable<? extends E>, C extends Condition1<? super E>, NK, NE, F extends Function1<? super E, ? extends Pair<NK, NE>>> HashMap<NK, NE> mapSelectively(
+        final T source, final C condition, final F function)
+    {
+      @SuppressWarnings("unchecked")
+      final IterableToHashMapSelectableMapper<E, T, C, NK, NE, F> iterableToHashMapSelectableMapper =
+        (IterableToHashMapSelectableMapper<E, T, C, NK, NE, F>) ITERABLE_TO_HASH_MAP_SELECTABLE_MAPPER;
+      return iterableToHashMapSelectableMapper.apply(source, condition, function);
     }
   }
 
@@ -840,6 +901,11 @@ public final class CollectionUtil
     public IterableToHashSetSelectableMapperFunction toHashSet()
     {
       return IterableToHashSetSelectableMapperFunction.INSTANCE;
+    }
+
+    public IterableToHashMapSelectableMapperFunction toHashMap()
+    {
+      return IterableToHashMapSelectableMapperFunction.INSTANCE;
     }
   }
 
@@ -895,78 +961,77 @@ public final class CollectionUtil
   }
 
   public static <E, T extends Iterable<? extends E>, C extends Condition1<? super E>> ArrayList<E> select(
-      final C condition, final T source)
+      final T source, final C condition)
   {
     @SuppressWarnings("unchecked")
     final IterableToArrayListSelector<E> listToArrayListSelector =
       (IterableToArrayListSelector<E>) ITERABLE_TO_ARRAY_LIST_SELECTOR;
-    return listToArrayListSelector.select(condition, source);
+    return listToArrayListSelector.select(source, condition);
   }
 
-  public static <E, T extends List<? extends E>, C extends Condition1<? super E>> ArrayList<E> select(
-      final C condition, final T source)
+  public static <E, T extends List<? extends E>, C extends Condition1<? super E>> ArrayList<E> select(final T source,
+      final C condition)
   {
     @SuppressWarnings("unchecked")
     final IterableToArrayListSelector<E> listToArrayListSelector =
       (IterableToArrayListSelector<E>) ITERABLE_TO_ARRAY_LIST_SELECTOR;
-    return listToArrayListSelector.select(condition, source);
+    return listToArrayListSelector.select(source, condition);
   }
 
-  public static <E, T extends Set<? extends E>, C extends Condition1<? super E>> HashSet<E> select(final C condition,
-      final T source)
+  public static <E, T extends Set<? extends E>, C extends Condition1<? super E>> HashSet<E> select(final T source,
+      final C condition)
   {
     @SuppressWarnings("unchecked")
     final IterableToHashSetSelector<E> listToArrayListSelector =
       (IterableToHashSetSelector<E>) ITERABLE_TO_HASH_SET_SELECTOR;
-    return listToArrayListSelector.select(condition, source);
+    return listToArrayListSelector.select(source, condition);
   }
 
-  public static <E, C extends Condition1<? super E>> List<E> select(final C condition, final E[] source)
+  public static <E> List<E> select(final E[] source, final Condition1<? super E> condition)
   {
     @SuppressWarnings("unchecked")
-    final ArrayToArrayListSelector<E, C> arrayToListSelector =
-      (ArrayToArrayListSelector<E, C>) ARRAY_TO_ARRAY_LIST_SELECTOR;
-    return arrayToListSelector.select(condition, source);
+    final ArrayToArrayListSelector<E> arrayToListSelector = (ArrayToArrayListSelector<E>) ARRAY_TO_ARRAY_LIST_SELECTOR;
+    return arrayToListSelector.select(source, condition);
   }
 
   public static <K, E, T extends Map<? extends K, ? extends E>, NK, F extends Function1<? super K, NK>> HashMap<NK, E> map(
-      final F function, final T source)
+      final T source, final F function)
   {
     @SuppressWarnings("unchecked")
     final MapToHashMapWithNewKeyMapper<K, E, T, NK, F> mapToMapWithNewKeyMapper =
       (MapToHashMapWithNewKeyMapper<K, E, T, NK, F>) MAP_TO_MAP_WITH_NEW_KEY_MAPPER;
-    return mapToMapWithNewKeyMapper.apply(function, source);
+    return mapToMapWithNewKeyMapper.apply(source, function);
   }
 
-  public static <E, T extends Iterable<? extends E>, F extends VoidFunction1<? super E>> void forEach(final F function,
-      final T source)
+  public static <E, T extends Iterable<? extends E>, F extends VoidFunction1<? super E>> void forEach(final T source,
+      final F function)
   {
     @SuppressWarnings("unchecked")
     final ForEachInIterable<E, T, F> forEachInIterable = (ForEachInIterable<E, T, F>) FOR_EACH_IN_ITERABLE;
-    forEachInIterable.forEach(function, source);
+    forEachInIterable.forEach(source, function);
   }
 
   public static <E, T extends Iterable<? extends E>, F extends BreakableFunction1<? super E>> void forEach(
-      final F function, final T source)
+      final T source, final F function)
   {
     @SuppressWarnings("unchecked")
     final BreakableForEachInIterable<E, T, F> forEachInIterable =
       (BreakableForEachInIterable<E, T, F>) BREAKABLE_FOR_EACH_IN_ITERABLE;
-    forEachInIterable.forEach(function, source);
+    forEachInIterable.forEach(source, function);
   }
 
-  public static <E, F extends VoidFunction1<? super E>> void forEach(final F function, final E[] source)
+  public static <E, F extends VoidFunction1<? super E>> void forEach(final E[] source, final F function)
   {
     @SuppressWarnings("unchecked")
     final ForEachInArray<E, F> forEachInIterable = (ForEachInArray<E, F>) FOR_EACH_IN_ARRAY;
-    forEachInIterable.forEach(function, source);
+    forEachInIterable.forEach(source, function);
   }
 
-  public static <E, F extends BreakableFunction1<? super E>> void forEach(final F function, final E[] source)
+  public static <E, F extends BreakableFunction1<? super E>> void forEach(final E[] source, final F function)
   {
     @SuppressWarnings("unchecked")
     final BreakableForEachInArray<E, F> forEachInIterable = (BreakableForEachInArray<E, F>) BREAKABLE_FOR_EACH_IN_ARRAY;
-    forEachInIterable.forEach(function, source);
+    forEachInIterable.forEach(source, function);
   }
 
   public static <E, NE> IterableToArrayListMapper<E, NE> iterableToArrayListMapper()
@@ -983,11 +1048,6 @@ public final class CollectionUtil
     final IterableToArrayListSelectableMapper<E, NE> iterableToArrayListSelectableMapper =
       (IterableToArrayListSelectableMapper<E, NE>) ITERABLE_TO_ARRAY_LIST_SELECTABLE_MAPPER;
     return iterableToArrayListSelectableMapper;
-  }
-
-  public static PrefixAndSuffixAdder newPrefixAndSuffixAdder(final String prefix, final String suffix)
-  {
-    return new PrefixAndSuffixAdder(prefix, suffix);
   }
 
   public static <T> GenericVarargsSelector<T, Condition1<T>, List<T>> genericVarargsToListSelector()

@@ -59,5 +59,5 @@ package org.elixirian.kommonlee.type.selector;
  */
 public interface ArraySelector<T, C, R>
 {
-  R select(C condition, T[] source);
+  R select(final T[] source, final C condition);
 }

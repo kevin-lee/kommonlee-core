@@ -59,19 +59,20 @@ import org.elixirian.kommonlee.type.selector.ArraySelector;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-02-18)
  */
-public final class StringArrayToTrimmedStringListSelector implements ArraySelector<String, Condition1<String>, List<String>>
+public final class StringArrayToTrimmedStringListSelector implements
+    ArraySelector<String, Condition1<String>, List<String>>
 {
-	@Override
-	public List<String> select(final Condition1<String> condition, final String[] input)
-	{
-		final List<String> list = newArrayList();
-		for (final String each : input)
-		{
-			if (condition.isMet(each))
-			{
-				list.add(nullSafeTrim(each));
-			}
-		}
-		return list;
-	}
+  @Override
+  public List<String> select(final String[] input, final Condition1<String> condition)
+  {
+    final List<String> list = newArrayList();
+    for (final String each : input)
+    {
+      if (condition.isMet(each))
+      {
+        list.add(nullSafeTrim(each));
+      }
+    }
+    return list;
+  }
 }

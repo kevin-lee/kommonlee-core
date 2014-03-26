@@ -61,107 +61,107 @@ import org.elixirian.kommonlee.type.selector.ArgsSelector;
  * @param <R>
  */
 public class GenericVarargsSelector<T, C extends Condition1<T>, R extends Collection<T>> implements
-		ArgsSelector<T, C, R>
+    ArgsSelector<T, C, R>
 {
-	private final CollectionCreator<T, ? extends R> collectionCreator;
+  private final CollectionCreator<T, ? extends R> collectionCreator;
 
-	public <CC extends CollectionCreator<T, ? extends R>> GenericVarargsSelector(final CC collectionCreator)
-	{
-		this.collectionCreator = collectionCreator;
-	}
+  public <CC extends CollectionCreator<T, ? extends R>> GenericVarargsSelector(final CC collectionCreator)
+  {
+    this.collectionCreator = collectionCreator;
+  }
 
-	@Override
-	public R select(final C condition, final T first)
-	{
-		final R result = collectionCreator.createCollection();
-		if (condition.isMet(first))
-			result.add(first);
-		return result;
-	}
+  @Override
+  public R select(final C condition, final T first)
+  {
+    final R result = collectionCreator.createCollection();
+    if (condition.isMet(first))
+      result.add(first);
+    return result;
+  }
 
-	@Override
-	public R select(final C condition, final T first, final T second)
-	{
-		final R result = collectionCreator.createCollection();
-		if (condition.isMet(first))
-			result.add(first);
-		if (condition.isMet(second))
-			result.add(second);
-		return result;
-	}
+  @Override
+  public R select(final C condition, final T first, final T second)
+  {
+    final R result = collectionCreator.createCollection();
+    if (condition.isMet(first))
+      result.add(first);
+    if (condition.isMet(second))
+      result.add(second);
+    return result;
+  }
 
-	@Override
-	public R select(final C condition, final T first, final T second, final T third)
-	{
-		final R result = collectionCreator.createCollection();
-		if (condition.isMet(first))
-			result.add(first);
-		if (condition.isMet(second))
-			result.add(second);
-		if (condition.isMet(third))
-			result.add(third);
-		return result;
-	}
+  @Override
+  public R select(final C condition, final T first, final T second, final T third)
+  {
+    final R result = collectionCreator.createCollection();
+    if (condition.isMet(first))
+      result.add(first);
+    if (condition.isMet(second))
+      result.add(second);
+    if (condition.isMet(third))
+      result.add(third);
+    return result;
+  }
 
-	@Override
-	public R select(final C condition, final T first, final T second, final T third, final T fourth)
-	{
-		final R result = collectionCreator.createCollection();
-		if (condition.isMet(first))
-			result.add(first);
-		if (condition.isMet(second))
-			result.add(second);
-		if (condition.isMet(third))
-			result.add(third);
-		if (condition.isMet(fourth))
-			result.add(fourth);
-		return result;
-	}
+  @Override
+  public R select(final C condition, final T first, final T second, final T third, final T fourth)
+  {
+    final R result = collectionCreator.createCollection();
+    if (condition.isMet(first))
+      result.add(first);
+    if (condition.isMet(second))
+      result.add(second);
+    if (condition.isMet(third))
+      result.add(third);
+    if (condition.isMet(fourth))
+      result.add(fourth);
+    return result;
+  }
 
-	@Override
-	public R select(final C condition, final T first, final T second, final T third, final T fourth, final T fifth)
-	{
-		final R result = collectionCreator.createCollection();
-		if (condition.isMet(first))
-			result.add(first);
-		if (condition.isMet(second))
-			result.add(second);
-		if (condition.isMet(third))
-			result.add(third);
-		if (condition.isMet(fourth))
-			result.add(fourth);
-		if (condition.isMet(fifth))
-			result.add(fifth);
-		return result;
-	}
+  @Override
+  public R select(final C condition, final T first, final T second, final T third, final T fourth, final T fifth)
+  {
+    final R result = collectionCreator.createCollection();
+    if (condition.isMet(first))
+      result.add(first);
+    if (condition.isMet(second))
+      result.add(second);
+    if (condition.isMet(third))
+      result.add(third);
+    if (condition.isMet(fourth))
+      result.add(fourth);
+    if (condition.isMet(fifth))
+      result.add(fifth);
+    return result;
+  }
 
-	@Override
-	public R select(final C condition, final T first, final T second, final T third, final T fourth, final T fifth,
-			final T... rest)
-	{
-		final R result = select(condition, first, second, third, fourth, fifth);
-		for (final T element : rest)
-		{
-			if (condition.isMet(element))
-			{
-				result.add(element);
-			}
-		}
-		return result;
-	}
+  @Override
+  public R select(final C condition, final T first, final T second, final T third, final T fourth, final T fifth,
+      final T... rest)
+  {
+    final R result = select(condition, first, second, third, fourth, fifth);
+    for (final T element : rest)
+    {
+      if (condition.isMet(element))
+      {
+        result.add(element);
+      }
+    }
+    return result;
+  }
 
-	@Override
-	public R select(final C condition, final T[] values)
-	{
-		final R result = collectionCreator.createCollection();
-		for (final T element : values)
-		{
-			if (condition.isMet(element))
-			{
-				result.add(element);
-			}
-		}
-		return result;
-	}
+  @Override
+  public R select(final T[] values, final C condition)
+  {
+    final R result = collectionCreator.createCollection();
+    for (final T element : values)
+    {
+      if (condition.isMet(element))
+      {
+        result.add(element);
+      }
+    }
+    return result;
+  }
 
 }

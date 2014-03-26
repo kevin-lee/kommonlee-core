@@ -70,7 +70,7 @@ import org.elixirian.kommonlee.type.functional.Function2;
  *          Return Map type
  */
 public class MapToMapWithNewValueMapper<K, E, T extends Map<? extends K, ? extends E>, NE, F extends Function1<? super E, NE>, R extends Map<K, NE>>
-    implements Function2<F, T, R>
+    implements Function2<T, F, R>
 {
   private final MapCreator<K, NE, ? extends R> mapCreator;
 
@@ -80,7 +80,7 @@ public class MapToMapWithNewValueMapper<K, E, T extends Map<? extends K, ? exten
   }
 
   @Override
-  public R apply(final F function, final T inputMap)
+  public R apply(final T inputMap, final F function)
   {
     final R result = mapCreator.createMap();
     for (final Entry<? extends K, ? extends E> entry : inputMap.entrySet())

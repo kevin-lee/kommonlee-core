@@ -55,25 +55,30 @@ import org.elixirian.kommonlee.type.functional.Function1;
  */
 public final class PrefixAndSuffixAdder implements Function1<String[], String[]>
 {
-	private final String prefix;
+  private final String prefix;
 
-	private final String suffix;
+  private final String suffix;
 
-	public PrefixAndSuffixAdder(final String prefix, final String suffix)
-	{
-		this.prefix = prefix;
-		this.suffix = suffix;
-	}
+  public PrefixAndSuffixAdder(final String prefix, final String suffix)
+  {
+    this.prefix = prefix;
+    this.suffix = suffix;
+  }
 
-	@Override
-	public String[] apply(final String[] input)
-	{
-		final int size = input.length;
-		final String[] result = new String[size];
-		for (int i = 0; i < size; i++)
-		{
-			result[i] = prefix + input[i] + suffix;
-		}
-		return result;
-	}
+  @Override
+  public String[] apply(final String[] input)
+  {
+    final int size = input.length;
+    final String[] result = new String[size];
+    for (int i = 0; i < size; i++)
+    {
+      result[i] = prefix + input[i] + suffix;
+    }
+    return result;
+  }
+
+  public static PrefixAndSuffixAdder newPrefixAndSuffixAdder(final String prefix, final String suffix)
+  {
+    return new PrefixAndSuffixAdder(prefix, suffix);
+  }
 }

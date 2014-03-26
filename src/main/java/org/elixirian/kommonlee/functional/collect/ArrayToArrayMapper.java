@@ -65,15 +65,15 @@ import org.elixirian.kommonlee.type.functional.Function3;
  * @param <F>
  *          Function object to map the source type E to create the type NE
  */
-public class ArrayToArrayMapper<E, NE, F extends Function1<? super E, NE>> implements
-    Function3<Class<NE>, F, E[], NE[]>
+public class ArrayToArrayMapper<E, F extends Function1<? super E, NE>, NE> implements
+    Function3<Class<NE>, E[], F, NE[]>
 {
   ArrayToArrayMapper()
   {
   }
 
   @Override
-  public NE[] apply(final Class<NE> resultType, final F function, final E[] source)
+  public NE[] apply(final Class<NE> resultType, final E[] source, final F function)
   {
     final List<NE> list = newArrayList();
     for (final E element : source)

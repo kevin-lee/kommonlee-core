@@ -67,27 +67,27 @@ import org.elixirian.kommonlee.type.functional.Function2;
  *          Collection containing all the mapped objects.
  */
 public class IterableToCollectionMapper<E, T extends Iterable<? extends E>, NE, F extends Function1<? super E, NE>, R extends Collection<NE>>
-		implements Function2<F, T, R>
+    implements Function2<T, F, R>
 {
-	private final CollectionCreator<NE, ? extends R> collectionCreator;
+  private final CollectionCreator<NE, ? extends R> collectionCreator;
 
-	protected <CC extends CollectionCreator<NE, ? extends R>> IterableToCollectionMapper(final CC collectionCreator)
-	{
-		this.collectionCreator = collectionCreator;
-	}
+  protected <CC extends CollectionCreator<NE, ? extends R>> IterableToCollectionMapper(final CC collectionCreator)
+  {
+    this.collectionCreator = collectionCreator;
+  }
 
-	@Override
-	public R apply(final F function, final T source)
-	{
-		final R result = collectionCreator.createCollection();
-		for (final E element : source)
-		{
-			result.add(function.apply(element));
-		}
-		return result;
-	}
+  @Override
+  public R apply(final T source, final F function)
+  {
+    final R result = collectionCreator.createCollection();
+    for (final E element : source)
+    {
+      result.add(function.apply(element));
+    }
+    return result;
+  }
 
-	/* @formatter:off */
+  /* @formatter:off */
 	public static <E,
 									 T extends Iterable<? extends E>,
 									 NE,

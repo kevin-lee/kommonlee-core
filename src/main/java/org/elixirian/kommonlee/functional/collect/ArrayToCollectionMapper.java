@@ -65,7 +65,7 @@ import org.elixirian.kommonlee.type.functional.Function2;
  *          Collection containing all the mapped objects.
  */
 public class ArrayToCollectionMapper<E, NE, F extends Function1<? super E, NE>, R extends Collection<NE>> implements
-    Function2<F, E[], R>
+    Function2<E[], F, R>
 {
   private final CollectionCreator<NE, ? extends R> collectionCreator;
 
@@ -75,7 +75,7 @@ public class ArrayToCollectionMapper<E, NE, F extends Function1<? super E, NE>, 
   }
 
   @Override
-  public R apply(final F function, final E[] source)
+  public R apply(final E[] source, final F function)
   {
     final R result = collectionCreator.createCollection();
     for (final E element : source)

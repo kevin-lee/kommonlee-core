@@ -58,7 +58,7 @@ import org.elixirian.kommonlee.functional.VoidFunction1;
  */
 public class ForEachInIterable<E, T extends Iterable<? extends E>, F extends VoidFunction1<? super E>>
 {
-  public void forEach(final F function, final T source)
+  public void forEach(final T source, final F function)
   {
     for (final E element : source)
     {

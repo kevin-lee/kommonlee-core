@@ -70,7 +70,7 @@ import org.elixirian.kommonlee.type.functional.Function2;
  *          Return Map type
  */
 public class IterableToMapMapper<E, T extends Iterable<? extends E>, NK, NE, F extends Function1<? super E, ? extends Pair<NK, NE>>, R extends Map<NK, NE>>
-    implements Function2<F, T, R>
+    implements Function2<T, F, R>
 {
   private final MapCreator<NK, NE, ? extends R> mapCreator;
 
@@ -80,7 +80,7 @@ public class IterableToMapMapper<E, T extends Iterable<? extends E>, NK, NE, F e
   }
 
   @Override
-  public R apply(final F function, final T source)
+  public R apply(final T source, final F function)
   {
     final R result = mapCreator.createMap();
     for (final E e : source)
@@ -92,7 +92,8 @@ public class IterableToMapMapper<E, T extends Iterable<? extends E>, NK, NE, F e
   }
 
   /* @formatter:off */
-	public static <E, T extends Iterable<? extends E>,
+	public static <E,
+	               T extends Iterable<? extends E>,
                  NK,
                  NE,
                  F extends Function1<? super E, ? extends Pair<NK, NE>>,

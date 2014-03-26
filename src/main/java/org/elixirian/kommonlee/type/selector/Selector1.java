@@ -59,5 +59,5 @@ package org.elixirian.kommonlee.type.selector;
  */
 public interface Selector1<T, C, R>
 {
-	R select(C condition, T source);
+  R select(C condition, T source);
 }

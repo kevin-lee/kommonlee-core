@@ -63,7 +63,7 @@ public final class BreakableForEachInArray<E, F extends BreakableFunction1<? sup
   {
   }
 
-  public void forEach(final F function, final E[] source)
+  public void forEach(final E[] source, final F function)
   {
     for (final E element : source)
     {

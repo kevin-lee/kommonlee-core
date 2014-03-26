@@ -70,7 +70,7 @@ public final class ArrayToArraySelector<E, C extends Condition1<? super E>> impl
   }
 
   @Override
-  public E[] select(final C condition, final E[] source)
+  public E[] select(final E[] source, final C condition)
   {
     final List<E> result = newArrayList();
     for (final E t : source)

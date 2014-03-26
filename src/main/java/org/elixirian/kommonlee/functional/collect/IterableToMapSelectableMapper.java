@@ -31,10 +31,12 @@
  */
 package org.elixirian.kommonlee.functional.collect;
 
-import java.util.Collection;
+import java.util.Map;
 
+import org.elixirian.kommonlee.type.Pair;
 import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.selector.Selector1;
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.type.functional.Function3;
 
 /**
  * <pre>
@@ -56,29 +58,40 @@ import org.elixirian.kommonlee.type.selector.Selector1;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-07-23)
  * @param <E>
+ *          Element
  * @param <T>
+ *          Input Map type
  * @param <C>
+ *          condition to decide whether to map the input element or not.
+ * @param <NK>
+ *          Key after function applied.
+ * @param <NE>
+ *          Value type after the function applied.
+ * @param <F>
+ *          Function to map Key and Value.
  * @param <R>
+ *          Return Map type
  */
-public class IterableToCollectionSelector<E, T extends Iterable<? extends E>, C extends Condition1<? super E>, R extends Collection<E>>
-    implements Selector1<C, T, R>
+public class IterableToMapSelectableMapper<E, T extends Iterable<? extends E>, C extends Condition1<? super E>, NK, NE, F extends Function1<? super E, ? extends Pair<NK, NE>>, R extends Map<NK, NE>>
+    implements Function3<T, C, F, R>
 {
-  private final CollectionCreator<E, ? extends R> collectionCreator;
+  private final MapCreator<NK, NE, ? extends R> mapCreator;
 
-  public <CC extends CollectionCreator<E, ? extends R>> IterableToCollectionSelector(final CC collectionCreator)
+  public <MC extends MapCreator<NK, NE, ? extends R>> IterableToMapSelectableMapper(final MC mapCreator)
   {
-    this.collectionCreator = collectionCreator;
+    this.mapCreator = mapCreator;
   }
 
   @Override
-  public R select(final T source, final C condition)
+  public R apply(final T source, final C condition, final F function)
   {
-    final R result = collectionCreator.createCollection();
-    for (final E element : source)
+    final R result = mapCreator.createMap();
+    for (final E e : source)
     {
-      if (condition.isMet(element))
+      if (condition.isMet(e))
       {
-        result.add(element);
+        final Pair<NK, NE> mappedKeyValuepPair = function.apply(e);
+        result.put(mappedKeyValuepPair.getValue1(), mappedKeyValuepPair.getValue2());
       }
     }
     return result;
@@ -86,14 +99,16 @@ public class IterableToCollectionSelector<E, T extends Iterable<? extends E>, C 
 
   /* @formatter:off */
 	public static <E,
-									 T extends Iterable<? extends E>,
-									 C extends Condition1<? super E>,
-									 R extends Collection<E>,
-									 CC extends CollectionCreator<E, ? extends R>>
-					IterableToCollectionSelector<E, T, C, R>
-		newInstance(final CC collectionCreator)
+	               T extends Iterable<? extends E>,
+	               C extends Condition1<? super E>,
+                 NK,
+                 NE,
+                 F extends Function1<? super E, ? extends Pair<NK, NE>>,
+                 R extends Map<NK, NE>,
+                 MC extends MapCreator<NK, NE, ? extends R>>
+		IterableToMapSelectableMapper<E, T, C, NK, NE, F, R> newInstance(final MC mapCreator)
 	{
-		return new IterableToCollectionSelector<E, T, C, R>(collectionCreator);
+		return new IterableToMapSelectableMapper<E, T, C, NK, NE, F, R>(mapCreator);
 	}
 	/* @formatter:on */
 }

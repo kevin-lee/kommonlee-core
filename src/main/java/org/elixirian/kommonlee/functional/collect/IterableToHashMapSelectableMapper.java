@@ -31,10 +31,11 @@
  */
 package org.elixirian.kommonlee.functional.collect;
 
-import java.util.Collection;
+import java.util.HashMap;
 
+import org.elixirian.kommonlee.type.Pair;
 import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.selector.Selector1;
+import org.elixirian.kommonlee.type.functional.Function1;
 
 /**
  * <pre>
@@ -56,44 +57,39 @@ import org.elixirian.kommonlee.type.selector.Selector1;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-07-23)
  * @param <E>
+ *          Element
  * @param <T>
+ *          Input Map type
  * @param <C>
+ *          condition to decide whether to map the input element or not.
+ * @param <NK>
+ *          Key after function applied.
+ * @param <NE>
+ *          Value type after the function applied.
+ * @param <F>
+ *          Function to map Key and Value.
  * @param <R>
+ *          Return Map type
  */
-public class IterableToCollectionSelector<E, T extends Iterable<? extends E>, C extends Condition1<? super E>, R extends Collection<E>>
-    implements Selector1<C, T, R>
+public class IterableToHashMapSelectableMapper<E, T extends Iterable<? extends E>, C extends Condition1<? super E>, NK, NE, F extends Function1<? super E, ? extends Pair<NK, NE>>>
+    extends IterableToMapSelectableMapper<E, T, C, NK, NE, F, HashMap<NK, NE>>
 {
-  private final CollectionCreator<E, ? extends R> collectionCreator;
 
-  public <CC extends CollectionCreator<E, ? extends R>> IterableToCollectionSelector(final CC collectionCreator)
+  IterableToHashMapSelectableMapper(final HashMapCreator<NK, NE> mapCreator)
   {
-    this.collectionCreator = collectionCreator;
-  }
-
-  @Override
-  public R select(final T source, final C condition)
-  {
-    final R result = collectionCreator.createCollection();
-    for (final E element : source)
-    {
-      if (condition.isMet(element))
-      {
-        result.add(element);
-      }
-    }
-    return result;
+    super(mapCreator);
   }
 
   /* @formatter:off */
 	public static <E,
-									 T extends Iterable<? extends E>,
-									 C extends Condition1<? super E>,
-									 R extends Collection<E>,
-									 CC extends CollectionCreator<E, ? extends R>>
-					IterableToCollectionSelector<E, T, C, R>
-		newInstance(final CC collectionCreator)
+	               T extends Iterable<? extends E>,
+	               C extends Condition1<? super E>,
+                 NK,
+                 NE,
+                 F extends Function1<? super E, ? extends Pair<NK, NE>>>
+		IterableToHashMapSelectableMapper<E, T, C, NK, NE, F> newInstance(final HashMapCreator<NK, NE> mapCreator)
 	{
-		return new IterableToCollectionSelector<E, T, C, R>(collectionCreator);
+		return new IterableToHashMapSelectableMapper<E, T, C, NK, NE, F>(mapCreator);
 	}
 	/* @formatter:on */
 }

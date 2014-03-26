@@ -1,8 +1,8 @@
 package org.elixirian.kommonlee.functional.collect;
 
-import static org.elixirian.kommonlee.util.collect.Lists.*;
+import static org.elixirian.kommonlee.util.collect.Sets.*;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 import org.elixirian.kommonlee.type.functional.Condition1;
 import org.elixirian.kommonlee.type.selector.ArraySelector;
@@ -30,23 +30,23 @@ import org.elixirian.kommonlee.type.selector.ArraySelector;
  *          type of element to be filtered to remove all the null element in the given array.
  * @param <C>
  */
-public final class ArrayToArrayListSelector<E> implements ArraySelector<E, Condition1<? super E>, ArrayList<E>>
+public final class ArrayToHashSetSelector<E> implements ArraySelector<E, Condition1<? super E>, HashSet<E>>
 {
-  ArrayToArrayListSelector()
+  ArrayToHashSetSelector()
   {
   }
 
   @Override
-  public ArrayList<E> select(final E[] source, final Condition1<? super E> condition)
+  public HashSet<E> select(final E[] source, final Condition1<? super E> condition)
   {
-    final ArrayList<E> list = newArrayList();
+    final HashSet<E> set = newHashSet();
     for (final E each : source)
     {
       if (condition.isMet(each))
       {
-        list.add(each);
+        set.add(each);
       }
     }
-    return list;
+    return set;
   }
 }

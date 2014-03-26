@@ -55,14 +55,14 @@ import org.elixirian.kommonlee.type.selector.Selector1;
  * @version 0.0.1 (2011-02-25)
  * @param <E>
  */
-public final class ElementCountSelector<E> implements Selector1<Iterable<? extends E>, Condition1<E>, Integer>
+public final class ElementCountSelector<E> implements Selector1<Condition1<? super E>, Iterable<? extends E>, Integer>
 {
   ElementCountSelector()
   {
   }
 
   @Override
-  public Integer select(final Condition1<E> condition, final Iterable<? extends E> source)
+  public Integer select(final Iterable<? extends E> source, final Condition1<? super E> condition)
   {
     int count = 0;
     for (final E e : source)

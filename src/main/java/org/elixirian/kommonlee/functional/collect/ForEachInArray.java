@@ -57,7 +57,7 @@ import org.elixirian.kommonlee.functional.VoidFunction1;
  */
 public class ForEachInArray<E, F extends VoidFunction1<? super E>>
 {
-  public void forEach(final F function, final E[] source)
+  public void forEach(final E[] source, final F function)
   {
     for (final E element : source)
     {

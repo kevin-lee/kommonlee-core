@@ -69,7 +69,7 @@ import org.elixirian.kommonlee.type.functional.Function1;
  *          Return Map type
  */
 public class IterableToHashMapMapper<E, T extends Iterable<? extends E>, NK, NE, F extends Function1<? super E, ? extends Pair<NK, NE>>>
-    extends IterableToMapMapper<E, Iterable<? extends E>, NK, NE, F, HashMap<NK, NE>>
+    extends IterableToMapMapper<E, T, NK, NE, F, HashMap<NK, NE>>
 {
 
   IterableToHashMapMapper(final HashMapCreator<NK, NE> mapCreator)
@@ -78,7 +78,8 @@ public class IterableToHashMapMapper<E, T extends Iterable<? extends E>, NK, NE,
   }
 
   /* @formatter:off */
-	public static <E, T extends Iterable<? extends E>,
+	public static <E,
+	               T extends Iterable<? extends E>,
                  NK,
                  NE,
                  F extends Function1<? super E, ? extends Pair<NK, NE>>>

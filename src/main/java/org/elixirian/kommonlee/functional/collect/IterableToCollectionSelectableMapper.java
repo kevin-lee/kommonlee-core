@@ -64,7 +64,7 @@ import org.elixirian.kommonlee.type.functional.Function3;
  * @param <R>
  */
 public class IterableToCollectionSelectableMapper<E, T extends Iterable<? extends E>, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>, R extends Collection<NE>>
-    implements Function3<C, F, T, R>
+    implements Function3<T, C, F, R>
 {
   private final CollectionCreator<NE, ? extends R> collectionCreator;
 
@@ -74,7 +74,7 @@ public class IterableToCollectionSelectableMapper<E, T extends Iterable<? extend
   }
 
   @Override
-  public R apply(final C condition, final F function, final T source)
+  public R apply( final T source, final C condition, final F function)
   {
     final R result = collectionCreator.createCollection();
     for (final E element : source)
@@ -90,7 +90,7 @@ public class IterableToCollectionSelectableMapper<E, T extends Iterable<? extend
   /* @formatter:off */
 	public static <E,
 									 T extends Iterable<? extends E>,
-									 C extends Condition1<E>,
+									 C extends Condition1<? super E>,
 									 NE,
 									 F extends Function1<? super E, NE>,
 									 R extends Collection<NE>,

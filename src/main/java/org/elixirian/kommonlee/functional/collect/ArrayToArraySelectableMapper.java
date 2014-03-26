@@ -69,14 +69,14 @@ import org.elixirian.kommonlee.type.functional.Function4;
  *          the mapper function
  */
 public class ArrayToArraySelectableMapper<E, C extends Condition1<? super E>, NE, F extends Function1<? super E, NE>>
-    implements Function4<Class<NE>, C, F, E[], NE[]>
+    implements Function4<Class<NE>, E[], C, F, NE[]>
 {
   ArrayToArraySelectableMapper()
   {
   }
 
   @Override
-  public NE[] apply(final Class<NE> toArrayOf, final C condition, final F function, final E[] source)
+  public NE[] apply(final Class<NE> toArrayOf, final E[] source, final C condition, final F function)
   {
     final List<NE> list = newArrayList();
     for (final E element : source)

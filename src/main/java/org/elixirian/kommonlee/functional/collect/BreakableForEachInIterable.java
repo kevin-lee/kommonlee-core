@@ -63,7 +63,7 @@ public final class BreakableForEachInIterable<E, T extends Iterable<? extends E>
   {
   }
 
-  public void forEach(final F function, final T source)
+  public void forEach(final T source, final F function)
   {
     for (final E element : source)
     {

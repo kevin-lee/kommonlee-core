@@ -61,23 +61,23 @@ public interface ArgsSelector<T, C, R> extends Selector1<T, C, R>, Selector2<T, 
     Selector4<T, C, R>, Selector5<T, C, R>, VarargsSelector<T, C, R>, ArraySelector<T, C, R>
 {
   @Override
-  R select(C condition, T first);
+  R select(final C condition, final T first);
 
   @Override
-  R select(C condition, T first, T second);
+  R select(final C condition, final T first, final T second);
 
   @Override
-  R select(C condition, T first, T second, T third);
+  R select(final C condition, final T first, final T second, final T third);
 
   @Override
-  R select(C condition, T first, T second, T third, T fourth);
+  R select(final C condition, final T first, final T second, final T third, final T fourth);
 
   @Override
-  R select(C condition, T first, T second, T third, T fourth, T fifth);
+  R select(final C condition, final T first, final T second, final T third, final T fourth, final T fifth);
 
   @Override
-  R select(C condition, T first, T second, T third, T fourth, T fifth, T... rest);
+  R select(final C condition, final T first, final T second, final T third, final T fourth, final T fifth, final T... rest);
 
   @Override
-  R select(C condition, T[] values);
+  R select(final T[] values, final C condition);
 }
