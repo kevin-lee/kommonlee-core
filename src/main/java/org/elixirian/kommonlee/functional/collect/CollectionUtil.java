@@ -173,11 +173,11 @@ public final class CollectionUtil
   private static final ArrayToMapMapper<?, ?, ?, ? extends Function1<?, ? extends Pair<?, ?>>, ? extends HashMap<?, ?>> ARRAY_TO_HASH_MAP_MAPPER =
     ArrayToMapMapper.<Object, Object, Object, Function1<Object, Pair<Object, Object>>, HashMap<Object, Object>, HashMapCreator<Object, Object>> newInstance(HashMapCreator.getInstance());
 
-  public static <E, NK, NE, F extends Function1<? super E, ? extends Pair<NK, NE>>, R extends Map<NK, NE>> ArrayToMapMapper<E, NK, NE, F, R> arrayToMapMapper()
+  public static <E, NK, NE, F extends Function1<? super E, ? extends Pair<NK, NE>>> ArrayToMapMapper<E, NK, NE, F, HashMap<NK, NE>> arrayToMapMapper()
   {
     @SuppressWarnings("unchecked")
-    final ArrayToMapMapper<E, NK, NE, F, R> arrayToHashMapMapper =
-      (ArrayToMapMapper<E, NK, NE, F, R>) ARRAY_TO_HASH_MAP_MAPPER;
+    final ArrayToMapMapper<E, NK, NE, F, HashMap<NK, NE>> arrayToHashMapMapper =
+      (ArrayToMapMapper<E, NK, NE, F, HashMap<NK, NE>>) ARRAY_TO_HASH_MAP_MAPPER;
     return arrayToHashMapMapper;
   }
 

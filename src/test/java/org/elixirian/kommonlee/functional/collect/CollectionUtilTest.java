@@ -213,8 +213,8 @@ public class CollectionUtilTest
     final Integer[] expected = positiveIntegers();
 
     /* when */
-    final ArrayToArraySelector<Integer, Condition1<? super Integer>> arrayToArraySelector =
-      CollectionUtil.arrayToArraySelector();
+    final ArrayToArraySelector<Integer, Condition1<Integer>> arrayToArraySelector =
+      CollectionUtil.<Integer, Condition1<Integer>> arrayToArraySelector();
     final Integer[] actual = arrayToArraySelector.select(integers, new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
@@ -301,7 +301,7 @@ public class CollectionUtilTest
 
     /* when */
     final ArrayToArrayMapper<Integer, Function1<Integer, String>, String> arrayToArrayMapper =
-      CollectionUtil.arrayToArrayMapper();
+      CollectionUtil.<Integer, Function1<Integer, String>, String> arrayToArrayMapper();
     final String[] actual = arrayToArrayMapper.apply(String.class, integers, new Function1<Integer, String>() {
       @Override
       public String apply(final Integer input)
@@ -323,7 +323,7 @@ public class CollectionUtilTest
 
     /* when */
     final ArrayToCollectionMapper<Integer, String, Function1<Integer, String>, ArrayList<String>> arrayToArrayListMapper =
-      CollectionUtil.arrayToArrayListMapper();
+      CollectionUtil.<Integer, String, Function1<Integer, String>> arrayToArrayListMapper();
     final List<String> actual = arrayToArrayListMapper.apply(integers, new Function1<Integer, String>() {
       @Override
       public String apply(final Integer input)
@@ -345,7 +345,7 @@ public class CollectionUtilTest
 
     /* when */
     final ArrayToCollectionMapper<Integer, String, Function1<Integer, String>, HashSet<String>> arrayToHashSetMapper =
-      CollectionUtil.arrayToHashSetMapper();
+      CollectionUtil.<Integer, String, Function1<Integer, String>> arrayToHashSetMapper();
     final Set<String> actual = arrayToHashSetMapper.apply(integers, new Function1<Integer, String>() {
       @Override
       public String apply(final Integer input)
@@ -367,7 +367,7 @@ public class CollectionUtilTest
 
     /* when */
     final ArrayToMapMapper<Integer, String, BigDecimal, Function1<Integer, Tuple2<String, BigDecimal>>, HashMap<String, BigDecimal>> arrayToMapMapper =
-      CollectionUtil.arrayToMapMapper();
+      CollectionUtil.<Integer, String, BigDecimal, Function1<Integer, Tuple2<String, BigDecimal>>> arrayToMapMapper();
     final Map<String, BigDecimal> actual =
       arrayToMapMapper.apply(integers, new Function1<Integer, Tuple2<String, BigDecimal>>() {
         @Override
