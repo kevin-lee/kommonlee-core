@@ -41,6 +41,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.elixirian.kommonlee.functional.BreakableFunction1;
+import org.elixirian.kommonlee.functional.IndexedBreakableFunction1;
+import org.elixirian.kommonlee.functional.IndexedVoidFunction1;
 import org.elixirian.kommonlee.functional.VoidFunction1;
 import org.elixirian.kommonlee.type.functional.BreakOrContinue;
 import org.elixirian.kommonlee.type.functional.Condition1;
@@ -50,12 +52,12 @@ import org.elixirian.kommonlee.type.functional.Function2;
 /**
  * <pre>
  *     ___  _____                                              _____
- *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
- *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -63,7 +65,7 @@ import org.elixirian.kommonlee.type.functional.Function2;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-10-13)
  */
@@ -221,6 +223,17 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
   }
 
   @Override
+  public void forEach(final IndexedVoidFunction1<? super E> function)
+  {
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) this.elements[i];
+      function.apply(i, element);
+    }
+  }
+
+  @Override
   public void breakableForEach(final BreakableFunction1<? super E> function)
   {
     for (final Object object : this.elements)
@@ -230,6 +243,20 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
       if (BreakOrContinue.BREAK == function.apply(element))
       {
         break;
+      }
+    }
+  }
+
+  @Override
+  public void breakableForEach(final IndexedBreakableFunction1<? super E> function)
+  {
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) this.elements[i];
+      if (BreakOrContinue.BREAK == function.apply(i, element))
+      {
+        return;
       }
     }
   }

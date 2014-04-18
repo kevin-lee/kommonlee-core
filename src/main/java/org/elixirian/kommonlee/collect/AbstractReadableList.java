@@ -41,12 +41,12 @@ import org.elixirian.kommonlee.type.functional.Condition1;
 /**
  * <pre>
  *     ___  _____                                              _____
- *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
- *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -54,7 +54,7 @@ import org.elixirian.kommonlee.type.functional.Condition1;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-10-13)
  */
@@ -117,11 +117,11 @@ public abstract class AbstractReadableList<E> extends AbstractKollection<E> impl
     }
     return -1;
   }
-  
+
   protected int indexOf0(final Object element)
   {
     final int length = length();
-    
+
     if (null == element)
     {
       for (int i = 0; i < length; i++)
@@ -153,6 +153,28 @@ public abstract class AbstractReadableList<E> extends AbstractKollection<E> impl
   public int indexOf(final E element)
   {
     return indexOf0(element);
+  }
+
+  @Override
+  public int indexOf(final Condition1<? super E> condition, final int fromIndex)
+  {
+    final int length = length();
+    checkIndex(length, fromIndex);
+
+    for (int i = fromIndex; i < length; i++)
+    {
+      if (condition.isMet(get(i)))
+      {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  @Override
+  public int indexOf(final Condition1<? super E> condition)
+  {
+    return indexOf(condition, 0);
   }
 
   protected int lastIndexOf0(final Object element, final int toIndex)
@@ -187,7 +209,6 @@ public abstract class AbstractReadableList<E> extends AbstractKollection<E> impl
     return lastIndexOf0(element, toIndex);
   }
 
-
   protected int lastIndexOf0(final Object element)
   {
     final int length = length();
@@ -213,11 +234,33 @@ public abstract class AbstractReadableList<E> extends AbstractKollection<E> impl
     }
     return -1;
   }
-  
+
   @Override
   public int lastIndexOf(final E element)
   {
     return lastIndexOf0(element);
+  }
+
+  @Override
+  public int lastIndexOf(final Condition1<? super E> condition, final int toIndex)
+  {
+    final int length = length();
+    checkToIndex(length, toIndex);
+
+    for (int i = toIndex - 1; i >= 0; i--)
+    {
+      if (condition.isMet(get(i)))
+      {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  @Override
+  public int lastIndexOf(final Condition1<? super E> condition)
+  {
+    return lastIndexOf(condition, length());
   }
 
   @Override
@@ -252,7 +295,7 @@ public abstract class AbstractReadableList<E> extends AbstractKollection<E> impl
     final ReadableList<?> that = castIfInstanceOf(ReadableList.class, list);
     return isNotNull(that) && KollectionUtil.equalReadableLists(this, that);
   }
-  
+
   @Override
   public boolean notEquals(final Object element)
   {

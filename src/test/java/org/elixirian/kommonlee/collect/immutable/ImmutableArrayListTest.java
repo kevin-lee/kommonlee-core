@@ -19,6 +19,8 @@ import java.util.List;
 
 import org.elixirian.kommonlee.collect.KollectionUtil;
 import org.elixirian.kommonlee.functional.BreakableFunction1;
+import org.elixirian.kommonlee.functional.IndexedBreakableFunction1;
+import org.elixirian.kommonlee.functional.IndexedVoidFunction1;
 import org.elixirian.kommonlee.functional.VoidFunction1;
 import org.elixirian.kommonlee.io.util.IoUtil;
 import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
@@ -863,6 +865,45 @@ public class ImmutableArrayListTest
   }
 
   @Test
+  public final void testIndexedForEach()
+  {
+    /* given */
+    final List<Integer> elements = Arrays.asList(-100, 4, -5, -1, 0, 1, 2, -2, 3, 5);
+    final Integer lookingFor = 3;
+    final int length = elements.size();
+    int index = -1;
+    for (int i = 0; i < length; i++)
+    {
+      if (elements.get(i)
+          .intValue() > 0)
+      {
+        index = i;
+      }
+    }
+    final int expected = index;
+
+    /* when */
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
+
+    final int[] actual = { -1 };
+
+    list.forEach(new IndexedVoidFunction1<Integer>() {
+
+      @Override
+      public void apply(final int index, final Integer input)
+      {
+        if (input.intValue() > 0)
+        {
+          actual[0] = index;
+        }
+      }
+    });
+
+    /* then */
+    assertThat(actual[0]).isEqualTo(expected);
+  }
+
+  @Test
   public final void testBreakableForEach()
   {
     /* given */
@@ -893,6 +934,49 @@ public class ImmutableArrayListTest
           return BreakOrContinue.BREAK;
         }
         return BreakOrContinue.CONTINUE;
+      }
+    });
+
+    /* then */
+    assertThat(actual[0]).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testIndexedBreakableForEach()
+  {
+    /* given */
+    final List<Integer> elements = Arrays.asList(-100, 4, -5, -1, 0, 7, -10, 1, 2, -2, 3, 5);
+    final Integer lookingFor = 3;
+    final int length = elements.size();
+    int index = -1;
+    for (int i = 0; i < length; i++)
+    {
+      if (elements.get(i)
+          .intValue() > 0)
+      {
+        index = i;
+        break;
+      }
+    }
+    final int expected = index;
+
+    /* when */
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
+
+    final int[] actual = { -1 };
+
+    list.breakableForEach(new IndexedBreakableFunction1<Integer>() {
+
+      @Override
+      public BreakOrContinue apply(final int index, final Integer input)
+      {
+        if (input.intValue() > 0)
+        {
+          actual[0] = index;
+          return BreakOrContinue.BREAK;
+        }
+        return BreakOrContinue.CONTINUE;
+
       }
     });
 
@@ -1939,6 +2023,93 @@ public class ImmutableArrayListTest
   }
 
   @Test
+  public final void testIndexOfConditionInt()
+  {
+    /* given */
+    final int lookFor = 5;
+    final Integer[] elements = { -100, 1, 5, 3, 10, -100, 5, 1 };
+    final int expected = Arrays.asList(elements)
+        .indexOf(lookFor);
+
+    final ImmutableArrayList<Integer> list =
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+
+    /* when */
+    final int actual = list.indexOf(new Condition1<Integer>() {
+
+      @Override
+      public boolean isMet(final Integer input)
+      {
+        return input.intValue() == lookFor;
+      }
+    }, 0);
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testIndexOfConditionInt2()
+  {
+    /* given */
+    final int lookFor = 5;
+    final Integer[] elements = { -100, 1, lookFor, 3, 10, -100, lookFor, 1 };
+    final int fromIndex = Arrays.asList(elements)
+        .indexOf(lookFor) + 1;
+
+    int index = -1;
+    for (int i = fromIndex; i < elements.length; i++)
+    {
+      if (elements[i] == lookFor)
+      {
+        index = i;
+      }
+    }
+    final int expected = index;
+
+    final ImmutableArrayList<Integer> list =
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+
+    /* when */
+    final int actual = list.indexOf(new Condition1<Integer>() {
+      @Override
+      public boolean isMet(final Integer input)
+      {
+        return input.intValue() == lookFor;
+      }
+    }, fromIndex);
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testIndexOfCondition()
+  {
+    /* given */
+    final int lookFor = 5;
+    final Integer[] elements = { -100, 1, 5, 3, 10, -100, 5, 1 };
+    final int expected = Arrays.asList(elements)
+        .indexOf(lookFor);
+
+    final ImmutableArrayList<Integer> list =
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+
+    /* when */
+    final int actual = list.indexOf(new Condition1<Integer>() {
+
+      @Override
+      public boolean isMet(final Integer input)
+      {
+        return input.intValue() == lookFor;
+      }
+    });
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
   public final void testLastIndexOfEInt()
   {
     /* given */
@@ -2082,6 +2253,121 @@ public class ImmutableArrayListTest
       /* @formatter:on */
     }
     assertThat(actualLength).isEqualTo(expectedLength);
+  }
+
+  @Test
+  public final void testLastIndexOfConditionInt()
+  {
+    /* given */
+    final Integer[] elements = { -100, 1, 3, 10, -100, 5, 1, 1 };
+
+    int index = -1;
+
+    for (int i = elements.length - 1; i >= 0; i--)
+    {
+      if (elements[i].intValue() < 0)
+      {
+        index = i;
+        break;
+      }
+    }
+    final int expected = index;
+
+    /* when */
+    final ImmutableArrayList<Integer> list =
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+    final int actualLength = list.length();
+
+    final int actual = list.lastIndexOf(new Condition1<Integer>() {
+      @Override
+      public boolean isMet(final Integer input)
+      {
+        return input.intValue() < 0;
+      }
+    }, elements.length);
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testLastIndexOfConditionInt2()
+  {
+    /* given */
+    final Integer[] elements = { -100, 1, 3, 10, -100, 5, 1, 1 };
+
+    int toIndex = -1;
+
+    for (int i = elements.length - 1; i >= 0; i--)
+    {
+      if (elements[i].intValue() < 0)
+      {
+        toIndex = i;
+        break;
+      }
+    }
+
+    int index = -1;
+    for (int i = toIndex - 1; i >= 0; i--)
+    {
+      if (elements[i].intValue() < 0)
+      {
+        index = i;
+        break;
+      }
+    }
+    final int expected = index;
+
+    final ImmutableArrayList<Integer> list =
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+    final int actualLength = list.length();
+
+    /* when */
+    final int actual = list.lastIndexOf(new Condition1<Integer>() {
+      @Override
+      public boolean isMet(final Integer input)
+      {
+        return input.intValue() < 0;
+      }
+    }, toIndex);
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testLastIndexOfCondition()
+  {
+    /* given */
+    final Integer[] elements = { -100, 1, 3, 10, -100, 5, 1, 1 };
+
+    final int lookFor = -100;
+
+    int index = -1;
+    for (int i = elements.length - 1; i >= 0; i--)
+    {
+      if (elements[i].intValue() == lookFor)
+      {
+        index = i;
+        break;
+      }
+    }
+
+    final int expected = index;
+
+    /* when */
+    final ImmutableArrayList<Integer> list =
+      new DefaultImmutableArrayList<Integer>(Arrays.copyOf(elements, elements.length));
+
+    /* then */
+    final int actual = list.lastIndexOf(new Condition1<Integer>() {
+      @Override
+      public boolean isMet(final Integer input)
+      {
+        return input.intValue() == lookFor;
+      }
+    });
+    assertThat(actual).isEqualTo(expected);
   }
 
   @Test
@@ -2267,7 +2553,7 @@ public class ImmutableArrayListTest
   {
     /* given */
     final List<Integer> elements = Arrays.asList(-5, -4, -3, -2, -1, 0, 999, 1, 2, 3, 4, 5);
-    final StringBuilder stringBuilder = new StringBuilder("ImmutableList[");
+    final StringBuilder stringBuilder = new StringBuilder("[");
 
     for (final Integer integer : elements)
     {

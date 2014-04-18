@@ -50,6 +50,8 @@ import org.elixirian.kommonlee.collect.KollectionUtil;
 import org.elixirian.kommonlee.collect.McHammerIterator;
 import org.elixirian.kommonlee.collect.UnmodifiableIterator;
 import org.elixirian.kommonlee.functional.BreakableFunction1;
+import org.elixirian.kommonlee.functional.IndexedBreakableFunction1;
+import org.elixirian.kommonlee.functional.IndexedVoidFunction1;
 import org.elixirian.kommonlee.functional.VoidFunction1;
 import org.elixirian.kommonlee.type.functional.BreakOrContinue;
 import org.elixirian.kommonlee.type.functional.Condition1;
@@ -65,7 +67,7 @@ import org.elixirian.kommonlee.util.NeoArrays;
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -73,7 +75,7 @@ import org.elixirian.kommonlee.util.NeoArrays;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-09-28)
  */
@@ -305,11 +307,23 @@ final class EmptyImmutableArrayList<E> extends ImmutableArrayList<E>
     return;
   }
 
+  @Override
+  public void forEach(@SuppressWarnings("unused") final IndexedVoidFunction1<? super E> function)
+  {
+    return;
+  }
+
   /**
    * It does nothing.
    */
   @Override
   public void breakableForEach(@SuppressWarnings("unused") final BreakableFunction1<? super E> function)
+  {
+    return;
+  }
+
+  @Override
+  public void breakableForEach(@SuppressWarnings("unused") final IndexedBreakableFunction1<? super E> function)
   {
     return;
   }
@@ -333,6 +347,19 @@ final class EmptyImmutableArrayList<E> extends ImmutableArrayList<E>
   }
 
   @Override
+  public int indexOf(@SuppressWarnings("unused") final Condition1<? super E> condition)
+  {
+    return -1;
+  }
+
+  @Override
+  public int indexOf(@SuppressWarnings("unused") final Condition1<? super E> condition,
+      @SuppressWarnings("unused") final int fromIndex)
+  {
+    return -1;
+  }
+
+  @Override
   public int lastIndexOf(@SuppressWarnings("unused") final E element)
   {
     return -1;
@@ -340,6 +367,18 @@ final class EmptyImmutableArrayList<E> extends ImmutableArrayList<E>
 
   @Override
   public int lastIndexOf(@SuppressWarnings("unused") final E element, @SuppressWarnings("unused") final int toIndex)
+  {
+    return -1;
+  }
+
+  @Override
+  public int lastIndexOf(final Condition1<? super E> condition)
+  {
+    return -1;
+  }
+
+  @Override
+  public int lastIndexOf(final Condition1<? super E> condition, final int toIndex)
   {
     return -1;
   }
@@ -555,6 +594,17 @@ final class DefaultImmutableArrayList<E> extends ImmutableArrayList<E>
   }
 
   @Override
+  public void forEach(final IndexedVoidFunction1<? super E> function)
+  {
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) this.elements[i];
+      function.apply(i, element);
+    }
+  }
+
+  @Override
   public void breakableForEach(final BreakableFunction1<? super E> function)
   {
     for (final Object object : this.elements)
@@ -563,7 +613,21 @@ final class DefaultImmutableArrayList<E> extends ImmutableArrayList<E>
       final E element = (E) object;
       if (BreakOrContinue.BREAK == function.apply(element))
       {
-        break;
+        return;
+      }
+    }
+  }
+
+  @Override
+  public void breakableForEach(final IndexedBreakableFunction1<? super E> function)
+  {
+    for (int i = 0; i < length; i++)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) this.elements[i];
+      if (BreakOrContinue.BREAK == function.apply(i, element))
+      {
+        return;
       }
     }
   }
