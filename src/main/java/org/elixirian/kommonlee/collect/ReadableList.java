@@ -34,6 +34,8 @@ package org.elixirian.kommonlee.collect;
 import java.util.Iterator;
 import java.util.List;
 
+import org.elixirian.kommonlee.functional.IndexedBreakableFunction1;
+import org.elixirian.kommonlee.functional.IndexedVoidFunction1;
 import org.elixirian.kommonlee.type.functional.Condition1;
 import org.elixirian.kommonlee.type.functional.Function1;
 
@@ -81,6 +83,10 @@ public interface ReadableList<E> extends ReadableCollection<E>
 
   int indexOf(E element);
 
+  int indexOf(Condition1<? super E> condition, int fromIndex);
+
+  int indexOf(Condition1<? super E> condition);
+
   /**
    * @param element
    *          the given element to search for
@@ -100,14 +106,13 @@ public interface ReadableList<E> extends ReadableCollection<E>
 
   int lastIndexOf(E element);
 
-  @Override
-  boolean contains(Object element);
+  int lastIndexOf(Condition1<? super E> condition, int toIndex);
 
-  @Override
-  boolean containsAll(Kollection<?> kollection);
+  int lastIndexOf(Condition1<? super E> condition);
 
-  @Override
-  E find(Condition1<? super E> condition);
+  void forEach(IndexedVoidFunction1<? super E> function);
+
+  void breakableForEach(IndexedBreakableFunction1<? super E> function);
 
   @Override
   ReadableList<E> select(Condition1<? super E> condition);

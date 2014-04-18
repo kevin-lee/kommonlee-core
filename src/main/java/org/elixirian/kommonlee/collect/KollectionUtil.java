@@ -43,12 +43,12 @@ import org.elixirian.kommonlee.util.Objects;
 /**
  * <pre>
  *     ___  _____                                              _____
- *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
- *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -56,7 +56,7 @@ import org.elixirian.kommonlee.util.Objects;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-10-14)
  */
@@ -143,7 +143,7 @@ public final class KollectionUtil
       }
     });
 
-    final StringBuilder stringBuilder = new StringBuilder(kollectionName).append("[");
+    final StringBuilder stringBuilder = new StringBuilder("[");
     return ITERABLE_TO_APPENDABLE_GLUE.glue(stringBuilder, functionAppliedKollection)
         .append("]")
         .toString();
