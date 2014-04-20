@@ -373,7 +373,7 @@ public class CollectionUtilTest
         @Override
         public Tuple2<String, BigDecimal> apply(final Integer input)
         {
-          return tuple2("#(" + input + ")", new BigDecimal(String.valueOf(input.intValue())));
+          return tuple("#(" + input + ")", new BigDecimal(String.valueOf(input.intValue())));
         }
       });
 
@@ -615,7 +615,7 @@ public class CollectionUtilTest
           @Override
           public Tuple2<String, BigDecimal> apply(final Integer input)
           {
-            return tuple2("#(" + input + ")", new BigDecimal(String.valueOf(input)));
+            return tuple("#(" + input + ")", new BigDecimal(String.valueOf(input)));
           }
         });
 
@@ -637,7 +637,7 @@ public class CollectionUtilTest
           @Override
           public Tuple2<String, BigDecimal> apply(final Integer input)
           {
-            return tuple2("#(" + input + ")", new BigDecimal(String.valueOf(input)));
+            return tuple("#(" + input + ")", new BigDecimal(String.valueOf(input)));
           }
         });
 
@@ -749,7 +749,7 @@ public class CollectionUtilTest
           @Override
           public Tuple2<String, BigDecimal> apply(final Integer input)
           {
-            return tuple2("#(" + input + ")", new BigDecimal(String.valueOf(input)));
+            return tuple("#(" + input + ")", new BigDecimal(String.valueOf(input)));
           }
         });
 
@@ -833,7 +833,7 @@ public class CollectionUtilTest
           @Override
           public Tuple2<String, BigDecimal> apply(final Integer input)
           {
-            return tuple2("#(" + input + ")", new BigDecimal(String.valueOf(input)));
+            return tuple("#(" + input + ")", new BigDecimal(String.valueOf(input)));
           }
         });
 

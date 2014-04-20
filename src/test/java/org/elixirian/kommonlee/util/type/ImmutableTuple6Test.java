@@ -1,8 +1,7 @@
 package org.elixirian.kommonlee.util.type;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.elixirian.kommonlee.util.Objects.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -61,7 +60,7 @@ public class ImmutableTuple6Test
     final Integer expectedHashCode =
       hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
           expected.getValue5(), expected.getValue6());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
   }
 
   @Test
@@ -87,16 +86,16 @@ public class ImmutableTuple6Test
     final Integer expectedHashCode =
       hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
           expected.getValue5(), expected.getValue6());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
-    assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
-    assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
-    assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
-    assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
+    assertThat(actual.getValue3()).isEqualTo(expected.getValue3());
+    assertThat(actual.getValue4()).isEqualTo(expected.getValue4());
+    assertThat(actual.getValue5()).isEqualTo(expected.getValue5());
+    assertThat(actual.getValue6()).isEqualTo(expected.getValue6());
 
   }
 
@@ -123,16 +122,16 @@ public class ImmutableTuple6Test
     final Integer expectedHashCode =
       hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
           expected.getValue5(), expected.getValue6());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
-    assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
-    assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
-    assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
-    assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
+    assertThat(actual.getValue3()).isEqualTo(expected.getValue3());
+    assertThat(actual.getValue4()).isEqualTo(expected.getValue4());
+    assertThat(actual.getValue5()).isEqualTo(expected.getValue5());
+    assertThat(actual.getValue6()).isEqualTo(expected.getValue6());
 
   }
 
@@ -159,16 +158,16 @@ public class ImmutableTuple6Test
     final Integer expectedHashCode =
       hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
           expected.getValue5(), expected.getValue6());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
-    assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
-    assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
-    assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
-    assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
+    assertThat(actual.getValue3()).isEqualTo(expected.getValue3());
+    assertThat(actual.getValue4()).isEqualTo(expected.getValue4());
+    assertThat(actual.getValue5()).isEqualTo(expected.getValue5());
+    assertThat(actual.getValue6()).isEqualTo(expected.getValue6());
 
   }
 
@@ -195,16 +194,16 @@ public class ImmutableTuple6Test
     final Integer expectedHashCode =
       hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
           expected.getValue5(), expected.getValue6());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
-    assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
-    assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
-    assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
-    assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
+    assertThat(actual.getValue3()).isEqualTo(expected.getValue3());
+    assertThat(actual.getValue4()).isEqualTo(expected.getValue4());
+    assertThat(actual.getValue5()).isEqualTo(expected.getValue5());
+    assertThat(actual.getValue6()).isEqualTo(expected.getValue6());
 
   }
 
@@ -231,16 +230,16 @@ public class ImmutableTuple6Test
     final Integer expectedHashCode =
       hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
           expected.getValue5(), expected.getValue6());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
-    assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
-    assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
-    assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
-    assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
+    assertThat(actual.getValue3()).isEqualTo(expected.getValue3());
+    assertThat(actual.getValue4()).isEqualTo(expected.getValue4());
+    assertThat(actual.getValue5()).isEqualTo(expected.getValue5());
+    assertThat(actual.getValue6()).isEqualTo(expected.getValue6());
 
   }
 
@@ -267,16 +266,16 @@ public class ImmutableTuple6Test
     final Integer expectedHashCode =
       hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
           expected.getValue5(), expected.getValue6());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
-    assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
-    assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
-    assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
-    assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
+    assertThat(actual.getValue3()).isEqualTo(expected.getValue3());
+    assertThat(actual.getValue4()).isEqualTo(expected.getValue4());
+    assertThat(actual.getValue5()).isEqualTo(expected.getValue5());
+    assertThat(actual.getValue6()).isEqualTo(expected.getValue6());
 
   }
 
@@ -303,16 +302,16 @@ public class ImmutableTuple6Test
     final Integer expectedHashCode =
       hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
           expected.getValue5(), expected.getValue6());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
-    assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
-    assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
-    assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
-    assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
+    assertThat(actual.getValue3()).isEqualTo(expected.getValue3());
+    assertThat(actual.getValue4()).isEqualTo(expected.getValue4());
+    assertThat(actual.getValue5()).isEqualTo(expected.getValue5());
+    assertThat(actual.getValue6()).isEqualTo(expected.getValue6());
 
   }
 
@@ -339,16 +338,16 @@ public class ImmutableTuple6Test
     final Integer expectedHashCode =
       hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
           expected.getValue5(), expected.getValue6());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
-    assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
-    assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
-    assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
-    assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
+    assertThat(actual.getValue3()).isEqualTo(expected.getValue3());
+    assertThat(actual.getValue4()).isEqualTo(expected.getValue4());
+    assertThat(actual.getValue5()).isEqualTo(expected.getValue5());
+    assertThat(actual.getValue6()).isEqualTo(expected.getValue6());
 
   }
 
@@ -375,16 +374,16 @@ public class ImmutableTuple6Test
     final Integer expectedHashCode =
       hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
           expected.getValue5(), expected.getValue6());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
-    assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
-    assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
-    assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
-    assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
+    assertThat(actual.getValue3()).isEqualTo(expected.getValue3());
+    assertThat(actual.getValue4()).isEqualTo(expected.getValue4());
+    assertThat(actual.getValue5()).isEqualTo(expected.getValue5());
+    assertThat(actual.getValue6()).isEqualTo(expected.getValue6());
 
   }
 
@@ -411,16 +410,16 @@ public class ImmutableTuple6Test
     final Integer expectedHashCode =
       hash(expected.getValue1(), expected.getValue2(), expected.getValue3(), expected.getValue4(),
           expected.getValue5(), expected.getValue6());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
-    assertThat(actual.getValue3(), is(equalTo(expected.getValue3())));
-    assertThat(actual.getValue4(), is(equalTo(expected.getValue4())));
-    assertThat(actual.getValue5(), is(equalTo(expected.getValue5())));
-    assertThat(actual.getValue6(), is(equalTo(expected.getValue6())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
+    assertThat(actual.getValue3()).isEqualTo(expected.getValue3());
+    assertThat(actual.getValue4()).isEqualTo(expected.getValue4());
+    assertThat(actual.getValue5()).isEqualTo(expected.getValue5());
+    assertThat(actual.getValue6()).isEqualTo(expected.getValue6());
 
   }
 

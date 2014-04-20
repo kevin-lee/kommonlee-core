@@ -1,8 +1,7 @@
 package org.elixirian.kommonlee.util.type;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.elixirian.kommonlee.util.Objects.*;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
 import org.elixirian.kommonlee.type.Pair;
 import org.junit.After;
@@ -40,7 +39,7 @@ public class ImmutablePairTest
     /* given */
 
     @SuppressWarnings("boxing")
-    final Pair<Integer, String> expected = new ImmutablePair<Integer, String>(999, "Kevin");
+    final Pair<Integer, String> expected = new ImmutableTuple2<Integer, String>(999, "Kevin");
 
     /* when */
     @SuppressWarnings("boxing")
@@ -51,7 +50,7 @@ public class ImmutablePairTest
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
   }
 
   @Test
@@ -60,7 +59,7 @@ public class ImmutablePairTest
     /* given */
 
     @SuppressWarnings("boxing")
-    final Pair<Integer, String> expected = new ImmutablePair<Integer, String>(999, "Kevin");
+    final Pair<Integer, String> expected = new ImmutableTuple2<Integer, String>(999, "Kevin");
 
     /* when */
     @SuppressWarnings("boxing")
@@ -71,12 +70,12 @@ public class ImmutablePairTest
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
   }
 
   @Test
@@ -85,7 +84,7 @@ public class ImmutablePairTest
     /* given */
 
     @SuppressWarnings("boxing")
-    final Pair<Integer, String> expected = new ImmutablePair<Integer, String>(999, "Kevin");
+    final Pair<Integer, String> expected = new ImmutableTuple2<Integer, String>(999, "Kevin");
 
     /* when */
     @SuppressWarnings("boxing")
@@ -96,12 +95,12 @@ public class ImmutablePairTest
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
   }
 
   @Test
@@ -110,7 +109,7 @@ public class ImmutablePairTest
     /* given */
 
     @SuppressWarnings("boxing")
-    final Pair<Integer, String> expected = new ImmutablePair<Integer, String>(999, "Kevin");
+    final Pair<Integer, String> expected = new ImmutableTuple2<Integer, String>(999, "Kevin");
 
     /* when */
     @SuppressWarnings("boxing")
@@ -121,12 +120,12 @@ public class ImmutablePairTest
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
   }
 
   @Test
@@ -135,7 +134,7 @@ public class ImmutablePairTest
     /* given */
 
     @SuppressWarnings("boxing")
-    final Pair<Integer, String> expected = new ImmutablePair<Integer, String>(999, "Kevin");
+    final Pair<Integer, String> expected = new ImmutableTuple2<Integer, String>(999, "Kevin");
 
     /* when */
     @SuppressWarnings("boxing")
@@ -146,12 +145,12 @@ public class ImmutablePairTest
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
   }
 
   @Test
@@ -160,7 +159,7 @@ public class ImmutablePairTest
     /* given */
 
     @SuppressWarnings("boxing")
-    final Pair<Integer, String> expected = new ImmutablePair<Integer, String>(999, "Kevin");
+    final Pair<Integer, String> expected = new ImmutableTuple2<Integer, String>(999, "Kevin");
 
     /* when */
     @SuppressWarnings("boxing")
@@ -171,12 +170,12 @@ public class ImmutablePairTest
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
   }
 
   @Test
@@ -185,7 +184,7 @@ public class ImmutablePairTest
     /* given */
 
     @SuppressWarnings("boxing")
-    final Pair<Integer, String> expected = new ImmutablePair<Integer, String>(999, "Kevin");
+    final Pair<Integer, String> expected = new ImmutableTuple2<Integer, String>(999, "Kevin");
 
     /* when */
     @SuppressWarnings("boxing")
@@ -196,12 +195,12 @@ public class ImmutablePairTest
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
   }
 
   @Test
@@ -210,7 +209,7 @@ public class ImmutablePairTest
     /* given */
 
     @SuppressWarnings("boxing")
-    final Pair<Integer, String> expected = new ImmutablePair<Integer, String>(999, "Kevin");
+    final Pair<Integer, String> expected = new ImmutableTuple2<Integer, String>(999, "Kevin");
 
     /* when */
     @SuppressWarnings("boxing")
@@ -221,12 +220,12 @@ public class ImmutablePairTest
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
   }
 
   @Test
@@ -235,7 +234,7 @@ public class ImmutablePairTest
     /* given */
 
     @SuppressWarnings("boxing")
-    final Pair<Integer, String> expected = new ImmutablePair<Integer, String>(999, "Kevin");
+    final Pair<Integer, String> expected = new ImmutableTuple2<Integer, String>(999, "Kevin");
 
     /* when */
     @SuppressWarnings("boxing")
@@ -246,12 +245,12 @@ public class ImmutablePairTest
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
   }
 
   @Test
@@ -260,7 +259,7 @@ public class ImmutablePairTest
     /* given */
 
     @SuppressWarnings("boxing")
-    final Pair<Integer, String> expected = new ImmutablePair<Integer, String>(999, "Kevin");
+    final Pair<Integer, String> expected = new ImmutableTuple2<Integer, String>(999, "Kevin");
 
     /* when */
     @SuppressWarnings("boxing")
@@ -271,12 +270,12 @@ public class ImmutablePairTest
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
   }
 
   @Test
@@ -285,7 +284,7 @@ public class ImmutablePairTest
     /* given */
 
     @SuppressWarnings("boxing")
-    final Pair<Integer, String> expected = new ImmutablePair<Integer, String>(999, "Kevin");
+    final Pair<Integer, String> expected = new ImmutableTuple2<Integer, String>(999, "Kevin");
 
     /* when */
     @SuppressWarnings("boxing")
@@ -296,12 +295,12 @@ public class ImmutablePairTest
     final Integer actualHashCode = actual.hashCode();
     @SuppressWarnings("boxing")
     final Integer expectedHashCode = hash(expected.getValue1(), expected.getValue2());
-    assertThat(actualHashCode, is(equalTo(expectedHashCode)));
+    assertThat(actualHashCode).isEqualTo(expectedHashCode);
 
-    assertThat(actual, is(equalTo(expected)));
+    assertThat(actual).isEqualTo(expected);
 
-    assertThat(actual.getValue1(), is(equalTo(expected.getValue1())));
-    assertThat(actual.getValue2(), is(equalTo(expected.getValue2())));
+    assertThat(actual.getValue1()).isEqualTo(expected.getValue1());
+    assertThat(actual.getValue2()).isEqualTo(expected.getValue2());
   }
 
 }

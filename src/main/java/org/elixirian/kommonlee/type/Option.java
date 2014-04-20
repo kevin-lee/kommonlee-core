@@ -29,12 +29,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.elixirian.kommonlee.util.type;
-
-import static org.elixirian.kommonlee.util.MessageFormatter.*;
-import static org.elixirian.kommonlee.util.Objects.*;
-
-import org.elixirian.kommonlee.type.Tuple3;
+package org.elixirian.kommonlee.type;
 
 /**
  * <pre>
@@ -53,90 +48,12 @@ import org.elixirian.kommonlee.type.Tuple3;
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  *
- * The default implementation of the {@link Tuple3} interface. It is an immutable tuple object.
- *
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-09-14)
- * @param <T1>
- * @param <T2>
- * @param <T3>
+ * @version 0.0.1 (2014-04-19)
  */
-public class ImmutableTuple3<T1, T2, T3> implements Tuple3<T1, T2, T3>
+public interface Option<T>
 {
-  private final T1 value1;
-  private final T2 value2;
-  private final T3 value3;
+  boolean isNull();
 
-  public ImmutableTuple3(final T1 value1, final T2 value2, final T3 value3)
-  {
-    this.value1 = value1;
-    this.value2 = value2;
-    this.value3 = value3;
-  }
-
-  @Override
-  public T1 getValue1()
-  {
-    return _1();
-  }
-
-  @Override
-  public T1 _1()
-  {
-    return value1;
-  }
-
-  @Override
-  public T2 getValue2()
-  {
-    return _2();
-  }
-
-  @Override
-  public T2 _2()
-  {
-    return value2;
-  }
-
-  @Override
-  public T3 getValue3()
-  {
-    return _3();
-  }
-
-  @Override
-  public T3 _3()
-  {
-    return value3;
-  }
-
-  @Override
-  public int hashCode()
-  {
-    return hash(value1, value2, value3);
-  }
-
-  @Override
-  public boolean equals(final Object tuple)
-  {
-    if (this == tuple)
-    {
-      return true;
-    }
-    final Tuple3<?, ?, ?> that = castIfInstanceOf(Tuple3.class, tuple);
-    /* @formatter:off */
-    return null != that &&
-        (equal(this.value1, that._1()) &&
-         equal(this.value2, that._2()) &&
-         equal(this.value3, that._3()));
-    /* @formatter:on */
-  }
-
-  @Override
-  public String toString()
-  {
-    /* @formatter:off */
-    return format("(%s, %s, %s)", value1, value2, value3);
-    /* @formatter:on */
-  }
+  T get();
 }

@@ -39,12 +39,12 @@ import org.elixirian.kommonlee.type.Tuple4;
 /**
  * <pre>
  *     ___  _____                                              _____
- *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
- *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -52,9 +52,9 @@ import org.elixirian.kommonlee.type.Tuple4;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * The default implementation of the {@link Tuple4} interface. It is an immutable tuple object.
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-09-14)
  * @param <T1>
@@ -80,11 +80,23 @@ public class ImmutableTuple4<T1, T2, T3, T4> implements Tuple4<T1, T2, T3, T4>
   @Override
   public T1 getValue1()
   {
+    return _1();
+  }
+
+  @Override
+  public T1 _1()
+  {
     return value1;
   }
 
   @Override
   public T2 getValue2()
+  {
+    return _2();
+  }
+
+  @Override
+  public T2 _2()
   {
     return value2;
   }
@@ -92,11 +104,23 @@ public class ImmutableTuple4<T1, T2, T3, T4> implements Tuple4<T1, T2, T3, T4>
   @Override
   public T3 getValue3()
   {
+    return _3();
+  }
+
+  @Override
+  public T3 _3()
+  {
     return value3;
   }
 
   @Override
   public T4 getValue4()
+  {
+    return _4();
+  }
+
+  @Override
+  public T4 _4()
   {
     return value4;
   }
@@ -117,10 +141,10 @@ public class ImmutableTuple4<T1, T2, T3, T4> implements Tuple4<T1, T2, T3, T4>
     final Tuple4<?, ?, ?, ?> that = castIfInstanceOf(Tuple4.class, tuple);
     /* @formatter:off */
     return null != that &&
-        (equal(this.value1, that.getValue1()) &&
-         equal(this.value2, that.getValue2()) &&
-         equal(this.value3, that.getValue3()) &&
-         equal(this.value4, that.getValue4()));
+        (equal(this.value1, that._1()) &&
+         equal(this.value2, that._2()) &&
+         equal(this.value3, that._3()) &&
+         equal(this.value4, that._4()));
     /* @formatter:on */
   }
 

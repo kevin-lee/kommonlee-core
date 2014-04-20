@@ -34,7 +34,6 @@ package org.elixirian.kommonlee.type;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
-import org.elixirian.kommonlee.type.Pair;
 import org.junit.Test;
 
 /**
@@ -59,7 +58,7 @@ import org.junit.Test;
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-11-14)
  */
-public class PairTest
+public class Tuple2Test
 {
   private static final String GIVEN_NAME = "Kevin";
   private static final String SURNAME = "Lee";
@@ -81,7 +80,7 @@ public class PairTest
 	}
 	/* @formatter:on */
 
-  private static class PojoPair implements Pair<Pojo, Pojo>
+  private static class PojoPair implements Tuple2<Pojo, Pojo>
   {
     private final Pojo left;
     private final Pojo right;
@@ -103,9 +102,21 @@ public class PairTest
     {
       return right;
     }
+
+    @Override
+    public Pojo _1()
+    {
+      return getValue1();
+    }
+
+    @Override
+    public Pojo _2()
+    {
+      return getValue2();
+    }
   }
 
-  private static class PojoAnotherPojoPair implements Pair<Pojo, AnotherPojo>
+  private static class PojoAnotherPojoPair implements Tuple2<Pojo, AnotherPojo>
   {
     private final Pojo left;
     private final AnotherPojo right;
@@ -126,6 +137,18 @@ public class PairTest
     public AnotherPojo getValue2()
     {
       return right;
+    }
+
+    @Override
+    public Pojo _1()
+    {
+      return getValue1();
+    }
+
+    @Override
+    public AnotherPojo _2()
+    {
+      return getValue2();
     }
   }
 

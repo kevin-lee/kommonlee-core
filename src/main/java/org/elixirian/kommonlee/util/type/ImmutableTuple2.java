@@ -31,18 +31,21 @@
  */
 package org.elixirian.kommonlee.util.type;
 
+import static org.elixirian.kommonlee.util.MessageFormatter.*;
+import static org.elixirian.kommonlee.util.Objects.*;
+
 import org.elixirian.kommonlee.type.Pair;
 import org.elixirian.kommonlee.type.Tuple2;
 
 /**
  * <pre>
  *     ___  _____                                              _____
- *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
- *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -50,18 +53,75 @@ import org.elixirian.kommonlee.type.Tuple2;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * The default implementation of the {@link Pair} interface. It is an immutable pair object.
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-09-14)
  * @param <T1>
  * @param <T2>
  */
-public class ImmutableTuple2<T1, T2> extends ImmutablePair<T1, T2> implements Tuple2<T1, T2>
+public class ImmutableTuple2<T1, T2> implements Tuple2<T1, T2>
 {
+  private final T1 value1;
+  private final T2 value2;
+
   public ImmutableTuple2(final T1 value1, final T2 value2)
   {
-    super(value1, value2);
+    this.value1 = value1;
+    this.value2 = value2;
+  }
+
+  @Override
+  public T1 getValue1()
+  {
+    return _1();
+  }
+
+  @Override
+  public T1 _1()
+  {
+    return value1;
+  }
+
+  @Override
+  public T2 getValue2()
+  {
+    return _2();
+  }
+
+  @Override
+  public T2 _2()
+  {
+    return value2;
+  }
+
+  @Override
+  public int hashCode()
+  {
+    return hash(value1, value2);
+  }
+
+  @Override
+  public boolean equals(final Object pair)
+  {
+    if (this == pair)
+    {
+      return true;
+    }
+    final Pair<?, ?> that = castIfInstanceOf(Pair.class, pair);
+    /* @formatter:off */
+    return null != that &&
+        (equal(this.value1, that._1()) &&
+         equal(this.value2, that._2()));
+    /* @formatter:on */
+  }
+
+  @Override
+  public String toString()
+  {
+    /* @formatter:off */
+    return format("(%s, %s)", value1, value2);
+    /* @formatter:on */
   }
 }

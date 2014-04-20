@@ -34,7 +34,7 @@ package org.elixirian.kommonlee.util.type;
 import static org.elixirian.kommonlee.util.MessageFormatter.*;
 import static org.elixirian.kommonlee.util.Objects.*;
 
-import org.elixirian.kommonlee.type.Tuple3;
+import org.elixirian.kommonlee.type.Tuple10;
 
 /**
  * <pre>
@@ -53,25 +53,48 @@ import org.elixirian.kommonlee.type.Tuple3;
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
  *
- * The default implementation of the {@link Tuple3} interface. It is an immutable tuple object.
+ * The default implementation of the {@link Tuple10} interface. It is an immutable tuple object.
  *
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2010-09-14)
+ * @version 0.0.1 (2010-04-19)
  * @param <T1>
  * @param <T2>
  * @param <T3>
+ * @param <T4>
+ * @param <T5>
+ * @param <T6>
+ * @param <T7>
+ * @param <T8>
+ * @param <T9>
+ * @param <T10>
  */
-public class ImmutableTuple3<T1, T2, T3> implements Tuple3<T1, T2, T3>
+public class ImmutableTuple10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> implements
+    Tuple10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
 {
   private final T1 value1;
   private final T2 value2;
   private final T3 value3;
+  private final T4 value4;
+  private final T5 value5;
+  private final T6 value6;
+  private final T7 value7;
+  private final T8 value8;
+  private final T9 value9;
+  private final T10 value10;
 
-  public ImmutableTuple3(final T1 value1, final T2 value2, final T3 value3)
+  public ImmutableTuple10(final T1 value1, final T2 value2, final T3 value3, final T4 value4, final T5 value5,
+      final T6 value6, final T7 value7, final T8 value8, final T9 value9, final T10 value10)
   {
     this.value1 = value1;
     this.value2 = value2;
     this.value3 = value3;
+    this.value4 = value4;
+    this.value5 = value5;
+    this.value6 = value6;
+    this.value7 = value7;
+    this.value8 = value8;
+    this.value9 = value9;
+    this.value10 = value10;
   }
 
   @Override
@@ -111,9 +134,93 @@ public class ImmutableTuple3<T1, T2, T3> implements Tuple3<T1, T2, T3>
   }
 
   @Override
+  public T4 getValue4()
+  {
+    return _4();
+  }
+
+  @Override
+  public T4 _4()
+  {
+    return value4;
+  }
+
+  @Override
+  public T5 getValue5()
+  {
+    return _5();
+  }
+
+  @Override
+  public T5 _5()
+  {
+    return value5;
+  }
+
+  @Override
+  public T6 getValue6()
+  {
+    return _6();
+  }
+
+  @Override
+  public T6 _6()
+  {
+    return value6;
+  }
+
+  @Override
+  public T7 getValue7()
+  {
+    return _7();
+  }
+
+  @Override
+  public T7 _7()
+  {
+    return value7;
+  }
+
+  @Override
+  public T8 getValue8()
+  {
+    return _8();
+  }
+
+  @Override
+  public T8 _8()
+  {
+    return value8;
+  }
+
+  @Override
+  public T9 getValue9()
+  {
+    return _9();
+  }
+
+  @Override
+  public T9 _9()
+  {
+    return value9;
+  }
+
+  @Override
+  public T10 getValue10()
+  {
+    return _10();
+  }
+
+  @Override
+  public T10 _10()
+  {
+    return value10;
+  }
+
+  @Override
   public int hashCode()
   {
-    return hash(value1, value2, value3);
+    return hash(value1, value2, value3, value4, value5, value6, value7, value8, value9, value10);
   }
 
   @Override
@@ -123,20 +230,27 @@ public class ImmutableTuple3<T1, T2, T3> implements Tuple3<T1, T2, T3>
     {
       return true;
     }
-    final Tuple3<?, ?, ?> that = castIfInstanceOf(Tuple3.class, tuple);
+    final Tuple10<?, ?, ?, ?, ?, ?, ?, ?, ?, ?> that = castIfInstanceOf(Tuple10.class, tuple);
     /* @formatter:off */
     return null != that &&
         (equal(this.value1, that._1()) &&
          equal(this.value2, that._2()) &&
-         equal(this.value3, that._3()));
+         equal(this.value3, that._3()) &&
+         equal(this.value4, that._4()) &&
+         equal(this.value5, that._5()) &&
+         equal(this.value6, that._6()) &&
+         equal(this.value7, that._7()) &&
+         equal(this.value8, that._8()) &&
+         equal(this.value9, that._9()) &&
+         equal(this.value10, that._10())
+         );
     /* @formatter:on */
   }
 
   @Override
   public String toString()
   {
-    /* @formatter:off */
-    return format("(%s, %s, %s)", value1, value2, value3);
-    /* @formatter:on */
+    return format("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", value1, value2, value3, value4, value5, value6, value7,
+        value8, value9, value10);
   }
 }
