@@ -49,7 +49,7 @@ public class ImmutableTuple5Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -73,7 +73,7 @@ public class ImmutableTuple5Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -106,7 +106,7 @@ public class ImmutableTuple5Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -139,7 +139,7 @@ public class ImmutableTuple5Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -172,7 +172,7 @@ public class ImmutableTuple5Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -205,7 +205,7 @@ public class ImmutableTuple5Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -238,7 +238,7 @@ public class ImmutableTuple5Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -271,7 +271,7 @@ public class ImmutableTuple5Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -304,7 +304,7 @@ public class ImmutableTuple5Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -337,7 +337,7 @@ public class ImmutableTuple5Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -370,7 +370,7 @@ public class ImmutableTuple5Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")

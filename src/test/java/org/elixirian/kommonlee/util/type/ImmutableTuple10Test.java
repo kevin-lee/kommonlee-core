@@ -54,7 +54,7 @@ public class ImmutableTuple10Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String, Integer, Long> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), "Some value", 123, 777L);
 
     /* then */
@@ -83,7 +83,7 @@ public class ImmutableTuple10Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String, Integer, Long> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), "Some value", 123, 777L);
 
     /* then */
@@ -136,7 +136,7 @@ public class ImmutableTuple10Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String, Integer, Long> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), "Some value", 123, 777L);
 
     /* then */
@@ -189,7 +189,7 @@ public class ImmutableTuple10Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String, Integer, Long> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), "Some value", 123, 777L);
 
     /* then */
@@ -242,7 +242,7 @@ public class ImmutableTuple10Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String, Integer, Long> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), "Some value", 123, 777L);
 
     /* then */
@@ -295,7 +295,7 @@ public class ImmutableTuple10Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String, Integer, Long> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), "Some value", 123, 777L);
 
     /* then */
@@ -348,7 +348,7 @@ public class ImmutableTuple10Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String, Integer, Long> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), "Some value", 123, 777L);
 
     /* then */
@@ -401,7 +401,7 @@ public class ImmutableTuple10Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String, Integer, Long> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), "Some value", 123, 777L);
 
     /* then */
@@ -454,7 +454,7 @@ public class ImmutableTuple10Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String, Integer, Long> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), "Some value", 123, 777L);
 
     /* then */
@@ -507,7 +507,7 @@ public class ImmutableTuple10Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String, Integer, Long> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), "Some value", 123, 777L);
 
     /* then */
@@ -560,7 +560,7 @@ public class ImmutableTuple10Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String, Integer, Long> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), "Some value", 123, 777L);
 
     /* then */

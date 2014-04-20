@@ -47,7 +47,7 @@ public class ImmutableTuple4Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -70,7 +70,7 @@ public class ImmutableTuple4Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -100,7 +100,7 @@ public class ImmutableTuple4Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -130,7 +130,7 @@ public class ImmutableTuple4Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -160,7 +160,7 @@ public class ImmutableTuple4Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -190,7 +190,7 @@ public class ImmutableTuple4Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -220,7 +220,7 @@ public class ImmutableTuple4Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -250,7 +250,7 @@ public class ImmutableTuple4Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -280,7 +280,7 @@ public class ImmutableTuple4Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -310,7 +310,7 @@ public class ImmutableTuple4Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -340,7 +340,7 @@ public class ImmutableTuple4Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")

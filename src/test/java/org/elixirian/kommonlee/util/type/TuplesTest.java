@@ -229,7 +229,7 @@ public class TuplesTest
     /* when */
     @SuppressWarnings("boxing")
     final Tuple4<Integer, String, Boolean, BigInteger> actual =
-      Tuples.tuple4(999, "Kevin", true, BigInteger.valueOf(555L));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -260,10 +260,10 @@ public class TuplesTest
       new HashMap<String, Tuple4<String, String, Integer, Tuple4<Integer, String, String, Date>>>();
     final Date date = new Date();
     final Tuple4<String, String, Integer, Tuple4<Integer, String, String, Date>> expected =
-      tuple4("Kevin", "Lee", 1, tuple4(1, "Kevin", "Lee", date));
+      tuple("Kevin", "Lee", 1, tuple(1, "Kevin", "Lee", date));
 
     /* when */
-    map.put("test", tuple4("Kevin", "Lee", 1, tuple4(1, "Kevin", "Lee", date)));
+    map.put("test", tuple("Kevin", "Lee", 1, tuple(1, "Kevin", "Lee", date)));
 
     /* then */
     final Tuple4<String, String, Integer, Tuple4<Integer, String, String, Date>> actual = map.get("test");
@@ -299,7 +299,7 @@ public class TuplesTest
     /* when */
     @SuppressWarnings("boxing")
     final Tuple5<Integer, String, Boolean, BigInteger, BigDecimal> actual =
-      Tuples.tuple5(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"));
 
     /* then */
     @SuppressWarnings("boxing")
@@ -332,10 +332,10 @@ public class TuplesTest
       new HashMap<String, Tuple5<String, String, Integer, Boolean, Tuple5<Integer, String, String, Boolean, Date>>>();
     final Date date = new Date();
     final Tuple5<String, String, Integer, Boolean, Tuple5<Integer, String, String, Boolean, Date>> expected =
-      tuple5("Kevin", "Lee", 1, true, tuple5(1, "Kevin", "Lee", false, date));
+      tuple("Kevin", "Lee", 1, true, tuple(1, "Kevin", "Lee", false, date));
 
     /* when */
-    map.put("test", tuple5("Kevin", "Lee", 1, true, tuple5(1, "Kevin", "Lee", false, date)));
+    map.put("test", tuple("Kevin", "Lee", 1, true, tuple(1, "Kevin", "Lee", false, date)));
 
     /* then */
     final Tuple5<String, String, Integer, Boolean, Tuple5<Integer, String, String, Boolean, Date>> actual =
@@ -376,7 +376,7 @@ public class TuplesTest
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
@@ -412,14 +412,14 @@ public class TuplesTest
       new HashMap<String, Tuple6<String, String, Integer, Boolean, BigInteger, Tuple6<Integer, String, String, Boolean, BigInteger, Date>>>();
     final Date date = new Date();
     final Tuple6<String, String, Integer, Boolean, BigInteger, Tuple6<Integer, String, String, Boolean, BigInteger, Date>> expected =
-      tuple6("Kevin", "Lee", 1, true, BigInteger.valueOf(1),
-          tuple6(1, "Kevin", "Lee", false, BigInteger.valueOf(999), date));
+      tuple("Kevin", "Lee", 1, true, BigInteger.valueOf(1),
+          tuple(1, "Kevin", "Lee", false, BigInteger.valueOf(999), date));
 
     /* when */
     map.put(
         "test",
-        tuple6("Kevin", "Lee", 1, true, BigInteger.valueOf(1),
-            tuple6(1, "Kevin", "Lee", false, BigInteger.valueOf(999), date)));
+        tuple("Kevin", "Lee", 1, true, BigInteger.valueOf(1),
+            tuple(1, "Kevin", "Lee", false, BigInteger.valueOf(999), date)));
 
     /* then */
     final Tuple6<String, String, Integer, Boolean, BigInteger, Tuple6<Integer, String, String, Boolean, BigInteger, Date>> actual =
@@ -462,7 +462,7 @@ public class TuplesTest
     /* when */
     @SuppressWarnings("boxing")
     final Tuple7<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>> actual =
-      Tuples.tuple7(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"));
 
     /* then */
@@ -501,14 +501,14 @@ public class TuplesTest
       new HashMap<String, Tuple7<String, String, Integer, Boolean, BigInteger, BigDecimal, Tuple7<Integer, String, String, Boolean, BigInteger, BigDecimal, Date>>>();
     final Date date = new Date();
     final Tuple7<String, String, Integer, Boolean, BigInteger, BigDecimal, Tuple7<Integer, String, String, Boolean, BigInteger, BigDecimal, Date>> expected =
-      tuple7("Kevin", "Lee", 1, true, BigInteger.valueOf(1), new BigDecimal("1.05"),
-          tuple7(1, "Kevin", "Lee", false, BigInteger.valueOf(999), new BigDecimal("999.99"), date));
+      tuple("Kevin", "Lee", 1, true, BigInteger.valueOf(1), new BigDecimal("1.05"),
+          tuple(1, "Kevin", "Lee", false, BigInteger.valueOf(999), new BigDecimal("999.99"), date));
 
     /* when */
     map.put(
         "test",
-        tuple7("Kevin", "Lee", 1, true, BigInteger.valueOf(1), new BigDecimal("1.05"),
-            tuple7(1, "Kevin", "Lee", false, BigInteger.valueOf(999), new BigDecimal("999.99"), date)));
+        tuple("Kevin", "Lee", 1, true, BigInteger.valueOf(1), new BigDecimal("1.05"),
+            tuple(1, "Kevin", "Lee", false, BigInteger.valueOf(999), new BigDecimal("999.99"), date)));
 
     /* then */
     final Tuple7<String, String, Integer, Boolean, BigInteger, BigDecimal, Tuple7<Integer, String, String, Boolean, BigInteger, BigDecimal, Date>> actual =
@@ -555,7 +555,7 @@ public class TuplesTest
     /* when */
     @SuppressWarnings("boxing")
     final Tuple8<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String[]> actual =
-      Tuples.tuple8(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), stringArray);
 
     /* then */
@@ -601,7 +601,7 @@ public class TuplesTest
     /* when */
     @SuppressWarnings("boxing")
     final Tuple9<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String[], Long> actual =
-      Tuples.tuple9(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), stringArray, 999L);
 
     /* then */
@@ -649,7 +649,7 @@ public class TuplesTest
     /* when */
     @SuppressWarnings("boxing")
     final Tuple10<Integer, String, Boolean, BigInteger, BigDecimal, Date, List<String>, String[], Long, Set<Integer>> actual =
-      Tuples.tuple10(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date,
           Arrays.asList("Name", "Kevin", "Lee"), stringArray, 999L,
           (Set<Integer>) newHashSet(1, 2, -10, 10, -32, 19, 999));
 

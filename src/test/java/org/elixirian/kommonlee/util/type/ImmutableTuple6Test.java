@@ -51,7 +51,7 @@ public class ImmutableTuple6Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
@@ -77,7 +77,7 @@ public class ImmutableTuple6Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
@@ -113,7 +113,7 @@ public class ImmutableTuple6Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
@@ -149,7 +149,7 @@ public class ImmutableTuple6Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
@@ -185,7 +185,7 @@ public class ImmutableTuple6Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
@@ -221,7 +221,7 @@ public class ImmutableTuple6Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
@@ -257,7 +257,7 @@ public class ImmutableTuple6Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
@@ -293,7 +293,7 @@ public class ImmutableTuple6Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
@@ -329,7 +329,7 @@ public class ImmutableTuple6Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
@@ -365,7 +365,7 @@ public class ImmutableTuple6Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
@@ -401,7 +401,7 @@ public class ImmutableTuple6Test
     /* when */
     @SuppressWarnings("boxing")
     final Tuple6<Integer, String, Boolean, BigInteger, BigDecimal, Date> actual =
-      Tuples.tuple6(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
+      Tuples.tuple(999, "Kevin", true, BigInteger.valueOf(555L), new BigDecimal("1234.59"), date);
 
     /* then */
     @SuppressWarnings("boxing")
