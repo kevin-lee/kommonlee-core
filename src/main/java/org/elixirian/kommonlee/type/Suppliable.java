@@ -31,10 +31,6 @@
  */
 package org.elixirian.kommonlee.type;
 
-import org.elixirian.kommonlee.functional.VoidFunction1;
-import org.elixirian.kommonlee.type.functional.Condition1;
-import org.elixirian.kommonlee.type.functional.Function1;
-
 /**
  * <pre>
  *     ___  _____                                              _____
@@ -43,7 +39,7 @@ import org.elixirian.kommonlee.type.functional.Function1;
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -51,33 +47,11 @@ import org.elixirian.kommonlee.type.functional.Function1;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
- * @version 0.0.1 (2014-04-19)
+ * @version 0.0.1 (2014-04-29)
  */
-public interface Option<T>
+public interface Suppliable<T>
 {
-  boolean isNull();
-
-  boolean isNotNull();
-
-  T get();
-  
-  T getOrUse(T alternative);
-  
-  T getOrGetAnother(Suppliable<T> suppliable);
-
-  T getIf(Condition1<T> condition);
-
-  T getIfOrUse(Condition1<T> condition, T alternative);
-
-  T getIfOrGetAnother(Condition1<T> condition, Suppliable<T> suppliable);
-
-  <N> N map(Function1<T, N> mapper);
-
-  <N> N mapIf(Condition1<T> condition, Function1<T, N> mapper);
-
-  void doIf(Condition1<T> condition, VoidFunction1<T> function);
-
-  <EX extends Throwable> T getOrThrow(Suppliable<EX> exceptionSuppliable) throws EX;
+  T supply();
 }

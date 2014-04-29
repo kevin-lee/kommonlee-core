@@ -343,7 +343,6 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
   public <R, F2 extends Function2<? super E, ? super R, R>> Function1<F2, R> foldRight(final R startValue)
   {
     return new Function1<F2, R>() {
-
       @Override
       public R apply(final F2 function)
       {
@@ -352,4 +351,25 @@ public class ReadableArrayList<E> extends AbstractReadableList<E> implements Rea
     };
   }
 
+  @Override
+  public E reduce(final Function2<? super E, ? super E, E> function)
+  {
+    if (length == 0)
+    {
+      return null;
+    }
+    @SuppressWarnings("unchecked")
+    E result = (E) this.elements[0];
+    if (length == 1)
+    {
+      return result;
+    }
+    for (int i = 1; i < length; i++)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) this.elements[i];
+      result = function.apply(result, element);
+    }
+    return result;
+  }
 }

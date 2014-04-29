@@ -120,6 +120,8 @@ public interface Kollection<E> extends Iterable<E>, LengthCheckable, SizeCheckab
   <R, F2 extends Function2<? super E, ? super R, R>> Function1<F2, R> foldRight(R startValue);
 
   <R, F2 extends Function2<? super E, ? super R, R>> R foldRight(R startValue, F2 function);
+  
+  E reduce(Function2<? super E, ? super E, E> function);
 
   Object[] toArray();
 

@@ -33,7 +33,10 @@ package org.elixirian.kommonlee.type;
 
 import static org.elixirian.kommonlee.util.Objects.*;
 
-import org.elixirian.kommonlee.validation.Assertions;
+import org.elixirian.kommonlee.functional.VoidFunction1;
+import org.elixirian.kommonlee.type.functional.Condition1;
+import org.elixirian.kommonlee.type.functional.Function1;
+import org.elixirian.kommonlee.util.Objects;
 
 /**
  * <pre>
@@ -57,28 +60,7 @@ import org.elixirian.kommonlee.validation.Assertions;
  */
 public class Options
 {
-  enum None implements Option<Object>
-  {
-    INSTANCE;
-
-    @Override
-    public boolean isNull()
-    {
-      return true;
-    }
-
-    @Override
-    public Object get()
-    {
-      return null;
-    }
-
-    @Override
-    public String toString()
-    {
-      return "None()";
-    }
-  }
+  static final Option<Object> NONE = new Some<Object>(null);
 
   static class Some<T> implements Option<T>
   {
@@ -86,21 +68,113 @@ public class Options
 
     Some(final T t)
     {
-      Assertions.assertNotNull(t,
-          "Some type Option cannot contain null. Please use the Options.option() method to create an instance of Option type.");
       this.t = t;
     }
 
     @Override
     public boolean isNull()
     {
-      return false;
+      return t == null;
+    }
+
+    @Override
+    public boolean isNotNull()
+    {
+      return !isNull();
     }
 
     @Override
     public T get()
     {
       return t;
+    }
+
+    @Override
+    public T getOrUse(final T alternative)
+    {
+      return t != null ? t : alternative;
+    }
+
+    @Override
+    public T getOrGetAnother(final Suppliable<T> suppliable)
+    {
+      Objects.mustNotBeNull(suppliable, "The suppliable must not be null.");
+      return t != null ? t : suppliable.supply();
+    }
+
+    @Override
+    public T getIf(final Condition1<T> condition)
+    {
+      Objects.mustNotBeNull(condition, "The condition must not be null.");
+      if (condition.isMet(t))
+      {
+        return t;
+      }
+      return null;
+    }
+
+    @Override
+    public T getIfOrUse(final Condition1<T> condition, final T alternative)
+    {
+      Objects.mustNotBeNull(condition, "The condition must not be null.");
+      if (condition.isMet(t))
+      {
+        return t;
+      }
+      return alternative;
+    }
+
+    @Override
+    public T getIfOrGetAnother(final Condition1<T> condition, final Suppliable<T> suppliable)
+    {
+      Objects.mustNotBeNull(condition, "The condition must not be null.");
+      Objects.mustNotBeNull(suppliable, "The suppliable must not be null.");
+      if (condition.isMet(t))
+      {
+        return t;
+      }
+      return suppliable.supply();
+    }
+
+    @Override
+    public <N> N map(final Function1<T, N> mapper)
+    {
+      Objects.mustNotBeNull(mapper, "The mapper must not be null.");
+      return mapper.apply(t);
+    }
+
+    @Override
+    public <N> N mapIf(final Condition1<T> condition, final Function1<T, N> mapper)
+    {
+      Objects.mustNotBeNull(condition, "The condition must not be null.");
+      Objects.mustNotBeNull(mapper, "The mapper must not be null.");
+      if (condition.isMet(t))
+      {
+        return mapper.apply(t);
+      }
+      return null;
+    }
+
+    @Override
+    public void doIf(final Condition1<T> condition, final VoidFunction1<T> function)
+    {
+      Objects.mustNotBeNull(condition, "The condition must not be null.");
+      Objects.mustNotBeNull(function, "The function must not be null.");
+      if (condition.isMet(t))
+      {
+        function.apply(t);
+      }
+    }
+
+    @Override
+    public <EX extends Throwable> T getOrThrow(final Suppliable<EX> exceptionSuppliable) throws EX
+    {
+      Objects.mustNotBeNull(exceptionSuppliable, "The exceptionSuppliable must not be null.");
+      if (t != null)
+      {
+        return t;
+      }
+      throw exceptionSuppliable.supply();
     }
 
     @Override
@@ -116,24 +190,25 @@ public class Options
       {
         return true;
       }
-      final Some<?> that = castIfInstanceOf(Some.class, option);
+      final Option<?> that = castIfInstanceOf(Option.class, option);
       /* @formatter:off */
       return that != null &&
-              equal(this.t, that.get());
+              equal(this.t,
+                    that.get());
       /* @formatter:on */
     }
 
     @Override
     public String toString()
     {
-      return "Some(" + t + ")";
+      return t == null ? "None()" : "Some(" + t + ")";
     }
   }
 
-  public static <T> Option<T> option(final T t)
+  public static <T> Option<T> optionOf(final T t)
   {
     @SuppressWarnings("unchecked")
-    final Option<T> option = (Option<T>) (t == null ? None.INSTANCE : new Some<T>(t));
+    final Option<T> option = (Option<T>) (t == null ? NONE : new Some<T>(t));
     return option;
   }
 }

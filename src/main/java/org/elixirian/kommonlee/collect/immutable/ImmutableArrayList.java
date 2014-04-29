@@ -372,13 +372,14 @@ final class EmptyImmutableArrayList<E> extends ImmutableArrayList<E>
   }
 
   @Override
-  public int lastIndexOf(final Condition1<? super E> condition)
+  public int lastIndexOf(@SuppressWarnings("unused") final Condition1<? super E> condition)
   {
     return -1;
   }
 
   @Override
-  public int lastIndexOf(final Condition1<? super E> condition, final int toIndex)
+  public int lastIndexOf(@SuppressWarnings("unused") final Condition1<? super E> condition,
+      @SuppressWarnings("unused") final int toIndex)
   {
     return -1;
   }
@@ -416,6 +417,12 @@ final class EmptyImmutableArrayList<E> extends ImmutableArrayList<E>
   private Object readResolve()
   {
     return EMPTY_IMMUTABLE_ARRAY_LIST;
+  }
+
+  @Override
+  public E reduce(@SuppressWarnings("unused") final Function2<? super E, ? super E, E> function)
+  {
+    return null;
   }
 }
 
@@ -720,5 +727,27 @@ final class DefaultImmutableArrayList<E> extends ImmutableArrayList<E>
     return null != that &&
           deepEqual(this.elements, that.toArray());
   /* @formatter:on */
+  }
+
+  @Override
+  public E reduce(final Function2<? super E, ? super E, E> function)
+  {
+    if (length == 0)
+    {
+      return null;
+    }
+    @SuppressWarnings("unchecked")
+    E result = (E) this.elements[0];
+    if (length == 1)
+    {
+      return result;
+    }
+    for (int i = 1; i < length; i++)
+    {
+      @SuppressWarnings("unchecked")
+      final E element = (E) this.elements[i];
+      result = function.apply(result, element);
+    }
+    return result;
   }
 }

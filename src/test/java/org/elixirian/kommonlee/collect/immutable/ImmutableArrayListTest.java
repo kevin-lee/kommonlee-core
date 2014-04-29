@@ -1447,6 +1447,133 @@ public class ImmutableArrayListTest
   }
 
   @Test
+  public final void testReduce()
+  {
+    /* given */
+    final List<Integer> elements = Arrays.asList(0, 1, 2, 3, 4, 5);
+    int expected = 0;
+    for (final Integer integer : elements)
+    {
+      expected += integer.intValue();
+    }
+
+    /* when */
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
+
+    final Integer actual = list.reduce(new Function2<Integer, Integer, Integer>() {
+      @Override
+      public Integer apply(final Integer input1, final Integer input2)
+      {
+        return input1.intValue() + input2.intValue();
+      }
+    });
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testReduce2()
+  {
+    /* given */
+    final List<String> elements = Arrays.asList("Hello, ", "Kevin", " ", "Lee");
+    final StringBuilder stringBuilder = new StringBuilder();
+
+    for (final String element : elements)
+    {
+      stringBuilder.append(element);
+    }
+    final String expected = stringBuilder.toString();
+
+    /* when */
+    final ImmutableList<String> list = new DefaultImmutableArrayList<String>(elements.toArray());
+
+    final String actual = list.reduce(new Function2<String, String, String>() {
+      @Override
+      public String apply(final String input1, final String input2)
+      {
+        return input1 + input2;
+      }
+    });
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testReduce3()
+  {
+    /* given */
+    final List<String> elements = Arrays.asList("First", "Second", "Third", "Fourth");
+    final StringBuilder stringBuilder = new StringBuilder();
+
+    for (final String element : elements)
+    {
+      stringBuilder.append(element)
+          .append(", ");
+    }
+    final String expected = stringBuilder.delete(stringBuilder.length() - 2, stringBuilder.length())
+        .toString();
+
+    /* when */
+    final ImmutableList<String> list = new DefaultImmutableArrayList<String>(elements.toArray());
+
+    final String actual = list.reduce(new Function2<String, String, String>() {
+      @Override
+      public String apply(final String input1, final String input2)
+      {
+        return input1 + ", " + input2;
+      }
+    });
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testReduceWithOneElement()
+  {
+    /* given */
+    final List<Integer> elements = Arrays.asList(999);
+    final int expected = 999;
+
+    /* when */
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
+
+    final Integer actual = list.reduce(new Function2<Integer, Integer, Integer>() {
+      @Override
+      public Integer apply(final Integer input1, final Integer input2)
+      {
+        return input1.intValue() * input2.intValue();
+      }
+    });
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+  }
+
+  @Test
+  public final void testReduceWithNoElement()
+  {
+    /* given */
+    final List<Integer> elements = Arrays.asList();
+
+    /* when */
+    final ImmutableArrayList<Integer> list = new DefaultImmutableArrayList<Integer>(elements.toArray());
+
+    final Integer actual = list.reduce(new Function2<Integer, Integer, Integer>() {
+      @Override
+      public Integer apply(final Integer input1, final Integer input2)
+      {
+        return input1.intValue() * input2.intValue();
+      }
+    });
+
+    /* then */
+    assertThat(actual).isNull();
+  }
+
+  @Test
   public final void testGet()
   {
     /* given */
