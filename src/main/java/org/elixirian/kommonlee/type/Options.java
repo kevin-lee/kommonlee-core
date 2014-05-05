@@ -167,10 +167,42 @@ public class Options
     }
 
     @Override
+    public void doIfNotNull(final VoidFunction1<T> function)
+    {
+      Objects.mustNotBeNull(function, "The function must not be null.");
+      if (t != null)
+      {
+        function.apply(t);
+      }
+    }
+
+    @Override
+    public void doIfNull(final VoidFunction1<T> function)
+    {
+      Objects.mustNotBeNull(function, "The function must not be null.");
+      if (t == null)
+      {
+        function.apply(t);
+      }
+    }
+
+    @Override
     public <EX extends Throwable> T getOrThrow(final Suppliable<EX> exceptionSuppliable) throws EX
     {
       Objects.mustNotBeNull(exceptionSuppliable, "The exceptionSuppliable must not be null.");
       if (t != null)
+      {
+        return t;
+      }
+      throw exceptionSuppliable.supply();
+    }
+
+    @Override
+    public <EX extends Throwable> T getIfOrThrow(final Condition1<T> condition, final Suppliable<EX> exceptionSuppliable) throws EX
+    {
+      Objects.mustNotBeNull(condition, "The condition must not be null.");
+      Objects.mustNotBeNull(exceptionSuppliable, "The exceptionSuppliable must not be null.");
+      if (condition.isMet(t))
       {
         return t;
       }

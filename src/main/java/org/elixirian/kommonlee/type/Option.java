@@ -62,9 +62,9 @@ public interface Option<T>
   boolean isNotNull();
 
   T get();
-  
+
   T getOrUse(T alternative);
-  
+
   T getOrGetAnother(Suppliable<T> suppliable);
 
   T getIf(Condition1<T> condition);
@@ -79,5 +79,11 @@ public interface Option<T>
 
   void doIf(Condition1<T> condition, VoidFunction1<T> function);
 
+  void doIfNull(VoidFunction1<T> function);
+
+  void doIfNotNull(VoidFunction1<T> function);
+
   <EX extends Throwable> T getOrThrow(Suppliable<EX> exceptionSuppliable) throws EX;
+
+  <EX extends Throwable> T getIfOrThrow(Condition1<T> condition, Suppliable<EX> exceptionSuppliable) throws EX;
 }
