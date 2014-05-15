@@ -31,16 +31,17 @@
  */
 package org.elixirian.kommonlee.util;
 
-import static org.elixirian.kommonlee.util.Objects.*;
-//import static org.junit.Assert.*;
 import static org.assertj.core.api.Assertions.*;
+import static org.elixirian.kommonlee.util.Objects.*;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import org.elixirian.kommonlee.test.CauseCheckableExpectedException;
+import org.hamcrest.core.IsEqual;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -51,12 +52,12 @@ import org.junit.Test;
 /**
  * <pre>
  *     ___  _____                                              _____
- *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______  
- *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \ 
+ *    /   \/    / ______ __________________  ______ __ ______ /    /   ______  ______
+ *   /        / _/ __  // /  /   / /  /   /_/ __  // //     //    /   /  ___ \/  ___ \
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -64,7 +65,7 @@ import org.junit.Test;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2011-08-25)
  */
@@ -1446,7 +1447,7 @@ public class NeoArraysTest
     /* then */
     assertThat(actual).isFalse();
   }
-  
+
   @Test
   public final void testEqualByteArrayIntIntByteArrayIntIntWithBothNullArrays()
   {
@@ -1454,11 +1455,11 @@ public class NeoArraysTest
     final byte[] left = null;
     final byte[] right = null;
     final int from = -3;
-    final int to = - 2;
-    
+    final int to = -2;
+
     /* when */
     final boolean actual = NeoArrays.equal(left, from, to, right, from, to);
-    
+
     /* then */
     assertThat(actual).isTrue();
   }
@@ -5529,5 +5530,179 @@ public class NeoArraysTest
 
     /* otherwise */
     fail("IndexOutOfBoundsException is not thrown for invalid range! [range: from: " + from + ", to:" + to + "]");
+  }
+
+  @Test
+  public final void testGlue()
+  {
+    /* given */
+    final String[] expected = { "Kevin", "Lee", "test", "element", "and", "varargs", "glue" };
+
+    /* when */
+    final String[] actual = NeoArrays.glue("Kevin", "Lee", "test", "element", "and", "varargs", "glue");
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameSizeAs(expected);
+  }
+
+  @Test
+  public final void testGlue2()
+  {
+    /* given */
+    final String[] expected = { "Kevin", "Lee" };
+
+    /* when */
+    final String[] actual = NeoArrays.glue("Kevin", "Lee");
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameSizeAs(expected);
+  }
+
+  @Test
+  public final void testGlue3()
+  {
+    /* given */
+    final String[] expected = { "Kevin" };
+
+    /* when */
+    final String[] actual = NeoArrays.glue("Kevin");
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameSizeAs(expected);
+  }
+
+  @Test
+  public final void testGlue4()
+  {
+    /* given */
+    final String[] expected = { "Kevin", "Lee", "test", "element", "and", "varargs", "glue" };
+
+    /* when */
+    final String[] actual =
+      NeoArrays.glue("Kevin", new String[] { "Lee", "test", "element", "and", "varargs", "glue" });
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameSizeAs(expected);
+  }
+
+  @Test
+  public final void testGlue5()
+  {
+    /* given */
+    final Integer[] expected = { 3, -1, 23, 0, -100, 34, 999 };
+
+    /* when */
+    final Integer[] actual = NeoArrays.glue(3, -1, 23, 0, -100, 34, 999);
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameSizeAs(expected);
+  }
+
+  @Test
+  public final void testGlue6()
+  {
+    /* given */
+    /* expected */
+    expectedException.expect(NullPointerException.class)
+        .expectMessage(
+            IsEqual.equalTo("The rest of elements (tail) must not be null. If there is only one element that should be passed to this method, just do glue(element) instead of glue(element, null)."));
+
+    /* when */
+    final String[] actual = NeoArrays.glue("test", null);
+
+    /* otherwise-fail */
+    fail("NullPointerException was not thrown when the rest array was null.");
+  }
+
+  @Test
+  public final void testGlueToList()
+  {
+    /* given */
+    final List<String> expected = Arrays.asList("Kevin", "Lee", "test", "element", "and", "varargs", "glue");
+
+    /* when */
+    final List<String> actual = NeoArrays.glueToList("Kevin", "Lee", "test", "element", "and", "varargs", "glue");
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameSizeAs(expected);
+  }
+
+  @Test
+  public final void testGlueToList2()
+  {
+    /* given */
+    final List<String> expected = Arrays.asList("Kevin", "Lee");
+
+    /* when */
+    final List<String> actual = NeoArrays.glueToList("Kevin", "Lee");
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameSizeAs(expected);
+  }
+
+  @Test
+  public final void testGlueToList3()
+  {
+    /* given */
+    final List<String> expected = Arrays.asList("Kevin");
+
+    /* when */
+    final List<String> actual = NeoArrays.glueToList("Kevin");
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameSizeAs(expected);
+  }
+
+  @Test
+  public final void testGlueToList4()
+  {
+    /* given */
+    final List<String> expected = Arrays.asList("Kevin", "Lee", "test", "element", "and", "varargs", "glue");
+
+    /* when */
+    final List<String> actual =
+      NeoArrays.glueToList("Kevin", new String[] { "Lee", "test", "element", "and", "varargs", "glue" });
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameSizeAs(expected);
+  }
+
+  @Test
+  public final void testGlueToList5()
+  {
+    /* given */
+    final List<Integer> expected = Arrays.asList(3, -1, 23, 0, -100, 34, 999);
+
+    /* when */
+    final List<Integer> actual = NeoArrays.glueToList(3, -1, 23, 0, -100, 34, 999);
+
+    /* then */
+    assertThat(actual).isEqualTo(expected);
+    assertThat(actual).hasSameSizeAs(expected);
+  }
+
+  @Test
+  public final void testGlueToList6()
+  {
+    /* given */
+    /* expected */
+    expectedException.expect(NullPointerException.class)
+        .expectMessage(
+            IsEqual.equalTo("The rest of elements (tail) must not be null. If there is only one element that should be passed to this method, just do glue(element) instead of glue(element, null)."));
+
+    /* when */
+    final List<String> actual = NeoArrays.glueToList("test", null);
+
+    /* otherwise-fail */
+    fail("NullPointerException was not thrown when the rest array was null.");
   }
 }

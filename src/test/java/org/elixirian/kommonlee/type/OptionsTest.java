@@ -240,6 +240,7 @@ public class OptionsTest
   public final void testGetOrGetAnotherWithNullSuppliable()
   {
     /* given */
+    @SuppressWarnings("unused")
     final Integer expected = 999;
     final Option<Integer> option = Options.optionOf(999);
 
@@ -247,6 +248,7 @@ public class OptionsTest
     expectedException.expect(NullPointerException.class);
 
     /* when */
+    @SuppressWarnings("unused")
     final Integer actual = option.getOrGetAnother(null);
 
     /* otherwise-fail */
@@ -254,49 +256,52 @@ public class OptionsTest
   }
 
   @Test
-  public final void testGetIf()
+  public final void testIfThen()
   {
     /* given */
     final Integer expected = 999;
     final Option<Integer> option = Options.optionOf(999);
 
     /* when */
-    final Integer actual = option.getIf(new Condition1<Integer>() {
+    final Integer actual = option.ifThen(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
       {
         return input > 100;
       }
-    });
+    })
+        .get();
 
     /* then */
     assertThat(actual).isEqualTo(expected);
   }
 
   @Test
-  public final void testGetIfForFalse()
+  public final void testIfThenForFalse()
   {
     /* given */
     final Integer expected = null;
     final Option<Integer> option = Options.optionOf(999);
 
     /* when */
-    final Integer actual = option.getIf(new Condition1<Integer>() {
+    final Integer actual = option.ifThen(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
       {
         return input < 100;
       }
-    });
+    })
+        .get();
 
     /* then */
     assertThat(actual).isEqualTo(expected);
   }
 
   @Test
-  public final void testGetIfWithNullCondition()
+  public final void testIfThenWithNullCondition()
   {
     /* given */
+    @SuppressWarnings("unused")
     final Integer expected = 999;
     final Option<Integer> option = Options.optionOf(999);
 
@@ -304,106 +309,112 @@ public class OptionsTest
     expectedException.expect(NullPointerException.class);
 
     /* when */
-    final Integer actual = option.getIf(null);
+    @SuppressWarnings("unused")
+    final Integer actual = option.ifThen(null)
+        .get();
 
     /* otherwise-fail */
     fail("It did not throw " + NullPointerException.class.getSimpleName() + " when Condition1 was null.");
   }
 
   @Test
-  public final void testGetIfOrUse()
+  public final void testIfThenGetOrUse()
   {
     /* given */
     final Integer expected = 999;
     final Option<Integer> option = Options.optionOf(999);
 
     /* when */
-    final Integer actual = option.getIfOrUse(new Condition1<Integer>() {
+    final Integer actual = option.ifThen(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
       {
         return input > 100;
       }
-    }, 111);
+    })
+        .getOrUse(111);
 
     /* then */
     assertThat(actual).isEqualTo(expected);
   }
 
   @Test
-  public final void testGetIfOrUseForFalse()
+  public final void testIfThenGetOrUseForFalse()
   {
     /* given */
     final Integer expected = 111;
     final Option<Integer> option = Options.optionOf(9);
 
     /* when */
-    final Integer actual = option.getIfOrUse(new Condition1<Integer>() {
+    final Integer actual = option.ifThen(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
       {
         return input > 100;
       }
-    }, 111);
+    })
+        .getOrUse(111);
 
     /* then */
     assertThat(actual).isEqualTo(expected);
   }
 
   @Test
-  public final void testGetIfOrGetAnother()
+  public final void testIfThenOrGetAnother()
   {
     /* given */
     final Integer expected = 999;
     final Option<Integer> option = Options.optionOf(999);
 
     /* when */
-    final Integer actual = option.getIfOrGetAnother(new Condition1<Integer>() {
+    final Integer actual = option.ifThen(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
       {
         return input > 100;
       }
-    }, new Suppliable<Integer>() {
-      @Override
-      public Integer supply()
-      {
-        return 111;
-      }
-    });
+    })
+        .getOrGetAnother(new Suppliable<Integer>() {
+          @Override
+          public Integer supply()
+          {
+            return 111;
+          }
+        });
 
     /* then */
     assertThat(actual).isEqualTo(expected);
   }
 
   @Test
-  public final void testGetIfOrGetAnotherForFalse()
+  public final void testIfThenOrGetAnotherForFalse()
   {
     /* given */
     final Integer expected = 111;
     final Option<Integer> option = Options.optionOf(10);
 
     /* when */
-    final Integer actual = option.getIfOrGetAnother(new Condition1<Integer>() {
+    final Integer actual = option.ifThen(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
       {
         return input > 100;
       }
-    }, new Suppliable<Integer>() {
-      @Override
-      public Integer supply()
-      {
-        return 111;
-      }
-    });
+    })
+        .getOrGetAnother(new Suppliable<Integer>() {
+          @Override
+          public Integer supply()
+          {
+            return 111;
+          }
+        });
 
     /* then */
     assertThat(actual).isEqualTo(expected);
   }
 
   @Test
-  public final void testGetIfOrGetAnotherWithNullCondition()
+  public final void testIfThenOrGetAnotherWithNullCondition()
   {
     /* given */
     final Option<Integer> option = Options.optionOf(999);
@@ -413,20 +424,22 @@ public class OptionsTest
         .expectMessageContains("condition must not be null");
 
     /* when */
-    final Integer actual = option.getIfOrGetAnother(null, new Suppliable<Integer>() {
-      @Override
-      public Integer supply()
-      {
-        return 111;
-      }
-    });
+    @SuppressWarnings("unused")
+    final Integer actual = option.ifThen(null)
+        .getOrGetAnother(new Suppliable<Integer>() {
+          @Override
+          public Integer supply()
+          {
+            return 111;
+          }
+        });
 
     /* otherwise-fail */
     fail("It did not throw " + NullPointerException.class.getSimpleName() + " when Condition1 was null.");
   }
 
   @Test
-  public final void testGetIfOrGetAnotherWithNullSuppliable()
+  public final void testIfThenOrGetAnotherWithNullSuppliable()
   {
     /* given */
     final Option<Integer> option = Options.optionOf(999);
@@ -436,13 +449,15 @@ public class OptionsTest
         .expectMessageContains("suppliable must not be null");
 
     /* when */
-    final Integer actual = option.getIfOrGetAnother(new Condition1<Integer>() {
+    @SuppressWarnings("unused")
+    final Integer actual = option.ifThen(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
       {
         return input > 100;
       }
-    }, null);
+    })
+        .getOrGetAnother(null);
 
     /* otherwise-fail */
     fail("It did not throw " + NullPointerException.class.getSimpleName() + " when Suppliable was null.");
@@ -463,7 +478,8 @@ public class OptionsTest
       {
         return "(" + input + ")";
       }
-    });
+    })
+        .get();
 
     /* then */
     assertThat(actual).isEqualTo(expected);
@@ -483,7 +499,8 @@ public class OptionsTest
       {
         return "(" + input + ")";
       }
-    });
+    })
+        .get();
 
     /* then */
     assertThat(actual).isEqualTo(expected);
@@ -500,7 +517,9 @@ public class OptionsTest
         .expectMessageContains("mapper must not be null");
 
     /* when */
-    final String actual = option.map(null);
+    @SuppressWarnings("unused")
+    final Object actual = option.map(null)
+        .get();
 
     /* otherwise-fail */
     fail("It did not throw " + NullPointerException.class.getSimpleName() + " when Function1 was null.");
@@ -526,7 +545,8 @@ public class OptionsTest
       {
         return "00" + input;
       }
-    });
+    })
+        .get();
 
     /* then */
     assertThat(actual).isEqualTo(expected);
@@ -553,7 +573,8 @@ public class OptionsTest
       {
         return "00" + input;
       }
-    });
+    })
+        .get();
 
     /* then */
     assertThat(actual).isEqualTo(expected);
@@ -570,13 +591,15 @@ public class OptionsTest
         .expectMessageContains("condition must not be null");
 
     /* when */
+    @SuppressWarnings("unused")
     final String actual = option.mapIf(null, new Function1<Integer, String>() {
       @Override
       public String apply(final Integer input)
       {
         return "00" + input;
       }
-    });
+    })
+        .get();
 
     /* otherwise-fail */
     fail("It did not throw " + NullPointerException.class.getSimpleName() + " when Condition1 was null.");
@@ -593,13 +616,15 @@ public class OptionsTest
         .expectMessageContains("mapper must not be null");
 
     /* when */
-    final String actual = option.mapIf(new Condition1<Integer>() {
+    @SuppressWarnings("unused")
+    final Object actual = option.mapIf(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
       {
         return input < 10;
       }
-    }, null);
+    }, null)
+        .get();
 
     /* otherwise-fail */
     fail("It did not throw " + NullPointerException.class.getSimpleName() + " when Function1 was null.");
@@ -680,6 +705,7 @@ public class OptionsTest
         number[0] = number[0] * input;
       }
     });
+    @SuppressWarnings("unused")
     final int actual = number[0];
 
     /* otherwise-fail */
@@ -705,6 +731,7 @@ public class OptionsTest
         return input > 0;
       }
     }, null);
+    @SuppressWarnings("unused")
     final int actual = number[0];
 
     /* otherwise-fail */
@@ -820,6 +847,7 @@ public class OptionsTest
         .expectMessage(CoreMatchers.equalTo("The value must not be null."));
 
     /* when */
+    @SuppressWarnings("unused")
     final Integer actual = option.getOrThrow(new Suppliable<IllegalArgumentException>() {
       @Override
       public IllegalArgumentException supply()
@@ -833,34 +861,35 @@ public class OptionsTest
   }
 
   @Test
-  public final void testGetIfOrThrow()
+  public final void testIfThenOrThrow()
   {
     /* given */
     final Integer expected = 999;
     final Option<Integer> option = Options.optionOf(999);
 
     /* when */
-    final Integer actual = option.getIfOrThrow(new Condition1<Integer>() {
+    final Integer actual = option.ifThen(new Condition1<Integer>() {
 
       @Override
       public boolean isMet(final Integer input)
       {
         return input.intValue() > 0;
       }
-    }, new Suppliable<IllegalArgumentException>() {
-      @Override
-      public IllegalArgumentException supply()
-      {
-        return new IllegalArgumentException("The value must not be null.");
-      }
-    });
+    })
+        .getOrThrow(new Suppliable<IllegalArgumentException>() {
+          @Override
+          public IllegalArgumentException supply()
+          {
+            return new IllegalArgumentException("The value must not be null.");
+          }
+        });
 
     /* then */
     assertThat(actual).isEqualTo(expected);
   }
 
   @Test
-  public final void testGetIfOrThrowWithFalse()
+  public final void testIfThenOrThrowWithFalse()
   {
     /* given */
     final Option<Integer> option = Options.optionOf(999);
@@ -870,27 +899,29 @@ public class OptionsTest
         .expectMessage(CoreMatchers.equalTo("The value must be a negative integer."));
 
     /* when */
-    final Integer actual = option.getIfOrThrow(new Condition1<Integer>() {
+    @SuppressWarnings("unused")
+    final Integer actual = option.ifThen(new Condition1<Integer>() {
 
       @Override
       public boolean isMet(final Integer input)
       {
         return input.intValue() < 0;
       }
-    }, new Suppliable<IllegalArgumentException>() {
-      @Override
-      public IllegalArgumentException supply()
-      {
-        return new IllegalArgumentException("The value must be a negative integer.");
-      }
-    });
+    })
+        .getOrThrow(new Suppliable<IllegalArgumentException>() {
+          @Override
+          public IllegalArgumentException supply()
+          {
+            return new IllegalArgumentException("The value must be a negative integer.");
+          }
+        });
 
     /* otherwise-fail */
     fail("It did not throw " + IllegalArgumentException.class.getSimpleName() + " when it was expected.");
   }
 
   @Test
-  public final void testGetIfOrThrowWithNullCondition()
+  public final void testIfThenOrThrowWithNullCondition()
   {
     /* given */
     final Option<Integer> option = Options.optionOf(999);
@@ -900,20 +931,22 @@ public class OptionsTest
         .expectMessage(CoreMatchers.equalTo("The condition must not be null."));
 
     /* when */
-    final Integer actual = option.getIfOrThrow(null, new Suppliable<IllegalArgumentException>() {
-      @Override
-      public IllegalArgumentException supply()
-      {
-        return new IllegalArgumentException("The value must not be null.");
-      }
-    });
+    @SuppressWarnings("unused")
+    final Integer actual = option.ifThen(null)
+        .getOrThrow(new Suppliable<IllegalArgumentException>() {
+          @Override
+          public IllegalArgumentException supply()
+          {
+            return new IllegalArgumentException("The value must not be null.");
+          }
+        });
 
     /* otherwise-fail */
     fail("It did not throw " + NullPointerException.class.getSimpleName() + " when Condition1 was null.");
   }
 
   @Test
-  public final void testGetIfOrThrowWithNullThrowableSupplier()
+  public final void testIfThenOrThrowWithNullThrowableSupplier()
   {
     /* given */
     final Option<Integer> option = Options.optionOf(999);
@@ -923,13 +956,15 @@ public class OptionsTest
         .expectMessage(CoreMatchers.equalTo("The exceptionSuppliable must not be null."));
 
     /* when */
-    final Integer actual = option.getIfOrThrow(new Condition1<Integer>() {
+    @SuppressWarnings("unused")
+    final Integer actual = option.ifThen(new Condition1<Integer>() {
       @Override
       public boolean isMet(final Integer input)
       {
         return input.intValue() > 0;
       }
-    }, (Suppliable<RuntimeException>) null);
+    })
+        .getOrThrow((Suppliable<RuntimeException>) null);
 
     /* otherwise-fail */
     fail("It did not throw " + NullPointerException.class.getSimpleName() + " when exceptionSuppliable was null.");
@@ -939,6 +974,7 @@ public class OptionsTest
   public final void testEqualsObjectForNone()
   {
     /* given */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     final Option<Integer> another = (Option) Options.NONE;
     final Option<Integer> option = Options.optionOf(null);
 
@@ -981,6 +1017,7 @@ public class OptionsTest
   public final void testEqualsObjectForSome2()
   {
     /* given */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     final Option<Integer> another = (Option) Options.NONE;
     final Option<Integer> option = Options.optionOf(999);
 

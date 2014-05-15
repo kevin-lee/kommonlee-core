@@ -67,15 +67,11 @@ public interface Option<T>
 
   T getOrGetAnother(Suppliable<T> suppliable);
 
-  T getIf(Condition1<T> condition);
+  Option<T> ifThen(Condition1<T> condition);
 
-  T getIfOrUse(Condition1<T> condition, T alternative);
+  <N> Option<N> map(Function1<T, N> mapper);
 
-  T getIfOrGetAnother(Condition1<T> condition, Suppliable<T> suppliable);
-
-  <N> N map(Function1<T, N> mapper);
-
-  <N> N mapIf(Condition1<T> condition, Function1<T, N> mapper);
+  <N> Option<N> mapIf(Condition1<T> condition, Function1<T, N> mapper);
 
   void doIf(Condition1<T> condition, VoidFunction1<T> function);
 
@@ -84,6 +80,4 @@ public interface Option<T>
   void doIfNotNull(VoidFunction1<T> function);
 
   <EX extends Throwable> T getOrThrow(Suppliable<EX> exceptionSuppliable) throws EX;
-
-  <EX extends Throwable> T getIfOrThrow(Condition1<T> condition, Suppliable<EX> exceptionSuppliable) throws EX;
 }

@@ -62,6 +62,13 @@ public class Options
 {
   static final Option<Object> NONE = new Some<Object>(null);
 
+  public static <T> Option<T> none()
+  {
+    @SuppressWarnings("unchecked")
+    final Option<T> none = (Option<T>) NONE;
+    return none;
+  }
+
   static class Some<T> implements Option<T>
   {
     private final T t;
@@ -103,56 +110,33 @@ public class Options
     }
 
     @Override
-    public T getIf(final Condition1<T> condition)
+    public Option<T> ifThen(final Condition1<T> condition)
     {
       Objects.mustNotBeNull(condition, "The condition must not be null.");
       if (condition.isMet(t))
       {
-        return t;
+        return this;
       }
-      return null;
+      return none();
     }
 
     @Override
-    public T getIfOrUse(final Condition1<T> condition, final T alternative)
-    {
-      Objects.mustNotBeNull(condition, "The condition must not be null.");
-      if (condition.isMet(t))
-      {
-        return t;
-      }
-      return alternative;
-    }
-
-    @Override
-    public T getIfOrGetAnother(final Condition1<T> condition, final Suppliable<T> suppliable)
-    {
-      Objects.mustNotBeNull(condition, "The condition must not be null.");
-      Objects.mustNotBeNull(suppliable, "The suppliable must not be null.");
-      if (condition.isMet(t))
-      {
-        return t;
-      }
-      return suppliable.supply();
-    }
-
-    @Override
-    public <N> N map(final Function1<T, N> mapper)
+    public <N> Option<N> map(final Function1<T, N> mapper)
     {
       Objects.mustNotBeNull(mapper, "The mapper must not be null.");
-      return mapper.apply(t);
+      return optionOf(mapper.apply(t));
     }
 
     @Override
-    public <N> N mapIf(final Condition1<T> condition, final Function1<T, N> mapper)
+    public <N> Option<N> mapIf(final Condition1<T> condition, final Function1<T, N> mapper)
     {
       Objects.mustNotBeNull(condition, "The condition must not be null.");
       Objects.mustNotBeNull(mapper, "The mapper must not be null.");
       if (condition.isMet(t))
       {
-        return mapper.apply(t);
+        return optionOf(mapper.apply(t));
       }
-      return null;
+      return none();
     }
 
     @Override
@@ -191,18 +175,6 @@ public class Options
     {
       Objects.mustNotBeNull(exceptionSuppliable, "The exceptionSuppliable must not be null.");
       if (t != null)
-      {
-        return t;
-      }
-      throw exceptionSuppliable.supply();
-    }
-
-    @Override
-    public <EX extends Throwable> T getIfOrThrow(final Condition1<T> condition, final Suppliable<EX> exceptionSuppliable) throws EX
-    {
-      Objects.mustNotBeNull(condition, "The condition must not be null.");
-      Objects.mustNotBeNull(exceptionSuppliable, "The exceptionSuppliable must not be null.");
-      if (condition.isMet(t))
       {
         return t;
       }
