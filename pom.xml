@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>kommonlee-core</artifactId>
-	<version>0.0.45-SNAPSHOT</version>
+	<version>0.0.46-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>kommonlee-core</name>
@@ -74,7 +74,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.10</version>
+      <version>4.11</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -94,7 +94,7 @@
 		<dependency>
 		  <groupId>org.elixirian</groupId>
 		  <artifactId>kommonlee-test</artifactId>
-		  <version>0.0.17-SNAPSHOT</version>
+		  <version>0.0.18-SNAPSHOT</version>
 		  <scope>test</scope>
 		</dependency>
 	</dependencies>
