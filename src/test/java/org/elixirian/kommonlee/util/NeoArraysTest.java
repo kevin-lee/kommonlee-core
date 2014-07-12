@@ -234,12 +234,714 @@ public class NeoArraysTest
   }
 
   @Test
+  public final void testIsEmptyBoolean()
+  {
+    /* given */
+    final boolean[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyBoolean1()
+  {
+    /* given */
+    final boolean[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyBoolean2()
+  {
+    /* given */
+    final boolean[] array = { true };
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyBoolean()
+  {
+    /* given */
+    final boolean[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyBoolean1()
+  {
+    /* given */
+    final boolean[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyBoolean2()
+  {
+    /* given */
+    final boolean[] array = { true };
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyByte()
+  {
+    /* given */
+    final byte[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyByte1()
+  {
+    /* given */
+    final byte[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyByte2()
+  {
+    /* given */
+    final byte[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyByte()
+  {
+    /* given */
+    final byte[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyByte1()
+  {
+    /* given */
+    final byte[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyByte2()
+  {
+    /* given */
+    final byte[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyChar()
+  {
+    /* given */
+    final char[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyChar1()
+  {
+    /* given */
+    final char[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyChar2()
+  {
+    /* given */
+    final char[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyChar()
+  {
+    /* given */
+    final char[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyChar1()
+  {
+    /* given */
+    final char[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyChar2()
+  {
+    /* given */
+    final char[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyShort()
+  {
+    /* given */
+    final short[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyShort1()
+  {
+    /* given */
+    final short[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyShort2()
+  {
+    /* given */
+    final short[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyShort()
+  {
+    /* given */
+    final short[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyShort1()
+  {
+    /* given */
+    final short[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyShort2()
+  {
+    /* given */
+    final short[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyInt()
+  {
+    /* given */
+    final int[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyInt1()
+  {
+    /* given */
+    final int[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyInt2()
+  {
+    /* given */
+    final int[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyInt()
+  {
+    /* given */
+    final int[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyInt1()
+  {
+    /* given */
+    final int[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyInt2()
+  {
+    /* given */
+    final int[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyLong()
+  {
+    /* given */
+    final long[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyLong1()
+  {
+    /* given */
+    final long[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyLong2()
+  {
+    /* given */
+    final long[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyLong()
+  {
+    /* given */
+    final long[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyLong1()
+  {
+    /* given */
+    final long[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyLong2()
+  {
+    /* given */
+    final long[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyFloat()
+  {
+    /* given */
+    final float[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyFloat1()
+  {
+    /* given */
+    final float[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyFloat2()
+  {
+    /* given */
+    final float[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyFloat()
+  {
+    /* given */
+    final float[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyFloat1()
+  {
+    /* given */
+    final float[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyFloat2()
+  {
+    /* given */
+    final float[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyDouble()
+  {
+    /* given */
+    final double[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyDouble1()
+  {
+    /* given */
+    final double[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyDouble2()
+  {
+    /* given */
+    final double[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyDouble()
+  {
+    /* given */
+    final double[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyDouble1()
+  {
+    /* given */
+    final double[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyDouble2()
+  {
+    /* given */
+    final double[] array = { 1 };
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyT()
+  {
+    /* given */
+    final String[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyT1()
+  {
+    /* given */
+    final String[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
+  public final void testIsEmptyT2()
+  {
+    /* given */
+    final String[] array = { "" };
+
+    /* when */
+    final boolean actual = NeoArrays.isEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyT()
+  {
+    /* given */
+    final String[] array = null;
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyT1()
+  {
+    /* given */
+    final String[] array = {};
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isFalse();
+  }
+
+  @Test
+  public final void testIsNotEmptyT2()
+  {
+    /* given */
+    final String[] array = { "" };
+
+    /* when */
+    final boolean actual = NeoArrays.isNotEmpty(array);
+
+    /* then */
+    assertThat(actual).isTrue();
+  }
+
+  @Test
   public final void testToStringOfArray()
   {
     System.out.println("\n##### NeoArraysTest.testToStringOfArray() starts");
     /* given */
-    final String[] array1 =
-      { "Hello", "Kevin", "This is a test array", "1", "2", "3", "a", "b", "c", "d", "e", null, "", "blah blah", "end" };
+    final String[] array1 = { "Hello", "Kevin", "This is a test array", "1", "2", "3", "a", "b", "c", "d", "e", null, "", "blah blah",
+        "end" };
     final String expected1 = "[Hello, Kevin, This is a test array, 1, 2, 3, a, b, c, d, e, null, , blah blah, end]";
 
     @SuppressWarnings("boxing")
@@ -286,11 +988,9 @@ public class NeoArraysTest
   {
     System.out.println("\n##### NeoArraysTest.testToStringOfArrayWith2DArray() starts");
     /* given */
-    final String[][] array1 =
-      { { "Hello", "Kevin" }, { "This is a test array" }, { "1", "2" }, { "3", "a" }, { "b", "c" }, { "d", "e" },
-          { null, "" }, { "blah blah", "end" } };
-    final String expected1 =
-      "[[Hello, Kevin], [This is a test array], [1, 2], [3, a], [b, c], [d, e], [null, ], [blah blah, end]]";
+    final String[][] array1 = { { "Hello", "Kevin" }, { "This is a test array" }, { "1", "2" }, { "3", "a" }, { "b", "c" }, { "d", "e" },
+        { null, "" }, { "blah blah", "end" } };
+    final String expected1 = "[[Hello, Kevin], [This is a test array], [1, 2], [3, a], [b, c], [d, e], [null, ], [blah blah, end]]";
 
     @SuppressWarnings("boxing")
     final Integer[][] array2 = { { -100, -10, -1 }, { 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 }, { 9, 10, 100 } };
@@ -336,15 +1036,12 @@ public class NeoArraysTest
   {
     System.out.println("\n##### NeoArraysTest.testToStringOfArrayWith3DArray() starts");
     /* given */
-    final String[][][] array1 =
-      { { { "Hello", "Kevin" }, { "This is a test array" }, { "1", "2" } },
-          { { "3", "a" }, { "b", "c" }, { "d", "e" } }, { { null, "" }, {}, { "blah blah", "end" } } };
-    final String expected1 =
-      "[[[Hello, Kevin], [This is a test array], [1, 2]], [[3, a], [b, c], [d, e]], [[null, ], [], [blah blah, end]]]";
+    final String[][][] array1 = { { { "Hello", "Kevin" }, { "This is a test array" }, { "1", "2" } },
+        { { "3", "a" }, { "b", "c" }, { "d", "e" } }, { { null, "" }, {}, { "blah blah", "end" } } };
+    final String expected1 = "[[[Hello, Kevin], [This is a test array], [1, 2]], [[3, a], [b, c], [d, e]], [[null, ], [], [blah blah, end]]]";
 
     @SuppressWarnings("boxing")
-    final Integer[][][] array2 =
-      { { { -100, -10, -1 }, { 0, 1, 2 } }, { {}, { 3, 4, 5 }, {} }, { { 6, 7, 8 }, {}, { 9, 10, 100 } } };
+    final Integer[][][] array2 = { { { -100, -10, -1 }, { 0, 1, 2 } }, { {}, { 3, 4, 5 }, {} }, { { 6, 7, 8 }, {}, { 9, 10, 100 } } };
     final String expected2 = "[[[-100, -10, -1], [0, 1, 2]], [[], [3, 4, 5], []], [[6, 7, 8], [], [9, 10, 100]]]";
 
     final String[][][] array3 = { { {}, {} }, { {} } };
@@ -531,10 +1228,8 @@ public class NeoArraysTest
   public final void testToStringOfArrayShortArray()
   {
     /* given */
-    final String expected1 =
-      "[" + Short.MIN_VALUE + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + "]";
-    final short[] array1 =
-      { Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3, 5, 10, 100, 999, Short.MAX_VALUE };
+    final String expected1 = "[" + Short.MIN_VALUE + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + "]";
+    final short[] array1 = { Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3, 5, 10, 100, 999, Short.MAX_VALUE };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray(array1);
@@ -567,10 +1262,8 @@ public class NeoArraysTest
   public final void testToStringOfArray0ShortArray()
   {
     /* given */
-    final String expected1 =
-      "[" + Short.MIN_VALUE + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + "]";
-    final short[] array1 =
-      { Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3, 5, 10, 100, 999, Short.MAX_VALUE };
+    final String expected1 = "[" + Short.MIN_VALUE + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + "]";
+    final short[] array1 = { Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3, 5, 10, 100, 999, Short.MAX_VALUE };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray0(array1);
@@ -677,13 +1370,10 @@ public class NeoArraysTest
   public final void testToStringOfArrayIntArray()
   {
     /* given */
-    final String expected1 =
-      "[" + Integer.MIN_VALUE + ", -777777, -50000, " + Short.MIN_VALUE
-          + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + ", 50000, 777777, "
-          + Integer.MAX_VALUE + "]";
-    final int[] array1 =
-      { Integer.MIN_VALUE, -777777, -50000, Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3, 5, 10, 100, 999,
-          Short.MAX_VALUE, 50000, 777777, Integer.MAX_VALUE };
+    final String expected1 = "[" + Integer.MIN_VALUE + ", -777777, -50000, " + Short.MIN_VALUE
+        + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + ", 50000, 777777, " + Integer.MAX_VALUE + "]";
+    final int[] array1 = { Integer.MIN_VALUE, -777777, -50000, Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3, 5, 10, 100, 999,
+        Short.MAX_VALUE, 50000, 777777, Integer.MAX_VALUE };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray(array1);
@@ -716,13 +1406,10 @@ public class NeoArraysTest
   public final void testToStringOfArray0IntArray()
   {
     /* given */
-    final String expected1 =
-      "[" + Integer.MIN_VALUE + ", -777777, -50000, " + Short.MIN_VALUE
-          + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + ", 50000, 777777, "
-          + Integer.MAX_VALUE + "]";
-    final int[] array1 =
-      { Integer.MIN_VALUE, -777777, -50000, Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3, 5, 10, 100, 999,
-          Short.MAX_VALUE, 50000, 777777, Integer.MAX_VALUE };
+    final String expected1 = "[" + Integer.MIN_VALUE + ", -777777, -50000, " + Short.MIN_VALUE
+        + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + ", 50000, 777777, " + Integer.MAX_VALUE + "]";
+    final int[] array1 = { Integer.MIN_VALUE, -777777, -50000, Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3, 5, 10, 100, 999,
+        Short.MAX_VALUE, 50000, 777777, Integer.MAX_VALUE };
     /* when */
     final String actual1 = NeoArrays.toStringOfArray0(array1);
 
@@ -757,13 +1444,11 @@ public class NeoArraysTest
   public final void testToStringOfArrayLongArray()
   {
     /* given */
-    final String expected1 =
-      "[" + Long.MIN_VALUE + ", " + Integer.MIN_VALUE + ", -777777, -50000, " + Short.MIN_VALUE
-          + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + ", 50000, 777777, "
-          + Integer.MAX_VALUE + ", " + Long.MAX_VALUE + "]";
-    final long[] array1 =
-      { Long.MIN_VALUE, Integer.MIN_VALUE, -777777, -50000, Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3,
-          5, 10, 100, 999, Short.MAX_VALUE, 50000, 777777, Integer.MAX_VALUE, Long.MAX_VALUE };
+    final String expected1 = "[" + Long.MIN_VALUE + ", " + Integer.MIN_VALUE + ", -777777, -50000, " + Short.MIN_VALUE
+        + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + ", 50000, 777777, " + Integer.MAX_VALUE + ", "
+        + Long.MAX_VALUE + "]";
+    final long[] array1 = { Long.MIN_VALUE, Integer.MIN_VALUE, -777777, -50000, Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3,
+        5, 10, 100, 999, Short.MAX_VALUE, 50000, 777777, Integer.MAX_VALUE, Long.MAX_VALUE };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray(array1);
@@ -796,13 +1481,11 @@ public class NeoArraysTest
   public final void testToStringOfArray0LongArray()
   {
     /* given */
-    final String expected1 =
-      "[" + Long.MIN_VALUE + ", " + Integer.MIN_VALUE + ", -777777, -50000, " + Short.MIN_VALUE
-          + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + ", 50000, 777777, "
-          + Integer.MAX_VALUE + ", " + Long.MAX_VALUE + "]";
-    final long[] array1 =
-      { Long.MIN_VALUE, Integer.MIN_VALUE, -777777, -50000, Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3,
-          5, 10, 100, 999, Short.MAX_VALUE, 50000, 777777, Integer.MAX_VALUE, Long.MAX_VALUE };
+    final String expected1 = "[" + Long.MIN_VALUE + ", " + Integer.MIN_VALUE + ", -777777, -50000, " + Short.MIN_VALUE
+        + ", -999, -100, -10, -5, -3, -1, 0, 0, 1, 3, 5, 10, 100, 999, " + Short.MAX_VALUE + ", 50000, 777777, " + Integer.MAX_VALUE + ", "
+        + Long.MAX_VALUE + "]";
+    final long[] array1 = { Long.MIN_VALUE, Integer.MIN_VALUE, -777777, -50000, Short.MIN_VALUE, -999, -100, -10, -5, -3, -1, -0, 0, 1, 3,
+        5, 10, 100, 999, Short.MAX_VALUE, 50000, 777777, Integer.MAX_VALUE, Long.MAX_VALUE };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray0(array1);
@@ -838,13 +1521,10 @@ public class NeoArraysTest
   public final void testToStringOfArrayFloatArray()
   {
     /* given */
-    final String expected1 =
-      "[" + Float.MIN_VALUE
-          + ", -999.15, -100.33, -10.2, -5.5, -3.2, -1.0, -0.0, 0.0, 1.0, 3.2, 5.5, 10.2, 100.33, 999.15, "
-          + Float.MAX_VALUE + "]";
-    final float[] array1 =
-      { Float.MIN_VALUE, -999.15F, -100.33F, -10.2F, -5.5F, -3.2F, -1.0F, -0F, 0.0F, 1.0F, 3.2F, 5.5F, 10.2F, 100.33F,
-          999.15F, Float.MAX_VALUE };
+    final String expected1 = "[" + Float.MIN_VALUE
+        + ", -999.15, -100.33, -10.2, -5.5, -3.2, -1.0, -0.0, 0.0, 1.0, 3.2, 5.5, 10.2, 100.33, 999.15, " + Float.MAX_VALUE + "]";
+    final float[] array1 = { Float.MIN_VALUE, -999.15F, -100.33F, -10.2F, -5.5F, -3.2F, -1.0F, -0F, 0.0F, 1.0F, 3.2F, 5.5F, 10.2F, 100.33F,
+        999.15F, Float.MAX_VALUE };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray(array1);
@@ -877,13 +1557,10 @@ public class NeoArraysTest
   public final void testToStringOfArray0FloatArray()
   {
     /* given */
-    final String expected1 =
-      "[" + Float.MIN_VALUE
-          + ", -999.15, -100.33, -10.2, -5.5, -3.2, -1.0, -0.0, 0.0, 1.0, 3.2, 5.5, 10.2, 100.33, 999.15, "
-          + Float.MAX_VALUE + "]";
-    final float[] array1 =
-      { Float.MIN_VALUE, -999.15F, -100.33F, -10.2F, -5.5F, -3.2F, -1.0F, -0F, 0.0F, 1.0F, 3.2F, 5.5F, 10.2F, 100.33F,
-          999.15F, Float.MAX_VALUE };
+    final String expected1 = "[" + Float.MIN_VALUE
+        + ", -999.15, -100.33, -10.2, -5.5, -3.2, -1.0, -0.0, 0.0, 1.0, 3.2, 5.5, 10.2, 100.33, 999.15, " + Float.MAX_VALUE + "]";
+    final float[] array1 = { Float.MIN_VALUE, -999.15F, -100.33F, -10.2F, -5.5F, -3.2F, -1.0F, -0F, 0.0F, 1.0F, 3.2F, 5.5F, 10.2F, 100.33F,
+        999.15F, Float.MAX_VALUE };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray0(array1);
@@ -919,14 +1596,11 @@ public class NeoArraysTest
   public final void testToStringOfArrayDoubleArray()
   {
     /* given */
-    final String expected1 =
-      "[" + Double.MIN_VALUE + ", " + 1.4E-60 + ", " + (double) Float.MIN_VALUE + ", " + -999.15 + ", " + -100.33
-          + ", " + -10.2 + ", " + -5.5 + ", " + -3.2 + ", " + -1.0 + ", " + 0.0 + ", " + 0.0 + ", " + 1.0 + ", " + 3.2
-          + ", " + 5.5 + ", " + 10.2 + ", " + 100.33 + ", " + 999.15 + ", " + (double) Float.MAX_VALUE + ", "
-          + 3.4028235E60 + ", " + Double.MAX_VALUE + "]";
-    final double[] array1 =
-      { Double.MIN_VALUE, 1.4E-60, Float.MIN_VALUE, -999.15, -100.33, -10.2, -5.5, -3.2, -1.0, -0, 0.0, 1.0, 3.2, 5.5,
-          10.2, 100.33, 999.15, Float.MAX_VALUE, 3.4028235E60, Double.MAX_VALUE };
+    final String expected1 = "[" + Double.MIN_VALUE + ", " + 1.4E-60 + ", " + (double) Float.MIN_VALUE + ", " + -999.15 + ", " + -100.33
+        + ", " + -10.2 + ", " + -5.5 + ", " + -3.2 + ", " + -1.0 + ", " + 0.0 + ", " + 0.0 + ", " + 1.0 + ", " + 3.2 + ", " + 5.5 + ", "
+        + 10.2 + ", " + 100.33 + ", " + 999.15 + ", " + (double) Float.MAX_VALUE + ", " + 3.4028235E60 + ", " + Double.MAX_VALUE + "]";
+    final double[] array1 = { Double.MIN_VALUE, 1.4E-60, Float.MIN_VALUE, -999.15, -100.33, -10.2, -5.5, -3.2, -1.0, -0, 0.0, 1.0, 3.2,
+        5.5, 10.2, 100.33, 999.15, Float.MAX_VALUE, 3.4028235E60, Double.MAX_VALUE };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray(array1);
@@ -959,14 +1633,11 @@ public class NeoArraysTest
   public final void testToStringOfArray0DoubleArray()
   {
     /* given */
-    final String expected1 =
-      "[" + Double.MIN_VALUE + ", " + 1.4E-60 + ", " + (double) Float.MIN_VALUE + ", " + -999.15 + ", " + -100.33
-          + ", " + -10.2 + ", " + -5.5 + ", " + -3.2 + ", " + -1.0 + ", " + 0.0 + ", " + 0.0 + ", " + 1.0 + ", " + 3.2
-          + ", " + 5.5 + ", " + 10.2 + ", " + 100.33 + ", " + 999.15 + ", " + (double) Float.MAX_VALUE + ", "
-          + 3.4028235E60 + ", " + Double.MAX_VALUE + "]";
-    final double[] array1 =
-      { Double.MIN_VALUE, 1.4E-60, Float.MIN_VALUE, -999.15, -100.33, -10.2, -5.5, -3.2, -1.0, -0, 0.0, 1.0, 3.2, 5.5,
-          10.2, 100.33, 999.15, Float.MAX_VALUE, 3.4028235E60, Double.MAX_VALUE };
+    final String expected1 = "[" + Double.MIN_VALUE + ", " + 1.4E-60 + ", " + (double) Float.MIN_VALUE + ", " + -999.15 + ", " + -100.33
+        + ", " + -10.2 + ", " + -5.5 + ", " + -3.2 + ", " + -1.0 + ", " + 0.0 + ", " + 0.0 + ", " + 1.0 + ", " + 3.2 + ", " + 5.5 + ", "
+        + 10.2 + ", " + 100.33 + ", " + 999.15 + ", " + (double) Float.MAX_VALUE + ", " + 3.4028235E60 + ", " + Double.MAX_VALUE + "]";
+    final double[] array1 = { Double.MIN_VALUE, 1.4E-60, Float.MIN_VALUE, -999.15, -100.33, -10.2, -5.5, -3.2, -1.0, -0, 0.0, 1.0, 3.2,
+        5.5, 10.2, 100.33, 999.15, Float.MAX_VALUE, 3.4028235E60, Double.MAX_VALUE };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray0(array1);
@@ -1030,9 +1701,8 @@ public class NeoArraysTest
     date.setTime(1234567);
     final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    final Object[] array1 =
-      { new String("test"), "Kevin", "Lee", new TestPojo(999L, "Kevin Lee"), simpleDateFormat.format(date),
-          new BigDecimal("123.4567123") };
+    final Object[] array1 = { new String("test"), "Kevin", "Lee", new TestPojo(999L, "Kevin Lee"), simpleDateFormat.format(date),
+        new BigDecimal("123.4567123") };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray(array1);
@@ -1070,9 +1740,8 @@ public class NeoArraysTest
     date.setTime(1234567);
     final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    final Object[] array1 =
-      { new String("test"), "Kevin", "Lee", new TestPojo(999L, "Kevin Lee"), simpleDateFormat.format(date),
-          new BigDecimal("123.4567123") };
+    final Object[] array1 = { new String("test"), "Kevin", "Lee", new TestPojo(999L, "Kevin Lee"), simpleDateFormat.format(date),
+        new BigDecimal("123.4567123") };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray0(array1);
@@ -1390,8 +2059,8 @@ public class NeoArraysTest
     final boolean actual = NeoArrays.equal(left, invalidFrom, invalidTo, right, from, to);
 
     /* otherwise */
-    fail("IndexOutOfBoundsException is not thrown with invalid index values. [invalidFrom: " + invalidFrom
-        + ", invalidTo: " + invalidTo + "]");
+    fail("IndexOutOfBoundsException is not thrown with invalid index values. [invalidFrom: " + invalidFrom + ", invalidTo: " + invalidTo
+        + "]");
   }
 
   @Test
@@ -1412,8 +2081,8 @@ public class NeoArraysTest
     final boolean actual = NeoArrays.equal(left, from, to, right, invalidFrom, invalidTo);
 
     /* otherwise */
-    fail("IndexOutOfBoundsException is not thrown with invalid index values. [invalidFrom: " + invalidFrom
-        + ", invalidTo: " + invalidTo + "]");
+    fail("IndexOutOfBoundsException is not thrown with invalid index values. [invalidFrom: " + invalidFrom + ", invalidTo: " + invalidTo
+        + "]");
   }
 
   @Test
@@ -2947,9 +3616,13 @@ public class NeoArraysTest
     public boolean equals(final Object obj)
     {
       if (this == obj)
+      {
         return true;
+      }
       if (!(obj instanceof TestObject))
+      {
         return false;
+      }
       final TestObject that = (TestObject) obj;
       return this.id == that.id;
     }
@@ -2973,14 +3646,12 @@ public class NeoArraysTest
   public final void testEqualObjectArrayObjectArray()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -2998,14 +3669,12 @@ public class NeoArraysTest
   public final void testEqualObjectArrayObjectArrayWithNotEqual()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(8) };
+    final Object[] actual = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(8) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3023,14 +3692,12 @@ public class NeoArraysTest
   public final void testEqualObjectArrayObjectArrayWithNestedArray()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3048,14 +3715,12 @@ public class NeoArraysTest
   public final void testEqualObjectArrayObjectArrayWithDifferentLength()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6) };
+    final Object[] actual = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3073,9 +3738,8 @@ public class NeoArraysTest
   public final void testEqualObjectArrayObjectArrayWithNull()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
     final Object[] actual = null;
@@ -3117,14 +3781,12 @@ public class NeoArraysTest
   public final void testNotEqualObjectArrayObjectArray()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(8) };
+    final Object[] actual = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(8) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3142,14 +3804,12 @@ public class NeoArraysTest
   public final void testNotEqualObjectArrayObjectArrayWithEqual()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3167,14 +3827,12 @@ public class NeoArraysTest
   public final void testNotEqualObjectArrayObjectArrayWithNestedArray()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3192,14 +3850,12 @@ public class NeoArraysTest
   public final void testNotEqualObjectArrayObjectArrayWithDifferentLength()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6) };
+    final Object[] actual = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3217,9 +3873,8 @@ public class NeoArraysTest
   public final void testNotEqualObjectArrayObjectArrayWithNull()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject(2), new TestObject(3), new TestObject(4), new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
     final Object[] actual = null;
@@ -3261,14 +3916,12 @@ public class NeoArraysTest
   public final void testDeepEqual()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3328,14 +3981,12 @@ public class NeoArraysTest
   public final void testDeepEqualWithNotEqual()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(5) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(5) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3353,14 +4004,12 @@ public class NeoArraysTest
   public final void testDeepEqualWithDifferentLength()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3378,14 +4027,12 @@ public class NeoArraysTest
   public final void testDeepEqualWithDifferentLength2()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3) }, new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3) }, new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3403,9 +4050,8 @@ public class NeoArraysTest
   public final void testDeepEqualWithNull()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
     final Object[] actual = null;
@@ -3426,9 +4072,8 @@ public class NeoArraysTest
   public final void testDeepEqualWithNull2()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
     final Object[] actual = { new TestObject(1), null, new TestObject(5), new TestObject(6), new TestObject(7) };
@@ -3491,14 +4136,12 @@ public class NeoArraysTest
   public final void testNotDeepEqual()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(5) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(5) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3558,14 +4201,12 @@ public class NeoArraysTest
   public final void testNotDeepEqualWithEqual()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3583,14 +4224,12 @@ public class NeoArraysTest
   public final void testNotDeepEqualWithDifferentLength()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3608,14 +4247,12 @@ public class NeoArraysTest
   public final void testNotDeepEqualWithDifferentLength2()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3) }, new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3) }, new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3633,9 +4270,8 @@ public class NeoArraysTest
   public final void testNotDeepEqualWithNull()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
     final Object[] actual = { new TestObject(1), null, new TestObject(5), new TestObject(6), new TestObject(7) };
@@ -3656,9 +4292,8 @@ public class NeoArraysTest
   public final void testNotDeepEqualWithNull2()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
     final Object[] actual = null;
@@ -3721,14 +4356,12 @@ public class NeoArraysTest
   public final void testDeepEqualArray()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3746,14 +4379,12 @@ public class NeoArraysTest
   public final void testDeepEqualArrayWithNotEqual()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(5) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(5) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3771,14 +4402,12 @@ public class NeoArraysTest
   public final void testDeepEqualArrayWithDifferentLength()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3796,14 +4425,12 @@ public class NeoArraysTest
   public final void testDeepEqualArrayWithDifferentLength2()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3) }, new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3) }, new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3821,9 +4448,8 @@ public class NeoArraysTest
   public final void testDeepEqualArrayWithNull()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
     final Object[] actual = null;
@@ -3844,9 +4470,8 @@ public class NeoArraysTest
   public final void testDeepEqualArrayWithNull2()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
     final Object[] actual = { new TestObject(1), null, new TestObject(5), new TestObject(6), new TestObject(7) };
@@ -3909,14 +4534,12 @@ public class NeoArraysTest
   public final void testNotDeepEqualArray()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(5) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(5) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3934,14 +4557,12 @@ public class NeoArraysTest
   public final void testNotDeepEqualArrayWithEqual()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3959,14 +4580,12 @@ public class NeoArraysTest
   public final void testNotDeepEqualArrayWithDifferentLength()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -3984,14 +4603,12 @@ public class NeoArraysTest
   public final void testNotDeepEqualArrayWithDifferentLength2()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
-    final Object[] actual =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3) }, new TestObject(5),
-          new TestObject(6), new TestObject(7) };
+    final Object[] actual = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3) }, new TestObject(5),
+        new TestObject(6), new TestObject(7) };
     System.out.println("\nactual:");
     System.out.println(toStringOf(actual));
 
@@ -4009,9 +4626,8 @@ public class NeoArraysTest
   public final void testNotDeepEqualArrayWithNull()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
     final Object[] actual = { new TestObject(1), null, new TestObject(5), new TestObject(6), new TestObject(7) };
@@ -4032,9 +4648,8 @@ public class NeoArraysTest
   public final void testNotDeepEqualArrayWithNull2()
   {
     /* given */
-    final Object[] expected =
-      { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
-          new TestObject(5), new TestObject(6), new TestObject(7) };
+    final Object[] expected = { new TestObject(1), new TestObject[] { new TestObject(2), new TestObject(3), new TestObject(4) },
+        new TestObject(5), new TestObject(6), new TestObject(7) };
     System.out.println("\nexpected:");
     System.out.println(toStringOf(expected));
     final Object[] actual = null;
@@ -4645,11 +5260,9 @@ public class NeoArraysTest
   public void testConvertToPrimitiveInt5()
   {
     /* given */
-    final int[] expected =
-      new int[] { Integer.MIN_VALUE, -999, -100, -50, -10, -5, -1, 0, 1, 5, 10, 50, 100, 999, Integer.MAX_VALUE };
+    final int[] expected = new int[] { Integer.MIN_VALUE, -999, -100, -50, -10, -5, -1, 0, 1, 5, 10, 50, 100, 999, Integer.MAX_VALUE };
     @SuppressWarnings("boxing")
-    final Integer[] array =
-      new Integer[] { Integer.MIN_VALUE, -999, -100, -50, -10, -5, -1, 0, 1, 5, 10, 50, 100, 999, Integer.MAX_VALUE };
+    final Integer[] array = new Integer[] { Integer.MIN_VALUE, -999, -100, -50, -10, -5, -1, 0, 1, 5, 10, 50, 100, 999, Integer.MAX_VALUE };
 
     /* when */
     final int[] actual = NeoArrays.convertToPrimitive(array);
@@ -4737,10 +5350,9 @@ public class NeoArraysTest
   {
     /* given */
     @SuppressWarnings("boxing")
-    final Integer[] expected =
-      new Integer[] { Integer.MIN_VALUE, -999, -100, -50, -10, -5, -1, 0, 1, 5, 10, 50, 100, 999, Integer.MAX_VALUE };
-    final int[] array =
-      new int[] { Integer.MIN_VALUE, -999, -100, -50, -10, -5, -1, 0, 1, 5, 10, 50, 100, 999, Integer.MAX_VALUE };
+    final Integer[] expected = new Integer[] { Integer.MIN_VALUE, -999, -100, -50, -10, -5, -1, 0, 1, 5, 10, 50, 100, 999,
+        Integer.MAX_VALUE };
+    final int[] array = new int[] { Integer.MIN_VALUE, -999, -100, -50, -10, -5, -1, 0, 1, 5, 10, 50, 100, 999, Integer.MAX_VALUE };
 
     /* when */
     final Integer[] actual = NeoArrays.convertToBoxedPrimitive(array);
@@ -4827,13 +5439,11 @@ public class NeoArraysTest
   public void testConvertToPrimitiveLong5()
   {
     /* given */
-    final long[] expected =
-      new long[] { Long.MIN_VALUE, Integer.MIN_VALUE, -999L, -100L, -50L, -10L, -5L, -1L, 0L, 1L, 5L, 10L, 50L, 100L,
-          999L, Integer.MAX_VALUE, Long.MAX_VALUE };
+    final long[] expected = new long[] { Long.MIN_VALUE, Integer.MIN_VALUE, -999L, -100L, -50L, -10L, -5L, -1L, 0L, 1L, 5L, 10L, 50L, 100L,
+        999L, Integer.MAX_VALUE, Long.MAX_VALUE };
     @SuppressWarnings("boxing")
-    final Long[] array =
-      new Long[] { Long.MIN_VALUE, (long) Integer.MIN_VALUE, -999L, -100L, -50L, -10L, -5L, -1L, 0L, 1L, 5L, 10L, 50L,
-          100L, 999L, (long) Integer.MAX_VALUE, Long.MAX_VALUE };
+    final Long[] array = new Long[] { Long.MIN_VALUE, (long) Integer.MIN_VALUE, -999L, -100L, -50L, -10L, -5L, -1L, 0L, 1L, 5L, 10L, 50L,
+        100L, 999L, (long) Integer.MAX_VALUE, Long.MAX_VALUE };
 
     /* when */
     final long[] actual = NeoArrays.convertToPrimitive(array);
@@ -4921,12 +5531,10 @@ public class NeoArraysTest
   {
     /* given */
     @SuppressWarnings("boxing")
-    final Long[] expected =
-      new Long[] { Long.MIN_VALUE, (long) Integer.MIN_VALUE, -999L, -100L, -50L, -10L, -5L, -1L, 0L, 1L, 5L, 10L, 50L,
-          100L, 999L, (long) Integer.MAX_VALUE, Long.MAX_VALUE };
-    final long[] array =
-      new long[] { Long.MIN_VALUE, Integer.MIN_VALUE, -999L, -100L, -50L, -10L, -5L, -1L, 0L, 1L, 5L, 10L, 50L, 100L,
-          999L, Integer.MAX_VALUE, Long.MAX_VALUE };
+    final Long[] expected = new Long[] { Long.MIN_VALUE, (long) Integer.MIN_VALUE, -999L, -100L, -50L, -10L, -5L, -1L, 0L, 1L, 5L, 10L,
+        50L, 100L, 999L, (long) Integer.MAX_VALUE, Long.MAX_VALUE };
+    final long[] array = new long[] { Long.MIN_VALUE, Integer.MIN_VALUE, -999L, -100L, -50L, -10L, -5L, -1L, 0L, 1L, 5L, 10L, 50L, 100L,
+        999L, Integer.MAX_VALUE, Long.MAX_VALUE };
 
     /* when */
     final Long[] actual = NeoArrays.convertToBoxedPrimitive(array);
@@ -5013,13 +5621,11 @@ public class NeoArraysTest
   public void testConvertToPrimitiveFloat5()
   {
     /* given */
-    final float[] expected =
-      new float[] { Float.MIN_VALUE, -999.0F, -100.0F, -50.0F, -10.0F, -5.0F, -1.0F, 0.0F, 1.0F, 5.0F, 10.0F, 50.0F,
-          100.0F, 999.0F, Float.MAX_VALUE };
+    final float[] expected = new float[] { Float.MIN_VALUE, -999.0F, -100.0F, -50.0F, -10.0F, -5.0F, -1.0F, 0.0F, 1.0F, 5.0F, 10.0F, 50.0F,
+        100.0F, 999.0F, Float.MAX_VALUE };
     @SuppressWarnings("boxing")
-    final Float[] array =
-      new Float[] { Float.MIN_VALUE, -999.0F, -100.0F, -50.0F, -10.0F, -5.0F, -1.0F, 0.0F, 1.0F, 5.0F, 10.0F, 50.0F,
-          100.0F, 999.0F, Float.MAX_VALUE };
+    final Float[] array = new Float[] { Float.MIN_VALUE, -999.0F, -100.0F, -50.0F, -10.0F, -5.0F, -1.0F, 0.0F, 1.0F, 5.0F, 10.0F, 50.0F,
+        100.0F, 999.0F, Float.MAX_VALUE };
 
     /* when */
     final float[] actual = NeoArrays.convertToPrimitive(array);
@@ -5107,12 +5713,10 @@ public class NeoArraysTest
   {
     /* given */
     @SuppressWarnings("boxing")
-    final Float[] expected =
-      new Float[] { Float.MIN_VALUE, -999.0F, -100.0F, -50.0F, -10.0F, -5.0F, -1.0F, 0.0F, 1.0F, 5.0F, 10.0F, 50.0F,
-          100.0F, 999.0F, Float.MAX_VALUE };
-    final float[] array =
-      new float[] { Float.MIN_VALUE, -999.0F, -100.0F, -50.0F, -10.0F, -5.0F, -1.0F, 0.0F, 1.0F, 5.0F, 10.0F, 50.0F,
-          100.0F, 999.0F, Float.MAX_VALUE };
+    final Float[] expected = new Float[] { Float.MIN_VALUE, -999.0F, -100.0F, -50.0F, -10.0F, -5.0F, -1.0F, 0.0F, 1.0F, 5.0F, 10.0F, 50.0F,
+        100.0F, 999.0F, Float.MAX_VALUE };
+    final float[] array = new float[] { Float.MIN_VALUE, -999.0F, -100.0F, -50.0F, -10.0F, -5.0F, -1.0F, 0.0F, 1.0F, 5.0F, 10.0F, 50.0F,
+        100.0F, 999.0F, Float.MAX_VALUE };
 
     /* when */
     final Float[] actual = NeoArrays.convertToBoxedPrimitive(array);
@@ -5199,13 +5803,11 @@ public class NeoArraysTest
   public void testConvertToPrimitiveDouble5()
   {
     /* given */
-    final double[] expected =
-      new double[] { Double.MIN_VALUE, Float.MIN_VALUE, -999.0D, -100.0D, -50.0D, -10.0D, -5.0D, -1.0D, 0.0D, 1.0D,
-          5.0D, 10.0D, 50.0D, 100.0D, 999.0D, Float.MAX_VALUE, Double.MAX_VALUE };
+    final double[] expected = new double[] { Double.MIN_VALUE, Float.MIN_VALUE, -999.0D, -100.0D, -50.0D, -10.0D, -5.0D, -1.0D, 0.0D, 1.0D,
+        5.0D, 10.0D, 50.0D, 100.0D, 999.0D, Float.MAX_VALUE, Double.MAX_VALUE };
     @SuppressWarnings("boxing")
-    final Double[] array =
-      new Double[] { Double.MIN_VALUE, (double) Float.MIN_VALUE, -999.0D, -100.0D, -50.0D, -10.0D, -5.0D, -1.0D, 0.0D,
-          1.0D, 5.0D, 10.0D, 50.0D, 100.0D, 999.0D, (double) Float.MAX_VALUE, Double.MAX_VALUE };
+    final Double[] array = new Double[] { Double.MIN_VALUE, (double) Float.MIN_VALUE, -999.0D, -100.0D, -50.0D, -10.0D, -5.0D, -1.0D, 0.0D,
+        1.0D, 5.0D, 10.0D, 50.0D, 100.0D, 999.0D, (double) Float.MAX_VALUE, Double.MAX_VALUE };
 
     /* when */
     final double[] actual = NeoArrays.convertToPrimitive(array);
@@ -5293,12 +5895,10 @@ public class NeoArraysTest
   {
     /* given */
     @SuppressWarnings("boxing")
-    final Double[] expected =
-      new Double[] { Double.MIN_VALUE, (double) Float.MIN_VALUE, -999.0D, -100.0D, -50.0D, -10.0D, -5.0D, -1.0D, 0.0D,
-          1.0D, 5.0D, 10.0D, 50.0D, 100.0D, 999.0D, (double) Float.MAX_VALUE, Double.MAX_VALUE };
-    final double[] array =
-      new double[] { Double.MIN_VALUE, Float.MIN_VALUE, -999.0D, -100.0D, -50.0D, -10.0D, -5.0D, -1.0D, 0.0D, 1.0D,
-          5.0D, 10.0D, 50.0D, 100.0D, 999.0D, Float.MAX_VALUE, Double.MAX_VALUE };
+    final Double[] expected = new Double[] { Double.MIN_VALUE, (double) Float.MIN_VALUE, -999.0D, -100.0D, -50.0D, -10.0D, -5.0D, -1.0D,
+        0.0D, 1.0D, 5.0D, 10.0D, 50.0D, 100.0D, 999.0D, (double) Float.MAX_VALUE, Double.MAX_VALUE };
+    final double[] array = new double[] { Double.MIN_VALUE, Float.MIN_VALUE, -999.0D, -100.0D, -50.0D, -10.0D, -5.0D, -1.0D, 0.0D, 1.0D,
+        5.0D, 10.0D, 50.0D, 100.0D, 999.0D, Float.MAX_VALUE, Double.MAX_VALUE };
 
     /* when */
     final Double[] actual = NeoArrays.convertToBoxedPrimitive(array);
@@ -5581,8 +6181,7 @@ public class NeoArraysTest
     final String[] expected = { "Kevin", "Lee", "test", "element", "and", "varargs", "glue" };
 
     /* when */
-    final String[] actual =
-      NeoArrays.glue("Kevin", new String[] { "Lee", "test", "element", "and", "varargs", "glue" });
+    final String[] actual = NeoArrays.glue("Kevin", new String[] { "Lee", "test", "element", "and", "varargs", "glue" });
 
     /* then */
     assertThat(actual).isEqualTo(expected);
@@ -5668,8 +6267,7 @@ public class NeoArraysTest
     final List<String> expected = Arrays.asList("Kevin", "Lee", "test", "element", "and", "varargs", "glue");
 
     /* when */
-    final List<String> actual =
-      NeoArrays.glueToList("Kevin", new String[] { "Lee", "test", "element", "and", "varargs", "glue" });
+    final List<String> actual = NeoArrays.glueToList("Kevin", new String[] { "Lee", "test", "element", "and", "varargs", "glue" });
 
     /* then */
     assertThat(actual).isEqualTo(expected);

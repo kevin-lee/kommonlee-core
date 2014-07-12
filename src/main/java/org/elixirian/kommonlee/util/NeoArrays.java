@@ -98,6 +98,96 @@ public final class NeoArrays
     return !isArray(object);
   }
 
+  public static boolean isEmpty(final boolean[] array)
+  {
+    return array == null || array.length == 0;
+  }
+
+  public static boolean isNotEmpty(final boolean[] array)
+  {
+    return !isEmpty(array);
+  }
+
+  public static boolean isEmpty(final byte[] array)
+  {
+    return array == null || array.length == 0;
+  }
+
+  public static boolean isNotEmpty(final byte[] array)
+  {
+    return !isEmpty(array);
+  }
+
+  public static boolean isEmpty(final char[] array)
+  {
+    return array == null || array.length == 0;
+  }
+
+  public static boolean isNotEmpty(final char[] array)
+  {
+    return !isEmpty(array);
+  }
+
+  public static boolean isEmpty(final short[] array)
+  {
+    return array == null || array.length == 0;
+  }
+
+  public static boolean isNotEmpty(final short[] array)
+  {
+    return !isEmpty(array);
+  }
+
+  public static boolean isEmpty(final int[] array)
+  {
+    return array == null || array.length == 0;
+  }
+
+  public static boolean isNotEmpty(final int[] array)
+  {
+    return !isEmpty(array);
+  }
+
+  public static boolean isEmpty(final long[] array)
+  {
+    return array == null || array.length == 0;
+  }
+
+  public static boolean isNotEmpty(final long[] array)
+  {
+    return !isEmpty(array);
+  }
+
+  public static boolean isEmpty(final float[] array)
+  {
+    return array == null || array.length == 0;
+  }
+
+  public static boolean isNotEmpty(final float[] array)
+  {
+    return !isEmpty(array);
+  }
+
+  public static boolean isEmpty(final double[] array)
+  {
+    return array == null || array.length == 0;
+  }
+
+  public static boolean isNotEmpty(final double[] array)
+  {
+    return !isEmpty(array);
+  }
+
+  public static <T> boolean isEmpty(final T[] array)
+  {
+    return array == null || array.length == 0;
+  }
+
+  public static <T> boolean isNotEmpty(final T[] array)
+  {
+    return !isEmpty(array);
+  }
+
   public static String toStringOfArray(final boolean[] array)
   {
     return null == array ? "null" : toStringOfArray0(array);
@@ -331,25 +421,33 @@ public final class NeoArrays
   public static boolean equal(final byte[] left, final byte[] right)
   {
     if (left == right)
+    {
       return true;
+    }
 
     if (null == left || null == right)
+    {
       return false;
+    }
 
     if (left.length != right.length)
+    {
       return false;
+    }
 
     final int length = left.length;
     for (int i = 0; i < length; i++)
     {
       if (left[i] != right[i])
+      {
         return false;
+      }
     }
     return true;
   }
 
-  public static boolean equal(final byte[] left, final int fromOfLeft, final int toOfLeft, final byte[] right,
-      final int fromOfRight, final int toOfRight)
+  public static boolean equal(final byte[] left, final int fromOfLeft, final int toOfLeft, final byte[] right, final int fromOfRight,
+      final int toOfRight)
   {
     if (null == left)
     {
@@ -415,19 +513,27 @@ public final class NeoArrays
   public static boolean equal(final char[] left, final char[] right)
   {
     if (left == right)
+    {
       return true;
+    }
 
     if (null == left || null == right)
+    {
       return false;
+    }
 
     if (left.length != right.length)
+    {
       return false;
+    }
 
     final int length = left.length;
     for (int i = 0; i < length; i++)
     {
       if (left[i] != right[i])
+      {
         return false;
+      }
     }
     return true;
   }
@@ -462,19 +568,27 @@ public final class NeoArrays
   public static boolean equal(final short[] left, final short[] right)
   {
     if (left == right)
+    {
       return true;
+    }
 
     if (null == left || null == right)
+    {
       return false;
+    }
 
     if (left.length != right.length)
+    {
       return false;
+    }
 
     final int length = left.length;
     for (int i = 0; i < length; i++)
     {
       if (left[i] != right[i])
+      {
         return false;
+      }
     }
     return true;
   }
@@ -509,19 +623,27 @@ public final class NeoArrays
   public static boolean equal(final int[] left, final int[] right)
   {
     if (left == right)
+    {
       return true;
+    }
 
     if (null == left || null == right)
+    {
       return false;
+    }
 
     if (left.length != right.length)
+    {
       return false;
+    }
 
     final int length = left.length;
     for (int i = 0; i < length; i++)
     {
       if (left[i] != right[i])
+      {
         return false;
+      }
     }
     return true;
   }
@@ -556,19 +678,27 @@ public final class NeoArrays
   public static boolean equal(final long[] left, final long[] right)
   {
     if (left == right)
+    {
       return true;
+    }
 
     if (null == left || null == right)
+    {
       return false;
+    }
 
     if (left.length != right.length)
+    {
       return false;
+    }
 
     final int length = left.length;
     for (int i = 0; i < length; i++)
     {
       if (left[i] != right[i])
+      {
         return false;
+      }
     }
     return true;
   }
@@ -603,19 +733,27 @@ public final class NeoArrays
   public static boolean equal(final float[] left, final float[] right)
   {
     if (left == right)
+    {
       return true;
+    }
 
     if (null == left || null == right)
+    {
       return false;
+    }
 
     if (left.length != right.length)
+    {
       return false;
+    }
 
     final int length = left.length;
     for (int i = 0; i < length; i++)
     {
       if (left[i] != right[i])
+      {
         return false;
+      }
     }
     return true;
   }
@@ -650,19 +788,27 @@ public final class NeoArrays
   public static boolean equal(final double[] left, final double[] right)
   {
     if (left == right)
+    {
       return true;
+    }
 
     if (null == left || null == right)
+    {
       return false;
+    }
 
     if (left.length != right.length)
+    {
       return false;
+    }
 
     final int length = left.length;
     for (int i = 0; i < length; i++)
     {
       if (left[i] != right[i])
+      {
         return false;
+      }
     }
     return true;
   }
@@ -697,19 +843,27 @@ public final class NeoArrays
   public static boolean equal(final boolean[] left, final boolean[] right)
   {
     if (left == right)
+    {
       return true;
+    }
 
     if (null == left || null == right)
+    {
       return false;
+    }
 
     if (left.length != right.length)
+    {
       return false;
+    }
 
     final int length = left.length;
     for (int i = 0; i < length; i++)
     {
       if (left[i] != right[i])
+      {
         return false;
+      }
     }
     return true;
   }
@@ -744,19 +898,27 @@ public final class NeoArrays
   public static boolean equal(final Object[] left, final Object[] right)
   {
     if (left == right)
+    {
       return true;
+    }
 
     if (null == left || null == right)
+    {
       return false;
+    }
 
     if (left.length != right.length)
+    {
       return false;
+    }
 
     final int length = left.length;
     for (int i = 0; i < length; i++)
     {
       if (Objects.notEqual(left[i], right[i]))
+      {
         return false;
+      }
     }
     return true;
   }
@@ -791,10 +953,14 @@ public final class NeoArrays
   public static boolean deepEqual(final Object left, final Object right)
   {
     if (left == right)
+    {
       return true;
+    }
 
     if (null == left || null == right)
+    {
       return false;
+    }
 
     if (left instanceof byte[] && right instanceof byte[])
     {
@@ -865,19 +1031,27 @@ public final class NeoArrays
   public static boolean deepEqualArray(final Object[] left, final Object[] right)
   {
     if (left == right)
+    {
       return true;
+    }
 
     if (null == left || null == right)
+    {
       return false;
+    }
 
     if (left.length != right.length)
+    {
       return false;
+    }
 
     final int length = left.length;
     for (int i = 0; i < length; i++)
     {
       if (notDeepEqual(left[i], right[i]))
+      {
         return false;
+      }
     }
     return true;
   }
