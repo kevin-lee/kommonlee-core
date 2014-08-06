@@ -31,10 +31,14 @@
  */
 package org.elixirian.kommonlee.util;
 
-import static org.elixirian.kommonlee.util.Objects.toStringOf;
+import static org.elixirian.kommonlee.util.Objects.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.elixirian.kommonlee.validation.Assertions;
 
 /**
  * <pre>
@@ -44,7 +48,7 @@ import java.util.regex.Pattern;
  *  /        \ /  /_/ _/  _  _  /  _  _  //  /_/ _/   __   //    /___/  _____/  _____/
  * /____/\____\/_____//__//_//_/__//_//_/ /_____//___/ /__//________/\_____/ \_____/
  * </pre>
- * 
+ *
  * <pre>
  *     ___  _____                                _____
  *    /   \/    /_________  ___ ____ __ ______  /    /   ______  ______
@@ -52,7 +56,7 @@ import java.util.regex.Pattern;
  *  /        \ /  _____/\    //   //   __   / /    /___/  _____/  _____/
  * /____/\____\\_____/   \__//___//___/ /__/ /________/\_____/ \_____/
  * </pre>
- * 
+ *
  * @author Lee, SeongHyun (Kevin)
  * @version 0.0.1 (2010-02-23)
  * @version 0.0.2 (2010-03-16) bug fixed: It does not remove the extra "%s"s nor does it escape the rest of the "%%s"s
@@ -71,246 +75,303 @@ import java.util.regex.Pattern;
  */
 public final class Strings
 {
-	private Strings() throws IllegalAccessException
-	{
-		throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
-	}
+  private Strings() throws IllegalAccessException
+  {
+    throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
+  }
 
-	/**
-	 * Returns a copy of the given string, with leading and trailing whitespace omitted. If the given String contains
-	 * <code>null</code> reference it returns an "" (empty String).
-	 * 
-	 * @param value
-	 *          the given String value
-	 * @return the result of value.trim(). If the value is null, return "" (empty String).
-	 */
-	public static String nullSafeTrim(final String value)
-	{
-		return (null == value ? "" : value.trim());
-	}
+  /**
+   * Returns a copy of the given string, with leading and trailing whitespace omitted. If the given String contains
+   * <code>null</code> reference it returns an "" (empty String).
+   *
+   * @param value
+   *          the given String value
+   * @return the result of value.trim(). If the value is null, return "" (empty String).
+   */
+  public static String nullSafeTrim(final String value)
+  {
+    return (null == value ? "" : value.trim());
+  }
 
-	/**
-	 * Returns an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
-	 * given value itself.
-	 * 
-	 * @param value
-	 *          the given String value to check for nullity.
-	 * @return an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
-	 *         given value itself
-	 */
-	public static String nullThenEmpty(final String value)
-	{
-		return null == value ? "" : value;
-	}
+  /**
+   * Returns an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
+   * given value itself.
+   *
+   * @param value
+   *          the given String value to check for nullity.
+   * @return an empty String ({@code ""}) if the given value is {@code null}. If it is not {@code null}, returns the
+   *         given value itself
+   */
+  public static String nullThenEmpty(final String value)
+  {
+    return null == value ? "" : value;
+  }
 
-	/**
-	 * Returns {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
-	 * not empty, returns the given value itself.
-	 * 
-	 * @param value
-	 *          the given String value to check for emptiness.
-	 * @return {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
-	 *         not empty, returns the given value itself.
-	 */
-	public static String emptyThenNull(final String value)
-	{
-		return isNullOrEmptyString(value) ? null : value;
-	}
+  /**
+   * Returns {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
+   * not empty, returns the given value itself.
+   *
+   * @param value
+   *          the given String value to check for emptiness.
+   * @return {@code null} if the given String variable is empty (its length is 0, {@code ""}) or it is null. If it is
+   *         not empty, returns the given value itself.
+   */
+  public static String emptyThenNull(final String value)
+  {
+    return isNullOrEmptyString(value) ? null : value;
+  }
 
-	/**
-	 * Checks if the given String value is empty. It means the given String parameter contains the null reference or no
-	 * String value which means its length is 0.
-	 * 
-	 * @param value
-	 *          the given String value.
-	 * @return true if the given String parameter contains the null reference or it has no String value (null == value ||
-	 *         0 == value.length()). false if the given String parameter contains a reference pointing to any String value
-	 *         having the length of which is greater than 0.
-	 */
-	public static boolean isNullOrEmptyString(final String value)
-	{
-		return (null == value || 0 == value.length());
-	}
+  /**
+   * Checks if the given String value is empty. It means the given String parameter contains the null reference or no
+   * String value which means its length is 0.
+   *
+   * @param value
+   *          the given String value.
+   * @return true if the given String parameter contains the null reference or it has no String value (null == value ||
+   *         0 == value.length()). false if the given String parameter contains a reference pointing to any String value
+   *         having the length of which is greater than 0.
+   */
+  public static boolean isNullOrEmptyString(final String value)
+  {
+    return (null == value || 0 == value.length());
+  }
 
-	/**
-	 * Checks if the given String value is not empty. It means the given String parameter contains neither the null
-	 * reference nor any String with 0 length.
-	 * 
-	 * @param value
-	 *          the given String value.
-	 * @return true if the given String parameter contains a reference pointing to any String object the length of which
-	 *         is greater than 0 (null != value && 0 < value.length()). false if it contains null or a String value with 0
-	 *         length.
-	 */
-	public static boolean isNeitherNullNorEmptyString(final String value)
-	{
-		return !isNullOrEmptyString(value);
-	}
+  /**
+   * Checks if the given String value is not empty. It means the given String parameter contains neither the null
+   * reference nor any String with 0 length.
+   *
+   * @param value
+   *          the given String value.
+   * @return true if the given String parameter contains a reference pointing to any String object the length of which
+   *         is greater than 0 (null != value && 0 < value.length()). false if it contains null or a String value with 0
+   *         length.
+   */
+  public static boolean isNeitherNullNorEmptyString(final String value)
+  {
+    return !isNullOrEmptyString(value);
+  }
 
-	/**
-	 * Repeats the given String the given number of times.
-	 * 
-	 * <pre>
-	 * Strings.repeat("", -1);
-	 * Result: {@link IllegalArgumentException}
-	 * 
-	 * Strings.repeat("", 0);
-	 * Result: ""
-	 * 
-	 * Strings.repeat("", 10);
-	 * Result: ""
-	 * 
-	 * Strings.repeat("Kevin ", -1);
-	 * Result: {@link IllegalArgumentException}
-	 * 
-	 * Strings.repeat("Kevin ", 0);
-	 * Result: ""
-	 * 
-	 * Strings.repeat("Kevin ", 1);
-	 * Result: "Kevin "
-	 * 
-	 * Strings.repeat("Kevin ", 2);
-	 * Result: "Kevin Kevin "
-	 * 
-	 * Strings.repeat("Kevin ", 5);
-	 * Result: "Kevin Kevin Kevin Kevin Kevin "
-	 * </pre>
-	 * 
-	 * @param value
-	 *          the given String value.
-	 * @param times
-	 *          the given number of times to repeat.
-	 * @return The String repeated the given number of times.
-	 * @exception IllegalArgumentException
-	 *              if the value of the times parameter is a negative value.
-	 */
-	public static String repeat(final String value, final int times) throws IllegalArgumentException
-	{
-		if (0 > times)
-		{
-			throw new IllegalArgumentException(
-					"The value of the times parameter cannot be a negative number. It must be a non-negative number.");
-		}
-		final String valueToUse = toStringOf(value);
-		final StringBuilder stringBuilder = new StringBuilder(valueToUse.length() * times);
-		for (int i = 0; i < times; i++)
-		{
-			stringBuilder.append(valueToUse);
-		}
-		return stringBuilder.toString();
-	}
+  /**
+   * Repeats the given String the given number of times.
+   *
+   * <pre>
+   * Strings.repeat("", -1);
+   * Result: {@link IllegalArgumentException}
+   *
+   * Strings.repeat("", 0);
+   * Result: ""
+   *
+   * Strings.repeat("", 10);
+   * Result: ""
+   *
+   * Strings.repeat("Kevin ", -1);
+   * Result: {@link IllegalArgumentException}
+   *
+   * Strings.repeat("Kevin ", 0);
+   * Result: ""
+   *
+   * Strings.repeat("Kevin ", 1);
+   * Result: "Kevin "
+   *
+   * Strings.repeat("Kevin ", 2);
+   * Result: "Kevin Kevin "
+   *
+   * Strings.repeat("Kevin ", 5);
+   * Result: "Kevin Kevin Kevin Kevin Kevin "
+   * </pre>
+   *
+   * @param value
+   *          the given String value.
+   * @param times
+   *          the given number of times to repeat.
+   * @return The String repeated the given number of times.
+   * @exception IllegalArgumentException
+   *              if the value of the times parameter is a negative value.
+   */
+  public static String repeat(final String value, final int times) throws IllegalArgumentException
+  {
+    if (0 > times)
+    {
+      throw new IllegalArgumentException("The value of the times parameter cannot be a negative number. It must be a non-negative number.");
+    }
+    final String valueToUse = toStringOf(value);
+    final StringBuilder stringBuilder = new StringBuilder(valueToUse.length() * times);
+    for (int i = 0; i < times; i++)
+    {
+      stringBuilder.append(valueToUse);
+    }
+    return stringBuilder.toString();
+  }
 
-	/**
-	 * Returns a String array containing the result of matching the given String value against the given regular
-	 * expression after passing find() test using Matcher object created by matcher() method in the Pattern object created
-	 * with the given regular expression String. The first element in the array is the given String value itself. If no
-	 * matching one is found (if the find() test fails), it returns an empty String array.
-	 * 
-	 * @param regex
-	 *          the given Regular Expression String.
-	 * @param value
-	 *          the given String value
-	 * @return a String array containing the result of matching the given String value against the given regular
-	 *         expression after passing find() test using Matcher object created by matcher() method in the Pattern object
-	 *         created with the given regular expression String. The first element in the array is the given String value
-	 *         itself. If no matching one is found, it returns an empty String array.
-	 * @see Pattern#compile(String)
-	 * @see Pattern#matcher(CharSequence)
-	 * @see Matcher#find()
-	 */
-	public static String[] findMatched(final String regex, final String value)
-	{
-		final Pattern pattern = Pattern.compile(regex);
-		return findMatched(pattern, value);
-	}
+  /**
+   * Returns a String array containing the result of matching the given String value against the given regular
+   * expression after passing find() test using Matcher object created by matcher() method in the Pattern object created
+   * with the given regular expression String. The first element in the array is the given String value itself. If no
+   * matching one is found (if the find() test fails), it returns an empty String array.
+   *
+   * @param regex
+   *          the given Regular Expression String.
+   * @param value
+   *          the given String value
+   * @return a String array containing the result of matching the given String value against the given regular
+   *         expression after passing find() test using Matcher object created by matcher() method in the Pattern object
+   *         created with the given regular expression String. The first element in the array is the given String value
+   *         itself. If no matching one is found, it returns an empty String array.
+   * @see Pattern#compile(String)
+   * @see Pattern#matcher(CharSequence)
+   * @see Matcher#find()
+   */
+  public static String[] findMatched(final String regex, final String value)
+  {
+    final Pattern pattern = Pattern.compile(regex);
+    return findMatched(pattern, value);
+  }
 
-	/**
-	 * Returns a String array containing the result of matching the given String value against the given Pattern object
-	 * containing a regular expression after passing find() test using Matcher object created by matcher() method in the
-	 * given Pattern object. The first element in the array is the given String value itself. If no matching one is found
-	 * (if the find() test fails), it returns an empty String array.
-	 * 
-	 * @param compiledRegex
-	 *          the given Pattern object containing a regular expression.
-	 * @param value
-	 *          the given String value
-	 * @return a String array containing the result of matching the given String value against the given Pattern object
-	 *         containing a regular expression after passing find() test using Matcher object created by matcher() method
-	 *         in the given Pattern object. The first element in the array is the given String value itself. If no
-	 *         matching one is found, it returns an empty String array.
-	 * @see Pattern#matcher(CharSequence)
-	 * @see Matcher#find()
-	 */
-	public static String[] findMatched(final Pattern compiledRegex, final String value)
-	{
-		final Matcher matcher = compiledRegex.matcher(value);
-		if (matcher.find())
-		{
-			final int length = matcher.groupCount() + 1;
-			final String[] textFound = new String[length];
-			for (int i = 0; i < length; i++)
-			{
-				textFound[i] = matcher.group(i);
-			}
-			return textFound;
-		}
-		return NeoArrays.EMPTY_STRING_ARRAY;
-	}
+  /**
+   * Returns a String array containing the result of matching the given String value against the given Pattern object
+   * containing a regular expression after passing find() test using Matcher object created by matcher() method in the
+   * given Pattern object. The first element in the array is the given String value itself. If no matching one is found
+   * (if the find() test fails), it returns an empty String array.
+   *
+   * @param compiledRegex
+   *          the given Pattern object containing a regular expression.
+   * @param value
+   *          the given String value
+   * @return a String array containing the result of matching the given String value against the given Pattern object
+   *         containing a regular expression after passing find() test using Matcher object created by matcher() method
+   *         in the given Pattern object. The first element in the array is the given String value itself. If no
+   *         matching one is found, it returns an empty String array.
+   * @see Pattern#matcher(CharSequence)
+   * @see Matcher#find()
+   */
+  public static String[] findMatched(final Pattern compiledRegex, final String value)
+  {
+    final Matcher matcher = compiledRegex.matcher(value);
+    if (matcher.find())
+    {
+      final int length = matcher.groupCount() + 1;
+      final String[] textFound = new String[length];
+      for (int i = 0; i < length; i++)
+      {
+        textFound[i] = matcher.group(i);
+      }
+      return textFound;
+    }
+    return NeoArrays.EMPTY_STRING_ARRAY;
+  }
 
-	/**
-	 * Returns a String array containing the result of matching the given String value against the given regular
-	 * expression after passing matches() test using Matcher object created by matcher() method in the Pattern object
-	 * created with the given regular expression String. The first element in the array is the given String value itself.
-	 * If no matching one is found (if the matches() test fails), it returns an empty String array.
-	 * 
-	 * @param regex
-	 *          the given Regular Expression String.
-	 * @param value
-	 *          the given String value
-	 * @return a String array containing the result of matching the given String value against the given regular
-	 *         expression after passing matches() test using Matcher object created by matcher() method in the Pattern
-	 *         object created with the given regular expression String. The first element in the array is the given String
-	 *         value itself. If no matching one is found (if the matches() test fails), it returns an empty String array.
-	 * @see Pattern#compile(String)
-	 * @see Pattern#matcher(CharSequence)
-	 * @see Matcher#matches()
-	 */
-	public static String[] matchEntirely(final String regex, final String value)
-	{
-		final Pattern pattern = Pattern.compile(regex);
-		return matchEntirely(pattern, value);
-	}
+  /**
+   * Returns a String array containing the result of matching the given String value against the given regular
+   * expression after passing matches() test using Matcher object created by matcher() method in the Pattern object
+   * created with the given regular expression String. The first element in the array is the given String value itself.
+   * If no matching one is found (if the matches() test fails), it returns an empty String array.
+   *
+   * @param regex
+   *          the given Regular Expression String.
+   * @param value
+   *          the given String value
+   * @return a String array containing the result of matching the given String value against the given regular
+   *         expression after passing matches() test using Matcher object created by matcher() method in the Pattern
+   *         object created with the given regular expression String. The first element in the array is the given String
+   *         value itself. If no matching one is found (if the matches() test fails), it returns an empty String array.
+   * @see Pattern#compile(String)
+   * @see Pattern#matcher(CharSequence)
+   * @see Matcher#matches()
+   */
+  public static String[] matchEntirely(final String regex, final String value)
+  {
+    final Pattern pattern = Pattern.compile(regex);
+    return matchEntirely(pattern, value);
+  }
 
-	/**
-	 * Returns a String array containing the result of matching the given String value against the given Pattern object
-	 * containing a regular expression after passing matches() test using Matcher object created by matcher() method in
-	 * the given Pattern object. The first element in the array is the given String value itself. If no matching one is
-	 * found (if the matches() test fails), it returns an empty String array.
-	 * 
-	 * @param compiledRegex
-	 *          the given Pattern object containing a regular expression.
-	 * @param value
-	 *          the given String value
-	 * @return a String array containing the result of matching the given String value against the given Pattern object
-	 *         containing a regular expression after passing matches() test using Matcher object created by matcher()
-	 *         method in the given Pattern object. The first element in the array is the given String value itself. If no
-	 *         matching one is found (if the matches() test fails), it returns an empty String array.
-	 * @see Pattern#matcher(CharSequence)
-	 * @see Matcher#matches()
-	 */
-	public static String[] matchEntirely(final Pattern compiledRegex, final String value)
-	{
-		final Matcher matcher = compiledRegex.matcher(value);
-		if (matcher.matches())
-		{
-			final int length = matcher.groupCount() + 1;
-			final String[] textMatched = new String[length];
-			for (int i = 0; i < length; i++)
-			{
-				textMatched[i] = matcher.group(i);
-			}
-			return textMatched;
-		}
-		return NeoArrays.EMPTY_STRING_ARRAY;
-	}
+  /**
+   * Returns a String array containing the result of matching the given String value against the given Pattern object
+   * containing a regular expression after passing matches() test using Matcher object created by matcher() method in
+   * the given Pattern object. The first element in the array is the given String value itself. If no matching one is
+   * found (if the matches() test fails), it returns an empty String array.
+   *
+   * @param compiledRegex
+   *          the given Pattern object containing a regular expression.
+   * @param value
+   *          the given String value
+   * @return a String array containing the result of matching the given String value against the given Pattern object
+   *         containing a regular expression after passing matches() test using Matcher object created by matcher()
+   *         method in the given Pattern object. The first element in the array is the given String value itself. If no
+   *         matching one is found (if the matches() test fails), it returns an empty String array.
+   * @see Pattern#matcher(CharSequence)
+   * @see Matcher#matches()
+   */
+  public static String[] matchEntirely(final Pattern compiledRegex, final String value)
+  {
+    final Matcher matcher = compiledRegex.matcher(value);
+    if (matcher.matches())
+    {
+      final int length = matcher.groupCount() + 1;
+      final String[] textMatched = new String[length];
+      for (int i = 0; i < length; i++)
+      {
+        textMatched[i] = matcher.group(i);
+      }
+      return textMatched;
+    }
+    return NeoArrays.EMPTY_STRING_ARRAY;
+  }
+
+  /**
+   * Split the given String by the given number of characters. If new line char is found, the substring after the new
+   * line char is considered to be a new input.
+   *
+   * e.g.)
+   * <pre>
+   * String value = "123456789";
+   * int howMany = 3;
+   *
+   * Result:
+   * ["123", "456", "789"]
+   * </pre>
+   *
+   * <pre>
+   * String value = "123456789";
+   * int howMany = 7;
+   *
+   * Result:
+   * ["1234567", "89"]
+   * </pre>
+   *
+   * <pre>
+   * String value = "12345\n6789";
+   * int howMany = 3;
+   *
+   * Result:
+   * ["123", "45", "678", "9"]
+   * </pre>
+   *
+   * <pre>
+   * String value = "12345\n\r6789";
+   * int howMany = 3;
+   *
+   * Result:
+   * ["123", "45", "678", "9"]
+   * </pre>
+   *
+   * @param value
+   * @param howMany
+   * @return List of String containing substrings of the given value split by the given number of chars.
+   * @throws IllegalArgumentException
+   *           if the value is null or howMany is less than 1 (howMany < 1).
+   */
+  public static List<String> splitByNumberOfChars(final String value, final int howMany)
+  {
+    Assertions.assertNotNull(value, "The value cannot be null.");
+    Assertions.assertTrue(howMany > 0, "howMany must be greater than 0. [entered: %s]", howMany);
+    final Pattern pattern = Pattern.compile(".{1," + howMany + "}");
+    final Matcher matcher = pattern.matcher(value);
+    final ArrayList<String> result = new ArrayList<String>();
+    while (matcher.find())
+    {
+      result.add(value.substring(matcher.start(), matcher.end()));
+    }
+    result.trimToSize();
+    return result;
+  }
 }
