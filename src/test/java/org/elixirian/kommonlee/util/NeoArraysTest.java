@@ -1696,13 +1696,12 @@ public class NeoArraysTest
   public final void testToStringOfArrayObjectArray()
   {
     /* given */
-    final String expected1 = "[test, Kevin, Lee, TestPojo{id=999, name=Kevin Lee}, 1970-01-01 10:20:34, 123.4567123]";
+    final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     final Date date = new Date();
     date.setTime(1234567);
-    final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    final String expected1 = "[test, Kevin, Lee, TestPojo{id=999, name=Kevin Lee}, " + simpleDateFormat.format(date) + ", 123.4567123]";
 
-    final Object[] array1 = { new String("test"), "Kevin", "Lee", new TestPojo(999L, "Kevin Lee"), simpleDateFormat.format(date),
-        new BigDecimal("123.4567123") };
+    final Object[] array1 = { new String("test"), "Kevin", "Lee", new TestPojo(999L, "Kevin Lee"), simpleDateFormat.format(date.clone()), new BigDecimal("123.4567123") };
 
     /* when */
     final String actual1 = NeoArrays.toStringOfArray(array1);
@@ -1735,12 +1734,13 @@ public class NeoArraysTest
   public final void testToStringOfArray0ObjectArray()
   {
     /* given */
-    final String expected1 = "[test, Kevin, Lee, TestPojo{id=999, name=Kevin Lee}, 1970-01-01 10:20:34, 123.4567123]";
+    final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     final Date date = new Date();
     date.setTime(1234567);
-    final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    final Object[] array1 = { new String("test"), "Kevin", "Lee", new TestPojo(999L, "Kevin Lee"), simpleDateFormat.format(date),
+    final String expected1 = "[test, Kevin, Lee, TestPojo{id=999, name=Kevin Lee}, " + simpleDateFormat.format(date) + ", 123.4567123]";
+
+    final Object[] array1 = { new String("test"), "Kevin", "Lee", new TestPojo(999L, "Kevin Lee"), simpleDateFormat.format(date.clone()),
         new BigDecimal("123.4567123") };
 
     /* when */
