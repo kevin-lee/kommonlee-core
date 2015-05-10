@@ -3,6 +3,9 @@ kommonlee-core
 
 [![Build Status](https://travis-ci.org/Kevin-Lee/kommonlee-core.svg)](https://travis-ci.org/Kevin-Lee/kommonlee-core)
 
+[![views](https://sourcegraph.com/api/repos/github.com/Kevin-Lee/kommonlee-core/.counters/views.svg)](https://sourcegraph.com/github.com/Kevin-Lee/kommonlee-core)
+[![views 24h](https://sourcegraph.com/api/repos/github.com/Kevin-Lee/kommonlee-core/.counters/views-24h.svg)](https://sourcegraph.com/github.com/Kevin-Lee/kommonlee-core)
+
 KommonLee Core
 
 [Project Homepage](http://projects.elixirian.org/kommonlee)
