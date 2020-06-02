@@ -102,10 +102,10 @@ public class TypeHolderTest
 
       final ParameterizedType that = castIfInstanceOf(ParameterizedType.class, obj);
       /* @formatter:off */
-			return isNotNull(that) &&
-			       (equal(this.rawType, that.getRawType()) &&
-							deepEqual(this.actualTypeArguments, that.getActualTypeArguments()));
-			/* @formatter:on */
+      return isNotNull(that) &&
+             (equal(this.rawType, that.getRawType()) &&
+              deepEqual(this.actualTypeArguments, that.getActualTypeArguments()));
+      /* @formatter:on */
     }
   }
 

@@ -55,18 +55,18 @@ import org.elixirian.kommonlee.util.CommonConstants;
  */
 public final class Conditions
 {
-	public static final NotNullCondition<?> IS_NOT_NULL = new NotNullCondition<Object>();
+  public static final NotNullCondition<?> IS_NOT_NULL = new NotNullCondition<Object>();
 
-	private Conditions() throws IllegalAccessException
-	{
-		throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
-	}
+  private Conditions() throws IllegalAccessException
+  {
+    throw new IllegalAccessException(getClass().getName() + CommonConstants.CANNOT_BE_INSTANTIATED);
+  }
 
-	public static <T> NotNullCondition<T> getNotNullCondition()
-	{
-		@SuppressWarnings("unchecked")
-		final NotNullCondition<T> notNullCondition = (NotNullCondition<T>) IS_NOT_NULL;
-		return notNullCondition;
-	}
+  public static <T> NotNullCondition<T> getNotNullCondition()
+  {
+    @SuppressWarnings("unchecked")
+    final NotNullCondition<T> notNullCondition = (NotNullCondition<T>) IS_NOT_NULL;
+    return notNullCondition;
+  }
 
 }

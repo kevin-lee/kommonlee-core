@@ -57,5 +57,5 @@ package org.elixirian.kommonlee.type.functional.primitive;
  */
 public interface ByteToIntFunction1
 {
-	int apply(byte input);
+  int apply(byte input);
 }

@@ -57,22 +57,22 @@ import org.elixirian.kommonlee.type.checkable.LengthCheckable;
  */
 public interface CharArrayProducer extends LengthCheckable
 {
-	/**
-	 * It produces chars and store into the given char array. How the chars are produced is all up to the implementation
-	 * of this interface.
-	 *
-	 * @param chars
-	 *          the given char array to store the chars from this {@link CharArrayProducer}.
-	 * @return the total number of chars written into the given char array.
-	 * @throws IOException
-	 */
-	int produce(char[] chars) throws IOException;
+  /**
+   * It produces chars and store into the given char array. How the chars are produced is all up to the implementation
+   * of this interface.
+   *
+   * @param chars
+   *          the given char array to store the chars from this {@link CharArrayProducer}.
+   * @return the total number of chars written into the given char array.
+   * @throws IOException
+   */
+  int produce(char[] chars) throws IOException;
 
-	/**
-	 * Returns the total number of chars this {@link CharArrayProducer} has.
-	 *
-	 * @return the total number of chars this {@link CharArrayProducer} has.
-	 */
-	@Override
-	int length();
+  /**
+   * Returns the total number of chars this {@link CharArrayProducer} has.
+   *
+   * @return the total number of chars this {@link CharArrayProducer} has.
+   */
+  @Override
+  int length();
 }

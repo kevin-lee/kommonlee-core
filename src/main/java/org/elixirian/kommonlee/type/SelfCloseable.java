@@ -53,5 +53,5 @@ package org.elixirian.kommonlee.type;
  */
 public interface SelfCloseable
 {
-	void close() throws Exception;
+  void close() throws Exception;
 }

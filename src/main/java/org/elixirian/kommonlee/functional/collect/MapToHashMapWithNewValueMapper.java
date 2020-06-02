@@ -76,14 +76,14 @@ public class MapToHashMapWithNewValueMapper<K, E, T extends Map<? extends K, ? e
   }
 
   /* @formatter:off */
-	public static <K,
-	               E,
-	               T extends Map<? extends K, ? extends E>,
-	               NE,
-	               F extends Function1<? super E, NE>>
-		MapToHashMapWithNewValueMapper<K, E, T, NE, F> newInstance(final HashMapCreator<K, NE> mapCreator)
-	{
-		return new MapToHashMapWithNewValueMapper<K, E, T, NE, F>(mapCreator);
-	}
-	/* @formatter:on */
+  public static <K,
+                 E,
+                 T extends Map<? extends K, ? extends E>,
+                 NE,
+                 F extends Function1<? super E, NE>>
+    MapToHashMapWithNewValueMapper<K, E, T, NE, F> newInstance(final HashMapCreator<K, NE> mapCreator)
+  {
+    return new MapToHashMapWithNewValueMapper<K, E, T, NE, F>(mapCreator);
+  }
+  /* @formatter:on */
 }

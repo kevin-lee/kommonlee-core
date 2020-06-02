@@ -91,13 +91,13 @@ public class MapToMapWithNewValueMapper<K, E, T extends Map<? extends K, ? exten
   }
 
   /* @formatter:off */
-	public static <K, E, T extends Map<? extends K, ? extends E>,
+  public static <K, E, T extends Map<? extends K, ? extends E>,
                  NE, F extends Function1<? super E, NE>,
                  R extends Map<K, NE>,
                  MC extends MapCreator<K, NE, ? extends R>>
-		MapToMapWithNewValueMapper<K, E, T, NE, F, R> newInstance(final MC mapCreator)
-	{
-		return new MapToMapWithNewValueMapper<K, E, T, NE, F, R>(mapCreator);
-	}
-	/* @formatter:on */
+    MapToMapWithNewValueMapper<K, E, T, NE, F, R> newInstance(final MC mapCreator)
+  {
+    return new MapToMapWithNewValueMapper<K, E, T, NE, F, R>(mapCreator);
+  }
+  /* @formatter:on */
 }

@@ -98,17 +98,17 @@ public class IterableToMapSelectableMapper<E, T extends Iterable<? extends E>, C
   }
 
   /* @formatter:off */
-	public static <E,
-	               T extends Iterable<? extends E>,
-	               C extends Condition1<? super E>,
+  public static <E,
+                 T extends Iterable<? extends E>,
+                 C extends Condition1<? super E>,
                  NK,
                  NE,
                  F extends Function1<? super E, ? extends Pair<NK, NE>>,
                  R extends Map<NK, NE>,
                  MC extends MapCreator<NK, NE, ? extends R>>
-		IterableToMapSelectableMapper<E, T, C, NK, NE, F, R> newInstance(final MC mapCreator)
-	{
-		return new IterableToMapSelectableMapper<E, T, C, NK, NE, F, R>(mapCreator);
-	}
-	/* @formatter:on */
+    IterableToMapSelectableMapper<E, T, C, NK, NE, F, R> newInstance(final MC mapCreator)
+  {
+    return new IterableToMapSelectableMapper<E, T, C, NK, NE, F, R>(mapCreator);
+  }
+  /* @formatter:on */
 }

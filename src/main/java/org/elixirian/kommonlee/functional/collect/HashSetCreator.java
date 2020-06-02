@@ -56,18 +56,18 @@ import java.util.HashSet;
  */
 public class HashSetCreator<E> implements CollectionCreator<E, HashSet<E>>
 {
-	public static final HashSetCreator<Object> HASH_SET_CREATOR = new HashSetCreator<Object>();
+  public static final HashSetCreator<Object> HASH_SET_CREATOR = new HashSetCreator<Object>();
 
-	@Override
-	public HashSet<E> createCollection()
-	{
-		return new HashSet<E>();
-	}
+  @Override
+  public HashSet<E> createCollection()
+  {
+    return new HashSet<E>();
+  }
 
-	public static <E> HashSetCreator<E> getInstance()
-	{
-		@SuppressWarnings("unchecked")
-		final HashSetCreator<E> hashSetCreator = (HashSetCreator<E>) HASH_SET_CREATOR;
-		return hashSetCreator;
-	}
+  public static <E> HashSetCreator<E> getInstance()
+  {
+    @SuppressWarnings("unchecked")
+    final HashSetCreator<E> hashSetCreator = (HashSetCreator<E>) HASH_SET_CREATOR;
+    return hashSetCreator;
+  }
 }

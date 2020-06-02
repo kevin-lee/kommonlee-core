@@ -54,5 +54,5 @@ package org.elixirian.kommonlee.type.functional;
  */
 public interface Condition1<T>
 {
-	boolean isMet(T input);
+  boolean isMet(T input);
 }

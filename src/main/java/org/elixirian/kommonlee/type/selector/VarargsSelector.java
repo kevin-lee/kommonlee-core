@@ -59,5 +59,5 @@ package org.elixirian.kommonlee.type.selector;
  */
 public interface VarargsSelector<T, C, R>
 {
-	R select(C condition, T first, T second, T third, T fourth, T fifth, T... rest);
+  R select(C condition, T first, T second, T third, T fourth, T fifth, T... rest);
 }

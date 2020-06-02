@@ -57,9 +57,9 @@ import org.elixirian.kommonlee.type.functional.Condition1;
  */
 public final class NotNullCondition<T> implements Condition1<T>
 {
-	@Override
-	public boolean isMet(final T input)
-	{
-		return null != input;
-	}
+  @Override
+  public boolean isMet(final T input)
+  {
+    return null != input;
+  }
 }

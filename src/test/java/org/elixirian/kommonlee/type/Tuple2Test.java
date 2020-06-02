@@ -65,20 +65,20 @@ public class Tuple2Test
   private static final Long NUMBER = Long.valueOf(12345L);
 
   /* @formatter:off */
-	private static class Pojo
-	{
-		private final String name;
-		public Pojo(final String name) { 	this.name = name; }
-		public String getName()	 { return name; }
-	}
+  private static class Pojo
+  {
+    private final String name;
+    public Pojo(final String name) {   this.name = name; }
+    public String getName()   { return name; }
+  }
 
-	private static class AnotherPojo
-	{
-		private final Long number;
-		public AnotherPojo(final Long number) { this.number = number; }
-		public Long getNumber() { return number; }
-	}
-	/* @formatter:on */
+  private static class AnotherPojo
+  {
+    private final Long number;
+    public AnotherPojo(final Long number) { this.number = number; }
+    public Long getNumber() { return number; }
+  }
+  /* @formatter:on */
 
   private static class PojoPair implements Tuple2<Pojo, Pojo>
   {

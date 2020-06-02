@@ -60,18 +60,18 @@ import java.util.HashMap;
  */
 public class HashMapCreator<K, E> implements MapCreator<K, E, HashMap<K, E>>
 {
-	public static final HashMapCreator<Object, Object> HASH_MAP_CREATOR = new HashMapCreator<Object, Object>();
-	
-	@Override
-	public HashMap<K, E> createMap()
-	{
-		return newHashMap();
-	}
+  public static final HashMapCreator<Object, Object> HASH_MAP_CREATOR = new HashMapCreator<Object, Object>();
+  
+  @Override
+  public HashMap<K, E> createMap()
+  {
+    return newHashMap();
+  }
 
-	public static <K, E> HashMapCreator<K, E> getInstance()
-	{
-		@SuppressWarnings("unchecked")
-		final HashMapCreator<K, E> hashMapCreator = (HashMapCreator<K, E>) HASH_MAP_CREATOR;
-		return hashMapCreator;
-	}
+  public static <K, E> HashMapCreator<K, E> getInstance()
+  {
+    @SuppressWarnings("unchecked")
+    final HashMapCreator<K, E> hashMapCreator = (HashMapCreator<K, E>) HASH_MAP_CREATOR;
+    return hashMapCreator;
+  }
 }

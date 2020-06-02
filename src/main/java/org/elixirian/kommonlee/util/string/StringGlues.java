@@ -127,21 +127,24 @@ public final class StringGlues
     protected StringGlueFunctionWithSeparator whichGlueFunction()
     {
       /* @formatter:off */
-			return (ignoredElementSet.isEmpty() && replacedElementMap.isEmpty()) ?
-						new SimpleStringGlueFunctionWithSeparator(separator) :
-						new ReplacingStringGlueFunctionWithSeparator(unmodifiableSet(ignoredElementSet),
-																  unmodifiableMap(replacedElementMap), separator);
-			/* @formatter:on */
+      return (ignoredElementSet.isEmpty() && replacedElementMap.isEmpty()) ?
+            new SimpleStringGlueFunctionWithSeparator(separator) :
+            new ReplacingStringGlueFunctionWithSeparator(
+                unmodifiableSet(ignoredElementSet),
+                unmodifiableMap(replacedElementMap),
+                separator
+            );
+      /* @formatter:on */
     }
 
     protected StringGlueFunctionWithoutSeparator whichGlueFunctionWithoutSeparator()
     {
       /* @formatter:off */
-			return (ignoredElementSet.isEmpty() && replacedElementMap.isEmpty()) ?
-						new SimpleStringGlueFunctionWithoutSeparator() :
-						new ReplacingStringGlueFunctionWithoutSeparator(unmodifiableSet(ignoredElementSet),
-																	 unmodifiableMap(replacedElementMap));
-			/* @formatter:on */
+      return (ignoredElementSet.isEmpty() && replacedElementMap.isEmpty()) ?
+            new SimpleStringGlueFunctionWithoutSeparator() :
+            new ReplacingStringGlueFunctionWithoutSeparator(unmodifiableSet(ignoredElementSet),
+                                   unmodifiableMap(replacedElementMap));
+      /* @formatter:on */
     }
 
     @Override
@@ -191,10 +194,10 @@ public final class StringGlues
       final StringGlueFunctionWithoutSeparator glueFunctionWithoutSeparator = whichGlueFunctionWithoutSeparator();
       final StringGlueFunctionWithSeparator glueFunctionWithSeparator = whichGlueFunction();
       /* @formatter:off */
-			return isNullOrEmptyString(separator) ?
-					new IterableToStringGlueWithoutSeparator(glueFunctionWithoutSeparator) :
-					new StringIterableToStringGlueWithSeparator(glueFunctionWithSeparator);
-			/* @formatter:on */
+      return isNullOrEmptyString(separator) ?
+          new IterableToStringGlueWithoutSeparator(glueFunctionWithoutSeparator) :
+          new StringIterableToStringGlueWithSeparator(glueFunctionWithSeparator);
+      /* @formatter:on */
     }
   }
 
@@ -462,9 +465,9 @@ public final class StringGlues
     {
       final StringBuilder stringBuilder = new StringBuilder();
       /* @formatter:off */
-			glueFunctionWithSeparator.apply(stringBuilder, value1)
-									 .apply(stringBuilder, value2);
-			/* @formatter:on */
+      glueFunctionWithSeparator.apply(stringBuilder, value1)
+                   .apply(stringBuilder, value2);
+      /* @formatter:on */
       return stringBuilder.toString();
     }
 
@@ -473,10 +476,10 @@ public final class StringGlues
     {
       final StringBuilder stringBuilder = new StringBuilder();
       /* @formatter:off */
-			glueFunctionWithSeparator.apply(stringBuilder, value1)
-			 						 .apply(stringBuilder, value2)
-									 .apply(stringBuilder, value3);
-			/* @formatter:on */
+      glueFunctionWithSeparator.apply(stringBuilder, value1)
+                    .apply(stringBuilder, value2)
+                   .apply(stringBuilder, value3);
+      /* @formatter:on */
       return stringBuilder.toString();
     }
 
@@ -485,11 +488,11 @@ public final class StringGlues
     {
       final StringBuilder stringBuilder = new StringBuilder();
       /* @formatter:off */
-			glueFunctionWithSeparator.apply(stringBuilder, value1)
-									 .apply(stringBuilder, value2)
-									 .apply(stringBuilder, value3)
-									 .apply(stringBuilder, value4);
-			/* @formatter:on */
+      glueFunctionWithSeparator.apply(stringBuilder, value1)
+                   .apply(stringBuilder, value2)
+                   .apply(stringBuilder, value3)
+                   .apply(stringBuilder, value4);
+      /* @formatter:on */
       return stringBuilder.toString();
     }
 
@@ -505,12 +508,12 @@ public final class StringGlues
     {
       final StringBuilder stringBuilder = new StringBuilder();
       /* @formatter:off */
-			glueFunctionWithSeparator.apply(stringBuilder, value1)
-									 .apply(stringBuilder, value2)
-									 .apply(stringBuilder, value3)
-									 .apply(stringBuilder, value4)
-									 .apply(stringBuilder, value5);
-			/* @formatter:on */
+      glueFunctionWithSeparator.apply(stringBuilder, value1)
+                   .apply(stringBuilder, value2)
+                   .apply(stringBuilder, value3)
+                   .apply(stringBuilder, value4)
+                   .apply(stringBuilder, value5);
+      /* @formatter:on */
       return stringBuilder.toString();
     }
 
@@ -556,9 +559,9 @@ public final class StringGlues
     {
       final StringBuilder stringBuilder = new StringBuilder();
       /* @formatter:off */
-			glueFunctionWithoutSeparator.apply(stringBuilder, value1)
-						.apply(stringBuilder, value2);
-			/* @formatter:on */
+      glueFunctionWithoutSeparator.apply(stringBuilder, value1)
+            .apply(stringBuilder, value2);
+      /* @formatter:on */
       return stringBuilder.toString();
     }
 
@@ -567,10 +570,10 @@ public final class StringGlues
     {
       final StringBuilder stringBuilder = new StringBuilder();
       /* @formatter:off */
-			glueFunctionWithoutSeparator.apply(stringBuilder, value1)
-						.apply(stringBuilder, value2)
-						.apply(stringBuilder, value3);
-			/* @formatter:on */
+      glueFunctionWithoutSeparator.apply(stringBuilder, value1)
+            .apply(stringBuilder, value2)
+            .apply(stringBuilder, value3);
+      /* @formatter:on */
       return stringBuilder.toString();
     }
 
@@ -579,11 +582,11 @@ public final class StringGlues
     {
       final StringBuilder stringBuilder = new StringBuilder();
       /* @formatter:off */
-			glueFunctionWithoutSeparator.apply(stringBuilder, value1)
-						.apply(stringBuilder, value2)
-						.apply(stringBuilder, value3)
-						.apply(stringBuilder, value4);
-			/* @formatter:on */
+      glueFunctionWithoutSeparator.apply(stringBuilder, value1)
+            .apply(stringBuilder, value2)
+            .apply(stringBuilder, value3)
+            .apply(stringBuilder, value4);
+      /* @formatter:on */
       return stringBuilder.toString();
     }
 
@@ -599,12 +602,12 @@ public final class StringGlues
     {
       final StringBuilder stringBuilder = new StringBuilder();
       /* @formatter:off */
-			glueFunctionWithoutSeparator.apply(stringBuilder, value1)
-						.apply(stringBuilder, value2)
-						.apply(stringBuilder, value3)
-						.apply(stringBuilder, value4)
-						.apply(stringBuilder, value5);
-			/* @formatter:on */
+      glueFunctionWithoutSeparator.apply(stringBuilder, value1)
+            .apply(stringBuilder, value2)
+            .apply(stringBuilder, value3)
+            .apply(stringBuilder, value4)
+            .apply(stringBuilder, value5);
+      /* @formatter:on */
       return stringBuilder.toString();
     }
 
@@ -613,10 +616,10 @@ public final class StringGlues
         final String value5, final String... rest)
     {
       /* @formatter:off */
-			return new StringBuilder(glue0(value1, value2, value3, value4, value5))
-						.append(glue0(rest))
-					.toString();
-			/* @formatter:on */
+      return new StringBuilder(glue0(value1, value2, value3, value4, value5))
+            .append(glue0(rest))
+          .toString();
+      /* @formatter:on */
     }
   }
 

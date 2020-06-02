@@ -85,11 +85,11 @@ public class GenericBuilderTest
     }
 
     /* @formatter:off */
-		public String getSurname() 	{ return surname; }
-		public String getGivenName() { return givenName; }
-		public int getNumber() { return number; }
-		public String getEmail() { return email; }
-		/* @formatter:on */
+    public String getSurname()   { return surname; }
+    public String getGivenName() { return givenName; }
+    public int getNumber() { return number; }
+    public String getEmail() { return email; }
+    /* @formatter:on */
 
     @Override
     public int hashCode()
@@ -107,17 +107,17 @@ public class GenericBuilderTest
     public boolean equals(final Object obj)
     {
       /* @formatter:off */
-			if (this == obj) return true;
-			if (!(obj instanceof SomePojo)) return false;
-			final SomePojo that = (SomePojo) obj;
-			return (this.surname == that.getSurname() ||
-						(null != this.surname && this.surname.equals(that.getSurname()))) &&
-					(this.givenName == that.getGivenName() ||
-						(null != this.givenName && this.givenName.equals(that.getGivenName()))) &&
-					this.number == that.getNumber() &&
-					(this.email == that.getEmail() ||
-						(null != this.email && this.email.equals(that.getEmail())));
-			/* @formatter:on */
+      if (this == obj) return true;
+      if (!(obj instanceof SomePojo)) return false;
+      final SomePojo that = (SomePojo) obj;
+      return (this.surname == that.getSurname() ||
+            (null != this.surname && this.surname.equals(that.getSurname()))) &&
+          (this.givenName == that.getGivenName() ||
+            (null != this.givenName && this.givenName.equals(that.getGivenName()))) &&
+          this.number == that.getNumber() &&
+          (this.email == that.getEmail() ||
+            (null != this.email && this.email.equals(that.getEmail())));
+      /* @formatter:on */
     }
   }
 

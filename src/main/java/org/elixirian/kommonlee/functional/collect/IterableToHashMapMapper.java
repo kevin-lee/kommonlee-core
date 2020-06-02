@@ -78,14 +78,14 @@ public class IterableToHashMapMapper<E, T extends Iterable<? extends E>, NK, NE,
   }
 
   /* @formatter:off */
-	public static <E,
-	               T extends Iterable<? extends E>,
+  public static <E,
+                 T extends Iterable<? extends E>,
                  NK,
                  NE,
                  F extends Function1<? super E, ? extends Pair<NK, NE>>>
-		IterableToHashMapMapper<E, T, NK, NE, F> newInstance(final HashMapCreator<NK, NE> mapCreator)
-	{
-		return new IterableToHashMapMapper<E, T, NK, NE, F>(mapCreator);
-	}
-	/* @formatter:on */
+    IterableToHashMapMapper<E, T, NK, NE, F> newInstance(final HashMapCreator<NK, NE> mapCreator)
+  {
+    return new IterableToHashMapMapper<E, T, NK, NE, F>(mapCreator);
+  }
+  /* @formatter:on */
 }

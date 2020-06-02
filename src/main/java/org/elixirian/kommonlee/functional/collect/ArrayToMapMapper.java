@@ -92,15 +92,15 @@ public class ArrayToMapMapper<E, NK, NE, F extends Function1<? super E, ? extend
   }
 
   /* @formatter:off */
-	public static <E,
+  public static <E,
                  NK,
                  NE,
                  F extends Function1<? super E, ? extends Pair<NK, NE>>,
                  R extends Map<NK, NE>,
                  MC extends MapCreator<NK, NE, ? extends R>>
-		ArrayToMapMapper<E, NK, NE, F, R> newInstance(final MC mapCreator)
-	{
-		return new ArrayToMapMapper<E, NK, NE, F, R>(mapCreator);
-	}
-	/* @formatter:on */
+    ArrayToMapMapper<E, NK, NE, F, R> newInstance(final MC mapCreator)
+  {
+    return new ArrayToMapMapper<E, NK, NE, F, R>(mapCreator);
+  }
+  /* @formatter:on */
 }

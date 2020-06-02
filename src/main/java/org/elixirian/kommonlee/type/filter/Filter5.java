@@ -59,5 +59,5 @@ package org.elixirian.kommonlee.type.filter;
  */
 public interface Filter5<T, C, R>
 {
-	R filter(C condition, T first, T second, T third, T fourth, T fifth);
+  R filter(C condition, T first, T second, T third, T fourth, T fifth);
 }

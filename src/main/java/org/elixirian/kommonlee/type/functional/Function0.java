@@ -55,5 +55,5 @@ package org.elixirian.kommonlee.type.functional;
  */
 public interface Function0<R>
 {
-	R apply();
+  R apply();
 }

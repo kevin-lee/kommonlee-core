@@ -59,5 +59,5 @@ package org.elixirian.kommonlee.type.filter;
  */
 public interface VarargsFilter<T, C, R>
 {
-	R filter(C condition, T first, T second, T third, T fourth, T fifth, T... rest);
+  R filter(C condition, T first, T second, T third, T fourth, T fifth, T... rest);
 }

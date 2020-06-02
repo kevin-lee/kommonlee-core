@@ -3631,14 +3631,14 @@ public class NeoArraysTest
     public String toString()
     {
       /* @formatter:off */
-			return new StringBuilder(getClass()
-									.getSimpleName())
-					.append("{")
-					.append("id=")
-					.append(id)
-					.append("}")
-					.toString();
-			/* @formatter:on */
+      return new StringBuilder(getClass()
+                  .getSimpleName())
+          .append("{")
+          .append("id=")
+          .append(id)
+          .append("}")
+          .toString();
+      /* @formatter:on */
     }
   }
 

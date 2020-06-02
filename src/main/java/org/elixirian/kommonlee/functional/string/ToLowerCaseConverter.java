@@ -55,16 +55,16 @@ import org.elixirian.kommonlee.type.functional.Function1;
  */
 public final class ToLowerCaseConverter implements Function1<String[], String[]>
 {
-	@Override
-	public String[] apply(final String[] input)
-	{
-		final int size = input.length;
-		final String[] result = new String[size];
-		for (int i = 0; i < size; i++)
-		{
-			result[i] = input[i].toLowerCase();
-		}
-		return result;
-	}
+  @Override
+  public String[] apply(final String[] input)
+  {
+    final int size = input.length;
+    final String[] result = new String[size];
+    for (int i = 0; i < size; i++)
+    {
+      result[i] = input[i].toLowerCase();
+    }
+    return result;
+  }
 
 }

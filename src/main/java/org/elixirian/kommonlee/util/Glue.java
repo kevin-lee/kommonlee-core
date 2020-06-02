@@ -53,5 +53,5 @@ package org.elixirian.kommonlee.util;
  */
 public interface Glue<T, R>
 {
-	R glue(T source);
+  R glue(T source);
 }

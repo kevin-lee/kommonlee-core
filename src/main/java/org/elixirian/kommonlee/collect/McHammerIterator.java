@@ -55,45 +55,45 @@ import java.util.NoSuchElementException;
  */
 public abstract class McHammerIterator<E> implements UnmodifiableIterator<E>
 {
-	public static final McHammerIterator<?> EMPTY_MC_HAMMER_ITERATOR = new McHammerIterator<Object>() {
+  public static final McHammerIterator<?> EMPTY_MC_HAMMER_ITERATOR = new McHammerIterator<Object>() {
 
-		@Override
-		public boolean hasNext()
-		{
-			return false;
-		}
+    @Override
+    public boolean hasNext()
+    {
+      return false;
+    }
 
-		@Override
-		public Object next()
-		{
-			throw new NoSuchElementException();
-		}
-	};
+    @Override
+    public Object next()
+    {
+      throw new NoSuchElementException();
+    }
+  };
 
-	public static <T> McHammerIterator<T> emptyMcHammerIterator()
-	{
-		@SuppressWarnings("unchecked")
-		final McHammerIterator<T> emptyMcHammerIterator = (McHammerIterator<T>) EMPTY_MC_HAMMER_ITERATOR;
-		return emptyMcHammerIterator;
-	}
+  public static <T> McHammerIterator<T> emptyMcHammerIterator()
+  {
+    @SuppressWarnings("unchecked")
+    final McHammerIterator<T> emptyMcHammerIterator = (McHammerIterator<T>) EMPTY_MC_HAMMER_ITERATOR;
+    return emptyMcHammerIterator;
+  }
 
-	@Override
-	public abstract boolean hasNext();
+  @Override
+  public abstract boolean hasNext();
 
-	@Override
-	public abstract E next();
+  @Override
+  public abstract E next();
 
-	/**
-	 * McHammerIterator: U Can't Touch This! You always get {@link UnsupportedOperationException} when you call this
-	 * method.
-	 * 
-	 * @exception UnsupportedOperationException
-	 *              always!!!
-	 */
-	@Override
-	public final void remove()
-	{
-		throw new UnsupportedOperationException(
-				"McHammerIterator: U Can't Touch This!\nYou cannot remove any element through this Iterator. It is an object of UnmodifiableIterator.");
-	}
+  /**
+   * McHammerIterator: U Can't Touch This! You always get {@link UnsupportedOperationException} when you call this
+   * method.
+   * 
+   * @exception UnsupportedOperationException
+   *              always!!!
+   */
+  @Override
+  public final void remove()
+  {
+    throw new UnsupportedOperationException(
+        "McHammerIterator: U Can't Touch This!\nYou cannot remove any element through this Iterator. It is an object of UnmodifiableIterator.");
+  }
 }

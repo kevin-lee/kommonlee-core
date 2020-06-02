@@ -56,5 +56,5 @@ import java.io.OutputStream;
  */
 public interface OutputStreamSource
 {
-	OutputStream getOutputStream() throws IOException;
+  OutputStream getOutputStream() throws IOException;
 }

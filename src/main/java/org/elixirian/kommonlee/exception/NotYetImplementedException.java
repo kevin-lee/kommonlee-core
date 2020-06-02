@@ -53,25 +53,25 @@ package org.elixirian.kommonlee.exception;
  */
 public class NotYetImplementedException extends ElixirianRuntimeException
 {
-	private static final long serialVersionUID = -3081975430733060571L;
+  private static final long serialVersionUID = -3081975430733060571L;
 
-	public NotYetImplementedException()
-	{
-	}
+  public NotYetImplementedException()
+  {
+  }
 
-	public NotYetImplementedException(final String message, final Throwable cause)
-	{
-		super(message, cause);
-	}
+  public NotYetImplementedException(final String message, final Throwable cause)
+  {
+    super(message, cause);
+  }
 
-	public NotYetImplementedException(final String message)
-	{
-		super(message);
-	}
+  public NotYetImplementedException(final String message)
+  {
+    super(message);
+  }
 
-	public NotYetImplementedException(final Throwable cause)
-	{
-		super(cause);
-	}
+  public NotYetImplementedException(final Throwable cause)
+  {
+    super(cause);
+  }
 
 }

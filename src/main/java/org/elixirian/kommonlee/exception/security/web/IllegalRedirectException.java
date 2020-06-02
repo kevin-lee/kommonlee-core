@@ -56,41 +56,41 @@ import org.elixirian.kommonlee.exception.security.ElixirianSecurityException;
  */
 public class IllegalRedirectException extends ElixirianSecurityException
 {
-	private static final long serialVersionUID = 4599788105021802070L;
+  private static final long serialVersionUID = 4599788105021802070L;
 
-	public IllegalRedirectException(final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(extraExceptionInformation);
-	}
+  public IllegalRedirectException(final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(extraExceptionInformation);
+  }
 
-	public IllegalRedirectException(final String message, final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(message, extraExceptionInformation);
-	}
+  public IllegalRedirectException(final String message, final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(message, extraExceptionInformation);
+  }
 
-	public IllegalRedirectException(final String message, final Throwable cause,
-			final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(message, cause, extraExceptionInformation);
-	}
+  public IllegalRedirectException(final String message, final Throwable cause,
+      final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(message, cause, extraExceptionInformation);
+  }
 
-	public IllegalRedirectException(final String message, final Throwable cause)
-	{
-		super(message, cause);
-	}
+  public IllegalRedirectException(final String message, final Throwable cause)
+  {
+    super(message, cause);
+  }
 
-	public IllegalRedirectException(final String message)
-	{
-		super(message);
-	}
+  public IllegalRedirectException(final String message)
+  {
+    super(message);
+  }
 
-	public IllegalRedirectException(final Throwable cause, final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(cause, extraExceptionInformation);
-	}
+  public IllegalRedirectException(final Throwable cause, final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(cause, extraExceptionInformation);
+  }
 
-	public IllegalRedirectException(final Throwable cause)
-	{
-		super(cause);
-	}
+  public IllegalRedirectException(final Throwable cause)
+  {
+    super(cause);
+  }
 }

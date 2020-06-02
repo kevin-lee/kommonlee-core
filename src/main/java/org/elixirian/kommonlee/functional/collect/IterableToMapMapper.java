@@ -92,16 +92,16 @@ public class IterableToMapMapper<E, T extends Iterable<? extends E>, NK, NE, F e
   }
 
   /* @formatter:off */
-	public static <E,
-	               T extends Iterable<? extends E>,
+  public static <E,
+                 T extends Iterable<? extends E>,
                  NK,
                  NE,
                  F extends Function1<? super E, ? extends Pair<NK, NE>>,
                  R extends Map<NK, NE>,
                  MC extends MapCreator<NK, NE, ? extends R>>
-		IterableToMapMapper<E, T, NK, NE, F, R> newInstance(final MC mapCreator)
-	{
-		return new IterableToMapMapper<E, T, NK, NE, F, R>(mapCreator);
-	}
-	/* @formatter:on */
+    IterableToMapMapper<E, T, NK, NE, F, R> newInstance(final MC mapCreator)
+  {
+    return new IterableToMapMapper<E, T, NK, NE, F, R>(mapCreator);
+  }
+  /* @formatter:on */
 }

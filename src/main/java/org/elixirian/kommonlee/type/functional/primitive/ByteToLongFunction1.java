@@ -57,5 +57,5 @@ package org.elixirian.kommonlee.type.functional.primitive;
  */
 public interface ByteToLongFunction1
 {
-	long apply(byte input);
+  long apply(byte input);
 }

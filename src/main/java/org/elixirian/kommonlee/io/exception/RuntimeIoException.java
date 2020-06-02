@@ -58,8 +58,8 @@ public class RuntimeIoException extends ElixirianRuntimeException
   private static final long serialVersionUID = 4804330258609079383L;
 
   /**
-	 * 
-	 */
+   * 
+   */
   public RuntimeIoException()
   {
     super();

@@ -57,24 +57,24 @@ import org.elixirian.kommonlee.type.checkable.LengthCheckable;
  */
 public interface ByteArrayProducer extends LengthCheckable
 {
-	/**
-	 * It produces bytes and store into the given byte array. How the bytes are produced is all up to the implementation
-	 * of this interface.
-	 *
-	 * @param bytes
-	 *          the given byte array to store the bytes from this {@link ByteArrayProducer}.
-	 * @return the total number of bytes written into the given byte array.
-	 * @throws IOException
-	 */
-	int produce(byte[] bytes) throws IOException;
+  /**
+   * It produces bytes and store into the given byte array. How the bytes are produced is all up to the implementation
+   * of this interface.
+   *
+   * @param bytes
+   *          the given byte array to store the bytes from this {@link ByteArrayProducer}.
+   * @return the total number of bytes written into the given byte array.
+   * @throws IOException
+   */
+  int produce(byte[] bytes) throws IOException;
 
-	/**
-	 * Returns the total number of bytes this {@link ByteArrayProducer} has.
-	 *
-	 * @return the total number of bytes this {@link ByteArrayProducer} has.
-	 */
-	@Override
-	int length();
-	
-	byte[] toByteArray();
+  /**
+   * Returns the total number of bytes this {@link ByteArrayProducer} has.
+   *
+   * @return the total number of bytes this {@link ByteArrayProducer} has.
+   */
+  @Override
+  int length();
+  
+  byte[] toByteArray();
 }

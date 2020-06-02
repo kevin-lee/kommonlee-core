@@ -55,11 +55,11 @@ public class ShortTotalTest
   // private static final int HOW_MANY = 30;
 
   /* @formatter:off */
-	private static final short[] NUMBERS1 =
-	  { Short.MIN_VALUE, -7,    -6,   -5,  -4,  -3,  -2, -1,  0,  1,  2,  3,  4,  5,   6 ,   Short.MAX_VALUE, Short.MAX_VALUE, 16383 };
-	private static final short[] NUMBERS2 =
-	  { Short.MIN_VALUE, -1000, -100, -90, -80, -70, -60, 10, 20, 30, 40, 50, 60, 100, 1000, Short.MAX_VALUE };
-	/* @formatter:on */
+  private static final short[] NUMBERS1 =
+    { Short.MIN_VALUE, -7,    -6,   -5,  -4,  -3,  -2, -1,  0,  1,  2,  3,  4,  5,   6 ,   Short.MAX_VALUE, Short.MAX_VALUE, 16383 };
+  private static final short[] NUMBERS2 =
+    { Short.MIN_VALUE, -1000, -100, -90, -80, -70, -60, 10, 20, 30, 40, 50, 60, 100, 1000, Short.MAX_VALUE };
+  /* @formatter:on */
 
   private static final Random random = new Random();
   private static final short[] NUMBERS3 = getRandomNumbers(3);

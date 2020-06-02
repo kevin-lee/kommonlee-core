@@ -53,68 +53,68 @@ package org.elixirian.kommonlee.exception;
  */
 public abstract class InformativeRuntimeException extends ElixirianRuntimeException
 {
-	private static final long serialVersionUID = -6976968193484353401L;
+  private static final long serialVersionUID = -6976968193484353401L;
 
-	private final ExtraExceptionInformation extraExceptionInformation;
+  private final ExtraExceptionInformation extraExceptionInformation;
 
-	public InformativeRuntimeException(final String message)
-	{
-		super(message);
-		this.extraExceptionInformation = ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION;
-	}
+  public InformativeRuntimeException(final String message)
+  {
+    super(message);
+    this.extraExceptionInformation = ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION;
+  }
 
-	public InformativeRuntimeException(final Throwable cause)
-	{
-		super(cause);
-		this.extraExceptionInformation = ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION;
-	}
+  public InformativeRuntimeException(final Throwable cause)
+  {
+    super(cause);
+    this.extraExceptionInformation = ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION;
+  }
 
-	public InformativeRuntimeException(final String message, final Throwable cause)
-	{
-		super(message, cause);
-		this.extraExceptionInformation = ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION;
-	}
+  public InformativeRuntimeException(final String message, final Throwable cause)
+  {
+    super(message, cause);
+    this.extraExceptionInformation = ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION;
+  }
 
-	public InformativeRuntimeException(final ExtraExceptionInformation extraExceptionInformation)
-	{
-		this.extraExceptionInformation =
-			null == extraExceptionInformation ? ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION
-					: extraExceptionInformation;
-	}
+  public InformativeRuntimeException(final ExtraExceptionInformation extraExceptionInformation)
+  {
+    this.extraExceptionInformation =
+      null == extraExceptionInformation ? ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION
+          : extraExceptionInformation;
+  }
 
-	public InformativeRuntimeException(final String message, final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(message);
-		this.extraExceptionInformation =
-			null == extraExceptionInformation ? ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION
-					: extraExceptionInformation;
-	}
+  public InformativeRuntimeException(final String message, final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(message);
+    this.extraExceptionInformation =
+      null == extraExceptionInformation ? ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION
+          : extraExceptionInformation;
+  }
 
-	public InformativeRuntimeException(final Throwable cause, final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(cause);
-		this.extraExceptionInformation =
-			null == extraExceptionInformation ? ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION
-					: extraExceptionInformation;
-	}
+  public InformativeRuntimeException(final Throwable cause, final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(cause);
+    this.extraExceptionInformation =
+      null == extraExceptionInformation ? ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION
+          : extraExceptionInformation;
+  }
 
-	public InformativeRuntimeException(final String message, final Throwable cause,
-			final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(message, cause);
-		this.extraExceptionInformation =
-			null == extraExceptionInformation ? ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION
-					: extraExceptionInformation;
-	}
+  public InformativeRuntimeException(final String message, final Throwable cause,
+      final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(message, cause);
+    this.extraExceptionInformation =
+      null == extraExceptionInformation ? ExtraExceptionInformation.EMPTY_EXTRA_EXCEPTION_INFORMATION
+          : extraExceptionInformation;
+  }
 
-	public ExtraExceptionInformation getExtraExceptionInformation()
-	{
-		return extraExceptionInformation;
-	}
+  public ExtraExceptionInformation getExtraExceptionInformation()
+  {
+    return extraExceptionInformation;
+  }
 
-	@Override
-	public String toString()
-	{
-		return super.toString() + "\n" + getExtraExceptionInformation();
-	}
+  @Override
+  public String toString()
+  {
+    return super.toString() + "\n" + getExtraExceptionInformation();
+  }
 }

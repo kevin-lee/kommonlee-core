@@ -59,5 +59,5 @@ import java.util.Collection;
  */
 public interface CollectionCreator<E, T extends Collection<? extends E>>
 {
-	T createCollection();
+  T createCollection();
 }

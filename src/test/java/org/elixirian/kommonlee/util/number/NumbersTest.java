@@ -2304,17 +2304,17 @@ public class NumbersTest
     }
 
     /* @formatter:off */
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final double... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigInteger... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigDecimal... numbers) 	{ throw new UnsupportedOperationException(); }
-		/* @formatter:on */
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final double... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigInteger... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigDecimal... numbers)   { throw new UnsupportedOperationException(); }
+    /* @formatter:on */
   }
 
   private static class ByteListCreater extends ByteCollectionCreater<List<Byte>>
@@ -2363,17 +2363,17 @@ public class NumbersTest
     }
 
     /* @formatter:off */
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final double... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigInteger... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigDecimal... numbers) 	{ throw new UnsupportedOperationException(); }
-		/* @formatter:on */
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final double... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigInteger... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigDecimal... numbers)   { throw new UnsupportedOperationException(); }
+    /* @formatter:on */
   }
 
   private static class ShortListCreater extends ShortCollectionCreater<List<Short>>
@@ -2425,17 +2425,17 @@ public class NumbersTest
     }
 
     /* @formatter:off */
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final double... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigInteger... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigDecimal... numbers) 	{ throw new UnsupportedOperationException(); }
-		/* @formatter:on */
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final double... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigInteger... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigDecimal... numbers)   { throw new UnsupportedOperationException(); }
+    /* @formatter:on */
   }
 
   private static class IntegerListCreater extends IntegerCollectionCreater<List<Integer>>
@@ -2483,17 +2483,17 @@ public class NumbersTest
     }
 
     /* @formatter:off */
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final int... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final double... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigInteger... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigDecimal... numbers) 	{ throw new UnsupportedOperationException(); }
-		/* @formatter:on */
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final int... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final double... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigInteger... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigDecimal... numbers)   { throw new UnsupportedOperationException(); }
+    /* @formatter:on */
   }
 
   private static class LongListCreater extends LongCollectionCreater<List<Long>>
@@ -2542,17 +2542,17 @@ public class NumbersTest
     }
 
     /* @formatter:off */
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final int... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final double... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigInteger... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigDecimal... numbers) 	{ throw new UnsupportedOperationException(); }
-		/* @formatter:on */
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final int... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final double... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigInteger... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigDecimal... numbers)   { throw new UnsupportedOperationException(); }
+    /* @formatter:on */
   }
 
   private static class FloatListCreater extends FloatCollectionCreater<List<Float>>
@@ -2601,17 +2601,17 @@ public class NumbersTest
     }
 
     /* @formatter:off */
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final int... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigInteger... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigDecimal... numbers) 	{ throw new UnsupportedOperationException(); }
-		/* @formatter:on */
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final int... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigInteger... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigDecimal... numbers)   { throw new UnsupportedOperationException(); }
+    /* @formatter:on */
   }
 
   private static class DoubleListCreater extends DoubleCollectionCreater<List<Double>>
@@ -2659,17 +2659,17 @@ public class NumbersTest
     }
 
     /* @formatter:off */
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final int... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final long... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final double... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigDecimal... numbers) 	{ throw new UnsupportedOperationException(); }
-		/* @formatter:on */
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final int... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final long... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final double... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigDecimal... numbers)   { throw new UnsupportedOperationException(); }
+    /* @formatter:on */
   }
 
   private static class BigIntegerListCreater extends BigIntegerCollectionCreater<List<BigInteger>>
@@ -2717,17 +2717,17 @@ public class NumbersTest
     }
 
     /* @formatter:off */
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final int... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final double... numbers) 	{ throw new UnsupportedOperationException(); }
-		@SuppressWarnings("unused")
-		@Override public C collectionOf(final BigInteger... numbers) 	{ throw new UnsupportedOperationException(); }
-		/* @formatter:on */
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final int... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final long... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final float... numbers) { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final double... numbers)   { throw new UnsupportedOperationException(); }
+    @SuppressWarnings("unused")
+    @Override public C collectionOf(final BigInteger... numbers)   { throw new UnsupportedOperationException(); }
+    /* @formatter:on */
   }
 
   private static class BigDecimalListCreater extends BigDecimalCollectionCreater<List<BigDecimal>>

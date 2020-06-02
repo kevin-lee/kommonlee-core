@@ -55,12 +55,12 @@ import java.io.IOException;
  */
 public interface StringConsumer
 {
-	/**
-	 * It consumes the given String. How the String value is consumed is all up to the implementation of this interface.
-	 * 
-	 * @param value
-	 *          the given String value
-	 * @throws IOException
-	 */
-	void consume(String value) throws IOException;
+  /**
+   * It consumes the given String. How the String value is consumed is all up to the implementation of this interface.
+   *
+   * @param value
+   *          the given String value
+   * @throws IOException
+   */
+  void consume(String value) throws IOException;
 }

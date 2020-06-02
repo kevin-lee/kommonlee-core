@@ -635,7 +635,7 @@ public final class IoUtil
       /* @formatter:off */
       throw new RuntimeIoException(
           format("File sourceFile: %s\n" +
-          		   "File targetFile: %s\n" +
+                 "File targetFile: %s\n" +
                  "int bufferSize: %s\n" +
                  "local InputStream inputStream: %s\n" +
                  "local OutputStream outputStream: %s",

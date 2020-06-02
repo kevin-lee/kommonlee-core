@@ -59,5 +59,5 @@ package org.elixirian.kommonlee.type.filter;
  */
 public interface ArrayFilter<T, C, R>
 {
-	R filter(C condition, T[] source);
+  R filter(C condition, T[] source);
 }

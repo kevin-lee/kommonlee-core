@@ -55,5 +55,5 @@ package org.elixirian.kommonlee.type.functional.primitive;
  */
 public interface IndexedFunction0<R>
 {
-	R apply(int index);
+  R apply(int index);
 }

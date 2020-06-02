@@ -78,15 +78,15 @@ public class MapToHashMapWithNewKeyNewValueMapper<K, E, T extends Map<? extends 
   }
 
   /* @formatter:off */
-	public static <K,
-	               E,
-	               T extends Map<? extends K, ? extends E>,
-	               NK,
-	               NE,
-	               F extends Function2<? super K, ? super E, Pair<NK, NE>>>
-		MapToHashMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F> newInstance(final HashMapCreator<NK, NE> mapCreator)
-	{
-		return new MapToHashMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F>(mapCreator);
-	}
-	/* @formatter:on */
+  public static <K,
+                 E,
+                 T extends Map<? extends K, ? extends E>,
+                 NK,
+                 NE,
+                 F extends Function2<? super K, ? super E, Pair<NK, NE>>>
+    MapToHashMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F> newInstance(final HashMapCreator<NK, NE> mapCreator)
+  {
+    return new MapToHashMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F>(mapCreator);
+  }
+  /* @formatter:on */
 }

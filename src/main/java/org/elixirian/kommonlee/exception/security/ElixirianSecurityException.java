@@ -56,42 +56,42 @@ import org.elixirian.kommonlee.exception.InformativeRuntimeException;
  */
 public class ElixirianSecurityException extends InformativeRuntimeException
 {
-	private static final long serialVersionUID = 4599788105021802070L;
+  private static final long serialVersionUID = 4599788105021802070L;
 
-	public ElixirianSecurityException(final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(extraExceptionInformation);
-	}
+  public ElixirianSecurityException(final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(extraExceptionInformation);
+  }
 
-	public ElixirianSecurityException(final String message, final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(message, extraExceptionInformation);
-	}
+  public ElixirianSecurityException(final String message, final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(message, extraExceptionInformation);
+  }
 
-	public ElixirianSecurityException(final String message, final Throwable cause,
-			final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(message, cause, extraExceptionInformation);
-	}
+  public ElixirianSecurityException(final String message, final Throwable cause,
+      final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(message, cause, extraExceptionInformation);
+  }
 
-	public ElixirianSecurityException(final String message, final Throwable cause)
-	{
-		super(message, cause);
-	}
+  public ElixirianSecurityException(final String message, final Throwable cause)
+  {
+    super(message, cause);
+  }
 
-	public ElixirianSecurityException(final String message)
-	{
-		super(message);
-	}
+  public ElixirianSecurityException(final String message)
+  {
+    super(message);
+  }
 
-	public ElixirianSecurityException(final Throwable cause, final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(cause, extraExceptionInformation);
-	}
+  public ElixirianSecurityException(final Throwable cause, final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(cause, extraExceptionInformation);
+  }
 
-	public ElixirianSecurityException(final Throwable cause)
-	{
-		super(cause);
-	}
+  public ElixirianSecurityException(final Throwable cause)
+  {
+    super(cause);
+  }
 
 }

@@ -53,6 +53,6 @@ package org.elixirian.kommonlee.util.string;
  */
 public interface StringIterableToStringGlue extends ToStringGlue<Iterable<String>>
 {
-	@Override
-	String glue(Iterable<String> source);
+  @Override
+  String glue(Iterable<String> source);
 }

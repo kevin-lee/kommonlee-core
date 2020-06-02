@@ -88,17 +88,17 @@ public class IterableToCollectionSelectableMapper<E, T extends Iterable<? extend
   }
 
   /* @formatter:off */
-	public static <E,
-									 T extends Iterable<? extends E>,
-									 C extends Condition1<? super E>,
-									 NE,
-									 F extends Function1<? super E, NE>,
-									 R extends Collection<NE>,
-									 CC extends CollectionCreator<NE, ? extends R>>
-					IterableToCollectionSelectableMapper<E, T, C, NE, F, R>
-		newInstance(final CC collectionCreator)
-	{
-		return new IterableToCollectionSelectableMapper<E, T, C, NE, F, R>(collectionCreator);
-	}
-	/* @formatter:on */
+  public static <E,
+                   T extends Iterable<? extends E>,
+                   C extends Condition1<? super E>,
+                   NE,
+                   F extends Function1<? super E, NE>,
+                   R extends Collection<NE>,
+                   CC extends CollectionCreator<NE, ? extends R>>
+          IterableToCollectionSelectableMapper<E, T, C, NE, F, R>
+    newInstance(final CC collectionCreator)
+  {
+    return new IterableToCollectionSelectableMapper<E, T, C, NE, F, R>(collectionCreator);
+  }
+  /* @formatter:on */
 }

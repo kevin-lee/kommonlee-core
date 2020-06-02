@@ -53,24 +53,24 @@ package org.elixirian.kommonlee.io.exception;
  */
 public class RuntimeMalformedURLException extends NetworkAddressException
 {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	public RuntimeMalformedURLException()
-	{
-	}
+  public RuntimeMalformedURLException()
+  {
+  }
 
-	public RuntimeMalformedURLException(final String message, final Throwable cause)
-	{
-		super(message, cause);
-	}
+  public RuntimeMalformedURLException(final String message, final Throwable cause)
+  {
+    super(message, cause);
+  }
 
-	public RuntimeMalformedURLException(final String message)
-	{
-		super(message);
-	}
+  public RuntimeMalformedURLException(final String message)
+  {
+    super(message);
+  }
 
-	public RuntimeMalformedURLException(final Throwable cause)
-	{
-		super(cause);
-	}
+  public RuntimeMalformedURLException(final Throwable cause)
+  {
+    super(cause);
+  }
 }

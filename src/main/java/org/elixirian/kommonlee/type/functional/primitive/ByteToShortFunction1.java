@@ -57,5 +57,5 @@ package org.elixirian.kommonlee.type.functional.primitive;
  */
 public interface ByteToShortFunction1
 {
-	short apply(byte input);
+  short apply(byte input);
 }

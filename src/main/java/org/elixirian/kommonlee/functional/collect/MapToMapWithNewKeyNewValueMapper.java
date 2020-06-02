@@ -94,15 +94,15 @@ public class MapToMapWithNewKeyNewValueMapper<K, E, T extends Map<? extends K, ?
   }
 
   /* @formatter:off */
-	public static <K, E, T extends Map<? extends K, ? extends E>,
+  public static <K, E, T extends Map<? extends K, ? extends E>,
                  NK,
                  NE,
                  F extends Function2<? super K, ? super E, Pair<NK, NE>>,
                  R extends Map<NK, NE>,
                  MC extends MapCreator<NK, NE, ? extends R>>
-		MapToMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F, R> newInstance(final MC mapCreator)
-	{
-		return new MapToMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F, R>(mapCreator);
-	}
-	/* @formatter:on */
+    MapToMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F, R> newInstance(final MC mapCreator)
+  {
+    return new MapToMapWithNewKeyNewValueMapper<K, E, T, NK, NE, F, R>(mapCreator);
+  }
+  /* @formatter:on */
 }

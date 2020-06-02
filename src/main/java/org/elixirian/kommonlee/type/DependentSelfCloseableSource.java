@@ -52,7 +52,7 @@ package org.elixirian.kommonlee.type;
  * @version 0.0.1 (2012-10-06)
  */
 public interface DependentSelfCloseableSource<T extends Source<?>,
-																											R extends SelfCloseableSource<?>>
+                                                      R extends SelfCloseableSource<?>>
 {
-	R getSource(T dependencySource) throws Exception;
+  R getSource(T dependencySource) throws Exception;
 }

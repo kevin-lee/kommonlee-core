@@ -54,5 +54,5 @@ package org.elixirian.kommonlee.type.functional.primitive;
  */
 public interface ByteCondition1
 {
-	boolean isMet(byte input);
+  boolean isMet(byte input);
 }

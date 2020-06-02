@@ -57,9 +57,9 @@ import org.elixirian.kommonlee.type.functional.Condition1;
  */
 public final class NotEmptyStringCondition implements Condition1<String>
 {
-	@Override
-	public boolean isMet(final String input)
-	{
-		return isNeitherNullNorEmptyString(input);
-	}
+  @Override
+  public boolean isMet(final String input)
+  {
+    return isNeitherNullNorEmptyString(input);
+  }
 }

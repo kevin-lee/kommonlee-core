@@ -55,9 +55,9 @@ public class FloatTotalTest
   // private static final int HOW_MANY = 30;
 
   /* @formatter:off */
-	private static final float[] NUMBERS1 = { Integer.MIN_VALUE, -5,   -4,  -3,  -2,  -1,  0,  1,  2,  3,  4,  5,  Integer.MAX_VALUE };
-	private static final float[] NUMBERS2 = { Integer.MIN_VALUE, -100, -90, -80, -70, -60, 10, 20, 30, 40, 50, 60, Integer.MAX_VALUE };
-	/* @formatter:on */
+  private static final float[] NUMBERS1 = { Integer.MIN_VALUE, -5,   -4,  -3,  -2,  -1,  0,  1,  2,  3,  4,  5,  Integer.MAX_VALUE };
+  private static final float[] NUMBERS2 = { Integer.MIN_VALUE, -100, -90, -80, -70, -60, 10, 20, 30, 40, 50, 60, Integer.MAX_VALUE };
+  /* @formatter:on */
 
   private static final Random random = new Random();
   private static final float[] NUMBERS3 = getRandomNumbers(3);

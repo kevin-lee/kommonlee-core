@@ -55,6 +55,6 @@ import org.elixirian.kommonlee.util.Glue;
  */
 public interface ToStringGlue<T> extends Glue<T, String>
 {
-	@Override
-	String glue(T source);
+  @Override
+  String glue(T source);
 }

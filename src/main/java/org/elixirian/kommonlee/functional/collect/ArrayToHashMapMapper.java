@@ -77,13 +77,13 @@ public class ArrayToHashMapMapper<E, NK, NE, F extends Function1<? super E, ? ex
   }
 
   /* @formatter:off */
-	public static <E,
+  public static <E,
                  NK,
                  NE,
                  F extends Function1<? super E, ? extends Pair<NK, NE>>>
-		ArrayToHashMapMapper<E, NK, NE, F> newInstance(final HashMapCreator<NK, NE> mapCreator)
-	{
-		return new ArrayToHashMapMapper<E, NK, NE, F>(mapCreator);
-	}
-	/* @formatter:on */
+    ArrayToHashMapMapper<E, NK, NE, F> newInstance(final HashMapCreator<NK, NE> mapCreator)
+  {
+    return new ArrayToHashMapMapper<E, NK, NE, F>(mapCreator);
+  }
+  /* @formatter:on */
 }

@@ -86,15 +86,15 @@ public class ArrayToCollectionMapper<E, NE, F extends Function1<? super E, NE>, 
   }
 
   /* @formatter:off */
-	public static <E,
-								 NE,
-								 F extends Function1<? super E, NE>,
-								 R extends Collection<NE>,
-								 CC extends CollectionCreator<NE, ? extends R>>
-					ArrayToCollectionMapper<E, NE, F, R>
-		newInstance(final CC collectionCreator)
-	{
-		return new ArrayToCollectionMapper<E, NE, F, R>(collectionCreator);
-	}
-	/* @formatter:on */
+  public static <E,
+                 NE,
+                 F extends Function1<? super E, NE>,
+                 R extends Collection<NE>,
+                 CC extends CollectionCreator<NE, ? extends R>>
+    ArrayToCollectionMapper<E, NE, F, R>
+    newInstance(final CC collectionCreator)
+  {
+    return new ArrayToCollectionMapper<E, NE, F, R>(collectionCreator);
+  }
+  /* @formatter:on */
 }

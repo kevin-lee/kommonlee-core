@@ -53,25 +53,25 @@ package org.elixirian.kommonlee.exception;
  */
 public class ElixirianRuntimeException extends RuntimeException
 {
-	private static final long serialVersionUID = -5681761677784619703L;
+  private static final long serialVersionUID = -5681761677784619703L;
 
-	public ElixirianRuntimeException()
-	{
-		super();
-	}
+  public ElixirianRuntimeException()
+  {
+    super();
+  }
 
-	public ElixirianRuntimeException(final String message)
-	{
-		super(message);
-	}
+  public ElixirianRuntimeException(final String message)
+  {
+    super(message);
+  }
 
-	public ElixirianRuntimeException(final String message, final Throwable cause)
-	{
-		super(message, cause);
-	}
+  public ElixirianRuntimeException(final String message, final Throwable cause)
+  {
+    super(message, cause);
+  }
 
-	public ElixirianRuntimeException(final Throwable cause)
-	{
-		super(cause);
-	}
+  public ElixirianRuntimeException(final Throwable cause)
+  {
+    super(cause);
+  }
 }

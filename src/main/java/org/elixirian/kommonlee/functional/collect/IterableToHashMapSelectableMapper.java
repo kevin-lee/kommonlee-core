@@ -81,15 +81,15 @@ public class IterableToHashMapSelectableMapper<E, T extends Iterable<? extends E
   }
 
   /* @formatter:off */
-	public static <E,
-	               T extends Iterable<? extends E>,
-	               C extends Condition1<? super E>,
+  public static <E,
+                 T extends Iterable<? extends E>,
+                 C extends Condition1<? super E>,
                  NK,
                  NE,
                  F extends Function1<? super E, ? extends Pair<NK, NE>>>
-		IterableToHashMapSelectableMapper<E, T, C, NK, NE, F> newInstance(final HashMapCreator<NK, NE> mapCreator)
-	{
-		return new IterableToHashMapSelectableMapper<E, T, C, NK, NE, F>(mapCreator);
-	}
-	/* @formatter:on */
+    IterableToHashMapSelectableMapper<E, T, C, NK, NE, F> newInstance(final HashMapCreator<NK, NE> mapCreator)
+  {
+    return new IterableToHashMapSelectableMapper<E, T, C, NK, NE, F>(mapCreator);
+  }
+  /* @formatter:on */
 }
