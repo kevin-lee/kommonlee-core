@@ -55,12 +55,12 @@ package org.elixirian.kommonlee.util;
  */
 public final class CommonConstants
 {
-	/**
-	 * " cannot be instantiated."
-	 */
-	public static final String CANNOT_BE_INSTANTIATED = " cannot be instantiated.";
+  /**
+   * " cannot be instantiated."
+   */
+  public static final String CANNOT_BE_INSTANTIATED = " cannot be instantiated.";
 
-	private CommonConstants()
-	{
-	}
+  private CommonConstants()
+  {
+  }
 }

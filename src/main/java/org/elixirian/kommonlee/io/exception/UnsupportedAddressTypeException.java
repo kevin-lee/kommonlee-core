@@ -53,25 +53,25 @@ package org.elixirian.kommonlee.io.exception;
  */
 public class UnsupportedAddressTypeException extends NetworkAddressException
 {
-	private static final long serialVersionUID = 2831280493582564734L;
+  private static final long serialVersionUID = 2831280493582564734L;
 
-	public UnsupportedAddressTypeException()
-	{
-	}
+  public UnsupportedAddressTypeException()
+  {
+  }
 
-	public UnsupportedAddressTypeException(final String message, final Throwable cause)
-	{
-		super(message, cause);
-	}
+  public UnsupportedAddressTypeException(final String message, final Throwable cause)
+  {
+    super(message, cause);
+  }
 
-	public UnsupportedAddressTypeException(final String message)
-	{
-		super(message);
-	}
+  public UnsupportedAddressTypeException(final String message)
+  {
+    super(message);
+  }
 
-	public UnsupportedAddressTypeException(final Throwable cause)
-	{
-		super(cause);
-	}
+  public UnsupportedAddressTypeException(final Throwable cause)
+  {
+    super(cause);
+  }
 
 }

@@ -548,27 +548,27 @@ public class ObjectsTest
     result = Objects.HASH_PRIME * result + "Kevin Lee".hashCode();
 
     /* @formatter:off */
-					assertThat(
-							Objects.hash(
-							(byte) 1,
-							(short) 120,
-							12345,
-							9999L,
-							12.10F,
-							100.12345D,
-							true,
-							"Kevin Lee")).isEqualTo(result);
-					assertThat(
-							Objects.hash(
-							(byte) 1,
-							(short) 120,
-							12345,
-							9999L,
-							12.10F,
-							100.12345D,
-							true,
-							"Kevin Lee")).isEqualTo(result);
-					/* @formatter:on */
+          assertThat(
+              Objects.hash(
+              (byte) 1,
+              (short) 120,
+              12345,
+              9999L,
+              12.10F,
+              100.12345D,
+              true,
+              "Kevin Lee")).isEqualTo(result);
+          assertThat(
+              Objects.hash(
+              (byte) 1,
+              (short) 120,
+              12345,
+              9999L,
+              12.10F,
+              100.12345D,
+              true,
+              "Kevin Lee")).isEqualTo(result);
+          /* @formatter:on */
   }
 
   @Test
@@ -1172,12 +1172,12 @@ public class ObjectsTest
 
     final Integer integer3 = Objects.castIfInstanceOf(Integer.class, new Number() {
       /* @formatter:off */
-			private static final long serialVersionUID = 1L;
-			@Override public long longValue() { return 0; }
-			@Override public int intValue() { return 0; }
-			@Override public float floatValue() { return 0; }
-			@Override public double doubleValue() 	{ return 0; }
-			/* @formatter:on */
+      private static final long serialVersionUID = 1L;
+      @Override public long longValue() { return 0; }
+      @Override public int intValue() { return 0; }
+      @Override public float floatValue() { return 0; }
+      @Override public double doubleValue()   { return 0; }
+      /* @formatter:on */
     });
     assertThat(integer3).isNull();
   }
@@ -1230,32 +1230,32 @@ public class ObjectsTest
   public final void testToStringBuilder()
   {
     /* @formatter:off */
-		final String expected = "SomePojo{id=100, " +
-														 "name=Kevin, " +
-														 "registered=true, " +
-														 "byteValue=10, " +
-														 "shortValue=20, " +
-														 "intValue=100, " +
-														 "longValue=1000000, " +
-														 "floatValue=12.34, " +
-														 "doubleValue=56.78}";
-		/* @formatter:on */
+    final String expected = "SomePojo{id=100, " +
+                             "name=Kevin, " +
+                             "registered=true, " +
+                             "byteValue=10, " +
+                             "shortValue=20, " +
+                             "intValue=100, " +
+                             "longValue=1000000, " +
+                             "floatValue=12.34, " +
+                             "doubleValue=56.78}";
+    /* @formatter:on */
 
     final SomePojo somePojo =
       new SomePojo(Long.valueOf(100L), "Kevin", true, (byte) 10, (short) 20, 100, 1000000L, 12.34F, 56.78D);
     assertThat(somePojo.toString()).isEqualTo(expected);
 
     /* @formatter:off */
-		final String expected2 = "ObjectsTest{id=999, " +
-															"name=Kevin Lee, " +
-															"registered=false, " +
-															"byteValue=11, " +
-															"shortValue=123, " +
-															"intValue=123456, " +
-															"longValue=11111111111, " +
-															"floatValue=10.1, " +
-															"doubleValue=12345.12345}";
-		/* @formatter:on */
+    final String expected2 = "ObjectsTest{id=999, " +
+                              "name=Kevin Lee, " +
+                              "registered=false, " +
+                              "byteValue=11, " +
+                              "shortValue=123, " +
+                              "intValue=123456, " +
+                              "longValue=11111111111, " +
+                              "floatValue=10.1, " +
+                              "doubleValue=12345.12345}";
+    /* @formatter:on */
 
     final Long id = Long.valueOf(999L);
     final String name = "Kevin Lee";
@@ -1296,16 +1296,16 @@ public class ObjectsTest
   {
     /* given */
     /* @formatter:off */
-		final String expected = "SomePojo{id=100, " +
-				"name=Kevin, " +
-				"registered=true, " +
-				"byteValue=10, " +
-				"shortValue=20, " +
-				"intValue=100, " +
-				"longValue=1000000, " +
-				"floatValue=12.34, " +
-				"doubleValue=56.78}" + System.getProperty("line.separator");
-		/* @formatter:on */
+    final String expected = "SomePojo{id=100, " +
+        "name=Kevin, " +
+        "registered=true, " +
+        "byteValue=10, " +
+        "shortValue=20, " +
+        "intValue=100, " +
+        "longValue=1000000, " +
+        "floatValue=12.34, " +
+        "doubleValue=56.78}" + System.getProperty("line.separator");
+    /* @formatter:on */
     System.out.println("expected:");
     System.out.println(expected);
 
@@ -1335,17 +1335,17 @@ public class ObjectsTest
   public final void testToStringBuilderWithExtraValue()
   {
     /* @formatter:off */
-		final String expected2 = "ObjectsTest{Some extra information. blah blah blah, " +
-															"id=999, " +
-															"name=Kevin Lee, " +
-															"registered=false, " +
-															"byteValue=11, " +
-															"shortValue=123, " +
-															"intValue=123456, " +
-															"longValue=11111111111, " +
-															"floatValue=10.1, " +
-															"doubleValue=12345.12345}";
-		/* @formatter:on */
+    final String expected2 = "ObjectsTest{Some extra information. blah blah blah, " +
+                              "id=999, " +
+                              "name=Kevin Lee, " +
+                              "registered=false, " +
+                              "byteValue=11, " +
+                              "shortValue=123, " +
+                              "intValue=123456, " +
+                              "longValue=11111111111, " +
+                              "floatValue=10.1, " +
+                              "doubleValue=12345.12345}";
+    /* @formatter:on */
 
     final Long id = Long.valueOf(999L);
     final String name = "Kevin Lee";
@@ -1374,17 +1374,17 @@ public class ObjectsTest
   public final void testToStringBuilderWithExtraValueAndNewLines()
   {
     /* @formatter:off */
-		final String expected2 = "Object{Some extra information. blah blah blah, \n" +
-															"id=999, " +
-															"name=Kevin Lee, " +
-															"registered=false, \n" +
-															"byteValue=11, " +
-															"shortValue=123, " +
-															"intValue=123456, " +
-															"longValue=11111111111, " +
-															"floatValue=10.1, " +
-															"doubleValue=12345.12345}";
-		/* @formatter:on */
+    final String expected2 = "Object{Some extra information. blah blah blah, \n" +
+                              "id=999, " +
+                              "name=Kevin Lee, " +
+                              "registered=false, \n" +
+                              "byteValue=11, " +
+                              "shortValue=123, " +
+                              "intValue=123456, " +
+                              "longValue=11111111111, " +
+                              "floatValue=10.1, " +
+                              "doubleValue=12345.12345}";
+    /* @formatter:on */
 
     final Long id = Long.valueOf(999L);
     final String name = "Kevin Lee";
@@ -1415,17 +1415,17 @@ public class ObjectsTest
   public final void testToStringBuilderWithExtraValuesWithoutSeparatorAndNewLines()
   {
     /* @formatter:off */
-		final String expected2 = "ObjectsTest{Some extra information. blah blah blah\n" +
-															"id=999, " +
-															"name=Kevin Lee, " +
-															"registered=false, \n" +
-															"byteValue=11, " +
-															"shortValue=123, " +
-															"intValue=123456, " +
-															"longValue=11111111111, " +
-															"floatValue=10.1, " +
-															"doubleValue=12345.12345}";
-		/* @formatter:on */
+    final String expected2 = "ObjectsTest{Some extra information. blah blah blah\n" +
+                              "id=999, " +
+                              "name=Kevin Lee, " +
+                              "registered=false, \n" +
+                              "byteValue=11, " +
+                              "shortValue=123, " +
+                              "intValue=123456, " +
+                              "longValue=11111111111, " +
+                              "floatValue=10.1, " +
+                              "doubleValue=12345.12345}";
+    /* @formatter:on */
 
     final Long id = Long.valueOf(999L);
     final String name = "Kevin Lee";
@@ -1478,16 +1478,16 @@ public class ObjectsTest
   public final void testToStringBuilderObjectStringString()
   {
     /* @formatter:off */
-		final String expected = "ObjectsTest{id: 999 | " +
-														 "name: Kevin Lee | " +
-														 "registered: false | " +
-														 "byteValue: 11 | " +
-														 "shortValue: 123 | " +
-														 "intValue: 123456 | " +
-														 "longValue: 11111111111 | " +
-														 "floatValue: 10.1 | " +
-														 "doubleValue: 12345.12345}";
-		/* @formatter:on */
+    final String expected = "ObjectsTest{id: 999 | " +
+                             "name: Kevin Lee | " +
+                             "registered: false | " +
+                             "byteValue: 11 | " +
+                             "shortValue: 123 | " +
+                             "intValue: 123456 | " +
+                             "longValue: 11111111111 | " +
+                             "floatValue: 10.1 | " +
+                             "doubleValue: 12345.12345}";
+    /* @formatter:on */
 
     final Long id = Long.valueOf(999L);
     final String name = "Kevin Lee";

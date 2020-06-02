@@ -61,5 +61,5 @@ import java.util.Map;
  */
 public interface MapCreator<K, E, T extends Map<? extends K, ? extends E>>
 {
-	T createMap();
+  T createMap();
 }

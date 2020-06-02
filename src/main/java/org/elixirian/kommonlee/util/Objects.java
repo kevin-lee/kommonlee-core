@@ -1738,12 +1738,12 @@ public final class Objects
     private ToStringBuilder(final Object object, final String fieldSeparator, final String nameValueSeparator)
     {
       /* @formatter:off */
-			this.object                   = mustNotBeNull(object);
-			this.fieldSeparator           = mustNotBeNull(fieldSeparator);
-			this.nameValueSeparator       = mustNotBeNull(nameValueSeparator);
-			this.stringList               = new ArrayList<String>();
-			this.iterableToAppendableGlue = IterableToAppendableGlue.withoutSeparator();
-			/* @formatter:on */
+      this.object                   = mustNotBeNull(object);
+      this.fieldSeparator           = mustNotBeNull(fieldSeparator);
+      this.nameValueSeparator       = mustNotBeNull(nameValueSeparator);
+      this.stringList               = new ArrayList<String>();
+      this.iterableToAppendableGlue = IterableToAppendableGlue.withoutSeparator();
+      /* @formatter:on */
     }
 
     private String checkName(final String name)
@@ -1778,81 +1778,81 @@ public final class Objects
     public ToStringBuilder add(final String name, final boolean value) throws IllegalArgumentException
     {
       /* @formatter:off */
-			return value0(checkName(name))
-					.value0(nameValueSeparator)
-					.value0(String.valueOf(value))
-					.separator();
-			/* @formatter:on */
+      return value0(checkName(name))
+          .value0(nameValueSeparator)
+          .value0(String.valueOf(value))
+          .separator();
+      /* @formatter:on */
     }
 
     public ToStringBuilder add(final String name, final int value) throws IllegalArgumentException
     {
       /* @formatter:off */
-			return value0(checkName(name))
-					.value0(nameValueSeparator)
-					.value0(String.valueOf(value))
-					.separator();
-			/* @formatter:on */
+      return value0(checkName(name))
+          .value0(nameValueSeparator)
+          .value0(String.valueOf(value))
+          .separator();
+      /* @formatter:on */
     }
 
     public ToStringBuilder add(final String name, final byte value) throws IllegalArgumentException
     {
       /* @formatter:off */
-			return value0(checkName(name))
-					.value0(nameValueSeparator)
-					.value0(String.valueOf(value))
-					.separator();
-			/* @formatter:on */
+      return value0(checkName(name))
+          .value0(nameValueSeparator)
+          .value0(String.valueOf(value))
+          .separator();
+      /* @formatter:on */
     }
 
     public ToStringBuilder add(final String name, final short value) throws IllegalArgumentException
     {
       /* @formatter:off */
-			return value0(checkName(name))
-					.value0(nameValueSeparator)
-					.value0(String.valueOf(value))
-					.separator();
-			/* @formatter:on */
+      return value0(checkName(name))
+          .value0(nameValueSeparator)
+          .value0(String.valueOf(value))
+          .separator();
+      /* @formatter:on */
     }
 
     public ToStringBuilder add(final String name, final long value) throws IllegalArgumentException
     {
       /* @formatter:off */
-			return value0(checkName(name))
-					.value0(nameValueSeparator)
-					.value0(String.valueOf(value))
-					.separator();
-			/* @formatter:on */
+      return value0(checkName(name))
+          .value0(nameValueSeparator)
+          .value0(String.valueOf(value))
+          .separator();
+      /* @formatter:on */
     }
 
     public ToStringBuilder add(final String name, final float value) throws IllegalArgumentException
     {
       /* @formatter:off */
-			return value0(checkName(name))
-					.value0(nameValueSeparator)
-					.value0(String.valueOf(value))
-					.separator();
-			/* @formatter:on */
+      return value0(checkName(name))
+          .value0(nameValueSeparator)
+          .value0(String.valueOf(value))
+          .separator();
+      /* @formatter:on */
     }
 
     public ToStringBuilder add(final String name, final double value) throws IllegalArgumentException
     {
       /* @formatter:off */
-			return value0(checkName(name))
-					.value0(nameValueSeparator)
-					.value0(String.valueOf(value))
-					.separator();
-			/* @formatter:on */
+      return value0(checkName(name))
+          .value0(nameValueSeparator)
+          .value0(String.valueOf(value))
+          .separator();
+      /* @formatter:on */
     }
 
     public ToStringBuilder add(final String name, final Object value) throws IllegalArgumentException
     {
       /* @formatter:off */
-			return value0(checkName(name))
-					.value0(nameValueSeparator)
-					.value0(String.valueOf(value))
-					.separator();
-			/* @formatter:on */
+      return value0(checkName(name))
+          .value0(nameValueSeparator)
+          .value0(String.valueOf(value))
+          .separator();
+      /* @formatter:on */
     }
 
     private ToStringBuilder value0(final String value)
@@ -1904,15 +1904,15 @@ public final class Objects
         stringList.remove(stringList.size() - 1);
       }
       /* @formatter:off */
-			return iterableToAppendableGlue
-					.glue(new StringBuilder(object
-											.getClass()
-											.getSimpleName())
-											.append("{"),
-						  stringList)
-						  .append("}")
-						  .toString();
-			/* @formatter:on */
+      return iterableToAppendableGlue
+          .glue(new StringBuilder(object
+                      .getClass()
+                      .getSimpleName())
+                      .append("{"),
+              stringList)
+              .append("}")
+              .toString();
+      /* @formatter:on */
     }
 
     public String toStringThenAddNewLine()

@@ -391,10 +391,10 @@ public final class NeoArrays
     for (final Object each : array)
     {
       /* @formatter:off */
-			stringBuilder.append(Objects
-			      .toStringOfMaybeArrayObject(each))
-				.append(", ");
-			/* @formatter:on */
+      stringBuilder.append(Objects
+            .toStringOfMaybeArrayObject(each))
+        .append(", ");
+      /* @formatter:on */
     }
     if (1 < stringBuilder.length())
     {

@@ -76,9 +76,9 @@ public abstract class TypeHolder<T>
   public String toString()
   {
     /* @formatter:off */
-		return toStringBuilder(this)
-		    .add("type", type)
-				.toString();
-		/* @formatter:on */
+    return toStringBuilder(this)
+        .add("type", type)
+        .toString();
+    /* @formatter:on */
   }
 }

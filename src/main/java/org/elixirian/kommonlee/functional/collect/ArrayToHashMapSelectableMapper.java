@@ -78,15 +78,15 @@ public class ArrayToHashMapSelectableMapper<E, NK, NE, C extends Condition1<? su
   }
 
   /* @formatter:off */
-	public static <E,
-								 NK,
-								 NE,
-								 C extends Condition1<? super E>,
-								 F extends Function1<? super E, ? extends Pair<NK, NE>>>
-					ArrayToHashMapSelectableMapper<E, NK, NE, C, F>
-		newInstance(final HashMapCreator<NK, NE> hashMapCreator)
-	{
-		return new ArrayToHashMapSelectableMapper<E, NK, NE, C, F>(hashMapCreator);
-	}
-	/* @formatter:on */
+  public static <E,
+                 NK,
+                 NE,
+                 C extends Condition1<? super E>,
+                 F extends Function1<? super E, ? extends Pair<NK, NE>>>
+    ArrayToHashMapSelectableMapper<E, NK, NE, C, F>
+    newInstance(final HashMapCreator<NK, NE> hashMapCreator)
+  {
+    return new ArrayToHashMapSelectableMapper<E, NK, NE, C, F>(hashMapCreator);
+  }
+  /* @formatter:on */
 }

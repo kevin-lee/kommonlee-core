@@ -53,5 +53,5 @@ package org.elixirian.kommonlee.type;
  */
 public interface Source<T>
 {
-	T getSource() throws Exception;
+  T getSource() throws Exception;
 }

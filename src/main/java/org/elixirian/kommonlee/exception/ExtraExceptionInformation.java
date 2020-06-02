@@ -64,186 +64,186 @@ import org.elixirian.kommonlee.type.ParamInfo;
  */
 public class ExtraExceptionInformation
 {
-	private static final List<String> EMPTY_SUGGESTION_LIST = Collections.emptyList();
+  private static final List<String> EMPTY_SUGGESTION_LIST = Collections.emptyList();
 
-	public static ExtraExceptionInformation EMPTY_EXTRA_EXCEPTION_INFORMATION = new ExtraExceptionInformation(
-			ParamInfo.EMPTY_PARAM_LIST, ParamInfo.EMPTY_PARAM_LIST, "", EMPTY_SUGGESTION_LIST) {
-		@Override
-		public String toString()
-		{
-			return "{No Extra Exception Info}";
-		}
-	};
+  public static ExtraExceptionInformation EMPTY_EXTRA_EXCEPTION_INFORMATION = new ExtraExceptionInformation(
+      ParamInfo.EMPTY_PARAM_LIST, ParamInfo.EMPTY_PARAM_LIST, "", EMPTY_SUGGESTION_LIST) {
+    @Override
+    public String toString()
+    {
+      return "{No Extra Exception Info}";
+    }
+  };
 
-	private final List<ParamInfo<?>> paramInfoList;
+  private final List<ParamInfo<?>> paramInfoList;
 
-	private final List<ParamInfo<?>> otherObjectInfoList;
+  private final List<ParamInfo<?>> otherObjectInfoList;
 
-	private final String possibleReason;
+  private final String possibleReason;
 
-	private final List<String> suggestionList;
+  private final List<String> suggestionList;
 
-	public static class Builder implements GenericBuilder<ExtraExceptionInformation>
-	{
-		final List<ParamInfo<?>> paramInfoList;
-		final List<ParamInfo<?>> otherObjectInfoList;
-		String possibleReason;
-		final List<String> suggestionList;
+  public static class Builder implements GenericBuilder<ExtraExceptionInformation>
+  {
+    final List<ParamInfo<?>> paramInfoList;
+    final List<ParamInfo<?>> otherObjectInfoList;
+    String possibleReason;
+    final List<String> suggestionList;
 
-		public Builder()
-		{
-			paramInfoList = new ArrayList<ParamInfo<?>>();
-			otherObjectInfoList = new ArrayList<ParamInfo<?>>();
-			suggestionList = new ArrayList<String>();
-		}
+    public Builder()
+    {
+      paramInfoList = new ArrayList<ParamInfo<?>>();
+      otherObjectInfoList = new ArrayList<ParamInfo<?>>();
+      suggestionList = new ArrayList<String>();
+    }
 
-		public <T> Builder addParamInfo(final ParamInfo<T> paramInfo)
-		{
-			this.paramInfoList.add(paramInfo);
-			return this;
-		}
+    public <T> Builder addParamInfo(final ParamInfo<T> paramInfo)
+    {
+      this.paramInfoList.add(paramInfo);
+      return this;
+    }
 
-		public <T> Builder addParamInfo(final Class<T> paramType, final String paramName, final T paramValue)
-		{
-			/* @formatter:off */
+    public <T> Builder addParamInfo(final Class<T> paramType, final String paramName, final T paramValue)
+    {
+      /* @formatter:off */
       this.paramInfoList.add(ParamInfo
           .builder(paramType, paramName)
           .paramValue(paramValue)
           .build());
       /* @formatter:on */
-			return this;
-		}
+      return this;
+    }
 
-		public <T> Builder addParamInfo(final Class<T> paramType, final String paramName, final T paramValue,
-				final String note)
-		{
-			/* @formatter:off */
+    public <T> Builder addParamInfo(final Class<T> paramType, final String paramName, final T paramValue,
+        final String note)
+    {
+      /* @formatter:off */
       this.paramInfoList.add(ParamInfo
           .builder(paramType, paramName)
           .paramValue(paramValue)
           .note(note)
           .build());
       /* @formatter:on */
-			return this;
-		}
+      return this;
+    }
 
-		public Builder addAllParamInfo(final ParamInfo<?>... paramInfo)
-		{
-			this.paramInfoList.addAll(Arrays.asList(paramInfo));
-			return this;
-		}
+    public Builder addAllParamInfo(final ParamInfo<?>... paramInfo)
+    {
+      this.paramInfoList.addAll(Arrays.asList(paramInfo));
+      return this;
+    }
 
-		public <T> Builder addAllParamInfo(final List<ParamInfo<?>> paramInfoList)
-		{
-			this.paramInfoList.addAll(paramInfoList);
-			return this;
-		}
+    public <T> Builder addAllParamInfo(final List<ParamInfo<?>> paramInfoList)
+    {
+      this.paramInfoList.addAll(paramInfoList);
+      return this;
+    }
 
-		public Builder clearParamInfoList()
-		{
-			this.paramInfoList.clear();
-			return this;
-		}
+    public Builder clearParamInfoList()
+    {
+      this.paramInfoList.clear();
+      return this;
+    }
 
-		public <T> Builder addOtherObjectInfo(final ParamInfo<T> otherObjectInfo)
-		{
-			this.otherObjectInfoList.add(otherObjectInfo);
-			return this;
-		}
+    public <T> Builder addOtherObjectInfo(final ParamInfo<T> otherObjectInfo)
+    {
+      this.otherObjectInfoList.add(otherObjectInfo);
+      return this;
+    }
 
-		public <T> Builder addOtherObjectInfo(final Class<? super T> paramType, final String paramName, final T paramValue)
-		{
-			/* @formatter:off */
+    public <T> Builder addOtherObjectInfo(final Class<? super T> paramType, final String paramName, final T paramValue)
+    {
+      /* @formatter:off */
       this.otherObjectInfoList.add(ParamInfo
           .builder(paramType, paramName)
           .paramValue(paramValue)
           .build());
       /* @formatter:on */
-			return this;
-		}
+      return this;
+    }
 
-		public <T> Builder addOtherObjectInfo(final Class<? super T> paramType, final String paramName, final T paramValue,
-				final String note)
-		{
-			/* @formatter:off */
+    public <T> Builder addOtherObjectInfo(final Class<? super T> paramType, final String paramName, final T paramValue,
+        final String note)
+    {
+      /* @formatter:off */
       this.otherObjectInfoList.add(ParamInfo
           .builder(paramType, paramName)
           .paramValue(paramValue)
           .note(note)
           .build());
       /* @formatter:on */
-			return this;
-		}
+      return this;
+    }
 
-		public Builder addAllOtherObjectInfo(final ParamInfo<?>... otherObjectInfo)
-		{
-			this.otherObjectInfoList.addAll(Arrays.asList(otherObjectInfo));
-			return this;
-		}
+    public Builder addAllOtherObjectInfo(final ParamInfo<?>... otherObjectInfo)
+    {
+      this.otherObjectInfoList.addAll(Arrays.asList(otherObjectInfo));
+      return this;
+    }
 
-		public Builder addAllOtherObjectInfo(final List<ParamInfo<?>> otherObjectInfoList)
-		{
-			this.otherObjectInfoList.addAll(otherObjectInfoList);
-			return this;
-		}
+    public Builder addAllOtherObjectInfo(final List<ParamInfo<?>> otherObjectInfoList)
+    {
+      this.otherObjectInfoList.addAll(otherObjectInfoList);
+      return this;
+    }
 
-		public Builder clearOtherObjectInfoList()
-		{
-			this.otherObjectInfoList.clear();
-			return this;
-		}
+    public Builder clearOtherObjectInfoList()
+    {
+      this.otherObjectInfoList.clear();
+      return this;
+    }
 
-		public Builder possibleReason(final String possibleReason)
-		{
-			this.possibleReason = possibleReason;
-			return this;
-		}
+    public Builder possibleReason(final String possibleReason)
+    {
+      this.possibleReason = possibleReason;
+      return this;
+    }
 
-		public Builder addSuggestion(final String suggestion)
-		{
-			this.suggestionList.add(suggestion);
-			return this;
-		}
+    public Builder addSuggestion(final String suggestion)
+    {
+      this.suggestionList.add(suggestion);
+      return this;
+    }
 
-		public Builder addAllSuggestions(final String... suggestions)
-		{
-			this.suggestionList.addAll(Arrays.asList(suggestions));
-			return this;
-		}
+    public Builder addAllSuggestions(final String... suggestions)
+    {
+      this.suggestionList.addAll(Arrays.asList(suggestions));
+      return this;
+    }
 
-		public Builder addAllSuggestions(final List<String> suggestionList)
-		{
-			this.suggestionList.addAll(suggestionList);
-			return this;
-		}
+    public Builder addAllSuggestions(final List<String> suggestionList)
+    {
+      this.suggestionList.addAll(suggestionList);
+      return this;
+    }
 
-		public Builder clearSuggestionList()
-		{
-			this.suggestionList.clear();
-			return this;
-		}
+    public Builder clearSuggestionList()
+    {
+      this.suggestionList.clear();
+      return this;
+    }
 
-		@Override
-		public ExtraExceptionInformation build()
-		{
-			return new ExtraExceptionInformation(this);
-		}
-	}
+    @Override
+    public ExtraExceptionInformation build()
+    {
+      return new ExtraExceptionInformation(this);
+    }
+  }
 
-	public static Builder builder()
-	{
-		return new Builder();
-	}
+  public static Builder builder()
+  {
+    return new Builder();
+  }
 
-	private ExtraExceptionInformation(final Builder builder)
-	{
-		this(builder.paramInfoList, builder.otherObjectInfoList, builder.possibleReason, builder.suggestionList);
-	}
+  private ExtraExceptionInformation(final Builder builder)
+  {
+    this(builder.paramInfoList, builder.otherObjectInfoList, builder.possibleReason, builder.suggestionList);
+  }
 
-	private ExtraExceptionInformation(final List<ParamInfo<?>> paramInfoList,
-			final List<ParamInfo<?>> otherObjectInfoList, final String possibleReason, final List<String> suggestionList)
-	{
-		/* @formatter:off */
+  private ExtraExceptionInformation(final List<ParamInfo<?>> paramInfoList,
+      final List<ParamInfo<?>> otherObjectInfoList, final String possibleReason, final List<String> suggestionList)
+  {
+    /* @formatter:off */
     this.paramInfoList =
       null == paramInfoList ||
           paramInfoList.isEmpty() ?
@@ -255,63 +255,63 @@ public class ExtraExceptionInformation
           ParamInfo.EMPTY_PARAM_LIST :
           Collections.unmodifiableList(otherObjectInfoList);
     /* @formatter:on */
-		this.possibleReason = nullThenEmpty(possibleReason);
-		/* @formatter:off */
+    this.possibleReason = nullThenEmpty(possibleReason);
+    /* @formatter:off */
     this.suggestionList =
       null == suggestionList ||
       suggestionList.isEmpty() ?
           EMPTY_SUGGESTION_LIST :
           Collections.unmodifiableList(suggestionList);
     /* @formatter:on */
-	}
+  }
 
-	public List<ParamInfo<?>> getParamInfoList()
-	{
-		return paramInfoList;
-	}
+  public List<ParamInfo<?>> getParamInfoList()
+  {
+    return paramInfoList;
+  }
 
-	public List<ParamInfo<?>> getOtherObjectInfoList()
-	{
-		return otherObjectInfoList;
-	}
+  public List<ParamInfo<?>> getOtherObjectInfoList()
+  {
+    return otherObjectInfoList;
+  }
 
-	public String getPossibleReason()
-	{
-		return possibleReason;
-	}
+  public String getPossibleReason()
+  {
+    return possibleReason;
+  }
 
-	public List<String> getSuggestionList()
-	{
-		return suggestionList;
-	}
+  public List<String> getSuggestionList()
+  {
+    return suggestionList;
+  }
 
-	@Override
-	public int hashCode()
-	{
-		return hash(paramInfoList, otherObjectInfoList, possibleReason, suggestionList);
-	}
+  @Override
+  public int hashCode()
+  {
+    return hash(paramInfoList, otherObjectInfoList, possibleReason, suggestionList);
+  }
 
-	@Override
-	public boolean equals(final Object extraExceptionInformation)
-	{
-		if (this == extraExceptionInformation)
-		{
-			return true;
-		}
-		final ExtraExceptionInformation that = castIfInstanceOf(ExtraExceptionInformation.class, extraExceptionInformation);
-		/* @formatter:off */
+  @Override
+  public boolean equals(final Object extraExceptionInformation)
+  {
+    if (this == extraExceptionInformation)
+    {
+      return true;
+    }
+    final ExtraExceptionInformation that = castIfInstanceOf(ExtraExceptionInformation.class, extraExceptionInformation);
+    /* @formatter:off */
     return isNotNull(that) &&
             (equal(this.paramInfoList,        that.getParamInfoList()) &&
              equal(this.otherObjectInfoList,  that.getOtherObjectInfoList()) &&
              equal(this.possibleReason,   that.getPossibleReason()) &&
              equal(this.suggestionList,   that.getSuggestionList()));
     /* @formatter:on */
-	}
+  }
 
-	@Override
-	public String toString()
-	{
-		/* @formatter:off */
+  @Override
+  public String toString()
+  {
+    /* @formatter:off */
     return toStringBuilder(this)
         .add("paramInfoList",       paramInfoList)
         .add("otherObjectInfoList", otherObjectInfoList)
@@ -319,5 +319,5 @@ public class ExtraExceptionInformation
         .add("suggestionList",      suggestionList)
         .toString();
     /* @formatter:on */
-	}
+  }
 }

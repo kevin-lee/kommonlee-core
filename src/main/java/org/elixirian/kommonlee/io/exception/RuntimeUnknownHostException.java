@@ -53,24 +53,24 @@ package org.elixirian.kommonlee.io.exception;
  */
 public class RuntimeUnknownHostException extends NetworkAddressException
 {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	public RuntimeUnknownHostException()
-	{
-	}
+  public RuntimeUnknownHostException()
+  {
+  }
 
-	public RuntimeUnknownHostException(final String message, final Throwable cause)
-	{
-		super(message, cause);
-	}
+  public RuntimeUnknownHostException(final String message, final Throwable cause)
+  {
+    super(message, cause);
+  }
 
-	public RuntimeUnknownHostException(final String message)
-	{
-		super(message);
-	}
+  public RuntimeUnknownHostException(final String message)
+  {
+    super(message);
+  }
 
-	public RuntimeUnknownHostException(final Throwable cause)
-	{
-		super(cause);
-	}
+  public RuntimeUnknownHostException(final Throwable cause)
+  {
+    super(cause);
+  }
 }

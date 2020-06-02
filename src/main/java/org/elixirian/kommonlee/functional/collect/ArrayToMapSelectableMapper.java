@@ -96,16 +96,16 @@ public class ArrayToMapSelectableMapper<E, NK, NE, C extends Condition1<? super 
   }
 
   /* @formatter:off */
-	public static <E,
+  public static <E,
                  NK,
                  NE,
                  C extends Condition1<? super E>,
                  F extends Function1<? super E, ? extends Pair<NK, NE>>,
                  R extends Map<NK, NE>,
                  MC extends MapCreator<NK, NE, ? extends R>>
-		ArrayToMapSelectableMapper<E, NK, NE, C, F, R> newInstance(final MC mapCreator)
-	{
-		return new ArrayToMapSelectableMapper<E, NK, NE, C, F, R>(mapCreator);
-	}
-	/* @formatter:on */
+    ArrayToMapSelectableMapper<E, NK, NE, C, F, R> newInstance(final MC mapCreator)
+  {
+    return new ArrayToMapSelectableMapper<E, NK, NE, C, F, R>(mapCreator);
+  }
+  /* @formatter:on */
 }

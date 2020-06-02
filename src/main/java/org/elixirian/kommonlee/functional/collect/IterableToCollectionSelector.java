@@ -85,15 +85,15 @@ public class IterableToCollectionSelector<E, T extends Iterable<? extends E>, C 
   }
 
   /* @formatter:off */
-	public static <E,
-									 T extends Iterable<? extends E>,
-									 C extends Condition1<? super E>,
-									 R extends Collection<E>,
-									 CC extends CollectionCreator<E, ? extends R>>
-					IterableToCollectionSelector<E, T, C, R>
-		newInstance(final CC collectionCreator)
-	{
-		return new IterableToCollectionSelector<E, T, C, R>(collectionCreator);
-	}
-	/* @formatter:on */
+  public static <E,
+                   T extends Iterable<? extends E>,
+                   C extends Condition1<? super E>,
+                   R extends Collection<E>,
+                   CC extends CollectionCreator<E, ? extends R>>
+          IterableToCollectionSelector<E, T, C, R>
+    newInstance(final CC collectionCreator)
+  {
+    return new IterableToCollectionSelector<E, T, C, R>(collectionCreator);
+  }
+  /* @formatter:on */
 }

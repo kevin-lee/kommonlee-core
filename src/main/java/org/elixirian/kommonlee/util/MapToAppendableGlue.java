@@ -60,61 +60,61 @@ import java.util.Map.Entry;
  */
 public final class MapToAppendableGlue implements ToAppendableGlue<Map<?, ?>>
 {
-	private final AppendingAction keyValueGlue;
-	private final AppendingAction entryGlue;
+  private final AppendingAction keyValueGlue;
+  private final AppendingAction entryGlue;
 
-	private MapToAppendableGlue(final String keyValueSeparator, final String entrySeparator)
-	{
-		this.keyValueGlue = SimpleAppendingAction.with(mustNotBeNull(keyValueSeparator));
-		this.entryGlue = SimpleAppendingAction.with(mustNotBeNull(entrySeparator));
-	}
+  private MapToAppendableGlue(final String keyValueSeparator, final String entrySeparator)
+  {
+    this.keyValueGlue = SimpleAppendingAction.with(mustNotBeNull(keyValueSeparator));
+    this.entryGlue = SimpleAppendingAction.with(mustNotBeNull(entrySeparator));
+  }
 
-	AppendingAction getKeyValueGlue()
-	{
-		return keyValueGlue;
-	}
+  AppendingAction getKeyValueGlue()
+  {
+    return keyValueGlue;
+  }
 
-	AppendingAction getEntryGlue()
-	{
-		return entryGlue;
-	}
+  AppendingAction getEntryGlue()
+  {
+    return entryGlue;
+  }
 
-	private <A extends Appendable, K, V> A glue0(final A appendable, final Map<K, V> map) throws IOException
-	{
-		final Iterator<Entry<K, V>> entryIterator = map.entrySet()
-				.iterator();
-		if (entryIterator.hasNext())
-		{
-			Entry<K, V> entry = entryIterator.next();
-			SimpleAppendingAction.APPENDING_ACTION_WITHOUT_SEPARATOR.append(appendable, String.valueOf(entry.getKey()));
-			keyValueGlue.append(appendable, (String.valueOf(entry.getValue())));
-			while (entryIterator.hasNext())
-			{
-				entry = entryIterator.next();
-				entryGlue.append(appendable, String.valueOf(entry.getKey()));
-				keyValueGlue.append(appendable, (String.valueOf(entry.getValue())));
-			}
-		}
-		return appendable;
-	}
+  private <A extends Appendable, K, V> A glue0(final A appendable, final Map<K, V> map) throws IOException
+  {
+    final Iterator<Entry<K, V>> entryIterator = map.entrySet()
+        .iterator();
+    if (entryIterator.hasNext())
+    {
+      Entry<K, V> entry = entryIterator.next();
+      SimpleAppendingAction.APPENDING_ACTION_WITHOUT_SEPARATOR.append(appendable, String.valueOf(entry.getKey()));
+      keyValueGlue.append(appendable, (String.valueOf(entry.getValue())));
+      while (entryIterator.hasNext())
+      {
+        entry = entryIterator.next();
+        entryGlue.append(appendable, String.valueOf(entry.getKey()));
+        keyValueGlue.append(appendable, (String.valueOf(entry.getValue())));
+      }
+    }
+    return appendable;
+  }
 
-	@Override
-	public <A extends Appendable> A glue(final A appendable, final Map<?, ?> map)
-	{
-		try
-		{
-			return glue0(mustNotBeNull(appendable),
-			/* the comment is added to separate the line to see which one is null. */
-			mustNotBeNull(map));
-		}
-		catch (final IOException e)
-		{
-			throw new IllegalArgumentException(e);
-		}
-	}
+  @Override
+  public <A extends Appendable> A glue(final A appendable, final Map<?, ?> map)
+  {
+    try
+    {
+      return glue0(mustNotBeNull(appendable),
+      /* the comment is added to separate the line to see which one is null. */
+      mustNotBeNull(map));
+    }
+    catch (final IOException e)
+    {
+      throw new IllegalArgumentException(e);
+    }
+  }
 
-	public static MapToAppendableGlue newMapToAppendableGlue(final String keyValueSeparator, final String entrySeparator)
-	{
-		return new MapToAppendableGlue(keyValueSeparator, entrySeparator);
-	}
+  public static MapToAppendableGlue newMapToAppendableGlue(final String keyValueSeparator, final String entrySeparator)
+  {
+    return new MapToAppendableGlue(keyValueSeparator, entrySeparator);
+  }
 }

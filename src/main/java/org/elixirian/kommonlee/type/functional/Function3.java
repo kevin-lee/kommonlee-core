@@ -61,5 +61,5 @@ package org.elixirian.kommonlee.type.functional;
  */
 public interface Function3<X1, X2, X3, R>
 {
-	R apply(X1 input1, X2 input2, X3 input3);
+  R apply(X1 input1, X2 input2, X3 input3);
 }

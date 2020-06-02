@@ -53,31 +53,31 @@ package org.elixirian.kommonlee.io.exception;
  */
 public class UnsupportedImageException extends RuntimeIoException
 {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * @param message
-	 * @param cause
-	 */
-	public UnsupportedImageException(final String message, final Throwable cause)
-	{
-		super(message, cause);
-	}
+  /**
+   * @param message
+   * @param cause
+   */
+  public UnsupportedImageException(final String message, final Throwable cause)
+  {
+    super(message, cause);
+  }
 
-	/**
-	 * @param message
-	 */
-	public UnsupportedImageException(final String message)
-	{
-		super(message);
-	}
+  /**
+   * @param message
+   */
+  public UnsupportedImageException(final String message)
+  {
+    super(message);
+  }
 
-	/**
-	 * @param cause
-	 */
-	public UnsupportedImageException(final Throwable cause)
-	{
-		super(cause);
-	}
+  /**
+   * @param cause
+   */
+  public UnsupportedImageException(final Throwable cause)
+  {
+    super(cause);
+  }
 
 }

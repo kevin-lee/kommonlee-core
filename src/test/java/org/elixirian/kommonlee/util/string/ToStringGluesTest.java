@@ -104,10 +104,10 @@ public class ToStringGluesTest
       }
       final Person that = castIfInstanceOf(Person.class, person);
       /* @formatter:off */
-			return isNotNull(that)
-					&& (equal(this.surname, that.getSurname()) &&
-						  equal(this.givenName, that.getGivenName()));
-			/* @formatter:on */
+      return isNotNull(that)
+          && (equal(this.surname, that.getSurname()) &&
+              equal(this.givenName, that.getGivenName()));
+      /* @formatter:on */
     }
 
     @Override
@@ -556,26 +556,26 @@ public class ToStringGluesTest
     /* given */
     final ForIterableBuilder<String> builder = builderForIterable();
     /* @formatter:off */
-		final IterableToStringGlue<String> stringGlue = builder
-				.ignoreIf(new Condition1<String>() {
-					@Override
-					public boolean isMet(final String value)
-					{
-						return isNullOrEmptyString(value);
-					}
-				})
-				.ignoreIf(new Condition1<String>() {
-					Pattern pattern = Pattern.compile("[ ]+");
+    final IterableToStringGlue<String> stringGlue = builder
+        .ignoreIf(new Condition1<String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            return isNullOrEmptyString(value);
+          }
+        })
+        .ignoreIf(new Condition1<String>() {
+          Pattern pattern = Pattern.compile("[ ]+");
 
-					@Override
-					public boolean isMet(final String value)
-					{
-						return pattern.matcher(value)
-								.matches();
-					}
-				})
-			.build();
-		/* @formatter:on */
+          @Override
+          public boolean isMet(final String value)
+          {
+            return pattern.matcher(value)
+                .matches();
+          }
+        })
+      .build();
+    /* @formatter:on */
 
     /* when */
     final String actual = stringGlue.glue(STRING_LIST);
@@ -625,37 +625,37 @@ public class ToStringGluesTest
     /* given */
     final ForIterableBuilder<String> builder = builderForIterable();
     /* @formatter:off */
-		final IterableToStringGlue<String> stringGlue = builder
-				.replaceIf(new Condition1<String>() {
-					@Override
-					public boolean isMet(final String value)
-					{
-						return null == value;
-					}
-				}, "[NULL]")
-				.replaceIf(new Condition1<String>() {
-					@Override
-					public boolean isMet(final String value)
-					{
-						return null != value && value.isEmpty();
-					}
-				}, "[EMPTY]")
-				.replaceIf(new Condition1<String>() {
-					Pattern pattern = Pattern.compile("[ ]+");
+    final IterableToStringGlue<String> stringGlue = builder
+        .replaceIf(new Condition1<String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            return null == value;
+          }
+        }, "[NULL]")
+        .replaceIf(new Condition1<String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            return null != value && value.isEmpty();
+          }
+        }, "[EMPTY]")
+        .replaceIf(new Condition1<String>() {
+          Pattern pattern = Pattern.compile("[ ]+");
 
-					@Override
-					public boolean isMet(final String value)
-					{
-						if (isNullOrEmptyString(value))
-						{
-							return true;
-						}
-						return pattern.matcher(value)
-								.matches();
-					}
-				}, "[WHITE SPACE]")
-			.build();
-		/* @formatter:on */
+          @Override
+          public boolean isMet(final String value)
+          {
+            if (isNullOrEmptyString(value))
+            {
+              return true;
+            }
+            return pattern.matcher(value)
+                .matches();
+          }
+        }, "[WHITE SPACE]")
+      .build();
+    /* @formatter:on */
 
     /* when */
     final String actual = stringGlue.glue(STRING_LIST);
@@ -696,27 +696,27 @@ public class ToStringGluesTest
     /* given */
     final ForIterableBuilder<String> builder = builderForIterable();
     /* @formatter:off */
-		final IterableToStringGlue<String> stringGlue = builder
-				.mapWith(null, new Function1<String, String>() {
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: null, value: '" + value + "']";
-					}})
-				.mapWith("", new Function1<String, String>() {
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: empty, value: '" + value + "']";
-					}})
-				.mapWith(" ", new Function1<String, String>() {
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: one whitespace, value: '" + value + "']";
-					}})
-			.build();
-		/* @formatter:on */
+    final IterableToStringGlue<String> stringGlue = builder
+        .mapWith(null, new Function1<String, String>() {
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: null, value: '" + value + "']";
+          }})
+        .mapWith("", new Function1<String, String>() {
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: empty, value: '" + value + "']";
+          }})
+        .mapWith(" ", new Function1<String, String>() {
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: one whitespace, value: '" + value + "']";
+          }})
+      .build();
+    /* @formatter:on */
 
     /* when */
     final String actual = stringGlue.glue(STRING_LIST);
@@ -766,55 +766,55 @@ public class ToStringGluesTest
     /* given */
     final ForIterableBuilder<String> builder = builderForIterable();
     /* @formatter:off */
-		final IterableToStringGlue<String> stringGlue = builder
-				.mapIf(new Condition1<String>() {
-					@Override
-					public boolean isMet(final String value)
-					{
-						return null == value;
-					}
-				}, new Function1<String, String>() {
+    final IterableToStringGlue<String> stringGlue = builder
+        .mapIf(new Condition1<String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            return null == value;
+          }
+        }, new Function1<String, String>() {
 
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: null, value: '" + value + "']";
-					}})
-				.mapIf(new Condition1<String>() {
-					@Override
-					public boolean isMet(final String value)
-					{
-						return null != value && value.isEmpty();
-					}
-				}, new Function1<String, String>() {
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: null, value: '" + value + "']";
+          }})
+        .mapIf(new Condition1<String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            return null != value && value.isEmpty();
+          }
+        }, new Function1<String, String>() {
 
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: empty, value: '" + value + "']";
-					}})
-				.mapIf(new Condition1<String>() {
-					Pattern pattern = Pattern.compile("[ ]+");
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: empty, value: '" + value + "']";
+          }})
+        .mapIf(new Condition1<String>() {
+          Pattern pattern = Pattern.compile("[ ]+");
 
-					@Override
-					public boolean isMet(final String value)
-					{
-						if (isNullOrEmptyString(value))
-						{
-							return true;
-						}
-						return pattern.matcher(value)
-								.matches();
-					}
-				}, new Function1<String, String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            if (isNullOrEmptyString(value))
+            {
+              return true;
+            }
+            return pattern.matcher(value)
+                .matches();
+          }
+        }, new Function1<String, String>() {
 
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: all whitespace, value: '" + value + "']";
-					}})
-				.build();
-		/* @formatter:on */
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: all whitespace, value: '" + value + "']";
+          }})
+        .build();
+    /* @formatter:on */
 
     /* when */
     final String actual = stringGlue.glue(STRING_LIST);
@@ -838,16 +838,16 @@ public class ToStringGluesTest
     /* given */
     final ForIterableBuilder<String> builder = builderForIterable();
     /* @formatter:off */
-		final IterableToStringGlue<String> stringGlue = builder
-				.mapIfNotMappedWithAny(new Function1<String, String>() {
+    final IterableToStringGlue<String> stringGlue = builder
+        .mapIfNotMappedWithAny(new Function1<String, String>() {
 
-					@Override
-					public String apply(final String value)
-					{
-						return "{value:\"" + value + "\"}";
-					}})
-			.build();
-		/* @formatter:on */
+          @Override
+          public String apply(final String value)
+          {
+            return "{value:\"" + value + "\"}";
+          }})
+      .build();
+    /* @formatter:on */
 
     /* when */
     final String actual = stringGlue.glue(STRING_LIST);
@@ -1286,26 +1286,26 @@ public class ToStringGluesTest
     final ForIterableBuilder<String> builder = ToStringGlues.<String> builderForIterable()
         .withSeparator(", ");
     /* @formatter:off */
-		final IterableToStringGlue<String> stringGlue = builder
-				.ignoreIf(new Condition1<String>() {
-					@Override
-					public boolean isMet(final String value)
-					{
-						return isNullOrEmptyString(value);
-					}
-				})
-				.ignoreIf(new Condition1<String>() {
-					Pattern pattern = Pattern.compile("[ ]+");
+    final IterableToStringGlue<String> stringGlue = builder
+        .ignoreIf(new Condition1<String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            return isNullOrEmptyString(value);
+          }
+        })
+        .ignoreIf(new Condition1<String>() {
+          Pattern pattern = Pattern.compile("[ ]+");
 
-					@Override
-					public boolean isMet(final String value)
-					{
-						return pattern.matcher(value)
-								.matches();
-					}
-				})
-			.build();
-		/* @formatter:on */
+          @Override
+          public boolean isMet(final String value)
+          {
+            return pattern.matcher(value)
+                .matches();
+          }
+        })
+      .build();
+    /* @formatter:on */
 
     /* when */
     final String actual = stringGlue.glue(STRING_LIST);
@@ -1363,37 +1363,37 @@ public class ToStringGluesTest
     final ForIterableBuilder<String> builder = ToStringGlues.<String> builderForIterable()
         .withSeparator(", ");
     /* @formatter:off */
-		final IterableToStringGlue<String> stringGlue = builder
-				.replaceIf(new Condition1<String>() {
-					@Override
-					public boolean isMet(final String value)
-					{
-						return null == value;
-					}
-				}, "[NULL]")
-				.replaceIf(new Condition1<String>() {
-					@Override
-					public boolean isMet(final String value)
-					{
-						return null != value && value.isEmpty();
-					}
-				}, "[EMPTY]")
-				.replaceIf(new Condition1<String>() {
-					Pattern pattern = Pattern.compile("[ ]+");
+    final IterableToStringGlue<String> stringGlue = builder
+        .replaceIf(new Condition1<String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            return null == value;
+          }
+        }, "[NULL]")
+        .replaceIf(new Condition1<String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            return null != value && value.isEmpty();
+          }
+        }, "[EMPTY]")
+        .replaceIf(new Condition1<String>() {
+          Pattern pattern = Pattern.compile("[ ]+");
 
-					@Override
-					public boolean isMet(final String value)
-					{
-						if (isNullOrEmptyString(value))
-						{
-							return true;
-						}
-						return pattern.matcher(value)
-								.matches();
-					}
-				}, "[WHITE SPACE]")
-			.build();
-		/* @formatter:on */
+          @Override
+          public boolean isMet(final String value)
+          {
+            if (isNullOrEmptyString(value))
+            {
+              return true;
+            }
+            return pattern.matcher(value)
+                .matches();
+          }
+        }, "[WHITE SPACE]")
+      .build();
+    /* @formatter:on */
 
     /* when */
     final String actual = stringGlue.glue(STRING_LIST);
@@ -1442,27 +1442,27 @@ public class ToStringGluesTest
     final ForIterableBuilder<String> builder = ToStringGlues.<String> builderForIterable()
         .withSeparator(", ");
     /* @formatter:off */
-		final IterableToStringGlue<String> stringGlue = builder
-				.mapWith(null, new Function1<String, String>() {
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: null, value: '" + value + "']";
-					}})
-				.mapWith("", new Function1<String, String>() {
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: empty, value: '" + value + "']";
-					}})
-				.mapWith(" ", new Function1<String, String>() {
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: one whitespace, value: '" + value + "']";
-					}})
-			.build();
-		/* @formatter:on */
+    final IterableToStringGlue<String> stringGlue = builder
+        .mapWith(null, new Function1<String, String>() {
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: null, value: '" + value + "']";
+          }})
+        .mapWith("", new Function1<String, String>() {
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: empty, value: '" + value + "']";
+          }})
+        .mapWith(" ", new Function1<String, String>() {
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: one whitespace, value: '" + value + "']";
+          }})
+      .build();
+    /* @formatter:on */
 
     /* when */
     final String actual = stringGlue.glue(STRING_LIST);
@@ -1520,55 +1520,55 @@ public class ToStringGluesTest
     final ForIterableBuilder<String> builder = ToStringGlues.<String> builderForIterable()
         .withSeparator(", ");
     /* @formatter:off */
-		final IterableToStringGlue<String> stringGlue = builder
-				.mapIf(new Condition1<String>() {
-					@Override
-					public boolean isMet(final String value)
-					{
-						return null == value;
-					}
-				}, new Function1<String, String>() {
+    final IterableToStringGlue<String> stringGlue = builder
+        .mapIf(new Condition1<String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            return null == value;
+          }
+        }, new Function1<String, String>() {
 
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: null, value: '" + value + "']";
-					}})
-				.mapIf(new Condition1<String>() {
-					@Override
-					public boolean isMet(final String value)
-					{
-						return null != value && value.isEmpty();
-					}
-				}, new Function1<String, String>() {
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: null, value: '" + value + "']";
+          }})
+        .mapIf(new Condition1<String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            return null != value && value.isEmpty();
+          }
+        }, new Function1<String, String>() {
 
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: empty, value: '" + value + "']";
-					}})
-				.mapIf(new Condition1<String>() {
-					Pattern pattern = Pattern.compile("[ ]+");
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: empty, value: '" + value + "']";
+          }})
+        .mapIf(new Condition1<String>() {
+          Pattern pattern = Pattern.compile("[ ]+");
 
-					@Override
-					public boolean isMet(final String value)
-					{
-						if (isNullOrEmptyString(value))
-						{
-							return true;
-						}
-						return pattern.matcher(value)
-								.matches();
-					}
-				}, new Function1<String, String>() {
+          @Override
+          public boolean isMet(final String value)
+          {
+            if (isNullOrEmptyString(value))
+            {
+              return true;
+            }
+            return pattern.matcher(value)
+                .matches();
+          }
+        }, new Function1<String, String>() {
 
-					@Override
-					public String apply(final String value)
-					{
-						return "[what: all whitespace, value: '" + value + "']";
-					}})
-				.build();
-		/* @formatter:on */
+          @Override
+          public String apply(final String value)
+          {
+            return "[what: all whitespace, value: '" + value + "']";
+          }})
+        .build();
+    /* @formatter:on */
 
     /* when */
     final String actual = stringGlue.glue(STRING_LIST);
@@ -1598,16 +1598,16 @@ public class ToStringGluesTest
     final ForIterableBuilder<String> builder = ToStringGlues.<String> builderForIterable()
         .withSeparator(", ");
     /* @formatter:off */
-		final IterableToStringGlue<String> stringGlue = builder
-				.mapIfNotMappedWithAny(new Function1<String, String>() {
+    final IterableToStringGlue<String> stringGlue = builder
+        .mapIfNotMappedWithAny(new Function1<String, String>() {
 
-					@Override
-					public String apply(final String value)
-					{
-						return "{value:\"" + value + "\"}";
-					}})
-			.build();
-		/* @formatter:on */
+          @Override
+          public String apply(final String value)
+          {
+            return "{value:\"" + value + "\"}";
+          }})
+      .build();
+    /* @formatter:on */
 
     /* when */
     final String actual = stringGlue.glue(STRING_LIST);
@@ -3136,11 +3136,11 @@ public class ToStringGluesTest
           public String toString()
           {
             /* @formatter:off */
-								return toStringBuilder(this)
-										.add("givenName", getGivenName())
-										.add("surname", getSurname())
-										.toString();
-								/* @formatter:on */
+                return toStringBuilder(this)
+                    .add("givenName", getGivenName())
+                    .add("surname", getSurname())
+                    .toString();
+                /* @formatter:on */
           }
         });
       }
@@ -3201,11 +3201,11 @@ public class ToStringGluesTest
               public String toString()
               {
                 /* @formatter:off */
-								return toStringBuilder(this)
-										.add("givenName", getGivenName())
-										.add("surname", getSurname())
-										.toString();
-								/* @formatter:on */
+                return toStringBuilder(this)
+                    .add("givenName", getGivenName())
+                    .add("surname", getSurname())
+                    .toString();
+                /* @formatter:on */
               }
             };
           }

@@ -53,25 +53,25 @@ package org.elixirian.kommonlee.io.exception;
  */
 public class NetworkAddressException extends RuntimeIoException
 {
-	private static final long serialVersionUID = 6957482079761881399L;
+  private static final long serialVersionUID = 6957482079761881399L;
 
-	public NetworkAddressException()
-	{
-	}
+  public NetworkAddressException()
+  {
+  }
 
-	public NetworkAddressException(final String message, final Throwable cause)
-	{
-		super(message, cause);
-	}
+  public NetworkAddressException(final String message, final Throwable cause)
+  {
+    super(message, cause);
+  }
 
-	public NetworkAddressException(final String message)
-	{
-		super(message);
-	}
+  public NetworkAddressException(final String message)
+  {
+    super(message);
+  }
 
-	public NetworkAddressException(final Throwable cause)
-	{
-		super(cause);
-	}
+  public NetworkAddressException(final Throwable cause)
+  {
+    super(cause);
+  }
 
 }

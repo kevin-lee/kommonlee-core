@@ -53,16 +53,16 @@ package org.elixirian.kommonlee.util.string;
  */
 public interface StringArgsToStringGlue extends ToStringGlue<String[]>
 {
-	@Override
-	String glue(String[] values);
+  @Override
+  String glue(String[] values);
 
-	String glue(String value1, String value2);
+  String glue(String value1, String value2);
 
-	String glue(String value1, String value2, String value3);
+  String glue(String value1, String value2, String value3);
 
-	String glue(String value1, String value2, String value3, String value4);
+  String glue(String value1, String value2, String value3, String value4);
 
-	String glue(String value1, String value2, String value3, String value4, String value5);
+  String glue(String value1, String value2, String value3, String value4, String value5);
 
-	String glue(String value1, String value2, String value3, String value4, String value5, String... rest);
+  String glue(String value1, String value2, String value3, String value4, String value5, String... rest);
 }

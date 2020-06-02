@@ -61,240 +61,240 @@ import org.elixirian.kommonlee.type.checkable.EmptinessCheckable;
  */
 public class ParamInfo<T> implements EmptinessCheckable
 {
-	public static final List<ParamInfo<?>> EMPTY_PARAM_LIST = Collections.emptyList();
+  public static final List<ParamInfo<?>> EMPTY_PARAM_LIST = Collections.emptyList();
 
-	public static final List<Class<? extends Annotation>> EMPTY_ANNOTATION_LIST = Collections.emptyList();
+  public static final List<Class<? extends Annotation>> EMPTY_ANNOTATION_LIST = Collections.emptyList();
 
-	public static final ParamInfo<?> EMPTY_PARAM_INFO =
-		new ParamInfo<Object>(null, "", null, EMPTY_ANNOTATION_LIST, null) {
-			@Override
-			public int hashCode()
-			{
-				return 0;
-			}
+  public static final ParamInfo<?> EMPTY_PARAM_INFO =
+    new ParamInfo<Object>(null, "", null, EMPTY_ANNOTATION_LIST, null) {
+      @Override
+      public int hashCode()
+      {
+        return 0;
+      }
 
-			@Override
-			public boolean isEmpty()
-			{
-				return true;
-			}
-		};
+      @Override
+      public boolean isEmpty()
+      {
+        return true;
+      }
+    };
 
-	private final Class<T> paramType;
+  private final Class<T> paramType;
 
-	private final String paramName;
+  private final String paramName;
 
-	private final T paramValue;
+  private final T paramValue;
 
-	private final List<Class<? extends Annotation>> paramAnnotationList;
+  private final List<Class<? extends Annotation>> paramAnnotationList;
 
-	private final String note;
+  private final String note;
 
-	public static class Builder<T> implements GenericBuilder<ParamInfo<T>>
-	{
-		final Class<T> paramType;
+  public static class Builder<T> implements GenericBuilder<ParamInfo<T>>
+  {
+    final Class<T> paramType;
 
-		final String paramName;
+    final String paramName;
 
-		T paramValue;
+    T paramValue;
 
-		final List<Class<? extends Annotation>> paramAnnotationList;
+    final List<Class<? extends Annotation>> paramAnnotationList;
 
-		String note;
+    String note;
 
-		public Builder(final Class<T> paramType, final String paramName)
-		{
-			this.paramType = paramType;
-			this.paramName = paramName;
-			this.paramAnnotationList = new ArrayList<Class<? extends Annotation>>();
-		}
+    public Builder(final Class<T> paramType, final String paramName)
+    {
+      this.paramType = paramType;
+      this.paramName = paramName;
+      this.paramAnnotationList = new ArrayList<Class<? extends Annotation>>();
+    }
 
-		public Builder<T> paramValue(final T paramValue)
-		{
-			this.paramValue = paramValue;
-			return this;
-		}
+    public Builder<T> paramValue(final T paramValue)
+    {
+      this.paramValue = paramValue;
+      return this;
+    }
 
-		public <A extends Annotation> Builder<T> addParamAnnotation(final Class<A> annotation)
-		{
-			this.paramAnnotationList.add(annotation);
-			return this;
-		}
+    public <A extends Annotation> Builder<T> addParamAnnotation(final Class<A> annotation)
+    {
+      this.paramAnnotationList.add(annotation);
+      return this;
+    }
 
-		public <A extends Annotation> Builder<T> addAllParamAnnotation(final Class<? extends A>... annotation)
-		{
-			this.paramAnnotationList.addAll(Arrays.asList(annotation));
-			return this;
-		}
+    public <A extends Annotation> Builder<T> addAllParamAnnotation(final Class<? extends A>... annotation)
+    {
+      this.paramAnnotationList.addAll(Arrays.asList(annotation));
+      return this;
+    }
 
-		public Builder<T> note(final String note)
-		{
-			this.note = note;
-			return this;
-		}
+    public Builder<T> note(final String note)
+    {
+      this.note = note;
+      return this;
+    }
 
-		@Override
-		public ParamInfo<T> build()
-		{
-			/* @formatter:off */
+    @Override
+    public ParamInfo<T> build()
+    {
+      /* @formatter:off */
       if (null == paramType &&
           (null == paramName ||
-          	paramName.isEmpty()) &&
+            paramName.isEmpty()) &&
           null == paramValue &&
           paramAnnotationList.isEmpty() &&
           (null == note ||
-          	note.isEmpty()))
+            note.isEmpty()))
       {
         /* @formatter:on */
-				@SuppressWarnings("unchecked")
-				final ParamInfo<T> emptyParamInfo = (ParamInfo<T>) EMPTY_PARAM_INFO;
-				return emptyParamInfo;
-			}
-			return new ParamInfo<T>(this);
-		}
-	}
+        @SuppressWarnings("unchecked")
+        final ParamInfo<T> emptyParamInfo = (ParamInfo<T>) EMPTY_PARAM_INFO;
+        return emptyParamInfo;
+      }
+      return new ParamInfo<T>(this);
+    }
+  }
 
-	public static <T> Builder<T> builder(final Class<T> paramType, final String paramName)
-	{
-		return new Builder<T>(paramType, paramName);
-	}
+  public static <T> Builder<T> builder(final Class<T> paramType, final String paramName)
+  {
+    return new Builder<T>(paramType, paramName);
+  }
 
-	private ParamInfo(final Builder<T> builder)
-	{
-		this(builder.paramType, builder.paramName, builder.paramValue, builder.paramAnnotationList, builder.note);
-	}
+  private ParamInfo(final Builder<T> builder)
+  {
+    this(builder.paramType, builder.paramName, builder.paramValue, builder.paramAnnotationList, builder.note);
+  }
 
-	private ParamInfo(final Class<T> paramType, final String paramName, final T paramValue,
-			final List<Class<? extends Annotation>> paramAnnotationList, final String note)
-	{
-		this.paramType = paramType;
-		this.paramName = paramName;
-		this.paramValue = paramValue;
-		/* @formatter:off */
+  private ParamInfo(final Class<T> paramType, final String paramName, final T paramValue,
+      final List<Class<? extends Annotation>> paramAnnotationList, final String note)
+  {
+    this.paramType = paramType;
+    this.paramName = paramName;
+    this.paramValue = paramValue;
+    /* @formatter:off */
       this.paramAnnotationList =
         null == paramAnnotationList || paramAnnotationList.isEmpty() ?
             EMPTY_ANNOTATION_LIST :
             Collections.unmodifiableList(paramAnnotationList);
     /* @formatter:on */
-		this.note = note;
-	}
+    this.note = note;
+  }
 
-	/**
-	 * Returns the paramType.
-	 * 
-	 * @return the type ({@link Class}) of the parameter.
-	 */
-	public Class<?> getParamType()
-	{
-		return paramType;
-	}
+  /**
+   * Returns the paramType.
+   * 
+   * @return the type ({@link Class}) of the parameter.
+   */
+  public Class<?> getParamType()
+  {
+    return paramType;
+  }
 
-	/**
-	 * Returns paramName
-	 * 
-	 * @return the name of the parameter.
-	 */
-	public String getParamName()
-	{
-		return paramName;
-	}
+  /**
+   * Returns paramName
+   * 
+   * @return the name of the parameter.
+   */
+  public String getParamName()
+  {
+    return paramName;
+  }
 
-	/**
-	 * Returns paramValue.
-	 * 
-	 * @return the parameter value.
-	 */
-	public T getParamValue()
-	{
-		return paramValue;
-	}
+  /**
+   * Returns paramValue.
+   * 
+   * @return the parameter value.
+   */
+  public T getParamValue()
+  {
+    return paramValue;
+  }
 
-	/**
-	 * Returns paramAnnotationList.
-	 * 
-	 * @return the {@link List} of {@link Class} that extends {@link Annotation} with which the parameter is annotated.
-	 */
-	public List<Class<? extends Annotation>> getParamAnnotationList()
-	{
-		return paramAnnotationList;
-	}
+  /**
+   * Returns paramAnnotationList.
+   * 
+   * @return the {@link List} of {@link Class} that extends {@link Annotation} with which the parameter is annotated.
+   */
+  public List<Class<? extends Annotation>> getParamAnnotationList()
+  {
+    return paramAnnotationList;
+  }
 
-	public String getNote()
-	{
-		return note;
-	}
+  public String getNote()
+  {
+    return note;
+  }
 
-	@Override
-	public int hashCode()
-	{
-		int result = 1;
-		result = 31 * result + (null == paramName ? 0 : paramName.hashCode());
-		result = 31 * result + (null == paramType ? 0 : paramType.hashCode());
-		result = 31 * result + (null == paramValue ? 0 : paramValue.hashCode());
-		result = 31 * result + (null == paramAnnotationList ? 0 : paramAnnotationList.hashCode());
-		return result;
-	}
+  @Override
+  public int hashCode()
+  {
+    int result = 1;
+    result = 31 * result + (null == paramName ? 0 : paramName.hashCode());
+    result = 31 * result + (null == paramType ? 0 : paramType.hashCode());
+    result = 31 * result + (null == paramValue ? 0 : paramValue.hashCode());
+    result = 31 * result + (null == paramAnnotationList ? 0 : paramAnnotationList.hashCode());
+    return result;
+  }
 
-	@Override
-	public boolean equals(final Object paramInfo)
-	{
-		if (this == paramInfo)
-		{
-			return true;
-		}
-		if (!(paramInfo instanceof ParamInfo))
-		{
-			return false;
-		}
-		final ParamInfo<?> that = (ParamInfo<?>) paramInfo;
-		/* @formatter:off */
+  @Override
+  public boolean equals(final Object paramInfo)
+  {
+    if (this == paramInfo)
+    {
+      return true;
+    }
+    if (!(paramInfo instanceof ParamInfo))
+    {
+      return false;
+    }
+    final ParamInfo<?> that = (ParamInfo<?>) paramInfo;
+    /* @formatter:off */
     return (this.paramName == that.getParamName() ||
-            	(null != this.paramName &&
-            	 this.paramName.equals(that.getParamName()))) &&
+              (null != this.paramName &&
+               this.paramName.equals(that.getParamName()))) &&
            (this.paramType == that.getParamType() ||
-            	(null != this.paramType &&
-        			 this.paramType.equals(that.getParamType()))) &&
+              (null != this.paramType &&
+               this.paramType.equals(that.getParamType()))) &&
            (this.paramValue == that.getParamValue() ||
               (null != this.paramValue &&
-          		 this.paramValue.equals(that.getParamValue()))) &&
+               this.paramValue.equals(that.getParamValue()))) &&
            (this.paramAnnotationList == that.getParamAnnotationList() ||
-            	(null != this.paramAnnotationList &&
-        			this.paramAnnotationList.equals(that.getParamAnnotationList())));
+              (null != this.paramAnnotationList &&
+              this.paramAnnotationList.equals(that.getParamAnnotationList())));
     /* @formatter:on */
-	}
+  }
 
-	@Override
-	public String toString()
-	{
-		if (isEmpty())
-		{
-			return "{EMPTY}";
-		}
-		/* @formatter:off */
+  @Override
+  public String toString()
+  {
+    if (isEmpty())
+    {
+      return "{EMPTY}";
+    }
+    /* @formatter:off */
     return new StringBuilder(this.getClass().getSimpleName())
-    		.append("{")
-	        .append("paramName=")
-	        .append(paramName)
+        .append("{")
+          .append("paramName=")
+          .append(paramName)
         .append(", ")
-	        .append("paramType=")
-	        .append(paramType)
+          .append("paramType=")
+          .append(paramType)
         .append(", ")
-	        .append("paramValue=")
-	        .append(paramValue)
+          .append("paramValue=")
+          .append(paramValue)
         .append(", ")
-	        .append("paramAnnotationList=")
-	        .append(paramAnnotationList)
+          .append("paramAnnotationList=")
+          .append(paramAnnotationList)
         .append(", ")
-	        .append("note=")
-	        .append(note)
+          .append("note=")
+          .append(note)
         .append("}")
         .toString();
     /* @formatter:on */
-	}
+  }
 
-	@Override
-	public boolean isEmpty()
-	{
-		return EMPTY_PARAM_INFO.equals(this);
-	}
+  @Override
+  public boolean isEmpty()
+  {
+    return EMPTY_PARAM_INFO.equals(this);
+  }
 }

@@ -57,10 +57,10 @@ package org.elixirian.kommonlee.type;
  */
 public interface GenericBuilder<T>
 {
-	/**
-	 * Create an instance of the type T.
-	 * 
-	 * @return an instance of the type T.
-	 */
-	T build();
+  /**
+   * Create an instance of the type T.
+   *
+   * @return an instance of the type T.
+   */
+  T build();
 }

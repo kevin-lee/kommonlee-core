@@ -42,18 +42,18 @@ import java.util.ArrayList;
  */
 public class ArrayListCreator<E> implements CollectionCreator<E, ArrayList<E>>
 {
-	public static final ArrayListCreator<Object> ARRAY_LIST_CREATOR = new ArrayListCreator<Object>();
+  public static final ArrayListCreator<Object> ARRAY_LIST_CREATOR = new ArrayListCreator<Object>();
 
-	@Override
-	public ArrayList<E> createCollection()
-	{
-		return newArrayList();
-	}
+  @Override
+  public ArrayList<E> createCollection()
+  {
+    return newArrayList();
+  }
 
-	public static <E> ArrayListCreator<E> getInstance()
-	{
-		@SuppressWarnings("unchecked")
-		final ArrayListCreator<E> arrayListCreator = (ArrayListCreator<E>) ARRAY_LIST_CREATOR;
-		return arrayListCreator;
-	}
+  public static <E> ArrayListCreator<E> getInstance()
+  {
+    @SuppressWarnings("unchecked")
+    final ArrayListCreator<E> arrayListCreator = (ArrayListCreator<E>) ARRAY_LIST_CREATOR;
+    return arrayListCreator;
+  }
 }

@@ -53,44 +53,44 @@ package org.elixirian.kommonlee.exception;
  */
 public class GeneralInformativeRuntimeException extends InformativeRuntimeException
 {
-	private static final long serialVersionUID = 1629232711251802574L;
+  private static final long serialVersionUID = 1629232711251802574L;
 
-	public GeneralInformativeRuntimeException(final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(extraExceptionInformation);
-	}
+  public GeneralInformativeRuntimeException(final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(extraExceptionInformation);
+  }
 
-	public GeneralInformativeRuntimeException(final String message,
-			final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(message, extraExceptionInformation);
-	}
+  public GeneralInformativeRuntimeException(final String message,
+      final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(message, extraExceptionInformation);
+  }
 
-	public GeneralInformativeRuntimeException(final String message, final Throwable cause,
-			final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(message, cause, extraExceptionInformation);
-	}
+  public GeneralInformativeRuntimeException(final String message, final Throwable cause,
+      final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(message, cause, extraExceptionInformation);
+  }
 
-	public GeneralInformativeRuntimeException(final String message, final Throwable cause)
-	{
-		super(message, cause);
-	}
+  public GeneralInformativeRuntimeException(final String message, final Throwable cause)
+  {
+    super(message, cause);
+  }
 
-	public GeneralInformativeRuntimeException(final String message)
-	{
-		super(message);
-	}
+  public GeneralInformativeRuntimeException(final String message)
+  {
+    super(message);
+  }
 
-	public GeneralInformativeRuntimeException(final Throwable cause,
-			final ExtraExceptionInformation extraExceptionInformation)
-	{
-		super(cause, extraExceptionInformation);
-	}
+  public GeneralInformativeRuntimeException(final Throwable cause,
+      final ExtraExceptionInformation extraExceptionInformation)
+  {
+    super(cause, extraExceptionInformation);
+  }
 
-	public GeneralInformativeRuntimeException(final Throwable cause)
-	{
-		super(cause);
-	}
+  public GeneralInformativeRuntimeException(final Throwable cause)
+  {
+    super(cause);
+  }
 
 }

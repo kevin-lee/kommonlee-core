@@ -142,15 +142,15 @@ public class ConditionTest
 
     System.out.println("## result: ");
     /* @formatter:off */
-		System.out.println("oddNumbers: " + integerCollector.collect(integerList, new Condition1<Integer>() {
-			@Override
-			public boolean isMet(final Integer input) { return 0 != (input.intValue() & 1); }
-		}));
-		System.out.println("evenNumbers: " + integerCollector.collect(integerList, new Condition1<Integer>() {
-			@Override
-			public boolean isMet(final Integer input) { return 0 == (input.intValue() & 1); }
-		}));
-		/* @formatter:on */
+    System.out.println("oddNumbers: " + integerCollector.collect(integerList, new Condition1<Integer>() {
+      @Override
+      public boolean isMet(final Integer input) { return 0 != (input.intValue() & 1); }
+    }));
+    System.out.println("evenNumbers: " + integerCollector.collect(integerList, new Condition1<Integer>() {
+      @Override
+      public boolean isMet(final Integer input) { return 0 == (input.intValue() & 1); }
+    }));
+    /* @formatter:on */
 
     assertThat(integerCollector.collect(integerList, new Condition1<Integer>() {
       @Override

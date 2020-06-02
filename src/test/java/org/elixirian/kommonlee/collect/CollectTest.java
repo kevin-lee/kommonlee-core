@@ -126,16 +126,16 @@ public class CollectTest
     @SuppressWarnings("unchecked")
     final ImmutableList<Integer> emptyList = ImmutableLists.emptyList();
     /* @formatter:off */
-		final ImmutableList<Integer> resultFromEmptyListSelect =
-				emptyList.select(
-						new Condition1<Integer>() {
-							@Override
-							public boolean isMet(final Integer input)
-							{
-								return 5 < input.intValue();
-							}
-						});
-		/* @formatter:on */
+    final ImmutableList<Integer> resultFromEmptyListSelect =
+        emptyList.select(
+            new Condition1<Integer>() {
+              @Override
+              public boolean isMet(final Integer input)
+              {
+                return 5 < input.intValue();
+              }
+            });
+    /* @formatter:on */
 
     System.out.println("emptyList.select: " + resultFromEmptyListSelect);
     final ImmutableList<Integer> emptyListOfIntegerFromImmutableLists = ImmutableLists.<Integer> emptyList();

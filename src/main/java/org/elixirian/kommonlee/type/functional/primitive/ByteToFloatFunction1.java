@@ -57,5 +57,5 @@ package org.elixirian.kommonlee.type.functional.primitive;
  */
 public interface ByteToFloatFunction1
 {
-	float apply(byte input);
+  float apply(byte input);
 }

@@ -58,26 +58,26 @@ package org.elixirian.kommonlee.type.filter;
  *          result
  */
 public interface ArgsFilter<T, C, R> extends Filter1<T, C, R>, Filter2<T, C, R>, Filter3<T, C, R>, Filter4<T, C, R>,
-		Filter5<T, C, R>, VarargsFilter<T, C, R>, ArrayFilter<T, C, R>
+    Filter5<T, C, R>, VarargsFilter<T, C, R>, ArrayFilter<T, C, R>
 {
-	@Override
-	R filter(C condition, T first);
+  @Override
+  R filter(C condition, T first);
 
-	@Override
-	R filter(C condition, T first, T second);
+  @Override
+  R filter(C condition, T first, T second);
 
-	@Override
-	R filter(C condition, T first, T second, T third);
+  @Override
+  R filter(C condition, T first, T second, T third);
 
-	@Override
-	R filter(C condition, T first, T second, T third, T fourth);
+  @Override
+  R filter(C condition, T first, T second, T third, T fourth);
 
-	@Override
-	R filter(C condition, T first, T second, T third, T fourth, T fifth);
+  @Override
+  R filter(C condition, T first, T second, T third, T fourth, T fifth);
 
-	@Override
+  @Override
   R filter(C condition, T first, T second, T third, T fourth, T fifth, T... rest);
 
-	@Override
+  @Override
   R filter(C condition, T[] values);
 }

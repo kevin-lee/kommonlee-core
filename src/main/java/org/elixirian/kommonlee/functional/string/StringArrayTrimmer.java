@@ -57,21 +57,21 @@ import org.elixirian.kommonlee.type.functional.Function1;
  */
 public final class StringArrayTrimmer implements Function1<String[], String[]>
 {
-	/**
-	 * trim all the given String objects. If it is null, replace it with an empty String ("").
-	 * 
-	 * @return String array containing trimmed String. The array does not have any null reference as null is replaced by
-	 *         an empty String.
-	 */
-	@Override
-	public String[] apply(final String[] input)
-	{
-		final int length = input.length;
-		final String[] list = new String[length];
-		for (int i = 0; i < length; i++)
-		{
-			list[i] = nullSafeTrim(input[i]);
-		}
-		return list;
-	}
+  /**
+   * trim all the given String objects. If it is null, replace it with an empty String ("").
+   * 
+   * @return String array containing trimmed String. The array does not have any null reference as null is replaced by
+   *         an empty String.
+   */
+  @Override
+  public String[] apply(final String[] input)
+  {
+    final int length = input.length;
+    final String[] list = new String[length];
+    for (int i = 0; i < length; i++)
+    {
+      list[i] = nullSafeTrim(input[i]);
+    }
+    return list;
+  }
 }

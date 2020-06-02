@@ -88,16 +88,16 @@ public class IterableToCollectionMapper<E, T extends Iterable<? extends E>, NE, 
   }
 
   /* @formatter:off */
-	public static <E,
-									 T extends Iterable<? extends E>,
-									 NE,
-									 F extends Function1<? super E, NE>,
-									 R extends Collection<NE>,
-									 CC extends CollectionCreator<NE, ? extends R>>
-					IterableToCollectionMapper<E, T, NE, F, R>
-		newInstance(final CC collectionCreator)
-	{
-		return new IterableToCollectionMapper<E, T, NE, F, R>(collectionCreator);
-	}
-	/* @formatter:on */
+  public static <E,
+                   T extends Iterable<? extends E>,
+                   NE,
+                   F extends Function1<? super E, NE>,
+                   R extends Collection<NE>,
+                   CC extends CollectionCreator<NE, ? extends R>>
+          IterableToCollectionMapper<E, T, NE, F, R>
+    newInstance(final CC collectionCreator)
+  {
+    return new IterableToCollectionMapper<E, T, NE, F, R>(collectionCreator);
+  }
+  /* @formatter:on */
 }

@@ -57,5 +57,5 @@ package org.elixirian.kommonlee.type.functional;
  */
 public interface Condition4<T1, T2, T3, T4>
 {
-	boolean isMet(T1 input1, T2 input2, T3 input3, T4 input4);
+  boolean isMet(T1 input1, T2 input2, T3 input3, T4 input4);
 }
